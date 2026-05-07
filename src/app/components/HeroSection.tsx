@@ -41,7 +41,7 @@ const lenses = [
   accent: 'border-emerald-500/40',
   glow: 'shadow-[0_0_30px_rgba(16,185,129,0.2)]',
   featured: false,
-  imgBg: 'rgba(10,10,20,0.85)'
+  imgBg: 'transparent'
 }];
 
 
@@ -113,15 +113,14 @@ export default function HeroSection() {
             {lenses?.map((lens, i) =>
             <div
               key={lens?.name}
-              className={`relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border ${lens?.accent} ${lens?.glow} transition-transform duration-500 hover:-translate-y-2 group cursor-pointer
+              className={`relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border bg-[rgba(10,10,20,0.7)] ${lens?.accent} ${lens?.glow} transition-transform duration-500 hover:-translate-y-2 group cursor-pointer
                   ${lens?.featured ?
               'w-[38%] sm:w-44 h-[300px] sm:h-[420px] z-20 -mt-8' :
               'w-[28%] sm:w-36 h-[240px] sm:h-[360px] z-10'}`
-              }
-              style={{ background: 'rgba(10,10,20,0.7)' }}>
+              }>
 
                 {/* Image */}
-                <div className="relative flex-1 overflow-hidden" style={lens?.imgBg && lens?.imgBg !== 'transparent' ? { background: lens?.imgBg } : {}}>
+                <div className={`relative flex-1 overflow-hidden${lens?.imgBg && lens?.imgBg !== 'transparent' ? ' lens-img-bg' : ''}`}>
                   <AppImage
                   src={lens?.src}
                   alt={lens?.alt}

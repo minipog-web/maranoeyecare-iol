@@ -345,8 +345,8 @@ export default function LensQuestionnaireSection() {
           </div>
           <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${progress}%` }} />
+              className="progress-bar h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out"
+              style={{ ['--progress' as string]: `${progress}%` } as React.CSSProperties} />
 
           </div>
         </div>

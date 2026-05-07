@@ -1,1 +1,9 @@
 @import './tailwind.css';
+
+.lens-img-bg {
+  background: rgba(10, 10, 20, 0.85);
+}
+
+.progress-bar {
+  width: var(--progress);
+}
