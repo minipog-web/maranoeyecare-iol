@@ -4,42 +4,42 @@ import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 
 const lenses = [
-{
-  name: 'Clareon Vivity',
-  tag: 'Most Popular',
-  tagColor: 'bg-primary text-primary-foreground',
-  subtitle: 'Non-diffractive EDOF',
-  detail: 'Fewest halos of any premium IOL',
-  src: "/assets/images/vivity_iol_dark.png",
-  alt: 'Clareon Vivity IOL — official Alcon product image of the non-diffractive extended depth of focus intraocular lens with X-WAVE technology',
-  accent: 'border-primary/60',
-  glow: 'shadow-[0_0_40px_rgba(99,102,241,0.35)]',
-  featured: true
-},
-{
-  name: 'PanOptix Pro',
-  tag: 'Trifocal',
-  tagColor: 'bg-accent/90 text-white',
-  subtitle: 'Full trifocal range',
-  detail: '99% would choose again',
-  src: "/assets/images/panoptix_iol_dark.png",
-  alt: 'Clareon PanOptix Pro trifocal IOL — official Alcon product image of the trifocal intraocular lens with ENLIGHTEN NXT optical technology',
-  accent: 'border-accent/50',
-  glow: 'shadow-[0_0_30px_rgba(139,92,246,0.25)]',
-  featured: false
-},
-{
-  name: 'Eyhance',
-  tag: 'Monofocal+',
-  tagColor: 'bg-emerald-500/90 text-white',
-  subtitle: 'Enhanced monofocal',
-  detail: 'Crisp distance + intermediate',
-  src: "/assets/images/eyhance_iol_dark.png",
-  alt: 'TECNIS Eyhance IOL — official Johnson & Johnson product image of the enhanced monofocal intraocular lens with increased depth of focus',
-  accent: 'border-emerald-500/40',
-  glow: 'shadow-[0_0_30px_rgba(16,185,129,0.2)]',
-  featured: false
-}];
+  {
+    name: 'Clareon Vivity',
+    tag: 'Most Popular',
+    tagColor: 'bg-primary text-primary-foreground',
+    subtitle: 'Non-diffractive EDOF',
+    detail: 'Fewest halos of any premium IOL',
+    src: "/assets/images/vivity_iol_dark.png",
+    alt: 'Clareon Vivity IOL — official Alcon product image of the non-diffractive extended depth of focus intraocular lens with X-WAVE technology',
+    accent: 'border-primary/60',
+    glow: 'shadow-[0_0_40px_rgba(0,201,177,0.35)]',
+    featured: true
+  },
+  {
+    name: 'PanOptix Pro',
+    tag: 'Trifocal',
+    tagColor: 'bg-primary text-primary-foreground',
+    subtitle: 'Full trifocal range',
+    detail: '99% would choose again',
+    src: "/assets/images/panoptix_iol_dark.png",
+    alt: 'Clareon PanOptix Pro trifocal IOL — official Alcon product image of the trifocal intraocular lens with ENLIGHTEN NXT optical technology',
+    accent: 'border-primary/60',
+    glow: 'shadow-[0_0_40px_rgba(0,201,177,0.35)]',
+    featured: false
+  },
+  {
+    name: 'Eyhance',
+    tag: 'Monofocal+',
+    tagColor: 'bg-primary text-primary-foreground',
+    subtitle: 'Enhanced monofocal',
+    detail: 'Crisp distance + intermediate',
+    src: "/assets/images/eyhance_iol_dark.png",
+    alt: 'TECNIS Eyhance IOL — official Johnson & Johnson product image of the enhanced monofocal intraocular lens with increased depth of focus',
+    accent: 'border-primary/60',
+    glow: 'shadow-[0_0_40px_rgba(0,201,177,0.35)]',
+    featured: false
+  }];
 
 
 export default function HeroSection() {
