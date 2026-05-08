@@ -10,12 +10,11 @@ const lenses = [
   tagColor: 'bg-primary text-primary-foreground',
   subtitle: 'Non-diffractive EDOF',
   detail: 'Fewest halos of any premium IOL',
-  src: "https://img.rocket.new/generatedImages/rocket_gen_img_168bf1ace-1777413456273.png",
+  src: "/assets/images/vivity_iol_dark.png",
   alt: 'Clareon Vivity IOL — official Alcon product image of the non-diffractive extended depth of focus intraocular lens with X-WAVE technology',
   accent: 'border-primary/60',
   glow: 'shadow-[0_0_40px_rgba(99,102,241,0.35)]',
-  featured: true,
-  imgBg: 'transparent'
+  featured: true
 },
 {
   name: 'PanOptix Pro',
@@ -23,12 +22,11 @@ const lenses = [
   tagColor: 'bg-accent/90 text-white',
   subtitle: 'Full trifocal range',
   detail: '99% would choose again',
-  src: "/assets/images/PanOptix_Pro-1778167089816.jpg",
+  src: "/assets/images/panoptix_iol_dark.png",
   alt: 'Clareon PanOptix Pro trifocal IOL — official Alcon product image of the trifocal intraocular lens with ENLIGHTEN NXT optical technology',
   accent: 'border-accent/50',
   glow: 'shadow-[0_0_30px_rgba(139,92,246,0.25)]',
-  featured: false,
-  imgBg: 'rgba(10,10,20,0.85)'
+  featured: false
 },
 {
   name: 'Eyhance',
@@ -36,12 +34,11 @@ const lenses = [
   tagColor: 'bg-emerald-500/90 text-white',
   subtitle: 'Enhanced monofocal',
   detail: 'Crisp distance + intermediate',
-  src: "/assets/images/Eyhance_IOL.png",
+  src: "/assets/images/eyhance_iol_dark.png",
   alt: 'TECNIS Eyhance IOL — official Johnson & Johnson product image of the enhanced monofocal intraocular lens with increased depth of focus',
   accent: 'border-emerald-500/40',
   glow: 'shadow-[0_0_30px_rgba(16,185,129,0.2)]',
-  featured: false,
-  imgBg: 'transparent'
+  featured: false
 }];
 
 
@@ -120,7 +117,7 @@ export default function HeroSection() {
               }>
 
                 {/* Image */}
-                <div className={`relative flex-1 overflow-hidden${lens?.imgBg && lens?.imgBg !== 'transparent' ? ' lens-img-bg' : ''}`}>
+                <div className="relative flex-1 overflow-hidden">
                   <AppImage
                   src={lens?.src}
                   alt={lens?.alt}

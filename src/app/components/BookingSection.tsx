@@ -35,14 +35,31 @@ export default function BookingSection() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Mock submit — connect backend here
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch('/api/book-consultation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Something went wrong. Please try again or call us directly.');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Network error. Please check your connection or call us directly.');
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+    }
   };
 
   const inputClass =

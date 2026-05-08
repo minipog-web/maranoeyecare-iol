@@ -7,3 +7,128 @@
 .progress-bar {
   width: var(--progress);
 }
+
+/* LensVisionComparisonSection */
+.vision-section-bg {
+  background: radial-gradient(circle at 30% 60%, rgba(0,201,177,0.06) 0%, transparent 60%);
+}
+
+.toggle-container {
+  background: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.toggle-btn {
+  background: var(--toggle-bg, transparent);
+  color: var(--toggle-color, var(--muted-foreground));
+  box-shadow: var(--toggle-shadow, none);
+}
+
+.lens-card {
+  background: var(--card);
+  border: var(--lens-border, 1px solid var(--border));
+  box-shadow: var(--lens-shadow, 0 4px 20px rgba(0,0,0,0.3));
+  transform: var(--lens-transform, none);
+}
+
+.lens-badge {
+  background: var(--badge-bg);
+  color: var(--badge-color);
+  border: 1px solid var(--badge-border);
+}
+
+.lens-image-wrapper {
+  aspect-ratio: 4/3;
+}
+
+.lens-metric-value {
+  color: var(--lens-color);
+}
+
+.glare-bar-track {
+  background: var(--muted);
+}
+
+.glare-bar-fill {
+  width: var(--glare-width);
+  background: var(--glare-bg);
+  opacity: 0.85;
+}
+
+.scene-label {
+  background: rgba(0,0,0,0.55);
+  color: rgba(255,255,255,0.7);
+}
+
+.legend-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.legend-icon-wrap {
+  background: rgba(0,201,177,0.1);
+}
+
+.blur-overlay-bottom {
+  mask-image: linear-gradient(to bottom, transparent, black 40%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%);
+}
+.blur-overlay-bottom-monofocal {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.blur-overlay-bottom-eyhance {
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+}
+
+.blur-overlay-top {
+  mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+}
+.blur-overlay-top-monofocal {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.blur-overlay-top-eyhance {
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+}
+
+/* Vivity glare headlights */
+.hl-vivity-left {
+  left: 54.9%; top: 43.8%; width: 30%; padding-bottom: 30%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 20%, transparent 50%);
+}
+.hl-vivity-right {
+  left: 59.3%; top: 43.8%; width: 30%; padding-bottom: 30%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 20%, transparent 50%);
+}
+
+/* PanOptix halo headlights */
+.hl-panoptix-left {
+  left: 54.9%; top: 43.8%; width: 22%; padding-bottom: 22%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 10%, rgba(126,236,216,0.4) 20%, rgba(126,236,216,0) 25%, rgba(126,236,216,0.3) 35%, transparent 40%);
+}
+.hl-panoptix-right {
+  left: 59.3%; top: 43.8%; width: 22%; padding-bottom: 22%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 10%, rgba(126,236,216,0.4) 20%, rgba(126,236,216,0) 25%, rgba(126,236,216,0.3) 35%, transparent 40%);
+}
+
+/* Glare bar fills — width driven by CSS custom property set on section */
+.glare-bar-fill {
+  width: var(--glare-width);
+  opacity: 0.85;
+}
+.glare-bar-fill-vivity    { background: #00C9B1; }
+.glare-bar-fill-panoptix  { background: #7EECD8; }
+.glare-bar-fill-eyhance   { background: #A8B4C8; }
+.glare-bar-fill-monofocal { background: #6B7280; }
+.glare-bar-fill-high-vivity    { background: linear-gradient(90deg, #00C9B1, #FF6B6B); }
+.glare-bar-fill-high-panoptix  { background: linear-gradient(90deg, #7EECD8, #FF6B6B); }
+.glare-bar-fill-high-eyhance   { background: linear-gradient(90deg, #A8B4C8, #FF6B6B); }
+.glare-bar-fill-high-monofocal { background: linear-gradient(90deg, #6B7280, #FF6B6B); }

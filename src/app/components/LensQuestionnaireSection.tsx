@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 
 interface Question {
@@ -52,7 +52,7 @@ const LENSES: Record<string, LensResult> = {
     border: 'border-primary/50',
     badge: 'Most Popular',
     badgeColor: 'bg-primary text-background',
-    src: "https://img.rocket.new/generatedImages/rocket_gen_img_1125675c9-1777323615276.png",
+    src: "/assets/images/vivity_iol_dark.png",
     alt: 'Clareon Vivity IOL — extended depth of focus intraocular lens',
     cta: 'Book a Vivity Consultation'
   },
@@ -74,7 +74,7 @@ const LENSES: Record<string, LensResult> = {
     border: 'border-violet-500/50',
     badge: 'Trifocal',
     badgeColor: 'bg-violet-500 text-white',
-    src: "https://img.rocket.new/generatedImages/rocket_gen_img_133341e0e-1777323615462.png",
+    src: "/assets/images/panoptix_iol_dark.png",
     alt: 'PanOptix Pro trifocal IOL — advanced multifocal intraocular lens',
     cta: 'Book a PanOptix Consultation'
   },
@@ -96,7 +96,7 @@ const LENSES: Record<string, LensResult> = {
     border: 'border-emerald-500/40',
     badge: 'Monofocal+',
     badgeColor: 'bg-emerald-500 text-white',
-    src: '/assets/images/Eyhance_IOL.png',
+    src: "/assets/images/eyhance_iol_dark.png",
     alt: 'Eyhance enhanced monofocal IOL — next-generation monofocal intraocular lens',
     cta: 'Book an Eyhance Consultation'
   },
@@ -118,7 +118,7 @@ const LENSES: Record<string, LensResult> = {
     border: 'border-sky-500/40',
     badge: 'Insurance Covered',
     badgeColor: 'bg-sky-500 text-white',
-    src: "https://img.rocket.new/generatedImages/rocket_gen_img_1498b2fbf-1777323615282.png",
+    src: "/assets/images/monofocal_iol_dark.png",
     alt: 'Standard monofocal IOL — insurance-covered intraocular lens for cataract surgery',
     cta: 'Book a Consultation'
   }
@@ -247,6 +247,17 @@ function getProgressPercent(history: string[]): number {
   return Math.min(Math.round(history.length / TOTAL_QUESTIONS * 100), 90);
 }
 
+function progressWidthClass(pct: number): string {
+  if (pct === 0) return 'w-0';
+  if (pct <= 10) return 'w-[10%]';
+  if (pct <= 20) return 'w-[20%]';
+  if (pct <= 40) return 'w-[40%]';
+  if (pct <= 60) return 'w-[60%]';
+  if (pct <= 80) return 'w-[80%]';
+  if (pct <= 90) return 'w-[90%]';
+  return 'w-full';
+}
+
 export default function LensQuestionnaireSection() {
   const [currentId, setCurrentId] = useState<string>('q1');
   const [history, setHistory] = useState<string[]>([]);
@@ -344,9 +355,7 @@ export default function LensQuestionnaireSection() {
             <span className="text-xs text-primary font-medium">{progress}%</span>
           </div>
           <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-            <div
-              className="progress-bar h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out"
-              style={{ ['--progress' as string]: `${progress}%` } as React.CSSProperties} />
+            <div className={`${progressWidthClass(progress)} h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out`} />
 
           </div>
         </div>

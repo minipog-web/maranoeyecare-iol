@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AppIcon from '@/components/ui/AppIcon';
 import Image from 'next/image';
 
@@ -10,6 +10,13 @@ const lenses = [
     name: 'Clareon Vivity',
     type: 'EDOF',
     color: '#00C9B1',
+    twColor: 'text-[#00C9B1]',
+    twBadgeBg: 'bg-[#00C9B118]',
+    twBadgeBorder: 'border-[#00C9B130]',
+    twBadgeText: 'text-[#00C9B1]',
+    twGlareBar: 'bg-[#00C9B1]',
+    twGlareBarHigh: 'bg-gradient-to-r from-[#00C9B1] to-[#FF6B6B]',
+    blurClass: '',
     badge: 'Most Popular',
     images: {
       day: {
@@ -50,6 +57,13 @@ const lenses = [
     name: 'PanOptix Pro',
     type: 'Trifocal',
     color: '#7EECD8',
+    twColor: 'text-[#7EECD8]',
+    twBadgeBg: 'bg-[#7EECD818]',
+    twBadgeBorder: 'border-[#7EECD830]',
+    twBadgeText: 'text-[#7EECD8]',
+    twGlareBar: 'bg-[#7EECD8]',
+    twGlareBarHigh: 'bg-gradient-to-r from-[#7EECD8] to-[#FF6B6B]',
+    blurClass: '',
     badge: 'Full Trifocal',
     images: {
       day: {
@@ -90,6 +104,13 @@ const lenses = [
     name: 'Tecnis Eyhance',
     type: 'Enhanced Mono',
     color: '#A8B4C8',
+    twColor: 'text-[#A8B4C8]',
+    twBadgeBg: 'bg-[#A8B4C818]',
+    twBadgeBorder: 'border-[#A8B4C830]',
+    twBadgeText: 'text-[#A8B4C8]',
+    twGlareBar: 'bg-[#A8B4C8]',
+    twGlareBarHigh: 'bg-gradient-to-r from-[#A8B4C8] to-[#FF6B6B]',
+    blurClass: 'blur-eyhance',
     badge: 'Zero Added Halos',
     images: {
       day: {
@@ -130,6 +151,13 @@ const lenses = [
     name: 'Standard Monofocal',
     type: 'Monofocal',
     color: '#6B7280',
+    twColor: 'text-[#6B7280]',
+    twBadgeBg: 'bg-[#6B728018]',
+    twBadgeBorder: 'border-[#6B728030]',
+    twBadgeText: 'text-[#6B7280]',
+    twGlareBar: 'bg-[#6B7280]',
+    twGlareBarHigh: 'bg-gradient-to-r from-[#6B7280] to-[#FF6B6B]',
+    blurClass: 'blur-monofocal',
     badge: 'Baseline',
     images: {
       day: {
@@ -176,6 +204,19 @@ const distanceLabels: Record<Distance, { label: string; desc: string; icon: stri
   near: { label: 'Near', desc: 'Reading, phone (40cm)', icon: 'BookOpenIcon' },
 };
 
+function glareWidthClass(pct: number): string {
+  if (pct <= 5) return 'w-[5%]';
+  if (pct <= 10) return 'w-[10%]';
+  if (pct <= 15) return 'w-[15%]';
+  if (pct <= 20) return 'w-[20%]';
+  if (pct <= 25) return 'w-[25%]';
+  if (pct <= 30) return 'w-[30%]';
+  if (pct <= 35) return 'w-[35%]';
+  if (pct <= 40) return 'w-[40%]';
+  if (pct <= 46) return 'w-[46%]';
+  return 'w-[50%]';
+}
+
 export default function LensVisionComparisonSection() {
   const [activeDistance, setActiveDistance] = useState<Distance>('distance');
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('night');
@@ -183,7 +224,7 @@ export default function LensVisionComparisonSection() {
 
   return (
     <section id="vision-comparison" className="py-16 sm:py-24 relative overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 30% 60%, rgba(0,201,177,0.06) 0%, transparent 60%)' }} />
+      <div className="absolute inset-0 vision-section-bg" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
@@ -203,17 +244,18 @@ export default function LensVisionComparisonSection() {
         <div className="flex flex-col items-center gap-3 sm:gap-4 mb-10 sm:mb-12">
 
           {/* Day / Night toggle */}
-          <div className="flex items-center gap-1 p-1 rounded-2xl w-full max-w-xs sm:max-w-none sm:w-auto" style={{ background: 'var(--muted)', border: '1px solid var(--border)' }}>
+          <div className="toggle-container flex items-center gap-1 p-1 rounded-2xl w-full max-w-xs sm:max-w-none sm:w-auto">
             {(['day', 'night'] as TimeOfDay[]).map((t) => (
               <button
                 key={t}
                 onClick={() => setTimeOfDay(t)}
-                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 touch-manipulation min-h-[44px]"
-                style={{
-                  background: timeOfDay === t ? (t === 'night' ? '#0D1020' : '#FFF8E7') : 'transparent',
-                  color: timeOfDay === t ? (t === 'night' ? '#A8C8FF' : '#B8860B') : 'var(--muted-foreground)',
-                  boxShadow: timeOfDay === t ? '0 2px 8px rgba(0,0,0,0.3)' : 'none',
-                }}
+                className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 touch-manipulation min-h-[44px] ${
+                  timeOfDay === t
+                    ? t === 'night'
+                      ? 'bg-[#0D1020] text-[#A8C8FF] shadow-[0_2px_8px_rgba(0,0,0,0.3)]'
+                      : 'bg-[#FFF8E7] text-[#B8860B] shadow-[0_2px_8px_rgba(0,0,0,0.3)]'
+                    : 'bg-transparent text-muted-foreground'
+                }`}
               >
                 {t === 'day' ? (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
@@ -226,17 +268,16 @@ export default function LensVisionComparisonSection() {
           </div>
 
           {/* Distance selector */}
-          <div className="flex items-center gap-1 p-1 rounded-2xl w-full max-w-xs sm:max-w-none sm:w-auto" style={{ background: 'var(--muted)', border: '1px solid var(--border)' }}>
+          <div className="toggle-container flex items-center gap-1 p-1 rounded-2xl w-full max-w-xs sm:max-w-none sm:w-auto">
             {(Object.keys(distanceLabels) as Distance[]).map((d) => (
               <button
                 key={d}
                 onClick={() => setActiveDistance(d)}
-                className="flex-1 sm:flex-none px-3 sm:px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 touch-manipulation min-h-[44px]"
-                style={{
-                  background: activeDistance === d ? 'var(--primary)' : 'transparent',
-                  color: activeDistance === d ? 'var(--primary-foreground)' : 'var(--muted-foreground)',
-                  boxShadow: activeDistance === d ? '0 2px 8px rgba(0,201,177,0.3)' : 'none',
-                }}
+                className={`flex-1 sm:flex-none px-3 sm:px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 touch-manipulation min-h-[44px] ${
+                  activeDistance === d
+                    ? 'bg-primary text-primary-foreground shadow-[0_2px_8px_rgba(0,201,177,0.3)]'
+                    : 'bg-transparent text-muted-foreground'
+                }`}
               >
                 {distanceLabels[d].label}
               </button>
@@ -264,20 +305,17 @@ export default function LensVisionComparisonSection() {
               <div
                 key={lens.id}
                 onClick={() => setActiveLensId(isActive ? null : lens.id)}
-                className="rounded-3xl overflow-hidden cursor-pointer transition-all duration-300"
-                style={{
-                  background: 'var(--card)',
-                  border: isActive ? `1.5px solid ${lens.color}` : '1px solid var(--border)',
-                  boxShadow: isActive ? `0 0 0 1px ${lens.color}30, 0 20px 50px rgba(0,0,0,0.5)` : '0 4px 20px rgba(0,0,0,0.3)',
-                  transform: isActive ? 'translateY(-4px)' : 'none',
-                }}
+                className={`rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 bg-card ${
+                  isActive
+                    ? `-translate-y-1 shadow-[0_20px_50px_rgba(0,0,0,0.5)]`
+                    : 'shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
+                } ${isActive ? `border-2 ${lens.twBadgeBorder}` : 'border border-border'}`}
               >
                 {/* Lens header */}
                 <div className="px-4 pt-4 pb-3">
                   <div className="flex items-center justify-between mb-1">
                     <span
-                      className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full"
-                      style={{ background: `${lens.color}18`, color: lens.color, border: `1px solid ${lens.color}30` }}
+                      className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
                     >
                       {lens.badge}
                     </span>
@@ -291,22 +329,53 @@ export default function LensVisionComparisonSection() {
 
                 {/* Photorealistic image preview */}
                 <div className="px-3 pb-3">
-                  <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                  <div className="lens-image-wrapper relative w-full rounded-2xl overflow-hidden">
                     <Image
-                      src={imageSrc}
+                      src={
+                        timeOfDay === 'night' && activeDistance === 'distance'
+                          ? '/assets/images/night_driving_single_car.png'
+                          : imageSrc
+                      }
                       alt={`${lens.name} ${timeOfDay} ${activeDistance} vision simulation`}
                       fill
                       className="object-cover transition-all duration-500"
-                      style={
-                        lens.id === 'panoptix' && timeOfDay === 'night'
-                          ? { objectPosition: 'center center' }
-                          : undefined
-                      }
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
+                    
+                    {/* Dynamic Night Distance Overlays */}
+                    {timeOfDay === 'night' && activeDistance === 'distance' && (
+                      <div className="absolute inset-0 pointer-events-none">
+                        {/* Monofocal / Eyhance Blur */}
+                        {(lens.id === 'monofocal' || lens.id === 'eyhance') && (
+                          <>
+                            {/* Dashboard Blur (Bottom 25%) */}
+                            <div className={`blur-overlay-bottom ${lens.blurClass} absolute inset-x-0 bottom-0 h-[25%]`} />
+                            {/* Rearview Mirror & Top Blur */}
+                            <div className={`blur-overlay-top ${lens.blurClass} absolute top-0 left-0 right-0 h-[40%]`} />
+                          </>
+                        )}
+
+                        {/* Vivity Glare */}
+                        {lens.id === 'vivity' && (
+                          <div className="absolute inset-0 mix-blend-screen">
+                            <div className="hl-vivity-left absolute rounded-full" />
+                            <div className="hl-vivity-right absolute rounded-full" />
+                          </div>
+                        )}
+
+                        {/* PanOptix Halos */}
+                        {lens.id === 'panoptix' && (
+                          <div className="absolute inset-0 mix-blend-screen">
+                            <div className="hl-panoptix-left absolute rounded-full" />
+                            <div className="hl-panoptix-right absolute rounded-full" />
+                          </div>
+                        )}
+                      </div>
+                    )}
+
                     {/* Scene label overlay */}
                     <div className="absolute bottom-2 left-2 right-2">
-                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full" style={{ background: 'rgba(0,0,0,0.55)', color: 'rgba(255,255,255,0.7)' }}>
+                      <span className="scene-label text-[10px] font-medium px-2 py-0.5 rounded-full">
                         {timeOfDay === 'night' ? 'Night scene' : 'Daytime scene'} · {distanceLabels[activeDistance].label}
                       </span>
                     </div>
@@ -318,25 +387,20 @@ export default function LensVisionComparisonSection() {
                   {/* Clarity */}
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">Clarity</span>
-                    <span className="text-xs font-semibold" style={{ color: lens.color }}>{clarityVal}</span>
+                    <span className={`text-xs font-semibold ${lens.twColor}`}>{clarityVal}</span>
                   </div>
 
                   {/* Glare level bar */}
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-muted-foreground">Glare / Halos</span>
-                      <span className="text-xs font-semibold" style={{ color: lens.color }}>{lens.glareLabel[timeOfDay]}</span>
+                      <span className={`text-xs font-semibold ${lens.twColor}`}>{lens.glareLabel[timeOfDay]}</span>
                     </div>
-                    <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--muted)' }}>
+                    <div className="glare-bar-track h-1.5 rounded-full overflow-hidden">
                       <div
-                        className="h-full rounded-full transition-all duration-500"
-                        style={{
-                          width: `${Math.max(glareAmt + haloAmt, 3)}%`,
-                          background: glareAmt + haloAmt > 20
-                            ? `linear-gradient(90deg, ${lens.color}, #FF6B6B)`
-                            : lens.color,
-                          opacity: 0.85,
-                        }}
+                        className={`h-full rounded-full transition-all duration-500 opacity-85 ${glareWidthClass(Math.max(glareAmt + haloAmt, 3))} ${
+                          glareAmt + haloAmt > 20 ? lens.twGlareBarHigh : lens.twGlareBar
+                        }`}
                       />
                     </div>
                   </div>
@@ -377,10 +441,9 @@ export default function LensVisionComparisonSection() {
           ].map((item) => (
             <div
               key={item.title}
-              className="flex gap-3 p-4 rounded-2xl"
-              style={{ background: 'var(--card)', border: '1px solid var(--border)' }}
+              className="legend-card flex gap-3 p-4 rounded-2xl"
             >
-              <div className="shrink-0 w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: 'rgba(0,201,177,0.1)' }}>
+              <div className="legend-icon-wrap shrink-0 w-8 h-8 rounded-xl flex items-center justify-center">
                 <AppIcon name={item.icon} size={16} className="text-primary" />
               </div>
               <div>
