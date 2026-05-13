@@ -38,13 +38,11 @@ export default function BookingSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       const response = await fetch('/api/book-consultation', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
 
@@ -63,41 +61,45 @@ export default function BookingSection() {
   };
 
   const inputClass =
-    'w-full px-4 py-3.5 bg-muted border border-border rounded-2xl text-foreground placeholder:text-muted-foreground text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/50 transition-all min-h-[52px] touch-manipulation';
+    'w-full px-4 py-3.5 bg-[#0A0C14] border border-border rounded-2xl text-foreground placeholder:text-muted-foreground/60 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all min-h-[52px] touch-manipulation';
+
+  const labelClass = 'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
 
   return (
-    <section id="booking" className="py-16 sm:py-24 border-t border-border relative overflow-hidden">
-      <div className="absolute inset-0 radial-glow-primary" />
-      <div className="absolute inset-0 grid-lines-bg opacity-20" />
+    <section id="booking" className="py-16 sm:py-28 border-t border-border relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 radial-glow-primary opacity-70" />
+      <div className="absolute inset-0 grid-lines-bg opacity-15" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
 
           {/* Left: CTA copy */}
           <div className="lg:sticky lg:top-28">
-            <p className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-4">Free Consultation</p>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5 sm:mb-6">
+            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">Free Consultation</p>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               Take the First Step{' '}
-              <span className="text-gradient-primary font-medium">Toward Clarity</span>
+              <span className="text-gradient-primary font-semibold">Toward Clarity</span>
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10">
               Book a no-obligation consultation with Dr. Marano. In 45 minutes, you&apos;ll know exactly which IOL is right for your eyes, lifestyle, and vision goals.
             </p>
 
             {/* What to expect */}
-            <div className="space-y-4 mb-8 sm:mb-10">
+            <div className="space-y-5 mb-10 sm:mb-12">
               {[
                 { icon: 'EyeIcon', title: 'Comprehensive Eye Assessment', desc: 'Full biometry and corneal mapping to determine candidacy' },
                 { icon: 'ChatBubbleLeftRightIcon', title: 'Personalised Lens Discussion', desc: 'Dr. Marano walks you through every option that fits your profile' },
                 { icon: 'CalendarDaysIcon', title: 'Clear Next Steps', desc: 'Leave with a written plan, no pressure, no obligation' },
               ].map((item) => (
-                <div key={item.title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon name={item.icon as 'EyeIcon'} size={18} className="text-primary" />
+                <div key={item.title} className="flex items-start gap-4 group">
+                  <div className="w-11 h-11 rounded-2xl bg-primary/10 border border-primary/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/20 transition-colors">
+                    <Icon name={item.icon as 'EyeIcon'} size={20} className="text-primary" />
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
+                  <div className="pt-0.5">
+                    <p className="text-sm font-semibold text-foreground mb-0.5">{item.title}</p>
+                    <p className="text-sm text-muted-foreground leading-snug">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -105,7 +107,7 @@ export default function BookingSection() {
 
             {/* Phone numbers */}
             <div className="border-t border-border pt-6 sm:pt-8">
-              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Or call us directly</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">Or call us directly</p>
               <div className="space-y-1">
                 {[
                   { city: 'Livingston', phone: '973-322-0100' },
@@ -115,7 +117,7 @@ export default function BookingSection() {
                   <a
                     key={loc.city}
                     href={`tel:${loc.phone.replace(/-/g, '')}`}
-                    className="flex items-center gap-3 text-sm hover:text-primary transition-colors group py-3 touch-manipulation min-h-[48px]"
+                    className="flex items-center gap-3 text-sm hover:text-primary transition-colors group py-3 touch-manipulation min-h-[48px] rounded-xl px-2 hover:bg-primary/5"
                   >
                     <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
                     <span className="text-muted-foreground font-medium w-20 sm:w-24">{loc.city}:</span>
@@ -127,13 +129,15 @@ export default function BookingSection() {
           </div>
 
           {/* Right: Form */}
-          <div className="bg-card border border-border rounded-4xl p-5 sm:p-8 md:p-10 card-glow">
+          <div className="glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-10"
+            style={{ boxShadow: '0 0 0 1px rgba(0,201,177,0.08), 0 32px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,201,177,0.05)' }}
+          >
             {submitted ? (
-              <div className="flex flex-col items-center justify-center text-center py-10 sm:py-12">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 animate-glow-pulse">
-                  <Icon name="CheckCircleIcon" size={32} className="text-primary" />
+              <div className="flex flex-col items-center justify-center text-center py-12 sm:py-16">
+                <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(0,201,177,0.25)]">
+                  <Icon name="CheckCircleIcon" size={36} className="text-primary" />
                 </div>
-                <h3 className="font-display text-2xl font-medium text-foreground mb-3">Request Received</h3>
+                <h3 className="font-display text-2xl sm:text-3xl font-medium text-foreground mb-3">Request Received</h3>
                 <p className="text-muted-foreground leading-relaxed max-w-sm">
                   Thank you. A member of the Marano Eye Care team will contact you within one business day to confirm your consultation.
                 </p>
@@ -146,118 +150,51 @@ export default function BookingSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-                <div>
+                <div className="mb-6">
                   <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground mb-1">Book a Free Consultation</h3>
                   <p className="text-sm text-muted-foreground">We&apos;ll confirm within one business day.</p>
                 </div>
 
-                {/* Name fields — stacked on mobile, side-by-side on sm+ */}
+                {/* Name */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-widest">
-                      First Name
-                    </label>
-                    <input
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      value={form.firstName}
-                      onChange={handleChange}
-                      placeholder="Jane"
-                      required
-                      className={inputClass}
-                    />
+                    <label htmlFor="firstName" className={labelClass}>First Name</label>
+                    <input id="firstName" name="firstName" type="text" value={form.firstName} onChange={handleChange} placeholder="Jane" required className={inputClass} />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-widest">
-                      Last Name
-                    </label>
-                    <input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      value={form.lastName}
-                      onChange={handleChange}
-                      placeholder="Smith"
-                      required
-                      className={inputClass}
-                    />
+                    <label htmlFor="lastName" className={labelClass}>Last Name</label>
+                    <input id="lastName" name="lastName" type="text" value={form.lastName} onChange={handleChange} placeholder="Smith" required className={inputClass} />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-widest">
-                    Email Address
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="jane.smith@email.com"
-                    required
-                    className={inputClass}
-                  />
+                  <label htmlFor="email" className={labelClass}>Email Address</label>
+                  <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="jane.smith@email.com" required className={inputClass} />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-widest">
-                    Phone Number
-                  </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder="(973) 555-0123"
-                    required
-                    className={inputClass}
-                  />
+                  <label htmlFor="phone" className={labelClass}>Phone Number</label>
+                  <input id="phone" name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="(973) 555-0123" required className={inputClass} />
                 </div>
 
                 <div>
-                  <label htmlFor="location" className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-widest">
-                    Preferred Location
-                  </label>
-                  <select
-                    id="location"
-                    name="location"
-                    value={form.location}
-                    onChange={handleChange}
-                    required
-                    className={inputClass}
-                  >
+                  <label htmlFor="location" className={labelClass}>Preferred Location</label>
+                  <select id="location" name="location" value={form.location} onChange={handleChange} required className={inputClass}>
                     <option value="">Select a location</option>
-                    {locations.map((l) => (
-                      <option key={l} value={l}>{l}</option>
-                    ))}
+                    {locations.map((l) => <option key={l} value={l}>{l}</option>)}
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="lens" className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-widest">
-                    Lens I&apos;m Interested In
-                  </label>
-                  <select
-                    id="lens"
-                    name="lens"
-                    value={form.lens}
-                    onChange={handleChange}
-                    className={inputClass}
-                  >
+                  <label htmlFor="lens" className={labelClass}>Lens I&apos;m Interested In</label>
+                  <select id="lens" name="lens" value={form.lens} onChange={handleChange} className={inputClass}>
                     <option value="">Select a lens (optional)</option>
-                    {lensOptions.map((l) => (
-                      <option key={l} value={l}>{l}</option>
-                    ))}
+                    {lensOptions.map((l) => <option key={l} value={l}>{l}</option>)}
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-widest">
-                    Questions or Notes (Optional)
-                  </label>
+                  <label htmlFor="message" className={labelClass}>Questions or Notes (Optional)</label>
                   <textarea
                     id="message"
                     name="message"
@@ -272,7 +209,7 @@ export default function BookingSection() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-accent transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation"
+                  className="w-full py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-accent transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_0_30px_rgba(0,201,177,0.25)] btn-shimmer mt-2"
                 >
                   {loading ? (
                     <>
@@ -287,7 +224,7 @@ export default function BookingSection() {
                   )}
                 </button>
 
-                <p className="text-xs text-muted-foreground text-center">
+                <p className="text-[11px] text-muted-foreground/70 text-center pt-1">
                   By submitting, you agree to be contacted by Marano Eye Care. Your information is never shared.
                 </p>
               </form>

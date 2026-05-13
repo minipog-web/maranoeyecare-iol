@@ -1,16 +1,20 @@
 @import './tailwind.css';
 
+/* ─────────────────────────────────────────
+   LENS CARD UTILITIES (LensVisionComparison)
+───────────────────────────────────────── */
+
 .lens-img-bg {
-  background: rgba(10, 10, 20, 0.85);
+  background: rgba(8, 9, 16, 0.9);
 }
 
 .progress-bar {
   width: var(--progress);
 }
 
-/* LensVisionComparisonSection */
 .vision-section-bg {
-  background: radial-gradient(circle at 30% 60%, rgba(0,201,177,0.06) 0%, transparent 60%);
+  background: radial-gradient(circle at 25% 60%, rgba(0,201,177,0.05) 0%, transparent 55%),
+              radial-gradient(circle at 75% 30%, rgba(95,255,217,0.04) 0%, transparent 55%);
 }
 
 .toggle-container {
@@ -22,13 +26,15 @@
   background: var(--toggle-bg, transparent);
   color: var(--toggle-color, var(--muted-foreground));
   box-shadow: var(--toggle-shadow, none);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .lens-card {
   background: var(--card);
   border: var(--lens-border, 1px solid var(--border));
-  box-shadow: var(--lens-shadow, 0 4px 20px rgba(0,0,0,0.3));
+  box-shadow: var(--lens-shadow, 0 8px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03));
   transform: var(--lens-transform, none);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 
 .lens-badge {
@@ -56,18 +62,24 @@
 }
 
 .scene-label {
-  background: rgba(0,0,0,0.55);
-  color: rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.75);
+  backdrop-filter: blur(4px);
 }
 
 .legend-card {
-  background: var(--card);
+  background: rgba(14, 16, 24, 0.85);
   border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
 }
 
 .legend-icon-wrap {
   background: rgba(0,201,177,0.1);
 }
+
+/* ─────────────────────────────────────────
+   VISION OVERLAY EFFECTS
+───────────────────────────────────────── */
 
 .blur-overlay-bottom {
   -webkit-mask-image: linear-gradient(to bottom, transparent 50%, black 70%);
@@ -81,7 +93,6 @@
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
-
 .blur-overlay-top {
   -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 45%);
   mask-image: linear-gradient(to bottom, black 25%, transparent 45%);
@@ -97,19 +108,15 @@
 
 /* Vivity glare headlights */
 .hl-vivity-left {
-  left: 45.8%;
-  top: 43.75%;
-  width: 25%;
-  padding-bottom: 25%;
+  left: 45.8%; top: 43.75%;
+  width: 25%; padding-bottom: 25%;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 20%, transparent 50%);
   mix-blend-mode: screen;
 }
 .hl-vivity-right {
-  left: 49.8%;
-  top: 43.75%;
-  width: 25%;
-  padding-bottom: 25%;
+  left: 49.8%; top: 43.75%;
+  width: 25%; padding-bottom: 25%;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 20%, transparent 50%);
   mix-blend-mode: screen;
@@ -117,17 +124,15 @@
 
 /* PanOptix halo headlights */
 .hl-panoptix-left {
-  left: 45.8%;
-  top: 43.75%;
-  width: 22%;
-  padding-bottom: 22%;
+  left: 45.8%; top: 43.75%;
+  width: 22%; padding-bottom: 22%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, 
-    rgba(255,255,255,0.7) 0%, 
-    rgba(255,255,255,0) 8%, 
-    rgba(126,236,216,0.6) 18%, 
-    rgba(126,236,216,0) 25%, 
-    rgba(126,236,216,0.4) 35%, 
+  background: radial-gradient(circle,
+    rgba(255,255,255,0.7) 0%,
+    rgba(255,255,255,0) 8%,
+    rgba(126,236,216,0.6) 18%,
+    rgba(126,236,216,0) 25%,
+    rgba(126,236,216,0.4) 35%,
     rgba(126,236,216,0) 45%,
     rgba(126,236,216,0.2) 60%,
     transparent 75%
@@ -135,17 +140,15 @@
   mix-blend-mode: screen;
 }
 .hl-panoptix-right {
-  left: 49.8%;
-  top: 43.75%;
-  width: 22%;
-  padding-bottom: 22%;
+  left: 49.8%; top: 43.75%;
+  width: 22%; padding-bottom: 22%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, 
-    rgba(255,255,255,0.7) 0%, 
-    rgba(255,255,255,0) 8%, 
-    rgba(126,236,216,0.6) 18%, 
-    rgba(126,236,216,0) 25%, 
-    rgba(126,236,216,0.4) 35%, 
+  background: radial-gradient(circle,
+    rgba(255,255,255,0.7) 0%,
+    rgba(255,255,255,0) 8%,
+    rgba(126,236,216,0.6) 18%,
+    rgba(126,236,216,0) 25%,
+    rgba(126,236,216,0.4) 35%,
     rgba(126,236,216,0) 45%,
     rgba(126,236,216,0.2) 60%,
     transparent 75%
@@ -153,45 +156,74 @@
   mix-blend-mode: screen;
 }
 
-/* Glare bar fills — width driven by CSS custom property set on section */
+/* ─────────────────────────────────────────
+   GLARE BAR FILLS
+───────────────────────────────────────── */
+
 .glare-bar-fill {
   width: var(--glare-width);
-  opacity: 0.85;
+  opacity: 0.9;
 }
-.glare-bar-fill-vivity    { background: #00C9B1; }
-.glare-bar-fill-panoptix  { background: #7EECD8; }
-.glare-bar-fill-eyhance   { background: #A8B4C8; }
-.glare-bar-fill-monofocal { background: #6B7280; }
+.glare-bar-fill-vivity    { background: linear-gradient(90deg, #009980, #00C9B1); }
+.glare-bar-fill-panoptix  { background: linear-gradient(90deg, #4ADCC8, #7EECD8); }
+.glare-bar-fill-eyhance   { background: linear-gradient(90deg, #8090A8, #A8B4C8); }
+.glare-bar-fill-monofocal { background: linear-gradient(90deg, #4A5260, #6B7280); }
 .glare-bar-fill-high-vivity    { background: linear-gradient(90deg, #00C9B1, #FF6B6B); }
 .glare-bar-fill-high-panoptix  { background: linear-gradient(90deg, #7EECD8, #FF6B6B); }
 .glare-bar-fill-high-eyhance   { background: linear-gradient(90deg, #A8B4C8, #FF6B6B); }
 .glare-bar-fill-high-monofocal { background: linear-gradient(90deg, #6B7280, #FF6B6B); }
 
-/* Vision Simulator Animations */
+/* ─────────────────────────────────────────
+   VISION SIMULATOR ANIMATIONS
+───────────────────────────────────────── */
+
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
+  animation: fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* ─────────────────────────────────────────
+   GLOBAL SCROLL
+───────────────────────────────────────── */
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Offset for sticky header */
+  scroll-padding-top: 80px;
+}
+@media (max-width: 640px) {
+  html { scroll-padding-top: 70px; }
 }
 
-@media (max-width: 640px) {
-  html {
-    scroll-padding-top: 70px;
-  }
-}
+/* ─────────────────────────────────────────
+   GRADIENT TEXT (override for specificity)
+───────────────────────────────────────── */
 
 .text-gradient-primary {
-  background: linear-gradient(135deg, #00C9B1 0%, #7EECD8 100%);
+  background: linear-gradient(125deg, #00C9B1 0%, #7EECD8 50%, #00E4C8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* ─────────────────────────────────────────
+   PREMIUM FORM FOCUS STATES
+───────────────────────────────────────── */
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 201, 177, 0.25), 0 0 16px rgba(0, 201, 177, 0.1);
+  border-color: rgba(0, 201, 177, 0.5) !important;
+}
+
+/* ─────────────────────────────────────────
+   PREMIUM SCROLLBAR
+───────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: rgba(0,201,177,0.25); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,201,177,0.45); }
