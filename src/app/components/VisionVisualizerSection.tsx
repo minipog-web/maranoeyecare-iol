@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
+import styles from './VisionVisualizerSection.module.css';
 
 const lensData = [
   {
@@ -77,19 +78,14 @@ function BarGroup({
         {lensData.map((lens) => {
           const value = lens[category.key];
           return (
-            <div key={lens.name} className="space-y-1.5">
+            <div key={lens.name} className={`space-y-1.5 ${styles[`lens${lens.shortName}`]}`}>
               <div className="flex justify-between items-center text-xs">
                 <span className="text-muted-foreground font-medium truncate pr-2">{lens.shortName}</span>
-                <span className="font-bold shrink-0" style={{ color: lens.color }}>{value}%</span>
+                <span className={`font-bold shrink-0 ${styles.lensValue}`}>{value}%</span>
               </div>
               <div className="h-2.5 bg-muted rounded-full overflow-hidden">
                 <div
-                  className="h-full rounded-full transition-all duration-1000 ease-out"
-                  style={{
-                    width: animated ? `${value}%` : '0%',
-                    backgroundColor: lens.color,
-                    transitionDelay: animated ? '200ms' : '0ms',
-                  }}
+                  className={`${styles.lensBar}${animated ? ` ${styles[`bar${value}`]}` : ''}`}
                 />
               </div>
             </div>
@@ -120,7 +116,7 @@ export default function VisionVisualizerSection() {
 
   return (
     <section id="vision" ref={sectionRef} className="py-16 sm:py-24 border-t border-border relative">
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 40% 60%, rgba(0,201,177,0.05) 0%, transparent 60%)' }} />
+      <div className={`absolute inset-0 ${styles.sectionBg}`} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
@@ -161,8 +157,8 @@ export default function VisionVisualizerSection() {
           {/* Legend Moved Inside Box */}
           <div className="mt-10 mb-2 flex flex-wrap gap-2 sm:gap-3">
             {lensData.map((lens) => (
-              <div key={lens.name} className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/30 border border-border/50">
-                <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: lens.color }} />
+              <div key={lens.name} className={`flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/30 border border-border/50 ${styles[`lens${lens.shortName}`]}`}>
+                <div className={`w-2 h-2 rounded-full shrink-0 ${styles.legendDot}`} />
                 <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{lens.name}</span>
               </div>
             ))}
@@ -190,22 +186,22 @@ export default function VisionVisualizerSection() {
           {[
             {
               lens: 'PanOptix Pro',
+              lensKey: 'panoptix',
               insight: 'Leads at every distance — 90%+ glasses independence across all three vision zones.',
-              color: '#7EECD8',
             },
             {
               lens: 'Clareon Vivity',
+              lensKey: 'vivity',
               insight: 'Exceptional distance and intermediate with far fewer halos than other premium lenses.',
-              color: '#00C9B1',
             },
             {
               lens: 'Eyhance',
+              lensKey: 'eyhance',
               insight: 'Unmatched distance clarity with zero added visual disturbances — best for sensitive eyes.',
-              color: '#A8B4C8',
             },
           ].map((item) => (
-            <div key={item.lens} className="bg-muted/30 border border-border rounded-3xl p-5 sm:p-6">
-              <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: item.color }}>
+            <div key={item.lens} className={`bg-muted/30 border border-border rounded-3xl p-5 sm:p-6 ${styles[`lens${item.lensKey.charAt(0).toUpperCase() + item.lensKey.slice(1)}`]}`}>
+              <p className={`text-xs font-bold uppercase tracking-widest mb-2 ${styles.takeawayLabel}`}>
                 {item.lens}
               </p>
               <p className="text-sm text-foreground/80 leading-relaxed">{item.insight}</p>

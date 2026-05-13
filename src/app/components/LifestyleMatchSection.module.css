@@ -1,0 +1,17 @@
+.profileActive       { --rec-color: #7EECD8; }
+.profileTech         { --rec-color: #00C9B1; }
+.profileConservative { --rec-color: #A8B4C8; }
+
+.recommendationBadge {
+  background-color: var(--rec-color);
+  color: #0a0f1a;
+  border: 2px solid var(--rec-color);
+}
+
+.recommendationLabel {
+  color: var(--rec-color);
+}
+
+.recommendationStat {
+  color: var(--rec-color);
+}

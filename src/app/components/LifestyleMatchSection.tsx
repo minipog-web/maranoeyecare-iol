@@ -1,7 +1,6 @@
-import React from 'react';
-
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import styles from './LifestyleMatchSection.module.css';
 
 const profiles = [
 {
@@ -106,7 +105,7 @@ export default function LifestyleMatchSection() {
           {profiles?.map((profile) =>
           <div
             key={profile?.id}
-            className="group bg-card border border-border rounded-4xl overflow-hidden hover:border-primary/30 transition-all duration-500 card-glow flex flex-col">
+            className={`group bg-card border border-border rounded-4xl overflow-hidden hover:border-primary/30 transition-all duration-500 card-glow flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}>
 
               {/* Image */}
               <div className="relative aspect-[16/9] overflow-hidden">
@@ -119,12 +118,7 @@ export default function LifestyleMatchSection() {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-card/20 to-transparent" />
                 <div
-                className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3 py-1.5 sm:py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg"
-                style={{
-                  backgroundColor: profile?.recommendationColor,
-                  color: '#0a0f1a',
-                  border: `2px solid ${profile?.recommendationColor}`
-                }}>
+                className={`absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3 py-1.5 sm:py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg ${styles.recommendationBadge}`}>
                   → {profile?.recommendation}
                 </div>
               </div>
@@ -144,11 +138,11 @@ export default function LifestyleMatchSection() {
                 </ul>
 
                 <div className="border-t border-border pt-4 sm:pt-5">
-                  <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: profile?.recommendationColor }}>
+                  <p className={`text-xs font-bold uppercase tracking-widest mb-2 ${styles.recommendationLabel}`}>
                     Our Recommendation
                   </p>
                   <p className="text-sm text-foreground/80 leading-relaxed mb-3">{profile?.reason}</p>
-                  <p className="text-xs font-semibold" style={{ color: profile?.recommendationColor }}>
+                  <p className={`text-xs font-semibold ${styles.recommendationStat}`}>
                     {profile?.stat}
                   </p>
                 </div>
