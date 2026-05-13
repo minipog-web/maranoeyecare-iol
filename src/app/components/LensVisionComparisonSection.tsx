@@ -28,8 +28,8 @@ const lenses = [
       },
       night: {
         distance: '/assets/images/panoptix_night_pro_v2.jpg',
-        intermediate: '/assets/images/night_panoptix_intermediate.png',
-        near: '/assets/images/night_panoptix_near.png',
+        intermediate: '/assets/images/panoptix_night_pro_v2.jpg',
+        near: '/assets/images/panoptix_night_pro_v2.jpg',
       },
     },
     specs: [
@@ -77,8 +77,8 @@ const lenses = [
       },
       night: {
         distance: '/assets/images/vivity_night_pro.jpg',
-        intermediate: '/assets/images/night_vivity_intermediate.png',
-        near: '/assets/images/night_vivity_near.png',
+        intermediate: '/assets/images/vivity_night_pro.jpg',
+        near: '/assets/images/vivity_night_pro.jpg',
       },
     },
     specs: [
@@ -126,8 +126,8 @@ const lenses = [
       },
       night: {
         distance: '/assets/images/eyhance_night_pro.jpg',
-        intermediate: '/assets/images/night_eyhance_intermediate.png',
-        near: '/assets/images/night_eyhance_near.png',
+        intermediate: '/assets/images/eyhance_night_pro.jpg',
+        near: '/assets/images/eyhance_night_pro.jpg',
       },
     },
     specs: [
@@ -175,8 +175,8 @@ const lenses = [
       },
       night: {
         distance: '/assets/images/monofocal_night_pro.jpg',
-        intermediate: '/assets/images/night_monofocal_intermediate.png',
-        near: '/assets/images/night_monofocal_near.png',
+        intermediate: '/assets/images/monofocal_night_pro.jpg',
+        near: '/assets/images/monofocal_night_pro.jpg',
       },
     },
     specs: [
