@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import styles from './BookingSection.module.css';
 
 const locations = ['Livingston (973-322-0100)', 'Denville (973-358-0416)', 'Newark (973-315-6439)'];
 const lensOptions = ['Not sure yet — need guidance', 'PanOptix Pro (Trifocal)', 'Clareon Vivity (EDOF)', 'Tecnis Eyhance (Enhanced Monofocal)', 'Standard Monofocal'];
@@ -129,9 +130,7 @@ export default function BookingSection() {
           </div>
 
           {/* Right: Form */}
-          <div className="glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-10"
-            style={{ boxShadow: '0 0 0 1px rgba(0,201,177,0.08), 0 32px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,201,177,0.05)' }}
-          >
+          <div className={`glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-10 ${styles.formCard}`}>
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-12 sm:py-16">
                 <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(0,201,177,0.25)]">

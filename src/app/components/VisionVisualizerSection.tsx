@@ -86,7 +86,6 @@ function BarGroup({
               <div className="h-2 bg-[#13151E] rounded-full overflow-hidden">
                 <div
                   className={`${styles.lensBar}${animated ? ` ${styles[`bar${value}`]}` : ''}`}
-                  style={{ height: '100%', borderRadius: '99px' }}
                 />
               </div>
             </div>
@@ -140,9 +139,7 @@ export default function VisionVisualizerSection() {
         </div>
 
         {/* Visualizer card */}
-        <div className="glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-12"
-          style={{ boxShadow: '0 0 0 1px rgba(0,201,177,0.07), 0 24px 80px rgba(0,0,0,0.5)' }}
-        >
+        <div className={`glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-12 ${styles.visualizerCard}`}>
           <div className="flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16">
             {categories.map((cat, idx) => (
               <React.Fragment key={cat.key}>
@@ -150,9 +147,9 @@ export default function VisionVisualizerSection() {
                 {idx < categories.length - 1 && (
                   <>
                     {/* Horizontal divider on mobile */}
-                    <div className="md:hidden h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
+                    <div className={`md:hidden h-px w-full ${styles.dividerH}`} />
                     {/* Vertical divider on desktop */}
-                    <div className="hidden md:block w-px shrink-0" style={{ background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
+                    <div className={`hidden md:block w-px shrink-0 ${styles.dividerV}`} />
                   </>
                 )}
               </React.Fragment>
@@ -163,19 +160,14 @@ export default function VisionVisualizerSection() {
           <div className="mt-10 mb-2 flex flex-wrap gap-2 sm:gap-3">
             {lensData.map((lens) => (
               <div key={lens.name} className={`flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] ${styles[`lens${lens.shortName}`]}`}>
-                <div
-                  className={`w-2 h-2 rounded-full shrink-0 ${styles.legendDot}`}
-                  style={{ boxShadow: `0 0 6px ${lens.color}60` }}
-                />
+                <div className={`w-2 h-2 rounded-full shrink-0 ${styles.legendDot}`} />
                 <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{lens.name}</span>
               </div>
             ))}
           </div>
 
           {/* Disclaimer */}
-          <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 flex flex-col sm:flex-row items-start gap-4"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
-          >
+          <div className={`mt-8 sm:mt-10 pt-6 sm:pt-8 flex flex-col sm:flex-row items-start gap-4 ${styles.disclaimerTop}`}>
             <div className="flex items-start gap-3 flex-1">
               <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(0,201,177,0.6)]" />
               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -218,7 +210,7 @@ export default function VisionVisualizerSection() {
               className={`glass-card border border-border rounded-3xl p-5 sm:p-6 card-hover-glow ${styles[`lens${item.lensKey.charAt(0).toUpperCase() + item.lensKey.slice(1)}`]}`}
             >
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 rounded-full shrink-0" style={{ background: item.color, boxShadow: `0 0 8px ${item.color}80` }} />
+                <div className={`w-2 h-2 rounded-full shrink-0 ${styles.takeawayDot}`} />
                 <p className={`text-[10px] font-bold uppercase tracking-[0.18em] ${styles.takeawayLabel}`}>
                   {item.lens}
                 </p>

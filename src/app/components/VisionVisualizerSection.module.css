@@ -3,7 +3,7 @@
 }
 
 /* Per-lens color variables */
-.lensMonofocal { --lens-color: #4A5568; }
+.lensMonofocal { --lens-color: #6B7280; }
 .lensEyhance   { --lens-color: #A8B4C8; }
 .lensVivity    { --lens-color: #00C9B1; }
 .lensPanoptix  { --lens-color: #7EECD8; }
@@ -36,8 +36,32 @@
 
 .legendDot {
   background-color: var(--lens-color);
+  box-shadow: 0 0 6px var(--lens-color);
+  opacity: 0.85;
 }
 
 .takeawayLabel {
   color: var(--lens-color);
+}
+
+.takeawayDot {
+  background: var(--lens-color);
+  box-shadow: 0 0 8px var(--lens-color);
+  opacity: 0.9;
+}
+
+.visualizerCard {
+  box-shadow: 0 0 0 1px rgba(0, 201, 177, 0.07), 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+.dividerH {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+}
+
+.dividerV {
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+}
+
+.disclaimerTop {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }

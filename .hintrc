@@ -1,0 +1,6 @@
+{
+  "extends": ["development"],
+  "hints": {
+    "css/no-unknown-at-rules": "off"
+  }
+}

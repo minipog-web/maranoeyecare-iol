@@ -1,5 +1,4 @@
-import React from 'react';
-
+import styles from './HeroSection.module.css';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 
@@ -57,12 +56,7 @@ export default function HeroSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-primary/2 rounded-full blur-[180px] pointer-events-none" />
 
       {/* Subtle scan-line effect */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.008) 2px, rgba(255,255,255,0.008) 4px)',
-          backgroundSize: '100% 4px'
-        }}
-      />
+      <div className={`absolute inset-0 pointer-events-none ${styles.scanLines}`} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full py-8 lg:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
@@ -127,12 +121,11 @@ export default function HeroSection() {
             {lenses?.map((lens, i) => (
               <div
                 key={lens?.name}
-                className={`relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border bg-[rgba(8,9,16,0.85)] ${lens?.accent} ${lens?.glow} transition-all duration-500 hover:-translate-y-3 group cursor-pointer
+                className={`relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border bg-[rgba(8,9,16,0.85)] ${lens?.accent} ${lens?.glow} transition-all duration-500 hover:-translate-y-3 group cursor-pointer ${styles.lensCard}
                     ${lens?.featured
                       ? 'w-[38%] sm:w-44 h-[300px] sm:h-[420px] z-20 -mt-8'
                       : 'w-[28%] sm:w-36 h-[240px] sm:h-[360px] z-10'}`
                 }
-                style={{ willChange: 'transform' }}
               >
 
                 {/* Image */}

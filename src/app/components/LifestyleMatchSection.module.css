@@ -2,6 +2,10 @@
 .profileTech         { --rec-color: #00C9B1; }
 .profileConservative { --rec-color: #A8B4C8; }
 
+.comparisonCard {
+  box-shadow: 0 0 0 1px rgba(0, 201, 177, 0.07), 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
 .recommendationBadge {
   background-color: var(--rec-color);
   color: #0a0f1a;
@@ -14,4 +18,9 @@
 
 .recommendationStat {
   color: var(--rec-color);
+}
+
+.activityDot {
+  background: var(--rec-color);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--rec-color) 38%, transparent);
 }

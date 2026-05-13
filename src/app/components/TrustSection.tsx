@@ -1,7 +1,6 @@
-import React from 'react';
-
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import styles from './TrustSection.module.css';
 
 const awards = [
   { value: '15×', label: 'NJ Monthly Top Doctor', sublabel: 'Consecutive years', icon: 'StarIcon' },
@@ -58,9 +57,7 @@ export default function TrustSection() {
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-center mb-20 sm:mb-28">
           {/* Left: Photo */}
           <div className="relative pb-10 sm:pb-0">
-            <div className="relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group"
-              style={{ boxShadow: '0 0 0 1px rgba(0,201,177,0.15), 0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,201,177,0.08)' }}
-            >
+            <div className={`relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group ${styles.photoWrapper}`}>
               <AppImage
                 src="/assets/images/Marano-1777328574709.png"
                 alt="Dr. Matthew Marano Jr., MD - Board-Certified Ophthalmologist"
@@ -173,15 +170,8 @@ export default function TrustSection() {
                     <p className="text-sm font-semibold text-foreground">{t?.name}</p>
                     <p className="text-xs text-muted-foreground">{t?.location}</p>
                   </div>
-                  <div className="shrink-0">
-                    <span
-                      className="text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest"
-                      style={{
-                        backgroundColor: `${t.lensColor}15`,
-                        color: t.lensColor,
-                        border: `1px solid ${t.lensColor}30`,
-                      }}
-                    >
+                  <div className={`shrink-0 ${t.lens.toLowerCase().includes('panoptix') ? styles.lensPanoptix : styles.lensVivity}`}>
+                    <span className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}>
                       {t?.lens}
                     </span>
                   </div>
@@ -192,7 +182,7 @@ export default function TrustSection() {
         </div>
 
         {/* Locations */}
-        <div className="mt-14 sm:mt-20 pt-10 sm:pt-12" style={{ borderTop: '1px solid transparent', backgroundImage: 'linear-gradient(var(--background), var(--background)), linear-gradient(90deg, transparent, rgba(0,201,177,0.2), transparent)', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
+        <div className={`mt-14 sm:mt-20 pt-10 sm:pt-12 ${styles.locationsWrapper}`}>
           <div className="border-t border-border pt-10 sm:pt-12">
             <p className="text-xs font-bold uppercase tracking-[0.45em] text-muted-foreground mb-6 sm:mb-8 text-center">Three Convenient New Jersey Locations</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">

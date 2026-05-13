@@ -72,9 +72,7 @@ export default function LifestyleMatchSection() {
 
           {/* Right: comparison card */}
           <div className="w-full lg:w-7/12 flex items-start lg:justify-end">
-            <div className="glass-card border border-border rounded-3xl p-5 sm:p-8 w-full lg:max-w-md"
-              style={{ boxShadow: '0 0 0 1px rgba(0,201,177,0.07), 0 20px 60px rgba(0,0,0,0.4)' }}
-            >
+            <div className={`glass-card border border-border rounded-3xl p-5 sm:p-8 w-full lg:max-w-md ${styles.comparisonCard}`}>
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-5 sm:mb-6">Standard Monofocal vs. Premium IOL</p>
               {[
                 { label: 'Distance', standard: true, premium: true },
@@ -141,10 +139,7 @@ export default function LifestyleMatchSection() {
                 <ul className="space-y-2 mb-5 sm:mb-6 flex-1">
                   {profile?.activities?.map((act) => (
                     <li key={act} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                      <span
-                        className="w-1.5 h-1.5 rounded-full mt-2 shrink-0"
-                        style={{ background: profile.recommendationColor, boxShadow: `0 0 6px ${profile.recommendationColor}60` }}
-                      />
+                      <span className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${styles.activityDot}`} />
                       {act}
                     </li>
                   ))}
