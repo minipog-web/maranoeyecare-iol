@@ -70,53 +70,87 @@
 }
 
 .blur-overlay-bottom {
-  mask-image: linear-gradient(to bottom, transparent, black 40%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 50%, black 70%);
+  mask-image: linear-gradient(to bottom, transparent 50%, black 70%);
 }
 .blur-overlay-bottom-monofocal {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 .blur-overlay-bottom-eyhance {
-  backdrop-filter: blur(3.5px);
-  -webkit-backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 
 .blur-overlay-top {
-  mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 45%);
+  mask-image: linear-gradient(to bottom, black 25%, transparent 45%);
 }
 .blur-overlay-top-monofocal {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 .blur-overlay-top-eyhance {
-  backdrop-filter: blur(3.5px);
-  -webkit-backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 
 /* Vivity glare headlights */
 .hl-vivity-left {
-  left: 54.9%; top: 43.8%; width: 30%; padding-bottom: 30%;
+  left: 45.8%;
+  top: 43.75%;
+  width: 25%;
+  padding-bottom: 25%;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 20%, transparent 50%);
+  mix-blend-mode: screen;
 }
 .hl-vivity-right {
-  left: 59.3%; top: 43.8%; width: 30%; padding-bottom: 30%;
+  left: 49.8%;
+  top: 43.75%;
+  width: 25%;
+  padding-bottom: 25%;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 20%, transparent 50%);
+  mix-blend-mode: screen;
 }
 
 /* PanOptix halo headlights */
 .hl-panoptix-left {
-  left: 54.9%; top: 43.8%; width: 22%; padding-bottom: 22%;
+  left: 45.8%;
+  top: 43.75%;
+  width: 22%;
+  padding-bottom: 22%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 10%, rgba(126,236,216,0.4) 20%, rgba(126,236,216,0) 25%, rgba(126,236,216,0.3) 35%, transparent 40%);
+  background: radial-gradient(circle, 
+    rgba(255,255,255,0.7) 0%, 
+    rgba(255,255,255,0) 8%, 
+    rgba(126,236,216,0.6) 18%, 
+    rgba(126,236,216,0) 25%, 
+    rgba(126,236,216,0.4) 35%, 
+    rgba(126,236,216,0) 45%,
+    rgba(126,236,216,0.2) 60%,
+    transparent 75%
+  );
+  mix-blend-mode: screen;
 }
 .hl-panoptix-right {
-  left: 59.3%; top: 43.8%; width: 22%; padding-bottom: 22%;
+  left: 49.8%;
+  top: 43.75%;
+  width: 22%;
+  padding-bottom: 22%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 10%, rgba(126,236,216,0.4) 20%, rgba(126,236,216,0) 25%, rgba(126,236,216,0.3) 35%, transparent 40%);
+  background: radial-gradient(circle, 
+    rgba(255,255,255,0.7) 0%, 
+    rgba(255,255,255,0) 8%, 
+    rgba(126,236,216,0.6) 18%, 
+    rgba(126,236,216,0) 25%, 
+    rgba(126,236,216,0.4) 35%, 
+    rgba(126,236,216,0) 45%,
+    rgba(126,236,216,0.2) 60%,
+    transparent 75%
+  );
+  mix-blend-mode: screen;
 }
 
 /* Glare bar fills — width driven by CSS custom property set on section */
@@ -132,3 +166,32 @@
 .glare-bar-fill-high-panoptix  { background: linear-gradient(90deg, #7EECD8, #FF6B6B); }
 .glare-bar-fill-high-eyhance   { background: linear-gradient(90deg, #A8B4C8, #FF6B6B); }
 .glare-bar-fill-high-monofocal { background: linear-gradient(90deg, #6B7280, #FF6B6B); }
+
+/* Vision Simulator Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Offset for sticky header */
+}
+
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 70px;
+  }
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, #00C9B1 0%, #7EECD8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -137,15 +137,7 @@ export default function VisionVisualizerSection() {
             </p>
           </div>
 
-          {/* Legend */}
-          <div className="lg:w-2/3 flex flex-wrap gap-2 sm:gap-4 lg:justify-end lg:items-start lg:pt-16">
-            {lensData.map((lens) => (
-              <div key={lens.name} className="flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-muted/50 border border-border">
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full shrink-0" style={{ backgroundColor: lens.color }} />
-                <span className="text-xs font-semibold text-foreground/80">{lens.name}</span>
-              </div>
-            ))}
-          </div>
+
         </div>
 
         {/* Visualizer */}
@@ -163,6 +155,16 @@ export default function VisionVisualizerSection() {
                   </>
                 )}
               </React.Fragment>
+            ))}
+          </div>
+
+          {/* Legend Moved Inside Box */}
+          <div className="mt-10 mb-2 flex flex-wrap gap-2 sm:gap-3">
+            {lensData.map((lens) => (
+              <div key={lens.name} className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/30 border border-border/50">
+                <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: lens.color }} />
+                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{lens.name}</span>
+              </div>
             ))}
           </div>
 

@@ -71,7 +71,7 @@ export default function LifestyleMatchSection() {
             <div className="bg-card border border-border rounded-4xl p-5 sm:p-8 w-full lg:max-w-md">
               <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-5 sm:mb-6">Standard Monofocal vs. Premium IOL</p>
               {[
-              { label: 'Distance only', standard: true, premium: true },
+              { label: 'Distance', standard: true, premium: true },
               { label: 'Intermediate (screens)', standard: false, premium: true },
               { label: 'Near (reading)', standard: false, premium: true },
               { label: 'Covered by insurance', standard: true, premium: false },
@@ -83,7 +83,7 @@ export default function LifestyleMatchSection() {
                     <div className="text-center w-12 sm:w-16">
                       <span className="text-xs text-muted-foreground block mb-1">Standard</span>
                       {row?.standard ?
-                    <Icon name="CheckCircleIcon" size={18} className="text-muted-foreground mx-auto" /> :
+                    <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" /> :
                     <Icon name="XCircleIcon" size={18} className="text-red-500/60 mx-auto" />
                     }
                     </div>

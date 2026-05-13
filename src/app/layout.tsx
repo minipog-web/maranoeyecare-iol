@@ -1,7 +1,7 @@
-import React from 'react';
+      import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { DM_Sans, Fraunces } from 'next/font/google';
-import '../styles/tailwind.css';
+import '../styles/index.css';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],

@@ -8,12 +8,12 @@ export default function Footer() {
     <footer className="border-t border-border py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo + brand */}
           <div className="flex items-center gap-3">
             <AppLogo
-              src="/assets/images/Marano_Eye_Care-1777160896260.png"
-              size={100}
-              className="text-primary"
+              src="/assets/images/marano_logo.png"
+              width={160}
+              height={40}
+              className="opacity-90 hover:opacity-100 transition-opacity"
             />
           </div>
 

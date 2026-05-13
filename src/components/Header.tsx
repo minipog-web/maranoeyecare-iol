@@ -36,12 +36,12 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
-        {/* Logo */}
         <div className="flex items-center gap-3">
           <AppLogo
-            src="/assets/images/Marano_Eye_Care-1777160896260.png"
-            size={100}
-            className="text-primary sm:w-[120px]"
+            src="/assets/images/marano_logo.png"
+            width={240}
+            height={60}
+            className="w-[180px] sm:w-[260px] h-auto"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           />
         </div>

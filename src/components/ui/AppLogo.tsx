@@ -7,15 +7,19 @@ import AppImage from './AppImage';
 interface AppLogoProps {
   src?: string; // Image source (optional)
   iconName?: string; // Icon name when no image
-  size?: number; // Size for icon/image
+  size?: number; // Base size for icon/image (fallback for width/height)
+  width?: number; // Explicit width
+  height?: number; // Explicit height
   className?: string; // Additional classes
   onClick?: () => void; // Click handler
 }
 
 const AppLogo = memo(function AppLogo({
-  src = 'https://img.rocket.new/generatedImages/rocket_gen_img_18c518780-1777414052490.png',
+  src = '/assets/images/marano_logo.png',
   iconName = 'SparklesIcon',
   size = 64,
+  width,
+  height,
   className = '',
   onClick,
 }: AppLogoProps) {
@@ -34,9 +38,9 @@ const AppLogo = memo(function AppLogo({
         <AppImage
           src={src}
           alt="Logo" 
-          width={size}
-          height={size}
-          className="flex-shrink-0"
+          width={width || size}
+          height={height || size}
+          className="flex-shrink-0 object-contain"
           priority={true}
           unoptimized={src.endsWith('.svg')}
         />

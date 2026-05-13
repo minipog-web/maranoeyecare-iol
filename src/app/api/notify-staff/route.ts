@@ -45,8 +45,12 @@ export async function POST(req: NextRequest) {
         },
         to: [
           {
-            email: process.env.BREVO_RECIPIENT_EMAIL || 'staff@mec1.net',
+            email: 'staff@mec1.net',
             name: 'Marano Eye Care Staff',
+          },
+          {
+            email: 'adam.pogash@mec1.net',
+            name: 'Adam Pogash',
           },
         ],
         subject: `New Lens Quiz Result: ${lensName}`,
