@@ -9,12 +9,17 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <AppLogo
-              src="/assets/images/marano_logo.png"
-              width={160}
-              height={40}
-              className="opacity-90 hover:opacity-100 transition-opacity"
-            />
+            <a
+              href="https://www.maranoeyecare.com"
+              className="hover:opacity-80 transition-opacity block"
+            >
+              <AppLogo
+                src="/assets/images/marano_logo.png"
+                width={160}
+                height={40}
+                className="opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </a>
           </div>
 
           {/* Links */}
@@ -45,18 +50,26 @@ export default function Footer() {
               973-322-0100
             </a>
             <span className="text-border hidden sm:inline">·</span>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation">
+            <Link
+              href="#"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation"
+            >
               Privacy
             </Link>
             <span className="text-border hidden sm:inline">·</span>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation">
+            <Link
+              href="#"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation"
+            >
               Terms
             </Link>
           </div>
         </div>
 
         <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <p className="text-center sm:text-left">© 2026 Marano Eye Care. Matthew Marano Jr., MD. All rights reserved.</p>
+          <p className="text-center sm:text-left">
+            © 2026 Marano Eye Care. Matthew Marano Jr., MD. All rights reserved.
+          </p>
           <p className="text-center">
             Livingston · Denville · Newark, NJ ·{' '}
             <a href="https://maranoeyecare.com" className="hover:text-primary transition-colors">

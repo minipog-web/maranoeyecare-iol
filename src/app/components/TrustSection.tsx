@@ -4,28 +4,45 @@ import styles from './TrustSection.module.css';
 
 const awards = [
   { value: '15×', label: 'NJ Monthly Top Doctor', sublabel: 'Consecutive years', icon: 'StarIcon' },
-  { value: '6×', label: "Int'l Star Diamond Award", sublabel: 'American Academy of Hospitality Sciences', icon: 'TrophyIcon' },
-  { value: '2026', label: 'Castle Connolly Top Doc', sublabel: 'National recognition', icon: 'AcademicCapIcon' },
-  { value: 'Chief', label: 'of Ophthalmology', sublabel: 'Saint Barnabas Medical Center', icon: 'BuildingOfficeIcon' },
+  {
+    value: '6×',
+    label: "Int'l Star Diamond Award",
+    sublabel: 'American Academy of Hospitality Sciences',
+    icon: 'TrophyIcon',
+  },
+  {
+    value: '2026',
+    label: 'Castle Connolly Top Doc',
+    sublabel: 'National recognition',
+    icon: 'AcademicCapIcon',
+  },
+  {
+    value: 'Chief',
+    label: 'of Ophthalmology',
+    sublabel: 'Saint Barnabas Medical Center',
+    icon: 'BuildingOfficeIcon',
+  },
 ];
 
 const testimonials = [
   {
-    quote: "Dr. Marano is simply the best in his field. I've been a patient for 25 years and have never felt rushed or unheard. After my PanOptix surgery, I haven't touched my glasses once.",
+    quote:
+      "Dr. Marano is simply the best in his field. I've been a patient for 25 years and have never felt rushed or unheard. After my PanOptix surgery, I haven't touched my glasses once.",
     name: 'Patricia W.',
     location: 'Denville, NJ',
     lens: 'PanOptix Pro',
     lensColor: '#7EECD8',
-    avatar: 'https://i.pravatar.cc/100?img=44',
+    avatar: '/assets/images/avatar_patricia.png',
     stars: 5,
   },
   {
-    quote: "I was nervous about halos at night because I drive a lot. Dr. Marano recommended Vivity and the results exceeded every expectation. Night driving is completely clear.",
+    quote:
+      'I was nervous about halos at night because I drive a lot. Dr. Marano recommended Vivity and the results exceeded every expectation. Night driving is completely clear.',
     name: 'Robert D.',
     location: 'Livingston, NJ',
     lens: 'Clareon Vivity',
     lensColor: '#00C9B1',
-    avatar: 'https://i.pravatar.cc/100?img=52',
+    avatar: '/assets/images/avatar_robert.png',
     stars: 5,
   },
 ];
@@ -41,15 +58,17 @@ export default function TrustSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-20">
-          <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">Your Surgeon</p>
+          <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">
+            Your Surgeon
+          </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-5 sm:mb-6 leading-tight">
             New Jersey&apos;s{' '}
             <span className="text-gradient-primary font-semibold">Most Decorated</span>
-            <br className="hidden sm:block" />
-            {' '}Ophthalmologist
+            <br className="hidden sm:block" /> Ophthalmologist
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Dr. Matthew Marano Jr., MD has been named Top Doctor by NJ Monthly Magazine for 15 consecutive years — the only physician to receive six International Star Diamond Awards.
+            Dr. Matthew Marano Jr., MD has been named Top Doctor by NJ Monthly Magazine for 15
+            consecutive years — the only physician to receive six International Star Diamond Awards.
           </p>
         </div>
 
@@ -57,7 +76,9 @@ export default function TrustSection() {
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-center mb-20 sm:mb-28">
           {/* Left: Photo */}
           <div className="relative pb-10 sm:pb-0">
-            <div className={`relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group ${styles.photoWrapper}`}>
+            <div
+              className={`relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group ${styles.photoWrapper}`}
+            >
               <AppImage
                 src="/assets/images/Marano-1777328574709.png"
                 alt="Dr. Matthew Marano Jr., MD - Board-Certified Ophthalmologist"
@@ -71,8 +92,12 @@ export default function TrustSection() {
 
               {/* Name plate */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent">
-                <p className="font-display text-xl font-medium text-foreground">Matthew Marano Jr., MD</p>
-                <p className="text-sm text-primary mt-1 font-medium">Board-Certified Ophthalmologist</p>
+                <p className="font-display text-xl font-medium text-foreground">
+                  Matthew Marano Jr., MD
+                </p>
+                <p className="text-sm text-primary mt-1 font-medium">
+                  Board-Certified Ophthalmologist
+                </p>
               </div>
             </div>
 
@@ -82,10 +107,14 @@ export default function TrustSection() {
                 <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
                   <Icon name="StarIcon" size={12} className="text-primary" />
                 </div>
-                <span className="text-xs font-bold uppercase tracking-widest text-primary">Top Doctor</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-primary">
+                  Top Doctor
+                </span>
               </div>
               <p className="font-display text-2xl font-medium text-foreground">15 Years</p>
-              <p className="text-xs text-muted-foreground mt-1 leading-snug">NJ Monthly Magazine consecutive recognition</p>
+              <p className="text-xs text-muted-foreground mt-1 leading-snug">
+                NJ Monthly Magazine consecutive recognition
+              </p>
             </div>
           </div>
 
@@ -100,8 +129,12 @@ export default function TrustSection() {
                   <div className="w-8 h-8 rounded-2xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                     <Icon name={award.icon as 'StarIcon'} size={16} className="text-primary" />
                   </div>
-                  <p className="font-display text-2xl sm:text-3xl font-semibold text-primary mb-2">{award?.value}</p>
-                  <p className="text-xs sm:text-sm font-semibold text-foreground mb-1">{award?.label}</p>
+                  <p className="font-display text-2xl sm:text-3xl font-semibold text-primary mb-2">
+                    {award?.value}
+                  </p>
+                  <p className="text-xs sm:text-sm font-semibold text-foreground mb-1">
+                    {award?.label}
+                  </p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{award?.sublabel}</p>
                 </div>
               ))}
@@ -133,7 +166,9 @@ export default function TrustSection() {
 
         {/* Testimonials */}
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-6 sm:mb-10 text-center opacity-90">Patient Voices</p>
+          <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-6 sm:mb-10 text-center opacity-90">
+            Patient Voices
+          </p>
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
             {testimonials?.map((t) => (
               <div
@@ -170,8 +205,12 @@ export default function TrustSection() {
                     <p className="text-sm font-semibold text-foreground">{t?.name}</p>
                     <p className="text-xs text-muted-foreground">{t?.location}</p>
                   </div>
-                  <div className={`shrink-0 ${t.lens.toLowerCase().includes('panoptix') ? styles.lensPanoptix : styles.lensVivity}`}>
-                    <span className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}>
+                  <div
+                    className={`shrink-0 ${t.lens.toLowerCase().includes('panoptix') ? styles.lensPanoptix : styles.lensVivity}`}
+                  >
+                    <span
+                      className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}
+                    >
                       {t?.lens}
                     </span>
                   </div>
@@ -184,7 +223,9 @@ export default function TrustSection() {
         {/* Locations */}
         <div className={`mt-14 sm:mt-20 pt-10 sm:pt-12 ${styles.locationsWrapper}`}>
           <div className="border-t border-border pt-10 sm:pt-12">
-            <p className="text-xs font-bold uppercase tracking-[0.45em] text-muted-foreground mb-6 sm:mb-8 text-center">Three Convenient New Jersey Locations</p>
+            <p className="text-xs font-bold uppercase tracking-[0.45em] text-muted-foreground mb-6 sm:mb-8 text-center">
+              Three Convenient New Jersey Locations
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               {[
                 { city: 'Denville', phone: '973-358-0416', address: 'Morris County' },
@@ -202,7 +243,9 @@ export default function TrustSection() {
                   <div>
                     <p className="text-sm font-bold text-foreground">{loc?.city}</p>
                     <p className="text-xs text-muted-foreground">{loc?.address}</p>
-                    <p className="text-sm font-semibold text-primary mt-0.5 group-hover:underline">{loc?.phone}</p>
+                    <p className="text-sm font-semibold text-primary mt-0.5 group-hover:underline">
+                      {loc?.phone}
+                    </p>
                   </div>
                 </a>
               ))}

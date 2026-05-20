@@ -5,7 +5,13 @@ import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
 
 const locations = ['Livingston (973-322-0100)', 'Denville (973-358-0416)', 'Newark (973-315-6439)'];
-const lensOptions = ['Not sure yet — need guidance', 'PanOptix Pro (Trifocal)', 'Clareon Vivity (EDOF)', 'Tecnis Eyhance (Enhanced Monofocal)', 'Standard Monofocal'];
+const lensOptions = [
+  'Not sure yet — need guidance',
+  'PanOptix Pro (Trifocal)',
+  'Clareon Vivity (EDOF)',
+  'Tecnis Eyhance (Enhanced Monofocal)',
+  'Standard Monofocal',
+];
 
 interface FormState {
   firstName: string;
@@ -64,10 +70,14 @@ export default function BookingSection() {
   const inputClass =
     'w-full px-4 py-3.5 bg-[#0A0C14] border border-border rounded-2xl text-foreground placeholder:text-muted-foreground/60 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all min-h-[52px] touch-manipulation';
 
-  const labelClass = 'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
+  const labelClass =
+    'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
 
   return (
-    <section id="booking" className="py-16 sm:py-28 border-t border-border relative overflow-hidden">
+    <section
+      id="booking"
+      className="py-16 sm:py-28 border-t border-border relative overflow-hidden"
+    >
       {/* Background */}
       <div className="absolute inset-0 radial-glow-primary opacity-70" />
       <div className="absolute inset-0 grid-lines-bg opacity-15" />
@@ -75,24 +85,38 @@ export default function BookingSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
-
           {/* Left: CTA copy */}
           <div className="lg:sticky lg:top-28">
-            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">Free Consultation</p>
+            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">
+              IOL Consultation
+            </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               Take the First Step{' '}
               <span className="text-gradient-primary font-semibold">Toward Clarity</span>
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10">
-              Book a no-obligation consultation with Dr. Marano. In 45 minutes, you&apos;ll know exactly which IOL is right for your eyes, lifestyle, and vision goals.
+              Book a no-obligation consultation with Dr. Marano. In 45 minutes, you&apos;ll know
+              exactly which IOL is right for your eyes, lifestyle, and vision goals.
             </p>
 
             {/* What to expect */}
             <div className="space-y-5 mb-10 sm:mb-12">
               {[
-                { icon: 'EyeIcon', title: 'Comprehensive Eye Assessment', desc: 'Full biometry and corneal mapping to determine candidacy' },
-                { icon: 'ChatBubbleLeftRightIcon', title: 'Personalised Lens Discussion', desc: 'Dr. Marano walks you through every option that fits your profile' },
-                { icon: 'CalendarDaysIcon', title: 'Clear Next Steps', desc: 'Leave with a written plan, no pressure, no obligation' },
+                {
+                  icon: 'EyeIcon',
+                  title: 'Comprehensive Eye Assessment',
+                  desc: 'Full biometry and corneal mapping to determine candidacy',
+                },
+                {
+                  icon: 'ChatBubbleLeftRightIcon',
+                  title: 'Personalised Lens Discussion',
+                  desc: 'Dr. Marano walks you through every option that fits your profile',
+                },
+                {
+                  icon: 'CalendarDaysIcon',
+                  title: 'Clear Next Steps',
+                  desc: 'Leave with a written plan, no pressure, no obligation',
+                },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 group">
                   <div className="w-11 h-11 rounded-2xl bg-primary/10 border border-primary/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/20 transition-colors">
@@ -108,7 +132,9 @@ export default function BookingSection() {
 
             {/* Phone numbers */}
             <div className="border-t border-border pt-6 sm:pt-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">Or call us directly</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                Or call us directly
+              </p>
               <div className="space-y-1">
                 {[
                   { city: 'Livingston', phone: '973-322-0100' },
@@ -121,8 +147,12 @@ export default function BookingSection() {
                     className="flex items-center gap-3 text-sm hover:text-primary transition-colors group py-3 touch-manipulation min-h-[48px] rounded-xl px-2 hover:bg-primary/5"
                   >
                     <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
-                    <span className="text-muted-foreground font-medium w-20 sm:w-24">{loc.city}:</span>
-                    <span className="font-bold text-foreground group-hover:text-primary transition-colors">{loc.phone}</span>
+                    <span className="text-muted-foreground font-medium w-20 sm:w-24">
+                      {loc.city}:
+                    </span>
+                    <span className="font-bold text-foreground group-hover:text-primary transition-colors">
+                      {loc.phone}
+                    </span>
                   </a>
                 ))}
               </div>
@@ -130,15 +160,20 @@ export default function BookingSection() {
           </div>
 
           {/* Right: Form */}
-          <div className={`glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-10 ${styles.formCard}`}>
+          <div
+            className={`glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-10 ${styles.formCard}`}
+          >
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-12 sm:py-16">
                 <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(0,201,177,0.25)]">
                   <Icon name="CheckCircleIcon" size={36} className="text-primary" />
                 </div>
-                <h3 className="font-display text-2xl sm:text-3xl font-medium text-foreground mb-3">Request Received</h3>
+                <h3 className="font-display text-2xl sm:text-3xl font-medium text-foreground mb-3">
+                  Request Received
+                </h3>
                 <p className="text-muted-foreground leading-relaxed max-w-sm">
-                  Thank you. A member of the Marano Eye Care team will contact you within one business day to confirm your consultation.
+                  Thank you. A member of the Marano Eye Care team will contact you within one
+                  business day to confirm your consultation.
                 </p>
                 <a
                   href="tel:9733220100"
@@ -150,50 +185,125 @@ export default function BookingSection() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 <div className="mb-6">
-                  <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground mb-1">Book a Free Consultation</h3>
-                  <p className="text-sm text-muted-foreground">We&apos;ll confirm within one business day.</p>
+                  <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground mb-1">
+                    Book a Consultation
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    We&apos;ll confirm within one business day.
+                  </p>
                 </div>
 
                 {/* Name */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className={labelClass}>First Name</label>
-                    <input id="firstName" name="firstName" type="text" value={form.firstName} onChange={handleChange} placeholder="Jane" required className={inputClass} />
+                    <label htmlFor="firstName" className={labelClass}>
+                      First Name
+                    </label>
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      value={form.firstName}
+                      onChange={handleChange}
+                      placeholder="Jane"
+                      required
+                      className={inputClass}
+                    />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className={labelClass}>Last Name</label>
-                    <input id="lastName" name="lastName" type="text" value={form.lastName} onChange={handleChange} placeholder="Smith" required className={inputClass} />
+                    <label htmlFor="lastName" className={labelClass}>
+                      Last Name
+                    </label>
+                    <input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      value={form.lastName}
+                      onChange={handleChange}
+                      placeholder="Smith"
+                      required
+                      className={inputClass}
+                    />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className={labelClass}>Email Address</label>
-                  <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="jane.smith@email.com" required className={inputClass} />
+                  <label htmlFor="email" className={labelClass}>
+                    Email Address
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="jane.smith@email.com"
+                    required
+                    className={inputClass}
+                  />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className={labelClass}>Phone Number</label>
-                  <input id="phone" name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="(973) 555-0123" required className={inputClass} />
+                  <label htmlFor="phone" className={labelClass}>
+                    Phone Number
+                  </label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="(973) 555-0123"
+                    required
+                    className={inputClass}
+                  />
                 </div>
 
                 <div>
-                  <label htmlFor="location" className={labelClass}>Preferred Location</label>
-                  <select id="location" name="location" value={form.location} onChange={handleChange} required className={inputClass}>
+                  <label htmlFor="location" className={labelClass}>
+                    Preferred Location
+                  </label>
+                  <select
+                    id="location"
+                    name="location"
+                    value={form.location}
+                    onChange={handleChange}
+                    required
+                    className={inputClass}
+                  >
                     <option value="">Select a location</option>
-                    {locations.map((l) => <option key={l} value={l}>{l}</option>)}
+                    {locations.map((l) => (
+                      <option key={l} value={l}>
+                        {l}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="lens" className={labelClass}>Lens I&apos;m Interested In</label>
-                  <select id="lens" name="lens" value={form.lens} onChange={handleChange} className={inputClass}>
+                  <label htmlFor="lens" className={labelClass}>
+                    Lens I&apos;m Interested In
+                  </label>
+                  <select
+                    id="lens"
+                    name="lens"
+                    value={form.lens}
+                    onChange={handleChange}
+                    className={inputClass}
+                  >
                     <option value="">Select a lens (optional)</option>
-                    {lensOptions.map((l) => <option key={l} value={l}>{l}</option>)}
+                    {lensOptions.map((l) => (
+                      <option key={l} value={l}>
+                        {l}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className={labelClass}>Questions or Notes (Optional)</label>
+                  <label htmlFor="message" className={labelClass}>
+                    Questions or Notes (Optional)
+                  </label>
                   <textarea
                     id="message"
                     name="message"
@@ -217,14 +327,15 @@ export default function BookingSection() {
                     </>
                   ) : (
                     <>
-                      Book a Free Consultation
+                      Book a Consultation
                       <Icon name="ArrowRightIcon" size={18} />
                     </>
                   )}
                 </button>
 
                 <p className="text-[11px] text-muted-foreground/70 text-center pt-1">
-                  By submitting, you agree to be contacted by Marano Eye Care. Your information is never shared.
+                  By submitting, you agree to be contacted by Marano Eye Care. Your information is
+                  never shared.
                 </p>
               </form>
             )}

@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const htmlContent = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f9f9f9;padding:24px;border-radius:8px;">
         <h2 style="color:#1a1a2e;margin-top:0;">New Consultation Request</h2>
-        <p style="color:#444;">A new "Book a Free Consultation" form has been submitted on the Marano Eye Care website.</p>
+        <p style="color:#444;">A new "Book a Consultation" form has been submitted on the Marano Eye Care website.</p>
         
         <div style="background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:16px;margin:16px 0;">
           <h3 style="margin-top:0;color:#00c9b1;">Patient Information</h3>
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     const response = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
-        'accept': 'application/json',
+        accept: 'application/json',
         'api-key': apiKey,
         'content-type': 'application/json',
       },
@@ -68,11 +68,14 @@ export async function POST(req: NextRequest) {
     const result = await response.json();
     if (!response.ok) {
       console.error('Brevo API error:', result);
-      return NextResponse.json({ 
-        error: result.message || 'Failed to send email',
-        code: result.code,
-        details: result 
-      }, { status: response.status });
+      return NextResponse.json(
+        {
+          error: result.message || 'Failed to send email',
+          code: result.code,
+          details: result,
+        },
+        { status: response.status }
+      );
     }
 
     console.log('Email sent successfully:', result.messageId);

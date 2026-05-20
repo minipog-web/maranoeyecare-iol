@@ -38,13 +38,17 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <AppLogo
-            src="/assets/images/marano_logo.png"
-            width={240}
-            height={60}
-            className="w-[180px] sm:w-[260px] h-auto"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          />
+          <a
+            href="https://www.maranoeyecare.com"
+            className="hover:opacity-80 transition-opacity block"
+          >
+            <AppLogo
+              src="/assets/images/marano_logo.png"
+              width={240}
+              height={60}
+              className="w-[180px] sm:w-[260px] h-auto"
+            />
+          </a>
         </div>
 
         {/* Desktop Nav — pill with subtle gradient border */}
@@ -73,7 +77,7 @@ export default function Header() {
             href="#booking"
             className="px-4 lg:px-6 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 touch-manipulation whitespace-nowrap shadow-[0_0_20px_rgba(0,201,177,0.25)] btn-shimmer"
           >
-            Book Free Consult
+            Book Consultation
           </a>
         </div>
 
@@ -112,7 +116,7 @@ export default function Header() {
             className="w-full mt-3 py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold text-center hover:bg-accent transition-colors touch-manipulation min-h-[52px] flex items-center justify-center shadow-[0_0_20px_rgba(0,201,177,0.2)]"
             onClick={() => setMenuOpen(false)}
           >
-            Book Free Consultation
+            Book Consultation
           </a>
         </div>
       )}

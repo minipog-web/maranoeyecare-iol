@@ -9,11 +9,11 @@ const lenses = [
     tagColor: 'bg-primary text-primary-foreground',
     subtitle: 'Non-diffractive EDOF',
     detail: 'Fewest halos of any premium IOL',
-    src: "/assets/images/vivity_iol_clean.png",
+    src: '/assets/images/vivity_iol_clean.png',
     alt: 'Clareon Vivity IOL — non-diffractive extended depth of focus intraocular lens',
     accent: 'border-primary/50',
     glow: 'shadow-[0_0_60px_rgba(0,201,177,0.3),0_0_0_1px_rgba(0,201,177,0.2)]',
-    featured: true
+    featured: true,
   },
   {
     name: 'PanOptix Pro',
@@ -21,11 +21,11 @@ const lenses = [
     tagColor: 'bg-primary/20 text-primary border border-primary/30',
     subtitle: 'Full trifocal range',
     detail: '99% would choose again',
-    src: "/assets/images/panoptix_iol_clean.png",
+    src: '/assets/images/panoptix_iol_clean.png',
     alt: 'Clareon PanOptix Pro trifocal IOL — trifocal intraocular lens',
     accent: 'border-primary/25',
     glow: 'shadow-[0_0_30px_rgba(0,201,177,0.1)]',
-    featured: false
+    featured: false,
   },
   {
     name: 'Eyhance',
@@ -33,14 +33,13 @@ const lenses = [
     tagColor: 'bg-primary/20 text-primary border border-primary/30',
     subtitle: 'Enhanced monofocal',
     detail: 'Crisp distance + intermediate',
-    src: "/assets/images/eyhance_iol_clean.png",
+    src: '/assets/images/eyhance_iol_clean.png',
     alt: 'TECNIS Eyhance IOL — enhanced monofocal intraocular lens',
     accent: 'border-primary/25',
     glow: 'shadow-[0_0_30px_rgba(0,201,177,0.1)]',
-    featured: false
-  }
+    featured: false,
+  },
 ];
-
 
 export default function HeroSection() {
   return (
@@ -60,7 +59,6 @@ export default function HeroSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full py-8 lg:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
-
           {/* Left Content */}
           <div className="flex-1 w-full flex flex-col items-start">
             {/* Badge */}
@@ -79,8 +77,9 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed mb-8 sm:mb-10">
-              Not all IOLs are equal. Discover how Clareon Vivity, PanOptix Pro, and Eyhance compare — and find the lens that gives you the clearest life after cataract surgery.
+            <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10">
+              Not all IOLs are equal. Discover how Clareon Vivity, PanOptix Pro, and Eyhance compare
+              — and find the lens that gives you the clearest life after cataract surgery.
             </p>
 
             {/* CTAs */}
@@ -89,15 +88,19 @@ export default function HeroSection() {
                 href="#booking"
                 className="w-full sm:w-auto px-8 sm:px-10 py-4 bg-primary text-primary-foreground rounded-full text-base font-bold flex items-center justify-center gap-3 group hover:bg-accent transition-all active:scale-95 animate-glow-pulse btn-shimmer min-h-[52px] touch-manipulation"
               >
-                Book a Free Consultation
-                <Icon name="ArrowRightIcon" size={18} className="group-hover:translate-x-1.5 transition-transform shrink-0" />
+                Book a Consultation
+                <Icon
+                  name="ArrowRightIcon"
+                  size={18}
+                  className="group-hover:translate-x-1.5 transition-transform shrink-0"
+                />
               </a>
               <a
                 href="tel:9733220100"
                 className="w-full sm:w-auto px-6 sm:px-8 py-4 border border-border-bright text-foreground rounded-full text-base font-medium flex items-center justify-center gap-3 hover:border-primary/50 hover:bg-white/[0.03] transition-all min-h-[52px] touch-manipulation"
               >
                 <Icon name="PhoneIcon" size={18} className="text-primary shrink-0" />
-                <span className="text-sm sm:text-base">Call: 973-322-0100</span>
+                <span className="text-sm sm:text-base whitespace-nowrap">(973) 322-0100</span>
               </a>
             </div>
 
@@ -109,8 +112,12 @@ export default function HeroSection() {
                 { value: '99%', label: 'PanOptix would choose again' },
               ]?.map((stat) => (
                 <div key={stat?.label} className="flex flex-col gap-1">
-                  <span className="font-display text-2xl sm:text-3xl font-semibold text-primary">{stat?.value}</span>
-                  <span className="text-[10px] sm:text-xs text-muted-foreground font-medium uppercase tracking-wide">{stat?.label}</span>
+                  <span className="font-display text-2xl sm:text-3xl font-semibold text-primary">
+                    {stat?.value}
+                  </span>
+                  <span className="text-[10px] sm:text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                    {stat?.label}
+                  </span>
                 </div>
               ))}
             </div>
@@ -122,12 +129,12 @@ export default function HeroSection() {
               <div
                 key={lens?.name}
                 className={`relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border bg-[rgba(8,9,16,0.85)] ${lens?.accent} ${lens?.glow} transition-all duration-500 hover:-translate-y-3 group cursor-pointer ${styles.lensCard}
-                    ${lens?.featured
-                      ? 'w-[38%] sm:w-44 h-[300px] sm:h-[420px] z-20 -mt-8'
-                      : 'w-[28%] sm:w-36 h-[240px] sm:h-[360px] z-10'}`
-                }
+                    ${
+                      lens?.featured
+                        ? 'w-[38%] sm:w-44 h-[300px] sm:h-[420px] z-20 -mt-8'
+                        : 'w-[28%] sm:w-36 h-[240px] sm:h-[360px] z-10'
+                    }`}
               >
-
                 {/* Image */}
                 <div className="relative flex-1 overflow-hidden">
                   <AppImage
@@ -148,20 +155,30 @@ export default function HeroSection() {
                   )}
 
                   {/* Tag badge */}
-                  <div className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-sm`}>
+                  <div
+                    className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-sm`}
+                  >
                     {lens?.tag}
                   </div>
                 </div>
 
                 {/* Bottom info */}
                 <div className="p-2 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm">
-                  <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">{lens?.name}</p>
-                  <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">{lens?.subtitle}</p>
-                  <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight hidden sm:block">{lens?.detail}</p>
+                  <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
+                    {lens?.name}
+                  </p>
+                  <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
+                    {lens?.subtitle}
+                  </p>
+                  <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight hidden sm:block">
+                    {lens?.detail}
+                  </p>
                 </div>
 
                 {/* Glow ring on hover */}
-                <div className={`absolute inset-0 rounded-2xl sm:rounded-3xl border-2 ${lens?.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none`} />
+                <div
+                  className={`absolute inset-0 rounded-2xl sm:rounded-3xl border-2 ${lens?.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none`}
+                />
               </div>
             ))}
 
@@ -170,8 +187,12 @@ export default function HeroSection() {
               <div className="w-8 h-8 rounded-xl bg-primary/15 flex items-center justify-center mb-3 shadow-[0_0_12px_rgba(0,201,177,0.3)]">
                 <Icon name="SparklesIcon" size={18} className="text-primary" />
               </div>
-              <p className="text-xs text-muted-foreground mb-1 uppercase tracking-widest">Compare All 3</p>
-              <p className="font-display text-sm font-medium text-foreground leading-tight">Find Your Perfect Lens</p>
+              <p className="text-xs text-muted-foreground mb-1 uppercase tracking-widest">
+                Compare All 3
+              </p>
+              <p className="font-display text-sm font-medium text-foreground leading-tight">
+                Find Your Perfect Lens
+              </p>
               <a
                 href="#lenses"
                 className="mt-3 flex items-center gap-1.5 text-xs text-primary font-semibold hover:gap-2.5 transition-all touch-manipulation"
@@ -180,7 +201,6 @@ export default function HeroSection() {
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </section>

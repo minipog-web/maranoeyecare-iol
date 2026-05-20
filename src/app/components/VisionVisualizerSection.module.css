@@ -3,10 +3,18 @@
 }
 
 /* Per-lens color variables */
-.lensMonofocal { --lens-color: #6B7280; }
-.lensEyhance   { --lens-color: #A8B4C8; }
-.lensVivity    { --lens-color: #00C9B1; }
-.lensPanoptix  { --lens-color: #7EECD8; }
+.lensMonofocal {
+  --lens-color: #6b7280;
+}
+.lensEyhance {
+  --lens-color: #a8b4c8;
+}
+.lensVivity {
+  --lens-color: #00c9b1;
+}
+.lensPanoptix {
+  --lens-color: #7eecd8;
+}
 
 .lensValue {
   color: var(--lens-color);
@@ -21,18 +29,42 @@
 }
 
 /* Animated target widths */
-.bar10  { width: 10%; }
-.bar20  { width: 20%; }
-.bar30  { width: 30%; }
-.bar45  { width: 45%; }
-.bar55  { width: 55%; }
-.bar72  { width: 72%; }
-.bar75  { width: 75%; }
-.bar90  { width: 90%; }
-.bar92  { width: 92%; }
-.bar95  { width: 95%; }
-.bar97  { width: 97%; }
-.bar98  { width: 98%; }
+.bar10 {
+  width: 10%;
+}
+.bar20 {
+  width: 20%;
+}
+.bar30 {
+  width: 30%;
+}
+.bar45 {
+  width: 45%;
+}
+.bar55 {
+  width: 55%;
+}
+.bar72 {
+  width: 72%;
+}
+.bar75 {
+  width: 75%;
+}
+.bar90 {
+  width: 90%;
+}
+.bar92 {
+  width: 92%;
+}
+.bar95 {
+  width: 95%;
+}
+.bar97 {
+  width: 97%;
+}
+.bar98 {
+  width: 98%;
+}
 
 .legendDot {
   background-color: var(--lens-color);
@@ -51,7 +83,9 @@
 }
 
 .visualizerCard {
-  box-shadow: 0 0 0 1px rgba(0, 201, 177, 0.07), 0 24px 80px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(0, 201, 177, 0.07),
+    0 24px 80px rgba(0, 0, 0, 0.5);
 }
 
 .dividerH {

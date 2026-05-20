@@ -1,9 +1,17 @@
-.profileActive       { --rec-color: #7EECD8; }
-.profileTech         { --rec-color: #00C9B1; }
-.profileConservative { --rec-color: #A8B4C8; }
+.profileActive {
+  --rec-color: #7eecd8;
+}
+.profileTech {
+  --rec-color: #00c9b1;
+}
+.profileConservative {
+  --rec-color: #a8b4c8;
+}
 
 .comparisonCard {
-  box-shadow: 0 0 0 1px rgba(0, 201, 177, 0.07), 0 20px 60px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(0, 201, 177, 0.07),
+    0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .recommendationBadge {

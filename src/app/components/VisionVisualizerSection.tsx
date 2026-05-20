@@ -59,18 +59,14 @@ const categories = [
   },
 ];
 
-function BarGroup({
-  category,
-  animated,
-}: {
-  category: (typeof categories)[0];
-  animated: boolean;
-}) {
+function BarGroup({ category, animated }: { category: (typeof categories)[0]; animated: boolean }) {
   return (
     <div className="flex-1 min-w-0">
       <div className="text-center mb-5 sm:mb-6">
         <div className="text-2xl sm:text-3xl mb-3">{category.icon}</div>
-        <h3 className="font-display text-sm sm:text-base font-medium text-foreground">{category.label}</h3>
+        <h3 className="font-display text-sm sm:text-base font-medium text-foreground">
+          {category.label}
+        </h3>
         <p className="text-[11px] text-muted-foreground mt-1 leading-snug">{category.sublabel}</p>
       </div>
 
@@ -80,8 +76,12 @@ function BarGroup({
           return (
             <div key={lens.name} className={`space-y-1.5 ${styles[`lens${lens.shortName}`]}`}>
               <div className="flex justify-between items-center text-xs">
-                <span className="text-muted-foreground font-medium truncate pr-2">{lens.shortName}</span>
-                <span className={`font-bold shrink-0 tabular-nums ${styles.lensValue}`}>{value}%</span>
+                <span className="text-muted-foreground font-medium truncate pr-2">
+                  {lens.shortName}
+                </span>
+                <span className={`font-bold shrink-0 tabular-nums ${styles.lensValue}`}>
+                  {value}%
+                </span>
               </div>
               <div className="h-2 bg-[#13151E] rounded-full overflow-hidden">
                 <div
@@ -115,7 +115,11 @@ export default function VisionVisualizerSection() {
   }, []);
 
   return (
-    <section id="vision" ref={sectionRef} className="py-16 sm:py-28 border-t border-border relative overflow-hidden">
+    <section
+      id="vision"
+      ref={sectionRef}
+      className="py-16 sm:py-28 border-t border-border relative overflow-hidden"
+    >
       {/* Background */}
       <div className={`absolute inset-0 ${styles.sectionBg}`} />
       <div className="absolute inset-0 grid-lines-bg opacity-20" />
@@ -126,20 +130,24 @@ export default function VisionVisualizerSection() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row items-start gap-8 sm:gap-12 mb-10 sm:mb-16">
           <div className="lg:w-1/2">
-            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">Vision Outcomes</p>
+            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">
+              Vision Outcomes
+            </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-4 sm:mb-6">
-              See the{' '}
-              <span className="text-gradient-primary font-semibold">Difference</span>{' '}
+              See the <span className="text-gradient-primary font-semibold">Difference</span>{' '}
               Clearly
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-              Spectacle independence rates from clinical studies. Higher is better. Standard monofocal shown as baseline.
+              Spectacle independence rates from clinical studies. Higher is better. Standard
+              monofocal shown as baseline.
             </p>
           </div>
         </div>
 
         {/* Visualizer card */}
-        <div className={`glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-12 ${styles.visualizerCard}`}>
+        <div
+          className={`glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-12 ${styles.visualizerCard}`}
+        >
           <div className="flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16">
             {categories.map((cat, idx) => (
               <React.Fragment key={cat.key}>
@@ -159,19 +167,28 @@ export default function VisionVisualizerSection() {
           {/* Legend */}
           <div className="mt-10 mb-2 flex flex-wrap gap-2 sm:gap-3">
             {lensData.map((lens) => (
-              <div key={lens.name} className={`flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] ${styles[`lens${lens.shortName}`]}`}>
+              <div
+                key={lens.name}
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] ${styles[`lens${lens.shortName}`]}`}
+              >
                 <div className={`w-2 h-2 rounded-full shrink-0 ${styles.legendDot}`} />
-                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{lens.name}</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  {lens.name}
+                </span>
               </div>
             ))}
           </div>
 
           {/* Disclaimer */}
-          <div className={`mt-8 sm:mt-10 pt-6 sm:pt-8 flex flex-col sm:flex-row items-start gap-4 ${styles.disclaimerTop}`}>
+          <div
+            className={`mt-8 sm:mt-10 pt-6 sm:pt-8 flex flex-col sm:flex-row items-start gap-4 ${styles.disclaimerTop}`}
+          >
             <div className="flex items-start gap-3 flex-1">
               <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(0,201,177,0.6)]" />
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Percentages represent glasses independence rates from published clinical data. PanOptix Pro: meta-analysis of 13 studies (513 patients). Vivity: Alcon clinical data. Eyhance: J&J Vision 5-year follow-up. Individual results vary.
+                Percentages represent glasses independence rates from published clinical data.
+                PanOptix Pro: meta-analysis of 13 studies (513 patients). Vivity: Alcon clinical
+                data. Eyhance: J&J Vision 5-year follow-up. Individual results vary.
               </p>
             </div>
             <a
@@ -190,19 +207,22 @@ export default function VisionVisualizerSection() {
               lens: 'PanOptix Pro',
               lensKey: 'panoptix',
               color: '#7EECD8',
-              insight: 'Leads at every distance — 90%+ glasses independence across all three vision zones.',
+              insight:
+                'Leads at every distance — 90%+ glasses independence across all three vision zones.',
             },
             {
               lens: 'Clareon Vivity',
               lensKey: 'vivity',
               color: '#00C9B1',
-              insight: 'Exceptional distance and intermediate with far fewer halos than other premium lenses.',
+              insight:
+                'Exceptional distance and intermediate with far fewer halos than other premium lenses.',
             },
             {
               lens: 'Eyhance',
               lensKey: 'eyhance',
               color: '#A8B4C8',
-              insight: 'Unmatched distance clarity with zero added visual disturbances — best for sensitive eyes.',
+              insight:
+                'Unmatched distance clarity with zero added visual disturbances — best for sensitive eyes.',
             },
           ].map((item) => (
             <div
@@ -211,7 +231,9 @@ export default function VisionVisualizerSection() {
             >
               <div className="flex items-center gap-2 mb-2">
                 <div className={`w-2 h-2 rounded-full shrink-0 ${styles.takeawayDot}`} />
-                <p className={`text-[10px] font-bold uppercase tracking-[0.18em] ${styles.takeawayLabel}`}>
+                <p
+                  className={`text-[10px] font-bold uppercase tracking-[0.18em] ${styles.takeawayLabel}`}
+                >
                   {item.lens}
                 </p>
               </div>
