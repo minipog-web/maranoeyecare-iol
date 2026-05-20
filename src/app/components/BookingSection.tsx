@@ -18,6 +18,7 @@ interface FormState {
   lastName: string;
   email: string;
   phone: string;
+  preferredContact: string;
   location: string;
   lens: string;
   message: string;
@@ -29,6 +30,7 @@ export default function BookingSection() {
     lastName: '',
     email: '',
     phone: '',
+    preferredContact: 'email',
     location: '',
     lens: '',
     message: '',
@@ -257,6 +259,24 @@ export default function BookingSection() {
                     required
                     className={inputClass}
                   />
+                </div>
+
+                <div>
+                  <label htmlFor="preferredContact" className={labelClass}>
+                    Preferred Contact Method
+                  </label>
+                  <select
+                    id="preferredContact"
+                    name="preferredContact"
+                    value={form.preferredContact}
+                    onChange={handleChange}
+                    required
+                    className={inputClass}
+                  >
+                    <option value="email">Email</option>
+                    <option value="phone">Phone Call</option>
+                    <option value="text">Text Message</option>
+                  </select>
                 </div>
 
                 <div>

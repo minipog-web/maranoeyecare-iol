@@ -287,6 +287,17 @@ p {
   }
 }
 
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1) translate(0px, 0px);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.15) translate(20px, -20px);
+  }
+}
+
 @keyframes shimmer-slide {
   0% {
     background-position: -200% center;
@@ -340,6 +351,12 @@ p {
 }
 .animate-glow-pulse {
   animation: glow-pulse 3s ease-in-out infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 14s ease-in-out infinite;
+}
+.animate-pulse-glow-delayed {
+  animation: pulse-glow 18s ease-in-out infinite 3.5s;
 }
 .animate-on-scroll {
   opacity: 1;

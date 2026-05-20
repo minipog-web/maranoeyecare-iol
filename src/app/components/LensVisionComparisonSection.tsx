@@ -247,6 +247,9 @@ function scoreWidthClass(score: number): string {
 export default function LensVisionComparisonSection() {
   const [activeDistance, setActiveDistance] = useState<Distance>('distance');
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('day');
+  const [glowPosition, setGlowPosition] = useState<{ x: string; y: string } | null>(null);
+  const [mouseCoords, setMouseCoords] = useState<{ [key: string]: { x: number; y: number } }>({});
+  const [hoveredLensId, setHoveredLensId] = useState<string | null>(null);
 
   const handleTimeOfDayChange = (t: TimeOfDay) => {
     setTimeOfDay(t);
@@ -255,13 +258,50 @@ export default function LensVisionComparisonSection() {
     }
   };
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>, lensId: string) => {
+    setHoveredLensId(lensId);
+    const cardRect = e.currentTarget.getBoundingClientRect();
+    const sectionElement = document.getElementById('iol-simulator');
+    if (sectionElement) {
+      const sectionRect = sectionElement.getBoundingClientRect();
+      const x = cardRect.left - sectionRect.left + cardRect.width / 2;
+      const y = cardRect.top - sectionRect.top + cardRect.height / 2;
+      setGlowPosition({ x: `${x}px`, y: `${y}px` });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredLensId(null);
+    setGlowPosition(null);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, lensId: string) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMouseCoords((prev) => ({
+      ...prev,
+      [lensId]: { x, y },
+    }));
+  };
+
   return (
-    <section id="iol-simulator" className="py-20 sm:py-32 relative overflow-hidden">
+    <section id="iol-simulator" className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute inset-0 vision-section-bg opacity-40" />
 
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* Subtle Central Background Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-white/[0.01] rounded-full blur-[160px] pointer-events-none z-0" />
+
+      {/* Dynamic Sliding Background Glow that follows the hovered panel */}
+      <div
+        className="absolute w-[650px] h-[650px] rounded-full blur-[130px] pointer-events-none z-0 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] bg-gradient-to-r from-primary/25 to-blue-500/15"
+        style={{
+          left: glowPosition ? glowPosition.x : '50%',
+          top: glowPosition ? glowPosition.y : '50%',
+          transform: 'translate3d(-50%, -50%, 0) scale(1.2)',
+          opacity: glowPosition ? 0.95 : 0.35,
+        }}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
@@ -282,7 +322,7 @@ export default function LensVisionComparisonSection() {
         <div className="flex flex-col items-center gap-6 mb-16">
           <div className="flex flex-wrap justify-center gap-4">
             {/* Day / Night Toggle */}
-            <div className="flex p-1.5 bg-card border border-border rounded-2xl shadow-sm">
+            <div className="flex p-1 bg-white/[0.02] border border-white/[0.08] backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
               {(['day', 'night'] as TimeOfDay[]).map((t) => (
                 <button
                   key={t}
@@ -316,7 +356,7 @@ export default function LensVisionComparisonSection() {
             </div>
 
             {/* Distance Toggle */}
-            <div className="flex p-1.5 bg-card border border-border rounded-2xl shadow-sm">
+            <div className="flex p-1 bg-white/[0.02] border border-white/[0.08] backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
               {(Object.keys(distanceLabels) as Distance[]).map((d) => (
                 <button
                   key={d}
@@ -351,157 +391,189 @@ export default function LensVisionComparisonSection() {
         {/* Lens Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
           {lenses.map((lens) => {
+            const isGlowActive = hoveredLensId ? (hoveredLensId === lens.id) : lens.featured;
             return (
               <div
                 key={lens.id}
-                className={`relative rounded-[32px] p-6 sm:p-8 flex flex-col transition-all duration-500 bg-card border ${
-                  lens.featured
-                    ? 'border-primary/40 shadow-[0_20px_50px_rgba(0,0,0,0.4)]'
-                    : 'border-border shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:border-border/80'
+                onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
+                onMouseLeave={handleMouseLeave}
+                onMouseMove={(e) => handleMouseMove(e, lens.id)}
+                className={`group relative rounded-[32px] p-[2px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col hover:-translate-y-2 ${
+                  isGlowActive
+                    ? 'bg-gradient-to-b from-primary/30 to-primary/5 border border-primary/20 shadow-[0_15px_40px_rgba(0,201,177,0.15)] hover:shadow-[0_25px_50px_rgba(0,201,177,0.3)]'
+                    : 'bg-gradient-to-b from-white/10 to-white/0 border border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
                 }`}
               >
-                {/* Badge */}
-                <div className="flex items-center justify-between mb-6">
-                  <span
-                    className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
-                  >
-                    {lens.badge}
-                  </span>
-                </div>
+                {/* Dynamic Mouse Spotlight Glow */}
+                <div
+                  className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[80px] z-0"
+                  style={{
+                    width: '300px',
+                    height: '300px',
+                    left: mouseCoords[lens.id] ? `${mouseCoords[lens.id].x}px` : '50%',
+                    top: mouseCoords[lens.id] ? `${mouseCoords[lens.id].y}px` : '50%',
+                    transform: 'translate(-50%, -50%)',
+                    background: isGlowActive
+                      ? 'radial-gradient(circle, rgba(0,201,177,0.15) 0%, rgba(0,0,0,0) 70%)'
+                      : 'radial-gradient(circle, rgba(96,165,250,0.12) 0%, rgba(0,0,0,0) 70%)',
+                  }}
+                />
 
-                {/* Lens Name */}
-                <div className="mb-4">
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1">
-                    {lens.manufacturer} · {lens.type}
-                  </p>
-                  <h3 className="font-display text-xl font-medium text-foreground">{lens.name}</h3>
-                </div>
+                <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-[#0e1018]/70 backdrop-blur-xl transition-all duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] z-10">
+                  {/* Badge */}
+                  <div className="flex items-center justify-between mb-6">
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
+                    >
+                      {lens.badge}
+                    </span>
+                  </div>
 
-                {/* Simulation Image Box - NO TEXT OVERLAP */}
-                <div className="mb-8 group">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black/5 border border-border/50 shadow-inner">
-                    {/* Layer 1: Day Distance */}
-                    <Image
-                      src={lens.images.day.distance}
-                      alt={`${lens.name} daytime distance vision`}
-                      fill
-                      className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
-                        timeOfDay === 'day' && activeDistance === 'distance'
-                          ? 'opacity-100 z-10'
-                          : 'opacity-0 z-0 pointer-events-none'
-                      } ${blurClass(lens.blur.day.distance)}`}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      priority={
-                        lens.featured || (timeOfDay === 'day' && activeDistance === 'distance')
-                      }
-                    />
+                  {/* Lens Name */}
+                  <div className="mb-4 min-h-[72px] sm:min-h-[80px]">
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1">
+                      {lens.manufacturer} · {lens.type}
+                    </p>
+                    <h3 className="font-display text-xl font-medium text-foreground">{lens.name}</h3>
+                  </div>
 
-                    {/* Layer 2: Day Intermediate */}
-                    <Image
-                      src={lens.images.day.intermediate}
-                      alt={`${lens.name} daytime intermediate vision`}
-                      fill
-                      className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
-                        timeOfDay === 'day' && activeDistance === 'intermediate'
-                          ? 'opacity-100 z-10'
-                          : 'opacity-0 z-0 pointer-events-none'
-                      } ${blurClass(lens.blur.day.intermediate)}`}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      priority={lens.featured}
-                    />
+                  {/* Simulation Image Box - NO TEXT OVERLAP */}
+                  <div className="mb-8">
+                    <div className="p-[1px] bg-gradient-to-b from-white/12 to-white/0 rounded-2xl">
+                      <div className="relative aspect-[4/3] rounded-[15px] overflow-hidden bg-black/40 border border-black/20 shadow-inner group-hover:scale-[1.01] transition-transform duration-500">
+                        {/* Layer 1: Day Distance */}
+                        <Image
+                          src={lens.images.day.distance}
+                          alt={`${lens.name} daytime distance vision`}
+                          fill
+                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
+                            timeOfDay === 'day' && activeDistance === 'distance'
+                              ? 'opacity-100 z-10'
+                              : 'opacity-0 z-0 pointer-events-none'
+                          } ${blurClass(lens.blur.day.distance)}`}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          priority={
+                            lens.featured || (timeOfDay === 'day' && activeDistance === 'distance')
+                          }
+                        />
 
-                    {/* Layer 3: Day Near */}
-                    <Image
-                      src={lens.images.day.near}
-                      alt={`${lens.name} daytime near vision`}
-                      fill
-                      className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
-                        timeOfDay === 'day' && activeDistance === 'near'
-                          ? 'opacity-100 z-10'
-                          : 'opacity-0 z-0 pointer-events-none'
-                      } ${blurClass(lens.blur.day.near)}`}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      priority={lens.featured}
-                    />
+                        {/* Layer 2: Day Intermediate */}
+                        <Image
+                          src={lens.images.day.intermediate}
+                          alt={`${lens.name} daytime intermediate vision`}
+                          fill
+                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
+                            timeOfDay === 'day' && activeDistance === 'intermediate'
+                              ? 'opacity-100 z-10'
+                              : 'opacity-0 z-0 pointer-events-none'
+                          } ${blurClass(lens.blur.day.intermediate)}`}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          priority={lens.featured}
+                        />
 
-                    {/* Layer 4: Night */}
-                    <Image
-                      src={lens.images.night.distance}
-                      alt={`${lens.name} night vision`}
-                      fill
-                      className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
-                        timeOfDay === 'night'
-                          ? 'opacity-100 z-10'
-                          : 'opacity-0 z-0 pointer-events-none'
-                      } ${blurClass(lens.blur.night[activeDistance])}`}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      priority={lens.featured || timeOfDay === 'night'}
-                    />
+                        {/* Layer 3: Day Near */}
+                        <Image
+                          src={lens.images.day.near}
+                          alt={`${lens.name} daytime near vision`}
+                          fill
+                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
+                            timeOfDay === 'day' && activeDistance === 'near'
+                              ? 'opacity-100 z-10'
+                              : 'opacity-0 z-0 pointer-events-none'
+                          } ${blurClass(lens.blur.day.near)}`}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          priority={lens.featured}
+                        />
 
-                    {/* Scene Tag */}
-                    <div className="absolute bottom-2 left-2 pointer-events-none z-20">
-                      <span className="bg-black/40 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full">
-                        {timeOfDay === 'day' ? 'Day' : 'Night'} ·{' '}
-                        {timeOfDay === 'night' ? 'Distance' : distanceLabels[activeDistance].label}
-                      </span>
+                        {/* Layer 4: Night */}
+                        <Image
+                          src={lens.images.night.distance}
+                          alt={`${lens.name} night vision`}
+                          fill
+                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
+                            timeOfDay === 'night'
+                              ? 'opacity-100 z-10'
+                              : 'opacity-0 z-0 pointer-events-none'
+                          } ${blurClass(lens.blur.night[activeDistance])}`}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          priority={lens.featured || timeOfDay === 'night'}
+                        />
+
+                        {/* Scene Tag */}
+                        <div className="absolute bottom-2 left-2 pointer-events-none z-20">
+                          <span className="bg-black/40 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full">
+                            {timeOfDay === 'day' ? 'Day' : 'Night'} ·{' '}
+                            {timeOfDay === 'night' ? 'Distance' : distanceLabels[activeDistance].label}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Specs bars */}
-                <div className="space-y-4 mb-8">
-                  {lens.specs.map((spec) => (
-                    <div key={spec.label} className="space-y-1.5">
-                      <div className="flex justify-between text-[11px]">
-                        <span className="text-muted-foreground font-medium">{spec.label}</span>
-                        <span className={`font-semibold ${lens.twColor}`}>{spec.value}</span>
+                  {/* Specs bars */}
+                  <div className="space-y-4 mb-8">
+                    {lens.specs.map((spec) => (
+                      <div key={spec.label} className="space-y-1.5">
+                        <div className="flex justify-between text-[11px]">
+                          <span className="text-muted-foreground font-medium">{spec.label}</span>
+                          <span className={`font-semibold ${lens.twColor}`}>{spec.value}</span>
+                        </div>
+                        <div className="h-1.5 bg-white/[0.04] border border-white/[0.02] shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all duration-700 opacity-80 ${lens.twSpecBar} ${scoreWidthClass(spec.score)}`}
+                          />
+                        </div>
                       </div>
-                      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full transition-all duration-700 opacity-80 ${lens.twSpecBar} ${scoreWidthClass(spec.score)}`}
+                    ))}
+                  </div>
+
+                  {/* Highlights */}
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {lens.highlights.map((h) => (
+                      <li
+                        key={h}
+                        className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed"
+                      >
+                        <AppIcon
+                          name="CheckCircleIcon"
+                          size={14}
+                          className={`mt-0.5 shrink-0 ${lens.twColor}`}
                         />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
 
-                {/* Highlights */}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {lens.highlights.map((h) => (
-                    <li
-                      key={h}
-                      className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed"
+                  {/* Best for */}
+                  <div className="border-t border-border pt-6 mb-6">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                      Best for
+                    </p>
+                    <p className="text-xs text-foreground/80 leading-relaxed font-light">
+                      {lens.bestFor}
+                    </p>
+                  </div>
+
+                  <a
+                    href="#booking"
+                    className="w-full py-3.5 rounded-2xl text-xs font-bold text-center transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 border border-transparent bg-primary text-primary-foreground hover:bg-accent hover:shadow-[0_4px_16px_rgba(0,201,177,0.3)] hover:scale-[1.01]"
+                  >
+                    <span>Ask About {lens.name}</span>
+                    <svg
+                      className="w-3.5 h-3.5 transform transition-transform duration-300 group-hover:translate-x-1 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      <AppIcon
-                        name="CheckCircleIcon"
-                        size={14}
-                        className={`mt-0.5 shrink-0 ${lens.twColor}`}
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
                       />
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Best for */}
-                <div className="border-t border-border pt-6 mb-6">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
-                    Best for
-                  </p>
-                  <p className="text-xs text-foreground/80 leading-relaxed font-light">
-                    {lens.bestFor}
-                  </p>
+                    </svg>
+                  </a>
                 </div>
-
-                <a
-                  href="#booking"
-                  className={`w-full py-4 rounded-2xl text-xs font-bold text-center transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center border shadow-sm ${
-                    lens.featured
-                      ? 'bg-primary text-primary-foreground border-transparent'
-                      : `bg-transparent ${lens.twColor} ${lens.twCtaBorder}`
-                  }`}
-                >
-                  Ask About {lens.name}
-                </a>
               </div>
             );
           })}

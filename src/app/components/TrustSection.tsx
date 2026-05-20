@@ -90,6 +90,9 @@ export default function TrustSection() {
               {/* Layered overlays */}
               <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-primary/5" />
 
+              {/* Consistent thin glass border overlay */}
+              <div className="absolute inset-0 border border-white/[0.08] rounded-t-[6rem] rounded-b-[2.5rem] pointer-events-none z-10" />
+
               {/* Name plate */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent">
                 <p className="font-display text-xl font-medium text-foreground">
@@ -183,7 +186,7 @@ export default function TrustSection() {
                 {/* Stars */}
                 <div className="flex items-center gap-1 mb-4">
                   {Array.from({ length: t.stars }).map((_, i) => (
-                    <Icon key={i} name="StarIcon" size={14} className="text-primary" />
+                    <Icon key={i} name="StarIcon" variant="solid" size={14} className="text-primary" />
                   ))}
                 </div>
 
@@ -222,15 +225,15 @@ export default function TrustSection() {
 
         {/* Locations */}
         <div className={`mt-14 sm:mt-20 pt-10 sm:pt-12 ${styles.locationsWrapper}`}>
-          <div className="border-t border-border pt-10 sm:pt-12">
-            <p className="text-xs font-bold uppercase tracking-[0.45em] text-muted-foreground mb-6 sm:mb-8 text-center">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-6 sm:mb-8 text-center">
               Three Convenient New Jersey Locations
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               {[
-                { city: 'Denville', phone: '973-358-0416', address: 'Morris County' },
-                { city: 'Livingston', phone: '973-322-0100', address: 'Essex County' },
-                { city: 'Newark', phone: '973-315-6439', address: 'Essex County' },
+                { city: 'Denville', phone: '973-358-0416', address: '16 Pocono Rd, Suite 301, Denville, NJ 07834' },
+                { city: 'Livingston', phone: '973-322-0100', address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039' },
+                { city: 'Newark', phone: '973-315-6439', address: '306 Martin L. King Blvd, Newark, NJ 07102' },
               ]?.map((loc) => (
                 <a
                   key={loc?.city}

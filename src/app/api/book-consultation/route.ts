@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { firstName, lastName, email, phone, location, lens, message } = body;
+    const { firstName, lastName, email, phone, preferredContact, location, lens, message } = body;
 
     const apiKey = process.env.BREVO_API_KEY;
     if (!apiKey) {
@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
           <p style="margin:4px 0;"><strong>Name:</strong> ${firstName} ${lastName}</p>
           <p style="margin:4px 0;"><strong>Email:</strong> ${email}</p>
           <p style="margin:4px 0;"><strong>Phone:</strong> ${phone}</p>
+          <p style="margin:4px 0;"><strong>Preferred Contact Method:</strong> ${preferredContact || 'Not specified'}</p>
           <p style="margin:4px 0;"><strong>Preferred Location:</strong> ${location}</p>
         </div>
 

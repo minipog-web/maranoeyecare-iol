@@ -324,7 +324,7 @@ export default function LensQuestionnaireSection() {
   const progress = result ? 100 : getProgressPercent(history);
 
   return (
-    <section id="lens-quiz" className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
+    <section id="lens-quiz" className="relative py-16 sm:py-28 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-60" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
