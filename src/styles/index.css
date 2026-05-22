@@ -288,7 +288,8 @@ p {
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.35;
     transform: scale(1) translate(0px, 0px);
   }
@@ -528,75 +529,7 @@ p {
   backdrop-filter: blur(5px);
 }
 
-/* Vivity glare headlights */
-.hl-vivity-left {
-  left: 45.8%;
-  top: 43.75%;
-  width: 25%;
-  padding-bottom: 25%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
-    transparent 50%
-  );
-  mix-blend-mode: screen;
-}
-.hl-vivity-right {
-  left: 49.8%;
-  top: 43.75%;
-  width: 25%;
-  padding-bottom: 25%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
-    transparent 50%
-  );
-  mix-blend-mode: screen;
-}
 
-/* PanOptix halo headlights */
-.hl-panoptix-left {
-  left: 45.8%;
-  top: 43.75%;
-  width: 22%;
-  padding-bottom: 22%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0) 8%,
-    rgba(126, 236, 216, 0.6) 18%,
-    rgba(126, 236, 216, 0) 25%,
-    rgba(126, 236, 216, 0.4) 35%,
-    rgba(126, 236, 216, 0) 45%,
-    rgba(126, 236, 216, 0.2) 60%,
-    transparent 75%
-  );
-  mix-blend-mode: screen;
-}
-.hl-panoptix-right {
-  left: 49.8%;
-  top: 43.75%;
-  width: 22%;
-  padding-bottom: 22%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0) 8%,
-    rgba(126, 236, 216, 0.6) 18%,
-    rgba(126, 236, 216, 0) 25%,
-    rgba(126, 236, 216, 0.4) 35%,
-    rgba(126, 236, 216, 0) 45%,
-    rgba(126, 236, 216, 0.2) 60%,
-    transparent 75%
-  );
-  mix-blend-mode: screen;
-}
 
 /* ─────────────────────────────────────────
    GLARE BAR FILLS
@@ -610,7 +543,7 @@ p {
   background: linear-gradient(90deg, #009980, #00c9b1);
 }
 .glare-bar-fill-panoptix {
-  background: linear-gradient(90deg, #4adcc8, #7eecd8);
+  background: linear-gradient(90deg, #1d4ed8, #3a86ff);
 }
 .glare-bar-fill-eyhance {
   background: linear-gradient(90deg, #8090a8, #a8b4c8);
@@ -622,7 +555,7 @@ p {
   background: linear-gradient(90deg, #00c9b1, #ff6b6b);
 }
 .glare-bar-fill-high-panoptix {
-  background: linear-gradient(90deg, #7eecd8, #ff6b6b);
+  background: linear-gradient(90deg, #3a86ff, #ff6b6b);
 }
 .glare-bar-fill-high-eyhance {
   background: linear-gradient(90deg, #a8b4c8, #ff6b6b);
@@ -707,3 +640,25 @@ textarea:focus {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 201, 177, 0.45);
 }
+
+/* ─────────────────────────────────────────
+   ANIMATION DELAY & HARDWARE ACCELERATION UTILITIES
+   ───────────────────────────────────────── */
+.delay-75 { animation-delay: 75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-450 { animation-delay: 450ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-750 { animation-delay: 750ms; }
+.delay-900 { animation-delay: 900ms; }
+
+.fill-both {
+  animation-fill-mode: both !important;
+}
+
+.will-change-transform {
+  will-change: transform, opacity;
+}
+

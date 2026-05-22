@@ -338,10 +338,10 @@ export default function LensQuestionnaireSection() {
             Lens Recommendation Quiz
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            Find Your <span className="text-gradient-primary">Perfect Lens</span>
+            Build Your <span className="text-gradient-primary">Perfect Vision Plan</span>
           </h2>
           <p className="text-muted-foreground text-base max-w-xl mx-auto">
-            Answer a few quick questions and we'll recommend the IOL best suited to your vision
+            Answer a few quick questions and we&apos;ll recommend the IOL best suited to your vision
             goals and lifestyle.
           </p>
         </div>
@@ -352,7 +352,15 @@ export default function LensQuestionnaireSection() {
             <span className="text-xs text-muted-foreground">
               {result ? 'Complete' : `Question ${history.length + 1}`}
             </span>
-            <span className="text-xs text-primary font-medium">{progress}%</span>
+            <span className="text-xs text-primary font-medium">
+              {progress >= 60 && !result ? (
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="animate-pulse">Almost there!</span> {progress}%
+                </span>
+              ) : (
+                `${progress}%`
+              )}
+            </span>
           </div>
           <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
             <div
@@ -441,7 +449,7 @@ export default function LensQuestionnaireSection() {
             <div>
               <div className="flex items-center gap-2 mb-5">
                 <span className="text-sm text-muted-foreground">
-                  Based on your answers, we recommend:
+                  Based on your answers, here&apos;s the lens most patients like you choose:
                 </span>
               </div>
 
@@ -548,8 +556,9 @@ export default function LensQuestionnaireSection() {
               </div>
 
               <p className="mt-4 text-xs text-muted-foreground text-center">
-                This recommendation is a starting point. Dr. Marano will review your full eye health
-                history to confirm the best lens for you.
+                This quiz can&apos;t replace Dr. Marano&apos;s clinical exam — but it gives you a
+                strong starting point. In your consultation, he&apos;ll confirm the perfect match
+                for your unique eyes.
               </p>
             </div>
           )}

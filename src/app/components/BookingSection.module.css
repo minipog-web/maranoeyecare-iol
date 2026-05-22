@@ -4,3 +4,35 @@
     0 32px 80px rgba(0, 0, 0, 0.5),
     0 0 60px rgba(0, 201, 177, 0.05);
 }
+
+.premiumInput {
+  background: rgba(10, 12, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #eeedf0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premiumInput::placeholder {
+  color: rgba(122, 128, 153, 0.6);
+}
+
+.premiumInput:hover {
+  background: rgba(14, 16, 24, 0.85);
+  border-color: rgba(0, 201, 177, 0.25);
+  box-shadow: 0 0 12px rgba(0, 201, 177, 0.04);
+}
+
+.premiumInput:focus {
+  background: rgba(8, 9, 16, 0.95);
+  border-color: rgba(0, 201, 177, 0.65) !important;
+  box-shadow:
+    0 0 0 3px rgba(0, 201, 177, 0.15),
+    0 0 20px rgba(0, 201, 177, 0.1) !important;
+}
+
+.premiumInput option {
+  background: #0e1018;
+  color: #eeedf0;
+}

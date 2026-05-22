@@ -70,7 +70,7 @@ export default function BookingSection() {
   };
 
   const inputClass =
-    'w-full px-4 py-3.5 bg-[#0A0C14] border border-border rounded-2xl text-foreground placeholder:text-muted-foreground/60 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all min-h-[52px] touch-manipulation';
+    `w-full px-4 py-3.5 ${styles.premiumInput} rounded-2xl text-base sm:text-sm focus:outline-none min-h-[52px] touch-manipulation`;
 
   const labelClass =
     'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
@@ -93,12 +93,12 @@ export default function BookingSection() {
               IOL Consultation
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
-              Take the First Step{' '}
-              <span className="text-gradient-primary font-semibold">Toward Clarity</span>
+              Don&apos;t Let Your Vision{' '}
+              <span className="text-gradient-primary font-semibold">Get Worse</span>
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10">
-              Book a no-obligation consultation with Dr. Marano. In 45 minutes, you&apos;ll know
-              exactly which IOL is right for your eyes, lifestyle, and vision goals.
+              Cataracts only progress &mdash; they never improve on their own. Book a no-obligation
+              consultation and know exactly which lens matches your eyes, lifestyle, and goals.
             </p>
 
             {/* What to expect */}
@@ -174,8 +174,12 @@ export default function BookingSection() {
                   Request Received
                 </h3>
                 <p className="text-muted-foreground leading-relaxed max-w-sm">
-                  Thank you. A member of the Marano Eye Care team will contact you within one
-                  business day to confirm your consultation.
+                  You&apos;ve taken the most important step toward better vision. A member of the
+                  Marano Eye Care team will contact you within one business day to confirm your
+                  consultation.
+                </p>
+                <p className="text-sm text-primary/80 mt-3 font-medium italic max-w-sm">
+                  Most patients say their only regret is not doing this sooner.
                 </p>
                 <a
                   href="tel:9733220100"
@@ -188,10 +192,11 @@ export default function BookingSection() {
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 <div className="mb-6">
                   <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground mb-1">
-                    Book a Consultation
+                    Request Your Consultation
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    We&apos;ll confirm within one business day.
+                    Limited consultation slots available &mdash; we&apos;ll confirm within one
+                    business day.
                   </p>
                 </div>
 
@@ -347,7 +352,7 @@ export default function BookingSection() {
                     </>
                   ) : (
                     <>
-                      Book a Consultation
+                      Reserve My Consultation
                       <Icon name="ArrowRightIcon" size={18} />
                     </>
                   )}

@@ -11,15 +11,15 @@ const lenses = [
     manufacturer: 'Alcon',
     type: 'Trifocal IOL',
     tagline: 'True glasses independence at all distances.',
-    color: '#7EECD8',
+    color: '#3A86FF',
     featured: true,
     badge: 'Full Trifocal',
-    twColor: 'text-[#7EECD8]',
-    twBadgeBg: 'bg-[#7EECD815]',
-    twBadgeBorder: 'border-[#7EECD830]',
-    twBadgeText: 'text-[#7EECD8]',
-    twCtaBorder: 'border-[#7EECD840]',
-    twSpecBar: 'bg-[#7EECD8]',
+    twColor: 'text-[#3A86FF]',
+    twBadgeBg: 'bg-[#3A86FF15]',
+    twBadgeBorder: 'border-[#3A86FF30]',
+    twBadgeText: 'text-[#3A86FF]',
+    twCtaBorder: 'border-[#3A86FF40]',
+    twSpecBar: 'bg-[#3A86FF]',
     images: {
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
@@ -244,12 +244,141 @@ function scoreWidthClass(score: number): string {
   return 'w-[98%]';
 }
 
+const visualStatusOverlays: Record<
+  string,
+  Record<
+    TimeOfDay,
+    Record<Distance, { text: string; status: 'clear' | 'warning' | 'error' | 'info' }>
+  >
+> = {
+  monofocal: {
+    day: {
+      distance: { text: 'Distance Vision: Clear (Glasses-Free)', status: 'clear' },
+      intermediate: {
+        text: 'Intermediate (Dashboard): Blurry (Glasses Required)',
+        status: 'error',
+      },
+      near: { text: 'Near (Reading): Blurry (Readers Required)', status: 'error' },
+    },
+    night: {
+      distance: { text: 'Distance: Clear Driving (Baseline Safety)', status: 'clear' },
+      intermediate: { text: 'Intermediate: Blurry (Glasses Required)', status: 'error' },
+      near: { text: 'Near: Blurry (Readers Required)', status: 'error' },
+    },
+  },
+  eyhance: {
+    day: {
+      distance: { text: 'Distance Vision: Pristine Clear (Glasses-Free)', status: 'clear' },
+      intermediate: { text: 'Intermediate: Good (Screen Reading Benefit)', status: 'info' },
+      near: { text: 'Near (Reading): Blurry (Readers Required)', status: 'error' },
+    },
+    night: {
+      distance: { text: 'Distance: Crisp Night Driving (Zero Added Halos)', status: 'clear' },
+      intermediate: { text: 'Intermediate: Good (Screen Reading Benefit)', status: 'info' },
+      near: { text: 'Near: Blurry (Readers Required)', status: 'error' },
+    },
+  },
+  vivity: {
+    day: {
+      distance: { text: 'Distance Vision: Clear & Sharp (Glasses-Free)', status: 'clear' },
+      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
+      near: { text: 'Near (Reading): Functional (Readers for fine print)', status: 'info' },
+    },
+    night: {
+      distance: { text: 'Distance: Clear Night Driving (Very Low Glare)', status: 'clear' },
+      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
+      near: { text: 'Near: Functional (Readers for fine print)', status: 'info' },
+    },
+  },
+  panoptix: {
+    day: {
+      distance: { text: 'Distance Vision: Clear & Sharp (Glasses-Free)', status: 'clear' },
+      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
+      near: { text: 'Near (Reading): Full Freedom (No Readers Needed)', status: 'clear' },
+    },
+    night: {
+      distance: { text: 'Distance: Functional Night Driving (Mild Halos)', status: 'warning' },
+      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
+      near: { text: 'Near (Reading): Full Freedom (No Readers Needed)', status: 'clear' },
+    },
+  },
+};
+
+const visionDescriptions: Record<string, Record<Distance, string>> = {
+  monofocal: {
+    distance:
+      'Clear distance vision for driving and watching TV. Requires glasses for intermediate and reading ranges.',
+    intermediate:
+      'Screens and dashboard dials are blurry. Reading glasses or computer-specific lenses are required.',
+    near: 'Fine print, smartphones, and reading materials are highly blurred. Reading glasses are strictly necessary.',
+  },
+  eyhance: {
+    distance:
+      'Pristine distance clarity. High-contrast driving and outdoor vision with a standard-monofocal safety profile.',
+    intermediate:
+      'Meaningful improvement. Good for computer screens and car dashboards, though mild glasses assistance may be needed.',
+    near: 'Functional for larger print in good lighting, but reading glasses are still required for most close-up reading.',
+  },
+  vivity: {
+    distance:
+      'Superb distance vision. Excellent for driving, golf, and outdoor active lifestyles without glare or halos.',
+    intermediate:
+      'Seamless intermediate vision. Effortless computer work, cooking, and viewing dashboard indicators.',
+    near: 'Functional near vision. Easily check text messages and read menus, but reading glasses may be needed for long reading sessions.',
+  },
+  panoptix: {
+    distance:
+      'Excellent distance vision. Sharp, clear view for driving, movies, and everyday outdoor activities.',
+    intermediate:
+      'Exceptional intermediate focus. Perfect for computer screen distances, dashboard dials, and store shelves.',
+    near: 'Full reading independence. Excellent near vision down to 40cm. Read books, text messages, and menus without reading glasses.',
+  },
+};
+
+const nightVisionDescriptions: Record<string, string> = {
+  monofocal:
+    'Pristine night driving. Standard single-focus lens with no added glare, halos, or starbursts around headlights.',
+  eyhance:
+    'Crisp night driving. Enhanced distance vision with a baseline safety profile and zero added glare or halos.',
+  vivity:
+    'Very low glare and minimal halos around headlights. Extremely safe and comfortable night driving.',
+  panoptix:
+    'Mild halos or starburst rings around headlights due to trifocal rings. Most patients easily adapt to this within weeks.',
+};
+
 export default function LensVisionComparisonSection() {
   const [activeDistance, setActiveDistance] = useState<Distance>('distance');
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('day');
+  const [activePremiumLensId, setActivePremiumLensId] = useState<string>('panoptix');
+  const [activeMobileLensId, setActiveMobileLensId] = useState<string>('panoptix');
+  const [isPeekingBaseline, setIsPeekingBaseline] = useState<boolean>(false);
   const [glowPosition, setGlowPosition] = useState<{ x: string; y: string } | null>(null);
   const [mouseCoords, setMouseCoords] = useState<{ [key: string]: { x: number; y: number } }>({});
   const [hoveredLensId, setHoveredLensId] = useState<string | null>(null);
+
+  const selectPremiumLens = (id: string) => {
+    setActivePremiumLensId(id);
+    setActiveMobileLensId(id);
+  };
+
+  const selectMobileLens = (id: string) => {
+    setActiveMobileLensId(id);
+    if (id !== 'monofocal') {
+      setActivePremiumLensId(id);
+    }
+  };
+
+  const handleCardClick = (id: string) => {
+    if (id === 'monofocal') {
+      setActiveMobileLensId('monofocal');
+    } else {
+      selectPremiumLens(id);
+    }
+    // Scroll to the simulator viewport container
+    document
+      .getElementById('simulator-viewport')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
   const handleTimeOfDayChange = (t: TimeOfDay) => {
     setTimeOfDay(t);
@@ -285,6 +414,104 @@ export default function LensVisionComparisonSection() {
     }));
   };
 
+  const renderSimulatorImages = (lensId: string) => {
+    const lens = lenses.find((l) => l.id === lensId);
+    if (!lens) return null;
+    return (
+      <>
+        {/* Layer 1: Day Distance */}
+        <Image
+          src={lens.images.day.distance}
+          alt={`${lens.name} daytime distance vision`}
+          fill
+          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
+            timeOfDay === 'day' && activeDistance === 'distance'
+              ? 'opacity-100 z-10'
+              : 'opacity-0 z-0 pointer-events-none'
+          } ${blurClass(lens.blur.day.distance)}`}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority={lens.featured}
+        />
+
+        {/* Layer 2: Day Intermediate */}
+        <Image
+          src={lens.images.day.intermediate}
+          alt={`${lens.name} daytime intermediate vision`}
+          fill
+          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
+            timeOfDay === 'day' && activeDistance === 'intermediate'
+              ? 'opacity-100 z-10'
+              : 'opacity-0 z-0 pointer-events-none'
+          } ${blurClass(lens.blur.day.intermediate)}`}
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+
+        {/* Layer 3: Day Near */}
+        <Image
+          src={lens.images.day.near}
+          alt={`${lens.name} daytime near vision`}
+          fill
+          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
+            timeOfDay === 'day' && activeDistance === 'near'
+              ? 'opacity-100 z-10'
+              : 'opacity-0 z-0 pointer-events-none'
+          } ${blurClass(lens.blur.day.near)}`}
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+
+        {/* Layer 4: Night */}
+        <Image
+          src={lens.images.night.distance}
+          alt={`${lens.name} night vision`}
+          fill
+          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
+            timeOfDay === 'night' ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+          } ${blurClass(lens.blur.night[activeDistance])}`}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority={lens.featured}
+        />
+      </>
+    );
+  };
+
+  const renderPremiumSimulatorImages = () => {
+    return lenses
+      .filter((l) => l.id !== 'monofocal')
+      .map((lens) => {
+        const isCurrentLens = activePremiumLensId === lens.id;
+        return (
+          <div
+            key={lens.id}
+            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+              isCurrentLens ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            }`}
+          >
+            {renderSimulatorImages(lens.id)}
+          </div>
+        );
+      });
+  };
+
+  const mobileDisplayLensId = isPeekingBaseline ? 'monofocal' : activeMobileLensId;
+  const activePremiumLens = lenses.find((l) => l.id === activePremiumLensId) || lenses[0];
+  const activeMobileConfigLens = lenses.find((l) => l.id === activeMobileLensId) || lenses[0];
+
+  const renderMobileSimulatorImages = () => {
+    return lenses.map((lens) => {
+      const isCurrentLens = mobileDisplayLensId === lens.id;
+      return (
+        <div
+          key={lens.id}
+          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+            isCurrentLens ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+          }`}
+        >
+          {renderSimulatorImages(lens.id)}
+        </div>
+      );
+    });
+  };
+
   return (
     <section id="iol-simulator" className="py-16 sm:py-28 relative overflow-hidden">
       <div className="absolute inset-0 vision-section-bg opacity-40" />
@@ -318,88 +545,430 @@ export default function LensVisionComparisonSection() {
           </p>
         </div>
 
-        {/* Unified Controls */}
-        <div className="flex flex-col items-center gap-6 mb-16">
-          <div className="flex flex-wrap justify-center gap-4">
-            {/* Day / Night Toggle */}
-            <div className="flex p-1 bg-white/[0.02] border border-white/[0.08] backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-              {(['day', 'night'] as TimeOfDay[]).map((t) => (
-                <button
-                  key={t}
-                  onClick={() => handleTimeOfDayChange(t)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    timeOfDay === t
-                      ? t === 'night'
-                        ? 'bg-[#0D1020] text-[#A8C8FF] shadow-inner'
-                        : 'bg-[#FFF8E7] text-[#B8860B] shadow-inner'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {t === 'day' ? (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                      <circle cx="12" cy="12" r="5" />
-                      <path
-                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  ) : (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                    </svg>
-                  )}
-                  {t === 'day' ? 'Daytime' : 'Night'}
-                </button>
-              ))}
-            </div>
+        {/* Unified Simulator Card Viewport */}
+        <div
+          id="simulator-viewport"
+          className="glass-card border border-white/[0.08] backdrop-blur-md rounded-[32px] p-5 sm:p-8 lg:p-10 mb-16 shadow-[0_15px_40px_rgba(0,0,0,0.4)] relative z-10"
+        >
+          {/* Integrated Toggles Bar */}
+          <div className="flex flex-col gap-6 pb-6 mb-8 border-b border-white/[0.06]">
+            {/* Centered Environment Panel */}
+            <div className="flex flex-col gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/[0.06] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)] backdrop-blur-lg max-w-4xl mx-auto w-full">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+                {/* Column 1: Lighting Time */}
+                <div className="md:col-span-4 flex flex-col justify-center md:border-r border-white/[0.06] md:pr-6">
+                  <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] mb-2.5 block text-center md:text-left">
+                    Lighting Environment
+                  </span>
+                  <div className="relative flex p-1 bg-black/40 border border-white/[0.06] rounded-2xl w-full">
+                    {/* Sliding background */}
+                    <div
+                      className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                        timeOfDay === 'day'
+                          ? 'left-1 bg-amber-500/10 border border-amber-500/20 shadow-[0_2px_8px_rgba(245,158,11,0.15)]'
+                          : 'left-[calc(50%+2px)] bg-blue-500/10 border border-blue-500/20 shadow-[0_2px_8px_rgba(59,130,246,0.15)]'
+                      }`}
+                    />
+                    {(['day', 'night'] as TimeOfDay[]).map((t) => (
+                      <button
+                        key={t}
+                        onClick={() => handleTimeOfDayChange(t)}
+                        className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-300 ${
+                          timeOfDay === t
+                            ? t === 'night'
+                              ? 'text-[#60A5FA]'
+                              : 'text-[#F59E0B]'
+                            : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                      >
+                        <AppIcon
+                          name={t === 'day' ? 'SunIcon' : 'MoonIcon'}
+                          size={16}
+                          variant="solid"
+                          className={
+                            timeOfDay === t
+                              ? t === 'day'
+                                ? 'text-[#F59E0B]'
+                                : 'text-[#60A5FA]'
+                              : 'text-muted-foreground'
+                          }
+                        />
+                        <span>{t === 'day' ? 'Daytime' : 'Night driving'}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-            {/* Distance Toggle */}
-            <div className="flex p-1 bg-white/[0.02] border border-white/[0.08] backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-              {(Object.keys(distanceLabels) as Distance[]).map((d) => (
-                <button
-                  key={d}
-                  onClick={() => timeOfDay === 'day' && setActiveDistance(d)}
-                  disabled={timeOfDay === 'night'}
-                  className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    activeDistance === d
-                      ? 'bg-primary text-primary-foreground shadow-[0_2px_8px_rgba(0,201,177,0.3)]'
-                      : timeOfDay === 'night'
-                        ? 'text-muted-foreground/30 cursor-not-allowed'
-                        : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {distanceLabels[d].label}
-                </button>
-              ))}
+                {/* Column 2: Focus Distance */}
+                <div className="md:col-span-8 flex flex-col justify-center">
+                  <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] mb-2.5 block text-center md:text-left">
+                    Simulated Focus distance
+                  </span>
+                  {timeOfDay === 'day' ? (
+                    <div className="grid grid-cols-3 gap-3 w-full">
+                      {(Object.keys(distanceLabels) as Distance[]).map((d) => {
+                        const isActive = activeDistance === d;
+                        const details = distanceLabels[d];
+                        return (
+                          <button
+                            key={d}
+                            onClick={() => setActiveDistance(d)}
+                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-center transition-all duration-300 relative group active:scale-[0.97] ${
+                              isActive
+                                ? 'bg-white/[0.04] text-white border-primary/40 shadow-[0_4px_20px_rgba(0,201,177,0.15)]'
+                                : 'bg-transparent text-muted-foreground border-white/[0.06] hover:border-white/[0.12] hover:text-foreground'
+                            }`}
+                          >
+                            <AppIcon
+                              name={details.icon}
+                              size={20}
+                              className={`mb-2 transition-transform duration-300 group-hover:scale-110 ${
+                                isActive ? 'text-primary' : 'text-muted-foreground'
+                              }`}
+                            />
+                            <span className="block text-xs font-bold leading-none">
+                              {details.label}
+                            </span>
+                            <span className="block text-[8px] text-muted-foreground/60 font-light mt-1 truncate max-w-full">
+                              {details.desc.split('(')[0].trim()}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-4 p-3 rounded-2xl bg-blue-950/10 border border-blue-900/20 text-left w-full h-full min-h-[74px]">
+                      <AppIcon
+                        name="ExclamationTriangleIcon"
+                        size={24}
+                        className="text-[#60A5FA] shrink-0"
+                      />
+                      <div>
+                        <p className="text-xs font-bold text-white leading-none mb-1">
+                          Distance Focus Locked
+                        </p>
+                        <p className="text-[10px] text-muted-foreground/90 font-light leading-relaxed">
+                          Night simulation focuses specifically on distance headlight glare and
+                          halos (critical for driving safety).
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="h-6">
-            <p className="text-sm text-primary/80 font-medium tracking-wide uppercase">
-              Current Focus:{' '}
-              <span className="text-foreground">
-                {timeOfDay === 'night'
-                  ? 'Distance (Night Driving)'
-                  : distanceLabels[activeDistance].desc}
+          {/* Desktop Simulator Viewport (md and up) */}
+          <div className="hidden md:grid grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-4">
+            {/* Left Header */}
+            <div className="flex items-center justify-between px-5 py-3 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-gray-500 shadow-[0_0_8px_rgba(107,114,128,0.6)]" />
+                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/90">
+                  Baseline Vision
+                </span>
+              </div>
+              <span className="text-[10px] font-bold text-muted-foreground/80 uppercase tracking-widest bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 rounded-lg">
+                Standard Monofocal
               </span>
+            </div>
+
+            {/* Right Header */}
+            <div className="flex items-center justify-between px-5 py-2.5 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
+              <div className="flex items-center gap-2">
+                <span
+                  className="w-2 h-2 rounded-full transition-all duration-500"
+                  style={{
+                    backgroundColor: activePremiumLens.color,
+                    boxShadow: `0 0 10px ${activePremiumLens.color}`,
+                  }}
+                />
+                <span className="text-xs font-bold uppercase tracking-wider text-white">
+                  Compare Premium Lens
+                </span>
+              </div>
+              <div className="flex p-0.5 bg-black/40 rounded-xl border border-white/[0.06]">
+                {lenses
+                  .filter((l) => l.id !== 'monofocal')
+                  .map((lens) => {
+                    const isActive = activePremiumLensId === lens.id;
+                    return (
+                      <button
+                        key={lens.id}
+                        onClick={() => selectPremiumLens(lens.id)}
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] ${
+                          isActive
+                            ? 'bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
+                            : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                        style={{
+                          color: isActive ? lens.color : undefined,
+                        }}
+                      >
+                        {lens.id === 'panoptix'
+                          ? 'PanOptix'
+                          : lens.id === 'vivity'
+                            ? 'Vivity'
+                            : 'Eyhance'}
+                      </button>
+                    );
+                  })}
+              </div>
+            </div>
+
+            {/* Left Image Viewport */}
+            <div className="relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-white/[0.08] border-t-0 shadow-[0_10px_30px_rgba(0,0,0,0.4)] group">
+              {renderSimulatorImages('monofocal')}
+              {/* Scene Tag */}
+              <div className="absolute top-3 left-3 pointer-events-none z-20">
+                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
+                  {timeOfDay === 'day' ? 'Day' : 'Night'} · Monofocal
+                </span>
+              </div>
+              {/* In-Image Visual Explanation Overlay */}
+              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
+                <div className="flex items-center gap-2">
+                  {(() => {
+                    const overlay = visualStatusOverlays.monofocal[timeOfDay][activeDistance];
+                    return (
+                      <>
+                        <AppIcon
+                          name={
+                            overlay.status === 'clear'
+                              ? 'CheckCircleIcon'
+                              : 'ExclamationTriangleIcon'
+                          }
+                          size={16}
+                          variant="solid"
+                          className={
+                            overlay.status === 'clear' ? 'text-emerald-400' : 'text-amber-500'
+                          }
+                        />
+                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Image Viewport */}
+            <div
+              className="relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-t-0 transition-all duration-500 shadow-[0_10px_30px_rgba(0,0,0,0.4)] group"
+              style={{
+                borderColor: `${activePremiumLens.color}30`,
+                boxShadow: `0 12px 36px -4px ${activePremiumLens.color}20`,
+              }}
+            >
+              {renderPremiumSimulatorImages()}
+              {/* Scene Tag */}
+              <div className="absolute top-3 left-3 pointer-events-none z-20">
+                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
+                  {timeOfDay === 'day' ? 'Day' : 'Night'} · {activePremiumLens.name}
+                </span>
+              </div>
+              {/* In-Image Visual Explanation Overlay */}
+              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
+                <div className="flex items-center gap-2">
+                  {(() => {
+                    const overlay =
+                      visualStatusOverlays[activePremiumLensId][timeOfDay][activeDistance];
+                    return (
+                      <>
+                        <AppIcon
+                          name={
+                            overlay.status === 'clear'
+                              ? 'CheckCircleIcon'
+                              : overlay.status === 'info'
+                                ? 'InformationCircleIcon'
+                                : 'ExclamationTriangleIcon'
+                          }
+                          size={16}
+                          variant="solid"
+                          className={
+                            overlay.status === 'clear'
+                              ? 'text-emerald-400'
+                              : overlay.status === 'info'
+                                ? 'text-sky-400'
+                                : 'text-amber-500'
+                          }
+                        />
+                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+            </div>
+
+            {/* Left Description */}
+            <p className="text-xs sm:text-sm text-muted-foreground/90 leading-relaxed min-h-[3rem] px-2">
+              {timeOfDay === 'night'
+                ? nightVisionDescriptions.monofocal
+                : visionDescriptions.monofocal[activeDistance]}
+            </p>
+
+            {/* Right Description */}
+            <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-2">
+              {timeOfDay === 'night'
+                ? nightVisionDescriptions[activePremiumLensId]
+                : visionDescriptions[activePremiumLensId][activeDistance]}
+            </p>
+          </div>
+
+          {/* Mobile Simulator Viewport (less than md) */}
+          <div className="md:hidden flex flex-col gap-5">
+            {/* Mobile Consolidated Lens Selector */}
+            <div className="flex flex-col w-full gap-2">
+              <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] text-center">
+                Select Lens to Simulate
+              </span>
+              <div className="flex p-0.5 bg-black/40 rounded-2xl border border-white/[0.06] w-full">
+                {lenses.map((lens) => {
+                  const isActive = activeMobileLensId === lens.id;
+                  return (
+                    <button
+                      key={lens.id}
+                      onClick={() => selectMobileLens(lens.id)}
+                      className={`flex-1 flex flex-col items-center justify-center py-2 rounded-xl text-center transition-all duration-300 active:scale-[0.97] ${
+                        isActive
+                          ? 'bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                      style={{
+                        color: isActive ? lens.color : undefined,
+                      }}
+                    >
+                      <span className="block text-[11px] font-bold leading-none">
+                        {lens.id === 'monofocal'
+                          ? 'Monofocal'
+                          : lens.id === 'panoptix'
+                            ? 'PanOptix'
+                            : lens.id === 'vivity'
+                              ? 'Vivity'
+                              : 'Eyhance'}
+                      </span>
+                      <span className="block text-[8px] opacity-60 font-light mt-1">
+                        {lens.id === 'monofocal'
+                          ? 'Baseline'
+                          : lens.id === 'panoptix'
+                            ? 'Trifocal'
+                            : lens.id === 'vivity'
+                              ? 'EDOF'
+                              : 'Enhanced'}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile Viewport Image Box */}
+            <div
+              className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black/40 border transition-all duration-500 shadow-md"
+              style={{
+                borderColor: `${activeMobileConfigLens.color}30`,
+                boxShadow: `0 8px 24px -4px ${activeMobileConfigLens.color}15`,
+              }}
+            >
+              {renderMobileSimulatorImages()}
+
+              {/* Hold to Compare Floating Button (only when premium lens is selected) */}
+              {activeMobileLensId !== 'monofocal' && (
+                <button
+                  onMouseDown={() => setIsPeekingBaseline(true)}
+                  onMouseUp={() => setIsPeekingBaseline(false)}
+                  onMouseLeave={() => setIsPeekingBaseline(false)}
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    setIsPeekingBaseline(true);
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setIsPeekingBaseline(false);
+                  }}
+                  className="absolute top-3 right-3 z-30 px-3 py-2 bg-black/75 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                  </span>
+                  <span>Hold to Compare Monofocal</span>
+                </button>
+              )}
+
+              {/* Status Overlay */}
+              <div className="absolute top-3 left-3 pointer-events-none z-20">
+                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
+                  {isPeekingBaseline
+                    ? 'Monofocal (Baseline)'
+                    : lenses.find((l) => l.id === activeMobileLensId)?.name}
+                </span>
+              </div>
+
+              {/* In-Image Visual Explanation Overlay */}
+              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
+                <div className="flex items-center gap-2">
+                  {(() => {
+                    const overlay =
+                      visualStatusOverlays[mobileDisplayLensId][timeOfDay][activeDistance];
+                    return (
+                      <>
+                        <AppIcon
+                          name={
+                            overlay.status === 'clear'
+                              ? 'CheckCircleIcon'
+                              : overlay.status === 'info'
+                                ? 'InformationCircleIcon'
+                                : 'ExclamationTriangleIcon'
+                          }
+                          size={16}
+                          variant="solid"
+                          className={
+                            overlay.status === 'clear'
+                              ? 'text-emerald-400'
+                              : overlay.status === 'info'
+                                ? 'text-sky-400'
+                                : 'text-amber-500'
+                          }
+                        />
+                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Description */}
+            <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-1">
+              {timeOfDay === 'night'
+                ? isPeekingBaseline || activeMobileLensId === 'monofocal'
+                  ? nightVisionDescriptions.monofocal
+                  : nightVisionDescriptions[activeMobileLensId]
+                : isPeekingBaseline
+                  ? visionDescriptions.monofocal[activeDistance]
+                  : visionDescriptions[activeMobileLensId][activeDistance]}
             </p>
           </div>
         </div>
 
-        {/* Lens Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+        {/* Detailed Specs Grid (Below Simulator) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch relative z-10">
           {lenses.map((lens) => {
-            const isGlowActive = hoveredLensId ? (hoveredLensId === lens.id) : lens.featured;
+            const isHovered = hoveredLensId === lens.id;
+            const isActive = hoveredLensId ? isHovered : lens.id === activeMobileLensId;
+
             return (
               <div
                 key={lens.id}
                 onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
                 onMouseLeave={handleMouseLeave}
                 onMouseMove={(e) => handleMouseMove(e, lens.id)}
-                className={`group relative rounded-[32px] p-[2px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col hover:-translate-y-2 ${
-                  isGlowActive
+                onClick={() => handleCardClick(lens.id)}
+                className={`group relative rounded-[32px] p-[2px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col hover:-translate-y-2 cursor-pointer ${
+                  isActive
                     ? 'bg-gradient-to-b from-primary/30 to-primary/5 border border-primary/20 shadow-[0_15px_40px_rgba(0,201,177,0.15)] hover:shadow-[0_25px_50px_rgba(0,201,177,0.3)]'
                     : 'bg-gradient-to-b from-white/10 to-white/0 border border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
                 }`}
@@ -413,7 +982,7 @@ export default function LensVisionComparisonSection() {
                     left: mouseCoords[lens.id] ? `${mouseCoords[lens.id].x}px` : '50%',
                     top: mouseCoords[lens.id] ? `${mouseCoords[lens.id].y}px` : '50%',
                     transform: 'translate(-50%, -50%)',
-                    background: isGlowActive
+                    background: isActive
                       ? 'radial-gradient(circle, rgba(0,201,177,0.15) 0%, rgba(0,0,0,0) 70%)'
                       : 'radial-gradient(circle, rgba(96,165,250,0.12) 0%, rgba(0,0,0,0) 70%)',
                   }}
@@ -421,7 +990,7 @@ export default function LensVisionComparisonSection() {
 
                 <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-[#0e1018]/70 backdrop-blur-xl transition-all duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] z-10">
                   {/* Badge */}
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center justify-between mb-4">
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
                     >
@@ -430,88 +999,17 @@ export default function LensVisionComparisonSection() {
                   </div>
 
                   {/* Lens Name */}
-                  <div className="mb-4 min-h-[72px] sm:min-h-[80px]">
+                  <div className="mb-4 min-h-[64px]">
                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1">
                       {lens.manufacturer} · {lens.type}
                     </p>
-                    <h3 className="font-display text-xl font-medium text-foreground">{lens.name}</h3>
-                  </div>
-
-                  {/* Simulation Image Box - NO TEXT OVERLAP */}
-                  <div className="mb-8">
-                    <div className="p-[1px] bg-gradient-to-b from-white/12 to-white/0 rounded-2xl">
-                      <div className="relative aspect-[4/3] rounded-[15px] overflow-hidden bg-black/40 border border-black/20 shadow-inner group-hover:scale-[1.01] transition-transform duration-500">
-                        {/* Layer 1: Day Distance */}
-                        <Image
-                          src={lens.images.day.distance}
-                          alt={`${lens.name} daytime distance vision`}
-                          fill
-                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
-                            timeOfDay === 'day' && activeDistance === 'distance'
-                              ? 'opacity-100 z-10'
-                              : 'opacity-0 z-0 pointer-events-none'
-                          } ${blurClass(lens.blur.day.distance)}`}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          priority={
-                            lens.featured || (timeOfDay === 'day' && activeDistance === 'distance')
-                          }
-                        />
-
-                        {/* Layer 2: Day Intermediate */}
-                        <Image
-                          src={lens.images.day.intermediate}
-                          alt={`${lens.name} daytime intermediate vision`}
-                          fill
-                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
-                            timeOfDay === 'day' && activeDistance === 'intermediate'
-                              ? 'opacity-100 z-10'
-                              : 'opacity-0 z-0 pointer-events-none'
-                          } ${blurClass(lens.blur.day.intermediate)}`}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          priority={lens.featured}
-                        />
-
-                        {/* Layer 3: Day Near */}
-                        <Image
-                          src={lens.images.day.near}
-                          alt={`${lens.name} daytime near vision`}
-                          fill
-                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
-                            timeOfDay === 'day' && activeDistance === 'near'
-                              ? 'opacity-100 z-10'
-                              : 'opacity-0 z-0 pointer-events-none'
-                          } ${blurClass(lens.blur.day.near)}`}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          priority={lens.featured}
-                        />
-
-                        {/* Layer 4: Night */}
-                        <Image
-                          src={lens.images.night.distance}
-                          alt={`${lens.name} night vision`}
-                          fill
-                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
-                            timeOfDay === 'night'
-                              ? 'opacity-100 z-10'
-                              : 'opacity-0 z-0 pointer-events-none'
-                          } ${blurClass(lens.blur.night[activeDistance])}`}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          priority={lens.featured || timeOfDay === 'night'}
-                        />
-
-                        {/* Scene Tag */}
-                        <div className="absolute bottom-2 left-2 pointer-events-none z-20">
-                          <span className="bg-black/40 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full">
-                            {timeOfDay === 'day' ? 'Day' : 'Night'} ·{' '}
-                            {timeOfDay === 'night' ? 'Distance' : distanceLabels[activeDistance].label}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
+                    <h3 className="font-display text-xl font-medium text-foreground">
+                      {lens.name}
+                    </h3>
                   </div>
 
                   {/* Specs bars */}
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-4 mb-6">
                     {lens.specs.map((spec) => (
                       <div key={spec.label} className="space-y-1.5">
                         <div className="flex justify-between text-[11px]">
@@ -528,7 +1026,7 @@ export default function LensVisionComparisonSection() {
                   </div>
 
                   {/* Highlights */}
-                  <ul className="space-y-3 mb-8 flex-1">
+                  <ul className="space-y-3 mb-6 flex-1">
                     {lens.highlights.map((h) => (
                       <li
                         key={h}
@@ -545,8 +1043,8 @@ export default function LensVisionComparisonSection() {
                   </ul>
 
                   {/* Best for */}
-                  <div className="border-t border-border pt-6 mb-6">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                  <div className="border-t border-border pt-5 mb-5">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">
                       Best for
                     </p>
                     <p className="text-xs text-foreground/80 leading-relaxed font-light">
@@ -556,9 +1054,10 @@ export default function LensVisionComparisonSection() {
 
                   <a
                     href="#booking"
-                    className="w-full py-3.5 rounded-2xl text-xs font-bold text-center transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 border border-transparent bg-primary text-primary-foreground hover:bg-accent hover:shadow-[0_4px_16px_rgba(0,201,177,0.3)] hover:scale-[1.01]"
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-full py-3 rounded-2xl text-xs font-bold text-center transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 border border-transparent bg-primary text-primary-foreground hover:bg-accent hover:shadow-[0_4px_16px_rgba(0,201,177,0.3)] hover:scale-[1.01]"
                   >
-                    <span>Ask About {lens.name}</span>
+                    <span>Inquire About {lens.name}</span>
                     <svg
                       className="w-3.5 h-3.5 transform transition-transform duration-300 group-hover:translate-x-1 shrink-0"
                       fill="none"

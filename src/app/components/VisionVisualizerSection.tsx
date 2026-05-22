@@ -30,8 +30,8 @@ const lensData = [
   },
   {
     name: 'PanOptix Pro',
-    shortName: 'PanOptix',
-    color: '#7EECD8',
+    shortName: 'Panoptix',
+    color: '#3A86FF',
     distance: 97,
     intermediate: 95,
     near: 90,
@@ -134,8 +134,8 @@ export default function VisionVisualizerSection() {
               Vision Outcomes
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-4 sm:mb-6">
-              See the <span className="text-gradient-primary font-semibold">Difference</span>{' '}
-              Clearly
+              See What Premium{' '}
+              <span className="text-gradient-primary font-semibold">Actually Means</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
               Spectacle independence rates from clinical studies. Higher is better. Standard
@@ -195,7 +195,7 @@ export default function VisionVisualizerSection() {
               href="#booking"
               className="w-full sm:w-auto shrink-0 px-6 py-3 sm:py-2.5 bg-primary/10 text-primary border border-primary/30 rounded-full text-sm font-bold hover:bg-primary hover:text-primary-foreground transition-all text-center touch-manipulation min-h-[48px] flex items-center justify-center"
             >
-              Find My Best Lens
+              Which Lens Fits My Life?
             </a>
           </div>
         </div>
@@ -206,7 +206,7 @@ export default function VisionVisualizerSection() {
             {
               lens: 'PanOptix Pro',
               lensKey: 'panoptix',
-              color: '#7EECD8',
+              color: '#3A86FF',
               insight:
                 'Leads at every distance — 90%+ glasses independence across all three vision zones.',
             },

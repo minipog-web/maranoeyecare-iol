@@ -1,3 +1,5 @@
+'use client';
+
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './LifestyleMatchSection.module.css';
@@ -7,7 +9,7 @@ const profiles = [
     id: 'active',
     title: 'The Active Professional',
     description:
-      'You spend 6+ hours daily on screens, drive frequently, and want to ditch reading glasses entirely.',
+      "Right now, you're squinting at your phone and reaching for readers 6 times a day. You spend 6+ hours daily on screens, drive frequently, and want to ditch glasses entirely.",
     activities: [
       'Remote work & Zoom calls',
       'Driving day and night',
@@ -15,7 +17,7 @@ const profiles = [
       'Golf, tennis, or cycling',
     ],
     recommendation: 'PanOptix Pro',
-    recommendationColor: '#7EECD8',
+    recommendationColor: '#3A86FF',
     reason:
       'Trifocal design gives you sharp vision at every distance — from your 27″ monitor to a road sign 200 metres away.',
     image: '/assets/images/profile_active_professional.png',
@@ -63,6 +65,14 @@ const profiles = [
 ];
 
 export default function LifestyleMatchSection() {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
     <section
       id="lifestyle"
@@ -81,8 +91,8 @@ export default function LifestyleMatchSection() {
               Find Your Match
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
-              Which Lens Fits{' '}
-              <span className="text-gradient-primary font-semibold italic">Your Life?</span>
+              Find{' '}
+              <span className="text-gradient-primary font-semibold italic">Yourself Below.</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-sm">
               The best IOL isn&apos;t the most expensive — it&apos;s the one matched precisely to
@@ -106,44 +116,60 @@ export default function LifestyleMatchSection() {
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-5 sm:mb-6">
                 Standard Monofocal vs. Premium IOL
               </p>
-              {[
-                { label: 'Distance', standard: true, premium: true },
-                { label: 'Intermediate (screens)', standard: false, premium: true },
-                { label: 'Near (reading)', standard: false, premium: true },
-                { label: 'Covered by insurance', standard: true, premium: false },
-                { label: 'Glasses-free lifestyle', standard: false, premium: true },
-              ]?.map((row) => (
-                <div
-                  key={row?.label}
-                  className="flex items-center justify-between py-3.5 border-b border-border/60 last:border-0 gap-2"
-                >
-                  <span className="text-xs sm:text-sm text-muted-foreground flex-1 min-w-0 pr-2">
-                    {row?.label}
-                  </span>
-                  <div className="flex items-center gap-4 sm:gap-8 shrink-0">
-                    <div className="text-center w-12 sm:w-14">
-                      <span className="text-[10px] text-muted-foreground block mb-1.5 uppercase tracking-wide">
-                        Standard
-                      </span>
-                      {row?.standard ? (
-                        <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
-                      ) : (
-                        <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
-                      )}
-                    </div>
-                    <div className="text-center w-12 sm:w-14">
-                      <span className="text-[10px] text-primary block mb-1.5 uppercase tracking-wide">
-                        Premium
-                      </span>
-                      {row?.premium ? (
-                        <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
-                      ) : (
-                        <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
-                      )}
+              <div className="flex flex-col">
+                {[
+                  { label: 'Distance', standard: true, premium: true },
+                  { label: 'Intermediate (screens)', standard: false, premium: true },
+                  { label: 'Near (reading)', standard: false, premium: true },
+                  { label: 'Covered by insurance', standard: true, premium: false },
+                  { label: 'Glasses-free lifestyle', standard: false, premium: true },
+                ]?.map((row) => (
+                  <div
+                    key={row?.label}
+                    className="flex items-center justify-between py-3.5 border-b border-border/60 last:border-0 gap-2"
+                  >
+                    <span className="text-xs sm:text-sm text-muted-foreground flex-1 min-w-0 pr-2">
+                      {row?.label}
+                    </span>
+                    <div className="flex items-center gap-4 sm:gap-8 shrink-0">
+                      <div className="text-center w-12 sm:w-14">
+                        <span className="text-[10px] text-muted-foreground block mb-1.5 uppercase tracking-wide">
+                          Standard
+                        </span>
+                        {row?.standard ? (
+                          <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
+                        ) : (
+                          <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
+                        )}
+                      </div>
+                      <div className="text-center w-12 sm:w-14">
+                        <span className="text-[10px] text-primary block mb-1.5 uppercase tracking-wide">
+                          Premium
+                        </span>
+                        {row?.premium ? (
+                          <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
+                        ) : (
+                          <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {/* Integrated Footnote Callout */}
+              <div className="mt-6 pt-5 border-t border-border/60 flex items-start gap-2.5">
+                <Icon
+                  name="InformationCircleIcon"
+                  size={16}
+                  className="text-primary/70 shrink-0 mt-0.5"
+                />
+                <p className="text-[11px] text-muted-foreground/75 leading-relaxed">
+                  Premium lenses are an investment — typically $2,900 - $4,100 per eye beyond
+                  insurance. Most patients report it&apos;s the best investment they&apos;ve ever
+                  made in their vision.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -153,10 +179,24 @@ export default function LifestyleMatchSection() {
           {profiles?.map((profile) => (
             <div
               key={profile?.id}
-              className={`group glass-card border border-border rounded-3xl overflow-hidden card-hover-glow flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
+              onMouseMove={handleMouseMove}
+              className={`group relative glass-card border border-border rounded-3xl overflow-hidden card-hover-glow flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
             >
+              {/* Dynamic Mouse Spotlight Glow */}
+              <div
+                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-[80px] z-0 will-change-transform"
+                style={{
+                  width: '320px',
+                  height: '320px',
+                  left: 'var(--mouse-x, 50%)',
+                  top: 'var(--mouse-y, 50%)',
+                  transform: 'translate(-50%, -50%)',
+                  background: 'radial-gradient(circle, var(--rec-color) 0%, transparent 70%)',
+                }}
+              />
+
               {/* Image */}
-              <div className="relative aspect-[16/9] overflow-hidden">
+              <div className="relative aspect-[16/9] overflow-hidden z-10">
                 <AppImage
                   src={profile?.image}
                   alt={profile?.imageAlt}
@@ -175,7 +215,7 @@ export default function LifestyleMatchSection() {
               </div>
 
               {/* Content */}
-              <div className="p-5 sm:p-6 flex flex-col flex-1">
+              <div className="relative p-5 sm:p-6 flex flex-col flex-1 z-10">
                 <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-2">
                   {profile?.title}
                 </h3>
