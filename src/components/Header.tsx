@@ -58,7 +58,7 @@ export default function Header() {
             <a
               key={link?.href}
               href={link?.href}
-              className="px-2 lg:px-2.5 xl:px-3.5 py-2 text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-xs font-semibold uppercase tracking-[0.04em] lg:tracking-[0.06em] xl:tracking-[0.1em] text-muted-foreground hover:text-foreground transition-all duration-200 rounded-full hover:bg-white/[0.06] hover:text-primary whitespace-nowrap"
+              className="px-2 lg:px-2.5 xl:px-3.5 py-2 text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-xs font-semibold uppercase tracking-[0.04em] lg:tracking-[0.06em] xl:tracking-[0.1em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap"
             >
               {link?.label}
             </a>

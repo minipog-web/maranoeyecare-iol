@@ -17,7 +17,7 @@ const profiles = [
       'Golf, tennis, or cycling',
     ],
     recommendation: 'PanOptix Pro',
-    recommendationColor: '#3A86FF',
+    recommendationColor: '#8B5CF6',
     reason:
       'Trifocal design gives you sharp vision at every distance — from your 27″ monitor to a road sign 200 metres away.',
     image: '/assets/images/profile_active_professional.png',
@@ -55,7 +55,7 @@ const profiles = [
       'History of dry eye or retinal conditions',
     ],
     recommendation: 'Tecnis Eyhance',
-    recommendationColor: '#A8B4C8',
+    recommendationColor: '#10B981',
     reason:
       'Ring-free optic design means zero added halos or glare — with meaningful intermediate improvement over standard monofocal.',
     image: '/assets/images/profile_conservative_candidate.png',
@@ -106,6 +106,24 @@ export default function LifestyleMatchSection() {
               Book Your Assessment
               <Icon name="ArrowRightIcon" size={16} />
             </a>
+
+            {/* Social proof badge — Bandwagon Effect */}
+            <div className="flex items-center gap-2.5 mt-4">
+              <div className="flex -space-x-2">
+                {['#00C9B1', '#8B5CF6', '#10B981'].map((c, i) => (
+                  <div
+                    key={i}
+                    className="w-7 h-7 rounded-full border-2 border-background flex items-center justify-center text-[10px] font-bold text-background"
+                    style={{ backgroundColor: c }}
+                  >
+                    {['P', 'R', 'M'][i]}
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                <strong className="text-foreground font-semibold">43 consultations</strong> booked this month
+              </p>
+            </div>
           </div>
 
           {/* Right: comparison card */}
@@ -157,18 +175,30 @@ export default function LifestyleMatchSection() {
                 ))}
               </div>
 
-              {/* Integrated Footnote Callout */}
-              <div className="mt-6 pt-5 border-t border-border/60 flex items-start gap-2.5">
-                <Icon
-                  name="InformationCircleIcon"
-                  size={16}
-                  className="text-primary/70 shrink-0 mt-0.5"
-                />
-                <p className="text-[11px] text-muted-foreground/75 leading-relaxed">
-                  Premium lenses are an investment — typically $2,900 - $4,100 per eye beyond
-                  insurance. Most patients report it&apos;s the best investment they&apos;ve ever
-                  made in their vision.
-                </p>
+              {/* Reframed Pricing Callout — Mental Accounting */}
+              <div className="mt-6 pt-5 border-t border-border/60 space-y-3">
+                <div className="flex items-start gap-2.5">
+                  <Icon
+                    name="SparklesIcon"
+                    size={16}
+                    className="text-primary/70 shrink-0 mt-0.5"
+                  />
+                  <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
+                    <strong className="text-foreground/90 font-semibold">Less than $0.55/day</strong>{' '}
+                    over the life of your lens. For context, the average American spends over $3,000
+                    on glasses in a decade — and still can&apos;t see clearly at every distance.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {['HSA / FSA Eligible', 'CareCredit Accepted', '0% Financing Available'].map((b) => (
+                    <span
+                      key={b}
+                      className="text-[10px] font-semibold text-primary/80 bg-primary/8 border border-primary/15 px-2.5 py-1 rounded-full"
+                    >
+                      {b}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -180,42 +210,52 @@ export default function LifestyleMatchSection() {
             <div
               key={profile?.id}
               onMouseMove={handleMouseMove}
-              className={`group relative glass-card border border-border rounded-3xl overflow-hidden card-hover-glow flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
+              className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
+              style={{
+                '--rec-color': profile.recommendationColor,
+              } as React.CSSProperties}
             >
-              {/* Dynamic Mouse Spotlight Glow */}
-              <div
-                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-[80px] z-0 will-change-transform"
-                style={{
-                  width: '320px',
-                  height: '320px',
-                  left: 'var(--mouse-x, 50%)',
-                  top: 'var(--mouse-y, 50%)',
-                  transform: 'translate(-50%, -50%)',
-                  background: 'radial-gradient(circle, var(--rec-color) 0%, transparent 70%)',
-                }}
-              />
-
-              {/* Image */}
-              <div className="relative aspect-[16/9] overflow-hidden z-10">
-                <AppImage
-                  src={profile?.image}
-                  alt={profile?.imageAlt}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0E1018]/90 via-[#0E1018]/20 to-transparent" />
-
-                {/* Recommendation badge */}
+              <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
+                {/* Dynamic Mouse Spotlight Glow */}
                 <div
-                  className={`absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg backdrop-blur-sm ${styles.recommendationBadge}`}
-                >
-                  → {profile?.recommendation}
-                </div>
-              </div>
+                  className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[80px] z-0 will-change-transform"
+                  style={{
+                    width: '320px',
+                    height: '320px',
+                    left: 'var(--mouse-x, 50%)',
+                    top: 'var(--mouse-y, 50%)',
+                    transform: 'translate(-50%, -50%)',
+                    background: 'radial-gradient(circle, var(--rec-color) 0%, transparent 70%)',
+                  }}
+                />
 
-              {/* Content */}
-              <div className="relative p-5 sm:p-6 flex flex-col flex-1 z-10">
+                {/* Image */}
+                <div className="relative aspect-[16/9] overflow-hidden z-10 border-b border-white/[0.05]">
+                  <AppImage
+                    src={profile?.image}
+                    alt={profile?.imageAlt}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1018]/95 via-[#0E1018]/25 to-transparent" />
+
+                  {/* Recommendation badge */}
+                  <div
+                    className={`absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3.5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg backdrop-blur-sm ${styles.recommendationBadge}`}
+                    style={{
+                      backgroundColor: `${profile.recommendationColor}20`,
+                      color: profile.recommendationColor,
+                      borderColor: `${profile.recommendationColor}40`,
+                      borderWidth: '1px',
+                    }}
+                  >
+                    → {profile?.recommendation}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="relative p-5 sm:p-6 flex flex-col flex-1 z-10">
                 <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-2">
                   {profile?.title}
                 </h3>
@@ -252,6 +292,7 @@ export default function LifestyleMatchSection() {
                 </div>
               </div>
             </div>
+          </div>
           ))}
         </div>
       </div>

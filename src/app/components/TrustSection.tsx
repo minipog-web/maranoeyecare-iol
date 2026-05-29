@@ -34,7 +34,7 @@ const testimonials = [
     name: 'Patricia W.',
     location: 'Denville, NJ',
     lens: 'PanOptix Pro',
-    lensColor: '#3A86FF',
+    lensColor: '#8B5CF6',
     avatar: '/assets/images/avatar_patricia.png',
     stars: 5,
   },
@@ -227,6 +227,63 @@ export default function TrustSection() {
           </div>
         </div>
 
+        {/* Dr. Marano's Recommendation Card — Authority Bias + Pratfall Effect */}
+        <div className="mb-14 sm:mb-20">
+          <div
+            onMouseMove={handleMouseMove}
+            className="group relative overflow-hidden glass-card border border-primary/20 rounded-3xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-primary/[0.04] to-transparent"
+          >
+            {/* Dynamic Mouse Spotlight */}
+            <div
+              className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[80px] z-0 will-change-transform"
+              style={{
+                width: '300px',
+                height: '300px',
+                left: 'var(--mouse-x, 50%)',
+                top: 'var(--mouse-y, 50%)',
+                transform: 'translate(-50%, -50%)',
+                background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
+              }}
+            />
+
+            <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-10">
+              {/* Quote mark */}
+              <div className="shrink-0 hidden md:flex w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 items-center justify-center">
+                <span className="font-display text-4xl text-primary font-bold leading-none -mt-2">&ldquo;</span>
+              </div>
+
+              <div className="flex-1">
+                <p className="text-base sm:text-lg text-foreground/90 leading-relaxed italic mb-5 sm:mb-6">
+                  &ldquo;If I were choosing a lens for myself or my family, I&apos;d want the Clareon Vivity.
+                  It gives the most natural vision with the fewest side effects for most patients.
+                  But the truth is, no single lens is right for everyone — which is exactly why
+                  I spend time getting to know every patient before I make any recommendation.
+                  The right lens depends on <em>how you live</em>.&rdquo;
+                </p>
+
+                <div className="flex items-center gap-4 flex-wrap">
+                  <div>
+                    <p className="text-sm font-bold text-foreground">Dr. Matthew Marano Jr., MD</p>
+                    <p className="text-xs text-primary mt-0.5 font-medium">
+                      Board-Certified Ophthalmologist · 6,200+ Premium IOLs
+                    </p>
+                  </div>
+                  <div className="flex gap-1.5 flex-wrap">
+                    {['15× NJ Top Doctor', 'Fellowship Trained', 'Chief of Ophthalmology'].map((b) => (
+                      <span
+                        key={b}
+                        className="text-[10px] font-semibold text-muted-foreground bg-white/[0.05] border border-border px-2.5 py-1 rounded-full"
+                      >
+                        {b}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Testimonials */}
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-6 sm:mb-10 text-center opacity-90">
@@ -237,74 +294,82 @@ export default function TrustSection() {
               <div
                 key={t?.name}
                 onMouseMove={handleMouseMove}
-                className="glass-card border border-border rounded-3xl p-6 sm:p-8 card-hover-glow relative overflow-hidden group"
+                className="group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col"
               >
-                {/* Dynamic Mouse Spotlight Glow */}
-                <div
-                  className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
-                  style={{
-                    width: '240px',
-                    height: '240px',
-                    left: 'var(--mouse-x, 50%)',
-                    top: 'var(--mouse-y, 50%)',
-                    transform: 'translate(-50%, -50%)',
-                    background: `radial-gradient(circle, ${t.lensColor} 0%, transparent 70%)`,
-                  }}
-                />
-
-                {/* Decorative quote mark */}
-                <div className="absolute top-4 right-6 sm:top-6 sm:right-8 font-display text-7xl sm:text-8xl text-primary/6 font-bold leading-none select-none pointer-events-none z-10">
-                  &ldquo;
-                </div>
-
-                {/* Concern label */}
-                {t.concern && (
-                  <div className="flex items-center gap-2 mb-3 relative z-10">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
-                      Was worried about: {t.concern}
-                    </span>
-                  </div>
-                )}
-
-                {/* Stars */}
-                <div className="flex items-center gap-1 mb-4 relative z-10">
-                  {Array.from({ length: t.stars }).map((_, i) => (
-                    <Icon
-                      key={i}
-                      name="StarIcon"
-                      variant="solid"
-                      size={14}
-                      className="text-primary"
-                    />
-                  ))}
-                </div>
-
-                <p className="text-sm sm:text-base text-foreground/85 leading-relaxed mb-6 italic relative z-10">
-                  &ldquo;{t?.quote}&rdquo;
-                </p>
-
-                <div className="flex items-center gap-3 sm:gap-4 flex-wrap relative z-10">
-                  <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_12px_rgba(0,201,177,0.2)]">
-                    <AppImage
-                      src={t?.avatar}
-                      alt={`Patient ${t?.name} profile photo`}
-                      fill
-                      className="object-cover"
-                      sizes="48px"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-foreground">{t?.name}</p>
-                    <p className="text-xs text-muted-foreground">{t?.location}</p>
-                  </div>
+                <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
+                  {/* Dynamic Mouse Spotlight Glow */}
                   <div
-                    className={`shrink-0 ${t.lens.toLowerCase().includes('panoptix') ? styles.lensPanoptix : styles.lensVivity}`}
-                  >
-                    <span
-                      className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}
+                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
+                    style={{
+                      width: '240px',
+                      height: '240px',
+                      left: 'var(--mouse-x, 50%)',
+                      top: 'var(--mouse-y, 50%)',
+                      transform: 'translate(-50%, -50%)',
+                      background: `radial-gradient(circle, ${t.lensColor} 0%, transparent 70%)`,
+                    }}
+                  />
+
+                  {/* Decorative quote mark */}
+                  <div className="absolute top-4 right-6 sm:top-6 sm:right-8 font-display text-7xl sm:text-8xl text-primary/6 font-bold leading-none select-none pointer-events-none z-10">
+                    &ldquo;
+                  </div>
+
+                  {/* Concern label */}
+                  {t.concern && (
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
+                        Was worried about: {t.concern}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Stars */}
+                  <div className="flex items-center gap-1 mb-4 relative z-10">
+                    {Array.from({ length: t.stars }).map((_, i) => (
+                      <Icon
+                        key={i}
+                        name="StarIcon"
+                        variant="solid"
+                        size={14}
+                        className="text-primary"
+                      />
+                    ))}
+                  </div>
+
+                  <p className="text-sm sm:text-base text-foreground/85 leading-relaxed mb-6 italic relative z-10">
+                    &ldquo;{t?.quote}&rdquo;
+                  </p>
+
+                  <div className="flex items-center gap-3 sm:gap-4 flex-wrap relative z-10 mt-auto">
+                    <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_12px_rgba(0,201,177,0.2)]">
+                      <AppImage
+                        src={t?.avatar}
+                        alt={`Patient ${t?.name} profile photo`}
+                        fill
+                        className="object-cover"
+                        sizes="48px"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-foreground">{t?.name}</p>
+                      <p className="text-xs text-muted-foreground">{t?.location}</p>
+                    </div>
+                    <div
+                      className={`shrink-0 ${t.lens.toLowerCase().includes('panoptix') ? styles.lensPanoptix : styles.lensVivity}`}
                     >
-                      {t?.lens}
-                    </span>
+                      <span
+                        className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}
+                        style={{
+                          backgroundColor: `${t.lensColor}15`,
+                          color: t.lensColor,
+                          borderColor: `${t.lensColor}30`,
+                          borderWidth: '1px',
+                        }}
+                      >
+                        {t?.lens}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

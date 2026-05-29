@@ -95,18 +95,20 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
               <a
                 href="#booking"
-                className="w-full sm:w-auto px-8 sm:px-10 py-4 bg-primary text-primary-foreground rounded-full text-base font-bold flex items-center justify-center gap-3 group hover:bg-accent transition-all active:scale-95 animate-glow-pulse btn-shimmer min-h-[52px] touch-manipulation"
+                className="w-full sm:w-auto pl-8 pr-3 py-2.5 bg-primary text-primary-foreground rounded-full text-base font-bold flex items-center justify-between gap-4 group hover:bg-accent transition-spring active:scale-[0.98] animate-glow-pulse min-h-[56px] touch-manipulation"
               >
-                Book Your Free Consultation
-                <Icon
-                  name="ArrowRightIcon"
-                  size={18}
-                  className="group-hover:translate-x-1.5 transition-transform shrink-0"
-                />
+                <span>{`Book Your Free Consultation`}</span>
+                <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0 transition-spring group-hover:scale-105 group-hover:bg-white/35">
+                  <Icon
+                    name="ArrowRightIcon"
+                    size={16}
+                    className="transition-transform group-hover:translate-x-0.5"
+                  />
+                </span>
               </a>
               <a
                 href="tel:9733220100"
-                className="w-full sm:w-auto px-6 sm:px-8 py-4 border border-border-bright text-foreground rounded-full text-base font-medium flex items-center justify-center gap-3 hover:border-primary/50 hover:bg-white/[0.03] transition-all min-h-[52px] touch-manipulation"
+                className="w-full sm:w-auto px-6 sm:px-8 py-4 border border-border-bright text-foreground rounded-full text-base font-medium flex items-center justify-center gap-3 hover:border-primary/50 hover:bg-white/[0.03] transition-spring min-h-[56px] touch-manipulation"
               >
                 <Icon name="PhoneIcon" size={18} className="text-primary shrink-0" />
                 <span className="text-sm sm:text-base whitespace-nowrap">(973) 322-0100</span>
@@ -146,7 +148,7 @@ export default function HeroSection() {
                   key={lens?.name}
                   onMouseEnter={() => setHoveredLens(lens.name)}
                   onMouseLeave={() => setHoveredLens(null)}
-                  className={`relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border bg-[rgba(8,9,16,0.85)] ${lens?.accent} transition-all duration-500 hover:-translate-y-3 group cursor-pointer ${styles.lensCard} ${delayClass}
+                  className={`relative doppel-shell ${lens?.accent} transition-spring hover:-translate-y-3 group cursor-pointer ${styles.lensCard} ${delayClass}
                       ${
                         lens?.featured
                           ? 'w-[38%] sm:w-44 h-[300px] sm:h-[420px] z-20 -mt-8'
@@ -154,58 +156,53 @@ export default function HeroSection() {
                       }
                       ${
                         isActive
-                          ? 'shadow-[0_0_60px_rgba(0,201,177,0.35),0_0_0_1px_rgba(0,201,177,0.25)]'
-                          : 'shadow-[0_0_20px_rgba(0,201,177,0.05)]'
+                          ? 'shadow-[0_0_60px_rgba(0,201,177,0.3),0_0_0_1px_rgba(0,201,177,0.2)] border-primary/45 bg-white/[0.05]'
+                          : 'shadow-[0_0_20px_rgba(0,201,177,0.05)] border-white/[0.08]'
                       }`}
                 >
-                  {/* Image */}
-                  <div className="relative flex-1 overflow-hidden">
-                    <AppImage
-                      src={lens?.src}
-                      alt={lens?.alt}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes="(max-width: 640px) 38vw, 176px"
-                      priority={i === 0}
-                    />
+                  <div className="w-full h-full flex flex-col bg-[rgba(8,9,16,0.85)] rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
+                    {/* Image */}
+                    <div className="relative flex-1 overflow-hidden">
+                      <AppImage
+                        src={lens?.src}
+                        alt={lens?.alt}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 640px) 38vw, 176px"
+                        priority={i === 0}
+                      />
 
-                    {/* Rich gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+                      {/* Rich gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
 
-                    {/* Ambient inner glow — follows active state */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-b from-primary/8 to-transparent transition-opacity duration-500 ${
-                        isActive ? 'opacity-100' : 'opacity-0'
-                      }`}
-                    />
+                      {/* Ambient inner glow — follows active state */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-b from-primary/8 to-transparent transition-opacity duration-500 ${
+                          isActive ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      />
 
-                    {/* Tag badge */}
-                    <div
-                      className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-sm`}
-                    >
-                      {lens?.tag}
+                      {/* Tag badge */}
+                      <div
+                        className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2.5 py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-sm`}
+                      >
+                        {lens?.tag}
+                      </div>
+                    </div>
+
+                    {/* Bottom info */}
+                    <div className="p-2.5 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
+                      <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
+                        {lens?.name}
+                      </p>
+                      <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
+                        {lens?.subtitle}
+                      </p>
+                      <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight hidden sm:block">
+                        {lens?.detail}
+                      </p>
                     </div>
                   </div>
-
-                  {/* Bottom info */}
-                  <div className="p-2 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm">
-                    <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
-                      {lens?.name}
-                    </p>
-                    <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
-                      {lens?.subtitle}
-                    </p>
-                    <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight hidden sm:block">
-                      {lens?.detail}
-                    </p>
-                  </div>
-
-                  {/* Glow ring — follows active state */}
-                  <div
-                    className={`absolute inset-0 rounded-2xl sm:rounded-3xl border-2 ${lens?.accent} transition-opacity duration-400 pointer-events-none ${
-                      isActive ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  />
                 </div>
               );
             })}

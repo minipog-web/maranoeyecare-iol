@@ -1,0 +1,2274 @@
+﻿diff --git a/deno.lock b/deno.lock
+index 2b20c91..c9d4f21 100644
+--- a/deno.lock
++++ b/deno.lock
+@@ -14,7 +14,7 @@
+         "npm:@dhiwise/component-tagger@^1.0.15",
+         "npm:@eslint/eslintrc@3",
+         "npm:@heroicons/react@^2.2.0",
+-        "npm:@netlify/plugin-nextjs@^5.11.1",
++        "npm:@netlify/plugin-nextjs@5.15.11",
+         "npm:@tailwindcss/forms@~0.5.10",
+         "npm:@tailwindcss/typography@~0.5.16",
+         "npm:@types/node@20",
+diff --git a/next.config.mjs b/next.config.mjs
+index 3a9a9b4..f8d68ad 100644
+--- a/next.config.mjs
++++ b/next.config.mjs
+@@ -15,6 +15,6 @@ const nextConfig = {
+   images: {
+     remotePatterns: imageHosts,
+     minimumCacheTTL: 60,
+-  }
++  },
+ };
+ export default nextConfig;
+\ No newline at end of file
+diff --git a/src/app/components/BookingSection.module.css b/src/app/components/BookingSection.module.css
+index 1666f0d..87a1f56 100644
+--- a/src/app/components/BookingSection.module.css
++++ b/src/app/components/BookingSection.module.css
+@@ -4,3 +4,35 @@
+     0 32px 80px rgba(0, 0, 0, 0.5),
+     0 0 60px rgba(0, 201, 177, 0.05);
+ }
++
++.premiumInput {
++  background: rgba(10, 12, 20, 0.6);
++  backdrop-filter: blur(12px);
++  -webkit-backdrop-filter: blur(12px);
++  border: 1px solid rgba(255, 255, 255, 0.06);
++  color: #eeedf0;
++  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
++}
++
++.premiumInput::placeholder {
++  color: rgba(122, 128, 153, 0.6);
++}
++
++.premiumInput:hover {
++  background: rgba(14, 16, 24, 0.85);
++  border-color: rgba(0, 201, 177, 0.25);
++  box-shadow: 0 0 12px rgba(0, 201, 177, 0.04);
++}
++
++.premiumInput:focus {
++  background: rgba(8, 9, 16, 0.95);
++  border-color: rgba(0, 201, 177, 0.65) !important;
++  box-shadow:
++    0 0 0 3px rgba(0, 201, 177, 0.15),
++    0 0 20px rgba(0, 201, 177, 0.1) !important;
++}
++
++.premiumInput option {
++  background: #0e1018;
++  color: #eeedf0;
++}
+diff --git a/src/app/components/BookingSection.tsx b/src/app/components/BookingSection.tsx
+index 8bd6872..4b33214 100644
+--- a/src/app/components/BookingSection.tsx
++++ b/src/app/components/BookingSection.tsx
+@@ -70,7 +70,7 @@ export default function BookingSection() {
+   };
+ 
+   const inputClass =
+-    'w-full px-4 py-3.5 bg-[#0A0C14] border border-border rounded-2xl text-foreground placeholder:text-muted-foreground/60 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all min-h-[52px] touch-manipulation';
++    `w-full px-4 py-3.5 ${styles.premiumInput} rounded-2xl text-base sm:text-sm focus:outline-none min-h-[52px] touch-manipulation`;
+ 
+   const labelClass =
+     'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
+@@ -93,12 +93,12 @@ export default function BookingSection() {
+               IOL Consultation
+             </p>
+             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
+-              Take the First Step{' '}
+-              <span className="text-gradient-primary font-semibold">Toward Clarity</span>
++              Don&apos;t Let Your Vision{' '}
++              <span className="text-gradient-primary font-semibold">Get Worse</span>
+             </h2>
+             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10">
+-              Book a no-obligation consultation with Dr. Marano. In 45 minutes, you&apos;ll know
+-              exactly which IOL is right for your eyes, lifestyle, and vision goals.
++              Cataracts only progress &mdash; they never improve on their own. Book a no-obligation
++              consultation and know exactly which lens matches your eyes, lifestyle, and goals.
+             </p>
+ 
+             {/* What to expect */}
+@@ -174,8 +174,12 @@ export default function BookingSection() {
+                   Request Received
+                 </h3>
+                 <p className="text-muted-foreground leading-relaxed max-w-sm">
+-                  Thank you. A member of the Marano Eye Care team will contact you within one
+-                  business day to confirm your consultation.
++                  You&apos;ve taken the most important step toward better vision. A member of the
++                  Marano Eye Care team will contact you within one business day to confirm your
++                  consultation.
++                </p>
++                <p className="text-sm text-primary/80 mt-3 font-medium italic max-w-sm">
++                  Most patients say their only regret is not doing this sooner.
+                 </p>
+                 <a
+                   href="tel:9733220100"
+@@ -188,10 +192,11 @@ export default function BookingSection() {
+               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                 <div className="mb-6">
+                   <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground mb-1">
+-                    Book a Consultation
++                    Request Your Consultation
+                   </h3>
+                   <p className="text-sm text-muted-foreground">
+-                    We&apos;ll confirm within one business day.
++                    Limited consultation slots available &mdash; we&apos;ll confirm within one
++                    business day.
+                   </p>
+                 </div>
+ 
+@@ -347,7 +352,7 @@ export default function BookingSection() {
+                     </>
+                   ) : (
+                     <>
+-                      Book a Consultation
++                      Reserve My Consultation
+                       <Icon name="ArrowRightIcon" size={18} />
+                     </>
+                   )}
+diff --git a/src/app/components/HeroSection.tsx b/src/app/components/HeroSection.tsx
+index 397b906..421f0a8 100644
+--- a/src/app/components/HeroSection.tsx
++++ b/src/app/components/HeroSection.tsx
+@@ -1,3 +1,6 @@
++'use client';
++
++import { useState } from 'react';
+ import styles from './HeroSection.module.css';
+ import AppImage from '@/components/ui/AppImage';
+ import Icon from '@/components/ui/AppIcon';
+@@ -12,7 +15,6 @@ const lenses = [
+     src: '/assets/images/vivity_iol_clean.png',
+     alt: 'Clareon Vivity IOL ΓÇö non-diffractive extended depth of focus intraocular lens',
+     accent: 'border-primary/50',
+-    glow: 'shadow-[0_0_60px_rgba(0,201,177,0.3),0_0_0_1px_rgba(0,201,177,0.2)]',
+     featured: true,
+   },
+   {
+@@ -24,7 +26,6 @@ const lenses = [
+     src: '/assets/images/panoptix_iol_clean.png',
+     alt: 'Clareon PanOptix Pro trifocal IOL ΓÇö trifocal intraocular lens',
+     accent: 'border-primary/25',
+-    glow: 'shadow-[0_0_30px_rgba(0,201,177,0.1)]',
+     featured: false,
+   },
+   {
+@@ -36,12 +37,19 @@ const lenses = [
+     src: '/assets/images/eyhance_iol_clean.png',
+     alt: 'TECNIS Eyhance IOL ΓÇö enhanced monofocal intraocular lens',
+     accent: 'border-primary/25',
+-    glow: 'shadow-[0_0_30px_rgba(0,201,177,0.1)]',
+     featured: false,
+   },
+ ];
+ 
++// Default active lens when nothing is hovered
++const DEFAULT_ACTIVE = 'Clareon Vivity';
++
+ export default function HeroSection() {
++  const [hoveredLens, setHoveredLens] = useState<string | null>(null);
++
++  // The lens that should show the strong glow
++  const activeLens = hoveredLens ?? DEFAULT_ACTIVE;
++
+   return (
+     <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
+       {/* Background layers */}
+@@ -62,7 +70,7 @@ export default function HeroSection() {
+           {/* Left Content */}
+           <div className="flex-1 w-full flex flex-col items-start">
+             {/* Badge */}
+-            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border">
++            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both">
+               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(0,201,177,0.8)]" />
+               <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.35em] text-primary">
+                 Premium IOL Specialists ΓÇö New Jersey
+@@ -70,25 +78,26 @@ export default function HeroSection() {
+             </div>
+ 
+             {/* Headline */}
+-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[0.92] tracking-tight text-foreground mb-5 sm:mb-6">
+-              See Everything.{' '}
++            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[0.92] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
++              Stop Missing Life.{' '}
+               <span className="block text-gradient-primary font-semibold mt-1">
+-                Without Glasses.
++                Start Seeing It.
+               </span>
+             </h1>
+ 
+-            <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10">
+-              Not all IOLs are equal. Discover how Clareon Vivity, PanOptix Pro, and Eyhance compare
+-              ΓÇö and find the lens that gives you the clearest life after cataract surgery.
++            <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 animate-fade-up delay-300 fill-both">
++              Not all IOLs are equal. Discover how Clareon Vivity, PanOptix Pro, and Eyhance
++              compare ΓÇö and find the premium lens that can eliminate your dependence on glasses
++              for the clearest life after cataract surgery.
+             </p>
+ 
+             {/* CTAs */}
+-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12">
++            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
+               <a
+                 href="#booking"
+                 className="w-full sm:w-auto px-8 sm:px-10 py-4 bg-primary text-primary-foreground rounded-full text-base font-bold flex items-center justify-center gap-3 group hover:bg-accent transition-all active:scale-95 animate-glow-pulse btn-shimmer min-h-[52px] touch-manipulation"
+               >
+-                Book a Consultation
++                Book Your Free Consultation
+                 <Icon
+                   name="ArrowRightIcon"
+                   size={18}
+@@ -105,11 +114,11 @@ export default function HeroSection() {
+             </div>
+ 
+             {/* Stats row */}
+-            <div className="flex flex-wrap gap-5 sm:gap-10 border-t border-border pt-6 sm:pt-8 w-full">
++            <div className="flex flex-wrap gap-5 sm:gap-10 border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
+               {[
+-                { value: '15├ù', label: 'NJ Top Doctor Award' },
+-                { value: '94%', label: 'Vivity distance satisfaction' },
+-                { value: '99%', label: 'PanOptix would choose again' },
++                { value: '15├ù', label: 'Consecutive NJ Top Doctor' },
++                { value: '6,200+', label: 'Premium IOLs Implanted' },
++                { value: '99%', label: '"I\'d Choose This Lens Again"' },
+               ]?.map((stat) => (
+                 <div key={stat?.label} className="flex flex-col gap-1">
+                   <span className="font-display text-2xl sm:text-3xl font-semibold text-primary">
+@@ -125,65 +134,84 @@ export default function HeroSection() {
+ 
+           {/* Right: Three-Lens Visual Showcase */}
+           <div className="relative flex-1 w-full flex items-end justify-center lg:justify-end gap-2 sm:gap-3 md:gap-4 py-6 lg:py-0">
+-            {lenses?.map((lens, i) => (
+-              <div
+-                key={lens?.name}
+-                className={`relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border bg-[rgba(8,9,16,0.85)] ${lens?.accent} ${lens?.glow} transition-all duration-500 hover:-translate-y-3 group cursor-pointer ${styles.lensCard}
+-                    ${
+-                      lens?.featured
+-                        ? 'w-[38%] sm:w-44 h-[300px] sm:h-[420px] z-20 -mt-8'
+-                        : 'w-[28%] sm:w-36 h-[240px] sm:h-[360px] z-10'
+-                    }`}
+-              >
+-                {/* Image */}
+-                <div className="relative flex-1 overflow-hidden">
+-                  <AppImage
+-                    src={lens?.src}
+-                    alt={lens?.alt}
+-                    fill
+-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+-                    sizes="(max-width: 640px) 38vw, 176px"
+-                    priority={i === 0}
+-                  />
+-
+-                  {/* Rich gradient overlay */}
+-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+-
+-                  {/* Ambient inner glow on featured */}
+-                  {lens.featured && (
+-                    <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+-                  )}
++            {lenses?.map((lens, i) => {
++              const isActive = activeLens === lens.name;
++              const delayClass = i === 0 
++                ? 'animate-fade-up delay-600 fill-both' 
++                : i === 1 
++                  ? 'animate-fade-up delay-750 fill-both' 
++                  : 'animate-fade-up delay-900 fill-both';
++              return (
++                <div
++                  key={lens?.name}
++                  onMouseEnter={() => setHoveredLens(lens.name)}
++                  onMouseLeave={() => setHoveredLens(null)}
++                  className={`relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden border bg-[rgba(8,9,16,0.85)] ${lens?.accent} transition-all duration-500 hover:-translate-y-3 group cursor-pointer ${styles.lensCard} ${delayClass}
++                      ${
++                        lens?.featured
++                          ? 'w-[38%] sm:w-44 h-[300px] sm:h-[420px] z-20 -mt-8'
++                          : 'w-[28%] sm:w-36 h-[240px] sm:h-[360px] z-10'
++                      }
++                      ${
++                        isActive
++                          ? 'shadow-[0_0_60px_rgba(0,201,177,0.35),0_0_0_1px_rgba(0,201,177,0.25)]'
++                          : 'shadow-[0_0_20px_rgba(0,201,177,0.05)]'
++                      }`}
++                >
++                  {/* Image */}
++                  <div className="relative flex-1 overflow-hidden">
++                    <AppImage
++                      src={lens?.src}
++                      alt={lens?.alt}
++                      fill
++                      className="object-cover transition-transform duration-700 group-hover:scale-110"
++                      sizes="(max-width: 640px) 38vw, 176px"
++                      priority={i === 0}
++                    />
++
++                    {/* Rich gradient overlay */}
++                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
++
++                    {/* Ambient inner glow ΓÇö follows active state */}
++                    <div
++                      className={`absolute inset-0 bg-gradient-to-b from-primary/8 to-transparent transition-opacity duration-500 ${
++                        isActive ? 'opacity-100' : 'opacity-0'
++                      }`}
++                    />
++
++                    {/* Tag badge */}
++                    <div
++                      className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-sm`}
++                    >
++                      {lens?.tag}
++                    </div>
++                  </div>
+ 
+-                  {/* Tag badge */}
+-                  <div
+-                    className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-sm`}
+-                  >
+-                    {lens?.tag}
++                  {/* Bottom info */}
++                  <div className="p-2 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm">
++                    <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
++                      {lens?.name}
++                    </p>
++                    <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
++                      {lens?.subtitle}
++                    </p>
++                    <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight hidden sm:block">
++                      {lens?.detail}
++                    </p>
+                   </div>
+-                </div>
+ 
+-                {/* Bottom info */}
+-                <div className="p-2 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm">
+-                  <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
+-                    {lens?.name}
+-                  </p>
+-                  <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
+-                    {lens?.subtitle}
+-                  </p>
+-                  <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight hidden sm:block">
+-                    {lens?.detail}
+-                  </p>
++                  {/* Glow ring ΓÇö follows active state */}
++                  <div
++                    className={`absolute inset-0 rounded-2xl sm:rounded-3xl border-2 ${lens?.accent} transition-opacity duration-400 pointer-events-none ${
++                      isActive ? 'opacity-100' : 'opacity-0'
++                    }`}
++                  />
+                 </div>
+-
+-                {/* Glow ring on hover */}
+-                <div
+-                  className={`absolute inset-0 rounded-2xl sm:rounded-3xl border-2 ${lens?.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none`}
+-                />
+-              </div>
+-            ))}
++              );
++            })}
+ 
+             {/* Floating lens detail card ΓÇö desktop only */}
+-            <div className="hidden lg:block absolute -top-52 right-4 lg:right-8 w-44 glass-card-bright rounded-2xl p-4 shadow-2xl z-30 animate-float-delayed">
++            <div className="hidden lg:block absolute bottom-[400px] right-4 lg:right-8 w-44 glass-card-bright rounded-2xl p-4 shadow-2xl z-30 animate-float-delayed">
+               <div className="w-8 h-8 rounded-xl bg-primary/15 flex items-center justify-center mb-3 shadow-[0_0_12px_rgba(0,201,177,0.3)]">
+                 <Icon name="SparklesIcon" size={18} className="text-primary" />
+               </div>
+diff --git a/src/app/components/LensQuestionnaireSection.tsx b/src/app/components/LensQuestionnaireSection.tsx
+index a74cc77..d03e7cd 100644
+--- a/src/app/components/LensQuestionnaireSection.tsx
++++ b/src/app/components/LensQuestionnaireSection.tsx
+@@ -338,10 +338,10 @@ export default function LensQuestionnaireSection() {
+             Lens Recommendation Quiz
+           </span>
+           <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-3">
+-            Find Your <span className="text-gradient-primary">Perfect Lens</span>
++            Build Your <span className="text-gradient-primary">Perfect Vision Plan</span>
+           </h2>
+           <p className="text-muted-foreground text-base max-w-xl mx-auto">
+-            Answer a few quick questions and we'll recommend the IOL best suited to your vision
++            Answer a few quick questions and we&apos;ll recommend the IOL best suited to your vision
+             goals and lifestyle.
+           </p>
+         </div>
+@@ -352,7 +352,15 @@ export default function LensQuestionnaireSection() {
+             <span className="text-xs text-muted-foreground">
+               {result ? 'Complete' : `Question ${history.length + 1}`}
+             </span>
+-            <span className="text-xs text-primary font-medium">{progress}%</span>
++            <span className="text-xs text-primary font-medium">
++              {progress >= 60 && !result ? (
++                <span className="inline-flex items-center gap-1.5">
++                  <span className="animate-pulse">Almost there!</span> {progress}%
++                </span>
++              ) : (
++                `${progress}%`
++              )}
++            </span>
+           </div>
+           <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+             <div
+@@ -441,7 +449,7 @@ export default function LensQuestionnaireSection() {
+             <div>
+               <div className="flex items-center gap-2 mb-5">
+                 <span className="text-sm text-muted-foreground">
+-                  Based on your answers, we recommend:
++                  Based on your answers, here&apos;s the lens most patients like you choose:
+                 </span>
+               </div>
+ 
+@@ -548,8 +556,9 @@ export default function LensQuestionnaireSection() {
+               </div>
+ 
+               <p className="mt-4 text-xs text-muted-foreground text-center">
+-                This recommendation is a starting point. Dr. Marano will review your full eye health
+-                history to confirm the best lens for you.
++                This quiz can&apos;t replace Dr. Marano&apos;s clinical exam ΓÇö but it gives you a
++                strong starting point. In your consultation, he&apos;ll confirm the perfect match
++                for your unique eyes.
+               </p>
+             </div>
+           )}
+diff --git a/src/app/components/LensVisionComparisonSection.tsx b/src/app/components/LensVisionComparisonSection.tsx
+index 5b38e4d..88702c7 100644
+--- a/src/app/components/LensVisionComparisonSection.tsx
++++ b/src/app/components/LensVisionComparisonSection.tsx
+@@ -11,15 +11,15 @@ const lenses = [
+     manufacturer: 'Alcon',
+     type: 'Trifocal IOL',
+     tagline: 'True glasses independence at all distances.',
+-    color: '#7EECD8',
++    color: '#3A86FF',
+     featured: true,
+     badge: 'Full Trifocal',
+-    twColor: 'text-[#7EECD8]',
+-    twBadgeBg: 'bg-[#7EECD815]',
+-    twBadgeBorder: 'border-[#7EECD830]',
+-    twBadgeText: 'text-[#7EECD8]',
+-    twCtaBorder: 'border-[#7EECD840]',
+-    twSpecBar: 'bg-[#7EECD8]',
++    twColor: 'text-[#3A86FF]',
++    twBadgeBg: 'bg-[#3A86FF15]',
++    twBadgeBorder: 'border-[#3A86FF30]',
++    twBadgeText: 'text-[#3A86FF]',
++    twCtaBorder: 'border-[#3A86FF40]',
++    twSpecBar: 'bg-[#3A86FF]',
+     images: {
+       day: {
+         distance: '/assets/images/day_driving_pro.jpg',
+@@ -244,13 +244,142 @@ function scoreWidthClass(score: number): string {
+   return 'w-[98%]';
+ }
+ 
++const visualStatusOverlays: Record<
++  string,
++  Record<
++    TimeOfDay,
++    Record<Distance, { text: string; status: 'clear' | 'warning' | 'error' | 'info' }>
++  >
++> = {
++  monofocal: {
++    day: {
++      distance: { text: 'Distance Vision: Clear (Glasses-Free)', status: 'clear' },
++      intermediate: {
++        text: 'Intermediate (Dashboard): Blurry (Glasses Required)',
++        status: 'error',
++      },
++      near: { text: 'Near (Reading): Blurry (Readers Required)', status: 'error' },
++    },
++    night: {
++      distance: { text: 'Distance: Clear Driving (Baseline Safety)', status: 'clear' },
++      intermediate: { text: 'Intermediate: Blurry (Glasses Required)', status: 'error' },
++      near: { text: 'Near: Blurry (Readers Required)', status: 'error' },
++    },
++  },
++  eyhance: {
++    day: {
++      distance: { text: 'Distance Vision: Pristine Clear (Glasses-Free)', status: 'clear' },
++      intermediate: { text: 'Intermediate: Good (Screen Reading Benefit)', status: 'info' },
++      near: { text: 'Near (Reading): Blurry (Readers Required)', status: 'error' },
++    },
++    night: {
++      distance: { text: 'Distance: Crisp Night Driving (Zero Added Halos)', status: 'clear' },
++      intermediate: { text: 'Intermediate: Good (Screen Reading Benefit)', status: 'info' },
++      near: { text: 'Near: Blurry (Readers Required)', status: 'error' },
++    },
++  },
++  vivity: {
++    day: {
++      distance: { text: 'Distance Vision: Clear & Sharp (Glasses-Free)', status: 'clear' },
++      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
++      near: { text: 'Near (Reading): Functional (Readers for fine print)', status: 'info' },
++    },
++    night: {
++      distance: { text: 'Distance: Clear Night Driving (Very Low Glare)', status: 'clear' },
++      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
++      near: { text: 'Near: Functional (Readers for fine print)', status: 'info' },
++    },
++  },
++  panoptix: {
++    day: {
++      distance: { text: 'Distance Vision: Clear & Sharp (Glasses-Free)', status: 'clear' },
++      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
++      near: { text: 'Near (Reading): Full Freedom (No Readers Needed)', status: 'clear' },
++    },
++    night: {
++      distance: { text: 'Distance: Functional Night Driving (Mild Halos)', status: 'warning' },
++      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
++      near: { text: 'Near (Reading): Full Freedom (No Readers Needed)', status: 'clear' },
++    },
++  },
++};
++
++const visionDescriptions: Record<string, Record<Distance, string>> = {
++  monofocal: {
++    distance:
++      'Clear distance vision for driving and watching TV. Requires glasses for intermediate and reading ranges.',
++    intermediate:
++      'Screens and dashboard dials are blurry. Reading glasses or computer-specific lenses are required.',
++    near: 'Fine print, smartphones, and reading materials are highly blurred. Reading glasses are strictly necessary.',
++  },
++  eyhance: {
++    distance:
++      'Pristine distance clarity. High-contrast driving and outdoor vision with a standard-monofocal safety profile.',
++    intermediate:
++      'Meaningful improvement. Good for computer screens and car dashboards, though mild glasses assistance may be needed.',
++    near: 'Functional for larger print in good lighting, but reading glasses are still required for most close-up reading.',
++  },
++  vivity: {
++    distance:
++      'Superb distance vision. Excellent for driving, golf, and outdoor active lifestyles without glare or halos.',
++    intermediate:
++      'Seamless intermediate vision. Effortless computer work, cooking, and viewing dashboard indicators.',
++    near: 'Functional near vision. Easily check text messages and read menus, but reading glasses may be needed for long reading sessions.',
++  },
++  panoptix: {
++    distance:
++      'Excellent distance vision. Sharp, clear view for driving, movies, and everyday outdoor activities.',
++    intermediate:
++      'Exceptional intermediate focus. Perfect for computer screen distances, dashboard dials, and store shelves.',
++    near: 'Full reading independence. Excellent near vision down to 40cm. Read books, text messages, and menus without reading glasses.',
++  },
++};
++
++const nightVisionDescriptions: Record<string, string> = {
++  monofocal:
++    'Pristine night driving. Standard single-focus lens with no added glare, halos, or starbursts around headlights.',
++  eyhance:
++    'Crisp night driving. Enhanced distance vision with a baseline safety profile and zero added glare or halos.',
++  vivity:
++    'Very low glare and minimal halos around headlights. Extremely safe and comfortable night driving.',
++  panoptix:
++    'Mild halos or starburst rings around headlights due to trifocal rings. Most patients easily adapt to this within weeks.',
++};
++
+ export default function LensVisionComparisonSection() {
+   const [activeDistance, setActiveDistance] = useState<Distance>('distance');
+   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('day');
++  const [activePremiumLensId, setActivePremiumLensId] = useState<string>('panoptix');
++  const [activeMobileLensId, setActiveMobileLensId] = useState<string>('panoptix');
++  const [isPeekingBaseline, setIsPeekingBaseline] = useState<boolean>(false);
+   const [glowPosition, setGlowPosition] = useState<{ x: string; y: string } | null>(null);
+   const [mouseCoords, setMouseCoords] = useState<{ [key: string]: { x: number; y: number } }>({});
+   const [hoveredLensId, setHoveredLensId] = useState<string | null>(null);
+ 
++  const selectPremiumLens = (id: string) => {
++    setActivePremiumLensId(id);
++    setActiveMobileLensId(id);
++  };
++
++  const selectMobileLens = (id: string) => {
++    setActiveMobileLensId(id);
++    if (id !== 'monofocal') {
++      setActivePremiumLensId(id);
++    }
++  };
++
++  const handleCardClick = (id: string) => {
++    if (id === 'monofocal') {
++      setActiveMobileLensId('monofocal');
++    } else {
++      selectPremiumLens(id);
++    }
++    // Scroll to the simulator viewport container
++    document
++      .getElementById('simulator-viewport')
++      ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
++  };
++
+   const handleTimeOfDayChange = (t: TimeOfDay) => {
+     setTimeOfDay(t);
+     if (t === 'night') {
+@@ -285,6 +414,104 @@ export default function LensVisionComparisonSection() {
+     }));
+   };
+ 
++  const renderSimulatorImages = (lensId: string) => {
++    const lens = lenses.find((l) => l.id === lensId);
++    if (!lens) return null;
++    return (
++      <>
++        {/* Layer 1: Day Distance */}
++        <Image
++          src={lens.images.day.distance}
++          alt={`${lens.name} daytime distance vision`}
++          fill
++          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
++            timeOfDay === 'day' && activeDistance === 'distance'
++              ? 'opacity-100 z-10'
++              : 'opacity-0 z-0 pointer-events-none'
++          } ${blurClass(lens.blur.day.distance)}`}
++          sizes="(max-width: 768px) 100vw, 50vw"
++          priority={lens.featured}
++        />
++
++        {/* Layer 2: Day Intermediate */}
++        <Image
++          src={lens.images.day.intermediate}
++          alt={`${lens.name} daytime intermediate vision`}
++          fill
++          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
++            timeOfDay === 'day' && activeDistance === 'intermediate'
++              ? 'opacity-100 z-10'
++              : 'opacity-0 z-0 pointer-events-none'
++          } ${blurClass(lens.blur.day.intermediate)}`}
++          sizes="(max-width: 768px) 100vw, 50vw"
++        />
++
++        {/* Layer 3: Day Near */}
++        <Image
++          src={lens.images.day.near}
++          alt={`${lens.name} daytime near vision`}
++          fill
++          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
++            timeOfDay === 'day' && activeDistance === 'near'
++              ? 'opacity-100 z-10'
++              : 'opacity-0 z-0 pointer-events-none'
++          } ${blurClass(lens.blur.day.near)}`}
++          sizes="(max-width: 768px) 100vw, 50vw"
++        />
++
++        {/* Layer 4: Night */}
++        <Image
++          src={lens.images.night.distance}
++          alt={`${lens.name} night vision`}
++          fill
++          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
++            timeOfDay === 'night' ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
++          } ${blurClass(lens.blur.night[activeDistance])}`}
++          sizes="(max-width: 768px) 100vw, 50vw"
++          priority={lens.featured}
++        />
++      </>
++    );
++  };
++
++  const renderPremiumSimulatorImages = () => {
++    return lenses
++      .filter((l) => l.id !== 'monofocal')
++      .map((lens) => {
++        const isCurrentLens = activePremiumLensId === lens.id;
++        return (
++          <div
++            key={lens.id}
++            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
++              isCurrentLens ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
++            }`}
++          >
++            {renderSimulatorImages(lens.id)}
++          </div>
++        );
++      });
++  };
++
++  const mobileDisplayLensId = isPeekingBaseline ? 'monofocal' : activeMobileLensId;
++  const activePremiumLens = lenses.find((l) => l.id === activePremiumLensId) || lenses[0];
++  const activeMobileConfigLens = lenses.find((l) => l.id === activeMobileLensId) || lenses[0];
++
++  const renderMobileSimulatorImages = () => {
++    return lenses.map((lens) => {
++      const isCurrentLens = mobileDisplayLensId === lens.id;
++      return (
++        <div
++          key={lens.id}
++          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
++            isCurrentLens ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
++          }`}
++        >
++          {renderSimulatorImages(lens.id)}
++        </div>
++      );
++    });
++  };
++
+   return (
+     <section id="iol-simulator" className="py-16 sm:py-28 relative overflow-hidden">
+       <div className="absolute inset-0 vision-section-bg opacity-40" />
+@@ -310,7 +537,7 @@ export default function LensVisionComparisonSection() {
+             Interactive Vision Simulator
+           </p>
+           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-6 leading-tight">
+-            See Your <span className="text-gradient-primary font-medium">Future Vision.</span>
++            See What You&apos;re <span className="text-gradient-primary font-medium">Missing.</span>
+           </h2>
+           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+             Compare visual outcomes across distance, intermediate, and near ranges to see which lens
+@@ -318,88 +545,430 @@ export default function LensVisionComparisonSection() {
+           </p>
+         </div>
+ 
+-        {/* Unified Controls */}
+-        <div className="flex flex-col items-center gap-6 mb-16">
+-          <div className="flex flex-wrap justify-center gap-4">
+-            {/* Day / Night Toggle */}
+-            <div className="flex p-1 bg-white/[0.02] border border-white/[0.08] backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+-              {(['day', 'night'] as TimeOfDay[]).map((t) => (
+-                <button
+-                  key={t}
+-                  onClick={() => handleTimeOfDayChange(t)}
+-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+-                    timeOfDay === t
+-                      ? t === 'night'
+-                        ? 'bg-[#0D1020] text-[#A8C8FF] shadow-inner'
+-                        : 'bg-[#FFF8E7] text-[#B8860B] shadow-inner'
+-                      : 'text-muted-foreground hover:text-foreground'
+-                  }`}
+-                >
+-                  {t === 'day' ? (
+-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+-                      <circle cx="12" cy="12" r="5" />
+-                      <path
+-                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+-                        stroke="currentColor"
+-                        strokeWidth="2"
+-                        strokeLinecap="round"
+-                      />
+-                    </svg>
++        {/* Unified Simulator Card Viewport */}
++        <div
++          id="simulator-viewport"
++          className="glass-card border border-white/[0.08] backdrop-blur-md rounded-[32px] p-5 sm:p-8 lg:p-10 mb-16 shadow-[0_15px_40px_rgba(0,0,0,0.4)] relative z-10"
++        >
++          {/* Integrated Toggles Bar */}
++          <div className="flex flex-col gap-6 pb-6 mb-8 border-b border-white/[0.06]">
++            {/* Centered Environment Panel */}
++            <div className="flex flex-col gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/[0.06] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)] backdrop-blur-lg max-w-4xl mx-auto w-full">
++              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
++                {/* Column 1: Lighting Time */}
++                <div className="md:col-span-4 flex flex-col justify-center md:border-r border-white/[0.06] md:pr-6">
++                  <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] mb-2.5 block text-center md:text-left">
++                    Lighting Environment
++                  </span>
++                  <div className="relative flex p-1 bg-black/40 border border-white/[0.06] rounded-2xl w-full">
++                    {/* Sliding background */}
++                    <div
++                      className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
++                        timeOfDay === 'day'
++                          ? 'left-1 bg-amber-500/10 border border-amber-500/20 shadow-[0_2px_8px_rgba(245,158,11,0.15)]'
++                          : 'left-[calc(50%+2px)] bg-blue-500/10 border border-blue-500/20 shadow-[0_2px_8px_rgba(59,130,246,0.15)]'
++                      }`}
++                    />
++                    {(['day', 'night'] as TimeOfDay[]).map((t) => (
++                      <button
++                        key={t}
++                        onClick={() => handleTimeOfDayChange(t)}
++                        className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-300 ${
++                          timeOfDay === t
++                            ? t === 'night'
++                              ? 'text-[#60A5FA]'
++                              : 'text-[#F59E0B]'
++                            : 'text-muted-foreground hover:text-foreground'
++                        }`}
++                      >
++                        <AppIcon
++                          name={t === 'day' ? 'SunIcon' : 'MoonIcon'}
++                          size={16}
++                          variant="solid"
++                          className={
++                            timeOfDay === t
++                              ? t === 'day'
++                                ? 'text-[#F59E0B]'
++                                : 'text-[#60A5FA]'
++                              : 'text-muted-foreground'
++                          }
++                        />
++                        <span>{t === 'day' ? 'Daytime' : 'Night driving'}</span>
++                      </button>
++                    ))}
++                  </div>
++                </div>
++
++                {/* Column 2: Focus Distance */}
++                <div className="md:col-span-8 flex flex-col justify-center">
++                  <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] mb-2.5 block text-center md:text-left">
++                    Simulated Focus distance
++                  </span>
++                  {timeOfDay === 'day' ? (
++                    <div className="grid grid-cols-3 gap-3 w-full">
++                      {(Object.keys(distanceLabels) as Distance[]).map((d) => {
++                        const isActive = activeDistance === d;
++                        const details = distanceLabels[d];
++                        return (
++                          <button
++                            key={d}
++                            onClick={() => setActiveDistance(d)}
++                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-center transition-all duration-300 relative group active:scale-[0.97] ${
++                              isActive
++                                ? 'bg-white/[0.04] text-white border-primary/40 shadow-[0_4px_20px_rgba(0,201,177,0.15)]'
++                                : 'bg-transparent text-muted-foreground border-white/[0.06] hover:border-white/[0.12] hover:text-foreground'
++                            }`}
++                          >
++                            <AppIcon
++                              name={details.icon}
++                              size={20}
++                              className={`mb-2 transition-transform duration-300 group-hover:scale-110 ${
++                                isActive ? 'text-primary' : 'text-muted-foreground'
++                              }`}
++                            />
++                            <span className="block text-xs font-bold leading-none">
++                              {details.label}
++                            </span>
++                            <span className="block text-[8px] text-muted-foreground/60 font-light mt-1 truncate max-w-full">
++                              {details.desc.split('(')[0].trim()}
++                            </span>
++                          </button>
++                        );
++                      })}
++                    </div>
+                   ) : (
+-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+-                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+-                    </svg>
++                    <div className="flex items-center gap-4 p-3 rounded-2xl bg-blue-950/10 border border-blue-900/20 text-left w-full h-full min-h-[74px]">
++                      <AppIcon
++                        name="ExclamationTriangleIcon"
++                        size={24}
++                        className="text-[#60A5FA] shrink-0"
++                      />
++                      <div>
++                        <p className="text-xs font-bold text-white leading-none mb-1">
++                          Distance Focus Locked
++                        </p>
++                        <p className="text-[10px] text-muted-foreground/90 font-light leading-relaxed">
++                          Night simulation focuses specifically on distance headlight glare and
++                          halos (critical for driving safety).
++                        </p>
++                      </div>
++                    </div>
+                   )}
+-                  {t === 'day' ? 'Daytime' : 'Night'}
+-                </button>
+-              ))}
++                </div>
++              </div>
+             </div>
++          </div>
+ 
+-            {/* Distance Toggle */}
+-            <div className="flex p-1 bg-white/[0.02] border border-white/[0.08] backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+-              {(Object.keys(distanceLabels) as Distance[]).map((d) => (
++          {/* Desktop Simulator Viewport (md and up) */}
++          <div className="hidden md:grid grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-4">
++            {/* Left Header */}
++            <div className="flex items-center justify-between px-5 py-3 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
++              <div className="flex items-center gap-2">
++                <span className="w-2 h-2 rounded-full bg-gray-500 shadow-[0_0_8px_rgba(107,114,128,0.6)]" />
++                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/90">
++                  Baseline Vision
++                </span>
++              </div>
++              <span className="text-[10px] font-bold text-muted-foreground/80 uppercase tracking-widest bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 rounded-lg">
++                Standard Monofocal
++              </span>
++            </div>
++
++            {/* Right Header */}
++            <div className="flex items-center justify-between px-5 py-2.5 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
++              <div className="flex items-center gap-2">
++                <span
++                  className="w-2 h-2 rounded-full transition-all duration-500"
++                  style={{
++                    backgroundColor: activePremiumLens.color,
++                    boxShadow: `0 0 10px ${activePremiumLens.color}`,
++                  }}
++                />
++                <span className="text-xs font-bold uppercase tracking-wider text-white">
++                  Compare Premium Lens
++                </span>
++              </div>
++              <div className="flex p-0.5 bg-black/40 rounded-xl border border-white/[0.06]">
++                {lenses
++                  .filter((l) => l.id !== 'monofocal')
++                  .map((lens) => {
++                    const isActive = activePremiumLensId === lens.id;
++                    return (
++                      <button
++                        key={lens.id}
++                        onClick={() => selectPremiumLens(lens.id)}
++                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] ${
++                          isActive
++                            ? 'bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
++                            : 'text-muted-foreground hover:text-foreground'
++                        }`}
++                        style={{
++                          color: isActive ? lens.color : undefined,
++                        }}
++                      >
++                        {lens.id === 'panoptix'
++                          ? 'PanOptix'
++                          : lens.id === 'vivity'
++                            ? 'Vivity'
++                            : 'Eyhance'}
++                      </button>
++                    );
++                  })}
++              </div>
++            </div>
++
++            {/* Left Image Viewport */}
++            <div className="relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-white/[0.08] border-t-0 shadow-[0_10px_30px_rgba(0,0,0,0.4)] group">
++              {renderSimulatorImages('monofocal')}
++              {/* Scene Tag */}
++              <div className="absolute top-3 left-3 pointer-events-none z-20">
++                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
++                  {timeOfDay === 'day' ? 'Day' : 'Night'} ┬╖ Monofocal
++                </span>
++              </div>
++              {/* In-Image Visual Explanation Overlay */}
++              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
++                <div className="flex items-center gap-2">
++                  {(() => {
++                    const overlay = visualStatusOverlays.monofocal[timeOfDay][activeDistance];
++                    return (
++                      <>
++                        <AppIcon
++                          name={
++                            overlay.status === 'clear'
++                              ? 'CheckCircleIcon'
++                              : 'ExclamationTriangleIcon'
++                          }
++                          size={16}
++                          variant="solid"
++                          className={
++                            overlay.status === 'clear' ? 'text-emerald-400' : 'text-amber-500'
++                          }
++                        />
++                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
++                      </>
++                    );
++                  })()}
++                </div>
++              </div>
++            </div>
++
++            {/* Right Image Viewport */}
++            <div
++              className="relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-t-0 transition-all duration-500 shadow-[0_10px_30px_rgba(0,0,0,0.4)] group"
++              style={{
++                borderColor: `${activePremiumLens.color}30`,
++                boxShadow: `0 12px 36px -4px ${activePremiumLens.color}20`,
++              }}
++            >
++              {renderPremiumSimulatorImages()}
++              {/* Scene Tag */}
++              <div className="absolute top-3 left-3 pointer-events-none z-20">
++                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
++                  {timeOfDay === 'day' ? 'Day' : 'Night'} ┬╖ {activePremiumLens.name}
++                </span>
++              </div>
++              {/* In-Image Visual Explanation Overlay */}
++              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
++                <div className="flex items-center gap-2">
++                  {(() => {
++                    const overlay =
++                      visualStatusOverlays[activePremiumLensId][timeOfDay][activeDistance];
++                    return (
++                      <>
++                        <AppIcon
++                          name={
++                            overlay.status === 'clear'
++                              ? 'CheckCircleIcon'
++                              : overlay.status === 'info'
++                                ? 'InformationCircleIcon'
++                                : 'ExclamationTriangleIcon'
++                          }
++                          size={16}
++                          variant="solid"
++                          className={
++                            overlay.status === 'clear'
++                              ? 'text-emerald-400'
++                              : overlay.status === 'info'
++                                ? 'text-sky-400'
++                                : 'text-amber-500'
++                          }
++                        />
++                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
++                      </>
++                    );
++                  })()}
++                </div>
++              </div>
++            </div>
++
++            {/* Left Description */}
++            <p className="text-xs sm:text-sm text-muted-foreground/90 leading-relaxed min-h-[3rem] px-2">
++              {timeOfDay === 'night'
++                ? nightVisionDescriptions.monofocal
++                : visionDescriptions.monofocal[activeDistance]}
++            </p>
++
++            {/* Right Description */}
++            <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-2">
++              {timeOfDay === 'night'
++                ? nightVisionDescriptions[activePremiumLensId]
++                : visionDescriptions[activePremiumLensId][activeDistance]}
++            </p>
++          </div>
++
++          {/* Mobile Simulator Viewport (less than md) */}
++          <div className="md:hidden flex flex-col gap-5">
++            {/* Mobile Consolidated Lens Selector */}
++            <div className="flex flex-col w-full gap-2">
++              <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] text-center">
++                Select Lens to Simulate
++              </span>
++              <div className="flex p-0.5 bg-black/40 rounded-2xl border border-white/[0.06] w-full">
++                {lenses.map((lens) => {
++                  const isActive = activeMobileLensId === lens.id;
++                  return (
++                    <button
++                      key={lens.id}
++                      onClick={() => selectMobileLens(lens.id)}
++                      className={`flex-1 flex flex-col items-center justify-center py-2 rounded-xl text-center transition-all duration-300 active:scale-[0.97] ${
++                        isActive
++                          ? 'bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
++                          : 'text-muted-foreground hover:text-foreground'
++                      }`}
++                      style={{
++                        color: isActive ? lens.color : undefined,
++                      }}
++                    >
++                      <span className="block text-[11px] font-bold leading-none">
++                        {lens.id === 'monofocal'
++                          ? 'Monofocal'
++                          : lens.id === 'panoptix'
++                            ? 'PanOptix'
++                            : lens.id === 'vivity'
++                              ? 'Vivity'
++                              : 'Eyhance'}
++                      </span>
++                      <span className="block text-[8px] opacity-60 font-light mt-1">
++                        {lens.id === 'monofocal'
++                          ? 'Baseline'
++                          : lens.id === 'panoptix'
++                            ? 'Trifocal'
++                            : lens.id === 'vivity'
++                              ? 'EDOF'
++                              : 'Enhanced'}
++                      </span>
++                    </button>
++                  );
++                })}
++              </div>
++            </div>
++
++            {/* Mobile Viewport Image Box */}
++            <div
++              className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black/40 border transition-all duration-500 shadow-md"
++              style={{
++                borderColor: `${activeMobileConfigLens.color}30`,
++                boxShadow: `0 8px 24px -4px ${activeMobileConfigLens.color}15`,
++              }}
++            >
++              {renderMobileSimulatorImages()}
++
++              {/* Hold to Compare Floating Button (only when premium lens is selected) */}
++              {activeMobileLensId !== 'monofocal' && (
+                 <button
+-                  key={d}
+-                  onClick={() => timeOfDay === 'day' && setActiveDistance(d)}
+-                  disabled={timeOfDay === 'night'}
+-                  className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+-                    activeDistance === d
+-                      ? 'bg-primary text-primary-foreground shadow-[0_2px_8px_rgba(0,201,177,0.3)]'
+-                      : timeOfDay === 'night'
+-                        ? 'text-muted-foreground/30 cursor-not-allowed'
+-                        : 'text-muted-foreground hover:text-foreground'
+-                  }`}
++                  onMouseDown={() => setIsPeekingBaseline(true)}
++                  onMouseUp={() => setIsPeekingBaseline(false)}
++                  onMouseLeave={() => setIsPeekingBaseline(false)}
++                  onTouchStart={(e) => {
++                    e.preventDefault();
++                    setIsPeekingBaseline(true);
++                  }}
++                  onTouchEnd={(e) => {
++                    e.preventDefault();
++                    setIsPeekingBaseline(false);
++                  }}
++                  className="absolute top-3 right-3 z-30 px-3 py-2 bg-black/75 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5"
+                 >
+-                  {distanceLabels[d].label}
++                  <span className="relative flex h-2 w-2">
++                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
++                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
++                  </span>
++                  <span>Hold to Compare Monofocal</span>
+                 </button>
+-              ))}
++              )}
++
++              {/* Status Overlay */}
++              <div className="absolute top-3 left-3 pointer-events-none z-20">
++                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
++                  {isPeekingBaseline
++                    ? 'Monofocal (Baseline)'
++                    : lenses.find((l) => l.id === activeMobileLensId)?.name}
++                </span>
++              </div>
++
++              {/* In-Image Visual Explanation Overlay */}
++              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
++                <div className="flex items-center gap-2">
++                  {(() => {
++                    const overlay =
++                      visualStatusOverlays[mobileDisplayLensId][timeOfDay][activeDistance];
++                    return (
++                      <>
++                        <AppIcon
++                          name={
++                            overlay.status === 'clear'
++                              ? 'CheckCircleIcon'
++                              : overlay.status === 'info'
++                                ? 'InformationCircleIcon'
++                                : 'ExclamationTriangleIcon'
++                          }
++                          size={16}
++                          variant="solid"
++                          className={
++                            overlay.status === 'clear'
++                              ? 'text-emerald-400'
++                              : overlay.status === 'info'
++                                ? 'text-sky-400'
++                                : 'text-amber-500'
++                          }
++                        />
++                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
++                      </>
++                    );
++                  })()}
++                </div>
++              </div>
+             </div>
+-          </div>
+ 
+-          <div className="h-6">
+-            <p className="text-sm text-primary/80 font-medium tracking-wide uppercase">
+-              Current Focus:{' '}
+-              <span className="text-foreground">
+-                {timeOfDay === 'night'
+-                  ? 'Distance (Night Driving)'
+-                  : distanceLabels[activeDistance].desc}
+-              </span>
++            {/* Mobile Description */}
++            <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-1">
++              {timeOfDay === 'night'
++                ? isPeekingBaseline || activeMobileLensId === 'monofocal'
++                  ? nightVisionDescriptions.monofocal
++                  : nightVisionDescriptions[activeMobileLensId]
++                : isPeekingBaseline
++                  ? visionDescriptions.monofocal[activeDistance]
++                  : visionDescriptions[activeMobileLensId][activeDistance]}
+             </p>
+           </div>
+         </div>
+ 
+-        {/* Lens Grid */}
+-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
++        {/* Detailed Specs Grid (Below Simulator) */}
++        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch relative z-10">
+           {lenses.map((lens) => {
+-            const isGlowActive = hoveredLensId ? (hoveredLensId === lens.id) : lens.featured;
++            const isHovered = hoveredLensId === lens.id;
++            const isActive = hoveredLensId ? isHovered : lens.id === activeMobileLensId;
++
+             return (
+               <div
+                 key={lens.id}
+                 onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
+                 onMouseLeave={handleMouseLeave}
+                 onMouseMove={(e) => handleMouseMove(e, lens.id)}
+-                className={`group relative rounded-[32px] p-[2px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col hover:-translate-y-2 ${
+-                  isGlowActive
++                onClick={() => handleCardClick(lens.id)}
++                className={`group relative rounded-[32px] p-[2px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col hover:-translate-y-2 cursor-pointer ${
++                  isActive
+                     ? 'bg-gradient-to-b from-primary/30 to-primary/5 border border-primary/20 shadow-[0_15px_40px_rgba(0,201,177,0.15)] hover:shadow-[0_25px_50px_rgba(0,201,177,0.3)]'
+                     : 'bg-gradient-to-b from-white/10 to-white/0 border border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
+                 }`}
+@@ -413,7 +982,7 @@ export default function LensVisionComparisonSection() {
+                     left: mouseCoords[lens.id] ? `${mouseCoords[lens.id].x}px` : '50%',
+                     top: mouseCoords[lens.id] ? `${mouseCoords[lens.id].y}px` : '50%',
+                     transform: 'translate(-50%, -50%)',
+-                    background: isGlowActive
++                    background: isActive
+                       ? 'radial-gradient(circle, rgba(0,201,177,0.15) 0%, rgba(0,0,0,0) 70%)'
+                       : 'radial-gradient(circle, rgba(96,165,250,0.12) 0%, rgba(0,0,0,0) 70%)',
+                   }}
+@@ -421,7 +990,7 @@ export default function LensVisionComparisonSection() {
+ 
+                 <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-[#0e1018]/70 backdrop-blur-xl transition-all duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] z-10">
+                   {/* Badge */}
+-                  <div className="flex items-center justify-between mb-6">
++                  <div className="flex items-center justify-between mb-4">
+                     <span
+                       className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
+                     >
+@@ -430,88 +999,17 @@ export default function LensVisionComparisonSection() {
+                   </div>
+ 
+                   {/* Lens Name */}
+-                  <div className="mb-4 min-h-[72px] sm:min-h-[80px]">
++                  <div className="mb-4 min-h-[64px]">
+                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1">
+                       {lens.manufacturer} ┬╖ {lens.type}
+                     </p>
+-                    <h3 className="font-display text-xl font-medium text-foreground">{lens.name}</h3>
+-                  </div>
+-
+-                  {/* Simulation Image Box - NO TEXT OVERLAP */}
+-                  <div className="mb-8">
+-                    <div className="p-[1px] bg-gradient-to-b from-white/12 to-white/0 rounded-2xl">
+-                      <div className="relative aspect-[4/3] rounded-[15px] overflow-hidden bg-black/40 border border-black/20 shadow-inner group-hover:scale-[1.01] transition-transform duration-500">
+-                        {/* Layer 1: Day Distance */}
+-                        <Image
+-                          src={lens.images.day.distance}
+-                          alt={`${lens.name} daytime distance vision`}
+-                          fill
+-                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
+-                            timeOfDay === 'day' && activeDistance === 'distance'
+-                              ? 'opacity-100 z-10'
+-                              : 'opacity-0 z-0 pointer-events-none'
+-                          } ${blurClass(lens.blur.day.distance)}`}
+-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+-                          priority={
+-                            lens.featured || (timeOfDay === 'day' && activeDistance === 'distance')
+-                          }
+-                        />
+-
+-                        {/* Layer 2: Day Intermediate */}
+-                        <Image
+-                          src={lens.images.day.intermediate}
+-                          alt={`${lens.name} daytime intermediate vision`}
+-                          fill
+-                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
+-                            timeOfDay === 'day' && activeDistance === 'intermediate'
+-                              ? 'opacity-100 z-10'
+-                              : 'opacity-0 z-0 pointer-events-none'
+-                          } ${blurClass(lens.blur.day.intermediate)}`}
+-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+-                          priority={lens.featured}
+-                        />
+-
+-                        {/* Layer 3: Day Near */}
+-                        <Image
+-                          src={lens.images.day.near}
+-                          alt={`${lens.name} daytime near vision`}
+-                          fill
+-                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
+-                            timeOfDay === 'day' && activeDistance === 'near'
+-                              ? 'opacity-100 z-10'
+-                              : 'opacity-0 z-0 pointer-events-none'
+-                          } ${blurClass(lens.blur.day.near)}`}
+-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+-                          priority={lens.featured}
+-                        />
+-
+-                        {/* Layer 4: Night */}
+-                        <Image
+-                          src={lens.images.night.distance}
+-                          alt={`${lens.name} night vision`}
+-                          fill
+-                          className={`absolute inset-0 object-cover transition-all duration-500 ease-in-out ${
+-                            timeOfDay === 'night'
+-                              ? 'opacity-100 z-10'
+-                              : 'opacity-0 z-0 pointer-events-none'
+-                          } ${blurClass(lens.blur.night[activeDistance])}`}
+-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+-                          priority={lens.featured || timeOfDay === 'night'}
+-                        />
+-
+-                        {/* Scene Tag */}
+-                        <div className="absolute bottom-2 left-2 pointer-events-none z-20">
+-                          <span className="bg-black/40 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full">
+-                            {timeOfDay === 'day' ? 'Day' : 'Night'} ┬╖{' '}
+-                            {timeOfDay === 'night' ? 'Distance' : distanceLabels[activeDistance].label}
+-                          </span>
+-                        </div>
+-                      </div>
+-                    </div>
++                    <h3 className="font-display text-xl font-medium text-foreground">
++                      {lens.name}
++                    </h3>
+                   </div>
+ 
+                   {/* Specs bars */}
+-                  <div className="space-y-4 mb-8">
++                  <div className="space-y-4 mb-6">
+                     {lens.specs.map((spec) => (
+                       <div key={spec.label} className="space-y-1.5">
+                         <div className="flex justify-between text-[11px]">
+@@ -528,7 +1026,7 @@ export default function LensVisionComparisonSection() {
+                   </div>
+ 
+                   {/* Highlights */}
+-                  <ul className="space-y-3 mb-8 flex-1">
++                  <ul className="space-y-3 mb-6 flex-1">
+                     {lens.highlights.map((h) => (
+                       <li
+                         key={h}
+@@ -545,8 +1043,8 @@ export default function LensVisionComparisonSection() {
+                   </ul>
+ 
+                   {/* Best for */}
+-                  <div className="border-t border-border pt-6 mb-6">
+-                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
++                  <div className="border-t border-border pt-5 mb-5">
++                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">
+                       Best for
+                     </p>
+                     <p className="text-xs text-foreground/80 leading-relaxed font-light">
+@@ -556,9 +1054,10 @@ export default function LensVisionComparisonSection() {
+ 
+                   <a
+                     href="#booking"
+-                    className="w-full py-3.5 rounded-2xl text-xs font-bold text-center transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 border border-transparent bg-primary text-primary-foreground hover:bg-accent hover:shadow-[0_4px_16px_rgba(0,201,177,0.3)] hover:scale-[1.01]"
++                    onClick={(e) => e.stopPropagation()}
++                    className="w-full py-3 rounded-2xl text-xs font-bold text-center transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 border border-transparent bg-primary text-primary-foreground hover:bg-accent hover:shadow-[0_4px_16px_rgba(0,201,177,0.3)] hover:scale-[1.01]"
+                   >
+-                    <span>Ask About {lens.name}</span>
++                    <span>Inquire About {lens.name}</span>
+                     <svg
+                       className="w-3.5 h-3.5 transform transition-transform duration-300 group-hover:translate-x-1 shrink-0"
+                       fill="none"
+diff --git a/src/app/components/LifestyleMatchSection.module.css b/src/app/components/LifestyleMatchSection.module.css
+index 646ce22..7e5eb53 100644
+--- a/src/app/components/LifestyleMatchSection.module.css
++++ b/src/app/components/LifestyleMatchSection.module.css
+@@ -1,5 +1,5 @@
+ .profileActive {
+-  --rec-color: #7eecd8;
++  --rec-color: #3a86ff;
+ }
+ .profileTech {
+   --rec-color: #00c9b1;
+diff --git a/src/app/components/LifestyleMatchSection.tsx b/src/app/components/LifestyleMatchSection.tsx
+index 886508e..70a8cf8 100644
+--- a/src/app/components/LifestyleMatchSection.tsx
++++ b/src/app/components/LifestyleMatchSection.tsx
+@@ -1,3 +1,5 @@
++'use client';
++
+ import AppImage from '@/components/ui/AppImage';
+ import Icon from '@/components/ui/AppIcon';
+ import styles from './LifestyleMatchSection.module.css';
+@@ -7,7 +9,7 @@ const profiles = [
+     id: 'active',
+     title: 'The Active Professional',
+     description:
+-      'You spend 6+ hours daily on screens, drive frequently, and want to ditch reading glasses entirely.',
++      "Right now, you're squinting at your phone and reaching for readers 6 times a day. You spend 6+ hours daily on screens, drive frequently, and want to ditch glasses entirely.",
+     activities: [
+       'Remote work & Zoom calls',
+       'Driving day and night',
+@@ -15,7 +17,7 @@ const profiles = [
+       'Golf, tennis, or cycling',
+     ],
+     recommendation: 'PanOptix Pro',
+-    recommendationColor: '#7EECD8',
++    recommendationColor: '#3A86FF',
+     reason:
+       'Trifocal design gives you sharp vision at every distance ΓÇö from your 27ΓÇ│ monitor to a road sign 200 metres away.',
+     image: '/assets/images/profile_active_professional.png',
+@@ -63,6 +65,14 @@ const profiles = [
+ ];
+ 
+ export default function LifestyleMatchSection() {
++  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
++    const rect = e.currentTarget.getBoundingClientRect();
++    const x = e.clientX - rect.left;
++    const y = e.clientY - rect.top;
++    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
++    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
++  };
++
+   return (
+     <section
+       id="lifestyle"
+@@ -81,8 +91,8 @@ export default function LifestyleMatchSection() {
+               Find Your Match
+             </p>
+             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
+-              Which Lens Fits{' '}
+-              <span className="text-gradient-primary font-semibold italic">Your Life?</span>
++              Find{' '}
++              <span className="text-gradient-primary font-semibold italic">Yourself Below.</span>
+             </h2>
+             <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-sm">
+               The best IOL isn&apos;t the most expensive ΓÇö it&apos;s the one matched precisely to
+@@ -106,44 +116,60 @@ export default function LifestyleMatchSection() {
+               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-5 sm:mb-6">
+                 Standard Monofocal vs. Premium IOL
+               </p>
+-              {[
+-                { label: 'Distance', standard: true, premium: true },
+-                { label: 'Intermediate (screens)', standard: false, premium: true },
+-                { label: 'Near (reading)', standard: false, premium: true },
+-                { label: 'Covered by insurance', standard: true, premium: false },
+-                { label: 'Glasses-free lifestyle', standard: false, premium: true },
+-              ]?.map((row) => (
+-                <div
+-                  key={row?.label}
+-                  className="flex items-center justify-between py-3.5 border-b border-border/60 last:border-0 gap-2"
+-                >
+-                  <span className="text-xs sm:text-sm text-muted-foreground flex-1 min-w-0 pr-2">
+-                    {row?.label}
+-                  </span>
+-                  <div className="flex items-center gap-4 sm:gap-8 shrink-0">
+-                    <div className="text-center w-12 sm:w-14">
+-                      <span className="text-[10px] text-muted-foreground block mb-1.5 uppercase tracking-wide">
+-                        Standard
+-                      </span>
+-                      {row?.standard ? (
+-                        <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
+-                      ) : (
+-                        <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
+-                      )}
+-                    </div>
+-                    <div className="text-center w-12 sm:w-14">
+-                      <span className="text-[10px] text-primary block mb-1.5 uppercase tracking-wide">
+-                        Premium
+-                      </span>
+-                      {row?.premium ? (
+-                        <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
+-                      ) : (
+-                        <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
+-                      )}
++              <div className="flex flex-col">
++                {[
++                  { label: 'Distance', standard: true, premium: true },
++                  { label: 'Intermediate (screens)', standard: false, premium: true },
++                  { label: 'Near (reading)', standard: false, premium: true },
++                  { label: 'Covered by insurance', standard: true, premium: false },
++                  { label: 'Glasses-free lifestyle', standard: false, premium: true },
++                ]?.map((row) => (
++                  <div
++                    key={row?.label}
++                    className="flex items-center justify-between py-3.5 border-b border-border/60 last:border-0 gap-2"
++                  >
++                    <span className="text-xs sm:text-sm text-muted-foreground flex-1 min-w-0 pr-2">
++                      {row?.label}
++                    </span>
++                    <div className="flex items-center gap-4 sm:gap-8 shrink-0">
++                      <div className="text-center w-12 sm:w-14">
++                        <span className="text-[10px] text-muted-foreground block mb-1.5 uppercase tracking-wide">
++                          Standard
++                        </span>
++                        {row?.standard ? (
++                          <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
++                        ) : (
++                          <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
++                        )}
++                      </div>
++                      <div className="text-center w-12 sm:w-14">
++                        <span className="text-[10px] text-primary block mb-1.5 uppercase tracking-wide">
++                          Premium
++                        </span>
++                        {row?.premium ? (
++                          <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
++                        ) : (
++                          <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
++                        )}
++                      </div>
+                     </div>
+                   </div>
+-                </div>
+-              ))}
++                ))}
++              </div>
++
++              {/* Integrated Footnote Callout */}
++              <div className="mt-6 pt-5 border-t border-border/60 flex items-start gap-2.5">
++                <Icon
++                  name="InformationCircleIcon"
++                  size={16}
++                  className="text-primary/70 shrink-0 mt-0.5"
++                />
++                <p className="text-[11px] text-muted-foreground/75 leading-relaxed">
++                  Premium lenses are an investment ΓÇö typically $2,900 - $4,100 per eye beyond
++                  insurance. Most patients report it&apos;s the best investment they&apos;ve ever
++                  made in their vision.
++                </p>
++              </div>
+             </div>
+           </div>
+         </div>
+@@ -153,10 +179,24 @@ export default function LifestyleMatchSection() {
+           {profiles?.map((profile) => (
+             <div
+               key={profile?.id}
+-              className={`group glass-card border border-border rounded-3xl overflow-hidden card-hover-glow flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
++              onMouseMove={handleMouseMove}
++              className={`group relative glass-card border border-border rounded-3xl overflow-hidden card-hover-glow flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
+             >
++              {/* Dynamic Mouse Spotlight Glow */}
++              <div
++                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-[80px] z-0 will-change-transform"
++                style={{
++                  width: '320px',
++                  height: '320px',
++                  left: 'var(--mouse-x, 50%)',
++                  top: 'var(--mouse-y, 50%)',
++                  transform: 'translate(-50%, -50%)',
++                  background: 'radial-gradient(circle, var(--rec-color) 0%, transparent 70%)',
++                }}
++              />
++
+               {/* Image */}
+-              <div className="relative aspect-[16/9] overflow-hidden">
++              <div className="relative aspect-[16/9] overflow-hidden z-10">
+                 <AppImage
+                   src={profile?.image}
+                   alt={profile?.imageAlt}
+@@ -175,7 +215,7 @@ export default function LifestyleMatchSection() {
+               </div>
+ 
+               {/* Content */}
+-              <div className="p-5 sm:p-6 flex flex-col flex-1">
++              <div className="relative p-5 sm:p-6 flex flex-col flex-1 z-10">
+                 <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-2">
+                   {profile?.title}
+                 </h3>
+diff --git a/src/app/components/TrustSection.module.css b/src/app/components/TrustSection.module.css
+index 6d07839..aaa1f3b 100644
+--- a/src/app/components/TrustSection.module.css
++++ b/src/app/components/TrustSection.module.css
+@@ -15,11 +15,11 @@
+   letter-spacing: 0.12em;
+ }
+ 
+-/* PanOptix ΓÇö #7EECD8 */
++/* PanOptix ΓÇö #3A86FF */
+ .lensPanoptix .lensBadge {
+-  background-color: rgba(126, 236, 216, 0.1);
+-  color: #7eecd8;
+-  border: 1px solid rgba(126, 236, 216, 0.22);
++  background-color: rgba(58, 134, 255, 0.1);
++  color: #3a86ff;
++  border: 1px solid rgba(58, 134, 255, 0.22);
+ }
+ 
+ /* Vivity ΓÇö #00C9B1 */
+diff --git a/src/app/components/TrustSection.tsx b/src/app/components/TrustSection.tsx
+index 3278873..6398ce7 100644
+--- a/src/app/components/TrustSection.tsx
++++ b/src/app/components/TrustSection.tsx
+@@ -1,3 +1,5 @@
++'use client';
++
+ import AppImage from '@/components/ui/AppImage';
+ import Icon from '@/components/ui/AppIcon';
+ import styles from './TrustSection.module.css';
+@@ -26,16 +28,18 @@ const awards = [
+ 
+ const testimonials = [
+   {
++    concern: 'Glasses dependency after surgery',
+     quote:
+-      "Dr. Marano is simply the best in his field. I've been a patient for 25 years and have never felt rushed or unheard. After my PanOptix surgery, I haven't touched my glasses once.",
++      "Dr. Marano is simply the best in his field. I've been a patient for 25 years and have never felt rushed or unheard. After my PanOptix surgery, I haven't touched my glasses once ΓÇö and it's been over 2 years.",
+     name: 'Patricia W.',
+     location: 'Denville, NJ',
+     lens: 'PanOptix Pro',
+-    lensColor: '#7EECD8',
++    lensColor: '#3A86FF',
+     avatar: '/assets/images/avatar_patricia.png',
+     stars: 5,
+   },
+   {
++    concern: 'Night driving halos',
+     quote:
+       'I was nervous about halos at night because I drive a lot. Dr. Marano recommended Vivity and the results exceeded every expectation. Night driving is completely clear.',
+     name: 'Robert D.',
+@@ -48,6 +52,14 @@ const testimonials = [
+ ];
+ 
+ export default function TrustSection() {
++  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
++    const rect = e.currentTarget.getBoundingClientRect();
++    const x = e.clientX - rect.left;
++    const y = e.clientY - rect.top;
++    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
++    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
++  };
++
+   return (
+     <section id="trust" className="py-16 sm:py-28 border-t border-border relative overflow-hidden">
+       {/* Background */}
+@@ -63,8 +75,8 @@ export default function TrustSection() {
+           </p>
+           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-5 sm:mb-6 leading-tight">
+             New Jersey&apos;s{' '}
+-            <span className="text-gradient-primary font-semibold">Most Decorated</span>
+-            <br className="hidden sm:block" /> Ophthalmologist
++            <span className="text-gradient-primary font-semibold">Most Awarded</span>
++            <br className="hidden sm:block" /> Eye Surgeon
+           </h2>
+           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+             Dr. Matthew Marano Jr., MD has been named Top Doctor by NJ Monthly Magazine for 15
+@@ -77,24 +89,38 @@ export default function TrustSection() {
+           {/* Left: Photo */}
+           <div className="relative pb-10 sm:pb-0">
+             <div
++              onMouseMove={handleMouseMove}
+               className={`relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group ${styles.photoWrapper}`}
+             >
+               <AppImage
+                 src="/assets/images/Marano-1777328574709.png"
+                 alt="Dr. Matthew Marano Jr., MD - Board-Certified Ophthalmologist"
+                 fill
+-                className="object-cover object-top transition-transform duration-700 group-hover:scale-103"
++                className="object-cover object-top transition-transform duration-700 group-hover:scale-103 z-10"
+                 sizes="(max-width: 640px) 80vw, (max-width: 768px) 60vw, 400px"
+               />
+ 
++              {/* Dynamic Mouse Spotlight Glow */}
++              <div
++                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-[60px] z-20 mix-blend-screen will-change-transform"
++                style={{
++                  width: '240px',
++                  height: '240px',
++                  left: 'var(--mouse-x, 50%)',
++                  top: 'var(--mouse-y, 50%)',
++                  transform: 'translate(-50%, -50%)',
++                  background: 'radial-gradient(circle, rgba(95,255,217,0.3) 0%, transparent 70%)',
++                }}
++              />
++
+               {/* Layered overlays */}
+-              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-primary/5" />
++              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-primary/5 z-10" />
+ 
+               {/* Consistent thin glass border overlay */}
+-              <div className="absolute inset-0 border border-white/[0.08] rounded-t-[6rem] rounded-b-[2.5rem] pointer-events-none z-10" />
++              <div className="absolute inset-0 border border-white/[0.08] rounded-t-[6rem] rounded-b-[2.5rem] pointer-events-none z-35" />
+ 
+               {/* Name plate */}
+-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent">
++              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent z-30">
+                 <p className="font-display text-xl font-medium text-foreground">
+                   Matthew Marano Jr., MD
+                 </p>
+@@ -105,7 +131,7 @@ export default function TrustSection() {
+             </div>
+ 
+             {/* Floating credential card */}
+-            <div className="absolute bottom-0 right-4 sm:-bottom-6 sm:-right-4 md:-right-10 w-48 sm:w-52 glass-card-bright rounded-3xl p-4 sm:p-5 shadow-2xl animate-float-delayed">
++            <div className="absolute bottom-0 right-4 sm:-bottom-6 sm:-right-4 md:-right-10 w-48 sm:w-52 glass-card-bright rounded-3xl p-4 sm:p-5 shadow-2xl animate-float-delayed z-20">
+               <div className="flex items-center gap-2 mb-3">
+                 <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                   <Icon name="StarIcon" size={12} className="text-primary" />
+@@ -127,42 +153,76 @@ export default function TrustSection() {
+               {awards?.map((award) => (
+                 <div
+                   key={award?.label}
+-                  className="glass-card rounded-3xl p-4 sm:p-6 card-hover-glow border border-border group"
++                  onMouseMove={handleMouseMove}
++                  className="group relative overflow-hidden glass-card border border-border rounded-3xl p-4 sm:p-6 card-hover-glow"
+                 >
+-                  <div className="w-8 h-8 rounded-2xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+-                    <Icon name={award.icon as 'StarIcon'} size={16} className="text-primary" />
++                  {/* Dynamic Mouse Spotlight Glow */}
++                  <div
++                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[50px] z-0 will-change-transform"
++                    style={{
++                      width: '180px',
++                      height: '180px',
++                      left: 'var(--mouse-x, 50%)',
++                      top: 'var(--mouse-y, 50%)',
++                      transform: 'translate(-50%, -50%)',
++                      background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
++                    }}
++                  />
++
++                  <div className="relative z-10">
++                    <div className="w-8 h-8 rounded-2xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
++                      <Icon name={award.icon as 'StarIcon'} size={16} className="text-primary" />
++                    </div>
++                    <p className="font-display text-2xl sm:text-3xl font-semibold text-primary mb-2">
++                      {award?.value}
++                    </p>
++                    <p className="text-xs sm:text-sm font-semibold text-foreground mb-1">
++                      {award?.label}
++                    </p>
++                    <p className="text-xs text-muted-foreground leading-relaxed">{award?.sublabel}</p>
+                   </div>
+-                  <p className="font-display text-2xl sm:text-3xl font-semibold text-primary mb-2">
+-                    {award?.value}
+-                  </p>
+-                  <p className="text-xs sm:text-sm font-semibold text-foreground mb-1">
+-                    {award?.label}
+-                  </p>
+-                  <p className="text-xs text-muted-foreground leading-relaxed">{award?.sublabel}</p>
+                 </div>
+               ))}
+             </div>
+ 
+-            <div className="glass-card border border-border rounded-3xl p-5 sm:p-6">
+-              <div className="flex items-center gap-3 mb-4">
+-                <div className="w-9 h-9 rounded-2xl bg-primary/10 flex items-center justify-center">
+-                  <Icon name="AcademicCapIcon" size={18} className="text-primary" />
++            <div
++              onMouseMove={handleMouseMove}
++              className="group relative overflow-hidden glass-card border border-border rounded-3xl p-5 sm:p-6"
++            >
++              {/* Dynamic Mouse Spotlight Glow */}
++              <div
++                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
++                style={{
++                  width: '220px',
++                  height: '220px',
++                  left: 'var(--mouse-x, 50%)',
++                  top: 'var(--mouse-y, 50%)',
++                  transform: 'translate(-50%, -50%)',
++                  background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
++                }}
++              />
++
++              <div className="relative z-10">
++                <div className="flex items-center gap-3 mb-4">
++                  <div className="w-9 h-9 rounded-2xl bg-primary/10 flex items-center justify-center">
++                    <Icon name="AcademicCapIcon" size={18} className="text-primary" />
++                  </div>
++                  <p className="text-sm font-bold text-foreground">Additional Roles & Training</p>
+                 </div>
+-                <p className="text-sm font-bold text-foreground">Additional Roles & Training</p>
++                <ul className="space-y-3">
++                  {[
++                    'Chief Medical Editor ΓÇö Ophthalmology 360',
++                    'Fellowship-trained in cornea and refractive surgery',
++                    'Femto laser-assisted cataract surgery specialist',
++                    'Three conveniently located NJ offices',
++                  ]?.map((item) => (
++                    <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
++                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(0,201,177,0.6)]" />
++                      {item}
++                    </li>
++                  ))}
++                </ul>
+               </div>
+-              <ul className="space-y-3">
+-                {[
+-                  'Chief Medical Editor ΓÇö Ophthalmology 360',
+-                  'Fellowship-trained in cornea and refractive surgery',
+-                  'Femto laser-assisted cataract surgery specialist',
+-                  'Three conveniently located NJ offices',
+-                ]?.map((item) => (
+-                  <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(0,201,177,0.6)]" />
+-                    {item}
+-                  </li>
+-                ))}
+-              </ul>
+             </div>
+           </div>
+         </div>
+@@ -176,17 +236,46 @@ export default function TrustSection() {
+             {testimonials?.map((t) => (
+               <div
+                 key={t?.name}
++                onMouseMove={handleMouseMove}
+                 className="glass-card border border-border rounded-3xl p-6 sm:p-8 card-hover-glow relative overflow-hidden group"
+               >
++                {/* Dynamic Mouse Spotlight Glow */}
++                <div
++                  className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
++                  style={{
++                    width: '240px',
++                    height: '240px',
++                    left: 'var(--mouse-x, 50%)',
++                    top: 'var(--mouse-y, 50%)',
++                    transform: 'translate(-50%, -50%)',
++                    background: `radial-gradient(circle, ${t.lensColor} 0%, transparent 70%)`,
++                  }}
++                />
++
+                 {/* Decorative quote mark */}
+-                <div className="absolute top-4 right-6 sm:top-6 sm:right-8 font-display text-7xl sm:text-8xl text-primary/6 font-bold leading-none select-none pointer-events-none">
++                <div className="absolute top-4 right-6 sm:top-6 sm:right-8 font-display text-7xl sm:text-8xl text-primary/6 font-bold leading-none select-none pointer-events-none z-10">
+                   &ldquo;
+                 </div>
+ 
++                {/* Concern label */}
++                {t.concern && (
++                  <div className="flex items-center gap-2 mb-3 relative z-10">
++                    <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
++                      Was worried about: {t.concern}
++                    </span>
++                  </div>
++                )}
++
+                 {/* Stars */}
+-                <div className="flex items-center gap-1 mb-4">
++                <div className="flex items-center gap-1 mb-4 relative z-10">
+                   {Array.from({ length: t.stars }).map((_, i) => (
+-                    <Icon key={i} name="StarIcon" variant="solid" size={14} className="text-primary" />
++                    <Icon
++                      key={i}
++                      name="StarIcon"
++                      variant="solid"
++                      size={14}
++                      className="text-primary"
++                    />
+                   ))}
+                 </div>
+ 
+@@ -194,7 +283,7 @@ export default function TrustSection() {
+                   &ldquo;{t?.quote}&rdquo;
+                 </p>
+ 
+-                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
++                <div className="flex items-center gap-3 sm:gap-4 flex-wrap relative z-10">
+                   <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_12px_rgba(0,201,177,0.2)]">
+                     <AppImage
+                       src={t?.avatar}
+@@ -231,19 +320,45 @@ export default function TrustSection() {
+             </p>
+             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+               {[
+-                { city: 'Denville', phone: '973-358-0416', address: '16 Pocono Rd, Suite 301, Denville, NJ 07834' },
+-                { city: 'Livingston', phone: '973-322-0100', address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039' },
+-                { city: 'Newark', phone: '973-315-6439', address: '306 Martin L. King Blvd, Newark, NJ 07102' },
++                {
++                  city: 'Denville',
++                  phone: '973-358-0416',
++                  address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
++                },
++                {
++                  city: 'Livingston',
++                  phone: '973-322-0100',
++                  address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
++                },
++                {
++                  city: 'Newark',
++                  phone: '973-315-6439',
++                  address: '306 Martin L. King Blvd, Newark, NJ 07102',
++                },
+               ]?.map((loc) => (
+                 <a
+                   key={loc?.city}
+                   href={`tel:${loc?.phone?.replace(/-/g, '')}`}
+-                  className="flex items-center gap-4 glass-card border border-border rounded-3xl p-4 sm:p-5 card-hover-glow group touch-manipulation min-h-[72px]"
++                  onMouseMove={handleMouseMove}
++                  className="relative overflow-hidden flex items-center gap-4 glass-card border border-border rounded-3xl p-4 sm:p-5 card-hover-glow group touch-manipulation min-h-[72px]"
+                 >
+-                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
++                  {/* Dynamic Mouse Spotlight Glow */}
++                  <div
++                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[50px] z-0 will-change-transform"
++                    style={{
++                      width: '180px',
++                      height: '180px',
++                      left: 'var(--mouse-x, 50%)',
++                      top: 'var(--mouse-y, 50%)',
++                      transform: 'translate(-50%, -50%)',
++                      background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
++                    }}
++                  />
++
++                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors z-10">
+                     <Icon name="PhoneIcon" size={18} className="text-primary" />
+                   </div>
+-                  <div>
++                  <div className="z-10">
+                     <p className="text-sm font-bold text-foreground">{loc?.city}</p>
+                     <p className="text-xs text-muted-foreground">{loc?.address}</p>
+                     <p className="text-sm font-semibold text-primary mt-0.5 group-hover:underline">
+diff --git a/src/app/components/VisionVisualizerSection.module.css b/src/app/components/VisionVisualizerSection.module.css
+index 4c943a7..52142d2 100644
+--- a/src/app/components/VisionVisualizerSection.module.css
++++ b/src/app/components/VisionVisualizerSection.module.css
+@@ -13,7 +13,7 @@
+   --lens-color: #00c9b1;
+ }
+ .lensPanoptix {
+-  --lens-color: #7eecd8;
++  --lens-color: #3a86ff;
+ }
+ 
+ .lensValue {
+diff --git a/src/app/components/VisionVisualizerSection.tsx b/src/app/components/VisionVisualizerSection.tsx
+index ea48683..26791d3 100644
+--- a/src/app/components/VisionVisualizerSection.tsx
++++ b/src/app/components/VisionVisualizerSection.tsx
+@@ -30,8 +30,8 @@ const lensData = [
+   },
+   {
+     name: 'PanOptix Pro',
+-    shortName: 'PanOptix',
+-    color: '#7EECD8',
++    shortName: 'Panoptix',
++    color: '#3A86FF',
+     distance: 97,
+     intermediate: 95,
+     near: 90,
+@@ -134,8 +134,8 @@ export default function VisionVisualizerSection() {
+               Vision Outcomes
+             </p>
+             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-4 sm:mb-6">
+-              See the <span className="text-gradient-primary font-semibold">Difference</span>{' '}
+-              Clearly
++              See What Premium{' '}
++              <span className="text-gradient-primary font-semibold">Actually Means</span>
+             </h2>
+             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+               Spectacle independence rates from clinical studies. Higher is better. Standard
+@@ -195,7 +195,7 @@ export default function VisionVisualizerSection() {
+               href="#booking"
+               className="w-full sm:w-auto shrink-0 px-6 py-3 sm:py-2.5 bg-primary/10 text-primary border border-primary/30 rounded-full text-sm font-bold hover:bg-primary hover:text-primary-foreground transition-all text-center touch-manipulation min-h-[48px] flex items-center justify-center"
+             >
+-              Find My Best Lens
++              Which Lens Fits My Life?
+             </a>
+           </div>
+         </div>
+@@ -206,7 +206,7 @@ export default function VisionVisualizerSection() {
+             {
+               lens: 'PanOptix Pro',
+               lensKey: 'panoptix',
+-              color: '#7EECD8',
++              color: '#3A86FF',
+               insight:
+                 'Leads at every distance ΓÇö 90%+ glasses independence across all three vision zones.',
+             },
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index c279bd3..28dfbe5 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -1,23 +1,8 @@
+ import React from 'react';
+ import type { Metadata, Viewport } from 'next';
+-import { DM_Sans, Fraunces } from 'next/font/google';
+ import '../styles/tailwind-directives.css';
+ import '../styles/index.css';
+ 
+-const dmSans = DM_Sans({
+-  subsets: ['latin'],
+-  weight: ['400', '500', '600', '700'],
+-  variable: '--font-dm-sans',
+-  display: 'swap',
+-});
+-
+-const fraunces = Fraunces({
+-  subsets: ['latin'],
+-  weight: ['300', '400', '500', '600', '700'],
+-  variable: '--font-fraunces',
+-  display: 'swap',
+-});
+-
+ export const viewport: Viewport = {
+   width: 'device-width',
+   initialScale: 1,
+@@ -39,8 +24,16 @@ export default function RootLayout({
+   children: React.ReactNode;
+ }>) {
+   return (
+-    <html lang="en" className={`${dmSans.variable} ${fraunces.variable} dark`}>
+-      <body className={dmSans.className}>{children}</body>
++    <html lang="en" className="dark">
++      <head>
++        <link rel="preconnect" href="https://fonts.googleapis.com" />
++        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
++        <link
++          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
++          rel="stylesheet"
++        />
++      </head>
++      <body>{children}</body>
+     </html>
+   );
+ }
+diff --git a/src/app/not-found.tsx b/src/app/not-found.tsx
+index 9d7f731..9092c1f 100644
+--- a/src/app/not-found.tsx
++++ b/src/app/not-found.tsx
+@@ -28,7 +28,7 @@ export default function NotFound() {
+ 
+         <h2 className="text-2xl font-medium text-onBackground mb-2">Page Not Found</h2>
+         <p className="text-onBackground/70 mb-8">
+-          The page you're looking for doesn't exist. Let's get you back!
++          The page you&apos;re looking for doesn&apos;t exist. Let&apos;s get you back!
+         </p>
+ 
+         <div className="flex flex-col sm:flex-row gap-4 justify-center">
+diff --git a/src/components/Header.tsx b/src/components/Header.tsx
+index 28cf709..bf6667b 100644
+--- a/src/components/Header.tsx
++++ b/src/components/Header.tsx
+@@ -24,6 +24,7 @@ export default function Header() {
+   const navLinks = [
+     { label: 'Lens Options', href: '#lenses' },
+     { label: 'Vision Outcomes', href: '#vision' },
++    { label: 'IOL Simulator', href: '#iol-simulator' },
+     { label: 'Find My Lens', href: '#lifestyle' },
+     { label: 'Our Doctors', href: '#trust' },
+   ];
+@@ -40,24 +41,24 @@ export default function Header() {
+         <div className="flex items-center gap-3">
+           <a
+             href="https://www.maranoeyecare.com"
+-            className="hover:opacity-80 transition-opacity block"
++            className="hover:opacity-80 transition-opacity block shrink-0"
+           >
+             <AppLogo
+               src="/assets/images/marano_logo.png"
+               width={240}
+               height={60}
+-              className="w-[180px] sm:w-[260px] h-auto"
++              className="w-[150px] sm:w-[180px] lg:w-[200px] xl:w-[220px] 2xl:w-[260px] h-auto"
+             />
+           </a>
+         </div>
+ 
+         {/* Desktop Nav ΓÇö pill with subtle gradient border */}
+-        <nav className="hidden lg:flex items-center gap-0.5 px-4 py-2 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md">
++        <nav className="hidden lg:flex items-center gap-0 min-[1150px]:gap-0.5 px-2 xl:px-3 py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
+           {navLinks?.map((link) => (
+             <a
+               key={link?.href}
+               href={link?.href}
+-              className="px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground transition-all duration-200 rounded-full hover:bg-white/[0.06] hover:text-primary"
++              className="px-2 lg:px-2.5 xl:px-3.5 py-2 text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-xs font-semibold uppercase tracking-[0.04em] lg:tracking-[0.06em] xl:tracking-[0.1em] text-muted-foreground hover:text-foreground transition-all duration-200 rounded-full hover:bg-white/[0.06] hover:text-primary whitespace-nowrap"
+             >
+               {link?.label}
+             </a>
+@@ -65,17 +66,17 @@ export default function Header() {
+         </nav>
+ 
+         {/* CTA */}
+-        <div className="hidden md:flex items-center gap-3 lg:gap-4">
++        <div className="hidden md:flex items-center gap-2 lg:gap-3 xl:gap-4 shrink-0">
+           <a
+             href="tel:9733220100"
+-            className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation"
++            className="flex items-center gap-1.5 lg:gap-2 text-xs xl:text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation whitespace-nowrap"
+           >
+-            <Icon name="PhoneIcon" size={16} className="text-primary" />
+-            <span className="hidden lg:inline text-sm">973-322-0100</span>
++            <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
++            <span className="hidden md:inline lg:text-[11px] xl:text-xs 2xl:text-sm whitespace-nowrap">973-322-0100</span>
+           </a>
+           <a
+             href="#booking"
+-            className="px-4 lg:px-6 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 touch-manipulation whitespace-nowrap shadow-[0_0_20px_rgba(0,201,177,0.25)] btn-shimmer"
++            className="inline-flex items-center justify-center text-center px-3 lg:px-4 xl:px-5 2xl:px-6 py-2 xl:py-2.5 bg-primary text-primary-foreground rounded-full text-xs xl:text-sm font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 touch-manipulation whitespace-nowrap shadow-[0_0_20px_rgba(0,201,177,0.25)] btn-shimmer"
+           >
+             Book Consultation
+           </a>
+@@ -93,31 +94,37 @@ export default function Header() {
+ 
+       {/* Mobile Menu */}
+       {menuOpen && (
+-        <div className="md:hidden bg-background/95 backdrop-blur-2xl border-b border-border px-4 sm:px-6 py-4 flex flex-col">
+-          {navLinks?.map((link) => (
++        <div className="md:hidden bg-background/95 backdrop-blur-2xl border-b border-border px-4 sm:px-6 py-5 flex flex-col gap-4">
++          <div className="flex flex-col border-b border-border/40 pb-2">
++            {navLinks?.map((link) => (
++              <a
++                key={link?.href}
++                href={link?.href}
++                className="text-sm font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary py-3 transition-colors touch-manipulation"
++                onClick={() => setMenuOpen(false)}
++              >
++                {link?.label}
++              </a>
++            ))}
++          </div>
++
++          <div className="flex flex-col gap-3 pt-2">
+             <a
+-              key={link?.href}
+-              href={link?.href}
+-              className="text-base font-medium text-muted-foreground hover:text-primary transition-colors py-4 border-b border-border/50 last:border-0 touch-manipulation"
++              href="tel:9733220100"
++              className="flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground py-3 border border-white/10 rounded-full hover:bg-white/5 touch-manipulation"
++            >
++              <Icon name="PhoneIcon" size={16} className="text-primary" />
++              973-322-0100
++            </a>
++
++            <a
++              href="#booking"
++              className="w-full py-3.5 bg-primary text-primary-foreground rounded-full text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-colors touch-manipulation flex items-center justify-center shadow-[0_0_20px_rgba(0,201,177,0.25)]"
+               onClick={() => setMenuOpen(false)}
+             >
+-              {link?.label}
++              Book Consultation
+             </a>
+-          ))}
+-          <a
+-            href="tel:9733220100"
+-            className="flex items-center gap-3 text-base font-medium text-primary py-4 border-b border-border/50 touch-manipulation"
+-          >
+-            <Icon name="PhoneIcon" size={18} className="text-primary" />
+-            973-322-0100
+-          </a>
+-          <a
+-            href="#booking"
+-            className="w-full mt-3 py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold text-center hover:bg-accent transition-colors touch-manipulation min-h-[52px] flex items-center justify-center shadow-[0_0_20px_rgba(0,201,177,0.2)]"
+-            onClick={() => setMenuOpen(false)}
+-          >
+-            Book Consultation
+-          </a>
++          </div>
+         </div>
+       )}
+     </header>
+diff --git a/src/styles/index.css b/src/styles/index.css
+index c156bc2..aa2b010 100644
+--- a/src/styles/index.css
++++ b/src/styles/index.css
+@@ -288,7 +288,8 @@ p {
+ }
+ 
+ @keyframes pulse-glow {
+-  0%, 100% {
++  0%,
++  100% {
+     opacity: 0.35;
+     transform: scale(1) translate(0px, 0px);
+   }
+@@ -528,75 +529,7 @@ p {
+   backdrop-filter: blur(5px);
+ }
+ 
+-/* Vivity glare headlights */
+-.hl-vivity-left {
+-  left: 45.8%;
+-  top: 43.75%;
+-  width: 25%;
+-  padding-bottom: 25%;
+-  transform: translate(-50%, -50%);
+-  background: radial-gradient(
+-    circle,
+-    rgba(255, 255, 255, 0.4) 0%,
+-    rgba(255, 255, 255, 0.15) 20%,
+-    transparent 50%
+-  );
+-  mix-blend-mode: screen;
+-}
+-.hl-vivity-right {
+-  left: 49.8%;
+-  top: 43.75%;
+-  width: 25%;
+-  padding-bottom: 25%;
+-  transform: translate(-50%, -50%);
+-  background: radial-gradient(
+-    circle,
+-    rgba(255, 255, 255, 0.4) 0%,
+-    rgba(255, 255, 255, 0.15) 20%,
+-    transparent 50%
+-  );
+-  mix-blend-mode: screen;
+-}
+ 
+-/* PanOptix halo headlights */
+-.hl-panoptix-left {
+-  left: 45.8%;
+-  top: 43.75%;
+-  width: 22%;
+-  padding-bottom: 22%;
+-  transform: translate(-50%, -50%);
+-  background: radial-gradient(
+-    circle,
+-    rgba(255, 255, 255, 0.7) 0%,
+-    rgba(255, 255, 255, 0) 8%,
+-    rgba(126, 236, 216, 0.6) 18%,
+-    rgba(126, 236, 216, 0) 25%,
+-    rgba(126, 236, 216, 0.4) 35%,
+-    rgba(126, 236, 216, 0) 45%,
+-    rgba(126, 236, 216, 0.2) 60%,
+-    transparent 75%
+-  );
+-  mix-blend-mode: screen;
+-}
+-.hl-panoptix-right {
+-  left: 49.8%;
+-  top: 43.75%;
+-  width: 22%;
+-  padding-bottom: 22%;
+-  transform: translate(-50%, -50%);
+-  background: radial-gradient(
+-    circle,
+-    rgba(255, 255, 255, 0.7) 0%,
+-    rgba(255, 255, 255, 0) 8%,
+-    rgba(126, 236, 216, 0.6) 18%,
+-    rgba(126, 236, 216, 0) 25%,
+-    rgba(126, 236, 216, 0.4) 35%,
+-    rgba(126, 236, 216, 0) 45%,
+-    rgba(126, 236, 216, 0.2) 60%,
+-    transparent 75%
+-  );
+-  mix-blend-mode: screen;
+-}
+ 
+ /* ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    GLARE BAR FILLS
+@@ -610,7 +543,7 @@ p {
+   background: linear-gradient(90deg, #009980, #00c9b1);
+ }
+ .glare-bar-fill-panoptix {
+-  background: linear-gradient(90deg, #4adcc8, #7eecd8);
++  background: linear-gradient(90deg, #1d4ed8, #3a86ff);
+ }
+ .glare-bar-fill-eyhance {
+   background: linear-gradient(90deg, #8090a8, #a8b4c8);
+@@ -622,7 +555,7 @@ p {
+   background: linear-gradient(90deg, #00c9b1, #ff6b6b);
+ }
+ .glare-bar-fill-high-panoptix {
+-  background: linear-gradient(90deg, #7eecd8, #ff6b6b);
++  background: linear-gradient(90deg, #3a86ff, #ff6b6b);
+ }
+ .glare-bar-fill-high-eyhance {
+   background: linear-gradient(90deg, #a8b4c8, #ff6b6b);
+@@ -707,3 +640,25 @@ textarea:focus {
+ ::-webkit-scrollbar-thumb:hover {
+   background: rgba(0, 201, 177, 0.45);
+ }
++
++/* ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
++   ANIMATION DELAY & HARDWARE ACCELERATION UTILITIES
++   ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
++.delay-75 { animation-delay: 75ms; }
++.delay-100 { animation-delay: 100ms; }
++.delay-150 { animation-delay: 150ms; }
++.delay-200 { animation-delay: 200ms; }
++.delay-300 { animation-delay: 300ms; }
++.delay-450 { animation-delay: 450ms; }
++.delay-600 { animation-delay: 600ms; }
++.delay-750 { animation-delay: 750ms; }
++.delay-900 { animation-delay: 900ms; }
++
++.fill-both {
++  animation-fill-mode: both !important;
++}
++
++.will-change-transform {
++  will-change: transform, opacity;
++}
++

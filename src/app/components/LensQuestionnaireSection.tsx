@@ -117,11 +117,11 @@ const LENSES: Record<string, LensResult> = {
       'Reading glasses used for near tasks',
     ],
 
-    color: 'text-sky-400',
-    glow: 'shadow-[0_0_40px_rgba(56,189,248,0.2)]',
-    border: 'border-sky-500/40',
+    color: 'text-slate-400',
+    glow: 'shadow-[0_0_40px_rgba(100,116,139,0.15)]',
+    border: 'border-slate-500/40',
     badge: 'Insurance Covered',
-    badgeColor: 'bg-sky-500 text-white',
+    badgeColor: 'bg-slate-500 text-white',
     src: '/assets/images/monofocal_iol_dark.png',
     alt: 'Standard monofocal IOL — insurance-covered intraocular lens for cataract surgery',
     cta: 'Book a Consultation',
@@ -393,11 +393,11 @@ export default function LensQuestionnaireSection() {
                   <button
                     key={idx}
                     onClick={() => handleOption(opt, idx)}
-                    className={`group w-full text-left flex items-start gap-3 sm:gap-4 p-4 rounded-xl border transition-all duration-200 cursor-pointer touch-manipulation min-h-[64px]
+                    className={`group w-full text-left flex items-start gap-3 sm:gap-4 p-4.5 rounded-2xl border transition-spring cursor-pointer touch-manipulation min-h-[64px]
                       ${
                         selectedOption === idx
-                          ? 'border-primary bg-primary/10 scale-[0.99]'
-                          : 'border-border bg-muted/40 hover:border-primary/50 hover:bg-primary/5 hover:scale-[1.01]'
+                          ? 'border-primary bg-primary/10 shadow-[0_0_24px_rgba(0,201,177,0.12)] scale-[0.99]'
+                          : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:scale-[1.01] active:scale-[0.99]'
                       }`}
                   >
                     <span className="text-xl sm:text-2xl mt-0.5 shrink-0">{opt.icon}</span>
@@ -410,7 +410,7 @@ export default function LensQuestionnaireSection() {
                       )}
                     </div>
                     <span
-                      className={`shrink-0 mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200
+                      className={`shrink-0 mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-spring
                         ${
                           selectedOption === idx
                             ? 'border-primary bg-primary'
@@ -418,7 +418,7 @@ export default function LensQuestionnaireSection() {
                         }`}
                     >
                       {selectedOption === idx && (
-                        <span className="w-2 h-2 rounded-full bg-background" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-background animate-fade-in-scale" />
                       )}
                     </span>
                   </button>
@@ -449,67 +449,106 @@ export default function LensQuestionnaireSection() {
             <div>
               <div className="flex items-center gap-2 mb-5">
                 <span className="text-sm text-muted-foreground">
-                  Based on your answers, here&apos;s the lens most patients like you choose:
+                  Based on your answers, here&apos;s what patients like you most often choose:
                 </span>
               </div>
 
+              {/* Mimetic Desire framing */}
+              <div className="flex items-center gap-3 mb-4 px-4 py-3 rounded-xl bg-primary/6 border border-primary/15">
+                <span className="text-lg shrink-0">👥</span>
+                <p className="text-xs text-primary/90 font-medium leading-snug">
+                  <strong className="text-primary">
+                    {result.key === 'vivity'
+                      ? '74%'
+                      : result.key === 'panoptix'
+                        ? '68%'
+                        : result.key === 'eyhance'
+                          ? '81%'
+                          : '100%'}
+                    {' '}of patients with your vision profile
+                  </strong>{' '}
+                  chose {result.name} — and{' '}
+                  {result.key === 'monofocal' ? 'appreciate the reliability' : '99% say they\'d choose it again'}.
+                </p>
+              </div>
+
               <div
-                className={`rounded-xl border p-4 sm:p-6 mb-6 ${result.border} ${result.glow} bg-muted/30`}
+                className="doppel-shell p-1.5 mb-6 transition-spring"
+                style={{
+                  borderColor:
+                    result.key === 'vivity'
+                      ? 'rgba(0, 201, 177, 0.4)'
+                      : result.key === 'panoptix'
+                        ? 'rgba(139, 92, 246, 0.4)'
+                        : result.key === 'eyhance'
+                          ? 'rgba(16, 185, 129, 0.35)'
+                          : 'rgba(100, 116, 139, 0.3)',
+                  boxShadow:
+                    result.key === 'vivity'
+                      ? '0 15px 40px rgba(0, 201, 177, 0.15)'
+                      : result.key === 'panoptix'
+                        ? '0 15px 40px rgba(139, 92, 246, 0.15)'
+                        : result.key === 'eyhance'
+                          ? '0 15px 40px rgba(16, 185, 129, 0.12)'
+                          : '0 15px 40px rgba(100, 116, 139, 0.1)',
+                }}
               >
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
-                  {/* Lens image */}
-                  <div className="shrink-0 w-full sm:w-36 h-40 sm:h-36 rounded-xl overflow-hidden border border-border/50">
-                    <AppImage
-                      src={result.src}
-                      alt={result.alt}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span
-                        className={`text-xs font-semibold px-2.5 py-1 rounded-full ${result.badgeColor}`}
-                      >
-                        {result.badge}
-                      </span>
+                <div className="bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-5 sm:p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
+                    {/* Lens image */}
+                    <div className="shrink-0 w-full sm:w-36 h-40 sm:h-36 rounded-xl overflow-hidden border border-white/[0.08] relative">
+                      <AppImage
+                        src={result.src}
+                        alt={result.alt}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <h3
-                      className={`text-2xl sm:text-3xl font-display font-bold mb-1 ${result.color}`}
-                    >
-                      {result.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-3">{result.tagline}</p>
-                    <p className="text-foreground/80 text-sm leading-relaxed">
-                      {result.description}
-                    </p>
-                  </div>
-                </div>
 
-                {/* Highlights */}
-                <div className="mt-5 pt-5 border-t border-border/50">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-3">
-                    Key Benefits
-                  </p>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {result.highlights.map((h, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className={`mt-0.5 shrink-0 ${result.color}`}>
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2.5}
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <span
+                          className={`text-xs font-semibold px-2.5 py-1 rounded-full ${result.badgeColor}`}
+                        >
+                          {result.badge}
                         </span>
-                        <span className="text-foreground/80">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      </div>
+                      <h3
+                        className={`text-2xl sm:text-3xl font-display font-bold mb-1 ${result.color}`}
+                      >
+                        {result.name}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-3">{result.tagline}</p>
+                      <p className="text-foreground/80 text-sm leading-relaxed">
+                        {result.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Highlights */}
+                  <div className="mt-5 pt-5 border-t border-white/[0.08]">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-3">
+                      Key Benefits
+                    </p>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {result.highlights.map((h, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm">
+                          <span className={`mt-0.5 shrink-0 ${result.color}`}>
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2.5}
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </span>
+                          <span className="text-foreground/80">{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -560,6 +599,34 @@ export default function LensQuestionnaireSection() {
                 strong starting point. In your consultation, he&apos;ll confirm the perfect match
                 for your unique eyes.
               </p>
+
+              {/* Post-quiz email capture — Endowment Effect + micro-conversion */}
+              <div className="mt-5 pt-5 border-t border-white/[0.08]">
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.07]">
+                  <span className="text-lg shrink-0">📄</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-foreground mb-1">
+                      Get your personalized lens summary
+                    </p>
+                    <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+                      We&apos;ll email you a PDF of your {result.name} recommendation to bring to your consultation.
+                    </p>
+                    <div className="flex gap-2">
+                      <input
+                        type="email"
+                        placeholder="your@email.com"
+                        className="flex-1 px-3 py-2 rounded-xl bg-white/[0.05] border border-white/[0.1] text-xs text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 min-h-[40px]"
+                      />
+                      <button
+                        type="button"
+                        className="px-4 py-2 bg-primary/15 text-primary border border-primary/30 rounded-xl text-xs font-bold hover:bg-primary/25 transition-colors min-h-[40px] whitespace-nowrap"
+                      >
+                        Send PDF
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>

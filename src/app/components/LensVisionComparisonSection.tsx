@@ -11,15 +11,15 @@ const lenses = [
     manufacturer: 'Alcon',
     type: 'Trifocal IOL',
     tagline: 'True glasses independence at all distances.',
-    color: '#3A86FF',
+    color: '#8B5CF6',
     featured: true,
     badge: 'Full Trifocal',
-    twColor: 'text-[#3A86FF]',
-    twBadgeBg: 'bg-[#3A86FF15]',
-    twBadgeBorder: 'border-[#3A86FF30]',
-    twBadgeText: 'text-[#3A86FF]',
-    twCtaBorder: 'border-[#3A86FF40]',
-    twSpecBar: 'bg-[#3A86FF]',
+    twColor: 'text-[#8B5CF6]',
+    twBadgeBg: 'bg-[#8B5CF615]',
+    twBadgeBorder: 'border-[#8B5CF630]',
+    twBadgeText: 'text-[#8B5CF6]',
+    twCtaBorder: 'border-[#8B5CF640]',
+    twSpecBar: 'bg-[#8B5CF6]',
     images: {
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
@@ -111,15 +111,15 @@ const lenses = [
     manufacturer: 'J&J Vision',
     type: 'Enhanced Monofocal',
     tagline: 'Monofocal clarity with a meaningful upgrade.',
-    color: '#A8B4C8',
+    color: '#10B981',
     featured: false,
     badge: 'Zero Added Halos',
-    twColor: 'text-[#A8B4C8]',
-    twBadgeBg: 'bg-[#A8B4C815]',
-    twBadgeBorder: 'border-[#A8B4C830]',
-    twBadgeText: 'text-[#A8B4C8]',
-    twCtaBorder: 'border-[#A8B4C840]',
-    twSpecBar: 'bg-[#A8B4C8]',
+    twColor: 'text-[#10B981]',
+    twBadgeBg: 'bg-[#10B98115]',
+    twBadgeBorder: 'border-[#10B98130]',
+    twBadgeText: 'text-[#10B981]',
+    twCtaBorder: 'border-[#10B98140]',
+    twSpecBar: 'bg-[#10B981]',
     images: {
       day: {
         distance: '/assets/images/eyhance_day_distance_pro.png',
@@ -161,15 +161,15 @@ const lenses = [
     manufacturer: 'Various',
     type: 'Single Vision IOL',
     tagline: 'Proven clarity. Single focus point.',
-    color: '#6B7280',
+    color: '#64748B',
     featured: false,
     badge: 'Baseline',
-    twColor: 'text-[#6B7280]',
-    twBadgeBg: 'bg-[#6B728015]',
-    twBadgeBorder: 'border-[#6B728030]',
-    twBadgeText: 'text-[#6B7280]',
-    twCtaBorder: 'border-[#6B728040]',
-    twSpecBar: 'bg-[#6B7280]',
+    twColor: 'text-[#64748B]',
+    twBadgeBg: 'bg-[#64748B15]',
+    twBadgeBorder: 'border-[#64748B30]',
+    twBadgeText: 'text-[#64748B]',
+    twCtaBorder: 'border-[#64748B40]',
+    twSpecBar: 'bg-[#64748B]',
     images: {
       day: {
         distance: '/assets/images/monofocal_day_distance_pro.png',
@@ -967,11 +967,17 @@ export default function LensVisionComparisonSection() {
                 onMouseLeave={handleMouseLeave}
                 onMouseMove={(e) => handleMouseMove(e, lens.id)}
                 onClick={() => handleCardClick(lens.id)}
-                className={`group relative rounded-[32px] p-[2px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col hover:-translate-y-2 cursor-pointer ${
+                className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col hover:-translate-y-2 cursor-pointer border ${
                   isActive
-                    ? 'bg-gradient-to-b from-primary/30 to-primary/5 border border-primary/20 shadow-[0_15px_40px_rgba(0,201,177,0.15)] hover:shadow-[0_25px_50px_rgba(0,201,177,0.3)]'
-                    : 'bg-gradient-to-b from-white/10 to-white/0 border border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
+                    ? 'bg-gradient-to-b from-white/12 to-white/0 border-transparent'
+                    : 'bg-gradient-to-b from-white/8 to-white/0 border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
                 }`}
+                style={{
+                  borderColor: isActive ? `${lens.color}40` : undefined,
+                  boxShadow: isActive
+                    ? `0 15px 40px -4px ${lens.color}25`
+                    : undefined,
+                }}
               >
                 {/* Dynamic Mouse Spotlight Glow */}
                 <div
@@ -982,13 +988,19 @@ export default function LensVisionComparisonSection() {
                     left: mouseCoords[lens.id] ? `${mouseCoords[lens.id].x}px` : '50%',
                     top: mouseCoords[lens.id] ? `${mouseCoords[lens.id].y}px` : '50%',
                     transform: 'translate(-50%, -50%)',
-                    background: isActive
-                      ? 'radial-gradient(circle, rgba(0,201,177,0.15) 0%, rgba(0,0,0,0) 70%)'
-                      : 'radial-gradient(circle, rgba(96,165,250,0.12) 0%, rgba(0,0,0,0) 70%)',
+                    background: `radial-gradient(circle, ${
+                      lens.id === 'panoptix'
+                        ? 'rgba(139, 92, 246, 0.15)'
+                        : lens.id === 'vivity'
+                          ? 'rgba(0, 201, 177, 0.15)'
+                          : lens.id === 'eyhance'
+                            ? 'rgba(16, 185, 129, 0.12)'
+                            : 'rgba(100, 116, 139, 0.1)'
+                    } 0%, rgba(0,0,0,0) 70%)`,
                   }}
                 />
 
-                <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-[#0e1018]/70 backdrop-blur-xl transition-all duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] z-10">
+                <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-[#0e1018]/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
                   {/* Badge */}
                   <div className="flex items-center justify-between mb-4">
                     <span
@@ -1018,7 +1030,7 @@ export default function LensVisionComparisonSection() {
                         </div>
                         <div className="h-1.5 bg-white/[0.04] border border-white/[0.02] shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden">
                           <div
-                            className={`h-full rounded-full transition-all duration-700 opacity-80 ${lens.twSpecBar} ${scoreWidthClass(spec.score)}`}
+                            className={`h-full rounded-full transition-spring opacity-80 ${lens.twSpecBar} ${scoreWidthClass(spec.score)}`}
                           />
                         </div>
                       </div>
