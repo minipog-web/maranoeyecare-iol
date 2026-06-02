@@ -20,9 +20,9 @@ const profiles = [
     recommendationColor: '#8B5CF6',
     reason:
       'Trifocal design gives you sharp vision at every distance — from your 27″ monitor to a road sign 200 metres away.',
-    image: '/assets/images/profile_active_professional.png',
+    image: '/assets/images/profile_active_professional.jpg',
     imageAlt: 'Professional person at bright, well-lit modern office desk with laptop',
-    stat: '99% would choose PanOptix again',
+    stat: '99% would choose a premium lens again',
   },
   {
     id: 'tech',
@@ -39,7 +39,7 @@ const profiles = [
     recommendationColor: '#00C9B1',
     reason:
       'X-WAVE™ non-diffractive technology extends your vision range with halo and glare rates nearly identical to a basic monofocal.',
-    image: '/assets/images/profile_tech_conscious.png',
+    image: '/assets/images/profile_tech_conscious.jpg',
     imageAlt: 'Person at bright modern workspace with multiple screens',
     stat: '92% report excellent intermediate vision',
   },
@@ -58,7 +58,7 @@ const profiles = [
     recommendationColor: '#10B981',
     reason:
       'Ring-free optic design means zero added halos or glare — with meaningful intermediate improvement over standard monofocal.',
-    image: '/assets/images/profile_conservative_candidate.png',
+    image: '/assets/images/profile_conservative_candidate.jpg',
     imageAlt: 'Mature adult reading outdoors in bright sunlight',
     stat: '100% distance independence at 5 years',
   },
@@ -76,7 +76,7 @@ export default function LifestyleMatchSection() {
   return (
     <section
       id="lifestyle"
-      className="py-16 sm:py-28 border-t border-border relative overflow-hidden"
+      className="py-12 sm:py-20 border-t border-border relative overflow-hidden"
     >
       {/* Background */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
@@ -85,14 +85,13 @@ export default function LifestyleMatchSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row items-start gap-8 sm:gap-16 mb-12 sm:mb-20">
+        <div className="flex flex-col lg:flex-row items-start gap-8 sm:gap-16 mb-8 sm:mb-12">
           <div className="w-full lg:w-5/12">
-            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               Find Your Match
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
-              Find{' '}
-              <span className="text-gradient-primary font-semibold italic">Yourself Below.</span>
+              Find Your <span className="font-semibold text-gradient-primary">Perfect Lens.</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-sm">
               The best IOL isn&apos;t the most expensive — it&apos;s the one matched precisely to
@@ -101,29 +100,11 @@ export default function LifestyleMatchSection() {
             </p>
             <a
               href="#booking"
-              className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 touch-manipulation min-h-[52px] shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer"
+              className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 touch-manipulation min-h-[52px] shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               Book Your Assessment
               <Icon name="ArrowRightIcon" size={16} />
             </a>
-
-            {/* Social proof badge — Bandwagon Effect */}
-            <div className="flex items-center gap-2.5 mt-4">
-              <div className="flex -space-x-2">
-                {['#00C9B1', '#8B5CF6', '#10B981'].map((c, i) => (
-                  <div
-                    key={i}
-                    className="w-7 h-7 rounded-full border-2 border-background flex items-center justify-center text-[10px] font-bold text-background"
-                    style={{ backgroundColor: c }}
-                  >
-                    {['P', 'R', 'M'][i]}
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs text-muted-foreground">
-                <strong className="text-foreground font-semibold">43 consultations</strong> booked this month
-              </p>
-            </div>
           </div>
 
           {/* Right: comparison card */}
@@ -175,30 +156,18 @@ export default function LifestyleMatchSection() {
                 ))}
               </div>
 
-              {/* Reframed Pricing Callout — Mental Accounting */}
-              <div className="mt-6 pt-5 border-t border-border/60 space-y-3">
-                <div className="flex items-start gap-2.5">
-                  <Icon
-                    name="SparklesIcon"
-                    size={16}
-                    className="text-primary/70 shrink-0 mt-0.5"
-                  />
-                  <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
-                    <strong className="text-foreground/90 font-semibold">Less than $0.55/day</strong>{' '}
-                    over the life of your lens. For context, the average American spends over $3,000
-                    on glasses in a decade — and still can&apos;t see clearly at every distance.
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {['HSA / FSA Eligible', 'CareCredit Accepted', '0% Financing Available'].map((b) => (
-                    <span
-                      key={b}
-                      className="text-[10px] font-semibold text-primary/80 bg-primary/8 border border-primary/15 px-2.5 py-1 rounded-full"
-                    >
-                      {b}
-                    </span>
-                  ))}
-                </div>
+              {/* Integrated Footnote Callout */}
+              <div className="mt-6 pt-5 border-t border-border/60 flex items-start gap-2.5">
+                <Icon
+                  name="InformationCircleIcon"
+                  size={16}
+                  className="text-primary/70 shrink-0 mt-0.5"
+                />
+                <p className="text-[11px] text-muted-foreground/75 leading-relaxed">
+                  Premium lenses are an investment — typically $4,100 per eye beyond insurance. Most
+                  patients report it&apos;s the best investment they&apos;ve ever made in their
+                  vision.
+                </p>
               </div>
             </div>
           </div>
@@ -211,9 +180,11 @@ export default function LifestyleMatchSection() {
               key={profile?.id}
               onMouseMove={handleMouseMove}
               className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
-              style={{
-                '--rec-color': profile.recommendationColor,
-              } as React.CSSProperties}
+              style={
+                {
+                  '--rec-color': profile.recommendationColor,
+                } as React.CSSProperties
+              }
             >
               <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
                 {/* Dynamic Mouse Spotlight Glow */}
@@ -256,43 +227,43 @@ export default function LifestyleMatchSection() {
 
                 {/* Content */}
                 <div className="relative p-5 sm:p-6 flex flex-col flex-1 z-10">
-                <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-2">
-                  {profile?.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 sm:mb-5">
-                  {profile?.description}
-                </p>
+                  <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-2">
+                    {profile?.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 sm:mb-5">
+                    {profile?.description}
+                  </p>
 
-                <ul className="space-y-2 mb-5 sm:mb-6 flex-1">
-                  {profile?.activities?.map((act) => (
-                    <li
-                      key={act}
-                      className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                  <ul className="space-y-2 mb-5 sm:mb-6 flex-1">
+                    {profile?.activities?.map((act) => (
+                      <li
+                        key={act}
+                        className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                      >
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${styles.activityDot}`}
+                        />
+                        {act}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="border-t border-border/60 pt-4 sm:pt-5">
+                    <p
+                      className={`text-[10px] font-bold uppercase tracking-[0.18em] mb-2 ${styles.recommendationLabel}`}
                     >
-                      <span
-                        className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${styles.activityDot}`}
-                      />
-                      {act}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="border-t border-border/60 pt-4 sm:pt-5">
-                  <p
-                    className={`text-[10px] font-bold uppercase tracking-[0.18em] mb-2 ${styles.recommendationLabel}`}
-                  >
-                    Our Recommendation
-                  </p>
-                  <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                    {profile?.reason}
-                  </p>
-                  <p className={`text-xs font-semibold ${styles.recommendationStat}`}>
-                    {profile?.stat}
-                  </p>
+                      Our Recommendation
+                    </p>
+                    <p className="text-sm text-foreground/80 leading-relaxed mb-3">
+                      {profile?.reason}
+                    </p>
+                    <p className={`text-xs font-semibold ${styles.recommendationStat}`}>
+                      {profile?.stat}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           ))}
         </div>
       </div>

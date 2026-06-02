@@ -1,0 +1,279 @@
+'use client';
+
+import AppImage from '@/components/ui/AppImage';
+import Icon from '@/components/ui/AppIcon';
+import styles from './TestimonialsSection.module.css';
+
+const testimonials = [
+  {
+    concern: 'Glasses dependency after surgery',
+    quote:
+      "Dr. Marano is simply the best in his field. I've been a patient for 25 years and have never felt rushed or unheard. After my PanOptix surgery, I haven't touched my glasses once — and it's been over 2 years.",
+    name: 'Patricia W.',
+    location: 'Denville, NJ',
+    lens: 'PanOptix Pro',
+    lensColor: '#8B5CF6',
+    avatar: '/assets/images/avatar_patricia.jpg',
+    stars: 5,
+  },
+  {
+    concern: 'Night driving halos',
+    quote:
+      'I was nervous about halos at night because I drive a lot. Dr. Marano recommended Vivity and the results exceeded every expectation. Night driving is completely clear.',
+    name: 'Robert D.',
+    location: 'Livingston, NJ',
+    lens: 'Clareon Vivity',
+    lensColor: '#00C9B1',
+    avatar: '/assets/images/avatar_robert.jpg',
+    stars: 5,
+  },
+];
+
+export default function TestimonialsSection() {
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  return (
+    <section
+      id="testimonials"
+      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#080910]"
+    >
+      {/* Background */}
+      <div className="absolute inset-0 grid-lines-bg opacity-25" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/4 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        {/* Testimonials */}
+        <div className="mb-8 sm:mb-10">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3 text-center">
+            Patient Voices
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground text-center mb-10 sm:mb-14 leading-tight">
+            Real Outcomes from{' '}
+            <span className="font-semibold text-gradient-primary">Real Patients</span>
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+            {testimonials?.map((t) => (
+              <div
+                key={t?.name}
+                onMouseMove={handleMouseMove}
+                className="group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col"
+              >
+                <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
+                  {/* Dynamic Mouse Spotlight Glow */}
+                  <div
+                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
+                    style={{
+                      width: '240px',
+                      height: '240px',
+                      left: 'var(--mouse-x, 50%)',
+                      top: 'var(--mouse-y, 50%)',
+                      transform: 'translate(-50%, -50%)',
+                      background: `radial-gradient(circle, ${t.lensColor} 0%, transparent 70%)`,
+                    }}
+                  />
+
+                  {/* Decorative quote mark */}
+                  <div className="absolute top-4 right-6 sm:top-6 sm:right-8 font-display text-7xl sm:text-8xl text-primary/6 font-bold leading-none select-none pointer-events-none z-10">
+                    &ldquo;
+                  </div>
+
+                  {/* Concern label */}
+                  {t.concern && (
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
+                        Was worried about: {t.concern}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Stars */}
+                  <div className="flex items-center gap-1 mb-4 relative z-10">
+                    {Array.from({ length: t.stars }).map((_, i) => (
+                      <Icon
+                        key={i}
+                        name="StarIcon"
+                        variant="solid"
+                        size={14}
+                        className="text-primary"
+                      />
+                    ))}
+                  </div>
+
+                  <p className="text-sm sm:text-base text-foreground/85 leading-relaxed mb-6 italic relative z-10">
+                    &ldquo;{t?.quote}&rdquo;
+                  </p>
+
+                  <div className="flex items-center gap-3 sm:gap-4 flex-wrap relative z-10 mt-auto">
+                    <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_12px_rgba(0,201,177,0.2)]">
+                      <AppImage
+                        src={t?.avatar}
+                        alt={`Patient ${t?.name} profile photo`}
+                        fill
+                        className="object-cover"
+                        sizes="48px"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-foreground">{t?.name}</p>
+                      <p className="text-xs text-muted-foreground">{t?.location}</p>
+                    </div>
+                    <div
+                      className={`shrink-0 ${t.lens.toLowerCase().includes('panoptix') ? styles.lensPanoptix : styles.lensVivity}`}
+                    >
+                      <span
+                        className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}
+                        style={{
+                          backgroundColor: `${t.lensColor}15`,
+                          color: t.lensColor,
+                          borderColor: `${t.lensColor}30`,
+                          borderWidth: '1px',
+                        }}
+                      >
+                        {t?.lens}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Dr. Marano's Recommendation Card — Authority Bias + Pratfall Effect */}
+          <div className="mt-8 sm:mt-12">
+            <div
+              onMouseMove={handleMouseMove}
+              className="group relative overflow-hidden glass-card border border-primary/20 rounded-3xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-primary/[0.04] to-transparent"
+            >
+              {/* Dynamic Mouse Spotlight */}
+              <div
+                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[80px] z-0 will-change-transform"
+                style={{
+                  width: '300px',
+                  height: '300px',
+                  left: 'var(--mouse-x, 50%)',
+                  top: 'var(--mouse-y, 50%)',
+                  transform: 'translate(-50%, -50%)',
+                  background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
+                }}
+              />
+
+              <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-10">
+                {/* Dr. Marano Profile Photo */}
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_15px_rgba(0,201,177,0.2)]">
+                  <AppImage
+                    src="/assets/images/marano_thumbnail.png"
+                    alt="Dr. Matthew Marano Jr., MD"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 64px, 80px"
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <p className="text-base sm:text-lg text-foreground/90 leading-relaxed italic mb-5 sm:mb-6">
+                    &ldquo;If I were choosing a lens for myself or my family, I&apos;d want the
+                    Clareon Vivity. It gives the most natural vision with the fewest side effects
+                    for most patients. But the truth is, no single lens is right for everyone —
+                    which is exactly why I spend time getting to know every patient before I make
+                    any recommendation. The right lens depends on <em>how you live</em>.&rdquo;
+                  </p>
+
+                  <div className="flex items-center gap-4 flex-wrap">
+                    <div>
+                      <p className="text-sm font-bold text-foreground">
+                        Dr. Matthew Marano Jr., MD
+                      </p>
+                      <p className="text-xs text-primary mt-0.5 font-medium">
+                        Board-Certified Ophthalmologist · Thousands of Successful Procedures
+                      </p>
+                    </div>
+                    <div className="flex gap-1.5 flex-wrap">
+                      {['15× NJ Top Doctor', 'Fellowship Trained', 'Chief of Ophthalmology'].map(
+                        (b) => (
+                          <span
+                            key={b}
+                            className="text-[10px] font-semibold text-muted-foreground bg-white/[0.05] border border-border px-2.5 py-1 rounded-full"
+                          >
+                            {b}
+                          </span>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Locations */}
+        <div className={`mt-10 sm:mt-12 pt-8 sm:pt-10 ${styles.locationsWrapper}`}>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-4 sm:mb-6 text-center">
+              Three Convenient New Jersey Locations
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              {[
+                {
+                  city: 'Denville',
+                  phone: '973-358-0416',
+                  address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
+                },
+                {
+                  city: 'Livingston',
+                  phone: '973-322-0100',
+                  address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
+                },
+                {
+                  city: 'Newark',
+                  phone: '973-315-6439',
+                  address: '306 Martin L. King Blvd, Newark, NJ 07102',
+                },
+              ]?.map((loc) => (
+                <a
+                  key={loc?.city}
+                  href={`tel:${loc?.phone?.replace(/-/g, '')}`}
+                  onMouseMove={handleMouseMove}
+                  className="relative overflow-hidden flex items-center gap-4 glass-card border border-border rounded-3xl p-4 sm:p-5 card-hover-glow group touch-manipulation min-h-[72px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                >
+                  {/* Dynamic Mouse Spotlight Glow */}
+                  <div
+                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[50px] z-0 will-change-transform"
+                    style={{
+                      width: '180px',
+                      height: '180px',
+                      left: 'var(--mouse-x, 50%)',
+                      top: 'var(--mouse-y, 50%)',
+                      transform: 'translate(-50%, -50%)',
+                      background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
+                    }}
+                  />
+
+                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors z-10">
+                    <Icon name="PhoneIcon" size={18} className="text-primary" />
+                  </div>
+                  <div className="z-10 flex flex-col gap-0.5">
+                    <p className="text-sm font-bold text-foreground leading-tight">{loc?.city}</p>
+                    <p className="text-xs text-muted-foreground line-clamp-1 sm:line-clamp-none leading-normal">
+                      {loc?.address}
+                    </p>
+                    <p className="text-sm font-semibold text-primary group-hover:underline leading-tight">
+                      {loc?.phone}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

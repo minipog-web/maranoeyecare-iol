@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log('Email sent successfully:', result.messageId);
+    console.info('Email sent successfully:', result.messageId);
     return NextResponse.json({ success: true, messageId: result.messageId });
   } catch (error) {
     console.error('Notify staff error:', error);

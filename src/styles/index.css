@@ -16,14 +16,14 @@
   --input: #13151e;
   --ring: #00c9b1;
   --radius: 1rem;
-  --font-sans: 'DM Sans', sans-serif;
+  --font-sans: var(--font-dm-sans), sans-serif;
 
   /* Lens Palette Variables */
   --lens-panoptix: #8b5cf6;
   --lens-vivity: #00c9b1;
   --lens-eyhance: #10b981;
   --lens-monofocal: #64748b;
-  
+
   --lens-panoptix-glow: rgba(139, 92, 246, 0.2);
   --lens-vivity-glow: rgba(0, 201, 177, 0.18);
   --lens-eyhance-glow: rgba(16, 185, 129, 0.15);
@@ -73,7 +73,7 @@ p {
 /* ── Utility classes ── */
 /* ── Typography ── */
 .font-display {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-fraunces), serif;
 }
 
 /* ── Background textures ── */
@@ -81,7 +81,21 @@ p {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 72px 72px;
+  background-size: 48px 48px;
+}
+
+@media (min-width: 640px) {
+  .grid-lines-bg {
+    background-size: 72px 72px;
+  }
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 .dot-grid-bg {
@@ -447,6 +461,53 @@ p {
   transition: left 0.55s ease;
 }
 
+/* Premium Button Styles */
+.btn-premium-primary {
+  background: var(--primary);
+  color: #040506;
+  border: 1px solid rgba(0, 201, 177, 0.4);
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  transition: all 0.25s var(--ease-spring);
+  box-shadow: 0 4px 14px rgba(0, 201, 177, 0.15);
+}
+.btn-premium-primary:hover {
+  background: var(--accent);
+  color: #040506;
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(0, 201, 177, 0.3);
+  transform: translateY(-1.5px);
+}
+.btn-premium-primary:active {
+  transform: translateY(0);
+}
+.btn-premium-secondary {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--foreground);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  transition: all 0.25s var(--ease-spring);
+}
+.btn-premium-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: translateY(-1.5px);
+}
+.btn-premium-secondary:active {
+  transform: translateY(0);
+}
+
+
 /* ─────────────────────────────────────────
    LENS CARD UTILITIES (LensVisionComparison)
 ───────────────────────────────────────── */
@@ -566,8 +627,6 @@ p {
   backdrop-filter: blur(5px);
 }
 
-
-
 /* ─────────────────────────────────────────
    GLARE BAR FILLS
 ───────────────────────────────────────── */
@@ -681,15 +740,33 @@ textarea:focus {
 /* ─────────────────────────────────────────
    ANIMATION DELAY & HARDWARE ACCELERATION UTILITIES
    ───────────────────────────────────────── */
-.delay-75 { animation-delay: 75ms; }
-.delay-100 { animation-delay: 100ms; }
-.delay-150 { animation-delay: 150ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-450 { animation-delay: 450ms; }
-.delay-600 { animation-delay: 600ms; }
-.delay-750 { animation-delay: 750ms; }
-.delay-900 { animation-delay: 900ms; }
+.delay-75 {
+  animation-delay: 75ms;
+}
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-150 {
+  animation-delay: 150ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-450 {
+  animation-delay: 450ms;
+}
+.delay-600 {
+  animation-delay: 600ms;
+}
+.delay-750 {
+  animation-delay: 750ms;
+}
+.delay-900 {
+  animation-delay: 900ms;
+}
 
 .fill-both {
   animation-fill-mode: both !important;
@@ -698,4 +775,3 @@ textarea:focus {
 .will-change-transform {
   will-change: transform, opacity;
 }
-

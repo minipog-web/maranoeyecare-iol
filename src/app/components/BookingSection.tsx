@@ -35,7 +35,7 @@ const whatHappensNext = [
     step: '2',
     icon: 'PhoneIcon',
     title: 'We Call Within 1 Day',
-    desc: "Our team confirms a time that works for you.",
+    desc: 'Our team confirms a time that works for you.',
   },
   {
     step: '3',
@@ -59,6 +59,7 @@ export default function BookingSection() {
   const [step, setStep] = useState<1 | 2>(1);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -68,7 +69,7 @@ export default function BookingSection() {
 
   const handleStep1 = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.firstName && form.phone && form.location) {
+    if (form.firstName && form.phone && form.location && form.email && form.preferredContact) {
       setStep(2);
     }
   };
@@ -76,6 +77,7 @@ export default function BookingSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMessage(null);
 
     try {
       const response = await fetch('/api/book-consultation', {
@@ -88,23 +90,29 @@ export default function BookingSection() {
         setSubmitted(true);
       } else {
         const data = await response.json();
-        alert(data.error || 'Something went wrong. Please try again or call us directly.');
+        setErrorMessage(
+          data.error ||
+            'We encountered an issue submitting your request. Please try again or call us directly.'
+        );
       }
     } catch (error) {
       console.error('Submission error:', error);
-      alert('Network error. Please check your connection or call us directly.');
+      setErrorMessage(
+        'A network connection issue occurred. Please check your connection or call us directly.'
+      );
     } finally {
       setLoading(false);
     }
   };
 
   const inputClass = `w-full px-4 py-3.5 ${styles.premiumInput} rounded-2xl text-base sm:text-sm focus:outline-none min-h-[52px] touch-manipulation`;
-  const labelClass = 'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
+  const labelClass =
+    'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
 
   return (
     <section
       id="booking"
-      className="py-16 sm:py-28 border-t border-border relative overflow-hidden"
+      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#080c14]"
     >
       {/* Background */}
       <div className="absolute inset-0 radial-glow-primary opacity-70" />
@@ -115,31 +123,35 @@ export default function BookingSection() {
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
           {/* Left: CTA copy */}
           <div className="lg:sticky lg:top-28">
-            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">
-              IOL Consultation
+            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
+              {`IOL Consultation`}
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
-              Don&apos;t Let Your Vision{' '}
-              <span className="text-gradient-primary font-semibold">Get Worse</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6 whitespace-nowrap">
+              {`Reclaim`}{' '}
+              <span className="font-semibold text-gradient-primary">{`Clear Vision`}</span>
             </h2>
 
             {/* Urgency framing */}
             <div className="flex items-start gap-3 mb-5 sm:mb-6 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20">
-              <Icon name="ExclamationTriangleIcon" size={18} className="text-amber-400 shrink-0 mt-0.5" />
+              <Icon
+                name="ExclamationTriangleIcon"
+                size={18}
+                className="text-amber-400 shrink-0 mt-0.5"
+              />
               <p className="text-sm text-amber-200/80 leading-relaxed">
-                <strong className="text-amber-300 font-semibold">Cataracts only progress</strong> — they never improve on their own. Every week you wait, your vision gets a little worse and recovery becomes a little longer.
+                <strong className="text-amber-300 font-semibold">{`Cataracts only progress`}</strong>
+                {` and never improve on their own. Waiting makes vision worse and recovery longer.`}
               </p>
             </div>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10">
-              Book a no-obligation consultation and know exactly which lens matches your eyes,
-              lifestyle, and goals.
+              {`Book a no-obligation consultation and know exactly which lens matches your eyes, lifestyle, and goals.`}
             </p>
 
             {/* What happens next */}
             <div className="mb-8 sm:mb-10">
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground mb-5">
-                What Happens Next
+                {`What Happens Next`}
               </p>
               <div className="relative">
                 {/* Connecting line */}
@@ -149,7 +161,11 @@ export default function BookingSection() {
                     <div key={item.step} className="flex items-start gap-4 group">
                       <div className="relative shrink-0">
                         <div className="w-11 h-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors z-10 relative">
-                          <Icon name={item.icon as 'PhoneIcon'} size={18} className="text-primary" />
+                          <Icon
+                            name={item.icon as 'PhoneIcon'}
+                            size={18}
+                            className="text-primary"
+                          />
                         </div>
                         {i < whatHappensNext.length - 1 && (
                           <div className="absolute left-1/2 -translate-x-1/2 top-full w-px h-5 bg-primary/15 sm:hidden" />
@@ -184,7 +200,7 @@ export default function BookingSection() {
             {/* Phone numbers */}
             <div className="border-t border-border pt-6 sm:pt-8">
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                Or call us directly
+                {`Or call us directly`}
               </p>
               <div className="space-y-1">
                 {[
@@ -195,7 +211,7 @@ export default function BookingSection() {
                   <a
                     key={loc.city}
                     href={`tel:${loc.phone.replace(/-/g, '')}`}
-                    className="flex items-center gap-3 text-sm hover:text-primary transition-colors group py-3 touch-manipulation min-h-[48px] rounded-xl px-2 hover:bg-primary/5"
+                    className="flex items-center gap-3 text-sm hover:text-primary transition-colors group py-3 touch-manipulation min-h-[48px] rounded-xl px-2 hover:bg-primary/5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >
                     <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
                     <span className="text-muted-foreground font-medium w-20 sm:w-24">
@@ -212,7 +228,7 @@ export default function BookingSection() {
 
           {/* Right: 2-Step Form */}
           <div
-            className={`glass-card border border-border rounded-3xl p-5 sm:p-8 md:p-10 ${styles.formCard}`}
+            className={`glass-card border border-border rounded-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${styles.formCard}`}
           >
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-12 sm:py-16">
@@ -220,19 +236,18 @@ export default function BookingSection() {
                   <Icon name="CheckCircleIcon" size={36} className="text-primary" />
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-medium text-foreground mb-3">
-                  Request Received
+                  {`Request Received`}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed max-w-sm">
-                  You&apos;ve taken the most important step toward better vision. A member of the
-                  Marano Eye Care team will contact you within one business day to confirm your
-                  consultation.
+                  {`You`}&apos;
+                  {`ve taken the most important step toward better vision. A member of the Marano Eye Care team will contact you within one business day to confirm your consultation.`}
                 </p>
                 <p className="text-sm text-primary/80 mt-3 font-medium italic max-w-sm">
-                  Most patients say their only regret is not doing this sooner.
+                  {`Most patients say their only regret is not doing this sooner.`}
                 </p>
                 <a
                   href="tel:9733220100"
-                  className="text-sm text-primary mt-6 font-semibold hover:underline touch-manipulation"
+                  className="text-sm text-primary mt-6 font-semibold hover:underline touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   Need immediate assistance? Call 973-322-0100
                 </a>
@@ -241,6 +256,21 @@ export default function BookingSection() {
               <>
                 {/* Step progress */}
                 <div className="mb-6 sm:mb-8">
+                  {errorMessage && (
+                    <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex gap-3 text-sm text-red-200 leading-relaxed">
+                      <Icon
+                        name="ExclamationCircleIcon"
+                        size={18}
+                        className="text-red-400 shrink-0 mt-0.5"
+                      />
+                      <div>
+                        <strong className="font-semibold block text-red-300 mb-0.5">
+                          Submission Error
+                        </strong>
+                        {errorMessage}
+                      </div>
+                    </div>
+                  )}
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground">
                       {step === 1 ? 'Reserve Your Consultation' : 'Tell Us About Your Vision'}
@@ -259,7 +289,7 @@ export default function BookingSection() {
                   </div>
                   <p className="text-xs text-muted-foreground mt-2">
                     {step === 1
-                      ? 'We only need 3 things to get started.'
+                      ? 'Provide your contact details to begin.'
                       : 'Optional — helps Dr. Marano prepare for your visit.'}
                   </p>
                 </div>
@@ -336,12 +366,54 @@ export default function BookingSection() {
                       </select>
                     </div>
 
+                    <div>
+                      <label htmlFor="email" className={labelClass}>
+                        Email Address *
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        placeholder="jane.smith@example.com"
+                        required
+                        className={inputClass}
+                      />
+                    </div>
+
+                    <div>
+                      <label className={labelClass}>Preferred Contact Method *</label>
+                      <div className="grid grid-cols-3 gap-3">
+                        {[
+                          { value: 'email', label: 'Email' },
+                          { value: 'phone', label: 'Call' },
+                          { value: 'text', label: 'Text' },
+                        ].map((method) => (
+                          <button
+                            key={method.value}
+                            type="button"
+                            onClick={() =>
+                              setForm((prev) => ({ ...prev, preferredContact: method.value }))
+                            }
+                            className={`px-3 py-3 rounded-xl border text-sm font-medium transition-all ${
+                              form.preferredContact === method.value
+                                ? 'bg-primary/10 border-primary text-primary'
+                                : 'bg-transparent border-border hover:border-muted-foreground/30 text-muted-foreground'
+                            }`}
+                          >
+                            {method.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
                     <button
                       type="submit"
-                      className="w-full pl-8 pr-3 py-2.5 bg-primary text-primary-foreground rounded-full text-base font-bold flex items-center justify-between gap-4 hover:bg-accent transition-spring active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_0_30px_rgba(0,201,177,0.2)] btn-shimmer mt-2 group"
+                      className="w-full pl-8 pr-3 py-2.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold uppercase tracking-wider flex items-center justify-between gap-4 hover:bg-accent transition-all active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_14px_rgba(0,201,177,0.15)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     >
-                      <span>Continue →  Tell Us About Your Goals</span>
-                      <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0 transition-spring group-hover:scale-105 group-hover:bg-white/35">
+                      <span>Continue to Vision Goals</span>
+                      <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 transition-all duration-200 group-hover:scale-[1.03] group-hover:bg-white/20">
                         <Icon
                           name="ArrowRightIcon"
                           size={16}
@@ -351,14 +423,18 @@ export default function BookingSection() {
                     </button>
 
                     <p className="text-[11px] text-muted-foreground/70 text-center pt-1">
-                      No commitment required · We&apos;ll call within 1 business day · Your info stays private
+                      No commitment required · We&apos;ll call within 1 business day · Your info
+                      stays private
                     </p>
                   </form>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                     <div>
                       <label htmlFor="email" className={labelClass}>
-                        Email Address <span className="text-muted-foreground/50 normal-case font-normal">(optional)</span>
+                        Email Address{' '}
+                        <span className="text-muted-foreground/50 normal-case font-normal">
+                          (optional)
+                        </span>
                       </label>
                       <input
                         id="email"
@@ -391,7 +467,10 @@ export default function BookingSection() {
 
                     <div>
                       <label htmlFor="lens" className={labelClass}>
-                        Lens I&apos;m Interested In <span className="text-muted-foreground/50 normal-case font-normal">(optional)</span>
+                        Lens I&apos;m Interested In{' '}
+                        <span className="text-muted-foreground/50 normal-case font-normal">
+                          (optional)
+                        </span>
                       </label>
                       <select
                         id="lens"
@@ -411,7 +490,10 @@ export default function BookingSection() {
 
                     <div>
                       <label htmlFor="message" className={labelClass}>
-                        Questions or Notes <span className="text-muted-foreground/50 normal-case font-normal">(optional)</span>
+                        Questions or Notes{' '}
+                        <span className="text-muted-foreground/50 normal-case font-normal">
+                          (optional)
+                        </span>
                       </label>
                       <textarea
                         id="message"
@@ -428,7 +510,7 @@ export default function BookingSection() {
                       <button
                         type="button"
                         onClick={() => setStep(1)}
-                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm font-medium transition-all duration-200 min-h-[52px] touch-manipulation"
+                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm font-medium transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         <Icon name="ArrowLeftIcon" size={14} />
                         Back
@@ -436,7 +518,7 @@ export default function BookingSection() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 pl-6 pr-3 py-2.5 bg-primary text-primary-foreground rounded-full text-base font-bold flex items-center justify-between gap-4 hover:bg-accent transition-spring active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[52px] touch-manipulation shadow-[0_0_30px_rgba(0,201,177,0.2)] btn-shimmer group"
+                        className="flex-1 pl-6 pr-3 py-2.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold uppercase tracking-wider flex items-center justify-between gap-4 hover:bg-accent transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[52px] touch-manipulation shadow-[0_4px_14px_rgba(0,201,177,0.15)] btn-shimmer group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         {loading ? (
                           <span className="flex items-center gap-3">
@@ -446,7 +528,7 @@ export default function BookingSection() {
                         ) : (
                           <>
                             <span>Reserve My Consultation</span>
-                            <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0 transition-spring group-hover:scale-105 group-hover:bg-white/35">
+                            <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 transition-all duration-200 group-hover:scale-[1.03] group-hover:bg-white/20">
                               <Icon
                                 name="ArrowRightIcon"
                                 size={16}
@@ -459,8 +541,8 @@ export default function BookingSection() {
                     </div>
 
                     <p className="text-[11px] text-muted-foreground/70 text-center pt-1">
-                      By submitting, you agree to be contacted by Marano Eye Care. Your information is
-                      never shared.
+                      By submitting, you agree to be contacted by Marano Eye Care. Your information
+                      is never shared.
                     </p>
                   </form>
                 )}

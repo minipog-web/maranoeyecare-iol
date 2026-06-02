@@ -35,7 +35,7 @@ export default function StickyCTABar() {
           {/* Phone CTA */}
           <a
             href="tel:9733220100"
-            className="flex items-center justify-center w-12 h-12 rounded-full border border-border bg-white/[0.05] hover:border-primary/50 hover:bg-primary/10 transition-all touch-manipulation shrink-0"
+            className="flex items-center justify-center w-12 h-12 rounded-xl border border-border bg-white/[0.05] hover:border-primary/50 hover:bg-primary/10 transition-all touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             aria-label="Call us"
           >
             <Icon name="PhoneIcon" size={18} className="text-primary" />
@@ -44,10 +44,10 @@ export default function StickyCTABar() {
           {/* Primary CTA */}
           <a
             href="#booking"
-            className="flex-1 flex items-center justify-between pl-5 pr-3 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_0_20px_rgba(0,201,177,0.3)] group"
+            className="flex-1 flex items-center justify-between pl-5 pr-3 py-2.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_14px_rgba(0,201,177,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <span>Book Free Consultation</span>
-            <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors">
+            <span className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors">
               <Icon name="ArrowRightIcon" size={13} />
             </span>
           </a>
@@ -55,7 +55,7 @@ export default function StickyCTABar() {
           {/* Dismiss */}
           <button
             onClick={() => setDismissed(true)}
-            className="flex items-center justify-center w-8 h-8 text-muted-foreground/50 hover:text-muted-foreground transition-colors touch-manipulation shrink-0"
+            className="flex items-center justify-center w-8 h-8 text-muted-foreground/50 hover:text-muted-foreground transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             aria-label="Dismiss"
           >
             <Icon name="XMarkIcon" size={16} />
@@ -63,7 +63,10 @@ export default function StickyCTABar() {
         </div>
 
         {/* Safe area for iPhone home indicator */}
-        <div className="h-safe-area-inset-bottom" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }} />
+        <div
+          className="h-safe-area-inset-bottom"
+          style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+        />
       </div>
     </div>
   );

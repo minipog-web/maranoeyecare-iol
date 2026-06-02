@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <a
               href="https://www.maranoeyecare.com"
-              className="hover:opacity-80 transition-opacity block"
+              className="hover:opacity-80 transition-opacity block rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <AppLogo
                 src="/assets/images/marano_logo.png"
@@ -33,7 +33,7 @@ export default function Footer() {
               <Link
                 key={link?.href}
                 href={link?.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-1"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-1 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 {link?.label}
               </Link>
@@ -44,7 +44,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <a
               href="tel:9733220100"
-              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation"
+              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <Icon name="PhoneIcon" size={14} className="text-primary" />
               973-322-0100
@@ -52,14 +52,14 @@ export default function Footer() {
             <span className="text-border hidden sm:inline">·</span>
             <Link
               href="#"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               Privacy
             </Link>
             <span className="text-border hidden sm:inline">·</span>
             <Link
               href="#"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               Terms
             </Link>
@@ -72,7 +72,10 @@ export default function Footer() {
           </p>
           <p className="text-center">
             Livingston · Denville · Newark, NJ ·{' '}
-            <a href="https://maranoeyecare.com" className="hover:text-primary transition-colors">
+            <a
+              href="https://maranoeyecare.com"
+              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            >
               maranoeyecare.com
             </a>
           </p>

@@ -21,16 +21,32 @@ function buildEmailHtml(s: {
   message: string;
 }): string {
   const patientRows =
-    '<p style="margin:4px 0;"><strong>Name:</strong> ' + s.firstName + ' ' + s.lastName + '</p>' +
-    '<p style="margin:4px 0;"><strong>Email:</strong> ' + s.email + '</p>' +
-    '<p style="margin:4px 0;"><strong>Phone:</strong> ' + s.phone + '</p>' +
-    '<p style="margin:4px 0;"><strong>Preferred Contact Method:</strong> ' + (s.preferredContact || 'Not specified') + '</p>' +
-    '<p style="margin:4px 0;"><strong>Preferred Location:</strong> ' + s.location + '</p>';
+    '<p style="margin:4px 0;"><strong>Name:</strong> ' +
+    s.firstName +
+    ' ' +
+    s.lastName +
+    '</p>' +
+    '<p style="margin:4px 0;"><strong>Email:</strong> ' +
+    s.email +
+    '</p>' +
+    '<p style="margin:4px 0;"><strong>Phone:</strong> ' +
+    s.phone +
+    '</p>' +
+    '<p style="margin:4px 0;"><strong>Preferred Contact Method:</strong> ' +
+    (s.preferredContact || 'Not specified') +
+    '</p>' +
+    '<p style="margin:4px 0;"><strong>Preferred Location:</strong> ' +
+    s.location +
+    '</p>';
 
   const inquiryRows =
-    '<p style="margin:4px 0;"><strong>Lens of Interest:</strong> ' + (s.lens || 'Not specified') + '</p>' +
+    '<p style="margin:4px 0;"><strong>Lens of Interest:</strong> ' +
+    (s.lens || 'Not specified') +
+    '</p>' +
     '<p style="margin:4px 0;"><strong>Message:</strong></p>' +
-    '<p style="color:#666;white-space:pre-wrap;">' + (s.message || 'No additional notes provided.') + '</p>';
+    '<p style="color:#666;white-space:pre-wrap;">' +
+    (s.message || 'No additional notes provided.') +
+    '</p>';
 
   return (
     '<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f9f9f9;padding:24px;border-radius:8px;">' +
@@ -116,7 +132,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log('Email sent successfully:', result.messageId);
+    console.info('Email sent successfully:', result.messageId);
     return NextResponse.json({ success: true, messageId: result.messageId });
   } catch (error) {
     console.error('Booking submission error:', error);

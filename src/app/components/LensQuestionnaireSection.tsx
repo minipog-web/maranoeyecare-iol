@@ -65,7 +65,7 @@ const LENSES: Record<string, LensResult> = {
       'The PanOptix Pro trifocal IOL is the only FDA-approved trifocal lens in the US, delivering clear vision at all three focal points — near, intermediate, and distance. Perfect for patients who want to minimize reading glasses entirely and live a fully glasses-free lifestyle.',
     highlights: [
       'Near, intermediate & distance vision',
-      '99% of patients would choose it again',
+      '99% would choose a premium lens again',
       'Only FDA-approved trifocal in the US',
       'Ideal for reading without glasses',
       'Best for glasses-free lifestyle',
@@ -268,6 +268,7 @@ export default function LensQuestionnaireSection() {
   const [result, setResult] = useState<LensResult | null>(null);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [animating, setAnimating] = useState(false);
+  const [calculating, setCalculating] = useState(false);
   const [answerLabels, setAnswerLabels] = useState<string[]>([]);
 
   const currentQuestion = QUESTIONS[currentId];
@@ -282,8 +283,14 @@ export default function LensQuestionnaireSection() {
         const key = option.next.replace('result:', '');
         const lens = LENSES[key];
         const updatedAnswers = [...answerLabels, option.label];
-        setResult(lens);
         setAnswerLabels(updatedAnswers);
+        setCalculating(true);
+
+        setTimeout(() => {
+          setResult(lens);
+          setCalculating(false);
+        }, 1800);
+
         // Notify staff via Brevo
         fetch('/api/notify-staff', {
           method: 'POST',
@@ -311,6 +318,7 @@ export default function LensQuestionnaireSection() {
     setAnswerLabels((a) => a.slice(0, -1));
     setCurrentId(prev);
     setResult(null);
+    setCalculating(false);
   }
 
   function handleRestart() {
@@ -319,12 +327,13 @@ export default function LensQuestionnaireSection() {
     setResult(null);
     setSelectedOption(null);
     setAnswerLabels([]);
+    setCalculating(false);
   }
 
   const progress = result ? 100 : getProgressPercent(history);
 
   return (
-    <section id="lens-quiz" className="relative py-16 sm:py-28 overflow-hidden">
+    <section id="lens-quiz" className="relative py-12 sm:py-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-60" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
@@ -333,12 +342,13 @@ export default function LensQuestionnaireSection() {
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(0,201,177,0.8)]" />
             Lens Recommendation Quiz
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            Build Your <span className="text-gradient-primary">Perfect Vision Plan</span>
+          <h2 className="font-display text-3xl sm:text-4xl font-light text-foreground mb-4 leading-tight">
+            Build Your{' '}
+            <span className="font-semibold text-gradient-primary">Perfect Vision Plan</span>
           </h2>
           <p className="text-muted-foreground text-base max-w-xl mx-auto">
             Answer a few quick questions and we&apos;ll recommend the IOL best suited to your vision
@@ -350,10 +360,16 @@ export default function LensQuestionnaireSection() {
         <div className="mb-6 sm:mb-8">
           <div className="flex justify-between items-center mb-2">
             <span className="text-xs text-muted-foreground">
-              {result ? 'Complete' : `Question ${history.length + 1}`}
+              {calculating
+                ? 'Analyzing parameters...'
+                : result
+                  ? 'Complete'
+                  : `Question ${history.length + 1}`}
             </span>
             <span className="text-xs text-primary font-medium">
-              {progress >= 60 && !result ? (
+              {calculating ? (
+                'Processing...'
+              ) : progress >= 60 && !result ? (
                 <span className="inline-flex items-center gap-1.5">
                   <span className="animate-pulse">Almost there!</span> {progress}%
                 </span>
@@ -364,7 +380,7 @@ export default function LensQuestionnaireSection() {
           </div>
           <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
             <div
-              className={`${progressWidthClass(progress)} h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out`}
+              className={`${progressWidthClass(calculating ? 95 : progress)} h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out`}
             />
           </div>
         </div>
@@ -372,10 +388,47 @@ export default function LensQuestionnaireSection() {
         {/* Card */}
         <div
           className={`relative bg-card border rounded-2xl p-5 sm:p-8 card-glow transition-all duration-300 ${
-            animating ? 'opacity-60 scale-[0.99]' : 'opacity-100 scale-100'
+            animating && !calculating ? 'opacity-60 scale-[0.99]' : 'opacity-100 scale-100'
           }`}
         >
-          {!result ? (
+          {calculating ? (
+            <div className="flex flex-col items-center justify-center py-10 text-center min-h-[300px]">
+              {/* Spinning optical grid/reticle simulator */}
+              <div className="relative w-24 h-24 mb-8">
+                {/* Outermost pulsing ring */}
+                <div className="absolute inset-0 rounded-full border border-primary/20 animate-ping" />
+                {/* Secondary rotating scanner ticks */}
+                <div className="absolute inset-2 rounded-full border border-dashed border-primary/45 animate-[spin_8s_linear_infinite]" />
+                {/* Inner solid tracking ring */}
+                <div className="absolute inset-4 rounded-full border border-primary/60" />
+                {/* Core focus dot */}
+                <div className="absolute inset-9 rounded-full bg-primary/20 border border-primary flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                </div>
+              </div>
+              <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-4 tracking-wide uppercase">
+                Analyzing Biometric Parameters
+              </h3>
+              <div className="w-64 max-w-full text-left font-mono text-[10px] sm:text-xs text-muted-foreground/85 space-y-1.5 bg-white/[0.01] border border-white/[0.04] p-3.5 rounded-lg">
+                <div className="flex items-center justify-between text-primary/80">
+                  <span>{`>`} Scanning answers...</span>
+                  <span className="animate-pulse">PASS</span>
+                </div>
+                <div className="flex items-center justify-between text-muted-foreground animate-[fade-in_0.4s_ease-out_0.4s_both]">
+                  <span>{`>`} Assessing lifestyle tier...</span>
+                  <span className="font-semibold text-foreground">OK</span>
+                </div>
+                <div className="flex items-center justify-between text-muted-foreground animate-[fade-in_0.4s_ease-out_0.8s_both]">
+                  <span>{`>`} Evaluating glare tolerance...</span>
+                  <span className="font-semibold text-foreground">OK</span>
+                </div>
+                <div className="flex items-center justify-between text-muted-foreground animate-[fade-in_0.4s_ease-out_1.2s_both]">
+                  <span>{`>`} Calibrating lens optics...</span>
+                  <span className="font-semibold text-primary animate-pulse">CALIBRATED</span>
+                </div>
+              </div>
+            </div>
+          ) : !result ? (
             <>
               {/* Question */}
               <div className="mb-5 sm:mb-6">
@@ -393,14 +446,14 @@ export default function LensQuestionnaireSection() {
                   <button
                     key={idx}
                     onClick={() => handleOption(opt, idx)}
-                    className={`group w-full text-left flex items-start gap-3 sm:gap-4 p-4.5 rounded-2xl border transition-spring cursor-pointer touch-manipulation min-h-[64px]
+                    className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-spring cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
                       ${
                         selectedOption === idx
                           ? 'border-primary bg-primary/10 shadow-[0_0_24px_rgba(0,201,177,0.12)] scale-[0.99]'
                           : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:scale-[1.01] active:scale-[0.99]'
                       }`}
                   >
-                    <span className="text-xl sm:text-2xl mt-0.5 shrink-0">{opt.icon}</span>
+                    <span className="text-xl sm:text-2xl shrink-0 leading-none">{opt.icon}</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-foreground font-medium text-sm sm:text-base leading-snug">
                         {opt.label}
@@ -410,7 +463,7 @@ export default function LensQuestionnaireSection() {
                       )}
                     </div>
                     <span
-                      className={`shrink-0 mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-spring
+                      className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-spring
                         ${
                           selectedOption === idx
                             ? 'border-primary bg-primary'
@@ -429,7 +482,7 @@ export default function LensQuestionnaireSection() {
               {history.length > 0 && (
                 <button
                   onClick={handleBack}
-                  className="mt-5 flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm transition-colors touch-manipulation py-2"
+                  className="mt-5 flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm transition-colors touch-manipulation py-2 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   <svg
                     className="w-4 h-4"
@@ -464,11 +517,14 @@ export default function LensQuestionnaireSection() {
                         ? '68%'
                         : result.key === 'eyhance'
                           ? '81%'
-                          : '100%'}
-                    {' '}of patients with your vision profile
+                          : '100%'}{' '}
+                    of patients with your vision profile
                   </strong>{' '}
                   chose {result.name} — and{' '}
-                  {result.key === 'monofocal' ? 'appreciate the reliability' : '99% say they\'d choose it again'}.
+                  {result.key === 'monofocal'
+                    ? 'appreciate the reliability'
+                    : "99% say they'd choose a premium lens again"}
+                  .
                 </p>
               </div>
 
@@ -541,7 +597,11 @@ export default function LensQuestionnaireSection() {
                               stroke="currentColor"
                               strokeWidth={2.5}
                             >
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M5 13l4 4L19 7"
+                              />
                             </svg>
                           </span>
                           <span className="text-foreground/80">{h}</span>
@@ -556,7 +616,7 @@ export default function LensQuestionnaireSection() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href="#booking"
-                  className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-background font-semibold text-sm hover:bg-primary/90 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation"
+                  className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#040506] font-semibold text-sm hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   {result.cta}
                   <svg
@@ -575,7 +635,7 @@ export default function LensQuestionnaireSection() {
                 </a>
                 <button
                   onClick={handleRestart}
-                  className="flex items-center justify-center gap-2 px-5 py-4 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm transition-all duration-200 min-h-[52px] touch-manipulation"
+                  className="flex items-center justify-center gap-2 px-5 py-4 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   <svg
                     className="w-4 h-4"
@@ -599,34 +659,6 @@ export default function LensQuestionnaireSection() {
                 strong starting point. In your consultation, he&apos;ll confirm the perfect match
                 for your unique eyes.
               </p>
-
-              {/* Post-quiz email capture — Endowment Effect + micro-conversion */}
-              <div className="mt-5 pt-5 border-t border-white/[0.08]">
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.07]">
-                  <span className="text-lg shrink-0">📄</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-semibold text-foreground mb-1">
-                      Get your personalized lens summary
-                    </p>
-                    <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
-                      We&apos;ll email you a PDF of your {result.name} recommendation to bring to your consultation.
-                    </p>
-                    <div className="flex gap-2">
-                      <input
-                        type="email"
-                        placeholder="your@email.com"
-                        className="flex-1 px-3 py-2 rounded-xl bg-white/[0.05] border border-white/[0.1] text-xs text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 min-h-[40px]"
-                      />
-                      <button
-                        type="button"
-                        className="px-4 py-2 bg-primary/15 text-primary border border-primary/30 rounded-xl text-xs font-bold hover:bg-primary/25 transition-colors min-h-[40px] whitespace-nowrap"
-                      >
-                        Send PDF
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           )}
         </div>

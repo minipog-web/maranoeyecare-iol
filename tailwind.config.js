@@ -47,7 +47,10 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'sans-serif'],
-        display: ['Fraunces', 'serif'],
+        display: ['var(--font-fraunces)', 'serif'],
+      },
+      screens: {
+        xs: '375px',
       },
       fontSize: {
         '8xl': ['6rem', { lineHeight: '1' }],

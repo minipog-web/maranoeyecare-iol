@@ -23,8 +23,8 @@ const lenses = [
     images: {
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
-        intermediate: '/assets/images/sharp_day_intermediate_pro.png',
-        near: '/assets/images/panoptix_day_near_pro.png',
+        intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
+        near: '/assets/images/panoptix_day_near_pro.jpg',
       },
       night: {
         distance: '/assets/images/panoptix_night_pro_v2.jpg',
@@ -39,7 +39,7 @@ const lenses = [
       { label: 'Night Vision Quality', value: 'Mild Halos', score: 72 },
     ],
     highlights: [
-      '99% of patients would choose again',
+      '99% would choose a premium lens again',
       'ENLIGHTEN NXT: 94% light capture',
       'True 20/20 vision at all 3 distances',
       'Maximum independence from glasses',
@@ -73,8 +73,8 @@ const lenses = [
     images: {
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
-        intermediate: '/assets/images/sharp_day_intermediate_pro.png',
-        near: '/assets/images/vivity_day_near_pro.png',
+        intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
+        near: '/assets/images/vivity_day_near_pro.jpg',
       },
       night: {
         distance: '/assets/images/vivity_night_pro.jpg',
@@ -122,9 +122,9 @@ const lenses = [
     twSpecBar: 'bg-[#10B981]',
     images: {
       day: {
-        distance: '/assets/images/eyhance_day_distance_pro.png',
-        intermediate: '/assets/images/eyhance_day_intermediate_pro_v2.png?v=2',
-        near: '/assets/images/eyhance_day_near_pro_v2.png?v=2',
+        distance: '/assets/images/eyhance_day_distance_pro.jpg',
+        intermediate: '/assets/images/eyhance_day_intermediate_pro_v2.jpg',
+        near: '/assets/images/eyhance_day_near_pro_v2.jpg',
       },
       night: {
         distance: '/assets/images/eyhance_night_pro.jpg',
@@ -172,9 +172,9 @@ const lenses = [
     twSpecBar: 'bg-[#64748B]',
     images: {
       day: {
-        distance: '/assets/images/monofocal_day_distance_pro.png',
-        intermediate: '/assets/images/monofocal_day_intermediate_pro.png',
-        near: '/assets/images/monofocal_day_near_pro_v2.png?v=2',
+        distance: '/assets/images/monofocal_day_distance_pro.jpg',
+        intermediate: '/assets/images/monofocal_day_intermediate_pro.jpg',
+        near: '/assets/images/monofocal_day_near_pro_v2.jpg',
       },
       night: {
         distance: '/assets/images/monofocal_night_pro.jpg',
@@ -355,6 +355,7 @@ export default function LensVisionComparisonSection() {
   const [glowPosition, setGlowPosition] = useState<{ x: string; y: string } | null>(null);
   const [mouseCoords, setMouseCoords] = useState<{ [key: string]: { x: number; y: number } }>({});
   const [hoveredLensId, setHoveredLensId] = useState<string | null>(null);
+  const [hoveredCta, setHoveredCta] = useState<string | null>(null);
 
   const selectPremiumLens = (id: string) => {
     setActivePremiumLensId(id);
@@ -390,7 +391,7 @@ export default function LensVisionComparisonSection() {
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>, lensId: string) => {
     setHoveredLensId(lensId);
     const cardRect = e.currentTarget.getBoundingClientRect();
-    const sectionElement = document.getElementById('iol-simulator');
+    const sectionElement = document.getElementById('lenses');
     if (sectionElement) {
       const sectionRect = sectionElement.getBoundingClientRect();
       const x = cardRect.left - sectionRect.left + cardRect.width / 2;
@@ -513,7 +514,7 @@ export default function LensVisionComparisonSection() {
   };
 
   return (
-    <section id="iol-simulator" className="py-16 sm:py-28 relative overflow-hidden">
+    <section id="lenses" className="py-12 sm:py-20 relative overflow-hidden">
       <div className="absolute inset-0 vision-section-bg opacity-40" />
 
       {/* Subtle Central Background Ambient Glow */}
@@ -532,12 +533,12 @@ export default function LensVisionComparisonSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-8 sm:mb-12">
           <p className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-4 animate-fade-in">
             Interactive Vision Simulator
           </p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-6 leading-tight">
-            See Your <span className="text-gradient-primary font-medium">Future Vision.</span>
+            See Your <span className="font-semibold text-gradient-primary">Future Vision.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Compare visual outcomes across distance, intermediate, and near ranges to see which lens
@@ -545,15 +546,14 @@ export default function LensVisionComparisonSection() {
           </p>
         </div>
 
-        {/* Unified Simulator Card Viewport */}
         <div
-          id="simulator-viewport"
-          className="glass-card border border-white/[0.08] backdrop-blur-md rounded-[32px] p-5 sm:p-8 lg:p-10 mb-16 shadow-[0_15px_40px_rgba(0,0,0,0.4)] relative z-10"
+          id="iol-simulator"
+          className="glass-card border border-white/[0.08] backdrop-blur-md rounded-[32px] p-3 sm:p-5 lg:p-10 mb-10 sm:mb-12 shadow-[0_15px_40px_rgba(0,0,0,0.4)] relative z-10"
         >
           {/* Integrated Toggles Bar */}
           <div className="flex flex-col gap-6 pb-6 mb-8 border-b border-white/[0.06]">
             {/* Centered Environment Panel */}
-            <div className="flex flex-col gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/[0.06] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)] backdrop-blur-lg max-w-4xl mx-auto w-full">
+            <div className="flex flex-col gap-4 sm:gap-6 p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/[0.02] border border-white/[0.06] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)] backdrop-blur-lg max-w-4xl mx-auto w-full">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
                 {/* Column 1: Lighting Time */}
                 <div className="md:col-span-4 flex flex-col justify-center md:border-r border-white/[0.06] md:pr-6">
@@ -573,7 +573,7 @@ export default function LensVisionComparisonSection() {
                       <button
                         key={t}
                         onClick={() => handleTimeOfDayChange(t)}
-                        className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-300 ${
+                        className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                           timeOfDay === t
                             ? t === 'night'
                               ? 'text-[#60A5FA]'
@@ -613,7 +613,7 @@ export default function LensVisionComparisonSection() {
                           <button
                             key={d}
                             onClick={() => setActiveDistance(d)}
-                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-center transition-all duration-300 relative group active:scale-[0.97] ${
+                            className={`flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border text-center transition-all duration-300 relative group active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                               isActive
                                 ? 'bg-white/[0.04] text-white border-primary/40 shadow-[0_4px_20px_rgba(0,201,177,0.15)]'
                                 : 'bg-transparent text-muted-foreground border-white/[0.06] hover:border-white/[0.12] hover:text-foreground'
@@ -621,15 +621,15 @@ export default function LensVisionComparisonSection() {
                           >
                             <AppIcon
                               name={details.icon}
-                              size={20}
-                              className={`mb-2 transition-transform duration-300 group-hover:scale-110 ${
+                              size={16}
+                              className={`mb-1.5 sm:mb-2 transition-transform duration-300 group-hover:scale-110 ${
                                 isActive ? 'text-primary' : 'text-muted-foreground'
                               }`}
                             />
-                            <span className="block text-xs font-bold leading-none">
+                            <span className="block text-[10px] sm:text-xs font-bold leading-none">
                               {details.label}
                             </span>
-                            <span className="block text-[8px] text-muted-foreground/60 font-light mt-1 truncate max-w-full">
+                            <span className="hidden sm:block text-[8px] text-muted-foreground/60 font-light mt-1 truncate max-w-full">
                               {details.desc.split('(')[0].trim()}
                             </span>
                           </button>
@@ -637,7 +637,7 @@ export default function LensVisionComparisonSection() {
                       })}
                     </div>
                   ) : (
-                    <div className="flex items-center gap-4 p-3 rounded-2xl bg-blue-950/10 border border-blue-900/20 text-left w-full h-full min-h-[74px]">
+                    <div className="flex items-center gap-4 p-3 rounded-xl bg-blue-950/10 border border-blue-900/20 text-left w-full h-full min-h-[74px]">
                       <AppIcon
                         name="ExclamationTriangleIcon"
                         size={24}
@@ -697,7 +697,7 @@ export default function LensVisionComparisonSection() {
                       <button
                         key={lens.id}
                         onClick={() => selectPremiumLens(lens.id)}
-                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] ${
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                           isActive
                             ? 'bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
                             : 'text-muted-foreground hover:text-foreground'
@@ -824,14 +824,14 @@ export default function LensVisionComparisonSection() {
               <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] text-center">
                 Select Lens to Simulate
               </span>
-              <div className="flex p-0.5 bg-black/40 rounded-2xl border border-white/[0.06] w-full">
+              <div className="flex p-0.5 bg-black/40 rounded-xl border border-white/[0.06] w-full min-h-[60px]">
                 {lenses.map((lens) => {
                   const isActive = activeMobileLensId === lens.id;
                   return (
                     <button
                       key={lens.id}
                       onClick={() => selectMobileLens(lens.id)}
-                      className={`flex-1 flex flex-col items-center justify-center py-2 rounded-xl text-center transition-all duration-300 active:scale-[0.97] ${
+                      className={`flex-1 flex flex-col items-center justify-center py-2 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                         isActive
                           ? 'bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
                           : 'text-muted-foreground hover:text-foreground'
@@ -888,7 +888,7 @@ export default function LensVisionComparisonSection() {
                     e.preventDefault();
                     setIsPeekingBaseline(false);
                   }}
-                  className="absolute top-3 right-3 z-30 px-3 py-2 bg-black/75 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5"
+                  className="absolute top-3 right-3 z-30 px-3 py-2 bg-black/75 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -974,9 +974,7 @@ export default function LensVisionComparisonSection() {
                 }`}
                 style={{
                   borderColor: isActive ? `${lens.color}40` : undefined,
-                  boxShadow: isActive
-                    ? `0 15px 40px -4px ${lens.color}25`
-                    : undefined,
+                  boxShadow: isActive ? `0 15px 40px -4px ${lens.color}25` : undefined,
                 }}
               >
                 {/* Dynamic Mouse Spotlight Glow */}
@@ -1067,11 +1065,32 @@ export default function LensVisionComparisonSection() {
                   <a
                     href="#booking"
                     onClick={(e) => e.stopPropagation()}
-                    className="w-full py-3 rounded-2xl text-xs font-bold text-center transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 border border-transparent bg-primary text-primary-foreground hover:bg-accent hover:shadow-[0_4px_16px_rgba(0,201,177,0.3)] hover:scale-[1.01]"
+                    onMouseEnter={() => setHoveredCta(lens.id)}
+                    onMouseLeave={() => setHoveredCta(null)}
+                    className="w-full py-3 rounded-xl text-xs font-semibold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[46px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    style={{
+                      backgroundColor:
+                        hoveredCta === lens.id ? `${lens.color}15` : 'rgba(255, 255, 255, 0.03)',
+                      borderColor:
+                        hoveredCta === lens.id ? `${lens.color}40` : 'rgba(255, 255, 255, 0.08)',
+                      boxShadow: hoveredCta === lens.id ? `0 0 16px ${lens.color}20` : 'none',
+                      color: hoveredCta === lens.id ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
+                    }}
                   >
-                    <span>Inquire About {lens.name}</span>
+                    <span>
+                      Select{' '}
+                      {lens.name
+                        .replace('Clareon ', '')
+                        .replace('Tecnis ', '')
+                        .replace('Standard ', '')
+                        .replace(' Pro', '')}
+                    </span>
                     <svg
-                      className="w-3.5 h-3.5 transform transition-transform duration-300 group-hover:translate-x-1 shrink-0"
+                      className="w-3.5 h-3.5 transform transition-transform duration-300 shrink-0"
+                      style={{
+                        transform: hoveredCta === lens.id ? 'translateX(2px)' : 'none',
+                        color: hoveredCta === lens.id ? lens.color : 'currentColor',
+                      }}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1079,7 +1098,7 @@ export default function LensVisionComparisonSection() {
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth={2.5}
+                        strokeWidth={2}
                         d="M14 5l7 7m0 0l-7 7m7-7H3"
                       />
                     </svg>
@@ -1091,7 +1110,7 @@ export default function LensVisionComparisonSection() {
         </div>
 
         {/* Legend / FAQ */}
-        <div className="mt-20 sm:mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
               title: 'Range of Focus',
@@ -1115,11 +1134,13 @@ export default function LensVisionComparisonSection() {
           ))}
         </div>
 
-        <p className="text-center text-[10px] text-muted-foreground/60 mt-12 max-w-3xl mx-auto px-4 uppercase tracking-[0.1em] leading-relaxed">
-          Simulations are for illustrative purposes only and represent a rough estimate of potential
-          visual outcomes. Individual patient experiences and clinical results may vary
-          significantly. A comprehensive consultation with Dr. Marano is required for medical
-          diagnosis and personalized treatment planning.
+        <p className="text-center text-[10px] text-muted-foreground/60 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.1em] leading-relaxed">
+          Simulations are for illustrative purposes only. Specifications represent spectacle
+          independence rates from published clinical data (PanOptix Pro: meta-analysis of 13 studies
+          with 513 patients; Vivity: Alcon clinical data; Eyhance: J&J Vision 5-year follow-up).
+          Individual patient experiences and clinical results may vary significantly. A
+          comprehensive consultation with Dr. Marano is required for medical diagnosis and
+          personalized treatment planning.
         </p>
       </div>
     </section>

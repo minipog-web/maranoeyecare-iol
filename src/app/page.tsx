@@ -5,8 +5,8 @@ import HeroSection from '@/app/components/HeroSection';
 import TrustSection from '@/app/components/TrustSection';
 import TrustBadgeBar from '@/app/components/TrustBadgeBar';
 import LensVisionComparisonSection from '@/app/components/LensVisionComparisonSection';
-import VisionVisualizerSection from '@/app/components/VisionVisualizerSection';
 import LifestyleMatchSection from '@/app/components/LifestyleMatchSection';
+import TestimonialsSection from '@/app/components/TestimonialsSection';
 import LensQuestionnaireSection from '@/app/components/LensQuestionnaireSection';
 import FAQSection from '@/app/components/FAQSection';
 import BookingSection from '@/app/components/BookingSection';
@@ -20,11 +20,9 @@ export default function HomePage() {
       <TrustSection />
       <TrustBadgeBar variant="clinical" />
       <LensVisionComparisonSection />
-      <VisionVisualizerSection />
-      <TrustBadgeBar variant="authority" />
       <LifestyleMatchSection />
       <LensQuestionnaireSection />
-      <TrustBadgeBar variant="safety" />
+      <TestimonialsSection />
       <FAQSection />
       <BookingSection />
       <StickyCTABar />
@@ -32,4 +30,3 @@ export default function HomePage() {
     </main>
   );
 }
-

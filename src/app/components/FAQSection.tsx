@@ -19,32 +19,32 @@ const objectionFAQs: FAQItem[] = [
     highlight: 'Vivity: halo rates nearly identical to standard monofocal',
   },
   {
-    question: "Is $3,000–$4,000 per eye really worth it?",
+    question: 'Is $4,100 per eye really worth it?',
     concern: 'Cost',
     answer:
-      "Think of it this way: over 20 years, that's less than $0.55 per day for clear vision at every distance. The average American spends over $3,000 on glasses over a decade — and still can't see clearly at arm's length or while driving. Premium IOLs are also HSA and FSA eligible, and we offer CareCredit financing. Most of our patients say it's the best financial decision they've ever made for their quality of life — not just their vision.",
-    highlight: 'Less than $0.55/day over 20 years · HSA/FSA eligible · Financing available',
+      "Think of it this way: over 20 years, that's less than $0.57 per day for clear vision at every distance. The average American spends over $3,000 on glasses over a decade — and still can't see clearly at arm's length or while driving. Premium IOLs are also HSA and FSA eligible, and we offer CareCredit financing. Most of our patients say it's the best financial decision they've ever made for their quality of life — not just their vision.",
+    highlight: 'Less than $0.57/day over 20 years · HSA/FSA eligible · Financing available',
   },
   {
     question: "What if I don't like the result? Can the lens be changed?",
     concern: 'Regret Risk',
     answer:
-      "IOL exchange is possible, though uncommon. Here's the reassuring truth: 99% of PanOptix patients say they'd choose the same lens again. Dr. Marano's approach eliminates most regret before it happens — he uses detailed biometry, corneal mapping, and lifestyle interviews to match you to the right lens. He won't recommend a premium lens if your eye anatomy doesn't support a great outcome. That's why our satisfaction rate has remained exceptional across 6,200+ procedures.",
-    highlight: '99% of patients would choose the same lens again',
+      "IOL exchange is possible, though uncommon. Here's the reassuring truth: 99% of premium lens patients say they'd choose a premium lens again. Dr. Marano's approach eliminates most regret before it happens — he uses detailed biometry, corneal mapping, and lifestyle interviews to match you to the right lens. He won't recommend a premium lens if your eye anatomy doesn't support a great outcome. That's why our satisfaction rate has remained exceptional across thousands of successful procedures.",
+    highlight: '99% of patients would choose a premium lens again',
   },
   {
-    question: "My insurance covers the basic lens. Why should I pay more?",
+    question: 'My insurance covers the basic lens. Why should I pay more?',
     concern: 'Insurance',
     answer:
       "Insurance covers cataract removal — but only at the level of single-focus vision. With a standard monofocal, you'll see clearly at one distance (usually far) and need reading glasses or bifocals for everything else — forever. You'll be trading one pair of glasses for another. Premium IOLs restore your full range of vision. For patients who drive, use a computer, and read daily, that difference is life-changing. The out-of-pocket cost is for the visual freedom the surgery can deliver — not the surgery itself.",
     highlight: 'Standard lens = glasses forever. Premium lens = visual freedom.',
   },
   {
-    question: "Will premium lenses make my surgery more complicated or risky?",
+    question: 'Will premium lenses make my surgery more complicated or risky?',
     concern: 'Safety',
     answer:
-      "No. The surgical procedure is identical regardless of which IOL you choose — a 15-minute microsurgery performed under topical (eye drop) anesthesia. The only thing that changes is what Dr. Marano places in your eye. He has performed this procedure over 6,200 times and has been recognized as New Jersey's Top Doctor for 15 consecutive years. The lens choice affects your outcome — not your safety.",
-    highlight: 'Same 15-min procedure · 6,200+ successful outcomes · No general anesthesia',
+      "No. The surgical procedure is identical regardless of which IOL you choose — a 15-minute microsurgery performed under topical (eye drop) anesthesia. The only thing that changes is what Dr. Marano places in your eye. He has performed this procedure thousands of times and has been recognized as New Jersey's Top Doctor for 15 consecutive years. The lens choice affects your outcome — not your safety.",
+    highlight: 'Same 15-min procedure · Thousands of successful outcomes · No general anesthesia',
   },
 ];
 
@@ -131,7 +131,11 @@ function FAQItemRow({
               : 'border-border group-hover:border-primary/40'
           }`}
         >
-          <Icon name="PlusIcon" size={14} className={isOpen ? 'text-primary' : 'text-muted-foreground'} />
+          <Icon
+            name="PlusIcon"
+            size={14}
+            className={isOpen ? 'text-primary' : 'text-muted-foreground'}
+          />
         </span>
       </button>
 
@@ -146,7 +150,9 @@ function FAQItemRow({
             {item.highlight && (
               <div className="flex items-start gap-2 px-3 py-2 rounded-xl bg-primary/8 border border-primary/15">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_6px_rgba(0,201,177,0.6)]" />
-                <p className="text-xs font-semibold text-primary/90 leading-relaxed">{item.highlight}</p>
+                <p className="text-xs font-semibold text-primary/90 leading-relaxed">
+                  {item.highlight}
+                </p>
               </div>
             )}
           </div>
@@ -156,7 +162,15 @@ function FAQItemRow({
   );
 }
 
-function ProceduralFAQRow({ item, isOpen, onToggle }: { item: FAQItem; isOpen: boolean; onToggle: () => void }) {
+function ProceduralFAQRow({
+  item,
+  isOpen,
+  onToggle,
+}: {
+  item: FAQItem;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
   return (
     <div
       className={`border-b border-border/50 last:border-0 transition-colors ${
@@ -195,7 +209,10 @@ export default function FAQSection() {
   const [openProcedural, setOpenProcedural] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-16 sm:py-28 border-t border-border relative overflow-hidden">
+    <section
+      id="faq"
+      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#0b0d16]"
+    >
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-20" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />
@@ -203,16 +220,16 @@ export default function FAQSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 mb-12 sm:mb-16">
+        <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 mb-8 sm:mb-12">
           <div className="w-full lg:w-2/5 lg:sticky lg:top-28">
-            <p className="text-xs font-bold uppercase tracking-[0.45em] text-primary mb-4 opacity-90">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               Common Questions
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               Every Concern{' '}
-              <span className="text-gradient-primary font-semibold">Answered Honestly.</span>
+              <span className="font-semibold text-gradient-primary">Answered Honestly.</span>
             </h2>
-            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base mb-8">
+            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base mb-8 md:hidden lg:block">
               These are the questions Dr. Marano hears most often. He&apos;d rather you come in
               already informed than arrive with unanswered fears.
             </p>
@@ -220,7 +237,7 @@ export default function FAQSection() {
             {/* CTA */}
             <a
               href="#booking"
-              className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 touch-manipulation min-h-[52px] shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer"
+              className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[52px] shadow-[0_4px_14px_rgba(0,201,177,0.15)] btn-shimmer"
             >
               Book a Free Consultation
               <Icon name="ArrowRightIcon" size={16} />
@@ -240,7 +257,7 @@ export default function FAQSection() {
                 ))}
               </div>
               <p className="text-xs text-muted-foreground font-medium">
-                6,200+ procedures · 15× NJ Top Doctor
+                Thousands of successful procedures · 15× NJ Top Doctor
               </p>
             </div>
           </div>

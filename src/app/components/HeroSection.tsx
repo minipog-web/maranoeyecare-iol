@@ -22,7 +22,7 @@ const lenses = [
     tag: 'Trifocal',
     tagColor: 'bg-primary/20 text-primary border border-primary/30',
     subtitle: 'Full trifocal range',
-    detail: '99% would choose again',
+    detail: '99% would choose a premium lens again',
     src: '/assets/images/panoptix_iol_clean.png',
     alt: 'Clareon PanOptix Pro trifocal IOL — trifocal intraocular lens',
     accent: 'border-primary/25',
@@ -51,7 +51,10 @@ export default function HeroSection() {
   const activeLens = hoveredLens ?? DEFAULT_ACTIVE;
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
+    <section
+      className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+    >
       {/* Background layers */}
       <div className="absolute inset-0 bg-[#080910]" />
       <div className="absolute inset-0 grid-lines-bg opacity-100" />
@@ -86,32 +89,45 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 animate-fade-up delay-300 fill-both">
-              Not all IOLs are equal. Discover how Clareon Vivity, PanOptix Pro, and Eyhance
-              compare — and find the premium lens that can eliminate your dependence on glasses
-              for the clearest life after cataract surgery.
+              Not all IOLs are equal. Discover how Clareon Vivity, PanOptix Pro, and Eyhance compare
+              — and find the premium lens that can eliminate your dependence on glasses for the
+              clearest life after cataract surgery.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
               <a
                 href="#booking"
-                className="w-full sm:w-auto pl-8 pr-3 py-2.5 bg-primary text-primary-foreground rounded-full text-base font-bold flex items-center justify-between gap-4 group hover:bg-accent transition-spring active:scale-[0.98] animate-glow-pulse min-h-[56px] touch-manipulation"
+                className="group btn-premium-primary btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-4 px-8 text-base tracking-wide flex items-center justify-between gap-4"
               >
                 <span>{`Book Your Free Consultation`}</span>
-                <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0 transition-spring group-hover:scale-105 group-hover:bg-white/35">
+                <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 transition-all duration-200 group-hover:scale-[1.03] group-hover:bg-white/20">
                   <Icon
                     name="ArrowRightIcon"
-                    size={16}
+                    size={18}
                     className="transition-transform group-hover:translate-x-0.5"
                   />
                 </span>
               </a>
               <a
-                href="tel:9733220100"
-                className="w-full sm:w-auto px-6 sm:px-8 py-4 border border-border-bright text-foreground rounded-full text-base font-medium flex items-center justify-center gap-3 hover:border-primary/50 hover:bg-white/[0.03] transition-spring min-h-[56px] touch-manipulation"
+                href="#lenses"
+                className="group relative focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-4 px-8 text-base tracking-wide flex items-center justify-center gap-2 rounded-xl border border-border-bright bg-muted/40 font-semibold uppercase text-foreground transition-all duration-300 hover:border-primary/50 hover:bg-muted/80 hover:text-white overflow-hidden"
               >
-                <Icon name="PhoneIcon" size={18} className="text-primary shrink-0" />
-                <span className="text-sm sm:text-base whitespace-nowrap">(973) 322-0100</span>
+                {/* Precision left indicator block */}
+                <span className="absolute left-0 top-0 bottom-0 w-[4px] bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
+
+                {/* Diagnostic subtle corner ticks on hover */}
+                <span className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <span className="relative z-10 transition-all duration-300 group-hover:translate-x-1">
+                  Compare Lenses
+                </span>
+                <Icon
+                  name="ChevronDownIcon"
+                  size={16}
+                  className="relative z-10 transition-all duration-300 group-hover:translate-y-0.5 group-hover:translate-x-1 text-muted-foreground group-hover:text-primary"
+                />
               </a>
             </div>
 
@@ -119,8 +135,8 @@ export default function HeroSection() {
             <div className="flex flex-wrap gap-5 sm:gap-10 border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
               {[
                 { value: '15×', label: 'Consecutive NJ Top Doctor' },
-                { value: '6,200+', label: 'Premium IOLs Implanted' },
-                { value: '99%', label: '"I\'d Choose This Lens Again"' },
+                { value: '10,000+', label: 'Successful Procedures' },
+                { value: '99%', label: '"I\'d Choose A Premium Lens Again"' },
               ]?.map((stat) => (
                 <div key={stat?.label} className="flex flex-col gap-1">
                   <span className="font-display text-2xl sm:text-3xl font-semibold text-primary">
@@ -135,14 +151,15 @@ export default function HeroSection() {
           </div>
 
           {/* Right: Three-Lens Visual Showcase */}
-          <div className="relative flex-1 w-full flex items-end justify-center lg:justify-end gap-2 sm:gap-3 md:gap-4 py-6 lg:py-0">
+          <div className="relative flex-1 w-full flex items-end justify-center lg:justify-end gap-2 sm:gap-3 md:gap-4 py-6 lg:py-0 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0">
             {lenses?.map((lens, i) => {
               const isActive = activeLens === lens.name;
-              const delayClass = i === 0 
-                ? 'animate-fade-up delay-600 fill-both' 
-                : i === 1 
-                  ? 'animate-fade-up delay-750 fill-both' 
-                  : 'animate-fade-up delay-900 fill-both';
+              const delayClass =
+                i === 0
+                  ? 'animate-fade-up delay-600 fill-both'
+                  : i === 1
+                    ? 'animate-fade-up delay-750 fill-both'
+                    : 'animate-fade-up delay-900 fill-both';
               return (
                 <div
                   key={lens?.name}
@@ -151,8 +168,8 @@ export default function HeroSection() {
                   className={`relative doppel-shell ${lens?.accent} transition-spring hover:-translate-y-3 group cursor-pointer ${styles.lensCard} ${delayClass}
                       ${
                         lens?.featured
-                          ? 'w-[38%] sm:w-44 h-[300px] sm:h-[420px] z-20 -mt-8'
-                          : 'w-[28%] sm:w-36 h-[240px] sm:h-[360px] z-10'
+                          ? 'w-[42%] min-w-[130px] sm:w-44 h-[260px] sm:h-[420px] z-20 -mt-8 snap-center sm:snap-align-none shrink-0'
+                          : 'w-[27%] min-w-[100px] sm:w-36 h-[210px] sm:h-[360px] z-10 snap-center sm:snap-align-none shrink-0'
                       }
                       ${
                         isActive
@@ -198,7 +215,7 @@ export default function HeroSection() {
                       <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
                         {lens?.subtitle}
                       </p>
-                      <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight hidden sm:block">
+                      <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight">
                         {lens?.detail}
                       </p>
                     </div>
@@ -220,7 +237,7 @@ export default function HeroSection() {
               </p>
               <a
                 href="#lenses"
-                className="mt-3 flex items-center gap-1.5 text-xs text-primary font-semibold hover:gap-2.5 transition-all touch-manipulation"
+                className="mt-3 flex items-center gap-1.5 text-xs text-primary font-semibold hover:gap-2.5 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 See comparison <Icon name="ArrowRightIcon" size={12} />
               </a>

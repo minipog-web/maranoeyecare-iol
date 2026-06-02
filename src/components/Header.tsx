@@ -37,11 +37,11 @@ export default function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 sm:h-20 flex items-center justify-between gap-4 lg:gap-8">
         <div className="flex items-center gap-3">
           <a
             href="https://www.maranoeyecare.com"
-            className="hover:opacity-80 transition-opacity block shrink-0"
+            className="hover:opacity-80 transition-opacity block shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <AppLogo
               src="/assets/images/marano_logo.png"
@@ -52,13 +52,15 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Desktop Nav — pill with subtle gradient border */}
-        <nav className="hidden lg:flex items-center gap-0 min-[1150px]:gap-0.5 px-2 xl:px-3 py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
-          {navLinks?.map((link) => (
+        {/* Tablet & Desktop Nav — pill with subtle gradient border */}
+        <nav className="hidden md:flex items-center gap-0 lg:gap-0.5 px-1.5 lg:px-2 xl:px-3 py-1 lg:py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
+          {navLinks?.map((link, idx) => (
             <a
               key={link?.href}
               href={link?.href}
-              className="px-2 lg:px-2.5 xl:px-3.5 py-2 text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-xs font-semibold uppercase tracking-[0.04em] lg:tracking-[0.06em] xl:tracking-[0.1em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap"
+              className={`px-1.5 md:px-2 lg:px-2.5 xl:px-3.5 py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-xs font-semibold uppercase tracking-[0.02em] md:tracking-[0.04em] lg:tracking-[0.06em] xl:tracking-[0.1em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                idx === 1 || idx === 3 ? 'md:hidden lg:inline-block' : ''
+              }`}
             >
               {link?.label}
             </a>
@@ -66,17 +68,24 @@ export default function Header() {
         </nav>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-2 lg:gap-3 xl:gap-4 shrink-0">
+        <div className="hidden md:flex items-center gap-4 lg:gap-6 shrink-0">
           <a
             href="tel:9733220100"
-            className="flex items-center gap-1.5 lg:gap-2 text-xs xl:text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation whitespace-nowrap"
+            className="group flex items-center gap-2.5 text-xs xl:text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap lg:ml-6 rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
-            <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
-            <span className="hidden md:inline lg:text-[11px] xl:text-xs 2xl:text-sm whitespace-nowrap">973-322-0100</span>
+            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
+              <Icon name="PhoneIcon" size={13} className="text-primary" />
+            </div>
+            <span className="font-semibold text-foreground/90 lg:text-xs xl:text-sm tracking-wide">
+              (973) 322-0100
+            </span>
           </a>
+
+          <div className="h-5 w-[1px] bg-white/[0.08] hidden lg:block" />
+
           <a
             href="#booking"
-            className="inline-flex items-center justify-center text-center px-3 lg:px-4 xl:px-5 2xl:px-6 py-2 xl:py-2.5 bg-primary text-primary-foreground rounded-full text-xs xl:text-sm font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 touch-manipulation whitespace-nowrap shadow-[0_0_20px_rgba(0,201,177,0.25)] btn-shimmer"
+            className="btn-premium-primary btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             Book Consultation
           </a>
@@ -84,7 +93,7 @@ export default function Header() {
 
         {/* Mobile/Tablet Hamburger */}
         <button
-          className="flex md:hidden p-3 text-foreground touch-manipulation -mr-1 rounded-xl hover:bg-white/5 transition-colors"
+          className="flex md:hidden p-3 text-foreground touch-manipulation -mr-1 rounded-xl hover:bg-white/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -100,7 +109,7 @@ export default function Header() {
               <a
                 key={link?.href}
                 href={link?.href}
-                className="text-sm font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary py-3 transition-colors touch-manipulation"
+                className="text-sm font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary py-3 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 onClick={() => setMenuOpen(false)}
               >
                 {link?.label}
@@ -111,15 +120,17 @@ export default function Header() {
           <div className="flex flex-col gap-3 pt-2">
             <a
               href="tel:9733220100"
-              className="flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground py-3 border border-white/10 rounded-full hover:bg-white/5 touch-manipulation"
+              className="group flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground py-3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-primary/30 transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
-              <Icon name="PhoneIcon" size={16} className="text-primary" />
-              973-322-0100
+              <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                <Icon name="PhoneIcon" size={12} className="text-primary" />
+              </div>
+              (973) 322-0100
             </a>
 
             <a
               href="#booking"
-              className="w-full py-3.5 bg-primary text-primary-foreground rounded-full text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-colors touch-manipulation flex items-center justify-center shadow-[0_0_20px_rgba(0,201,177,0.25)]"
+              className="w-full py-3.5 bg-primary text-[#040506] rounded-xl text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-colors touch-manipulation flex items-center justify-center shadow-[0_4px_14px_rgba(0,201,177,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               onClick={() => setMenuOpen(false)}
             >
               Book Consultation
