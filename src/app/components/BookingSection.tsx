@@ -112,18 +112,20 @@ export default function BookingSection() {
   return (
     <section
       id="booking"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#080c14]"
+      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#0f0d13]"
     >
       {/* Background */}
-      <div className="absolute inset-0 radial-glow-primary opacity-70" />
-      <div className="absolute inset-0 grid-lines-bg opacity-15" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(245,158,11,0.06)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 grid-lines-bg opacity-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[2px] bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/3 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-600/2 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
           {/* Left: CTA copy */}
           <div className="lg:sticky lg:top-28">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#f59e0b] mb-3">
               {`IOL Consultation`}
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6 whitespace-nowrap">
@@ -155,20 +157,20 @@ export default function BookingSection() {
               </p>
               <div className="relative">
                 {/* Connecting line */}
-                <div className="absolute left-[22px] top-8 bottom-8 w-px bg-gradient-to-b from-primary/30 via-primary/15 to-transparent hidden sm:block" />
+                <div className="absolute left-[22px] top-8 bottom-8 w-px bg-gradient-to-b from-amber-500/30 via-amber-500/10 to-transparent hidden sm:block" />
                 <div className="space-y-5">
                   {whatHappensNext.map((item, i) => (
                     <div key={item.step} className="flex items-start gap-4 group">
                       <div className="relative shrink-0">
-                        <div className="w-11 h-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors z-10 relative">
+                        <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center group-hover:bg-amber-500/20 transition-colors z-10 relative">
                           <Icon
                             name={item.icon as 'PhoneIcon'}
                             size={18}
-                            className="text-primary"
+                            className="text-amber-400"
                           />
                         </div>
                         {i < whatHappensNext.length - 1 && (
-                          <div className="absolute left-1/2 -translate-x-1/2 top-full w-px h-5 bg-primary/15 sm:hidden" />
+                          <div className="absolute left-1/2 -translate-x-1/2 top-full w-px h-5 bg-amber-500/15 sm:hidden" />
                         )}
                       </div>
                       <div className="pt-1">
@@ -410,16 +412,14 @@ export default function BookingSection() {
 
                     <button
                       type="submit"
-                      className="w-full pl-8 pr-3 py-2.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold uppercase tracking-wider flex items-center justify-between gap-4 hover:bg-accent transition-all active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_14px_rgba(0,201,177,0.15)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     >
-                      <span>Continue to Vision Goals</span>
-                      <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 transition-all duration-200 group-hover:scale-[1.03] group-hover:bg-white/20">
-                        <Icon
-                          name="ArrowRightIcon"
-                          size={16}
-                          className="transition-transform group-hover:translate-x-0.5"
-                        />
-                      </span>
+                      <span>Continue</span>
+                      <Icon
+                        name="ArrowRightIcon"
+                        size={18}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
                     </button>
 
                     <p className="text-[11px] text-muted-foreground/70 text-center pt-1">
@@ -431,10 +431,7 @@ export default function BookingSection() {
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                     <div>
                       <label htmlFor="email" className={labelClass}>
-                        Email Address{' '}
-                        <span className="text-muted-foreground/50 normal-case font-normal">
-                          (optional)
-                        </span>
+                        Email Address *
                       </label>
                       <input
                         id="email"
@@ -443,13 +440,14 @@ export default function BookingSection() {
                         value={form.email}
                         onChange={handleChange}
                         placeholder="jane.smith@email.com"
+                        required
                         className={inputClass}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="preferredContact" className={labelClass}>
-                        Preferred Contact Method
+                        Preferred Contact Method *
                       </label>
                       <select
                         id="preferredContact"
@@ -518,23 +516,21 @@ export default function BookingSection() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 pl-6 pr-3 py-2.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold uppercase tracking-wider flex items-center justify-between gap-4 hover:bg-accent transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[52px] touch-manipulation shadow-[0_4px_14px_rgba(0,201,177,0.15)] btn-shimmer group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         {loading ? (
                           <span className="flex items-center gap-3">
-                            <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                            <span className="w-4 h-4 border-2 border-[#020304]/30 border-t-[#020304] rounded-full animate-spin" />
                             Sending...
                           </span>
                         ) : (
                           <>
                             <span>Reserve My Consultation</span>
-                            <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 transition-all duration-200 group-hover:scale-[1.03] group-hover:bg-white/20">
-                              <Icon
-                                name="ArrowRightIcon"
-                                size={16}
-                                className="transition-transform group-hover:translate-x-0.5"
-                              />
-                            </span>
+                            <Icon
+                              name="ArrowRightIcon"
+                              size={18}
+                              className="transition-transform group-hover:translate-x-1"
+                            />
                           </>
                         )}
                       </button>

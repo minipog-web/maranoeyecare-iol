@@ -1,4 +1,5 @@
 import { imageHosts } from './image-hosts.config.mjs';
+import path from 'path';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -16,5 +17,7 @@ const nextConfig = {
     remotePatterns: imageHosts,
     minimumCacheTTL: 60,
   },
+
+  outputFileTracingRoot: path.resolve('.'),
 };
 export default nextConfig;

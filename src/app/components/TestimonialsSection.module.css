@@ -23,6 +23,13 @@
   border: 1px solid rgba(0, 201, 177, 0.22);
 }
 
+/* Eyhance — #10B981 */
+.lensEyhance .lensBadge {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.22);
+}
+
 .locationsWrapper {
   border-top: 1px solid transparent;
   background-image:

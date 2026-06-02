@@ -71,7 +71,7 @@ const LENSES: Record<string, LensResult> = {
       'Best for glasses-free lifestyle',
     ],
 
-    color: 'text-violet-400',
+    color: 'text-violet-300',
     glow: 'shadow-[0_0_40px_rgba(139,92,246,0.25)]',
     border: 'border-violet-500/50',
     badge: 'Trifocal',
@@ -94,7 +94,7 @@ const LENSES: Record<string, LensResult> = {
       'Proven monofocal reliability with a plus',
     ],
 
-    color: 'text-emerald-400',
+    color: 'text-emerald-300',
     glow: 'shadow-[0_0_40px_rgba(16,185,129,0.2)]',
     border: 'border-emerald-500/40',
     badge: 'Monofocal+',
@@ -117,7 +117,7 @@ const LENSES: Record<string, LensResult> = {
       'Reading glasses used for near tasks',
     ],
 
-    color: 'text-slate-400',
+    color: 'text-slate-200',
     glow: 'shadow-[0_0_40px_rgba(100,116,139,0.15)]',
     border: 'border-slate-500/40',
     badge: 'Insurance Covered',

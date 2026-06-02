@@ -76,7 +76,7 @@ export default function LifestyleMatchSection() {
   return (
     <section
       id="lifestyle"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden"
+      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#0d0f16]"
     >
       {/* Background */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
@@ -86,14 +86,14 @@ export default function LifestyleMatchSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row items-start gap-8 sm:gap-16 mb-8 sm:mb-12">
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:w-1/2">
             <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               Find Your Match
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               Find Your <span className="font-semibold text-gradient-primary">Perfect Lens.</span>
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-sm">
+            <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-lg">
               The best IOL isn&apos;t the most expensive — it&apos;s the one matched precisely to
               how you live. Dr. Marano spends time understanding your daily vision needs before
               recommending any lens.
@@ -108,7 +108,7 @@ export default function LifestyleMatchSection() {
           </div>
 
           {/* Right: comparison card */}
-          <div className="w-full lg:w-7/12 flex items-start lg:justify-end">
+          <div className="w-full lg:w-1/2 flex items-start lg:justify-end">
             <div
               className={`glass-card border border-border rounded-3xl p-5 sm:p-8 w-full lg:max-w-md ${styles.comparisonCard}`}
             >

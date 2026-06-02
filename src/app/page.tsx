@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import HeroSection from '@/app/components/HeroSection';
 import TrustSection from '@/app/components/TrustSection';
 import TrustBadgeBar from '@/app/components/TrustBadgeBar';
+import CertificationLogos from '@/app/components/CertificationLogos';
 import LensVisionComparisonSection from '@/app/components/LensVisionComparisonSection';
 import LifestyleMatchSection from '@/app/components/LifestyleMatchSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
@@ -17,8 +18,9 @@ export default function HomePage() {
     <main className="min-h-screen bg-background overflow-x-hidden">
       <Header />
       <HeroSection />
-      <TrustSection />
       <TrustBadgeBar variant="clinical" />
+      <TrustSection />
+      <CertificationLogos />
       <LensVisionComparisonSection />
       <LifestyleMatchSection />
       <LensQuestionnaireSection />

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './TestimonialsSection.module.css';
@@ -27,15 +28,47 @@ const testimonials = [
     avatar: '/assets/images/avatar_robert.jpg',
     stars: 5,
   },
+  {
+    concern: 'Dashboard and screen blur',
+    quote:
+      "I chose Eyhance because I wanted clear distance vision for golf and driving, and didn't want any night glare. The intermediate range is an amazing bonus. I can read my dashboard and laptop without glasses perfectly.",
+    name: 'Linda M.',
+    location: 'Morristown, NJ',
+    lens: 'Tecnis Eyhance',
+    lensColor: '#10B981',
+    avatar: '/assets/images/avatar_linda.png',
+    stars: 5,
+  },
+  {
+    concern: 'Constant reading with glasses',
+    quote:
+      "As a teacher, I am constantly reading student essays and working on screens. Getting the PanOptix trifocal completely changed my day. I don't carry readers around anymore, and my night vision is wonderfully sharp.",
+    name: 'James K.',
+    location: 'Summit, NJ',
+    lens: 'PanOptix Pro',
+    lensColor: '#8B5CF6',
+    avatar: '/assets/images/avatar_james.png',
+    stars: 5,
+  },
 ];
 
 export default function TestimonialsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
     e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -58,91 +91,137 @@ export default function TestimonialsSection() {
             Real Outcomes from{' '}
             <span className="font-semibold text-gradient-primary">Real Patients</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-            {testimonials?.map((t) => (
+
+          <div className="relative max-w-3xl mx-auto px-1 sm:px-12">
+            {/* Desktop floating arrows */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:-translate-x-2 lg:-translate-x-4 w-10 h-10 rounded-full border border-border bg-card/60 backdrop-blur-sm flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 hover:scale-105 active:scale-95 transition-all cursor-pointer z-20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              aria-label="Previous testimonial"
+            >
+              <Icon name="ChevronLeftIcon" size={20} />
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-2 lg:translate-x-4 w-10 h-10 rounded-full border border-border bg-card/60 backdrop-blur-sm flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 hover:scale-105 active:scale-95 transition-all cursor-pointer z-20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              aria-label="Next testimonial"
+            >
+              <Icon name="ChevronRightIcon" size={20} />
+            </button>
+
+            {/* Carousel Viewport */}
+            <div className="overflow-hidden rounded-3xl">
               <div
-                key={t?.name}
-                onMouseMove={handleMouseMove}
-                className="group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col"
+                className="flex transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                style={{ transform: `translateX(-${activeIndex * 100}%)` }}
               >
-                <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
-                  {/* Dynamic Mouse Spotlight Glow */}
-                  <div
-                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
-                    style={{
-                      width: '240px',
-                      height: '240px',
-                      left: 'var(--mouse-x, 50%)',
-                      top: 'var(--mouse-y, 50%)',
-                      transform: 'translate(-50%, -50%)',
-                      background: `radial-gradient(circle, ${t.lensColor} 0%, transparent 70%)`,
-                    }}
-                  />
-
-                  {/* Decorative quote mark */}
-                  <div className="absolute top-4 right-6 sm:top-6 sm:right-8 font-display text-7xl sm:text-8xl text-primary/6 font-bold leading-none select-none pointer-events-none z-10">
-                    &ldquo;
-                  </div>
-
-                  {/* Concern label */}
-                  {t.concern && (
-                    <div className="flex items-center gap-2 mb-3 relative z-10">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
-                        Was worried about: {t.concern}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Stars */}
-                  <div className="flex items-center gap-1 mb-4 relative z-10">
-                    {Array.from({ length: t.stars }).map((_, i) => (
-                      <Icon
-                        key={i}
-                        name="StarIcon"
-                        variant="solid"
-                        size={14}
-                        className="text-primary"
-                      />
-                    ))}
-                  </div>
-
-                  <p className="text-sm sm:text-base text-foreground/85 leading-relaxed mb-6 italic relative z-10">
-                    &ldquo;{t?.quote}&rdquo;
-                  </p>
-
-                  <div className="flex items-center gap-3 sm:gap-4 flex-wrap relative z-10 mt-auto">
-                    <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_12px_rgba(0,201,177,0.2)]">
-                      <AppImage
-                        src={t?.avatar}
-                        alt={`Patient ${t?.name} profile photo`}
-                        fill
-                        className="object-cover"
-                        sizes="48px"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-foreground">{t?.name}</p>
-                      <p className="text-xs text-muted-foreground">{t?.location}</p>
-                    </div>
+                {testimonials?.map((t, idx) => (
+                  <div key={idx} className="w-full shrink-0 px-2">
                     <div
-                      className={`shrink-0 ${t.lens.toLowerCase().includes('panoptix') ? styles.lensPanoptix : styles.lensVivity}`}
+                      onMouseMove={handleMouseMove}
+                      className="group relative doppel-shell transition-spring cursor-pointer flex flex-col min-h-[320px]"
                     >
-                      <span
-                        className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}
-                        style={{
-                          backgroundColor: `${t.lensColor}15`,
-                          color: t.lensColor,
-                          borderColor: `${t.lensColor}30`,
-                          borderWidth: '1px',
-                        }}
-                      >
-                        {t?.lens}
-                      </span>
+                      <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
+                        {/* Dynamic Mouse Spotlight Glow */}
+                        <div
+                          className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
+                          style={{
+                            width: '240px',
+                            height: '240px',
+                            left: 'var(--mouse-x, 50%)',
+                            top: 'var(--mouse-y, 50%)',
+                            transform: 'translate(-50%, -50%)',
+                            background: `radial-gradient(circle, ${t.lensColor} 0%, transparent 70%)`,
+                          }}
+                        />
+
+                        {/* Decorative quote mark */}
+                        <div className="absolute top-4 right-6 sm:top-6 sm:right-8 font-display text-7xl sm:text-8xl text-primary/6 font-bold leading-none select-none pointer-events-none z-10">
+                          &ldquo;
+                        </div>
+
+                        {/* Concern label */}
+                        {t.concern && (
+                          <div className="flex items-center gap-2 mb-3 relative z-10">
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
+                              Was worried about: {t.concern}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Stars */}
+                        <div className="flex items-center gap-1 mb-4 relative z-10">
+                          {Array.from({ length: t.stars }).map((_, i) => (
+                            <Icon
+                              key={i}
+                              name="StarIcon"
+                              variant="solid"
+                              size={14}
+                              className="text-primary"
+                            />
+                          ))}
+                        </div>
+
+                        <p className="text-sm sm:text-base text-foreground/85 leading-relaxed mb-6 italic relative z-10">
+                          &ldquo;{t?.quote}&rdquo;
+                        </p>
+
+                        <div className="flex items-center gap-3 sm:gap-4 flex-wrap relative z-10 mt-auto">
+                          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_12px_rgba(0,201,177,0.2)]">
+                            <AppImage
+                              src={t?.avatar}
+                              alt={`Patient ${t?.name} profile photo`}
+                              fill
+                              className="object-cover"
+                              sizes="48px"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-foreground">{t?.name}</p>
+                            <p className="text-xs text-muted-foreground">{t?.location}</p>
+                          </div>
+                          <div
+                            className={`shrink-0 ${
+                              t.lens.toLowerCase().includes('panoptix')
+                                ? styles.lensPanoptix
+                                : t.lens.toLowerCase().includes('vivity')
+                                  ? styles.lensVivity
+                                  : styles.lensEyhance
+                            }`}
+                          >
+                            <span
+                              className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}
+                              style={{
+                                backgroundColor: `${t.lensColor}15`,
+                                color: t.lensColor,
+                                borderColor: `${t.lensColor}30`,
+                                borderWidth: '1px',
+                              }}
+                            >
+                              {t?.lens}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex justify-center items-center gap-2 mt-6">
+              {testimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                    activeIndex === idx ? 'w-6 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Dr. Marano's Recommendation Card — Authority Bias + Pratfall Effect */}

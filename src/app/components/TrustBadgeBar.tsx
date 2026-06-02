@@ -13,7 +13,7 @@ const variants = {
   clinical: [
     { icon: '✅', text: '99% Would Choose a Premium Lens Again' },
     { icon: '🔬', text: 'Biometry-Guided Lens Selection' },
-    { icon: '📊', text: 'FDA-Approved Premium IOLs Only' },
+    { icon: '📊', text: 'FDA-Approved IOLs Only' },
   ],
   safety: [
     { icon: '🔒', text: 'HIPAA-Protected Information' },

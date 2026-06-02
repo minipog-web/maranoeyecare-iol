@@ -53,7 +53,7 @@ export default function TrustSection() {
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-5 sm:mb-6 leading-tight">
             New Jersey&apos;s{' '}
-            <span className="font-semibold text-gradient-primary">Most Awarded</span>
+            <span className="font-semibold text-gradient-primary">{`Most Awarded`}</span>
             <br className="hidden sm:block" /> Eye Surgeon
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -187,7 +187,7 @@ export default function TrustSection() {
                   <div className="w-9 h-9 rounded-2xl bg-primary/10 flex items-center justify-center">
                     <Icon name="AcademicCapIcon" size={18} className="text-primary" />
                   </div>
-                  <p className="text-sm font-bold text-foreground">Additional Roles & Training</p>
+                  <p className="text-sm font-bold text-foreground">{`Additional Roles`}{` & Training`}</p>
                 </div>
                 <ul className="space-y-3">
                   {[

@@ -98,16 +98,14 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
               <a
                 href="#booking"
-                className="group btn-premium-primary btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-4 px-8 text-base tracking-wide flex items-center justify-between gap-4"
+                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(0,201,177,0.25)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
-                <span>{`Book Your Free Consultation`}</span>
-                <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 transition-all duration-200 group-hover:scale-[1.03] group-hover:bg-white/20">
-                  <Icon
-                    name="ArrowRightIcon"
-                    size={18}
-                    className="transition-transform group-hover:translate-x-0.5"
-                  />
-                </span>
+                Book Your Free Consultation
+                <Icon
+                  name="ArrowRightIcon"
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1"
+                />
               </a>
               <a
                 href="#lenses"
