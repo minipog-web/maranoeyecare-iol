@@ -249,11 +249,10 @@ export default function BookingSection() {
                   <Icon name="CheckCircleIcon" size={36} className="text-primary" />
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-medium text-foreground mb-3">
-                  {`Request Received`}
+                  {`Consultation Requested!`}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed max-w-sm">
-                  {`You`}&apos;
-                  {`ve taken the most important step toward better vision. A member of the Marano Eye Care team will contact you within one business day to confirm your consultation.`}
+                  {`We have received your information. A member of the Marano Eye Care team will call you within one business day to finalize a date and time that fits your schedule.`}
                 </p>
                 <p className="text-sm text-primary/80 mt-3 font-medium italic max-w-sm">
                   {`Most patients say their only regret is not doing this sooner.`}
@@ -425,7 +424,7 @@ export default function BookingSection() {
                       type="submit"
                       className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     >
-                      <span>Continue</span>
+                      <span>Continue to Step 2</span>
                       <Icon
                         name="ArrowRightIcon"
                         size={18}
@@ -532,7 +531,7 @@ export default function BookingSection() {
                         {loading ? (
                           <span className="flex items-center gap-3">
                             <span className="w-4 h-4 border-2 border-[#020304]/30 border-t-[#020304] rounded-full animate-spin" />
-                            Sending...
+                            Submitting Request...
                           </span>
                         ) : (
                           <>

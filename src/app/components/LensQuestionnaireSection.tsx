@@ -422,7 +422,7 @@ export default function LensQuestionnaireSection() {
                 </div>
               </div>
               <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-4 tracking-wide uppercase">
-                Analyzing Biometric Parameters
+                Finding Your Best Match...
               </h3>
               <div className="w-64 max-w-full text-left font-mono text-[10px] sm:text-xs text-muted-foreground/85 space-y-1.5 bg-white/[0.01] border border-white/[0.04] p-3.5 rounded-lg">
                 <div className="flex items-center justify-between text-primary/80">
