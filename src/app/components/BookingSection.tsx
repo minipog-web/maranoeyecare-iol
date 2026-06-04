@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
+import { trackEvent } from '@/lib/gtag';
 
 const locations = ['Livingston (973-322-0100)', 'Denville (973-358-0416)', 'Newark (973-315-6439)'];
 const lensOptions = [
@@ -71,6 +72,11 @@ export default function BookingSection() {
     e.preventDefault();
     if (form.firstName && form.phone && form.location && form.email && form.preferredContact) {
       setStep(2);
+      trackEvent({
+        action: 'booking_step_1_complete',
+        category: 'Engagement',
+        label: form.location,
+      });
     }
   };
 
@@ -88,6 +94,11 @@ export default function BookingSection() {
 
       if (response.ok) {
         setSubmitted(true);
+        trackEvent({
+          action: 'booking_complete',
+          category: 'Conversion',
+          label: `${form.location} - ${form.lens || 'No lens selected'}`,
+        });
       } else {
         const data = await response.json();
         setErrorMessage(

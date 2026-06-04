@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
+import { trackEvent } from '@/lib/gtag';
 
 interface Question {
   id: string;
@@ -278,6 +279,13 @@ export default function LensQuestionnaireSection() {
     setSelectedOption(idx);
     setAnimating(true);
 
+    // Track user selection in GA
+    trackEvent({
+      action: `quiz_question_${currentId}_answer`,
+      category: 'Engagement',
+      label: option.label,
+    });
+
     setTimeout(() => {
       if (option.next?.startsWith('result:')) {
         const key = option.next.replace('result:', '');
@@ -285,6 +293,13 @@ export default function LensQuestionnaireSection() {
         const updatedAnswers = [...answerLabels, option.label];
         setAnswerLabels(updatedAnswers);
         setCalculating(true);
+
+        // Track quiz completion event with the target recommendation
+        trackEvent({
+          action: 'quiz_complete',
+          category: 'Conversion',
+          label: lens.name,
+        });
 
         setTimeout(() => {
           setResult(lens);

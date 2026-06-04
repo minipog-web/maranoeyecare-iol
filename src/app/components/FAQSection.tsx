@@ -208,11 +208,41 @@ export default function FAQSection() {
   const [openObjection, setOpenObjection] = useState<number | null>(0);
   const [openProcedural, setOpenProcedural] = useState<number | null>(null);
 
+  // Dynamically generate FAQ Schema Markup for Google Rich Results
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      ...objectionFAQs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+      ...proceduralFAQs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    ],
+  };
+
   return (
     <section
       id="faq"
       className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#0b0d16]"
     >
+      {/* FAQ Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-20" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />

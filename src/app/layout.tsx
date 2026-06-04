@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { DM_Sans, Fraunces } from 'next/font/google';
+import Script from 'next/script';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
 
@@ -38,9 +39,34 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
   return (
     <html lang="en" className={`${dmSans.variable} ${fraunces.variable} dark`}>
-      <body className={dmSans.className}>{children}</body>
+      <body className={dmSans.className}>
+        {/* Film grain texture overlay */}
+        <div className="film-grain" />
+        {/* Google Analytics tag manager tracking scripts */}
+        {gaId && gaId !== 'your-google-analytics-id-here' && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
+        {children}
+      </body>
     </html>
   );
 }
