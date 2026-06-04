@@ -187,7 +187,10 @@ export default function TrustSection() {
                   <div className="w-9 h-9 rounded-2xl bg-primary/10 flex items-center justify-center">
                     <Icon name="AcademicCapIcon" size={18} className="text-primary" />
                   </div>
-                  <p className="text-sm font-bold text-foreground">{`Additional Roles`}{` & Training`}</p>
+                  <p className="text-sm font-bold text-foreground">
+                    {`Additional Roles`}
+                    {` & Training`}
+                  </p>
                 </div>
                 <ul className="space-y-3">
                   {[

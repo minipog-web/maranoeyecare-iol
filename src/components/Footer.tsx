@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-<div className="flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <a
               href="https://www.maranoeyecare.com"
@@ -66,7 +66,7 @@ export default function Footer() {
           </div>
         </div>
 
-<div className="mt-4 pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+        <div className="mt-4 pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <p className="text-center sm:text-left">
             © 2026 Marano Eye Care. Matthew Marano Jr., MD. All rights reserved.
           </p>
