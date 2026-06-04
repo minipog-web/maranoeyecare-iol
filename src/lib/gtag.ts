@@ -29,11 +29,7 @@ export const trackEvent = ({
   label?: string;
   value?: number;
 }) => {
-  if (
-    typeof window !== 'undefined' &&
-    window.gtag &&
-    GA_MEASUREMENT_ID
-  ) {
+  if (typeof window !== 'undefined' && window.gtag && GA_MEASUREMENT_ID) {
     window.gtag('event', action, {
       event_category: category,
       event_label: label,
@@ -41,4 +37,3 @@ export const trackEvent = ({
     });
   }
 };
-

@@ -8,10 +8,11 @@
   filter: blur(140px);
   pointer-events: none;
   z-index: 0;
-  transition: left 800ms cubic-bezier(0.16,1,0.3,1),
-              top 800ms cubic-bezier(0.16,1,0.3,1),
-              opacity 800ms cubic-bezier(0.16,1,0.3,1),
-              background 800ms cubic-bezier(0.16,1,0.3,1);
+  transition:
+    left 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    top 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 800ms cubic-bezier(0.16, 1, 0.3, 1);
   position: absolute;
   left: var(--glow-x, 65%);
   top: var(--glow-y, 50%);
@@ -71,17 +72,17 @@
   transition: opacity 500ms;
 }
 
-.spotlightGlow[data-lens="panoptix"] {
-  background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(0,0,0,0) 70%);
+.spotlightGlow[data-lens='panoptix'] {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
 }
-.spotlightGlow[data-lens="vivity"] {
-  background: radial-gradient(circle, rgba(0,201,177,0.15) 0%, rgba(0,0,0,0) 70%);
+.spotlightGlow[data-lens='vivity'] {
+  background: radial-gradient(circle, rgba(0, 201, 177, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
 }
-.spotlightGlow[data-lens="eyhance"] {
-  background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, rgba(0,0,0,0) 70%);
+.spotlightGlow[data-lens='eyhance'] {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
 }
-.spotlightGlow[data-lens="monofocal"] {
-  background: radial-gradient(circle, rgba(100,116,139,0.1) 0%, rgba(0,0,0,0) 70%);
+.spotlightGlow[data-lens='monofocal'] {
+  background: radial-gradient(circle, rgba(100, 116, 139, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
 }
 
 .group:hover .spotlightGlow {
@@ -105,7 +106,9 @@
 
 /* ── CTA arrow ── */
 .ctaArrow {
-  transition: transform 300ms, color 300ms;
+  transition:
+    transform 300ms,
+    color 300ms;
 }
 
 .ctaButton:hover .ctaArrow {
@@ -156,12 +159,12 @@
   box-shadow: 0 2px 12px rgba(0, 201, 177, 0.1);
 }
 
-.distanceHighlight[data-active="distance"] {
+.distanceHighlight[data-active='distance'] {
   left: 4px;
 }
-.distanceHighlight[data-active="intermediate"] {
+.distanceHighlight[data-active='intermediate'] {
   left: calc(33.333% + 2px);
 }
-.distanceHighlight[data-active="near"] {
+.distanceHighlight[data-active='near'] {
   left: calc(66.666% + 2px);
 }

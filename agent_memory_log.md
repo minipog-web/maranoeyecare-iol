@@ -9,3 +9,8 @@
 ## Interaction & Protocol Loop
 * **Clarification**: Utilize the `/grill-me` interactive design alignment command when resolving options or setting up implementation plans. Ask questions one at a time and provide recommendations.
 * **Verification**: Rely on local build successes (`npm run build` and `tsc --noEmit`) and user browser checks. Avoid excessive browser screenshots.
+
+## Analytics & Conversion Telemetry
+* **Loading Optimization**: Always avoid loading blocking static `<script async>` tags in next.js `<head>`. Consolidate logic into `next/script` using `strategy="afterInteractive"` or `lazyOnload` to keep LCP/CLS metrics high-performing.
+* **Fallback Instrumentation**: Ensure GA4 `trackEvent` modules handle placeholder keys gracefully and support local-fallback logic so tracking is robust during development and local staging.
+

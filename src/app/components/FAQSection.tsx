@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { trackEvent } from '@/lib/gtag';
 
 interface FAQItem {
   question: string;
@@ -212,6 +213,30 @@ export default function FAQSection() {
   const [openObjection, setOpenObjection] = useState<number | null>(0);
   const [openProcedural, setOpenProcedural] = useState<number | null>(null);
 
+  const handleObjectionToggle = (index: number, question: string) => {
+    const isOpening = openObjection !== index;
+    setOpenObjection(isOpening ? index : null);
+    if (isOpening) {
+      trackEvent({
+        action: 'faq_expand',
+        category: 'Engagement',
+        label: question,
+      });
+    }
+  };
+
+  const handleProceduralToggle = (index: number, question: string) => {
+    const isOpening = openProcedural !== index;
+    setOpenProcedural(isOpening ? index : null);
+    if (isOpening) {
+      trackEvent({
+        action: 'faq_expand',
+        category: 'Engagement',
+        label: question,
+      });
+    }
+  };
+
   // Dynamically generate FAQ Schema Markup for Google Rich Results
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -271,6 +296,13 @@ export default function FAQSection() {
             {/* CTA */}
             <a
               href="#booking"
+              onClick={() =>
+                trackEvent({
+                  action: 'faq_booking_click',
+                  category: 'Engagement',
+                  label: 'Book a Free Consultation',
+                })
+              }
               className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[52px] shadow-[0_4px_14px_rgba(0,201,177,0.15)] btn-shimmer"
             >
               Book a Free Consultation
@@ -304,7 +336,7 @@ export default function FAQSection() {
                 item={faq}
                 index={i}
                 isOpen={openObjection === i}
-                onToggle={() => setOpenObjection(openObjection === i ? null : i)}
+                onToggle={() => handleObjectionToggle(i, faq.concern || faq.question)}
               />
             ))}
           </div>
@@ -334,7 +366,7 @@ export default function FAQSection() {
                   item={faq}
                   index={i}
                   isOpen={openProcedural === i}
-                  onToggle={() => setOpenProcedural(openProcedural === i ? null : i)}
+                  onToggle={() => handleProceduralToggle(i, faq.question)}
                 />
               ))}
             </div>
@@ -345,7 +377,7 @@ export default function FAQSection() {
                   item={faq}
                   index={i + 3}
                   isOpen={openProcedural === i + 3}
-                  onToggle={() => setOpenProcedural(openProcedural === i + 3 ? null : i + 3)}
+                  onToggle={() => handleProceduralToggle(i + 3, faq.question)}
                 />
               ))}
             </div>
