@@ -98,9 +98,10 @@ function FAQItemRow({
   onToggle: () => void;
   index: number;
 }) {
+  const delays = ['delay-75', 'delay-150', 'delay-300', 'delay-450', 'delay-600'];
   return (
     <div
-      className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
+      className={`border rounded-2xl overflow-hidden transition-all duration-300 animate-fade-up fill-both ${delays[index % delays.length]} ${
         isOpen
           ? 'border-primary/30 bg-primary/[0.03] shadow-[0_0_30px_rgba(0,201,177,0.06)]'
           : 'border-border bg-white/[0.02] hover:border-border-bright hover:bg-white/[0.03]'
@@ -166,14 +167,17 @@ function ProceduralFAQRow({
   item,
   isOpen,
   onToggle,
+  index,
 }: {
   item: FAQItem;
   isOpen: boolean;
   onToggle: () => void;
+  index: number;
 }) {
+  const delays = ['delay-75', 'delay-150', 'delay-200', 'delay-300', 'delay-450', 'delay-600'];
   return (
     <div
-      className={`border-b border-border/50 last:border-0 transition-colors ${
+      className={`border-b border-border/50 last:border-0 transition-colors animate-fade-up fill-both ${delays[index % delays.length]} ${
         isOpen ? 'border-primary/20' : ''
       }`}
     >
@@ -328,6 +332,7 @@ export default function FAQSection() {
                 <ProceduralFAQRow
                   key={i}
                   item={faq}
+                  index={i}
                   isOpen={openProcedural === i}
                   onToggle={() => setOpenProcedural(openProcedural === i ? null : i)}
                 />
@@ -338,6 +343,7 @@ export default function FAQSection() {
                 <ProceduralFAQRow
                   key={i + 3}
                   item={faq}
+                  index={i + 3}
                   isOpen={openProcedural === i + 3}
                   onToggle={() => setOpenProcedural(openProcedural === i + 3 ? null : i + 3)}
                 />
