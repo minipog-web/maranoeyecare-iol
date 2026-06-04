@@ -1,18 +1,18 @@
 // Google Analytics helper function to track custom user events and conversions
 
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+export const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID &&
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID !== 'your-google-analytics-id-here'
+    ? process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+    : 'G-1YBZ7BFJ4C';
 
 // Declare global window interface for gtag
 declare global {
   interface Window {
     gtag?: (
-      command: 'event',
+      command: 'event' | 'config' | 'js',
       action: string,
-      params: {
-        event_category: string;
-        event_label?: string;
-        value?: number;
-      }
+      params?: Record<string, any>
     ) => void;
   }
 }
@@ -32,8 +32,7 @@ export const trackEvent = ({
   if (
     typeof window !== 'undefined' &&
     window.gtag &&
-    GA_MEASUREMENT_ID &&
-    GA_MEASUREMENT_ID !== 'your-google-analytics-id-here'
+    GA_MEASUREMENT_ID
   ) {
     window.gtag('event', action, {
       event_category: category,
@@ -42,3 +41,4 @@ export const trackEvent = ({
     });
   }
 };
+

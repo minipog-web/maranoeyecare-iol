@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import AppIcon from '@/components/ui/AppIcon';
 import Image from 'next/image';
 import styles from './LensVisionComparisonSection.module.css';
+import { trackEvent } from '@/lib/gtag';
 
 const lenses = [
   {
@@ -360,6 +361,11 @@ export default function LensVisionComparisonSection() {
   const selectPremiumLens = (id: string) => {
     setActivePremiumLensId(id);
     setActiveMobileLensId(id);
+    trackEvent({
+      action: 'lens_comparison_premium_tab_select',
+      category: 'Engagement',
+      label: id,
+    });
   };
 
   const selectMobileLens = (id: string) => {
@@ -375,6 +381,11 @@ export default function LensVisionComparisonSection() {
     } else {
       selectPremiumLens(id);
     }
+    trackEvent({
+      action: 'lens_comparison_card_click',
+      category: 'Engagement',
+      label: id,
+    });
     // Scroll to the simulator viewport container
     document
       .getElementById('simulator-viewport')
@@ -386,6 +397,11 @@ export default function LensVisionComparisonSection() {
     if (t === 'night') {
       setActiveDistance('distance');
     }
+    trackEvent({
+      action: 'lens_comparison_time_select',
+      category: 'Engagement',
+      label: t,
+    });
   };
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>, lensId: string) => {
@@ -631,7 +647,14 @@ export default function LensVisionComparisonSection() {
                         return (
                           <button
                             key={d}
-                            onClick={() => setActiveDistance(d)}
+                            onClick={() => {
+                              setActiveDistance(d);
+                              trackEvent({
+                                action: 'lens_comparison_distance_select',
+                                category: 'Engagement',
+                                label: d,
+                              });
+                            }}
                             className={`relative z-10 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border text-center transition-colors duration-300 group active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border-transparent ${
                               isActive
                                 ? 'text-white'

@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { DM_Sans, Fraunces } from 'next/font/google';
 import Script from 'next/script';
+import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
 
@@ -41,31 +42,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-
   return (
     <html lang="en" className={`${dmSans.variable} ${fraunces.variable} dark`}>
-      <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YBZ7BFJ4C"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'G-1YBZ7BFJ4C');
-            `,
-          }}
-        />
-      </head>
+      <head />
       <body className={dmSans.className}>
         {/* Google Analytics tag manager tracking scripts */}
-        {gaId && gaId !== 'your-google-analytics-id-here' && (
+        {GA_MEASUREMENT_ID && (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
               strategy="afterInteractive"
             />
             <Script id="google-analytics" strategy="afterInteractive">
@@ -73,7 +58,7 @@ export default function RootLayout({
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${gaId}', {
+                gtag('config', '${GA_MEASUREMENT_ID}', {
                   page_path: window.location.pathname,
                 });
               `}
@@ -85,3 +70,4 @@ export default function RootLayout({
     </html>
   );
 }
+

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './HeroSection.module.css';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import { trackEvent } from '@/lib/gtag';
 
 const lenses = [
   {
@@ -98,6 +99,13 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
               <a
                 href="#booking"
+                onClick={() =>
+                  trackEvent({
+                    action: 'hero_primary_cta_click',
+                    category: 'Engagement',
+                    label: 'Book Your Free Consultation',
+                  })
+                }
                 className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(0,201,177,0.25)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 Book Your Free Consultation
@@ -109,6 +117,13 @@ export default function HeroSection() {
               </a>
               <a
                 href="#lenses"
+                onClick={() =>
+                  trackEvent({
+                    action: 'hero_secondary_cta_click',
+                    category: 'Engagement',
+                    label: 'Compare Lenses',
+                  })
+                }
                 className="group relative focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-4 px-8 text-base tracking-wide flex items-center justify-center gap-2 rounded-xl border border-border-bright bg-muted/40 font-semibold uppercase text-foreground transition-all duration-300 hover:border-primary/50 hover:bg-muted/80 hover:text-white overflow-hidden"
               >
                 {/* Precision left indicator block */}
@@ -163,6 +178,13 @@ export default function HeroSection() {
                   key={lens?.name}
                   onMouseEnter={() => setHoveredLens(lens.name)}
                   onMouseLeave={() => setHoveredLens(null)}
+                  onClick={() =>
+                    trackEvent({
+                      action: 'hero_lens_card_click',
+                      category: 'Engagement',
+                      label: lens.name,
+                    })
+                  }
                   className={`relative doppel-shell ${lens?.accent} transition-spring hover:-translate-y-3 group cursor-pointer ${styles.lensCard} ${delayClass}
                       ${
                         lens?.featured
@@ -235,6 +257,13 @@ export default function HeroSection() {
               </p>
               <a
                 href="#lenses"
+                onClick={() =>
+                  trackEvent({
+                    action: 'hero_floating_card_click',
+                    category: 'Engagement',
+                    label: 'See comparison',
+                  })
+                }
                 className="mt-3 flex items-center gap-1.5 text-xs text-primary font-semibold hover:gap-2.5 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 See comparison <Icon name="ArrowRightIcon" size={12} />
@@ -246,3 +275,4 @@ export default function HeroSection() {
     </section>
   );
 }
+

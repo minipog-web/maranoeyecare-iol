@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
+import { trackEvent } from '@/lib/gtag';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,6 +29,30 @@ export default function Header() {
     { label: 'Find My Lens', href: '#lifestyle' },
     { label: 'Our Doctors', href: '#trust' },
   ];
+
+  const handleNavClick = (label: string) => {
+    trackEvent({
+      action: 'header_nav_click',
+      category: 'Engagement',
+      label: label,
+    });
+  };
+
+  const handlePhoneClick = (source: string) => {
+    trackEvent({
+      action: 'phone_click',
+      category: 'Conversion',
+      label: `Header Call: ${source}`,
+    });
+  };
+
+  const handleBookingClick = (source: string) => {
+    trackEvent({
+      action: 'header_booking_click',
+      category: 'Engagement',
+      label: `Header Booking: ${source}`,
+    });
+  };
 
   return (
     <header
@@ -58,6 +83,7 @@ export default function Header() {
             <a
               key={link?.href}
               href={link?.href}
+              onClick={() => handleNavClick(link.label)}
               className={`px-1.5 md:px-2 lg:px-2.5 xl:px-3.5 py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-xs font-semibold uppercase tracking-[0.02em] md:tracking-[0.04em] lg:tracking-[0.06em] xl:tracking-[0.1em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                 idx === 1 || idx === 3 ? 'md:hidden lg:inline-block' : ''
               }`}
@@ -71,6 +97,7 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-4 lg:gap-6 shrink-0">
           <a
             href="tel:9733220100"
+            onClick={() => handlePhoneClick('desktop')}
             className="group flex items-center gap-2.5 text-xs xl:text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap lg:ml-6 rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
@@ -85,6 +112,7 @@ export default function Header() {
 
           <a
             href="#booking"
+            onClick={() => handleBookingClick('desktop')}
             className="btn-premium-primary btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             Book Consultation
@@ -110,7 +138,10 @@ export default function Header() {
                 key={link?.href}
                 href={link?.href}
                 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary py-3 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  handleNavClick(link.label);
+                  setMenuOpen(false);
+                }}
               >
                 {link?.label}
               </a>
@@ -120,6 +151,7 @@ export default function Header() {
           <div className="flex flex-col gap-3 pt-2">
             <a
               href="tel:9733220100"
+              onClick={() => handlePhoneClick('mobile')}
               className="group flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground py-3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-primary/30 transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
@@ -131,7 +163,10 @@ export default function Header() {
             <a
               href="#booking"
               className="w-full py-3.5 bg-primary text-[#040506] rounded-xl text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-colors touch-manipulation flex items-center justify-center shadow-[0_4px_14px_rgba(0,201,177,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                handleBookingClick('mobile');
+                setMenuOpen(false);
+              }}
             >
               Book Consultation
             </a>
@@ -141,3 +176,4 @@ export default function Header() {
     </header>
   );
 }
+
