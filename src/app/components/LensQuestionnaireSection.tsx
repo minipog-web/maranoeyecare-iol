@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import { trackEvent } from '@/lib/gtag';
+import styles from './LensQuestionnaireSection.module.css';
 
 interface Question {
   id: string;
@@ -544,25 +545,15 @@ export default function LensQuestionnaireSection() {
               </div>
 
               <div
-                className="doppel-shell p-1.5 mb-6 transition-spring"
-                style={{
-                  borderColor:
-                    result.key === 'vivity'
-                      ? 'rgba(0, 201, 177, 0.4)'
-                      : result.key === 'panoptix'
-                        ? 'rgba(139, 92, 246, 0.4)'
-                        : result.key === 'eyhance'
-                          ? 'rgba(16, 185, 129, 0.35)'
-                          : 'rgba(100, 116, 139, 0.3)',
-                  boxShadow:
-                    result.key === 'vivity'
-                      ? '0 15px 40px rgba(0, 201, 177, 0.15)'
-                      : result.key === 'panoptix'
-                        ? '0 15px 40px rgba(139, 92, 246, 0.15)'
-                        : result.key === 'eyhance'
-                          ? '0 15px 40px rgba(16, 185, 129, 0.12)'
-                          : '0 15px 40px rgba(100, 116, 139, 0.1)',
-                }}
+                className={`doppel-shell p-1.5 mb-6 transition-spring ${
+                  result.key === 'vivity'
+                    ? styles.shellVivity
+                    : result.key === 'panoptix'
+                      ? styles.shellPanoptix
+                      : result.key === 'eyhance'
+                        ? styles.shellEyhance
+                        : styles.shellMonofocal
+                }`}
               >
                 <div className="bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-5 sm:p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">

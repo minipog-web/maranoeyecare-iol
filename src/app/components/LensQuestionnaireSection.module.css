@@ -1,0 +1,19 @@
+.shellVivity {
+  border-color: rgba(0, 201, 177, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 201, 177, 0.15);
+}
+
+.shellPanoptix {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15);
+}
+
+.shellEyhance {
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.12);
+}
+
+.shellMonofocal {
+  border-color: rgba(100, 116, 139, 0.3);
+  box-shadow: 0 15px 40px rgba(100, 116, 139, 0.1);
+}

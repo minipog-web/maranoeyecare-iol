@@ -45,9 +45,22 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${dmSans.variable} ${fraunces.variable} dark`}>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YBZ7BFJ4C"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-1YBZ7BFJ4C');
+            `,
+          }}
+        />
+      </head>
       <body className={dmSans.className}>
-        {/* Film grain texture overlay */}
-        <div className="film-grain" />
         {/* Google Analytics tag manager tracking scripts */}
         {gaId && gaId !== 'your-google-analytics-id-here' && (
           <>
