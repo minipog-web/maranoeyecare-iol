@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import AppIcon from '@/components/ui/AppIcon';
 import Image from 'next/image';
+import styles from './LensVisionComparisonSection.module.css';
 
 const lenses = [
   {
@@ -353,9 +354,8 @@ export default function LensVisionComparisonSection() {
   const [activeMobileLensId, setActiveMobileLensId] = useState<string>('panoptix');
   const [isPeekingBaseline, setIsPeekingBaseline] = useState<boolean>(false);
   const [glowPosition, setGlowPosition] = useState<{ x: string; y: string } | null>(null);
-  const [mouseCoords, setMouseCoords] = useState<{ [key: string]: { x: number; y: number } }>({});
   const [hoveredLensId, setHoveredLensId] = useState<string | null>(null);
-  const [hoveredCta, setHoveredCta] = useState<string | null>(null);
+  const ambientGlowRef = useRef<HTMLDivElement>(null);
 
   const selectPremiumLens = (id: string) => {
     setActivePremiumLensId(id);
@@ -405,14 +405,17 @@ export default function LensVisionComparisonSection() {
     setGlowPosition(null);
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, lensId: string) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    setMouseCoords((prev) => ({
-      ...prev,
-      [lensId]: { x, y },
-    }));
+    const spotlight = e.currentTarget.querySelector(
+      `.${styles.spotlightGlow}`
+    ) as HTMLDivElement | null;
+    if (spotlight) {
+      spotlight.style.setProperty('--mouse-x', `${x}px`);
+      spotlight.style.setProperty('--mouse-y', `${y}px`);
+    }
   };
 
   const renderSimulatorImages = (lensId: string) => {
@@ -497,6 +500,28 @@ export default function LensVisionComparisonSection() {
   const activePremiumLens = lenses.find((l) => l.id === activePremiumLensId) || lenses[0];
   const activeMobileConfigLens = lenses.find((l) => l.id === activeMobileLensId) || lenses[0];
 
+  const currentGlowLensId = hoveredLensId ?? activePremiumLensId;
+  const currentGlowLens = lenses.find((l) => l.id === currentGlowLensId) || lenses[0];
+
+  useEffect(() => {
+    if (!ambientGlowRef.current) return;
+    const x = glowPosition
+      ? glowPosition.x
+      : currentGlowLensId === 'panoptix'
+        ? '65%'
+        : currentGlowLensId === 'vivity'
+          ? '50%'
+          : '35%';
+    const y = glowPosition ? glowPosition.y : '50%';
+    const opacity = glowPosition ? '0.95' : '0.45';
+    const glowBg = `radial-gradient(circle, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.25)' : currentGlowLens.id === 'vivity' ? 'rgba(0,201,177,0.25)' : currentGlowLens.id === 'eyhance' ? 'rgba(16,185,129,0.2)' : 'rgba(100,116,139,0.15)'} 0%, rgba(0,0,0,0) 70%)`;
+
+    ambientGlowRef.current.style.setProperty('--glow-x', x);
+    ambientGlowRef.current.style.setProperty('--glow-y', y);
+    ambientGlowRef.current.style.setProperty('--glow-opacity', opacity);
+    ambientGlowRef.current.style.setProperty('--glow-bg', glowBg);
+  }, [glowPosition, currentGlowLensId, currentGlowLens]);
+
   const renderMobileSimulatorImages = () => {
     return lenses.map((lens) => {
       const isCurrentLens = mobileDisplayLensId === lens.id;
@@ -520,16 +545,8 @@ export default function LensVisionComparisonSection() {
       {/* Subtle Central Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-white/[0.01] rounded-full blur-[160px] pointer-events-none z-0" />
 
-      {/* Dynamic Sliding Background Glow that follows the hovered panel */}
-      <div
-        className="absolute w-[650px] h-[650px] rounded-full blur-[130px] pointer-events-none z-0 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] bg-gradient-to-r from-primary/25 to-blue-500/15"
-        style={{
-          left: glowPosition ? glowPosition.x : '50%',
-          top: glowPosition ? glowPosition.y : '50%',
-          transform: 'translate3d(-50%, -50%, 0) scale(1.2)',
-          opacity: glowPosition ? 0.95 : 0.35,
-        }}
-      />
+      {/* Dynamic Sliding Background Glow that follows the active lens selection or mouse hover */}
+      <div ref={ambientGlowRef} className={styles.ambientGlow} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
@@ -605,7 +622,9 @@ export default function LensVisionComparisonSection() {
                     Simulated Focus distance
                   </span>
                   {timeOfDay === 'day' ? (
-                    <div className="grid grid-cols-3 gap-3 w-full">
+                    <div className="relative p-1 bg-black/40 border border-white/[0.06] rounded-2xl w-full grid grid-cols-3 gap-1 shadow-inner">
+                      {/* Sliding Highlight Track */}
+                      <div data-active={activeDistance} className={styles.distanceHighlight} />
                       {(Object.keys(distanceLabels) as Distance[]).map((d) => {
                         const isActive = activeDistance === d;
                         const details = distanceLabels[d];
@@ -613,10 +632,10 @@ export default function LensVisionComparisonSection() {
                           <button
                             key={d}
                             onClick={() => setActiveDistance(d)}
-                            className={`flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border text-center transition-all duration-300 relative group active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                            className={`relative z-10 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border text-center transition-colors duration-300 group active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border-transparent ${
                               isActive
-                                ? 'bg-white/[0.04] text-white border-primary/40 shadow-[0_4px_20px_rgba(0,201,177,0.15)]'
-                                : 'bg-transparent text-muted-foreground border-white/[0.06] hover:border-white/[0.12] hover:text-foreground'
+                                ? 'text-white'
+                                : 'bg-transparent text-muted-foreground hover:text-foreground'
                             }`}
                           >
                             <AppIcon
@@ -675,20 +694,17 @@ export default function LensVisionComparisonSection() {
             </div>
 
             {/* Right Header */}
-            <div className="flex items-center justify-between px-5 py-2.5 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
+            <div className="flex items-center justify-between px-5 py-2 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
               <div className="flex items-center gap-2">
                 <span
-                  className="w-2 h-2 rounded-full transition-all duration-500"
-                  style={{
-                    backgroundColor: activePremiumLens.color,
-                    boxShadow: `0 0 10px ${activePremiumLens.color}`,
-                  }}
+                  data-lens={activePremiumLens.id}
+                  className={`w-2 h-2 rounded-full transition-all duration-500 animate-pulse ${styles.indicatorDot}`}
                 />
                 <span className="text-xs font-bold uppercase tracking-wider text-white">
                   Compare Premium Lens
                 </span>
               </div>
-              <div className="flex p-0.5 bg-black/40 rounded-xl border border-white/[0.06]">
+              <div className="flex p-1 bg-black/60 rounded-xl border border-white/[0.08] gap-1 shadow-inner">
                 {lenses
                   .filter((l) => l.id !== 'monofocal')
                   .map((lens) => {
@@ -697,20 +713,23 @@ export default function LensVisionComparisonSection() {
                       <button
                         key={lens.id}
                         onClick={() => selectPremiumLens(lens.id)}
-                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none flex items-center gap-1.5 border ${
                           isActive
-                            ? 'bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
-                            : 'text-muted-foreground hover:text-foreground'
+                            ? 'bg-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] scale-[1.02]'
+                            : 'text-muted-foreground hover:text-foreground border-transparent'
                         }`}
-                        style={{
-                          color: isActive ? lens.color : undefined,
-                        }}
                       >
-                        {lens.id === 'panoptix'
-                          ? 'PanOptix'
-                          : lens.id === 'vivity'
-                            ? 'Vivity'
-                            : 'Eyhance'}
+                        <span
+                          data-lens={lens.id}
+                          className={`w-1.5 h-1.5 rounded-full transition-transform duration-300 ${isActive ? `${styles.sceneTagDot} scale-[1.2]` : styles.lensDot}`}
+                        />
+                        <span>
+                          {lens.id === 'panoptix'
+                            ? 'PanOptix Pro'
+                            : lens.id === 'vivity'
+                              ? 'Clareon Vivity'
+                              : 'Tecnis Eyhance'}
+                        </span>
                       </button>
                     );
                   })}
@@ -755,17 +774,23 @@ export default function LensVisionComparisonSection() {
 
             {/* Right Image Viewport */}
             <div
-              className="relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-t-0 transition-all duration-500 shadow-[0_10px_30px_rgba(0,0,0,0.4)] group"
-              style={{
-                borderColor: `${activePremiumLens.color}30`,
-                boxShadow: `0 12px 36px -4px ${activePremiumLens.color}20`,
-              }}
+              data-lens={activePremiumLens.id}
+              className={`relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-t-0 transition-all duration-500 group ${styles.premiumViewport}`}
             >
               {renderPremiumSimulatorImages()}
               {/* Scene Tag */}
-              <div className="absolute top-3 left-3 pointer-events-none z-20">
-                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
-                  {timeOfDay === 'day' ? 'Day' : 'Night'} · {activePremiumLens.name}
+              <div className="absolute top-4 left-4 pointer-events-none z-20">
+                <span
+                  data-lens={activePremiumLens.id}
+                  className={`bg-black/75 backdrop-blur-md text-[10px] px-3 py-1.5 rounded-xl uppercase tracking-wider font-bold border flex items-center gap-2 transition-all duration-500 ${styles.sceneTag}`}
+                >
+                  <span
+                    data-lens={activePremiumLens.id}
+                    className={`w-2 h-2 rounded-full ${styles.sceneTagDot}`}
+                  />
+                  <span>
+                    {timeOfDay === 'day' ? 'Daytime' : 'Night driving'} · {activePremiumLens.name}
+                  </span>
                 </span>
               </div>
               {/* In-Image Visual Explanation Overlay */}
@@ -824,32 +849,34 @@ export default function LensVisionComparisonSection() {
               <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] text-center">
                 Select Lens to Simulate
               </span>
-              <div className="flex p-0.5 bg-black/40 rounded-xl border border-white/[0.06] w-full min-h-[60px]">
+              <div className="flex p-1 bg-black/60 rounded-2xl border border-white/[0.08] w-full min-h-[65px] gap-1 shadow-inner">
                 {lenses.map((lens) => {
                   const isActive = activeMobileLensId === lens.id;
                   return (
                     <button
                       key={lens.id}
                       onClick={() => selectMobileLens(lens.id)}
-                      className={`flex-1 flex flex-col items-center justify-center py-2 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                      data-lens={lens.id}
+                      className={`flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
                         isActive
-                          ? 'bg-white/[0.05] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
-                          : 'text-muted-foreground hover:text-foreground'
+                          ? `bg-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] scale-[1.02] ${styles.mobileLensBtn}`
+                          : 'text-muted-foreground hover:text-foreground border-transparent'
                       }`}
-                      style={{
-                        color: isActive ? lens.color : undefined,
-                      }}
                     >
-                      <span className="block text-[11px] font-bold leading-none">
+                      <span className="text-[11px] font-bold leading-none flex items-center gap-1">
+                        <span
+                          data-lens={lens.id}
+                          className={`w-1.5 h-1.5 rounded-full inline-block shrink-0 ${isActive ? styles.mobileLensDot : styles.lensDot}`}
+                        />
                         {lens.id === 'monofocal'
-                          ? 'Monofocal'
+                          ? 'Mono'
                           : lens.id === 'panoptix'
                             ? 'PanOptix'
                             : lens.id === 'vivity'
                               ? 'Vivity'
                               : 'Eyhance'}
                       </span>
-                      <span className="block text-[8px] opacity-60 font-light mt-1">
+                      <span className="block text-[8px] opacity-60 font-medium mt-1 uppercase tracking-wider">
                         {lens.id === 'monofocal'
                           ? 'Baseline'
                           : lens.id === 'panoptix'
@@ -866,11 +893,8 @@ export default function LensVisionComparisonSection() {
 
             {/* Mobile Viewport Image Box */}
             <div
-              className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black/40 border transition-all duration-500 shadow-md"
-              style={{
-                borderColor: `${activeMobileConfigLens.color}30`,
-                boxShadow: `0 8px 24px -4px ${activeMobileConfigLens.color}15`,
-              }}
+              data-lens={activeMobileConfigLens.id}
+              className={`relative aspect-[4/3] rounded-2xl overflow-hidden bg-black/40 border transition-all duration-500 shadow-md ${styles.mobileViewport}`}
             >
               {renderMobileSimulatorImages()}
 
@@ -899,11 +923,20 @@ export default function LensVisionComparisonSection() {
               )}
 
               {/* Status Overlay */}
-              <div className="absolute top-3 left-3 pointer-events-none z-20">
-                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
-                  {isPeekingBaseline
-                    ? 'Monofocal (Baseline)'
-                    : lenses.find((l) => l.id === activeMobileLensId)?.name}
+              <div className="absolute top-4 left-4 pointer-events-none z-20">
+                <span
+                  data-lens={isPeekingBaseline ? 'monofocal' : activeMobileLensId}
+                  className={`bg-black/75 backdrop-blur-md text-[10px] px-3 py-1.5 rounded-xl uppercase tracking-wider font-bold border flex items-center gap-2 transition-all duration-500 ${styles.mobileSceneTag}`}
+                >
+                  <span
+                    data-lens={isPeekingBaseline ? 'monofocal' : activeMobileLensId}
+                    className={`w-2 h-2 rounded-full ${styles.mobileSceneTagDot}`}
+                  />
+                  <span>
+                    {isPeekingBaseline
+                      ? 'Monofocal (Baseline)'
+                      : lenses.find((l) => l.id === activeMobileLensId)?.name}
+                  </span>
                 </span>
               </div>
 
@@ -956,48 +989,27 @@ export default function LensVisionComparisonSection() {
 
         {/* Detailed Specs Grid (Below Simulator) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch relative z-10">
-          {lenses.map((lens) => {
+          {lenses.map((lens, i) => {
             const isHovered = hoveredLensId === lens.id;
             const isActive = hoveredLensId ? isHovered : lens.id === activeMobileLensId;
+            const delays = ['delay-75', 'delay-150', 'delay-300', 'delay-450'];
 
             return (
               <div
                 key={lens.id}
                 onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
                 onMouseLeave={handleMouseLeave}
-                onMouseMove={(e) => handleMouseMove(e, lens.id)}
+                onMouseMove={handleMouseMove}
                 onClick={() => handleCardClick(lens.id)}
-                className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col hover:-translate-y-2 cursor-pointer border ${
+                data-lens={lens.id}
+                className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col hover:-translate-y-2 cursor-pointer border animate-fade-up fill-both ${delays[i]} ${
                   isActive
-                    ? 'bg-gradient-to-b from-white/12 to-white/0 border-transparent'
+                    ? `bg-gradient-to-b from-white/12 to-white/0 border-transparent ${styles.specCard}`
                     : 'bg-gradient-to-b from-white/8 to-white/0 border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
                 }`}
-                style={{
-                  borderColor: isActive ? `${lens.color}40` : undefined,
-                  boxShadow: isActive ? `0 15px 40px -4px ${lens.color}25` : undefined,
-                }}
               >
                 {/* Dynamic Mouse Spotlight Glow */}
-                <div
-                  className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[80px] z-0"
-                  style={{
-                    width: '300px',
-                    height: '300px',
-                    left: mouseCoords[lens.id] ? `${mouseCoords[lens.id].x}px` : '50%',
-                    top: mouseCoords[lens.id] ? `${mouseCoords[lens.id].y}px` : '50%',
-                    transform: 'translate(-50%, -50%)',
-                    background: `radial-gradient(circle, ${
-                      lens.id === 'panoptix'
-                        ? 'rgba(139, 92, 246, 0.15)'
-                        : lens.id === 'vivity'
-                          ? 'rgba(0, 201, 177, 0.15)'
-                          : lens.id === 'eyhance'
-                            ? 'rgba(16, 185, 129, 0.12)'
-                            : 'rgba(100, 116, 139, 0.1)'
-                    } 0%, rgba(0,0,0,0) 70%)`,
-                  }}
-                />
-
+                <div data-lens={lens.id} className={styles.spotlightGlow} />
                 <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-[#0e1018]/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
                   {/* Badge */}
                   <div className="flex items-center justify-between mb-4">
@@ -1064,18 +1076,9 @@ export default function LensVisionComparisonSection() {
 
                   <a
                     href="#booking"
+                    data-lens={lens.id}
                     onClick={(e) => e.stopPropagation()}
-                    onMouseEnter={() => setHoveredCta(lens.id)}
-                    onMouseLeave={() => setHoveredCta(null)}
-                    className="w-full py-3 rounded-xl text-xs font-semibold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[46px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                    style={{
-                      backgroundColor:
-                        hoveredCta === lens.id ? `${lens.color}15` : 'rgba(255, 255, 255, 0.03)',
-                      borderColor:
-                        hoveredCta === lens.id ? `${lens.color}40` : 'rgba(255, 255, 255, 0.08)',
-                      boxShadow: hoveredCta === lens.id ? `0 0 16px ${lens.color}20` : 'none',
-                      color: hoveredCta === lens.id ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
-                    }}
+                    className={`w-full py-3 rounded-xl text-xs font-semibold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[46px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                   >
                     <span>
                       Select{' '}
@@ -1086,11 +1089,8 @@ export default function LensVisionComparisonSection() {
                         .replace(' Pro', '')}
                     </span>
                     <svg
-                      className="w-3.5 h-3.5 transform transition-transform duration-300 shrink-0"
-                      style={{
-                        transform: hoveredCta === lens.id ? 'translateX(2px)' : 'none',
-                        color: hoveredCta === lens.id ? lens.color : 'currentColor',
-                      }}
+                      data-lens={lens.id}
+                      className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

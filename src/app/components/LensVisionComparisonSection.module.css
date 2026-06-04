@@ -1,0 +1,167 @@
+/* ── Per-lens color tokens (defined globally in index.css) ── */
+
+/* ── Dynamic background glow (runtime position via CSS vars) ── */
+.ambientGlow {
+  width: 700px;
+  height: 700px;
+  border-radius: 9999px;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+  transition: left 800ms cubic-bezier(0.16,1,0.3,1),
+              top 800ms cubic-bezier(0.16,1,0.3,1),
+              opacity 800ms cubic-bezier(0.16,1,0.3,1),
+              background 800ms cubic-bezier(0.16,1,0.3,1);
+  position: absolute;
+  left: var(--glow-x, 65%);
+  top: var(--glow-y, 50%);
+  opacity: var(--glow-opacity, 0.45);
+  background: var(--glow-bg);
+  transform: translate3d(-50%, -50%, 0);
+}
+
+/* ── Indicator dot (desktop right header) ── */
+.indicatorDot {
+  background-color: var(--lens-color);
+  box-shadow: 0 0 12px var(--lens-color);
+}
+
+/* ── Lens dot color helper ── */
+.lensDot {
+  background-color: var(--lens-color);
+}
+
+/* ── Right viewport (desktop) ── */
+.premiumViewport {
+  border-color: rgba(var(--lens-color-rgb), 0.19);
+  box-shadow: 0 12px 36px -4px rgba(var(--lens-color-rgb), 0.13);
+}
+
+/* ── Scene tag ── */
+.sceneTag {
+  border-color: rgba(var(--lens-color-rgb), 0.31);
+  box-shadow: 0 4px 12px rgba(var(--lens-color-rgb), 0.08);
+  color: var(--lens-color);
+}
+
+.sceneTagDot {
+  background-color: var(--lens-color);
+  box-shadow: 0 0 8px var(--lens-color);
+}
+
+/* ── Spec card wrapper ── */
+.specCard {
+  border-color: rgba(var(--lens-color-rgb), 0.25);
+  box-shadow: 0 15px 40px -4px rgba(var(--lens-color-rgb), 0.15);
+}
+
+/* ── Mouse spotlight glow ── */
+.spotlightGlow {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  filter: blur(80px);
+  z-index: 0;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  transform: translate(-50%, -50%);
+  transition: opacity 500ms;
+}
+
+.spotlightGlow[data-lens="panoptix"] {
+  background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(0,0,0,0) 70%);
+}
+.spotlightGlow[data-lens="vivity"] {
+  background: radial-gradient(circle, rgba(0,201,177,0.15) 0%, rgba(0,0,0,0) 70%);
+}
+.spotlightGlow[data-lens="eyhance"] {
+  background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, rgba(0,0,0,0) 70%);
+}
+.spotlightGlow[data-lens="monofocal"] {
+  background: radial-gradient(circle, rgba(100,116,139,0.1) 0%, rgba(0,0,0,0) 70%);
+}
+
+.group:hover .spotlightGlow {
+  opacity: 1;
+}
+
+/* ── CTA button ── */
+.ctaButton {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ctaButton:hover {
+  background-color: rgba(var(--lens-color-rgb), 0.08);
+  border-color: rgba(var(--lens-color-rgb), 0.25);
+  box-shadow: 0 0 16px rgba(var(--lens-color-rgb), 0.13);
+  color: #ffffff;
+}
+
+/* ── CTA arrow ── */
+.ctaArrow {
+  transition: transform 300ms, color 300ms;
+}
+
+.ctaButton:hover .ctaArrow {
+  transform: translateX(2px);
+  color: var(--lens-color);
+}
+
+/* ── Mobile selector button ── */
+.mobileLensBtn {
+  color: var(--lens-color);
+  border-color: rgba(var(--lens-color-rgb), 0.21);
+  box-shadow: 0 0 10px rgba(var(--lens-color-rgb), 0.08);
+}
+
+.mobileLensDot {
+  background-color: var(--lens-color);
+  box-shadow: 0 0 6px var(--lens-color);
+}
+
+/* ── Mobile viewport ── */
+.mobileViewport {
+  border-color: rgba(var(--lens-color-rgb), 0.19);
+  box-shadow: 0 8px 24px -4px rgba(var(--lens-color-rgb), 0.09);
+}
+
+/* ── Mobile status tag ── */
+.mobileSceneTag {
+  border-color: rgba(var(--lens-color-rgb), 0.31);
+  box-shadow: 0 4px 12px rgba(var(--lens-color-rgb), 0.08);
+  color: var(--lens-color);
+}
+
+.mobileSceneTagDot {
+  background-color: var(--lens-color);
+  box-shadow: 0 0 8px var(--lens-color);
+}
+
+/* ── Distance Highlight Track ── */
+.distanceHighlight {
+  width: calc(33.333% - 6px);
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 12px;
+  transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: rgba(0, 201, 177, 0.1);
+  border: 1px solid rgba(0, 201, 177, 0.2);
+  box-shadow: 0 2px 12px rgba(0, 201, 177, 0.1);
+}
+
+.distanceHighlight[data-active="distance"] {
+  left: 4px;
+}
+.distanceHighlight[data-active="intermediate"] {
+  left: calc(33.333% + 2px);
+}
+.distanceHighlight[data-active="near"] {
+  left: calc(66.666% + 2px);
+}
