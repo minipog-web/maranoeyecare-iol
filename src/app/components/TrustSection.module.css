@@ -37,3 +37,21 @@
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
+
+.photoSpotlight {
+  width: 240px;
+  height: 240px;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(95, 255, 217, 0.3) 0%, transparent 70%);
+}
+
+.cardSpotlight {
+  width: 220px;
+  height: 220px;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+}

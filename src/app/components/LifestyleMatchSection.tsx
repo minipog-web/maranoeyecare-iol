@@ -55,7 +55,7 @@ const profiles = [
       'History of dry eye or retinal conditions',
     ],
     recommendation: 'Tecnis Eyhance',
-    recommendationColor: '#10B981',
+    recommendationColor: '#3b82f6',
     reason:
       'Ring-free optic design means zero added halos or glare — with meaningful intermediate improvement over standard monofocal.',
     image: '/assets/images/profile_conservative_candidate.jpg',
@@ -181,24 +181,11 @@ export default function LifestyleMatchSection() {
               href="#booking"
               onMouseMove={handleMouseMove}
               className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
-              style={
-                {
-                  '--rec-color': profile.recommendationColor,
-                } as React.CSSProperties
-              }
             >
               <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
                 {/* Dynamic Mouse Spotlight Glow */}
                 <div
-                  className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[80px] z-0 will-change-transform"
-                  style={{
-                    width: '320px',
-                    height: '320px',
-                    left: 'var(--mouse-x, 50%)',
-                    top: 'var(--mouse-y, 50%)',
-                    transform: 'translate(-50%, -50%)',
-                    background: 'radial-gradient(circle, var(--rec-color) 0%, transparent 70%)',
-                  }}
+                  className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[80px] z-0 will-change-transform ${styles.spotlight}`}
                 />
 
                 {/* Image */}
@@ -215,12 +202,6 @@ export default function LifestyleMatchSection() {
                   {/* Recommendation badge */}
                   <div
                     className={`absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3.5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg backdrop-blur-sm ${styles.recommendationBadge}`}
-                    style={{
-                      backgroundColor: `${profile.recommendationColor}20`,
-                      color: profile.recommendationColor,
-                      borderColor: `${profile.recommendationColor}40`,
-                      borderWidth: '1px',
-                    }}
                   >
                     → {profile?.recommendation}
                   </div>
@@ -238,8 +219,8 @@ export default function LifestyleMatchSection() {
                   <ul className="space-y-2 mb-5 sm:mb-6 flex-1">
                     {profile?.activities?.map((act) => (
                       <li
-                          key={act}
-                          className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                        key={act}
+                        className="flex items-start gap-2.5 text-sm text-muted-foreground"
                       >
                         <span
                           className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${styles.activityDot}`}

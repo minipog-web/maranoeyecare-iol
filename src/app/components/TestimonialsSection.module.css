@@ -80,9 +80,15 @@
 }
 
 /* blur helpers */
-.blur60 { filter: blur(60px); }
-.blur80 { filter: blur(80px); }
-.blur50 { filter: blur(50px); }
+.blur60 {
+  filter: blur(60px);
+}
+.blur80 {
+  filter: blur(80px);
+}
+.blur50 {
+  filter: blur(50px);
+}
 
 .locationsWrapper {
   border-top: 1px solid transparent;

@@ -1,11 +1,11 @@
 .profileActive {
-  --rec-color: #3a86ff;
+  --rec-color: #8b5cf6;
 }
 .profileTech {
   --rec-color: #00c9b1;
 }
 .profileConservative {
-  --rec-color: #a8b4c8;
+  --rec-color: #3b82f6;
 }
 
 .comparisonCard {
@@ -15,9 +15,22 @@
 }
 
 .recommendationBadge {
-  background-color: var(--rec-color);
-  color: #0a0f1a;
-  border: 2px solid var(--rec-color);
+  color: var(--rec-color);
+}
+
+.profileActive .recommendationBadge {
+  background-color: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.profileTech .recommendationBadge {
+  background-color: rgba(0, 201, 177, 0.12);
+  border: 1px solid rgba(0, 201, 177, 0.25);
+}
+
+.profileConservative .recommendationBadge {
+  background-color: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
 }
 
 .recommendationLabel {
@@ -30,5 +43,25 @@
 
 .activityDot {
   background: var(--rec-color);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--rec-color) 38%, transparent);
+}
+
+.profileActive .activityDot {
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.38);
+}
+
+.profileTech .activityDot {
+  box-shadow: 0 0 6px rgba(0, 201, 177, 0.38);
+}
+
+.profileConservative .activityDot {
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.38);
+}
+
+.spotlight {
+  width: 320px;
+  height: 320px;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--rec-color) 0%, transparent 70%);
 }

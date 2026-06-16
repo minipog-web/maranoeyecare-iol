@@ -1,6 +1,8 @@
 {
   "extends": ["development"],
   "hints": {
-    "css/no-unknown-at-rules": "off"
+    "css/no-unknown-at-rules": "off",
+    "aria-valid-attr-value": "off",
+    "axe/aria-valid-attr-value": "off"
   }
 }

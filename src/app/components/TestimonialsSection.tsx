@@ -211,7 +211,9 @@ export default function TestimonialsSection() {
                 >
                   <span
                     className={`h-2 rounded-full transition-all duration-300 ${
-                      activeIndex === idx ? 'w-6 bg-primary' : 'w-2 bg-white/20 group-hover:bg-white/45'
+                      activeIndex === idx
+                        ? 'w-6 bg-primary'
+                        : 'w-2 bg-white/20 group-hover:bg-white/45'
                     }`}
                   />
                 </button>
@@ -261,16 +263,14 @@ export default function TestimonialsSection() {
                       </p>
                     </div>
                     <div className="flex gap-1.5 flex-wrap">
-                      {['15× NJ Top Doctor', 'Chief of Ophthalmology'].map(
-                        (b) => (
-                          <span
-                            key={b}
-                            className="text-[10px] font-semibold text-muted-foreground bg-white/[0.05] border border-border px-2.5 py-1 rounded-full"
-                          >
-                            {b}
-                          </span>
-                        )
-                      )}
+                      {['15× NJ Top Doctor', 'Chief of Ophthalmology'].map((b) => (
+                        <span
+                          key={b}
+                          className="text-[10px] font-semibold text-muted-foreground bg-white/[0.05] border border-border px-2.5 py-1 rounded-full"
+                        >
+                          {b}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>

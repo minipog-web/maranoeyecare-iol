@@ -53,8 +53,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      className={`relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 ${styles.hero}`}
     >
       {/* Background layers */}
       <div className="absolute inset-0 bg-[#080910]" />

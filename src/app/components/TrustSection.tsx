@@ -80,15 +80,7 @@ export default function TrustSection() {
 
               {/* Dynamic Mouse Spotlight Glow */}
               <div
-                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-[60px] z-20 mix-blend-screen will-change-transform"
-                style={{
-                  width: '240px',
-                  height: '240px',
-                  left: 'var(--mouse-x, 50%)',
-                  top: 'var(--mouse-y, 50%)',
-                  transform: 'translate(-50%, -50%)',
-                  background: 'radial-gradient(circle, rgba(95,255,217,0.3) 0%, transparent 70%)',
-                }}
+                className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-[60px] z-20 mix-blend-screen will-change-transform ${styles.photoSpotlight}`}
               />
 
               {/* Layered overlays */}
@@ -136,24 +128,18 @@ export default function TrustSection() {
                 >
                   {/* Dynamic Mouse Spotlight Glow */}
                   <div
-                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
-                    style={{
-                      width: '220px',
-                      height: '220px',
-                      left: 'var(--mouse-x, 50%)',
-                      top: 'var(--mouse-y, 50%)',
-                      transform: 'translate(-50%, -50%)',
-                      background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
-                    }}
+                    className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
                   />
 
                   <div className="relative z-10">
                     <div className="w-8 h-8 rounded-2xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                       <Icon name={award.icon as 'StarIcon'} size={16} className="text-primary" />
                     </div>
-                    <p className={`font-display font-semibold text-primary mb-2 ${
-                      award.value.length > 10 ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'
-                    }`}>
+                    <p
+                      className={`font-display font-semibold text-primary mb-2 ${
+                        award.value.length > 10 ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'
+                      }`}
+                    >
                       {award?.value}
                     </p>
                     {award.value === 'Chief of Ophthalmology' ? (
@@ -186,15 +172,7 @@ export default function TrustSection() {
             >
               {/* Dynamic Mouse Spotlight Glow */}
               <div
-                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
-                style={{
-                  width: '220px',
-                  height: '220px',
-                  left: 'var(--mouse-x, 50%)',
-                  top: 'var(--mouse-y, 50%)',
-                  transform: 'translate(-50%, -50%)',
-                  background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
-                }}
+                className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
               />
 
               <div className="relative z-10">

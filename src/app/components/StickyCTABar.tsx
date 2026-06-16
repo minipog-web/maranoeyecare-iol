@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
+import styles from './StickyCTABar.module.css';
 
 export default function StickyCTABar() {
   const [visible, setVisible] = useState(false);
@@ -85,10 +86,7 @@ export default function StickyCTABar() {
         </div>
 
         {/* Safe area for iPhone home indicator */}
-        <div
-          className="h-safe-area-inset-bottom"
-          style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
-        />
+        <div className={styles.safeAreaBottom} />
       </div>
     </div>
   );

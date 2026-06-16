@@ -20,7 +20,7 @@ const objectionFAQs: FAQItem[] = [
     highlight: 'Vivity: halo rates nearly identical to standard monofocal',
   },
   {
-    question: "Should I opt to spend thousands of dollars on my eyes when insurance covers a basic lens?",
+    question: 'Why should I spend thousands of dollars on my eyes?',
     concern: 'Cost',
     answer:
       "Think of it this way: based on an average premium upgrade, over 20 years that breaks down to less than $0.60 per day for clear vision at every distance. The average American spends over $3,000 on glasses over a decade — and still can't see clearly at arm's length or while driving. Premium IOLs are also HSA and FSA eligible, and we offer CareCredit financing. Most of our patients say it's the best financial decision they've ever made for their quality of life — not just their vision.",

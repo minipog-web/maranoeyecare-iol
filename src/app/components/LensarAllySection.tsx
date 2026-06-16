@@ -87,7 +87,9 @@ export default function LensarAllySection() {
             Surgical Innovation
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5">
-            <span className="block font-extrabold mb-1">LENSAR ALLY<sup>®</sup></span>
+            <span className="block font-extrabold mb-1">
+              LENSAR ALLY<sup>®</sup>
+            </span>
             <span className="block font-semibold text-gradient-primary">
               Adaptive Laser Cataract System
             </span>
@@ -229,7 +231,6 @@ export default function LensarAllySection() {
                   {/* Subtle inner glass highlight */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.02] via-transparent to-transparent pointer-events-none" />
                 </div>
-
 
                 <div className="absolute bottom-4 right-4 font-mono text-[9px] text-white/70 bg-black/60 px-2 py-1 rounded border border-white/[0.04] backdrop-blur-sm flex flex-col text-right select-none z-20">
                   <span>RES: 0.18 MICRON</span>

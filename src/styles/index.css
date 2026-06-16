@@ -21,12 +21,12 @@
   /* Lens Palette Variables */
   --lens-panoptix: #8b5cf6;
   --lens-vivity: #00c9b1;
-  --lens-eyhance: #10b981;
+  --lens-eyhance: #3b82f6;
   --lens-monofocal: #64748b;
 
   --lens-panoptix-glow: rgba(139, 92, 246, 0.2);
   --lens-vivity-glow: rgba(0, 201, 177, 0.18);
-  --lens-eyhance-glow: rgba(16, 185, 129, 0.15);
+  --lens-eyhance-glow: rgba(59, 130, 246, 0.15);
   --lens-monofocal-glow: rgba(100, 116, 139, 0.12);
 
   /* Elite Easing */
@@ -795,8 +795,8 @@ textarea:focus {
   --lens-color-rgb: 0, 201, 177;
 }
 [data-lens='eyhance'] {
-  --lens-color: #10b981;
-  --lens-color-rgb: 16, 185, 129;
+  --lens-color: #3b82f6;
+  --lens-color-rgb: 59, 130, 246;
 }
 [data-lens='monofocal'] {
   --lens-color: #64748b;

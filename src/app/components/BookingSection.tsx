@@ -158,7 +158,7 @@ export default function BookingSection() {
             </div>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10">
-              {`Book a no-obligation consultation and know exactly which lens matches your eyes, lifestyle, and goals.`}
+              {`Book a no-obligation consultation to discuss which lens best matches your eyes, lifestyle and goals.`}
             </p>
 
             {/* What happens next */}
@@ -168,7 +168,7 @@ export default function BookingSection() {
               </p>
               <div className="relative">
                 <div className="space-y-5">
-                  {whatHappensNext.map((item, i) => (
+                  {whatHappensNext.map((item) => (
                     <div key={item.step} className="flex items-start gap-4 group">
                       <div className="relative shrink-0">
                         <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center group-hover:bg-amber-500/20 transition-colors z-10 relative">
