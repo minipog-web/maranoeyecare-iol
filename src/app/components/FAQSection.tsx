@@ -20,17 +20,17 @@ const objectionFAQs: FAQItem[] = [
     highlight: 'Vivity: halo rates nearly identical to standard monofocal',
   },
   {
-    question: 'Is $4,100 per eye really worth it?',
+    question: "Should I opt to spend thousands of dollars on my eyes when insurance covers a basic lens?",
     concern: 'Cost',
     answer:
-      "Think of it this way: over 20 years, that's less than $0.57 per day for clear vision at every distance. The average American spends over $3,000 on glasses over a decade — and still can't see clearly at arm's length or while driving. Premium IOLs are also HSA and FSA eligible, and we offer CareCredit financing. Most of our patients say it's the best financial decision they've ever made for their quality of life — not just their vision.",
-    highlight: 'Less than $0.57/day over 20 years · HSA/FSA eligible · Financing available',
+      "Think of it this way: based on an average premium upgrade, over 20 years that breaks down to less than $0.60 per day for clear vision at every distance. The average American spends over $3,000 on glasses over a decade — and still can't see clearly at arm's length or while driving. Premium IOLs are also HSA and FSA eligible, and we offer CareCredit financing. Most of our patients say it's the best financial decision they've ever made for their quality of life — not just their vision.",
+    highlight: 'Less than $0.60/day over 20 years · HSA/FSA eligible · Financing available',
   },
   {
     question: "What if I don't like the result? Can the lens be changed?",
     concern: 'Regret Risk',
     answer:
-      "IOL exchange is possible, though uncommon. Here's the reassuring truth: 99% of premium lens patients say they'd choose a premium lens again. Dr. Marano's approach eliminates most regret before it happens — he uses detailed biometry, corneal mapping, and lifestyle interviews to match you to the right lens. He won't recommend a premium lens if your eye anatomy doesn't support a great outcome. That's why our satisfaction rate has remained exceptional across thousands of successful procedures.",
+      "IOL exchange is possible, though uncommon. Here's the reassuring truth: 99% of premium lens patients say they'd choose a premium lens again. Dr. Marano's approach eliminates most regret before it happens — he uses detailed biometry, corneal mapping, and lifestyle interviews to match you to the right lens. He won't recommend a premium lens if your eye anatomy doesn't support a great outcome. That's why our satisfaction rate has remained exceptional across over 40,000 successful procedures.",
     highlight: '99% of patients would choose a premium lens again',
   },
   {
@@ -44,7 +44,7 @@ const objectionFAQs: FAQItem[] = [
     question: 'Will premium lenses make my surgery more complicated or risky?',
     concern: 'Safety',
     answer:
-      "No. The surgical procedure is identical regardless of which IOL you choose — a 15-minute microsurgery performed under topical (eye drop) anesthesia. The only thing that changes is what Dr. Marano places in your eye. He has performed this procedure thousands of times and has been recognized as New Jersey's Top Doctor for 15 consecutive years. The lens choice affects your outcome — not your safety.",
+      "No. The surgical procedure is identical regardless of which IOL you choose — a 15-minute microsurgery performed under topical (eye drop) anesthesia. The only thing that changes is what Dr. Marano places in your eye. He has performed this procedure over 40,000 times and has been recognized as New Jersey's Top Doctor for 15 consecutive years. The lens choice affects your outcome — not your safety.",
     highlight: 'Same 15-min procedure · Thousands of successful outcomes · No general anesthesia',
   },
 ];
@@ -66,7 +66,7 @@ const proceduralFAQs: FAQItem[] = [
     question: 'When can I drive after surgery?',
     concern: '',
     answer:
-      'Most patients are cleared to drive the next morning, provided their vision meets the legal standard. Dr. Marano will confirm this at your 1-day post-op visit.',
+      'Most patients can expect to be driving again within 72 hours at their discretion, although everyone heals differently. Dr. Marano will assess your progress and discuss your recovery at your post-operative visit.',
   },
   {
     question: 'Will I feel any pain?',
@@ -111,7 +111,7 @@ function FAQItemRow({
       <button
         onClick={onToggle}
         className="w-full flex items-start gap-4 p-5 sm:p-6 text-left touch-manipulation group"
-        aria-expanded={isOpen}
+        aria-expanded={isOpen ? 'true' : 'false'}
       >
         <span className="text-xl mt-0.5 shrink-0 select-none">
           {['🌙', '💰', '🔄', '🛡️', '✅'][index] ?? '❓'}
@@ -185,7 +185,7 @@ function ProceduralFAQRow({
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between gap-4 py-4 text-left touch-manipulation group"
-        aria-expanded={isOpen}
+        aria-expanded={isOpen ? 'true' : 'false'}
       >
         <p className="text-sm font-medium text-foreground/85 group-hover:text-foreground transition-colors">
           {item.question}
@@ -323,7 +323,7 @@ export default function FAQSection() {
                 ))}
               </div>
               <p className="text-xs text-muted-foreground font-medium">
-                Thousands of successful procedures · 15× NJ Top Doctor
+                40,000+ successful procedures · 15× NJ Top Doctor
               </p>
             </div>
           </div>

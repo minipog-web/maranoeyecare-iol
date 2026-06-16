@@ -1,0 +1,105 @@
+.spotlight {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  width: 280px;
+  height: 280px;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 500ms ease;
+  will-change: transform;
+  z-index: 0;
+}
+
+.spotlightPrimary {
+  composes: spotlight;
+  background: radial-gradient(circle, rgba(0, 201, 177, 0.15) 0%, transparent 70%);
+}
+
+.spotlightSecondary {
+  composes: spotlight;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+}
+
+.blur60 {
+  filter: blur(60px);
+}
+
+/* Diagnostic layout enhancements */
+.gridLines {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.scanLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  animation: scanVertical 4s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+@keyframes scanVertical {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(220px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.crosshair {
+  position: relative;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: '';
+  position: absolute;
+  border-color: rgba(0, 201, 177, 0.3);
+  border-style: solid;
+  width: 8px;
+  height: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.crosshairLeftTop::before {
+  top: 12px;
+  left: 12px;
+  border-width: 1px 0 0 1px;
+}
+
+.crosshairRightBottom::after {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1px 1px 0;
+}
+
+.glassCard {
+  background: rgba(14, 16, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glassCard:hover {
+  border-color: rgba(0, 201, 177, 0.25);
+  box-shadow: 0 0 40px rgba(0, 201, 177, 0.05);
+}
+
+.glassCardDoctor:hover {
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.05);
+}

@@ -7,8 +7,8 @@ interface TrustBadgeBarProps {
 const variants = {
   authority: [
     { icon: '🏆', text: '15× NJ Monthly Top Doctor' },
-    { icon: '⭐', text: 'Thousands of Successful Procedures' },
-    { icon: '🎓', text: 'Fellowship Trained · Board Certified' },
+    { icon: '⭐', text: '40,000+ Successful Surgeries' },
+    { icon: '🎓', text: 'Board Certified Ophthalmologist' },
   ],
   clinical: [
     { icon: '✅', text: '99% Would Choose a Premium Lens Again' },

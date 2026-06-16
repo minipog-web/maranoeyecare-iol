@@ -20,6 +20,8 @@ const imagesToOptimize = [
   // Avatars (Tiny display, 600KB+ source -> 96px width JPGs)
   { src: 'avatar_patricia.png', dest: 'avatar_patricia.jpg', width: 128 },
   { src: 'avatar_robert.png', dest: 'avatar_robert.jpg', width: 128 },
+  { src: 'avatar_linda.png', dest: 'avatar_linda.jpg', width: 128 },
+  { src: 'avatar_james.png', dest: 'avatar_james.jpg', width: 128 },
 
   // Profiles (Candidate cards -> 400px width JPEGs)
   { src: 'profile_active_professional.png', dest: 'profile_active_professional.jpg', width: 400 },
@@ -28,6 +30,12 @@ const imagesToOptimize = [
 
   // Surgeon portrait (overflow hidden container -> 500px width JPEG)
   { src: 'Marano-1777328574709.png', dest: 'Marano-1777328574709.jpg', width: 600 },
+
+  // Lens illustrations (Dark background, 500KB+ source -> 400px width JPEGs)
+  { src: 'vivity_iol_dark.png', dest: 'vivity_iol_dark.jpg', width: 400 },
+  { src: 'panoptix_iol_dark.png', dest: 'panoptix_iol_dark.jpg', width: 400 },
+  { src: 'eyhance_iol_dark.png', dest: 'eyhance_iol_dark.jpg', width: 400 },
+  { src: 'monofocal_iol_dark.png', dest: 'monofocal_iol_dark.jpg', width: 400 },
 ];
 
 async function run() {

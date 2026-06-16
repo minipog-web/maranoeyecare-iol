@@ -13,15 +13,15 @@ const awards = [
     icon: 'TrophyIcon',
   },
   {
-    value: '2026',
+    value: '2024 - 2026',
     label: 'Castle Connolly Top Doc',
     sublabel: 'National recognition',
     icon: 'AcademicCapIcon',
   },
   {
-    value: 'Chief',
-    label: 'of Ophthalmology',
-    sublabel: 'Saint Barnabas Medical Center',
+    value: 'Chief of Ophthalmology',
+    label: 'Cooperman Barnabas Medical Center',
+    sublabel: "St. Michael's Medical Center",
     icon: 'BuildingOfficeIcon',
   },
 ];
@@ -92,13 +92,13 @@ export default function TrustSection() {
               />
 
               {/* Layered overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-primary/5 z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
 
               {/* Consistent thin glass border overlay */}
               <div className="absolute inset-0 border border-white/[0.08] rounded-t-[6rem] rounded-b-[2.5rem] pointer-events-none z-35" />
 
               {/* Name plate */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent z-30">
+              <div className="absolute bottom-0 left-0 w-[75%] p-6 bg-gradient-to-tr from-background via-background/90 to-transparent z-30">
                 <p className="font-display text-xl font-medium text-foreground">
                   Matthew Marano Jr., MD
                 </p>
@@ -109,7 +109,7 @@ export default function TrustSection() {
             </div>
 
             {/* Floating credential card */}
-            <div className="absolute bottom-0 right-4 sm:-bottom-6 sm:-right-4 md:-right-10 w-48 sm:w-52 glass-card-bright rounded-3xl p-4 sm:p-5 shadow-2xl animate-float-delayed z-20 hidden xs:block">
+            <div className="absolute bottom-0 right-4 sm:-bottom-6 sm:-right-4 md:-right-10 w-48 sm:w-52 glass-card-bright rounded-3xl p-4 sm:p-5 shadow-2xl animate-float-delayed z-40 hidden xs:block">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
                   <Icon name="StarIcon" size={12} className="text-primary" />
@@ -126,20 +126,20 @@ export default function TrustSection() {
           </div>
 
           {/* Right: Awards grid */}
-          <div className="space-y-4 sm:space-y-5">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="space-y-6 sm:space-y-8">
+            <div className="grid grid-cols-2 gap-x-6 sm:gap-x-10 gap-y-6 sm:gap-y-8">
               {awards?.map((award) => (
                 <div
-                  key={award?.label}
+                  key={award?.value}
                   onMouseMove={handleMouseMove}
-                  className="group relative overflow-hidden glass-card border border-border rounded-3xl p-4 sm:p-6 card-hover-glow"
+                  className="group relative overflow-hidden glass-card border border-border rounded-3xl p-5 sm:p-6 transition-all duration-300 hover:border-primary/30"
                 >
                   {/* Dynamic Mouse Spotlight Glow */}
                   <div
-                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[50px] z-0 will-change-transform"
+                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
                     style={{
-                      width: '180px',
-                      height: '180px',
+                      width: '220px',
+                      height: '220px',
                       left: 'var(--mouse-x, 50%)',
                       top: 'var(--mouse-y, 50%)',
                       transform: 'translate(-50%, -50%)',
@@ -151,15 +151,30 @@ export default function TrustSection() {
                     <div className="w-8 h-8 rounded-2xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
                       <Icon name={award.icon as 'StarIcon'} size={16} className="text-primary" />
                     </div>
-                    <p className="font-display text-2xl sm:text-3xl font-semibold text-primary mb-2">
+                    <p className={`font-display font-semibold text-primary mb-2 ${
+                      award.value.length > 10 ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'
+                    }`}>
                       {award?.value}
                     </p>
-                    <p className="text-xs sm:text-sm font-semibold text-foreground mb-1">
-                      {award?.label}
-                    </p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      {award?.sublabel}
-                    </p>
+                    {award.value === 'Chief of Ophthalmology' ? (
+                      <div className="space-y-1">
+                        <p className="text-xs sm:text-sm font-semibold text-foreground">
+                          {award?.label}
+                        </p>
+                        <p className="text-xs sm:text-sm font-semibold text-foreground">
+                          {award?.sublabel}
+                        </p>
+                      </div>
+                    ) : (
+                      <>
+                        <p className="text-xs sm:text-sm font-semibold text-foreground mb-1">
+                          {award?.label}
+                        </p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          {award?.sublabel}
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
               ))}
@@ -195,7 +210,7 @@ export default function TrustSection() {
                 <ul className="space-y-3">
                   {[
                     'Chief Medical Editor — Ophthalmology 360',
-                    'Fellowship-trained in cornea and refractive surgery',
+                    'Decades of experience teaching and training fellow refractive surgeons',
                     'Femto laser-assisted cataract surgery specialist',
                     'Three conveniently located NJ offices',
                   ]?.map((item) => (

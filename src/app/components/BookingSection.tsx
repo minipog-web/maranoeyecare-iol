@@ -35,7 +35,7 @@ const whatHappensNext = [
   {
     step: '2',
     icon: 'PhoneIcon',
-    title: 'We Call Within 1 Day',
+    title: 'We Call Within 1 Business Day',
     desc: 'Our team confirms a time that works for you.',
   },
   {
@@ -167,8 +167,6 @@ export default function BookingSection() {
                 {`What Happens Next`}
               </p>
               <div className="relative">
-                {/* Connecting line */}
-                <div className="absolute left-[22px] top-8 bottom-8 w-px bg-gradient-to-b from-amber-500/30 via-amber-500/10 to-transparent hidden sm:block" />
                 <div className="space-y-5">
                   {whatHappensNext.map((item, i) => (
                     <div key={item.step} className="flex items-start gap-4 group">
@@ -180,9 +178,6 @@ export default function BookingSection() {
                             className="text-amber-400"
                           />
                         </div>
-                        {i < whatHappensNext.length - 1 && (
-                          <div className="absolute left-1/2 -translate-x-1/2 top-full w-px h-5 bg-amber-500/15 sm:hidden" />
-                        )}
                       </div>
                       <div className="pt-1">
                         <p className="text-sm font-semibold text-foreground mb-0.5">{item.title}</p>

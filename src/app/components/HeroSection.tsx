@@ -82,9 +82,9 @@ export default function HeroSection() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[0.92] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
               Stop Missing Life.{' '}
-              <span className="block text-gradient-primary font-semibold mt-1">
+              <span className="block text-gradient-primary font-semibold mt-1 pb-4">
                 Start Seeing It.
               </span>
             </h1>
@@ -150,6 +150,7 @@ export default function HeroSection() {
                 { value: '15×', label: 'Consecutive NJ Top Doctor' },
                 { value: '10,000+', label: 'Successful Procedures' },
                 { value: '99%', label: '"I\'d Choose A Premium Lens Again"' },
+                { value: '4.9 ★', label: 'Google Patient Rating' },
               ]?.map((stat) => (
                 <div key={stat?.label} className="flex flex-col gap-1">
                   <span className="font-display text-2xl sm:text-3xl font-semibold text-primary">

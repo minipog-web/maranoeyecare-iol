@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './TestimonialsSection.module.css';
@@ -35,8 +35,8 @@ const testimonials = [
     name: 'Linda M.',
     location: 'Morristown, NJ',
     lens: 'Tecnis Eyhance',
-    lensColor: '#10B981',
-    avatar: '/assets/images/avatar_linda.png',
+    lensColor: '#00A3FF',
+    avatar: '/assets/images/avatar_linda.jpg',
     stars: 5,
   },
   {
@@ -47,7 +47,7 @@ const testimonials = [
     location: 'Summit, NJ',
     lens: 'PanOptix Pro',
     lensColor: '#8B5CF6',
-    avatar: '/assets/images/avatar_james.png',
+    avatar: '/assets/images/avatar_james.jpg',
     stars: 5,
   },
 ];
@@ -62,6 +62,12 @@ export default function TestimonialsSection() {
     e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
     e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
   };
+
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    trackRef.current?.style.setProperty('--carousel-offset', `${activeIndex * 100}%`);
+  }, [activeIndex]);
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
@@ -111,10 +117,7 @@ export default function TestimonialsSection() {
 
             {/* Carousel Viewport */}
             <div className="overflow-hidden rounded-3xl">
-              <div
-                className="flex transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
-                style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-              >
+              <div ref={trackRef} className={styles.carouselTrack}>
                 {testimonials?.map((t, idx) => (
                   <div key={idx} className="w-full shrink-0 px-2">
                     <div
@@ -124,15 +127,13 @@ export default function TestimonialsSection() {
                       <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
                         {/* Dynamic Mouse Spotlight Glow */}
                         <div
-                          className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[60px] z-0 will-change-transform"
-                          style={{
-                            width: '240px',
-                            height: '240px',
-                            left: 'var(--mouse-x, 50%)',
-                            top: 'var(--mouse-y, 50%)',
-                            transform: 'translate(-50%, -50%)',
-                            background: `radial-gradient(circle, ${t.lensColor} 0%, transparent 70%)`,
-                          }}
+                          className={`${styles.spotlight} ${styles.blur60} group-hover:opacity-15 ${
+                            t.lens.toLowerCase().includes('panoptix')
+                              ? styles.spotlightPanoptix
+                              : t.lens.toLowerCase().includes('vivity')
+                                ? styles.spotlightVivity
+                                : styles.spotlightEyhance
+                          }`}
                         />
 
                         {/* Decorative quote mark */}
@@ -189,17 +190,7 @@ export default function TestimonialsSection() {
                                   : styles.lensEyhance
                             }`}
                           >
-                            <span
-                              className={`text-[10px] font-bold px-3 py-1.5 rounded-full inline-block uppercase tracking-widest ${styles.lensBadge}`}
-                              style={{
-                                backgroundColor: `${t.lensColor}15`,
-                                color: t.lensColor,
-                                borderColor: `${t.lensColor}30`,
-                                borderWidth: '1px',
-                              }}
-                            >
-                              {t?.lens}
-                            </span>
+                            <span className={styles.lensBadge}>{t?.lens}</span>
                           </div>
                         </div>
                       </div>
@@ -210,16 +201,20 @@ export default function TestimonialsSection() {
             </div>
 
             {/* Pagination Dots */}
-            <div className="flex justify-center items-center gap-2 mt-6">
+            <div className="flex justify-center items-center gap-1 mt-6">
               {testimonials.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                    activeIndex === idx ? 'w-6 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
-                  }`}
+                  className="w-6 h-6 flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-full group"
                   aria-label={`Go to testimonial ${idx + 1}`}
-                />
+                >
+                  <span
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      activeIndex === idx ? 'w-6 bg-primary' : 'w-2 bg-white/20 group-hover:bg-white/45'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           </div>
@@ -232,15 +227,7 @@ export default function TestimonialsSection() {
             >
               {/* Dynamic Mouse Spotlight */}
               <div
-                className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[80px] z-0 will-change-transform"
-                style={{
-                  width: '300px',
-                  height: '300px',
-                  left: 'var(--mouse-x, 50%)',
-                  top: 'var(--mouse-y, 50%)',
-                  transform: 'translate(-50%, -50%)',
-                  background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
-                }}
+                className={`${styles.spotlightLg} ${styles.blur80} ${styles.spotlightPrimary} group-hover:opacity-10`}
               />
 
               <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-10">
@@ -270,11 +257,11 @@ export default function TestimonialsSection() {
                         Dr. Matthew Marano Jr., MD
                       </p>
                       <p className="text-xs text-primary mt-0.5 font-medium">
-                        Board-Certified Ophthalmologist · Thousands of Successful Procedures
+                        Board-Certified Ophthalmologist · 40,000+ Cataract Surgeries Completed
                       </p>
                     </div>
                     <div className="flex gap-1.5 flex-wrap">
-                      {['15× NJ Top Doctor', 'Fellowship Trained', 'Chief of Ophthalmology'].map(
+                      {['15× NJ Top Doctor', 'Chief of Ophthalmology'].map(
                         (b) => (
                           <span
                             key={b}
@@ -324,15 +311,7 @@ export default function TestimonialsSection() {
                 >
                   {/* Dynamic Mouse Spotlight Glow */}
                   <div
-                    className="absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[50px] z-0 will-change-transform"
-                    style={{
-                      width: '180px',
-                      height: '180px',
-                      left: 'var(--mouse-x, 50%)',
-                      top: 'var(--mouse-y, 50%)',
-                      transform: 'translate(-50%, -50%)',
-                      background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
-                    }}
+                    className={`${styles.spotlightSm} ${styles.blur50} ${styles.spotlightPrimary} group-hover:opacity-10`}
                   />
 
                   <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors z-10">

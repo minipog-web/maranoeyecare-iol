@@ -62,10 +62,11 @@ export default function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 sm:h-20 flex items-center justify-between gap-4 lg:gap-8">
+      <div className="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-4 lg:gap-5 xl:gap-6">
         <div className="flex items-center gap-3">
           <a
             href="https://www.maranoeyecare.com"
+            aria-label="Marano Eye Care — return to homepage"
             className="hover:opacity-80 transition-opacity block shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <AppLogo
@@ -78,14 +79,14 @@ export default function Header() {
         </div>
 
         {/* Tablet & Desktop Nav — pill with subtle gradient border */}
-        <nav className="hidden md:flex items-center gap-0 lg:gap-0.5 px-1.5 lg:px-2 xl:px-3 py-1 lg:py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
+        <nav className="hidden md:flex items-center gap-0 lg:gap-0.5 px-1.5 lg:px-2 xl:px-2 py-1 lg:py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
           {navLinks?.map((link, idx) => (
             <a
               key={link?.href}
               href={link?.href}
               onClick={() => handleNavClick(link.label)}
-              className={`px-1.5 md:px-2 lg:px-2.5 xl:px-3.5 py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-xs font-semibold uppercase tracking-[0.02em] md:tracking-[0.04em] lg:tracking-[0.06em] xl:tracking-[0.1em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
-                idx === 1 || idx === 3 ? 'md:hidden lg:inline-block' : ''
+              className={`px-1.5 md:px-2 lg:px-2.5 2xl:px-3 py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] 2xl:text-[11px] font-semibold uppercase tracking-[0.02em] md:tracking-[0.04em] lg:tracking-[0.06em] 2xl:tracking-[0.08em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                idx === 1 || idx === 3 ? 'md:hidden lg:hidden xl:inline-block' : ''
               }`}
             >
               {link?.label}
@@ -94,16 +95,17 @@ export default function Header() {
         </nav>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-6 shrink-0">
+        <div className="hidden md:flex items-center gap-3 lg:gap-4 xl:gap-4 shrink-0">
           <a
             href="tel:9733220100"
             onClick={() => handlePhoneClick('desktop')}
-            className="group flex items-center gap-2.5 text-xs xl:text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap lg:ml-6 rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            aria-label="Call Marano Eye Care at 973-322-0100"
+            className="group flex items-center gap-2.5 text-xs xl:text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap lg:ml-2 xl:ml-3 rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
               <Icon name="PhoneIcon" size={13} className="text-primary" />
             </div>
-            <span className="font-semibold text-foreground/90 lg:text-xs xl:text-sm tracking-wide">
+            <span className="hidden 2xl:inline font-semibold text-foreground/90 text-xs xl:text-sm tracking-wide">
               (973) 322-0100
             </span>
           </a>
@@ -113,7 +115,7 @@ export default function Header() {
           <a
             href="#booking"
             onClick={() => handleBookingClick('desktop')}
-            className="btn-premium-primary btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="btn-premium-primary btn-shimmer whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             Book Consultation
           </a>

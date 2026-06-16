@@ -14,3 +14,7 @@
 * **Loading Optimization**: Always avoid loading blocking static `<script async>` tags in next.js `<head>`. Consolidate logic into `next/script` using `strategy="afterInteractive"` or `lazyOnload` to keep LCP/CLS metrics high-performing.
 * **Fallback Instrumentation**: Ensure GA4 `trackEvent` modules handle placeholder keys gracefully and support local-fallback logic so tracking is robust during development and local staging.
 
+## Architectural & UX Patterns
+* **Dual-Perspective Toggling**: Use responsive dual-perspective toggles (e.g. For Patients vs For Surgeons) coupled with CSS spotlight hover modules to group technical diagnostic specifications separate from patient benefits.
+* **Biometric Vector Graphics**: Use lightweight, animated inline SVG target crosshairs and biometric eye silhouettes to simulate real-time robotic surgery precision without high loading payloads.
+

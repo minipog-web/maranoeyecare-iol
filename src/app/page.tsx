@@ -6,6 +6,7 @@ import TrustSection from '@/app/components/TrustSection';
 import TrustBadgeBar from '@/app/components/TrustBadgeBar';
 import CertificationLogos from '@/app/components/CertificationLogos';
 import LensVisionComparisonSection from '@/app/components/LensVisionComparisonSection';
+import LensarAllySection from '@/app/components/LensarAllySection';
 import LifestyleMatchSection from '@/app/components/LifestyleMatchSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
 import LensQuestionnaireSection from '@/app/components/LensQuestionnaireSection';
@@ -22,6 +23,7 @@ export default function HomePage() {
       <TrustSection />
       <CertificationLogos />
       <LensVisionComparisonSection />
+      <LensarAllySection />
       <LifestyleMatchSection />
       <LensQuestionnaireSection />
       <TestimonialsSection />

@@ -11,6 +11,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <a
               href="https://www.maranoeyecare.com"
+              aria-label="Marano Eye Care — return to homepage"
               className="hover:opacity-80 transition-opacity block rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <AppLogo
@@ -23,7 +24,7 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+          <nav className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
             {[
               { label: 'Lens Options', href: '#lenses' },
               { label: 'Vision Outcomes', href: '#vision' },
@@ -33,7 +34,7 @@ export default function Footer() {
               <Link
                 key={link?.href}
                 href={link?.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-1 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
               >
                 {link?.label}
               </Link>
@@ -41,10 +42,11 @@ export default function Footer() {
           </nav>
 
           {/* Social + legal */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <a
               href="tel:9733220100"
-              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation py-2.5 px-3 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              aria-label="Call Marano Eye Care at 973-322-0100"
             >
               <Icon name="PhoneIcon" size={14} className="text-primary" />
               973-322-0100
@@ -52,14 +54,14 @@ export default function Footer() {
             <span className="text-border hidden sm:inline">·</span>
             <Link
               href="#"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
             >
               Privacy
             </Link>
             <span className="text-border hidden sm:inline">·</span>
             <Link
               href="#"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
             >
               Terms
             </Link>

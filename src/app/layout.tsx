@@ -46,6 +46,39 @@ export default function RootLayout({
     <html lang="en" className={`${dmSans.variable} ${fraunces.variable} dark`}>
       <head />
       <body className={dmSans.className}>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18197167741"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-18197167741');
+          `}
+        </Script>
+
+        {/* Google tag (gtag.js) event - delayed navigation helper */}
+        <Script id="google-ads-delayed-nav" strategy="afterInteractive">
+          {`
+            function gtagSendEvent(url) {
+              var callback = function () {
+                if (typeof url === 'string') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'ads_conversion_Form_1', {
+                'event_callback': callback,
+                'event_timeout': 2000,
+              });
+              return false;
+            }
+          `}
+        </Script>
+
         {/* Google Analytics tag manager tracking scripts */}
         {GA_MEASUREMENT_ID && (
           <>

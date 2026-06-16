@@ -65,7 +65,7 @@ const profiles = [
 ];
 
 export default function LifestyleMatchSection() {
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -176,8 +176,9 @@ export default function LifestyleMatchSection() {
         {/* Profile cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {profiles?.map((profile) => (
-            <div
+            <a
               key={profile?.id}
+              href="#booking"
               onMouseMove={handleMouseMove}
               className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
               style={
@@ -237,8 +238,8 @@ export default function LifestyleMatchSection() {
                   <ul className="space-y-2 mb-5 sm:mb-6 flex-1">
                     {profile?.activities?.map((act) => (
                       <li
-                        key={act}
-                        className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                          key={act}
+                          className="flex items-start gap-2.5 text-sm text-muted-foreground"
                       >
                         <span
                           className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${styles.activityDot}`}
@@ -263,7 +264,7 @@ export default function LifestyleMatchSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
