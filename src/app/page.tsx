@@ -20,14 +20,22 @@ export default function HomePage() {
       <Header />
       <HeroSection />
       <TrustBadgeBar variant="clinical" />
+      <hr className="section-divider" />
       <TrustSection />
       <CertificationLogos />
+      <hr className="section-divider" />
       <LensVisionComparisonSection />
+      <hr className="section-divider" />
       <LensarAllySection />
+      <hr className="section-divider" />
       <LifestyleMatchSection />
+      <hr className="section-divider" />
       <LensQuestionnaireSection />
+      <hr className="section-divider" />
       <TestimonialsSection />
+      <hr className="section-divider" />
       <FAQSection />
+      <hr className="section-divider" />
       <BookingSection />
       <StickyCTABar />
       <Footer />

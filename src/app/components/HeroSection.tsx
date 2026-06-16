@@ -206,7 +206,7 @@ export default function HeroSection() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="(max-width: 640px) 38vw, 176px"
-                        priority={i === 0}
+                        priority={true}
                       />
 
                       {/* Rich gradient overlay */}

@@ -121,10 +121,7 @@ export default function BookingSection() {
     'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
 
   return (
-    <section
-      id="booking"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#0f0d13]"
-    >
+    <section id="booking" className="py-12 sm:py-20 relative overflow-hidden bg-[#0f0d13]">
       {/* Background */}
       <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(245,158,11,0.06)_0%,transparent_70%)]" />
       <div className="absolute inset-0 grid-lines-bg opacity-10" />

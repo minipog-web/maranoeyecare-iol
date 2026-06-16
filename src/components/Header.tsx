@@ -85,7 +85,7 @@ export default function Header() {
               key={link?.href}
               href={link?.href}
               onClick={() => handleNavClick(link.label)}
-              className={`px-1.5 md:px-2 lg:px-2.5 2xl:px-3 py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] 2xl:text-[11px] font-semibold uppercase tracking-[0.02em] md:tracking-[0.04em] lg:tracking-[0.06em] 2xl:tracking-[0.08em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+              className={`px-1.5 md:px-2 lg:px-2.5 2xl:px-3 py-1.5 lg:py-2 text-[11px] md:text-[11px] lg:text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.02em] md:tracking-[0.04em] lg:tracking-[0.05em] 2xl:tracking-[0.06em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                 idx === 1 || idx === 3 ? 'md:hidden lg:hidden xl:inline-block' : ''
               }`}
             >

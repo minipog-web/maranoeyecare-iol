@@ -262,10 +262,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section
-      id="faq"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#0b0d16]"
-    >
+    <section id="faq" className="py-12 sm:py-20 relative overflow-hidden bg-[#0b0d16]">
       {/* FAQ Schema Markup */}
       <script
         type="application/ld+json"

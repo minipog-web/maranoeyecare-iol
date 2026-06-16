@@ -74,10 +74,7 @@ export default function LifestyleMatchSection() {
   };
 
   return (
-    <section
-      id="lifestyle"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#0d0f16]"
-    >
+    <section id="lifestyle" className="py-12 sm:py-20 relative overflow-hidden bg-[#0d0f16]">
       {/* Background */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[100px] pointer-events-none" />
@@ -180,7 +177,7 @@ export default function LifestyleMatchSection() {
               key={profile?.id}
               href="#booking"
               onMouseMove={handleMouseMove}
-              className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
+              className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16] focus-visible:outline-none ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
             >
               <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
                 {/* Dynamic Mouse Spotlight Glow */}

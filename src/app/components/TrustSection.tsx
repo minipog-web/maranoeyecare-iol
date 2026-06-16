@@ -36,10 +36,7 @@ export default function TrustSection() {
   };
 
   return (
-    <section
-      id="trust"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#0c0e18]"
-    >
+    <section id="trust" className="py-12 sm:py-20 relative overflow-hidden bg-[#0c0e18]">
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-25" />
       <div className="absolute bottom-0 left-0 w-[700px] h-[500px] bg-primary/4 rounded-full blur-[140px] pointer-events-none" />
