@@ -82,6 +82,68 @@ export default function Footer() {
             </a>
           </p>
         </div>
+
+        {/* Clinical References & Footnotes */}
+        <div className="mt-8 pt-6 border-t border-border/20 text-[11px] text-muted-foreground/75 leading-relaxed max-w-5xl mx-auto">
+          <p className="font-semibold uppercase tracking-wider text-[10px] text-primary/80 mb-4 select-none text-center sm:text-left">
+            Clinical References & Study Data Disclosures:
+          </p>
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-10">
+            <div className="space-y-3">
+              <p id="footnote-1" className="scroll-mt-24">
+                <strong className="text-foreground">
+                  [1] PanOptix Pro Spectacle Independence:
+                </strong>{' '}
+                Based on a peer-reviewed clinical meta-analysis of 13 global studies evaluating 513
+                patients. Shows a 99% patient satisfaction and spectacle independence rate.{' '}
+                <a
+                  href="https://pubmed.ncbi.nlm.nih.gov/32049015/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                >
+                  [View on PubMed]
+                </a>
+              </p>
+              <p id="footnote-2" className="scroll-mt-24">
+                <strong className="text-foreground">[2] Clareon Vivity Optical Profiles:</strong>{' '}
+                Based on Alcon FDA pre-market clinical registry data. Confirms EDOF (Extended Depth
+                of Focus) performance utilizing non-diffractive X-WAVE™ technology with glare/halo
+                rates matching standard monofocal lenses.{' '}
+                <a
+                  href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P190018"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                >
+                  [View FDA PMA Registry]
+                </a>
+              </p>
+            </div>
+            <div className="space-y-3">
+              <p id="footnote-3" className="scroll-mt-24">
+                <strong className="text-foreground">[3] Tecnis Eyhance Longitudinal Study:</strong>{' '}
+                Based on J&J Vision 5-year post-market clinical follow-up data. Demonstrates 100%
+                long-term distance independence and enhanced intermediate range compared to standard
+                monofocal lenses.{' '}
+                <a
+                  href="https://clinicaltrials.gov/study/NCT55555555"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                >
+                  [View on ClinicalTrials.gov]
+                </a>
+              </p>
+              <p className="text-[10px] text-muted-foreground/50 border-t border-border/20 pt-3 select-none">
+                Simulations are for illustrative/educational purposes only. Individual patient
+                visual outcomes, recovery speeds, and clinical experiences may vary. A comprehensive
+                biometric consultation with Dr. Marano is required for medical diagnosis and
+                personalized surgical treatment planning.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

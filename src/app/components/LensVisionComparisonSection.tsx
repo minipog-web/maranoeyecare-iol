@@ -41,8 +41,8 @@ const lenses = [
       { label: 'Night Vision Quality', value: 'Mild Halos', score: 72 },
     ],
     highlights: [
-      '99% would choose a premium lens again',
-      'ENLIGHTEN NXT: 94% light capture',
+      '99% would choose a premium lens again [1]',
+      'ENLIGHTEN NXT: 94% light capture [1]',
       'True 20/20 vision at all 3 distances',
       'Maximum independence from glasses',
     ],
@@ -91,8 +91,8 @@ const lenses = [
       { label: 'Night Vision Quality', value: 'Very Low Glare', score: 92 },
     ],
     highlights: [
-      'Non-diffractive X-WAVE™ Technology',
-      'Similar halos to standard monofocal',
+      'Non-diffractive X-WAVE™ Technology [2]',
+      'Similar halos to standard monofocal [2]',
       'Extended depth of focus (EDOF)',
       'Neuroadaptation: 1–4 weeks',
     ],
@@ -141,9 +141,9 @@ const lenses = [
       { label: 'Night Vision Quality', value: 'No Added Halos', score: 98 },
     ],
     highlights: [
-      '100% distance independence at 5 years',
+      '100% distance independence at 5 years [3]',
       'Ring-free refractive optic design',
-      'No increase in halos vs. monofocal',
+      'No increase in halos vs. monofocal [3]',
       'Ideal for patients with mild comorbidities',
     ],
     bestFor:
@@ -1082,7 +1082,28 @@ export default function LensVisionComparisonSection() {
                           size={14}
                           className={`mt-0.5 shrink-0 ${lens.twColor}`}
                         />
-                        {h}
+                        <span>
+                          {(() => {
+                            const parts = h.split(/(\[\d+\])/);
+                            return parts.map((part, idx) => {
+                              const match = part.match(/^\[(\d+)\]$/);
+                              if (match) {
+                                const num = match[1];
+                                return (
+                                  <sup key={idx} className="text-[9px] font-bold">
+                                    <a
+                                      href={`#footnote-${num}`}
+                                      className="text-primary hover:underline ml-0.5"
+                                    >
+                                      [{num}]
+                                    </a>
+                                  </sup>
+                                );
+                              }
+                              return part;
+                            });
+                          })()}
+                        </span>
                       </li>
                     ))}
                   </ul>
