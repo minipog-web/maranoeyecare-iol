@@ -204,10 +204,20 @@ export default function HeroSection() {
                         src={lens?.src}
                         alt={lens?.alt}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-2"
                         sizes="(max-width: 640px) 38vw, 176px"
                         priority={true}
                       />
+
+                      {/* Refractive glass ring overlay (Parallax optics) */}
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-15 opacity-0 group-hover:opacity-70 transition-all duration-700 ease-out group-hover:scale-105 group-hover:translate-y-2">
+                        <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border border-white/20 bg-white/[0.02] backdrop-blur-[1px] shadow-[inset_0_0_12px_rgba(255,255,255,0.15),0_0_20px_rgba(0,201,177,0.1)] flex items-center justify-center">
+                          {/* Inner diffraction rings */}
+                          <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full border border-white/10 flex items-center justify-center">
+                            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full border border-white/5" />
+                          </div>
+                        </div>
+                      </div>
 
                       {/* Rich gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
