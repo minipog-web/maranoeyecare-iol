@@ -52,13 +52,11 @@
 }
 
 .spotlightLg {
-  composes: spotlight;
   width: 300px;
   height: 300px;
 }
 
 .spotlightSm {
-  composes: spotlight;
   width: 180px;
   height: 180px;
 }

@@ -121,7 +121,7 @@ export default function BookingSection() {
     'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
 
   return (
-    <section id="booking" className="py-12 sm:py-20 relative overflow-hidden bg-[#0f0d13]">
+    <section id="booking" className="py-12 sm:py-20 relative overflow-hidden bg-muted">
       {/* Background */}
       <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(245,158,11,0.06)_0%,transparent_70%)]" />
       <div className="absolute inset-0 grid-lines-bg opacity-10" />
@@ -133,7 +133,7 @@ export default function BookingSection() {
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
           {/* Left: CTA copy */}
           <div className="lg:sticky lg:top-28">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#f59e0b] mb-3">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               {`IOL Consultation`}
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6 whitespace-nowrap">
@@ -168,11 +168,11 @@ export default function BookingSection() {
                   {whatHappensNext.map((item) => (
                     <div key={item.step} className="flex items-start gap-4 group">
                       <div className="relative shrink-0">
-                        <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center group-hover:bg-amber-500/20 transition-colors z-10 relative">
+                        <div className="w-11 h-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors z-10 relative">
                           <Icon
                             name={item.icon as 'PhoneIcon'}
                             size={18}
-                            className="text-amber-400"
+                            className="text-primary"
                           />
                         </div>
                       </div>

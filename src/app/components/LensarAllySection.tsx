@@ -71,7 +71,7 @@ export default function LensarAllySection() {
   const activeBenefits = activeTab === 'patient' ? patientBenefits : surgeonBenefits;
 
   return (
-    <section id="lensar-ally" className="py-12 sm:py-24 relative overflow-hidden bg-[#070911]">
+    <section id="lensar-ally" className="py-12 sm:py-24 relative overflow-hidden bg-background">
       {/* Background layer */}
       <div className={`absolute inset-0 opacity-20 pointer-events-none ${styles.gridLines}`} />
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/4 rounded-full blur-[140px] pointer-events-none" />

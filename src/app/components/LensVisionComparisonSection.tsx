@@ -358,6 +358,28 @@ export default function LensVisionComparisonSection() {
   const [hoveredLensId, setHoveredLensId] = useState<string | null>(null);
   const ambientGlowRef = useRef<HTMLDivElement>(null);
 
+  const [visitedLenses, setVisitedLenses] = useState<string[]>(['panoptix', 'monofocal']);
+  const [visitedStates, setVisitedStates] = useState<string[]>(['day-distance']);
+
+  useEffect(() => {
+    if (!visitedLenses.includes(activePremiumLensId)) {
+      setVisitedLenses((prev) => [...prev, activePremiumLensId]);
+    }
+  }, [activePremiumLensId, visitedLenses]);
+
+  useEffect(() => {
+    if (!visitedLenses.includes(activeMobileLensId)) {
+      setVisitedLenses((prev) => [...prev, activeMobileLensId]);
+    }
+  }, [activeMobileLensId, visitedLenses]);
+
+  useEffect(() => {
+    const currentStateKey = `${timeOfDay}-${activeDistance}`;
+    if (!visitedStates.includes(currentStateKey)) {
+      setVisitedStates((prev) => [...prev, currentStateKey]);
+    }
+  }, [timeOfDay, activeDistance, visitedStates]);
+
   const selectPremiumLens = (id: string) => {
     setActivePremiumLensId(id);
     setActiveMobileLensId(id);
@@ -440,56 +462,64 @@ export default function LensVisionComparisonSection() {
     return (
       <>
         {/* Layer 1: Day Distance */}
-        <Image
-          src={lens.images.day.distance}
-          alt={`${lens.name} daytime distance vision`}
-          fill
-          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
-            timeOfDay === 'day' && activeDistance === 'distance'
-              ? 'opacity-100 z-10'
-              : 'opacity-0 z-0 pointer-events-none'
-          } ${blurClass(lens.blur.day.distance)}`}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          priority={lens.featured}
-        />
+        {visitedStates.includes('day-distance') && (
+          <Image
+            src={lens.images.day.distance}
+            alt={`${lens.name} daytime distance vision`}
+            fill
+            className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
+              timeOfDay === 'day' && activeDistance === 'distance'
+                ? 'opacity-100 z-10'
+                : 'opacity-0 z-0 pointer-events-none'
+            } ${blurClass(lens.blur.day.distance)}`}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority={lens.featured}
+          />
+        )}
 
         {/* Layer 2: Day Intermediate */}
-        <Image
-          src={lens.images.day.intermediate}
-          alt={`${lens.name} daytime intermediate vision`}
-          fill
-          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
-            timeOfDay === 'day' && activeDistance === 'intermediate'
-              ? 'opacity-100 z-10'
-              : 'opacity-0 z-0 pointer-events-none'
-          } ${blurClass(lens.blur.day.intermediate)}`}
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+        {visitedStates.includes('day-intermediate') && (
+          <Image
+            src={lens.images.day.intermediate}
+            alt={`${lens.name} daytime intermediate vision`}
+            fill
+            className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
+              timeOfDay === 'day' && activeDistance === 'intermediate'
+                ? 'opacity-100 z-10'
+                : 'opacity-0 z-0 pointer-events-none'
+            } ${blurClass(lens.blur.day.intermediate)}`}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        )}
 
         {/* Layer 3: Day Near */}
-        <Image
-          src={lens.images.day.near}
-          alt={`${lens.name} daytime near vision`}
-          fill
-          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
-            timeOfDay === 'day' && activeDistance === 'near'
-              ? 'opacity-100 z-10'
-              : 'opacity-0 z-0 pointer-events-none'
-          } ${blurClass(lens.blur.day.near)}`}
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+        {visitedStates.includes('day-near') && (
+          <Image
+            src={lens.images.day.near}
+            alt={`${lens.name} daytime near vision`}
+            fill
+            className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
+              timeOfDay === 'day' && activeDistance === 'near'
+                ? 'opacity-100 z-10'
+                : 'opacity-0 z-0 pointer-events-none'
+            } ${blurClass(lens.blur.day.near)}`}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        )}
 
         {/* Layer 4: Night */}
-        <Image
-          src={lens.images.night.distance}
-          alt={`${lens.name} night vision`}
-          fill
-          className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
-            timeOfDay === 'night' ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-          } ${blurClass(lens.blur.night[activeDistance])}`}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          priority={lens.featured}
-        />
+        {visitedStates.some((state) => state.startsWith('night-')) && (
+          <Image
+            src={lens.images.night.distance}
+            alt={`${lens.name} night vision`}
+            fill
+            className={`absolute inset-0 object-cover transition-opacity duration-500 ease-in-out ${
+              timeOfDay === 'night' ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            } ${blurClass(lens.blur.night[activeDistance])}`}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority={lens.featured}
+          />
+        )}
       </>
     );
   };
@@ -499,6 +529,8 @@ export default function LensVisionComparisonSection() {
       .filter((l) => l.id !== 'monofocal')
       .map((lens) => {
         const isCurrentLens = activePremiumLensId === lens.id;
+        const isVisited = visitedLenses.includes(lens.id);
+        if (!isVisited) return null;
         return (
           <div
             key={lens.id}
@@ -541,6 +573,8 @@ export default function LensVisionComparisonSection() {
   const renderMobileSimulatorImages = () => {
     return lenses.map((lens) => {
       const isCurrentLens = mobileDisplayLensId === lens.id;
+      const isVisited = visitedLenses.includes(lens.id);
+      if (!isVisited) return null;
       return (
         <div
           key={lens.id}
@@ -1033,7 +1067,7 @@ export default function LensVisionComparisonSection() {
               >
                 {/* Dynamic Mouse Spotlight Glow */}
                 <div data-lens={lens.id} className={styles.spotlightGlow} />
-                <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-[#0e1018]/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
+                <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-muted/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
                   {/* Badge */}
                   <div className="flex items-center justify-between mb-4">
                     <span

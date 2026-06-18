@@ -555,7 +555,7 @@ export default function LensQuestionnaireSection() {
                         : styles.shellMonofocal
                 }`}
               >
-                <div className="bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-5 sm:p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
+                <div className="bg-muted/90 rounded-[calc(2rem-6px)] p-5 sm:p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
                     {/* Lens image */}
                     <div className="shrink-0 w-full sm:w-36 h-40 sm:h-36 rounded-xl overflow-hidden border border-white/[0.08] relative">

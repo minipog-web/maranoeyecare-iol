@@ -80,7 +80,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#080910]"
+      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-background"
     >
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-25" />
@@ -124,7 +124,7 @@ export default function TestimonialsSection() {
                       onMouseMove={handleMouseMove}
                       className="group relative doppel-shell transition-spring cursor-pointer flex flex-col min-h-[320px]"
                     >
-                      <div className="w-full h-full flex flex-col bg-[#0e1018]/90 rounded-[calc(2rem-6px)] p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
+                      <div className="w-full h-full flex flex-col bg-muted/90 rounded-[calc(2rem-6px)] p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
                         {/* Dynamic Mouse Spotlight Glow */}
                         <div
                           className={`${styles.spotlight} ${styles.blur60} group-hover:opacity-15 ${
@@ -229,7 +229,7 @@ export default function TestimonialsSection() {
             >
               {/* Dynamic Mouse Spotlight */}
               <div
-                className={`${styles.spotlightLg} ${styles.blur80} ${styles.spotlightPrimary} group-hover:opacity-10`}
+                className={`${styles.spotlight} ${styles.spotlightLg} ${styles.blur80} ${styles.spotlightPrimary} group-hover:opacity-10`}
               />
 
               <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-10">
@@ -311,7 +311,7 @@ export default function TestimonialsSection() {
                 >
                   {/* Dynamic Mouse Spotlight Glow */}
                   <div
-                    className={`${styles.spotlightSm} ${styles.blur50} ${styles.spotlightPrimary} group-hover:opacity-10`}
+                    className={`${styles.spotlight} ${styles.spotlightSm} ${styles.blur50} ${styles.spotlightPrimary} group-hover:opacity-10`}
                   />
 
                   <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors z-10">
@@ -319,7 +319,7 @@ export default function TestimonialsSection() {
                   </div>
                   <div className="z-10 flex flex-col gap-0.5">
                     <p className="text-sm font-bold text-foreground leading-tight">{loc?.city}</p>
-                    <p className="text-xs text-muted-foreground line-clamp-1 sm:line-clamp-none leading-normal">
+                    <p className="text-xs text-muted-foreground line-clamp-1 leading-normal">
                       {loc?.address}
                     </p>
                     <p className="text-sm font-semibold text-primary group-hover:underline leading-tight">

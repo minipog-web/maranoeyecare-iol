@@ -56,7 +56,7 @@ export default function HeroSection() {
       className={`relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 ${styles.hero}`}
     >
       {/* Background layers */}
-      <div className="absolute inset-0 bg-[#080910]" />
+      <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 grid-lines-bg opacity-100" />
 
       {/* Rich ambient lighting */}
@@ -147,7 +147,7 @@ export default function HeroSection() {
             <div className="flex flex-wrap gap-5 sm:gap-10 border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
               {[
                 { value: '15×', label: 'Consecutive NJ Top Doctor' },
-                { value: '10,000+', label: 'Successful Procedures' },
+                { value: '40,000+', label: 'Successful Procedures' },
                 { value: '99%', label: '"I\'d Choose A Premium Lens Again"' },
                 { value: '4.9 ★', label: 'Google Patient Rating' },
               ]?.map((stat) => (
@@ -197,7 +197,7 @@ export default function HeroSection() {
                           : 'shadow-[0_0_20px_rgba(0,201,177,0.05)] border-white/[0.08]'
                       }`}
                 >
-                  <div className="w-full h-full flex flex-col bg-[rgba(8,9,16,0.85)] rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
+                  <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
                     {/* Image */}
                     <div className="relative flex-1 overflow-hidden">
                       <AppImage

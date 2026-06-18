@@ -111,7 +111,7 @@ function FAQItemRow({
       <button
         onClick={onToggle}
         className="w-full flex items-start gap-4 p-5 sm:p-6 text-left touch-manipulation group"
-        aria-expanded={isOpen ? 'true' : 'false'}
+        {...{ 'aria-expanded': isOpen }}
       >
         <span className="text-xl mt-0.5 shrink-0 select-none">
           {['🌙', '💰', '🔄', '🛡️', '✅'][index] ?? '❓'}
@@ -185,7 +185,7 @@ function ProceduralFAQRow({
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between gap-4 py-4 text-left touch-manipulation group"
-        aria-expanded={isOpen ? 'true' : 'false'}
+        {...{ 'aria-expanded': isOpen }}
       >
         <p className="text-sm font-medium text-foreground/85 group-hover:text-foreground transition-colors">
           {item.question}
@@ -262,7 +262,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-12 sm:py-20 relative overflow-hidden bg-[#0b0d16]">
+    <section id="faq" className="py-12 sm:py-20 relative overflow-hidden bg-secondary">
       {/* FAQ Schema Markup */}
       <script
         type="application/ld+json"
