@@ -159,6 +159,13 @@ export default function HeroSection() {
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
+                    <strong className="text-white font-medium">Board-Certified</strong>{' '}
+                    Ophthalmologist
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-muted-foreground leading-snug">
                     Recognized as a{' '}
                     <strong className="text-primary font-semibold">
                       15× NJ Monthly Top Doctor
@@ -169,15 +176,21 @@ export default function HeroSection() {
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
                     Over <strong className="text-primary font-semibold">40,000+ surgeries</strong>{' '}
-                    successfully completed
+                    completed
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    Patient satisfaction of{' '}
-                    <strong className="text-primary font-semibold">99%</strong> &amp;{' '}
-                    <strong className="text-primary font-semibold">4.9★ rating</strong>
+                    Patient satisfaction rate of{' '}
+                    <strong className="text-primary font-semibold">99%</strong>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-muted-foreground leading-snug">
+                    Over <strong className="text-primary font-semibold">4.9★ rating</strong> on
+                    Google
                   </span>
                 </li>
               </ul>
