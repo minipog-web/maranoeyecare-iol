@@ -146,9 +146,11 @@ export default function HeroSection() {
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
                 Dr. Matthew Marano Jr., MD, Chief of Ophthalmology at Cooperman Barnabas, is a{' '}
-                <strong className="text-white font-semibold">15× NJ Monthly Top Doctor</strong>.
+                <strong className="text-primary font-semibold">15× NJ Monthly Top Doctor</strong>.
                 With over{' '}
-                <strong className="text-white font-semibold">40,000+ successful procedures</strong>{' '}
+                <strong className="text-primary font-semibold">
+                  40,000+ successful procedures
+                </strong>{' '}
                 completed, his patients report a{' '}
                 <strong className="text-primary font-semibold">99% visual satisfaction rate</strong>{' '}
                 and{' '}
