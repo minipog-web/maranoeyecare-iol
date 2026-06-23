@@ -1,26 +1,9 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, Fraunces } from 'next/font/google';
 import Script from 'next/script';
 import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-  adjustFontFallback: false,
-});
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-fraunces',
-  display: 'swap',
-  adjustFontFallback: false,
-});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -135,8 +118,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${fraunces.variable} dark`}>
+    <html lang="en" className="dark">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
+          rel="stylesheet"
+        />
         {schemas.map((schema, index) => (
           <script
             key={index}
@@ -145,7 +134,7 @@ export default function RootLayout({
           />
         ))}
       </head>
-      <body className={dmSans.className}>
+      <body>
         {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18197167741"

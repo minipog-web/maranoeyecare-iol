@@ -15,8 +15,9 @@
   --border-bright: #292c3a;
   --input: #161820;
   --ring: #c5a059;
-  --radius: 1rem;
-  --font-sans: var(--font-dm-sans), sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-fraunces: 'Fraunces', serif;
+  --font-sans: var(--font-dm-sans);
 
   /* Lens Palette Variables */
   --lens-panoptix: #8b5cf6;
