@@ -75,8 +75,6 @@ export default function HeroSection() {
                 Premium IOL Specialists — New Jersey
               </span>
             </div>
-
-
             {/* Headline */}
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
               <span className="sr-only">Cataract Surgery & Premium Lenses New Jersey: </span>
@@ -85,10 +83,12 @@ export default function HeroSection() {
                 See Without Limits.
               </span>
             </h1>
-
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 animate-fade-up delay-300 fill-both">
-              Cataract surgery is a once-in-a-lifetime opportunity to upgrade your sight. Compare the world's most advanced lenses — Clareon Vivity, Clareon PanOptix, and Tecnis Eyhance — to design a lifetime of visual freedom.
-            </p>            {/* CTAs */}
+              Cataract surgery is a once-in-a-lifetime opportunity to upgrade your sight. Compare
+              the world's most advanced lenses — Clareon Vivity, Clareon PanOptix, and Tecnis
+              Eyhance — to design a lifetime of visual freedom.
+            </p>{' '}
+            {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
               <a
                 href="#booking"
@@ -136,14 +136,16 @@ export default function HeroSection() {
                 />
               </a>
             </div>
-
             {/* Editorial Proof Text */}
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
                 Dr. Matthew Marano Jr., MD, Chief of Ophthalmology at Cooperman Barnabas, is a{' '}
-                <strong className="text-white font-semibold">15× NJ Monthly Top Doctor</strong>. With over{' '}
-                <strong className="text-white font-semibold">40,000+ successful procedures</strong> completed, his patients report a{' '}
-                <strong className="text-primary font-semibold">99% visual satisfaction rate</strong> and{' '}
+                <strong className="text-white font-semibold">15× NJ Monthly Top Doctor</strong>.
+                With over{' '}
+                <strong className="text-white font-semibold">40,000+ successful procedures</strong>{' '}
+                completed, his patients report a{' '}
+                <strong className="text-primary font-semibold">99% visual satisfaction rate</strong>{' '}
+                and{' '}
                 <strong className="text-primary font-semibold">4.9★ Google patient rating</strong>.
               </p>
             </div>

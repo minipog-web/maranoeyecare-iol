@@ -71,9 +71,9 @@ export default function BookingSection() {
       else if (lensKey === 'panoptix') optionValue = 'PanOptix Pro (Trifocal)';
       else if (lensKey === 'eyhance') optionValue = 'Tecnis Eyhance (Enhanced Monofocal)';
       else if (lensKey === 'monofocal') optionValue = 'Standard Monofocal';
-      
+
       if (optionValue) {
-        setForm(prev => ({ ...prev, lens: optionValue }));
+        setForm((prev) => ({ ...prev, lens: optionValue }));
       }
     };
 
@@ -317,10 +317,22 @@ export default function BookingSection() {
                         : 'Optional — helps Dr. Marano prepare for your visit.'}
                     </p>
                     <div className="flex items-center gap-1.5 text-[10px] text-primary font-medium tracking-wide uppercase">
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      <svg
+                        className="w-3.5 h-3.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                        />
                       </svg>
-                      {step === 1 ? 'HIPAA Compliant · No Medical History Required' : 'Privacy Protected & HIPAA Secure'}
+                      {step === 1
+                        ? 'HIPAA Compliant · No Medical History Required'
+                        : 'Privacy Protected & HIPAA Secure'}
                     </div>
                   </div>
                 </div>
@@ -414,8 +426,14 @@ export default function BookingSection() {
                     </div>
 
                     <div>
-                      <span id="contact-method-label" className={labelClass}>Preferred Contact Method *</span>
-                      <div role="radiogroup" aria-labelledby="contact-method-label" className="grid grid-cols-3 gap-3">
+                      <span id="contact-method-label" className={labelClass}>
+                        Preferred Contact Method *
+                      </span>
+                      <div
+                        role="radiogroup"
+                        aria-labelledby="contact-method-label"
+                        className="grid grid-cols-3 gap-3"
+                      >
                         {[
                           { value: 'email', label: 'Email' },
                           { value: 'phone', label: 'Call' },

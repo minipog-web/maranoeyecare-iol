@@ -457,7 +457,11 @@ export default function LensQuestionnaireSection() {
               </div>
 
               {/* Options */}
-              <div role="radiogroup" aria-label={currentQuestion.text} className="flex flex-col gap-3">
+              <div
+                role="radiogroup"
+                aria-label={currentQuestion.text}
+                className="flex flex-col gap-3"
+              >
                 {currentQuestion.options.map((opt, idx) => (
                   <button
                     key={idx}
@@ -472,7 +476,9 @@ export default function LensQuestionnaireSection() {
                           : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:scale-[1.01] active:scale-[0.99]'
                       }`}
                   >
-                    <span aria-hidden="true" className="text-xl sm:text-2xl shrink-0 leading-none">{opt.icon}</span>
+                    <span aria-hidden="true" className="text-xl sm:text-2xl shrink-0 leading-none">
+                      {opt.icon}
+                    </span>
                     <div className="flex-1 min-w-0">
                       <p className="text-foreground font-medium text-sm sm:text-base leading-snug">
                         {opt.label}
