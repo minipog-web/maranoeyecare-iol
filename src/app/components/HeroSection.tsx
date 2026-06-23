@@ -17,6 +17,8 @@ const lenses = [
     alt: 'Clareon Vivity IOL — non-diffractive extended depth of focus intraocular lens',
     accent: 'border-primary/50',
     featured: true,
+    glow: 'shadow-[0_0_60px_rgba(197,160,89,0.35),0_0_0_1px_rgba(197,160,89,0.2)] border-primary/45 bg-white/[0.05]',
+    inactiveGlow: 'shadow-[0_0_20px_rgba(197,160,89,0.08)] border-white/[0.08]',
   },
   {
     name: 'PanOptix Pro',
@@ -28,6 +30,8 @@ const lenses = [
     alt: 'Clareon PanOptix Pro trifocal IOL — trifocal intraocular lens',
     accent: 'border-primary/25',
     featured: false,
+    glow: 'shadow-[0_0_60px_rgba(139,92,246,0.35),0_0_0_1px_rgba(139,92,246,0.2)] border-[rgba(139,92,246,0.45)] bg-white/[0.05]',
+    inactiveGlow: 'shadow-[0_0_20px_rgba(139,92,246,0.08)] border-white/[0.08]',
   },
   {
     name: 'Eyhance',
@@ -39,6 +43,8 @@ const lenses = [
     alt: 'TECNIS Eyhance IOL — enhanced monofocal intraocular lens',
     accent: 'border-primary/25',
     featured: false,
+    glow: 'shadow-[0_0_60px_rgba(0,163,255,0.35),0_0_0_1px_rgba(0,163,255,0.2)] border-[rgba(0,163,255,0.45)] bg-white/[0.05]',
+    inactiveGlow: 'shadow-[0_0_20px_rgba(0,163,255,0.08)] border-white/[0.08]',
   },
 ];
 
@@ -179,11 +185,7 @@ export default function HeroSection() {
                           ? 'w-[42%] min-w-[130px] sm:w-44 h-[260px] sm:h-[420px] z-20 -mt-8 snap-center sm:snap-align-none shrink-0'
                           : 'w-[27%] min-w-[100px] sm:w-36 h-[210px] sm:h-[360px] z-10 snap-center sm:snap-align-none shrink-0'
                       }
-                      ${
-                        isActive
-                          ? 'shadow-[0_0_60px_rgba(197, 160, 89,0.3),0_0_0_1px_rgba(197, 160, 89,0.2)] border-primary/45 bg-white/[0.05]'
-                          : 'shadow-[0_0_20px_rgba(197, 160, 89,0.05)] border-white/[0.08]'
-                      }`}
+                      ${isActive ? lens.glow : lens.inactiveGlow}`}
                 >
                   <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
                     {/* Image */}
