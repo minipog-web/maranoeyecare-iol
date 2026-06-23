@@ -85,7 +85,7 @@ export default function HeroSection() {
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 animate-fade-up delay-300 fill-both">
               Cataract surgery is a once-in-a-lifetime opportunity to upgrade your sight. Compare
-              the world's most advanced lenses — Clareon Vivity, Clareon PanOptix, and Tecnis
+              the world&apos;s most advanced lenses — Clareon Vivity, Clareon PanOptix, and Tecnis
               Eyhance — to design a lifetime of visual freedom.
             </p>{' '}
             {/* CTAs */}
