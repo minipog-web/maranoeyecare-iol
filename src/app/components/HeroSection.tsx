@@ -145,7 +145,11 @@ export default function HeroSection() {
             {/* Editorial Proof Text */}
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
-                Dr. Matthew Marano Jr., MD, Chief of Ophthalmology at Cooperman Barnabas, is a{' '}
+                Dr. Matthew Marano Jr., MD,{' '}
+                <strong className="text-primary font-semibold">
+                  Chief of Ophthalmology at Cooperman Barnabas
+                </strong>
+                , is a{' '}
                 <strong className="text-primary font-semibold">15× NJ Monthly Top Doctor</strong>.
                 With over{' '}
                 <strong className="text-primary font-semibold">
