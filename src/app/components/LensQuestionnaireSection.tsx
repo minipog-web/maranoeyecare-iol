@@ -51,7 +51,7 @@ const LENSES: Record<string, LensResult> = {
     ],
 
     color: 'text-primary',
-    glow: 'shadow-[0_0_40px_rgba(0,201,177,0.25)]',
+    glow: 'shadow-[0_0_40px_rgba(197,160,89,0.25)]',
     border: 'border-primary/50',
     badge: 'Most Popular',
     badgeColor: 'bg-primary text-background',

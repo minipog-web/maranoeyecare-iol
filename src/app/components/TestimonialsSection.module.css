@@ -16,11 +16,11 @@
   border: 1px solid rgba(139, 92, 246, 0.22);
 }
 
-/* Vivity — #00C9B1 */
+/* Vivity — #c5a059 */
 .lensVivity .lensBadge {
-  background-color: rgba(0, 201, 177, 0.1);
-  color: #00c9b1;
-  border: 1px solid rgba(0, 201, 177, 0.22);
+  background-color: rgba(197, 160, 89, 0.1);
+  color: #c5a059;
+  border: 1px solid rgba(197, 160, 89, 0.22);
 }
 
 /* Eyhance — #00a3ff */
@@ -70,7 +70,7 @@
 }
 
 .spotlightVivity {
-  background: radial-gradient(circle, #00c9b1 0%, transparent 70%);
+  background: radial-gradient(circle, #c5a059 0%, transparent 70%);
 }
 
 .spotlightEyhance {

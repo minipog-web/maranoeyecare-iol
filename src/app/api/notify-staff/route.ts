@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
         <h2 style="color:#1a1a2e;margin-top:0;">New Lens Recommendation Completed</h2>
         <p style="color:#444;">A patient has completed the IOL Lens Recommendation Quiz on the Marano Eye Care website.</p>
         <div style="background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:16px;margin:16px 0;">
-          <h3 style="margin-top:0;color:#00c9b1;">Recommended Lens</h3>
+          <h3 style="margin-top:0;color:#c5a059;">Recommended Lens</h3>
           <p style="font-size:18px;font-weight:bold;color:#1a1a2e;margin:4px 0;">${lensName}</p>
           <p style="color:#666;margin:4px 0;">${lensTagline}</p>
         </div>

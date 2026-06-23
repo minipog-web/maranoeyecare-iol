@@ -53,7 +53,7 @@ function buildEmailHtml(s: {
     '<h2 style="color:#1a1a2e;margin-top:0;">New Consultation Request</h2>' +
     '<p style="color:#444;">A new &quot;Book a Consultation&quot; form has been submitted on the Marano Eye Care website.</p>' +
     '<div style="background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:16px;margin:16px 0;">' +
-    '<h3 style="margin-top:0;color:#00c9b1;">Patient Information</h3>' +
+    '<h3 style="margin-top:0;color:#c5a059;">Patient Information</h3>' +
     patientRows +
     '</div>' +
     '<div style="background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:16px;margin:16px 0;">' +

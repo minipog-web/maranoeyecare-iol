@@ -24,7 +24,7 @@ const testimonials = [
     name: 'Robert D.',
     location: 'Livingston, NJ',
     lens: 'Clareon Vivity',
-    lensColor: '#00C9B1',
+    lensColor: '#c5a059',
     avatar: '/assets/images/avatar_robert.jpg',
     stars: 5,
   },
