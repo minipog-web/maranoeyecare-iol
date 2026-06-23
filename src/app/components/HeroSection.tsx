@@ -145,20 +145,27 @@ export default function HeroSection() {
             {/* Editorial Proof Text */}
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
-                Dr. Matthew Marano Jr., MD,{' '}
-                <strong className="text-primary font-semibold">
+                <strong className="text-white font-semibold">Dr. Matthew Marano Jr., MD</strong>,{' '}
+                <span className="text-white/80 font-medium">
                   Chief of Ophthalmology at Cooperman Barnabas
-                </strong>
+                </span>
                 , is a{' '}
-                <strong className="text-primary font-semibold">15× NJ Monthly Top Doctor</strong>.
-                With over{' '}
-                <strong className="text-primary font-semibold">
-                  40,000+ successful procedures
+                <strong className="text-white font-semibold">
+                  <span className="text-primary">15×</span> NJ Monthly Top Doctor
+                </strong>
+                . With over{' '}
+                <strong className="text-white font-semibold">
+                  <span className="text-primary">40,000+</span> successful procedures
                 </strong>{' '}
                 completed, his patients report a{' '}
-                <strong className="text-primary font-semibold">99% visual satisfaction rate</strong>{' '}
+                <strong className="text-white font-semibold">
+                  <span className="text-primary">99%</span> visual satisfaction rate
+                </strong>{' '}
                 and{' '}
-                <strong className="text-primary font-semibold">4.9★ Google patient rating</strong>.
+                <strong className="text-white font-semibold">
+                  <span className="text-primary">4.9★</span> Google patient rating
+                </strong>
+                .
               </p>
             </div>
           </div>
