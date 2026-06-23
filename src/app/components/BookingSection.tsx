@@ -443,7 +443,7 @@ export default function BookingSection() {
                             key={method.value}
                             type="button"
                             role="radio"
-                            aria-checked={form.preferredContact === method.value ? 'true' : 'false'}
+                            aria-checked={form.preferredContact === method.value}
                             onClick={() =>
                               setForm((prev) => ({ ...prev, preferredContact: method.value }))
                             }

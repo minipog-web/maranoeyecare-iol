@@ -51,7 +51,7 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Standard Monofocal regret',
+    concern: "Only what's covered by insurance",
     quote:
       "I chose a standard monofocal lens to save on cost, thinking I wouldn't mind reading glasses. I was wrong. The constant cycle of taking my readers on and off to look at my phone, type, or check a menu is exhausting. I truly wish I had invested in Vivity or PanOptix for visual freedom.",
     name: 'Harvey S.',
