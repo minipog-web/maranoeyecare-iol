@@ -143,17 +143,44 @@ export default function HeroSection() {
               </a>
             </div>
             {/* Editorial Proof Text */}
-            <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
-                <strong className="text-white font-semibold">Dr. Matthew Marano Jr., MD</strong>,{' '}
-                Chief of Ophthalmology at Cooperman Barnabas, is a{' '}
-                <strong className="text-primary font-semibold">15×</strong> NJ Monthly Top Doctor.
-                With over <strong className="text-primary font-semibold">40,000+</strong> successful
-                procedures completed, his patients report a{' '}
-                <strong className="text-primary font-semibold">99%</strong> visual satisfaction rate
-                and <strong className="text-primary font-semibold">4.9★</strong> Google patient
-                rating.
+            <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl">
+              <p className="text-sm sm:text-base text-white/95 font-semibold mb-4">
+                Led by Matthew Marano Jr., MD — New Jersey&apos;s leading premium cataract
+                specialist:
               </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm">
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-muted-foreground leading-snug">
+                    <strong className="text-white font-medium">Chief of Ophthalmology</strong> at
+                    Cooperman Barnabas
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-muted-foreground leading-snug">
+                    Recognized as a{' '}
+                    <strong className="text-primary font-semibold">
+                      15× NJ Monthly Top Doctor
+                    </strong>
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-muted-foreground leading-snug">
+                    Over <strong className="text-primary font-semibold">40,000+ surgeries</strong>{' '}
+                    successfully completed
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-muted-foreground leading-snug">
+                    Patient satisfaction of{' '}
+                    <strong className="text-primary font-semibold">99%</strong> &amp;{' '}
+                    <strong className="text-primary font-semibold">4.9★ rating</strong>
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
 
