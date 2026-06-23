@@ -50,8 +50,8 @@ export default function TrustSection() {
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-5 sm:mb-6 leading-tight">
             New Jersey&apos;s{' '}
-            <span className="font-semibold text-gradient-primary">{`Most Awarded`}</span>{' '}
-            Eye Surgeon
+            <span className="font-semibold text-gradient-primary">{`Most Awarded`}</span> Eye
+            Surgeon
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Dr. Matthew Marano Jr., MD has been named Top Doctor by NJ Monthly Magazine for 15
