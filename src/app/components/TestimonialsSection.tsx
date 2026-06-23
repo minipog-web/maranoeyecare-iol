@@ -179,7 +179,7 @@ export default function TestimonialsSection() {
                         </p>
 
                         <div className="flex items-center gap-3 sm:gap-4 flex-wrap relative z-10 mt-auto">
-                          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_12px_rgba(0,201,177,0.2)]">
+                          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_12px_rgba(197, 160, 89,0.2)]">
                             <AppImage
                               src={t?.avatar}
                               alt={`Patient ${t?.name} profile photo`}
@@ -246,7 +246,7 @@ export default function TestimonialsSection() {
 
               <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-10">
                 {/* Dr. Marano Profile Photo */}
-                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_15px_rgba(0,201,177,0.2)]">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_15px_rgba(197, 160, 89,0.2)]">
                   <AppImage
                     src="/assets/images/marano_thumbnail.png"
                     alt="Dr. Matthew Marano Jr., MD"

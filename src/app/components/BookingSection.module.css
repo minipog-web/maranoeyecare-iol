@@ -1,8 +1,8 @@
 .formCard {
   box-shadow:
-    0 0 0 1px rgba(0, 201, 177, 0.08),
+    0 0 0 1px rgba(197, 160, 89, 0.08),
     0 32px 80px rgba(0, 0, 0, 0.5),
-    0 0 60px rgba(0, 201, 177, 0.05);
+    0 0 60px rgba(197, 160, 89, 0.05);
 }
 
 .premiumInput {
@@ -20,16 +20,16 @@
 
 .premiumInput:hover {
   background: rgba(14, 16, 24, 0.85);
-  border-color: rgba(0, 201, 177, 0.25);
-  box-shadow: 0 0 12px rgba(0, 201, 177, 0.04);
+  border-color: rgba(197, 160, 89, 0.25);
+  box-shadow: 0 0 12px rgba(197, 160, 89, 0.04);
 }
 
 .premiumInput:focus {
   background: rgba(8, 9, 16, 0.95);
-  border-color: rgba(0, 201, 177, 0.65) !important;
+  border-color: rgba(197, 160, 89, 0.65) !important;
   box-shadow:
-    0 0 0 3px rgba(0, 201, 177, 0.15),
-    0 0 20px rgba(0, 201, 177, 0.1) !important;
+    0 0 0 3px rgba(197, 160, 89, 0.15),
+    0 0 20px rgba(197, 160, 89, 0.1) !important;
 }
 
 .premiumInput option {

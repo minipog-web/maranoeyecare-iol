@@ -190,7 +190,7 @@ export default function TrustSection() {
                     'Three conveniently located NJ offices',
                   ]?.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(0,201,177,0.6)]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197, 160, 89,0.6)]" />
                       {item}
                     </li>
                   ))}

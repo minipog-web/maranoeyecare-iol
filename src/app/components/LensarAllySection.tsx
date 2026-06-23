@@ -105,7 +105,7 @@ export default function LensarAllySection() {
               onClick={() => handleTabChange('patient')}
               className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 ${
                 activeTab === 'patient'
-                  ? 'bg-primary text-[#020304] shadow-[0_0_20px_rgba(0,201,177,0.25)]'
+                  ? 'bg-primary text-[#020304] shadow-[0_0_20px_rgba(197, 160, 89,0.25)]'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >

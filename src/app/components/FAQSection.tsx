@@ -104,7 +104,7 @@ function FAQItemRow({
     <div
       className={`border rounded-2xl overflow-hidden transition-all duration-300 animate-fade-up fill-both ${delays[index % delays.length]} ${
         isOpen
-          ? 'border-primary/30 bg-primary/[0.03] shadow-[0_0_30px_rgba(0,201,177,0.06)]'
+          ? 'border-primary/30 bg-primary/[0.03] shadow-[0_0_30px_rgba(197, 160, 89,0.06)]'
           : 'border-border bg-white/[0.02] hover:border-border-bright hover:bg-white/[0.03]'
       }`}
     >
@@ -151,7 +151,7 @@ function FAQItemRow({
             <p className="text-sm text-muted-foreground leading-relaxed mb-3">{item.answer}</p>
             {item.highlight && (
               <div className="flex items-start gap-2 px-3 py-2 rounded-xl bg-primary/8 border border-primary/15">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_6px_rgba(0,201,177,0.6)]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_6px_rgba(197, 160, 89,0.6)]" />
                 <p className="text-xs font-semibold text-primary/90 leading-relaxed">
                   {item.highlight}
                 </p>

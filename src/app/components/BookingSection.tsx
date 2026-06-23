@@ -256,7 +256,7 @@ export default function BookingSection() {
           >
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-12 sm:py-16">
-                <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(0,201,177,0.25)]">
+                <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(197, 160, 89,0.25)]">
                   <Icon name="CheckCircleIcon" size={36} className="text-primary" />
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-medium text-foreground mb-3">

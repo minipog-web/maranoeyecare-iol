@@ -154,9 +154,9 @@
   bottom: 4px;
   border-radius: 12px;
   transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
-  background-color: rgba(0, 201, 177, 0.1);
-  border: 1px solid rgba(0, 201, 177, 0.2);
-  box-shadow: 0 2px 12px rgba(0, 201, 177, 0.1);
+  background-color: rgba(var(--lens-color-rgb), 0.1);
+  border: 1px solid rgba(var(--lens-color-rgb), 0.2);
+  box-shadow: 0 2px 12px rgba(var(--lens-color-rgb), 0.1);
 }
 
 .distanceHighlight[data-active='distance'] {

@@ -181,8 +181,8 @@ export default function HeroSection() {
                       }
                       ${
                         isActive
-                          ? 'shadow-[0_0_60px_rgba(0,201,177,0.3),0_0_0_1px_rgba(0,201,177,0.2)] border-primary/45 bg-white/[0.05]'
-                          : 'shadow-[0_0_20px_rgba(0,201,177,0.05)] border-white/[0.08]'
+                          ? 'shadow-[0_0_60px_rgba(197, 160, 89,0.3),0_0_0_1px_rgba(197, 160, 89,0.2)] border-primary/45 bg-white/[0.05]'
+                          : 'shadow-[0_0_20px_rgba(197, 160, 89,0.05)] border-white/[0.08]'
                       }`}
                 >
                   <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
@@ -234,7 +234,7 @@ export default function HeroSection() {
 
             {/* Floating lens detail card — desktop only */}
             <div className="hidden lg:block absolute bottom-[400px] right-4 lg:right-8 w-44 glass-card-bright rounded-2xl p-4 shadow-2xl z-30 animate-float-delayed">
-              <div className="w-8 h-8 rounded-xl bg-primary/15 flex items-center justify-center mb-3 shadow-[0_0_12px_rgba(0,201,177,0.3)]">
+              <div className="w-8 h-8 rounded-xl bg-primary/15 flex items-center justify-center mb-3 shadow-[0_0_12px_rgba(197, 160, 89,0.3)]">
                 <Icon name="SparklesIcon" size={18} className="text-primary" />
               </div>
               <p className="text-xs text-muted-foreground mb-1 uppercase tracking-widest">

@@ -564,7 +564,7 @@ export default function LensVisionComparisonSection() {
           : '35%';
     const y = glowPosition ? glowPosition.y : '50%';
     const opacity = glowPosition ? '0.95' : '0.45';
-    const glowBg = `radial-gradient(circle, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.25)' : currentGlowLens.id === 'vivity' ? 'rgba(0,201,177,0.25)' : currentGlowLens.id === 'eyhance' ? 'rgba(16,185,129,0.2)' : 'rgba(100,116,139,0.15)'} 0%, rgba(0,0,0,0) 70%)`;
+    const glowBg = `radial-gradient(circle, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.25)' : currentGlowLens.id === 'vivity' ? 'rgba(197,160,89,0.25)' : currentGlowLens.id === 'eyhance' ? 'rgba(0,163,255,0.2)' : 'rgba(100,116,139,0.15)'} 0%, rgba(0,0,0,0) 70%)`;
 
     ambientGlowRef.current.style.setProperty('--glow-x', x);
     ambientGlowRef.current.style.setProperty('--glow-y', y);

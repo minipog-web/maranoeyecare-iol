@@ -66,7 +66,7 @@ p {
 }
 
 ::selection {
-  background: rgba(0, 201, 177, 0.25);
+  background: rgba(197, 160, 89, 0.25);
   color: #fff;
 }
 
@@ -99,7 +99,7 @@ p {
 }
 
 .dot-grid-bg {
-  background-image: radial-gradient(rgba(0, 201, 177, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(197, 160, 89, 0.06) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -107,7 +107,7 @@ p {
 .radial-glow-primary {
   background: radial-gradient(
     ellipse 60% 50% at 60% 40%,
-    rgba(0, 201, 177, 0.09) 0%,
+    rgba(197, 160, 89, 0.09) 0%,
     transparent 70%
   );
 }
@@ -115,7 +115,7 @@ p {
 .radial-glow-left {
   background: radial-gradient(
     ellipse 50% 60% at 15% 60%,
-    rgba(0, 201, 177, 0.07) 0%,
+    rgba(197, 160, 89, 0.07) 0%,
     transparent 70%
   );
 }
@@ -123,7 +123,7 @@ p {
 .radial-glow-center {
   background: radial-gradient(
     ellipse 70% 50% at 50% 50%,
-    rgba(0, 201, 177, 0.06) 0%,
+    rgba(197, 160, 89, 0.06) 0%,
     transparent 70%
   );
 }
@@ -155,7 +155,7 @@ p {
   background: rgba(20, 22, 34, 0.8);
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 201, 177, 0.15);
+  border: 1px solid rgba(197, 160, 89, 0.15);
 }
 
 /* ── Double-Bezel Enclosures (Doppelrand) ── */
@@ -184,16 +184,16 @@ p {
 /* ── Card glows ── */
 .card-glow {
   box-shadow:
-    0 0 0 1px rgba(0, 201, 177, 0.1),
+    0 0 0 1px rgba(197, 160, 89, 0.1),
     0 8px 32px rgba(0, 0, 0, 0.4),
     0 32px 64px rgba(0, 0, 0, 0.3);
 }
 
 .card-glow-featured {
   box-shadow:
-    0 0 0 1px rgba(0, 201, 177, 0.35),
-    0 0 40px rgba(0, 201, 177, 0.12),
-    0 20px 60px rgba(0, 201, 177, 0.08),
+    0 0 0 1px rgba(197, 160, 89, 0.35),
+    0 0 40px rgba(197, 160, 89, 0.12),
+    0 20px 60px rgba(197, 160, 89, 0.08),
     0 40px 80px rgba(0, 0, 0, 0.6);
 }
 
@@ -205,10 +205,10 @@ p {
 }
 .glass-card.card-hover-glow:hover {
   box-shadow:
-    0 0 0 1px rgba(0, 201, 177, 0.25),
-    0 0 30px rgba(0, 201, 177, 0.1),
+    0 0 0 1px rgba(197, 160, 89, 0.25),
+    0 0 30px rgba(197, 160, 89, 0.1),
     0 20px 50px rgba(0, 0, 0, 0.5);
-  border-color: rgba(0, 201, 177, 0.25);
+  border-color: rgba(197, 160, 89, 0.25);
   transform: translateY(-2px);
 }
 
@@ -224,9 +224,9 @@ p {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(0, 201, 177, 0.4),
+    rgba(197, 160, 89, 0.4),
     transparent 40%,
-    rgba(0, 201, 177, 0.2) 100%
+    rgba(197, 160, 89, 0.2) 100%
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -247,7 +247,7 @@ p {
     90deg,
     transparent 0%,
     var(--border-bright) 20%,
-    rgba(0, 201, 177, 0.2) 50%,
+    rgba(197, 160, 89, 0.2) 50%,
     var(--border-bright) 80%,
     transparent 100%
   );
@@ -328,13 +328,13 @@ p {
   0%,
   100% {
     box-shadow:
-      0 0 18px rgba(0, 201, 177, 0.18),
-      0 0 0 1px rgba(0, 201, 177, 0.1);
+      0 0 18px rgba(197, 160, 89, 0.18),
+      0 0 0 1px rgba(197, 160, 89, 0.1);
   }
   50% {
     box-shadow:
-      0 0 40px rgba(0, 201, 177, 0.4),
-      0 0 0 1px rgba(0, 201, 177, 0.3);
+      0 0 40px rgba(197, 160, 89, 0.4),
+      0 0 0 1px rgba(197, 160, 89, 0.3);
   }
 }
 
@@ -521,7 +521,7 @@ p {
 
 .vision-section-bg {
   background:
-    radial-gradient(circle at 25% 60%, rgba(0, 201, 177, 0.05) 0%, transparent 55%),
+    radial-gradient(circle at 25% 60%, rgba(197, 160, 89, 0.05) 0%, transparent 55%),
     radial-gradient(circle at 75% 30%, rgba(95, 255, 217, 0.04) 0%, transparent 55%);
 }
 
@@ -594,7 +594,7 @@ p {
 }
 
 .legend-icon-wrap {
-  background: rgba(0, 201, 177, 0.1);
+  background: rgba(197, 160, 89, 0.1);
 }
 
 /* ─────────────────────────────────────────

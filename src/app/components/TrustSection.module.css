@@ -1,7 +1,7 @@
 .photoWrapper {
   box-shadow:
     0 32px 80px rgba(0, 0, 0, 0.6),
-    0 0 60px rgba(0, 201, 177, 0.08);
+    0 0 60px rgba(197, 160, 89, 0.08);
 }
 
 /* Per-lens badge colours */
@@ -33,7 +33,7 @@
   border-top: 1px solid transparent;
   background-image:
     linear-gradient(var(--background), var(--background)),
-    linear-gradient(90deg, transparent, rgba(0, 201, 177, 0.2), transparent);
+    linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.2), transparent);
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }

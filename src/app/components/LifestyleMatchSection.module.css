@@ -49,7 +49,7 @@
 
 .comparisonCard {
   box-shadow:
-    0 0 0 1px rgba(0, 201, 177, 0.07),
+    0 0 0 1px rgba(197, 160, 89, 0.07),
     0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
@@ -63,8 +63,8 @@
 }
 
 .profileTech .recommendationBadge {
-  background-color: rgba(0, 201, 177, 0.12);
-  border: 1px solid rgba(0, 201, 177, 0.25);
+  background-color: rgba(197, 160, 89, 0.12);
+  border: 1px solid rgba(197, 160, 89, 0.25);
 }
 
 .profileConservative .recommendationBadge {
@@ -89,7 +89,7 @@
 }
 
 .profileTech .activityDot {
-  box-shadow: 0 0 6px rgba(0, 201, 177, 0.38);
+  box-shadow: 0 0 6px rgba(197, 160, 89, 0.38);
 }
 
 .profileConservative .activityDot {

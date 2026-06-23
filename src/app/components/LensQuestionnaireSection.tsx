@@ -359,7 +359,7 @@ export default function LensQuestionnaireSection() {
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(0,201,177,0.8)]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197, 160, 89,0.8)]" />
             Lens Recommendation Quiz
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-light text-foreground mb-4 leading-tight">
@@ -472,7 +472,7 @@ export default function LensQuestionnaireSection() {
                     className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-spring cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
                       ${
                         selectedOption === idx
-                          ? 'border-primary bg-primary/10 shadow-[0_0_24px_rgba(0,201,177,0.12)] scale-[0.99]'
+                          ? 'border-primary bg-primary/10 shadow-[0_0_24px_rgba(197, 160, 89,0.12)] scale-[0.99]'
                           : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:scale-[1.01] active:scale-[0.99]'
                       }`}
                   >
