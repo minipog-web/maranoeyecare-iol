@@ -146,26 +146,13 @@ export default function HeroSection() {
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
                 <strong className="text-white font-semibold">Dr. Matthew Marano Jr., MD</strong>,{' '}
-                <span className="text-white/80 font-medium">
-                  Chief of Ophthalmology at Cooperman Barnabas
-                </span>
-                , is a{' '}
-                <strong className="text-white font-semibold">
-                  <span className="text-primary">15×</span> NJ Monthly Top Doctor
-                </strong>
-                . With over{' '}
-                <strong className="text-white font-semibold">
-                  <span className="text-primary">40,000+</span> successful procedures
-                </strong>{' '}
-                completed, his patients report a{' '}
-                <strong className="text-white font-semibold">
-                  <span className="text-primary">99%</span> visual satisfaction rate
-                </strong>{' '}
-                and{' '}
-                <strong className="text-white font-semibold">
-                  <span className="text-primary">4.9★</span> Google patient rating
-                </strong>
-                .
+                Chief of Ophthalmology at Cooperman Barnabas, is a{' '}
+                <strong className="text-primary font-semibold">15×</strong> NJ Monthly Top Doctor.
+                With over <strong className="text-primary font-semibold">40,000+</strong> successful
+                procedures completed, his patients report a{' '}
+                <strong className="text-primary font-semibold">99%</strong> visual satisfaction rate
+                and <strong className="text-primary font-semibold">4.9★</strong> Google patient
+                rating.
               </p>
             </div>
           </div>
