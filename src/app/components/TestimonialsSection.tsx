@@ -50,6 +50,17 @@ const testimonials = [
     avatar: '/assets/images/avatar_james.jpg',
     stars: 5,
   },
+  {
+    concern: 'Standard Monofocal regret',
+    quote:
+      "I chose a standard monofocal lens to save on cost, thinking I wouldn't mind reading glasses. I was wrong. The constant cycle of taking my readers on and off to look at my phone, type, or check a menu is exhausting. I truly wish I had invested in Vivity or PanOptix for visual freedom.",
+    name: 'Harvey S.',
+    location: 'West Orange, NJ',
+    lens: 'Standard Monofocal',
+    lensColor: '#64748B',
+    avatar: '/assets/images/avatar_robert.jpg',
+    stars: 4,
+  },
 ];
 
 export default function TestimonialsSection() {
