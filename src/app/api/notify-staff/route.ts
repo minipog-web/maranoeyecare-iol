@@ -5,6 +5,28 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { lensName, lensTagline, answers } = body;
 
+    // Server-side validation
+    if (
+      typeof lensName !== 'string' ||
+      !lensName.trim() ||
+      lensName.length > 100 ||
+      typeof lensTagline !== 'string' ||
+      lensTagline.length > 200
+    ) {
+      return NextResponse.json({ error: 'Invalid payload parameters.' }, { status: 400 });
+    }
+
+    if (answers !== undefined) {
+      if (!Array.isArray(answers) || answers.length > 20) {
+        return NextResponse.json({ error: 'Invalid answers payload format.' }, { status: 400 });
+      }
+      for (const ans of answers) {
+        if (typeof ans !== 'string' || ans.length > 200) {
+          return NextResponse.json({ error: 'Answer strings are too long.' }, { status: 400 });
+        }
+      }
+    }
+
     const apiKey = process.env.BREVO_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: 'Brevo API key not configured' }, { status: 500 });

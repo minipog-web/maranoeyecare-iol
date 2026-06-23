@@ -61,6 +61,7 @@ export default function BookingSection() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   React.useEffect(() => {
     const handleSelectLens = (e: Event) => {
@@ -81,26 +82,88 @@ export default function BookingSection() {
     return () => window.removeEventListener('select-lens', handleSelectLens);
   }, []);
 
+  const validateField = (name: string, value: string): string => {
+    if (name === 'firstName') {
+      if (!value.trim()) return 'First name is required';
+      if (value.length > 50) return 'First name must be 50 characters or less';
+      if (!/^[A-Za-z\s'-]+$/.test(value)) {
+        return 'Only letters, spaces, hyphens, and apostrophes are allowed';
+      }
+    }
+    if (name === 'lastName') {
+      if (!value.trim()) return 'Last name is required';
+      if (value.length > 50) return 'Last name must be 50 characters or less';
+      if (!/^[A-Za-z\s'-]+$/.test(value)) {
+        return 'Only letters, spaces, hyphens, and apostrophes are allowed';
+      }
+    }
+    if (name === 'email') {
+      if (!value.trim()) return 'Email address is required';
+      if (value.length > 100) return 'Email address must be 100 characters or less';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        return 'Please enter a valid email address';
+      }
+    }
+    if (name === 'phone') {
+      if (!value.trim()) return 'Phone number is required';
+      if (value.length > 25) return 'Phone number must be 25 characters or less';
+      if (!/^[\d\s()+-]{7,25}$/.test(value)) {
+        return 'Please enter a valid phone number (min 7 digits)';
+      }
+    }
+    if (name === 'location') {
+      if (!value) return 'Please select a preferred location';
+    }
+    return '';
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
   };
 
   const handleStep1 = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.firstName && form.phone && form.location && form.email && form.preferredContact) {
-      setStep(2);
-      trackEvent({
-        action: 'booking_step_1_complete',
-        category: 'Engagement',
-        label: form.location,
-      });
+    const newErrors: Record<string, string> = {};
+    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location', 'email'];
+    fieldsToValidate.forEach((field) => {
+      const err = validateField(field, form[field as keyof FormState] || '');
+      if (err) newErrors[field] = err;
+    });
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
     }
+
+    setStep(2);
+    trackEvent({
+      action: 'booking_step_1_complete',
+      category: 'Engagement',
+      label: form.location,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const newErrors: Record<string, string> = {};
+    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location', 'email'];
+    fieldsToValidate.forEach((field) => {
+      const err = validateField(field, form[field as keyof FormState] || '');
+      if (err) newErrors[field] = err;
+    });
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setStep(1);
+      return;
+    }
+
     setLoading(true);
     setErrorMessage(null);
 
@@ -343,7 +406,7 @@ export default function BookingSection() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="firstName" className={labelClass}>
-                          First Name
+                          First Name *
                         </label>
                         <input
                           id="firstName"
@@ -352,13 +415,23 @@ export default function BookingSection() {
                           value={form.firstName}
                           onChange={handleChange}
                           placeholder="Jane"
+                          maxLength={50}
                           required
-                          className={inputClass}
+                          className={`${inputClass} ${
+                            errors.firstName
+                              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                              : ''
+                          }`}
                         />
+                        {errors.firstName && (
+                          <p className="text-red-400 text-xs mt-1.5 font-medium">
+                            {errors.firstName}
+                          </p>
+                        )}
                       </div>
                       <div>
                         <label htmlFor="lastName" className={labelClass}>
-                          Last Name
+                          Last Name *
                         </label>
                         <input
                           id="lastName"
@@ -367,8 +440,19 @@ export default function BookingSection() {
                           value={form.lastName}
                           onChange={handleChange}
                           placeholder="Smith"
-                          className={inputClass}
+                          maxLength={50}
+                          required
+                          className={`${inputClass} ${
+                            errors.lastName
+                              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                              : ''
+                          }`}
                         />
+                        {errors.lastName && (
+                          <p className="text-red-400 text-xs mt-1.5 font-medium">
+                            {errors.lastName}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -383,9 +467,17 @@ export default function BookingSection() {
                         value={form.phone}
                         onChange={handleChange}
                         placeholder="(973) 555-0123"
+                        maxLength={25}
                         required
-                        className={inputClass}
+                        className={`${inputClass} ${
+                          errors.phone
+                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                            : ''
+                        }`}
                       />
+                      {errors.phone && (
+                        <p className="text-red-400 text-xs mt-1.5 font-medium">{errors.phone}</p>
+                      )}
                     </div>
 
                     <div>
@@ -398,7 +490,11 @@ export default function BookingSection() {
                         value={form.location}
                         onChange={handleChange}
                         required
-                        className={inputClass}
+                        className={`${inputClass} ${
+                          errors.location
+                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                            : ''
+                        }`}
                       >
                         <option value="">Select a location</option>
                         {locations.map((l) => (
@@ -407,6 +503,9 @@ export default function BookingSection() {
                           </option>
                         ))}
                       </select>
+                      {errors.location && (
+                        <p className="text-red-400 text-xs mt-1.5 font-medium">{errors.location}</p>
+                      )}
                     </div>
 
                     <div>
@@ -420,9 +519,17 @@ export default function BookingSection() {
                         value={form.email}
                         onChange={handleChange}
                         placeholder="jane.smith@example.com"
+                        maxLength={100}
                         required
-                        className={inputClass}
+                        className={`${inputClass} ${
+                          errors.email
+                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                            : ''
+                        }`}
                       />
+                      {errors.email && (
+                        <p className="text-red-400 text-xs mt-1.5 font-medium">{errors.email}</p>
+                      )}
                     </div>
 
                     <div>
@@ -515,6 +622,7 @@ export default function BookingSection() {
                         onChange={handleChange}
                         placeholder="Any specific concerns, current glasses prescription, or questions for Dr. Marano..."
                         rows={3}
+                        maxLength={1000}
                         className={`${inputClass} resize-none`}
                       />
                     </div>

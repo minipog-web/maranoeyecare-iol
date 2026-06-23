@@ -70,6 +70,37 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { firstName, lastName, email, phone, preferredContact, location, lens, message } = body;
 
+    // Server-side validation
+    if (
+      typeof firstName !== 'string' ||
+      !firstName.trim() ||
+      firstName.length > 50 ||
+      typeof lastName !== 'string' ||
+      !lastName.trim() ||
+      lastName.length > 50 ||
+      typeof email !== 'string' ||
+      !email.trim() ||
+      email.length > 100 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+      typeof phone !== 'string' ||
+      !phone.trim() ||
+      phone.length > 25 ||
+      !/^[\d\s()+-]{7,25}$/.test(phone) ||
+      typeof location !== 'string' ||
+      !location.trim() ||
+      typeof preferredContact !== 'string' ||
+      !['email', 'phone', 'text'].includes(preferredContact)
+    ) {
+      return NextResponse.json(
+        { error: 'Invalid or incomplete payload parameters.' },
+        { status: 400 }
+      );
+    }
+
+    if (message && (typeof message !== 'string' || message.length > 1000)) {
+      return NextResponse.json({ error: 'Message payload is too long.' }, { status: 400 });
+    }
+
     const apiKey = process.env.BREVO_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: 'Brevo API key not configured' }, { status: 500 });
