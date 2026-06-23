@@ -271,7 +271,10 @@ export default function TestimonialsSection() {
                         Dr. Matthew Marano Jr., MD
                       </p>
                       <p className="text-xs text-primary mt-0.5 font-medium">
-                        Board-Certified Ophthalmologist · 40,000+ Cataract Surgeries Completed
+                        Board-Certified Ophthalmologist
+                      </p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 font-medium">
+                        40,000+ Cataract Surgeries Completed
                       </p>
                     </div>
                     <div className="flex gap-1.5 flex-wrap">
