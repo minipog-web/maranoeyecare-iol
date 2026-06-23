@@ -2,17 +2,6 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-.scanLines {
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(255, 255, 255, 0.008) 2px,
-    rgba(255, 255, 255, 0.008) 4px
-  );
-  background-size: 100% 4px;
-}
-
 .lensCard {
   will-change: transform;
 }

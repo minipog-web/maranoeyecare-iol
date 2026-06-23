@@ -60,7 +60,7 @@ export default function StickyCTABar() {
                 label: 'Book Free Consultation',
               })
             }
-            className="flex-1 flex items-center justify-between pl-5 pr-3 py-2.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_14px_rgba(0,201,177,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="flex-1 flex items-center justify-between pl-5 pr-3 py-2.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <span>Book Free Consultation</span>
             <span className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors">

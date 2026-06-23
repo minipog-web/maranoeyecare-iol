@@ -62,6 +62,25 @@ export default function BookingSection() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  React.useEffect(() => {
+    const handleSelectLens = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const lensKey = customEvent.detail;
+      let optionValue = '';
+      if (lensKey === 'vivity') optionValue = 'Clareon Vivity (EDOF)';
+      else if (lensKey === 'panoptix') optionValue = 'PanOptix Pro (Trifocal)';
+      else if (lensKey === 'eyhance') optionValue = 'Tecnis Eyhance (Enhanced Monofocal)';
+      else if (lensKey === 'monofocal') optionValue = 'Standard Monofocal';
+      
+      if (optionValue) {
+        setForm(prev => ({ ...prev, lens: optionValue }));
+      }
+    };
+
+    window.addEventListener('select-lens', handleSelectLens);
+    return () => window.removeEventListener('select-lens', handleSelectLens);
+  }, []);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -291,11 +310,19 @@ export default function BookingSection() {
                       }`}
                     />
                   </div>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    {step === 1
-                      ? 'Provide your contact details to begin.'
-                      : 'Optional — helps Dr. Marano prepare for your visit.'}
-                  </p>
+                  <div className="flex flex-wrap items-center justify-between gap-2 mt-2">
+                    <p className="text-xs text-muted-foreground">
+                      {step === 1
+                        ? 'Provide your contact details to begin.'
+                        : 'Optional — helps Dr. Marano prepare for your visit.'}
+                    </p>
+                    <div className="flex items-center gap-1.5 text-[10px] text-primary font-medium tracking-wide uppercase">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      {step === 1 ? 'HIPAA Compliant · No Medical History Required' : 'Privacy Protected & HIPAA Secure'}
+                    </div>
+                  </div>
                 </div>
 
                 {step === 1 ? (
@@ -387,8 +414,8 @@ export default function BookingSection() {
                     </div>
 
                     <div>
-                      <label className={labelClass}>Preferred Contact Method *</label>
-                      <div className="grid grid-cols-3 gap-3">
+                      <span id="contact-method-label" className={labelClass}>Preferred Contact Method *</span>
+                      <div role="radiogroup" aria-labelledby="contact-method-label" className="grid grid-cols-3 gap-3">
                         {[
                           { value: 'email', label: 'Email' },
                           { value: 'phone', label: 'Call' },
@@ -397,10 +424,12 @@ export default function BookingSection() {
                           <button
                             key={method.value}
                             type="button"
+                            role="radio"
+                            aria-checked={form.preferredContact === method.value ? 'true' : 'false'}
                             onClick={() =>
                               setForm((prev) => ({ ...prev, preferredContact: method.value }))
                             }
-                            className={`px-3 py-3 rounded-xl border text-sm font-medium transition-all ${
+                            className={`px-3 py-3 rounded-xl border text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary ${
                               form.preferredContact === method.value
                                 ? 'bg-primary/10 border-primary text-primary'
                                 : 'bg-transparent border-border hover:border-muted-foreground/30 text-muted-foreground'
@@ -414,7 +443,7 @@ export default function BookingSection() {
 
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     >
                       <span>Continue to Step 2</span>
                       <Icon
@@ -431,40 +460,6 @@ export default function BookingSection() {
                   </form>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-                    <div>
-                      <label htmlFor="email" className={labelClass}>
-                        Email Address *
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="jane.smith@email.com"
-                        required
-                        className={inputClass}
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="preferredContact" className={labelClass}>
-                        Preferred Contact Method *
-                      </label>
-                      <select
-                        id="preferredContact"
-                        name="preferredContact"
-                        value={form.preferredContact}
-                        onChange={handleChange}
-                        required
-                        className={inputClass}
-                      >
-                        <option value="email">Email</option>
-                        <option value="phone">Phone Call</option>
-                        <option value="text">Text Message</option>
-                      </select>
-                    </div>
-
                     <div>
                       <label htmlFor="lens" className={labelClass}>
                         Lens I&apos;m Interested In{' '}
@@ -518,7 +513,7 @@ export default function BookingSection() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         {loading ? (
                           <span className="flex items-center gap-3">

@@ -58,7 +58,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-background/85 backdrop-blur-2xl border-b border-border/60 shadow-[0_1px_0_rgba(0,201,177,0.07)]'
+          ? 'bg-background/85 backdrop-blur-2xl border-b border-border/60 shadow-[0_1px_0_rgba(197,160,89,0.08)]'
           : 'bg-transparent'
       }`}
     >
@@ -164,7 +164,7 @@ export default function Header() {
 
             <a
               href="#booking"
-              className="w-full py-3.5 bg-primary text-[#040506] rounded-xl text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-colors touch-manipulation flex items-center justify-center shadow-[0_4px_14px_rgba(0,201,177,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="w-full py-3.5 bg-primary text-[#040506] rounded-xl text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation flex items-center justify-center shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               onClick={() => {
                 handleBookingClick('mobile');
                 setMenuOpen(false);

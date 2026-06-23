@@ -60,13 +60,9 @@ export default function HeroSection() {
       <div className="absolute inset-0 grid-lines-bg opacity-100" />
 
       {/* Rich ambient lighting */}
-      <div className="absolute inset-0 radial-glow-primary" />
       <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-primary/2 rounded-full blur-[180px] pointer-events-none" />
-
-      {/* Subtle scan-line effect */}
-      <div className={`absolute inset-0 pointer-events-none ${styles.scanLines}`} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full py-8 lg:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
@@ -74,27 +70,25 @@ export default function HeroSection() {
           <div className="flex-1 w-full flex flex-col items-start">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(0,201,177,0.8)]" />
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
               <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.35em] text-primary">
                 Premium IOL Specialists — New Jersey
               </span>
             </div>
 
+
             {/* Headline */}
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
-              Stop Missing Life.{' '}
+              <span className="sr-only">Cataract Surgery & Premium Lenses New Jersey: </span>
+              Reclaim Your Vision.{' '}
               <span className="block text-gradient-primary font-semibold mt-1 pb-4">
-                Start Seeing It.
+                See Without Limits.
               </span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 animate-fade-up delay-300 fill-both">
-              Not all IOLs are equal. Discover how Clareon Vivity, PanOptix Pro, and Eyhance compare
-              — and find the premium lens that can eliminate your dependence on glasses for the
-              clearest life after cataract surgery.
-            </p>
-
-            {/* CTAs */}
+              Cataract surgery is a once-in-a-lifetime opportunity to upgrade your sight. Compare the world's most advanced lenses — Clareon Vivity, Clareon PanOptix, and Tecnis Eyhance — to design a lifetime of visual freedom.
+            </p>            {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
               <a
                 href="#booking"
@@ -105,7 +99,7 @@ export default function HeroSection() {
                     label: 'Book Your Free Consultation',
                   })
                 }
-                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(0,201,177,0.25)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(197,160,89,0.25)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 Book Your Free Consultation
                 <Icon
@@ -143,23 +137,15 @@ export default function HeroSection() {
               </a>
             </div>
 
-            {/* Stats row */}
-            <div className="flex flex-wrap gap-5 sm:gap-10 border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
-              {[
-                { value: '15×', label: 'Consecutive NJ Top Doctor' },
-                { value: '40,000+', label: 'Successful Procedures' },
-                { value: '99%', label: '"I\'d Choose A Premium Lens Again"' },
-                { value: '4.9 ★', label: 'Google Patient Rating' },
-              ]?.map((stat) => (
-                <div key={stat?.label} className="flex flex-col gap-1">
-                  <span className="font-display text-2xl sm:text-3xl font-semibold text-primary">
-                    {stat?.value}
-                  </span>
-                  <span className="text-[10px] sm:text-xs text-muted-foreground font-medium uppercase tracking-wide">
-                    {stat?.label}
-                  </span>
-                </div>
-              ))}
+            {/* Editorial Proof Text */}
+            <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
+                Dr. Matthew Marano Jr., MD, Chief of Ophthalmology at Cooperman Barnabas, is a{' '}
+                <strong className="text-white font-semibold">15× NJ Monthly Top Doctor</strong>. With over{' '}
+                <strong className="text-white font-semibold">40,000+ successful procedures</strong> completed, his patients report a{' '}
+                <strong className="text-primary font-semibold">99% visual satisfaction rate</strong> and{' '}
+                <strong className="text-primary font-semibold">4.9★ Google patient rating</strong>.
+              </p>
             </div>
           </div>
 

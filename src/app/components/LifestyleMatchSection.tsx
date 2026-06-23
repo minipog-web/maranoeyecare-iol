@@ -17,7 +17,6 @@ const profiles = [
       'Golf, tennis, or cycling',
     ],
     recommendation: 'PanOptix Pro',
-    recommendationColor: '#8B5CF6',
     reason:
       'Trifocal design gives you sharp vision at every distance — from your 27″ monitor to a road sign 200 metres away.',
     image: '/assets/images/profile_active_professional.jpg',
@@ -36,7 +35,6 @@ const profiles = [
       'Occasional reading with glasses is acceptable',
     ],
     recommendation: 'Clareon Vivity',
-    recommendationColor: '#00C9B1',
     reason:
       'X-WAVE™ non-diffractive technology extends your vision range with halo and glare rates nearly identical to a basic monofocal.',
     image: '/assets/images/profile_tech_conscious.jpg',
@@ -55,12 +53,11 @@ const profiles = [
       'History of dry eye or retinal conditions',
     ],
     recommendation: 'Tecnis Eyhance',
-    recommendationColor: '#3b82f6',
     reason:
       'Ring-free optic design means zero added halos or glare — with meaningful intermediate improvement over standard monofocal.',
     image: '/assets/images/profile_conservative_candidate.jpg',
     imageAlt: 'Mature adult reading outdoors in bright sunlight',
-    stat: '100% distance independence at 5 years',
+    stat: 'Over 90% distance satisfaction rate',
   },
 ];
 
@@ -97,7 +94,7 @@ export default function LifestyleMatchSection() {
             </p>
             <a
               href="#booking"
-              className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 touch-manipulation min-h-[52px] shadow-[0_0_24px_rgba(0,201,177,0.22)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-[1.03] active:scale-95 touch-manipulation min-h-[52px] shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               Book Your Assessment
               <Icon name="ArrowRightIcon" size={16} />
@@ -177,6 +174,15 @@ export default function LifestyleMatchSection() {
               key={profile?.id}
               href="#booking"
               onMouseMove={handleMouseMove}
+              onClick={() => {
+                let lensKey = '';
+                if (profile?.id === 'active') lensKey = 'panoptix';
+                else if (profile?.id === 'tech') lensKey = 'vivity';
+                else if (profile?.id === 'conservative') lensKey = 'eyhance';
+                if (lensKey) {
+                  window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
+                }
+              }}
               className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16] focus-visible:outline-none ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
             >
               <div className="w-full h-full flex flex-col bg-muted/90 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">

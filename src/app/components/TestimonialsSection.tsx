@@ -201,13 +201,14 @@ export default function TestimonialsSection() {
             </div>
 
             {/* Pagination Dots */}
-            <div className="flex justify-center items-center gap-1 mt-6">
+            <div className="flex justify-center items-center gap-0.5 mt-4">
               {testimonials.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveIndex(idx)}
-                  className="w-6 h-6 flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-full group"
+                  className="w-11 h-11 flex items-center justify-center transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-full group"
                   aria-label={`Go to testimonial ${idx + 1}`}
+                  aria-current={activeIndex === idx ? 'true' : undefined}
                 >
                   <span
                     className={`h-2 rounded-full transition-all duration-300 ${

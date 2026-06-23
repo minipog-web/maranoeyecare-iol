@@ -457,10 +457,13 @@ export default function LensQuestionnaireSection() {
               </div>
 
               {/* Options */}
-              <div className="flex flex-col gap-3">
+              <div role="radiogroup" aria-label={currentQuestion.text} className="flex flex-col gap-3">
                 {currentQuestion.options.map((opt, idx) => (
                   <button
                     key={idx}
+                    type="button"
+                    role="radio"
+                    aria-checked={selectedOption === idx}
                     onClick={() => handleOption(opt, idx)}
                     className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-spring cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
                       ${
@@ -469,7 +472,7 @@ export default function LensQuestionnaireSection() {
                           : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:scale-[1.01] active:scale-[0.99]'
                       }`}
                   >
-                    <span className="text-xl sm:text-2xl shrink-0 leading-none">{opt.icon}</span>
+                    <span aria-hidden="true" className="text-xl sm:text-2xl shrink-0 leading-none">{opt.icon}</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-foreground font-medium text-sm sm:text-base leading-snug">
                         {opt.label}
@@ -479,6 +482,7 @@ export default function LensQuestionnaireSection() {
                       )}
                     </div>
                     <span
+                      aria-hidden="true"
                       className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-spring
                         ${
                           selectedOption === idx
@@ -622,6 +626,9 @@ export default function LensQuestionnaireSection() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href="#booking"
+                  onClick={() => {
+                    window.dispatchEvent(new CustomEvent('select-lens', { detail: result.key }));
+                  }}
                   className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#040506] font-semibold text-sm hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   {result.cta}

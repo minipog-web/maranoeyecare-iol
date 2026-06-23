@@ -35,9 +35,9 @@ export default function LensarAllySection() {
     },
     {
       icon: 'SparklesIcon',
-      title: 'Sub-Micron Laser Precision',
-      desc: 'Robotic-guided technology makes incisions with sub-micron accuracy, creating the perfect foundation for aligning premium astigmatism and multifocal lenses.',
-      metric: 'Sub-micron accuracy',
+      title: 'Micron-level laser precision',
+      desc: 'Computer-guided technology makes incisions with micron-level accuracy, creating the optimal foundation for aligning premium astigmatism and multifocal lenses.',
+      metric: 'Micron-level accuracy',
     },
     {
       icon: 'BuildingOfficeIcon',
@@ -139,7 +139,7 @@ export default function LensarAllySection() {
           <div className="lg:col-span-7 space-y-4 sm:space-y-6">
             <h3 className="font-display text-xl sm:text-3xl font-semibold text-foreground mb-4">
               {activeTab === 'patient'
-                ? 'Designed for Your Comfort and Faster Recovery'
+                ? 'Designed for Comfort and Faster Recovery'
                 : 'Empowering Dr. Marano with Sub-Micron Precision'}
             </h3>
 
@@ -156,8 +156,8 @@ export default function LensarAllySection() {
                   <div
                     className={
                       activeTab === 'patient'
-                        ? `${styles.spotlightPrimary} ${styles.blur60} group-hover:opacity-100`
-                        : `${styles.spotlightSecondary} ${styles.blur60} group-hover:opacity-100`
+                        ? `${styles.spotlight} ${styles.spotlightPrimary} ${styles.blur60} group-hover:opacity-100`
+                        : `${styles.spotlight} ${styles.spotlightSecondary} ${styles.blur60} group-hover:opacity-100`
                     }
                   />
 
@@ -196,58 +196,19 @@ export default function LensarAllySection() {
             </div>
           </div>
 
-          {/* Right: Diagnostic AR graphic simulation */}
+          {/* Right: Premium clinical preview */}
           <div className="lg:col-span-5 relative flex justify-center">
-            <div
-              className={`relative w-full max-w-[400px] aspect-square rounded-[2rem] border border-white/[0.06] bg-black/45 p-6 flex flex-col justify-between overflow-hidden shadow-2xl ${styles.crosshair} ${styles.crosshairLeftTop} ${styles.crosshairRightBottom}`}
-            >
-              {/* Vertical scanning line */}
-              <div className={styles.scanLine} />
-
-              {/* Diagnostic Top Header */}
-              <div className="flex justify-between items-center text-[10px] font-mono text-muted-foreground/75 tracking-wider select-none">
-                <span>[ LENSAR_ALLY_OS_V2.1 ]</span>
-                <span className="flex items-center gap-1.5">
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full ${activeTab === 'patient' ? 'bg-primary animate-pulse' : 'bg-accent animate-pulse'}`}
-                  />
-                  CALIBRATION ACTIVE
-                </span>
-              </div>
-
-              {/* Central Biometric Ring Graphic */}
-              <div className="flex-1 flex items-center justify-center relative py-4 h-full min-h-[220px]">
-                <div className="relative w-full h-full min-h-[220px] rounded-2xl overflow-hidden border border-white/[0.05] bg-black/60 shadow-[0_0_20px_rgba(0,0,0,0.8)] z-10">
-                  <AppImage
-                    src="/assets/images/lensar_ally_screen.jpg"
-                    alt="LENSAR ALLY advanced 3D biometric eye scan and laser calibration interface"
-                    fill
-                    className="object-cover opacity-90 transition-all duration-700 hover:scale-[1.03]"
-                    sizes="(max-width: 640px) 100vw, 360px"
-                  />
-                  {/* Subtle inner glass highlight */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.02] via-transparent to-transparent pointer-events-none" />
-                </div>
-
-                <div className="absolute bottom-4 right-4 font-mono text-[9px] text-white/70 bg-black/60 px-2 py-1 rounded border border-white/[0.04] backdrop-blur-sm flex flex-col text-right select-none z-20">
-                  <span>RES: 0.18 MICRON</span>
-                  <span
-                    className={
-                      activeTab === 'patient' ? 'text-primary font-bold' : 'text-accent font-bold'
-                    }
-                  >
-                    {activeTab === 'patient' ? 'FRAG_MODE: GENTLE' : 'ASTIG_LOCK: 180°'}
-                  </span>
-                </div>
-              </div>
-
-              {/* Diagnostic Bottom Footer */}
-              <div className="border-t border-white/5 pt-3 flex items-center justify-between text-[9px] font-mono text-muted-foreground select-none">
-                <div className="flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                  <span>LASER INTEGRATED</span>
-                </div>
-                <span className="animate-pulse">REC: ACTIVE</span>
+            <div className="relative w-full max-w-[400px] aspect-square rounded-3xl border border-white/[0.08] bg-[#13151b] p-3 overflow-hidden shadow-2xl">
+              <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/[0.05] bg-black/60 shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+                <AppImage
+                  src="/assets/images/lensar_ally_screen.jpg"
+                  alt="LENSAR ALLY advanced 3D biometric eye scan and laser calibration interface"
+                  fill
+                  className="object-cover opacity-90 transition-all duration-700 hover:scale-[1.03]"
+                  sizes="(max-width: 640px) 100vw, 360px"
+                />
+                {/* Subtle inner glass highlight */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.02] via-transparent to-transparent pointer-events-none" />
               </div>
             </div>
           </div>

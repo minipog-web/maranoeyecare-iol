@@ -26,7 +26,7 @@ const lenses = [
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
         intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
-        near: '/assets/images/panoptix_day_near_pro.jpg',
+        near: '/assets/images/panoptix_day_near_pro.png',
       },
       night: {
         distance: '/assets/images/panoptix_night_pro_v2.jpg',
@@ -76,7 +76,7 @@ const lenses = [
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
         intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
-        near: '/assets/images/vivity_day_near_pro.jpg',
+        near: '/assets/images/vivity_day_near_pro.png',
       },
       night: {
         distance: '/assets/images/vivity_night_pro.jpg',
@@ -99,7 +99,7 @@ const lenses = [
     bestFor:
       'Active patients who use screens heavily and want extended range with the fewest visual disturbances.',
     blur: {
-      day: { distance: 0, intermediate: 0, near: 0 },
+      day: { distance: 0, intermediate: 0, near: 0.4 },
       night: { distance: 0, intermediate: 0, near: 1.8 },
     },
     glareLabel: {
@@ -126,7 +126,7 @@ const lenses = [
       day: {
         distance: '/assets/images/eyhance_day_distance_pro.jpg',
         intermediate: '/assets/images/eyhance_day_intermediate_pro_v2.jpg',
-        near: '/assets/images/eyhance_day_near_pro_v2.jpg',
+        near: '/assets/images/eyhance_day_near_pro_v2.png',
       },
       night: {
         distance: '/assets/images/eyhance_night_pro.jpg',
@@ -141,7 +141,7 @@ const lenses = [
       { label: 'Night Vision Quality', value: 'No Added Halos', score: 98 },
     ],
     highlights: [
-      '100% distance independence at 5 years [3]',
+      'Over 90% distance satisfaction rate [3]',
       'Ring-free refractive optic design',
       'No increase in halos vs. monofocal [3]',
       'Ideal for patients with mild comorbidities',
@@ -176,7 +176,7 @@ const lenses = [
       day: {
         distance: '/assets/images/monofocal_day_distance_pro.jpg',
         intermediate: '/assets/images/monofocal_day_intermediate_pro.jpg',
-        near: '/assets/images/monofocal_day_near_pro_v2.jpg',
+        near: '/assets/images/monofocal_day_near_pro_v2.png',
       },
       night: {
         distance: '/assets/images/monofocal_night_pro.jpg',
@@ -224,6 +224,8 @@ const distanceLabels: Record<Distance, { label: string; desc: string; icon: stri
 
 function blurClass(px: number): string {
   if (px <= 0) return '';
+  if (px <= 0.4) return 'blur-[0.4px] scale-[1.01]';
+  if (px <= 0.8) return 'blur-[0.8px] scale-[1.02]';
   if (px <= 1.5) return 'blur-[1.5px] scale-[1.05]';
   if (px <= 2.5) return 'blur-[2.5px] scale-[1.05]';
   if (px <= 5) return 'blur-[5px] scale-[1.05]';
@@ -1155,7 +1157,10 @@ export default function LensVisionComparisonSection() {
                   <a
                     href="#booking"
                     data-lens={lens.id}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.dispatchEvent(new CustomEvent('select-lens', { detail: lens.id }));
+                    }}
                     className={`w-full py-3 rounded-xl text-xs font-semibold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[46px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                   >
                     <span>

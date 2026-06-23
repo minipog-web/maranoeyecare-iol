@@ -1,41 +1,41 @@
 :root {
-  --background: #07090e; /* Custom teal-tinted OLED black */
+  --background: #0d0e12; /* Rich dark warm-tinted slate/charcoal background */
   --foreground: #ffffff;
-  --primary: #00c9b1;
-  --primary-foreground: #020304;
-  --secondary: #0b0e14; /* Muted teal-tinted secondary */
+  --primary: #c5a059; /* Luxury clinical platinum gold/bronze */
+  --primary-foreground: #0c0d10;
+  --secondary: #12141a;
   --secondary-foreground: #ffffff;
-  --accent: #5fffd9;
-  --accent-foreground: #020304;
-  --muted: #0e1219;
+  --accent: #e2c28a;
+  --accent-foreground: #0c0d10;
+  --muted: #161820;
   --muted-foreground: #cbd5e1;
-  --card: #0d1118; /* Rich teal-tinted card background */
+  --card: #13151b;
   --card-foreground: #ffffff;
-  --border: #181f28; /* Teal-tinted border */
-  --border-bright: #232c38; /* Bright teal-tinted border */
-  --input: #0e1219;
-  --ring: #00c9b1;
+  --border: #1e2029;
+  --border-bright: #292c3a;
+  --input: #161820;
+  --ring: #c5a059;
   --radius: 1rem;
   --font-sans: var(--font-dm-sans), sans-serif;
 
   /* Lens Palette Variables */
   --lens-panoptix: #8b5cf6;
-  --lens-vivity: #00c9b1;
+  --lens-vivity: #c5a059; /* Align Vivity with primary clinical gold */
   --lens-eyhance: #3b82f6;
   --lens-monofocal: #64748b;
 
-  --lens-panoptix-glow: rgba(139, 92, 246, 0.2);
-  --lens-vivity-glow: rgba(0, 201, 177, 0.18);
-  --lens-eyhance-glow: rgba(59, 130, 246, 0.15);
-  --lens-monofocal-glow: rgba(100, 116, 139, 0.12);
+  --lens-panoptix-glow: rgba(139, 92, 246, 0.15);
+  --lens-vivity-glow: rgba(197, 160, 89, 0.15);
+  --lens-eyhance-glow: rgba(59, 130, 246, 0.12);
+  --lens-monofocal-glow: rgba(100, 116, 139, 0.1);
 
   /* Elite Easing */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Glow tokens */
-  --glow-primary: rgba(0, 201, 177, 0.18);
-  --glow-primary-strong: rgba(0, 201, 177, 0.35);
-  --glow-accent: rgba(95, 255, 217, 0.12);
+  --glow-primary: rgba(197, 160, 89, 0.12);
+  --glow-primary-strong: rgba(197, 160, 89, 0.24);
+  --glow-accent: rgba(226, 194, 138, 0.08);
 }
 
 * {
@@ -130,7 +130,7 @@ p {
 
 /* ── Text gradients ── */
 .text-gradient-primary {
-  background: linear-gradient(125deg, #00c9b1 0%, #7eecd8 45%, #00e4c8 100%);
+  background: linear-gradient(125deg, #c5a059 0%, #e2c28a 45%, #d1ae6b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -422,11 +422,11 @@ p {
 .animate-shimmer-text {
   background: linear-gradient(
     105deg,
-    #00c9b1 0%,
-    #7eecd8 35%,
+    #c5a059 0%,
+    #e2c28a 35%,
     #ffffff 50%,
-    #7eecd8 65%,
-    #00c9b1 100%
+    #e2c28a 65%,
+    #c5a059 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -465,7 +465,7 @@ p {
 .btn-premium-primary {
   background: var(--primary);
   color: #040506;
-  border: 1px solid rgba(0, 201, 177, 0.4);
+  border: 1px solid rgba(197, 160, 89, 0.4);
   border-radius: 12px;
   padding: 0.75rem 1.5rem;
   font-weight: 600;
@@ -473,13 +473,13 @@ p {
   letter-spacing: 0.08em;
   font-size: 0.8rem;
   transition: all 0.25s var(--ease-spring);
-  box-shadow: 0 4px 14px rgba(0, 201, 177, 0.15);
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.15);
 }
 .btn-premium-primary:hover {
   background: var(--accent);
   color: #040506;
   border-color: var(--accent);
-  box-shadow: 0 6px 20px rgba(0, 201, 177, 0.3);
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
   transform: translateY(-1.5px);
 }
 .btn-premium-primary:active {
