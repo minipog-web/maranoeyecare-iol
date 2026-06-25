@@ -131,7 +131,7 @@ p {
 
 /* ── Text gradients ── */
 .text-gradient-primary {
-  background: linear-gradient(125deg, #c5a059 0%, #e2c28a 45%, #d1ae6b 100%);
+  background: linear-gradient(135deg, #E6C587 0%, #C5A059 50%, #A37F3D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -813,3 +813,47 @@ textarea:focus {
   --lens-color: #64748b;
   --lens-color-rgb: 100, 116, 139;
 }
+
+/* ── Visual Enhancement Animations & Classes ── */
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 12px rgba(197, 160, 89, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0);
+  }
+}
+
+.hotspot-pulse {
+  animation: pulseGlow 2s infinite;
+}
+
+.shimmer-text-glow {
+  text-shadow: 0 0 20px rgba(197, 160, 89, 0.35);
+}
+
+.luxury-nav-blur {
+  background: rgba(10, 12, 20, 0.7);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.logo-mono-hover {
+  opacity: 0.4;
+  filter: grayscale(100%);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo-mono-hover:hover {
+  opacity: 0.95;
+  filter: grayscale(0%);
+  border-color: rgba(197, 160, 89, 0.3);
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.08);
+}
+

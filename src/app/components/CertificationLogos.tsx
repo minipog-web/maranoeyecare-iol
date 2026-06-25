@@ -21,9 +21,9 @@ export default function CertificationLogos() {
           </div>
 
           {/* Logos Row */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12 opacity-75 hover:opacity-90 transition-opacity">
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10">
             {/* AAO */}
-            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
+            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm logo-mono-hover">
               <span className="text-lg">👁️</span>
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">
@@ -36,7 +36,7 @@ export default function CertificationLogos() {
             </div>
 
             {/* ASCRS */}
-            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
+            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm logo-mono-hover">
               <span className="text-lg">🔬</span>
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">
@@ -49,7 +49,7 @@ export default function CertificationLogos() {
             </div>
 
             {/* ABO */}
-            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
+            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm logo-mono-hover">
               <span className="text-lg">🛡️</span>
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">
@@ -62,7 +62,7 @@ export default function CertificationLogos() {
             </div>
 
             {/* Castle Connolly */}
-            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
+            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm logo-mono-hover">
               <span className="text-lg">🏅</span>
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">

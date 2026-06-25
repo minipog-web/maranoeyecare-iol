@@ -768,13 +768,22 @@ export default function LensVisionComparisonSection() {
                   .filter((l) => l.id !== 'monofocal')
                   .map((lens) => {
                     const isActive = activePremiumLensId === lens.id;
+                    const activeStyles = isActive
+                      ? {
+                          borderColor: `${lens.color}45`,
+                          boxShadow: `0 0 15px ${lens.color}20, inset 0 0 8px ${lens.color}15`,
+                          background: 'rgba(255, 255, 255, 0.06)',
+                          color: '#ffffff',
+                        }
+                      : undefined;
                     return (
                       <button
                         key={lens.id}
                         onClick={() => selectPremiumLens(lens.id)}
+                        style={activeStyles}
                         className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none flex items-center gap-1.5 border ${
                           isActive
-                            ? 'bg-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] scale-[1.02]'
+                            ? 'scale-[1.02]'
                             : 'text-muted-foreground hover:text-foreground border-transparent'
                         }`}
                       >
@@ -911,14 +920,23 @@ export default function LensVisionComparisonSection() {
               <div className="flex p-1 bg-black/60 rounded-2xl border border-white/[0.08] w-full min-h-[65px] gap-1 shadow-inner">
                 {lenses.map((lens) => {
                   const isActive = activeMobileLensId === lens.id;
+                  const activeStyles = isActive
+                    ? {
+                        borderColor: `${lens.color}45`,
+                        boxShadow: `0 0 12px ${lens.color}20, inset 0 0 8px ${lens.color}15`,
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        color: '#ffffff',
+                      }
+                    : undefined;
                   return (
                     <button
                       key={lens.id}
                       onClick={() => selectMobileLens(lens.id)}
                       data-lens={lens.id}
+                      style={activeStyles}
                       className={`flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
                         isActive
-                          ? `bg-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] scale-[1.02] ${styles.mobileLensBtn}`
+                          ? `scale-[1.02] ${styles.mobileLensBtn}`
                           : 'text-muted-foreground hover:text-foreground border-transparent'
                       }`}
                     >

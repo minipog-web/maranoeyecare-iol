@@ -254,16 +254,7 @@ function getProgressPercent(history: string[]): number {
   return Math.min(Math.round((history.length / TOTAL_QUESTIONS) * 100), 90);
 }
 
-function progressWidthClass(pct: number): string {
-  if (pct === 0) return 'w-0';
-  if (pct <= 10) return 'w-[10%]';
-  if (pct <= 20) return 'w-[20%]';
-  if (pct <= 40) return 'w-[40%]';
-  if (pct <= 60) return 'w-[60%]';
-  if (pct <= 80) return 'w-[80%]';
-  if (pct <= 90) return 'w-[90%]';
-  return 'w-full';
-}
+// progressWidthClass removed because inline styles are used to support glowing tips
 
 export default function LensQuestionnaireSection() {
   const [currentId, setCurrentId] = useState<string>('q1');
@@ -395,10 +386,16 @@ export default function LensQuestionnaireSection() {
               )}
             </span>
           </div>
-          <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+          <div className="h-1.5 w-full bg-muted rounded-full relative overflow-visible">
             <div
-              className={`${progressWidthClass(calculating ? 95 : progress)} h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out`}
-            />
+              style={{ width: `${calculating ? 95 : progress}%` }}
+              className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out relative"
+            >
+              {/* Glowing Tip */}
+              {progress > 0 && (
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 rounded-full bg-white border border-primary/60 shadow-[0_0_10px_rgba(255,255,255,1),0_0_12px_#c5a059] z-10 animate-pulse" />
+              )}
+            </div>
           </div>
         </div>
 
@@ -470,11 +467,11 @@ export default function LensQuestionnaireSection() {
                     role="radio"
                     aria-checked={selectedOption === idx}
                     onClick={() => handleOption(opt, idx)}
-                    className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-spring cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
+                    className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-all duration-300 ease-out cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
                       ${
                         selectedOption === idx
-                          ? 'border-primary bg-primary/10 shadow-[0_0_24px_rgba(197, 160, 89,0.12)] scale-[0.99]'
-                          : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:scale-[1.01] active:scale-[0.99]'
+                          ? 'border-primary bg-primary/10 shadow-[0_0_24px_rgba(197,160,89,0.15)] scale-[0.99]'
+                          : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(197,160,89,0.06)] active:scale-[0.99]'
                       }`}
                   >
                     <span aria-hidden="true" className="text-xl sm:text-2xl shrink-0 leading-none">
