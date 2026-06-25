@@ -11,5 +11,7 @@ const nextConfig = {
   },
 
   outputFileTracingRoot: path.resolve('.'),
+
+  devIndicators: false,
 };
 export default nextConfig;
