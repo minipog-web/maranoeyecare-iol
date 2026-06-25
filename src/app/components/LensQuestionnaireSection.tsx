@@ -133,30 +133,30 @@ const LENSES: Record<string, LensResult> = {
 const QUESTIONS: Record<string, Question> = {
   q1: {
     id: 'q1',
-    text: 'What matters most to you when choosing your lens?',
-    subtext: 'This helps us understand your top priority.',
+    text: 'What is your primary goal for life after cataract surgery?',
+    subtext: 'This helps us identify the lifestyle archetype that fits you best.',
     options: [
       {
-        label: 'I only want the basic lens covered by insurance',
+        label: 'Standard clarity covered by insurance (reading glasses required)',
         sublabel: 'Medicare / standard insurance coverage',
         icon: '🛡️',
         next: 'result:monofocal',
       },
       {
-        label: 'Maximum glasses freedom',
-        sublabel: 'I want to read, use a computer, and drive without glasses',
+        label: 'Complete freedom to read, work, and drive without reaching for glasses',
+        sublabel: 'Ditch glasses for books, phones, and dashboards',
         icon: '👓',
         next: 'q2',
       },
       {
-        label: 'Best distance & driving vision',
-        sublabel: 'I mostly want sharp distance vision',
+        label: 'Pristine distance clarity for driving, sports, and outdoors',
+        sublabel: 'Prioritize far-away sharpness over close-up reading',
         icon: '🚗',
         next: 'q3',
       },
       {
-        label: 'Fewest side effects possible',
-        sublabel: 'Halos, glare, and starbursts concern me',
+        label: 'Pristine night vision with the absolute lowest risk of glare or halos',
+        sublabel: 'Maximize visual purity in low light and night driving',
         icon: '🌙',
         next: 'q4',
       },
@@ -164,18 +164,18 @@ const QUESTIONS: Record<string, Question> = {
   },
   q2: {
     id: 'q2',
-    text: 'How important is reading without glasses to you?',
-    subtext: 'Think about daily tasks like reading menus, books, or your phone.',
+    text: 'How frustrating is the prospect of needing reading glasses for daily tasks?',
+    subtext: 'Think of reaching for readers to view your phone, restaurant menus, or price tags.',
     options: [
       {
-        label: 'Critical — I want to read everything without glasses',
-        sublabel: 'Books, phone, menus, fine print',
+        label: 'Extremely — I want to read phones, menus, and fine print entirely glasses-free',
+        sublabel: 'Maximize near-vision independence',
         icon: '📖',
         next: 'result:panoptix',
       },
       {
-        label: 'Important but not essential',
-        sublabel: "I'm okay using readers occasionally",
+        label: "Manageable — I don't mind wearing readers for small print occasionally",
+        sublabel: 'Acceptable trade-off for other vision benefits',
         icon: '📱',
         next: 'q3',
       },
@@ -183,24 +183,24 @@ const QUESTIONS: Record<string, Question> = {
   },
   q3: {
     id: 'q3',
-    text: 'How much do you use a computer or tablet daily?',
-    subtext: "Intermediate vision (arm's length) is key for screens.",
+    text: 'How many hours do you spend focusing on screens (laptops, monitors, dashboards)?',
+    subtext: "Intermediate range (arm's length) is critical for modern digital life.",
     options: [
       {
-        label: 'Heavily — 4+ hours a day',
-        sublabel: 'Work, browsing, video calls',
+        label: 'Over 4 hours a day — screen clarity is critical to my lifestyle',
+        sublabel: 'Active working, Zoom calls, and laptop use',
         icon: '💻',
         next: 'result:vivity',
       },
       {
-        label: 'Moderately — 1–3 hours a day',
-        sublabel: 'Casual use, email, streaming',
+        label: '1 to 3 hours a day — standard casual check-ins and reading',
+        sublabel: 'Casual browsing, tablet reading, social media',
         icon: '🖥️',
         next: 'q4',
       },
       {
-        label: 'Rarely — I mostly watch TV and drive',
-        sublabel: 'Distance vision is my main need',
+        label: 'Rarely — I prioritize long-distance focus like driving and watching TV',
+        sublabel: 'Minimize computer use, focus on distance activities',
         icon: '📺',
         next: 'q5',
       },
@@ -208,18 +208,19 @@ const QUESTIONS: Record<string, Question> = {
   },
   q4: {
     id: 'q4',
-    text: 'How sensitive are you to light or visual disturbances?',
-    subtext: 'Some premium lenses can cause halos or glare, especially at night.',
+    text: 'How critical is visual purity at night (e.g., night driving without starbursts or halos)?',
+    subtext:
+      'Certain advanced multifocal lenses may introduce rings or light rays around headlights.',
     options: [
       {
-        label: 'Very sensitive — I notice halos easily',
-        sublabel: 'Night driving or bright lights bother me',
+        label: 'Vital — I drive frequently at night and cannot tolerate visual distractions',
+        sublabel: 'Prioritize halo-free night vision',
         icon: '💡',
         next: 'q5',
       },
       {
-        label: "Not very sensitive — it doesn't bother me",
-        sublabel: "I've never had issues with glare",
+        label: 'Flexible — I can adapt to mild halos if it means full range freedom',
+        sublabel: 'Willing to neuroadapt for near and intermediate vision',
         icon: '😎',
         next: 'result:panoptix',
       },
@@ -227,12 +228,12 @@ const QUESTIONS: Record<string, Question> = {
   },
   q5: {
     id: 'q5',
-    text: 'Do you have any of the following eye conditions?',
-    subtext: 'Certain conditions affect which lens is safest for you.',
+    text: 'To ensure compatibility, have you been diagnosed with any other eye conditions?',
+    subtext: 'Co-morbidities can influence which lens is safest and most effective for you.',
     options: [
       {
         label: 'Dry eye, macular changes, or irregular cornea',
-        sublabel: 'These may limit premium lens options',
+        sublabel: 'Requires advanced refractive considerations',
         icon: '👁️',
         next: 'result:eyhance',
       },

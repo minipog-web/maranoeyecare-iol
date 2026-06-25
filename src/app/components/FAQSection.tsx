@@ -86,6 +86,12 @@ const proceduralFAQs: FAQItem[] = [
     answer:
       'Conditions like dry eye, macular changes, or a history of LASIK affect which lens is safest and most effective for you. Dr. Marano performs a full biometric evaluation at consultation and will only recommend premium lenses when the clinical data supports an excellent outcome.',
   },
+  {
+    question: 'What if I have astigmatism? Do Toric lenses cost more?',
+    concern: '',
+    answer:
+      'Toric lenses are specialty optics designed to correct astigmatism (an irregular curve in your cornea) during cataract surgery. If you have astigmatism and do not choose a Toric lens, you will still need glasses for distance vision. While most clinics charge extra for Toric astigmatism correction, at Marano Eye Care, all our premium lenses (Clareon Vivity, PanOptix Pro, and Tecnis Eyhance) include the Toric version at no additional charge beyond the standard premium upgrade.',
+  },
 ];
 
 function FAQItemRow({

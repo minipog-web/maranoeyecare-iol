@@ -7,8 +7,8 @@
 
 .premiumInput {
   background: rgba(10, 12, 20, 0.6);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   color: #eeedf0;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -19,13 +19,13 @@
 }
 
 .premiumInput:hover {
-  background: rgba(14, 16, 24, 0.85);
+  background-color: rgba(14, 16, 24, 0.85);
   border-color: rgba(197, 160, 89, 0.25);
   box-shadow: 0 0 12px rgba(197, 160, 89, 0.04);
 }
 
 .premiumInput:focus {
-  background: rgba(8, 9, 16, 0.95);
+  background-color: rgba(8, 9, 16, 0.95);
   border-color: rgba(197, 160, 89, 0.65) !important;
   box-shadow:
     0 0 0 3px rgba(197, 160, 89, 0.15),
@@ -35,4 +35,15 @@
 .premiumInput option {
   background: #0e1018;
   color: #eeedf0;
+}
+
+select.premiumInput {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='%23c5a059'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  background-size: 1.1rem;
+  padding-right: 3rem !important;
 }

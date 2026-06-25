@@ -99,8 +99,8 @@ const lenses = [
     bestFor:
       'Active patients who use screens heavily and want extended range with the fewest visual disturbances.',
     blur: {
-      day: { distance: 0, intermediate: 0, near: 0.4 },
-      night: { distance: 0, intermediate: 0, near: 1.8 },
+      day: { distance: 0, intermediate: 0, near: 0 },
+      night: { distance: 0, intermediate: 0, near: 0.8 },
     },
     glareLabel: {
       day: 'None',
@@ -125,7 +125,7 @@ const lenses = [
     images: {
       day: {
         distance: '/assets/images/eyhance_day_distance_pro.jpg',
-        intermediate: '/assets/images/eyhance_day_intermediate_pro_v2.jpg',
+        intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
         near: '/assets/images/eyhance_day_near_pro_v2.png',
       },
       night: {
@@ -149,7 +149,7 @@ const lenses = [
     bestFor:
       'Patients who prioritise pristine distance clarity and zero added visual disturbances, with some intermediate benefit.',
     blur: {
-      day: { distance: 0, intermediate: 0, near: 0 },
+      day: { distance: 0, intermediate: 0.8, near: 0 },
       night: { distance: 0, intermediate: 2.8, near: 6.5 },
     },
     glareLabel: {
@@ -223,9 +223,9 @@ const distanceLabels: Record<Distance, { label: string; desc: string; icon: stri
 };
 
 function blurClass(px: number): string {
-  if (px <= 0) return '';
-  if (px <= 0.4) return 'blur-[0.4px] scale-[1.01]';
-  if (px <= 0.8) return 'blur-[0.8px] scale-[1.02]';
+  if (px <= 0) return 'scale-[1.05]';
+  if (px <= 0.4) return 'blur-[0.4px] scale-[1.05]';
+  if (px <= 0.8) return 'blur-[0.8px] scale-[1.05]';
   if (px <= 1.5) return 'blur-[1.5px] scale-[1.05]';
   if (px <= 2.5) return 'blur-[2.5px] scale-[1.05]';
   if (px <= 5) return 'blur-[5px] scale-[1.05]';
@@ -1190,6 +1190,29 @@ export default function LensVisionComparisonSection() {
               </div>
             );
           })}
+        </div>
+
+        {/* Toric Astigmatism Section */}
+        <div className="mt-12 sm:mt-16 glass-card border border-primary/20 bg-primary/5 rounded-[2rem] p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 relative overflow-hidden">
+          {/* Subtle gold glow inside */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[60px] pointer-events-none" />
+          <div className="w-12 h-12 rounded-2xl bg-primary/15 flex items-center justify-center shrink-0 border border-primary/20 shadow-[0_0_15px_rgba(197,160,89,0.15)]">
+            <AppIcon name="SparklesIcon" size={24} className="text-primary animate-pulse" />
+          </div>
+          <div className="flex-1 space-y-2">
+            <h4 className="font-display text-lg sm:text-xl font-semibold text-foreground">
+              Have Astigmatism? All Premium Lenses Include Toric Upgrades at{' '}
+              <span className="text-primary font-bold">No Extra Charge</span>
+            </h4>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-4xl font-light">
+              <strong>Toric lenses</strong> are specifically engineered to correct astigmatism—the
+              irregular curvature of your cornea. Without a Toric lens, astigmatism remains
+              uncorrected after surgery, meaning you will still need glasses for crisp distance
+              vision. At Marano Eye Care, we believe clear sight shouldn&apos;t require checking a
+              box of add-on fees: Clareon Vivity, PanOptix Pro, and Tecnis Eyhance are all provided
+              in Toric versions at no additional cost beyond the standard premium upgrade.
+            </p>
+          </div>
         </div>
 
         {/* Legend / FAQ */}

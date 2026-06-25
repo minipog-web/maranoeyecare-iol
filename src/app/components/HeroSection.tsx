@@ -81,18 +81,17 @@ export default function HeroSection() {
                 Premium IOL Specialists — New Jersey
               </span>
             </div>
-            {/* Headline */}
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
               <span className="sr-only">Cataract Surgery & Premium Lenses New Jersey: </span>
-              Reclaim Your Vision.{' '}
+              <span className="block sm:whitespace-nowrap">Your world isn&apos;t fading.</span>{' '}
               <span className="block text-gradient-primary font-semibold mt-1 pb-4">
-                See Without Limits.
+                Your lenses are.
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 animate-fade-up delay-300 fill-both">
-              Cataract surgery is a once-in-a-lifetime opportunity to upgrade your sight. Compare
-              the world&apos;s most advanced lenses — Clareon Vivity, Clareon PanOptix, and Tecnis
-              Eyhance — to design a lifetime of visual freedom.
+              Cataract surgery is your single, once-in-a-lifetime opportunity to upgrade your sight.
+              Stop looking at life through a haze — compare the world&apos;s most advanced lenses to
+              design a future of absolute visual freedom.
             </p>{' '}
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
@@ -144,9 +143,9 @@ export default function HeroSection() {
             </div>
             {/* Editorial Proof Text */}
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl">
-              <p className="text-sm sm:text-base text-white/95 font-semibold mb-4">
-                Led by Matthew Marano Jr., MD — New Jersey&apos;s leading premium cataract
-                specialist:
+              <p className="text-sm sm:text-base text-white/95 font-semibold mb-4 font-display">
+                Led by Matthew Marano Jr., MD — The NJ pioneer teaching other surgeons how to
+                restore absolute clarity:
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm">
                 <li className="flex items-start gap-2.5">

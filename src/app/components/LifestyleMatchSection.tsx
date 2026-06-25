@@ -7,9 +7,9 @@ import styles from './LifestyleMatchSection.module.css';
 const profiles = [
   {
     id: 'active',
-    title: 'The Active Professional',
+    title: 'The High-Performers',
     description:
-      "Right now, you're squinting at your phone and reaching for readers 6 times a day. You spend 6+ hours daily on screens, drive frequently, and want to ditch glasses entirely.",
+      'You refuse to let cataracts slow you down. You manage projects on screens, drive at dusk, and play golf or tennis. Reaching for reading glasses 10 times a day is a limitation you want gone.',
     activities: [
       'Remote work & Zoom calls',
       'Driving day and night',
@@ -25,9 +25,9 @@ const profiles = [
   },
   {
     id: 'tech',
-    title: 'The Tech-Conscious Patient',
+    title: 'The Modern Screen-User',
     description:
-      'You value excellent distance and computer vision but are concerned about halos or glare, especially at night.',
+      'You spend hours on computers and tablets, and drive frequently at night. You want a seamless transition from screen to road, with zero tolerance for night halos.',
     activities: [
       'Evening driving (halo-sensitive)',
       'Extended computer use',
@@ -43,9 +43,9 @@ const profiles = [
   },
   {
     id: 'conservative',
-    title: 'The Conservative Candidate',
+    title: 'The Pure-Clarity Purists',
     description:
-      'You have mild eye conditions or simply want the most predictable outcome with zero visual disturbances.',
+      'You want pristine, hyper-sharp distance vision above all else. You are comfortable wearing reading glasses for near tasks, as long as your distance and night vision is absolutely perfect.',
     activities: [
       'Distance vision is the top priority',
       'Comfortable using reading glasses for close tasks',
@@ -85,7 +85,8 @@ export default function LifestyleMatchSection() {
               Find Your Match
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
-              Find Your <span className="font-semibold text-gradient-primary">Perfect Lens.</span>
+              Find Your <br />
+              <span className="font-semibold text-gradient-primary">Perfect Lens.</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-lg">
               The best IOL isn&apos;t the most expensive — it&apos;s the one matched precisely to

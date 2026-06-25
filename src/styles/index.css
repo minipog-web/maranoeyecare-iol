@@ -15,8 +15,8 @@
   --border-bright: #292c3a;
   --input: #161820;
   --ring: #c5a059;
-  --font-dm-sans: 'DM Sans', sans-serif;
-  --font-fraunces: 'Fraunces', serif;
+  --font-dm-sans: var(--font-sans-font), 'DM Sans', sans-serif;
+  --font-fraunces: var(--font-display-font), 'Fraunces', serif;
   --font-sans: var(--font-dm-sans);
 
   /* Lens Palette Variables */
