@@ -131,10 +131,11 @@ p {
 
 /* ── Text gradients ── */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #E6C587 0%, #C5A059 50%, #A37F3D 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: var(--primary);
 }
 
 .text-gradient-warm {
@@ -464,7 +465,7 @@ p {
 
 /* Premium Button Styles */
 .btn-premium-primary {
-  background: linear-gradient(135deg, #E6C587 0%, #C5A059 50%, #A37F3D 100%);
+  background: linear-gradient(135deg, #e6c587 0%, #c5a059 50%, #a37f3d 100%);
   color: #0c0d10;
   border: 1px solid rgba(197, 160, 89, 0.45);
   border-radius: 12px;
@@ -477,7 +478,7 @@ p {
   box-shadow: 0 4px 14px rgba(197, 160, 89, 0.15);
 }
 .btn-premium-primary:hover {
-  background: linear-gradient(135deg, #F5DCA7 0%, #E6C587 50%, #C5A059 100%);
+  background: linear-gradient(135deg, #f5dca7 0%, #e6c587 50%, #c5a059 100%);
   color: #0c0d10;
   border-color: rgba(197, 160, 89, 0.6);
   box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35);
@@ -490,7 +491,7 @@ p {
 /* Global metallic gold overrides for utility-styled CTA buttons */
 button.bg-primary,
 a.bg-primary {
-  background: linear-gradient(135deg, #E6C587 0%, #C5A059 50%, #A37F3D 100%) !important;
+  background: linear-gradient(135deg, #e6c587 0%, #c5a059 50%, #a37f3d 100%) !important;
   color: #0c0d10 !important;
   border: 1px solid rgba(197, 160, 89, 0.45) !important;
   box-shadow: 0 4px 20px rgba(197, 160, 89, 0.2) !important;
@@ -498,7 +499,7 @@ a.bg-primary {
 }
 button.bg-primary:hover,
 a.bg-primary:hover {
-  background: linear-gradient(135deg, #F5DCA7 0%, #E6C587 50%, #C5A059 100%) !important;
+  background: linear-gradient(135deg, #f5dca7 0%, #e6c587 50%, #c5a059 100%) !important;
   color: #0c0d10 !important;
   border-color: rgba(197, 160, 89, 0.6) !important;
   box-shadow: 0 6px 24px rgba(197, 160, 89, 0.35) !important;
@@ -720,10 +721,11 @@ html {
 ───────────────────────────────────────── */
 
 .text-gradient-primary {
-  background: linear-gradient(125deg, #c5a059 0%, #e2c28a 50%, #d1ae6b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: var(--primary);
 }
 
 /* ─────────────────────────────────────────
@@ -878,4 +880,3 @@ textarea:focus {
   border-color: rgba(197, 160, 89, 0.3);
   box-shadow: 0 0 20px rgba(197, 160, 89, 0.08);
 }
-

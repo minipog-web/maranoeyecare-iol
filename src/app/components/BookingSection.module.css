@@ -54,7 +54,7 @@ select.premiumInput {
 
 /* Force dark styling on autofilled input fields */
 .premiumInput:-webkit-autofill,
-.premiumInput:-webkit-autofill:hover, 
+.premiumInput:-webkit-autofill:hover,
 .premiumInput:-webkit-autofill:focus,
 .premiumInput:-webkit-autofill:active {
   -webkit-text-fill-color: #eeedf0 !important;
