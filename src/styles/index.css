@@ -464,9 +464,9 @@ p {
 
 /* Premium Button Styles */
 .btn-premium-primary {
-  background: var(--primary);
-  color: #040506;
-  border: 1px solid rgba(197, 160, 89, 0.4);
+  background: linear-gradient(135deg, #E6C587 0%, #C5A059 50%, #A37F3D 100%);
+  color: #0c0d10;
+  border: 1px solid rgba(197, 160, 89, 0.45);
   border-radius: 12px;
   padding: 0.75rem 1.5rem;
   font-weight: 600;
@@ -477,14 +477,36 @@ p {
   box-shadow: 0 4px 14px rgba(197, 160, 89, 0.15);
 }
 .btn-premium-primary:hover {
-  background: var(--accent);
-  color: #040506;
-  border-color: var(--accent);
-  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
+  background: linear-gradient(135deg, #F5DCA7 0%, #E6C587 50%, #C5A059 100%);
+  color: #0c0d10;
+  border-color: rgba(197, 160, 89, 0.6);
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35);
   transform: translateY(-1.5px);
 }
 .btn-premium-primary:active {
   transform: translateY(0);
+}
+
+/* Global metallic gold overrides for utility-styled CTA buttons */
+button.bg-primary,
+a.bg-primary {
+  background: linear-gradient(135deg, #E6C587 0%, #C5A059 50%, #A37F3D 100%) !important;
+  color: #0c0d10 !important;
+  border: 1px solid rgba(197, 160, 89, 0.45) !important;
+  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+button.bg-primary:hover,
+a.bg-primary:hover {
+  background: linear-gradient(135deg, #F5DCA7 0%, #E6C587 50%, #C5A059 100%) !important;
+  color: #0c0d10 !important;
+  border-color: rgba(197, 160, 89, 0.6) !important;
+  box-shadow: 0 6px 24px rgba(197, 160, 89, 0.35) !important;
+  transform: translateY(-1.5px) !important;
+}
+button.bg-primary:active,
+a.bg-primary:active {
+  transform: translateY(0) !important;
 }
 .btn-premium-secondary {
   background: rgba(255, 255, 255, 0.02);
