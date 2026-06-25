@@ -169,120 +169,88 @@ export default function LifestyleMatchSection() {
         </div>
 
         {/* Profile cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
-          {profiles?.map((profile) => {
-            const isActiveProfile = profile.id === 'active';
-            return (
-              <a
-                key={profile?.id}
-                href="#booking"
-                onMouseMove={handleMouseMove}
-                onClick={() => {
-                  let lensKey = '';
-                  if (profile?.id === 'active') lensKey = 'panoptix';
-                  else if (profile?.id === 'tech') lensKey = 'vivity';
-                  else if (profile?.id === 'conservative') lensKey = 'eyhance';
-                  if (lensKey) {
-                    window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
-                  }
-                }}
-                className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16] focus-visible:outline-none ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]} ${isActiveProfile ? 'sm:col-span-2 lg:col-span-2' : 'col-span-1'}`}
-              >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+          {profiles?.map((profile) => (
+            <a
+              key={profile?.id}
+              href="#booking"
+              onMouseMove={handleMouseMove}
+              onClick={() => {
+                let lensKey = '';
+                if (profile?.id === 'active') lensKey = 'panoptix';
+                else if (profile?.id === 'tech') lensKey = 'vivity';
+                else if (profile?.id === 'conservative') lensKey = 'eyhance';
+                if (lensKey) {
+                  window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
+                }
+              }}
+              className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16] focus-visible:outline-none ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
+            >
+              <div className="w-full h-full flex flex-col bg-muted/90 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
+                {/* Dynamic Mouse Spotlight Glow */}
                 <div
-                  className={`w-full h-full flex bg-muted/90 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative ${isActiveProfile ? 'flex-col lg:flex-row' : 'flex-col'}`}
-                >
-                  {/* Dynamic Mouse Spotlight Glow */}
-                  <div
-                    className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[80px] z-0 will-change-transform ${styles.spotlight}`}
+                  className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-[80px] z-0 will-change-transform ${styles.spotlight}`}
+                />
+
+                {/* Image */}
+                <div className="relative aspect-[16/9] overflow-hidden z-10 border-b border-white/[0.05]">
+                  <AppImage
+                    src={profile?.image}
+                    alt={profile?.imageAlt}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1018]/95 via-[#0E1018]/25 to-transparent" />
 
-                  {/* Image */}
+                  {/* Recommendation badge */}
                   <div
-                    className={`relative overflow-hidden z-10 border-b border-white/[0.05] shrink-0 ${isActiveProfile ? 'aspect-[16/9] lg:aspect-auto lg:w-[42%] lg:border-b-0 lg:border-r border-white/[0.05]' : 'aspect-[16/9]'}`}
+                    className={`absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3.5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg backdrop-blur-sm ${styles.recommendationBadge}`}
                   >
-                    <AppImage
-                      src={profile?.image}
-                      alt={profile?.imageAlt}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
-                      sizes={
-                        isActiveProfile
-                          ? '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 42vw'
-                          : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-                      }
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1018]/95 via-[#0E1018]/25 to-transparent" />
-
-                    {/* Recommendation badge */}
-                    <div
-                      className={`absolute bottom-3 sm:bottom-4 left-3 sm:left-4 px-3.5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg backdrop-blur-sm ${styles.recommendationBadge}`}
-                    >
-                      → {profile?.recommendation}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div
-                    className={`relative p-5 sm:p-6 flex flex-col flex-1 z-10 ${isActiveProfile ? 'lg:p-8 lg:justify-between' : ''}`}
-                  >
-                    <div>
-                      <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-2">
-                        {profile?.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-4 sm:mb-5">
-                        {profile?.description}
-                      </p>
-                    </div>
-
-                    <div
-                      className={`flex-1 grid grid-cols-1 gap-5 sm:gap-6 ${isActiveProfile ? 'lg:grid-cols-2 border-t border-border/60 pt-5 mt-auto' : ''}`}
-                    >
-                      <div>
-                        {isActiveProfile && (
-                          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground/60 mb-3">
-                            Key Daily Activities
-                          </p>
-                        )}
-                        <ul className="space-y-2">
-                          {profile?.activities?.map((act) => (
-                            <li
-                              key={act}
-                              className="flex items-start gap-2.5 text-sm text-muted-foreground"
-                            >
-                              <span
-                                className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${styles.activityDot}`}
-                              />
-                              {act}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div
-                        className={
-                          isActiveProfile
-                            ? 'lg:border-l lg:border-border/60 lg:pl-6'
-                            : 'border-t border-border/60 pt-4 sm:pt-5'
-                        }
-                      >
-                        <p
-                          className={`text-[10px] font-bold uppercase tracking-[0.18em] mb-2 ${styles.recommendationLabel}`}
-                        >
-                          Our Recommendation
-                        </p>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                          {profile?.reason}
-                        </p>
-                        <p className={`text-xs font-semibold ${styles.recommendationStat}`}>
-                          {profile?.stat}
-                        </p>
-                      </div>
-                    </div>
+                    → {profile?.recommendation}
                   </div>
                 </div>
-              </a>
-            );
-          })}
+
+                {/* Content */}
+                <div className="relative p-5 sm:p-6 flex flex-col flex-1 z-10">
+                  <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-2">
+                    {profile?.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 sm:mb-5">
+                    {profile?.description}
+                  </p>
+
+                  <ul className="space-y-2 mb-5 sm:mb-6 flex-1">
+                    {profile?.activities?.map((act) => (
+                      <li
+                        key={act}
+                        className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                      >
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${styles.activityDot}`}
+                        />
+                        {act}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="border-t border-border/60 pt-4 sm:pt-5">
+                    <p
+                      className={`text-[10px] font-bold uppercase tracking-[0.18em] mb-2 ${styles.recommendationLabel}`}
+                    >
+                      Our Recommendation
+                    </p>
+                    <p className="text-sm text-foreground/80 leading-relaxed mb-3">
+                      {profile?.reason}
+                    </p>
+                    <p className={`text-xs font-semibold ${styles.recommendationStat}`}>
+                      {profile?.stat}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     </section>
