@@ -88,7 +88,7 @@ export default function HeroSection() {
                 Your lenses are.
               </span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 animate-fade-up delay-300 fill-both">
+            <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 text-justify animate-fade-up delay-300 fill-both">
               Cataract surgery is your single, once-in-a-lifetime opportunity to upgrade your sight.
               Stop looking at life through a haze — compare the world&apos;s most advanced lenses to
               design a future of absolute visual freedom.
