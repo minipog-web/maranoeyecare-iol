@@ -82,7 +82,6 @@ export default function HeroSection() {
               </span>
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
-              <span className="sr-only">Cataract Surgery & Premium Lenses New Jersey: </span>
               <span className="block sm:whitespace-nowrap">Your world isn&apos;t fading.</span>{' '}
               <span className="block text-gradient-primary font-semibold mt-1 pb-4">
                 Your lenses are.
@@ -264,7 +263,7 @@ export default function HeroSection() {
                       <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
                         {lens?.subtitle}
                       </p>
-                      <p className="text-white/50 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight">
+                      <p className="text-white/70 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight">
                         {lens?.detail}
                       </p>
                     </div>

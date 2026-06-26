@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import { trackEvent } from '@/lib/gtag';
 import styles from './LensQuestionnaireSection.module.css';
@@ -49,12 +49,11 @@ const LENSES: Record<string, LensResult> = {
       'Great for night driving',
       'FDA-approved extended depth of focus',
     ],
-
-    color: 'text-primary',
-    glow: 'shadow-[0_0_40px_rgba(197,160,89,0.25)]',
-    border: 'border-primary/50',
+    color: 'text-[var(--lens-color)]',
+    glow: 'shadow-[0_0_40px_rgba(var(--lens-color-rgb),0.25)]',
+    border: 'border-[var(--lens-color)]/50',
     badge: 'Most Popular',
-    badgeColor: 'bg-primary text-background',
+    badgeColor: 'bg-[var(--lens-color)] text-background',
     src: '/assets/images/vivity_iol_dark.jpg',
     alt: 'Clareon Vivity IOL — extended depth of focus intraocular lens',
     cta: 'Book a Vivity Consultation',
@@ -72,12 +71,11 @@ const LENSES: Record<string, LensResult> = {
       'Ideal for reading without glasses',
       'Best for glasses-free lifestyle',
     ],
-
-    color: 'text-violet-300',
-    glow: 'shadow-[0_0_40px_rgba(139,92,246,0.25)]',
-    border: 'border-violet-500/50',
+    color: 'text-[var(--lens-color)]',
+    glow: 'shadow-[0_0_40px_rgba(var(--lens-color-rgb),0.25)]',
+    border: 'border-[var(--lens-color)]/50',
     badge: 'Trifocal',
-    badgeColor: 'bg-violet-500 text-white',
+    badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/panoptix_iol_dark.jpg',
     alt: 'PanOptix Pro trifocal IOL — advanced multifocal intraocular lens',
     cta: 'Book a PanOptix Consultation',
@@ -95,12 +93,11 @@ const LENSES: Record<string, LensResult> = {
       'Excellent for light-sensitive patients',
       'Proven monofocal reliability with a plus',
     ],
-
-    color: 'text-emerald-300',
-    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.2)]',
-    border: 'border-emerald-500/40',
+    color: 'text-[var(--lens-color)]',
+    glow: 'shadow-[0_0_40px_rgba(var(--lens-color-rgb),0.2)]',
+    border: 'border-[var(--lens-color)]/40',
     badge: 'Monofocal+',
-    badgeColor: 'bg-emerald-500 text-white',
+    badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/eyhance_iol_dark.jpg',
     alt: 'Eyhance enhanced monofocal IOL — next-generation monofocal intraocular lens',
     cta: 'Book an Eyhance Consultation',
@@ -118,12 +115,11 @@ const LENSES: Record<string, LensResult> = {
       'Proven safety record over decades',
       'Reading glasses used for near tasks',
     ],
-
-    color: 'text-slate-200',
-    glow: 'shadow-[0_0_40px_rgba(100,116,139,0.15)]',
-    border: 'border-slate-500/40',
+    color: 'text-[var(--lens-color)]',
+    glow: 'shadow-[0_0_40px_rgba(var(--lens-color-rgb),0.15)]',
+    border: 'border-[var(--lens-color)]/40',
     badge: 'Insurance Covered',
-    badgeColor: 'bg-slate-500 text-white',
+    badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/monofocal_iol_dark.jpg',
     alt: 'Standard monofocal IOL — insurance-covered intraocular lens for cataract surgery',
     cta: 'Book a Consultation',
@@ -254,7 +250,7 @@ function getProgressPercent(history: string[]): number {
   return Math.min(Math.round((history.length / TOTAL_QUESTIONS) * 100), 90);
 }
 
-// progressWidthClass removed because inline styles are used to support glowing tips
+// progressWidthClass removed — width driven via CSS custom property set by ref
 
 export default function LensQuestionnaireSection() {
   const [currentId, setCurrentId] = useState<string>('q1');
@@ -340,6 +336,17 @@ export default function LensQuestionnaireSection() {
 
   const progress = result ? 100 : getProgressPercent(history);
 
+  const progressTrackRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (progressTrackRef.current) {
+      progressTrackRef.current.style.setProperty(
+        '--progress-width',
+        `${calculating ? 95 : progress}%`
+      );
+    }
+  }, [calculating, progress]);
+
   return (
     <section id="lens-quiz" className="relative py-12 sm:py-20 overflow-hidden">
       {/* Background */}
@@ -386,15 +393,14 @@ export default function LensQuestionnaireSection() {
               )}
             </span>
           </div>
-          <div className="h-1.5 w-full bg-muted rounded-full relative overflow-visible">
+          <div
+            ref={progressTrackRef}
+            className={`h-1.5 w-full bg-muted rounded-full relative overflow-visible ${styles.progressTrack}`}
+          >
             <div
-              style={{ width: `${calculating ? 95 : progress}%` }}
-              className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out relative"
+              className={`h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out relative ${styles.progressBar}`}
             >
-              {/* Glowing Tip */}
-              {progress > 0 && (
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 rounded-full bg-white border border-primary/60 shadow-[0_0_10px_rgba(255,255,255,1),0_0_12px_#c5a059] z-10 animate-pulse" />
-              )}
+              {progress > 0 && <div className={styles.progressTip} />}
             </div>
           </div>
         </div>
@@ -424,19 +430,27 @@ export default function LensQuestionnaireSection() {
                 Finding Your Best Match...
               </h3>
               <div className="w-64 max-w-full text-left font-mono text-[10px] sm:text-xs text-muted-foreground/85 space-y-1.5 bg-white/[0.01] border border-white/[0.04] p-3.5 rounded-lg">
-                <div className="flex items-center justify-between text-primary/80">
+                <div
+                  className={`flex items-center justify-between text-primary/80 ${styles.logItem}`}
+                >
                   <span>{`>`} Scanning answers...</span>
                   <span className="animate-pulse">PASS</span>
                 </div>
-                <div className="flex items-center justify-between text-muted-foreground animate-[fade-in_0.4s_ease-out_0.4s_both]">
+                <div
+                  className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
+                >
                   <span>{`>`} Assessing lifestyle tier...</span>
                   <span className="font-semibold text-foreground">OK</span>
                 </div>
-                <div className="flex items-center justify-between text-muted-foreground animate-[fade-in_0.4s_ease-out_0.8s_both]">
+                <div
+                  className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
+                >
                   <span>{`>`} Evaluating glare tolerance...</span>
                   <span className="font-semibold text-foreground">OK</span>
                 </div>
-                <div className="flex items-center justify-between text-muted-foreground animate-[fade-in_0.4s_ease-out_1.2s_both]">
+                <div
+                  className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
+                >
                   <span>{`>`} Calibrating lens optics...</span>
                   <span className="font-semibold text-primary animate-pulse">CALIBRATED</span>
                 </div>
@@ -455,17 +469,11 @@ export default function LensQuestionnaireSection() {
               </div>
 
               {/* Options */}
-              <div
-                role="radiogroup"
-                aria-label={currentQuestion.text}
-                className="flex flex-col gap-3"
-              >
+              <div className="flex flex-col gap-3">
                 {currentQuestion.options.map((opt, idx) => (
                   <button
                     key={idx}
                     type="button"
-                    role="radio"
-                    aria-checked={selectedOption === idx}
                     onClick={() => handleOption(opt, idx)}
                     className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-all duration-300 ease-out cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
                       ${
@@ -553,15 +561,8 @@ export default function LensQuestionnaireSection() {
               </div>
 
               <div
-                className={`doppel-shell p-1.5 mb-6 transition-spring ${
-                  result.key === 'vivity'
-                    ? styles.shellVivity
-                    : result.key === 'panoptix'
-                      ? styles.shellPanoptix
-                      : result.key === 'eyhance'
-                        ? styles.shellEyhance
-                        : styles.shellMonofocal
-                }`}
+                data-lens={result.key}
+                className={`doppel-shell p-1.5 mb-6 transition-spring ${styles.resultShell}`}
               >
                 <div className="bg-muted/90 rounded-[calc(2rem-6px)] p-5 sm:p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">

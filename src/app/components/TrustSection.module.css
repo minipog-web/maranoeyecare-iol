@@ -1,7 +1,7 @@
 .photoWrapper {
   box-shadow:
     0 32px 80px rgba(0, 0, 0, 0.6),
-    0 0 60px rgba(197, 160, 89, 0.08);
+    0 0 60px rgba(var(--primary-rgb), 0.08);
 }
 
 /* Per-lens badge colours */
@@ -24,16 +24,16 @@
 
 /* Vivity — #c5a059 */
 .lensVivity .lensBadge {
-  background-color: rgba(197, 160, 89, 0.1);
+  background-color: rgba(var(--primary-rgb), 0.1);
   color: #c5a059;
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(var(--primary-rgb), 0.22);
 }
 
 .locationsWrapper {
   border-top: 1px solid transparent;
   background-image:
     linear-gradient(var(--background), var(--background)),
-    linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.2), transparent);
+    linear-gradient(90deg, transparent, rgba(var(--primary-rgb), 0.2), transparent);
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }

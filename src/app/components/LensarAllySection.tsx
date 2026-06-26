@@ -9,12 +9,25 @@ import { trackEvent } from '@/lib/gtag';
 export default function LensarAllySection() {
   const [activeTab, setActiveTab] = useState<'patient' | 'surgeon'>('patient');
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
+    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
+    if (!rect) {
+      rect = e.currentTarget.getBoundingClientRect();
+      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+    }
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
     e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
   };
 
   const handleTabChange = (tab: 'patient' | 'surgeon') => {
@@ -147,6 +160,8 @@ export default function LensarAllySection() {
               {activeBenefits.map((benefit) => (
                 <div
                   key={benefit.title}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   onMouseMove={handleMouseMove}
                   className={`group relative overflow-hidden rounded-3xl p-5 sm:p-6 transition-all duration-300 ${styles.glassCard} ${
                     activeTab === 'surgeon' ? styles.glassCardDoctor : ''

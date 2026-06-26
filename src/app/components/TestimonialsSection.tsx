@@ -66,12 +66,25 @@ const testimonials = [
 export default function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
+    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
+    if (!rect) {
+      rect = e.currentTarget.getBoundingClientRect();
+      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+    }
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
     e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
   };
 
   const trackRef = useRef<HTMLDivElement>(null);
@@ -132,6 +145,8 @@ export default function TestimonialsSection() {
                 {testimonials?.map((t, idx) => (
                   <div key={idx} className="w-full shrink-0 px-2">
                     <div
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
                       onMouseMove={handleMouseMove}
                       className="group relative doppel-shell transition-spring cursor-pointer flex flex-col min-h-[320px]"
                     >
@@ -236,6 +251,8 @@ export default function TestimonialsSection() {
           {/* Dr. Marano's Recommendation Card — Authority Bias + Pratfall Effect */}
           <div className="mt-8 sm:mt-12">
             <div
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
               className="group relative overflow-hidden glass-card border border-primary/20 rounded-3xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-primary/[0.04] to-transparent"
             >
@@ -321,6 +338,8 @@ export default function TestimonialsSection() {
                 <a
                   key={loc?.city}
                   href={`tel:${loc?.phone?.replace(/-/g, '')}`}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   onMouseMove={handleMouseMove}
                   className="relative overflow-hidden flex items-center gap-4 glass-card border border-border rounded-3xl p-4 sm:p-5 card-hover-glow group touch-manipulation min-h-[72px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >

@@ -431,6 +431,7 @@ export default function LensVisionComparisonSection() {
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>, lensId: string) => {
     setHoveredLensId(lensId);
     const cardRect = e.currentTarget.getBoundingClientRect();
+    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = cardRect;
     const sectionElement = document.getElementById('lenses');
     if (sectionElement) {
       const sectionRect = sectionElement.getBoundingClientRect();
@@ -440,13 +441,18 @@ export default function LensVisionComparisonSection() {
     }
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     setHoveredLensId(null);
     setGlowPosition(null);
+    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
+    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
+    if (!rect) {
+      rect = e.currentTarget.getBoundingClientRect();
+      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+    }
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const spotlight = e.currentTarget.querySelector(
@@ -707,7 +713,7 @@ export default function LensVisionComparisonSection() {
                             <span className="block text-[10px] sm:text-xs font-bold leading-none">
                               {details.label}
                             </span>
-                            <span className="hidden sm:block text-[8px] text-muted-foreground/60 font-light mt-1 truncate max-w-full">
+                            <span className="hidden sm:block text-[8px] text-muted-foreground/80 font-light mt-1 truncate max-w-full">
                               {details.desc.split('(')[0].trim()}
                             </span>
                           </button>
@@ -768,22 +774,14 @@ export default function LensVisionComparisonSection() {
                   .filter((l) => l.id !== 'monofocal')
                   .map((lens) => {
                     const isActive = activePremiumLensId === lens.id;
-                    const activeStyles = isActive
-                      ? {
-                          borderColor: `${lens.color}45`,
-                          boxShadow: `0 0 15px ${lens.color}20, inset 0 0 8px ${lens.color}15`,
-                          background: 'rgba(255, 255, 255, 0.06)',
-                          color: '#ffffff',
-                        }
-                      : undefined;
                     return (
                       <button
                         key={lens.id}
                         onClick={() => selectPremiumLens(lens.id)}
-                        style={activeStyles}
+                        data-lens={lens.id}
                         className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none flex items-center gap-1.5 border ${
                           isActive
-                            ? 'scale-[1.02]'
+                            ? `scale-[1.02] ${styles.activePremiumBtn}`
                             : 'text-muted-foreground hover:text-foreground border-transparent'
                         }`}
                       >
@@ -896,14 +894,20 @@ export default function LensVisionComparisonSection() {
             </div>
 
             {/* Left Description */}
-            <p className="text-xs sm:text-sm text-muted-foreground/90 leading-relaxed min-h-[3rem] px-2">
+            <p
+              className="text-xs sm:text-sm text-muted-foreground/90 leading-relaxed min-h-[3rem] px-2"
+              aria-live="polite"
+            >
               {timeOfDay === 'night'
                 ? nightVisionDescriptions.monofocal
                 : visionDescriptions.monofocal[activeDistance]}
             </p>
 
             {/* Right Description */}
-            <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-2">
+            <p
+              className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-2"
+              aria-live="polite"
+            >
               {timeOfDay === 'night'
                 ? nightVisionDescriptions[activePremiumLensId]
                 : visionDescriptions[activePremiumLensId][activeDistance]}
@@ -920,20 +924,11 @@ export default function LensVisionComparisonSection() {
               <div className="flex p-1 bg-black/60 rounded-2xl border border-white/[0.08] w-full min-h-[65px] gap-1 shadow-inner">
                 {lenses.map((lens) => {
                   const isActive = activeMobileLensId === lens.id;
-                  const activeStyles = isActive
-                    ? {
-                        borderColor: `${lens.color}45`,
-                        boxShadow: `0 0 12px ${lens.color}20, inset 0 0 8px ${lens.color}15`,
-                        background: 'rgba(255, 255, 255, 0.05)',
-                        color: '#ffffff',
-                      }
-                    : undefined;
                   return (
                     <button
                       key={lens.id}
                       onClick={() => selectMobileLens(lens.id)}
                       data-lens={lens.id}
-                      style={activeStyles}
                       className={`flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
                         isActive
                           ? `scale-[1.02] ${styles.mobileLensBtn}`
@@ -1052,7 +1047,10 @@ export default function LensVisionComparisonSection() {
             </div>
 
             {/* Mobile Description */}
-            <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-1">
+            <p
+              className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-1"
+              aria-live="polite"
+            >
               {timeOfDay === 'night'
                 ? isPeekingBaseline || activeMobileLensId === 'monofocal'
                   ? nightVisionDescriptions.monofocal
@@ -1147,6 +1145,7 @@ export default function LensVisionComparisonSection() {
                                   <sup key={idx} className="text-[9px] font-bold">
                                     <a
                                       href={`#footnote-${num}`}
+                                      onClick={(e) => e.stopPropagation()}
                                       className="text-primary hover:underline ml-0.5"
                                     >
                                       [{num}]
@@ -1258,7 +1257,7 @@ export default function LensVisionComparisonSection() {
           ))}
         </div>
 
-        <p className="text-center text-[10px] text-muted-foreground/60 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.1em] leading-relaxed">
+        <p className="text-center text-[10px] text-muted-foreground/85 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.1em] leading-relaxed">
           Simulations are for illustrative purposes only. Specifications displayed in charts above
           represent spectacle independence rates from published clinical data (PanOptix Pro:
           meta-analysis of 13 studies with 513 patients; Vivity: Alcon clinical data; Eyhance: J&J

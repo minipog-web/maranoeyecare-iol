@@ -24,13 +24,13 @@
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 0 20px rgba(197, 160, 89, 0.02);
+    0 0 20px rgba(var(--primary-rgb), 0.02);
 }
 .profileTech:hover {
   box-shadow:
     0 20px 45px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(197, 160, 89, 0.35),
-    0 0 40px rgba(197, 160, 89, 0.15);
+    0 0 0 1px rgba(var(--primary-rgb), 0.35),
+    0 0 40px rgba(var(--primary-rgb), 0.15);
 }
 
 .profileConservative {
@@ -49,7 +49,7 @@
 
 .comparisonCard {
   box-shadow:
-    0 0 0 1px rgba(197, 160, 89, 0.07),
+    0 0 0 1px rgba(var(--primary-rgb), 0.07),
     0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
@@ -63,8 +63,8 @@
 }
 
 .profileTech .recommendationBadge {
-  background-color: rgba(197, 160, 89, 0.12);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  background-color: rgba(var(--primary-rgb), 0.12);
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
 }
 
 .profileConservative .recommendationBadge {
@@ -89,7 +89,7 @@
 }
 
 .profileTech .activityDot {
-  box-shadow: 0 0 6px rgba(197, 160, 89, 0.38);
+  box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.38);
 }
 
 .profileConservative .activityDot {

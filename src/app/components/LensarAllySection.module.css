@@ -14,7 +14,7 @@
 }
 
 .spotlightPrimary {
-  background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%);
 }
 
 .spotlightSecondary {
@@ -44,8 +44,8 @@
 }
 
 .glassCard:hover {
-  border-color: rgba(197, 160, 89, 0.25);
-  box-shadow: 0 0 40px rgba(197, 160, 89, 0.05);
+  border-color: rgba(var(--primary-rgb), 0.25);
+  box-shadow: 0 0 40px rgba(var(--primary-rgb), 0.05);
 }
 
 .glassCardDoctor:hover {

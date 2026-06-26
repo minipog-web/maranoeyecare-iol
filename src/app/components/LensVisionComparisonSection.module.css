@@ -19,6 +19,7 @@
   opacity: var(--glow-opacity, 0.45);
   background: var(--glow-bg);
   transform: translate3d(-50%, -50%, 0);
+  will-change: left, top, background;
 }
 
 /* ── Indicator dot (desktop right header) ── */
@@ -52,8 +53,11 @@
 
 /* ── Spec card wrapper ── */
 .specCard {
-  border-color: rgba(var(--lens-color-rgb), 0.25);
-  box-shadow: 0 15px 40px -4px rgba(var(--lens-color-rgb), 0.15);
+  border-color: rgba(var(--lens-color-rgb), 0.3) !important;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
+    0 12px 40px rgba(0, 0, 0, 0.65),
+    0 0 50px rgba(var(--lens-color-rgb), 0.18) !important;
 }
 
 /* ── Mouse spotlight glow ── */
@@ -76,7 +80,7 @@
   background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
 }
 .spotlightGlow[data-lens='vivity'] {
-  background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(circle, rgba(var(--primary-rgb), 0.15) 0%, rgba(0, 0, 0, 0) 70%);
 }
 .spotlightGlow[data-lens='eyhance'] {
   background: radial-gradient(circle, rgba(0, 163, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
@@ -95,12 +99,18 @@
   border-color: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.85);
   transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .ctaButton:hover {
   background-color: rgba(var(--lens-color-rgb), 0.08);
   border-color: rgba(var(--lens-color-rgb), 0.25);
-  box-shadow: 0 0 16px rgba(var(--lens-color-rgb), 0.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 6px 20px rgba(var(--lens-color-rgb), 0.35),
+    0 12px 30px rgba(0, 0, 0, 0.45);
   color: #ffffff;
 }
 
@@ -118,9 +128,21 @@
 
 /* ── Mobile selector button ── */
 .mobileLensBtn {
-  color: var(--lens-color);
-  border-color: rgba(var(--lens-color-rgb), 0.21);
-  box-shadow: 0 0 10px rgba(var(--lens-color-rgb), 0.08);
+  color: #ffffff !important;
+  border-color: rgba(var(--lens-color-rgb), 0.27) !important;
+  box-shadow:
+    0 0 12px rgba(var(--lens-color-rgb), 0.125),
+    inset 0 0 8px rgba(var(--lens-color-rgb), 0.08) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.activePremiumBtn {
+  border-color: rgba(var(--lens-color-rgb), 0.27) !important;
+  box-shadow:
+    0 0 15px rgba(var(--lens-color-rgb), 0.125),
+    inset 0 0 8px rgba(var(--lens-color-rgb), 0.08) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #ffffff !important;
 }
 
 .mobileLensDot {

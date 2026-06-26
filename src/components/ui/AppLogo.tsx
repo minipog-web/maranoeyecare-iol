@@ -31,13 +31,26 @@ const AppLogo = memo(function AppLogo({
     return classes.join(' ');
   }, [onClick, className]);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
-    <div className={containerClassName} onClick={onClick}>
+    <div
+      className={containerClassName}
+      onClick={onClick}
+      onKeyDown={onClick ? handleKeyDown : undefined}
+      role={onClick ? 'link' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+    >
       {/* Show image if src provided, otherwise show icon */}
       {src ? (
         <AppImage
           src={src}
-          alt="Logo"
+          alt="Marano Eye Care"
           width={width || size}
           height={height || size}
           className="flex-shrink-0 object-contain"

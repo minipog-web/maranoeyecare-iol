@@ -14,6 +14,12 @@ const lensOptions = [
   'Standard Monofocal',
 ];
 
+const contactMethods = [
+  { value: 'email', label: 'Email' },
+  { value: 'phone', label: 'Call' },
+  { value: 'text', label: 'Text' },
+];
+
 interface FormState {
   firstName: string;
   lastName: string;
@@ -81,6 +87,26 @@ export default function BookingSection() {
     window.addEventListener('select-lens', handleSelectLens);
     return () => window.removeEventListener('select-lens', handleSelectLens);
   }, []);
+
+  const handleRadioKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIndex = (currentIndex + 1) % contactMethods.length;
+      setForm((prev) => ({ ...prev, preferredContact: contactMethods[nextIndex].value }));
+      setTimeout(() => {
+        const nextBtn = document.getElementById(`radio-contact-${contactMethods[nextIndex].value}`);
+        nextBtn?.focus();
+      }, 0);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevIndex = (currentIndex - 1 + contactMethods.length) % contactMethods.length;
+      setForm((prev) => ({ ...prev, preferredContact: contactMethods[prevIndex].value }));
+      setTimeout(() => {
+        const prevBtn = document.getElementById(`radio-contact-${contactMethods[prevIndex].value}`);
+        prevBtn?.focus();
+      }, 0);
+    }
+  };
 
   const validateField = (name: string, value: string): string => {
     if (name === 'firstName') {
@@ -541,28 +567,30 @@ export default function BookingSection() {
                         aria-labelledby="contact-method-label"
                         className="grid grid-cols-3 gap-3"
                       >
-                        {[
-                          { value: 'email', label: 'Email' },
-                          { value: 'phone', label: 'Call' },
-                          { value: 'text', label: 'Text' },
-                        ].map((method) => (
-                          <button
-                            key={method.value}
-                            type="button"
-                            role="radio"
-                            aria-checked={form.preferredContact === method.value ? 'true' : 'false'}
-                            onClick={() =>
-                              setForm((prev) => ({ ...prev, preferredContact: method.value }))
-                            }
-                            className={`px-3 py-3 rounded-xl border text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary ${
-                              form.preferredContact === method.value
-                                ? 'bg-primary/10 border-primary text-primary'
-                                : 'bg-transparent border-border hover:border-muted-foreground/30 text-muted-foreground'
-                            }`}
-                          >
-                            {method.label}
-                          </button>
-                        ))}
+                        {contactMethods.map((method, idx) => {
+                          const isChecked = form.preferredContact === method.value;
+                          return (
+                            <button
+                              id={`radio-contact-${method.value}`}
+                              key={method.value}
+                              type="button"
+                              role="radio"
+                              aria-checked={isChecked ? 'true' : 'false'}
+                              tabIndex={isChecked ? 0 : -1}
+                              onKeyDown={(e) => handleRadioKeyDown(e, idx)}
+                              onClick={() =>
+                                setForm((prev) => ({ ...prev, preferredContact: method.value }))
+                              }
+                              className={`px-3 py-3 rounded-xl border text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary ${
+                                isChecked
+                                  ? 'bg-primary/10 border-primary text-primary'
+                                  : 'bg-transparent border-border hover:border-muted-foreground/30 text-muted-foreground'
+                              }`}
+                            >
+                              {method.label}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
 

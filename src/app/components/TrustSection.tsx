@@ -27,12 +27,25 @@ const awards = [
 ];
 
 export default function TrustSection() {
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
+    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
+    if (!rect) {
+      rect = e.currentTarget.getBoundingClientRect();
+      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+    }
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
     e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
   };
 
   return (
@@ -64,6 +77,8 @@ export default function TrustSection() {
           {/* Left: Photo */}
           <div className="relative pb-10 sm:pb-0">
             <div
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
               className={`relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group ${styles.photoWrapper}`}
             >
@@ -120,6 +135,8 @@ export default function TrustSection() {
               {awards?.map((award) => (
                 <div
                   key={award?.value}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   onMouseMove={handleMouseMove}
                   className="group relative overflow-hidden glass-card border border-border rounded-3xl p-5 sm:p-6 transition-all duration-300 hover:border-primary/30"
                 >
@@ -164,6 +181,8 @@ export default function TrustSection() {
             </div>
 
             <div
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
               className="group relative overflow-hidden glass-card border border-border rounded-3xl p-5 sm:p-6"
             >

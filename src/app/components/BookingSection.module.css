@@ -2,11 +2,11 @@
   background: rgba(14, 16, 24, 0.7) !important;
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(197, 160, 89, 0.15) !important;
+  border: 1px solid rgba(var(--primary-rgb), 0.15) !important;
   box-shadow:
-    0 0 0 1px rgba(197, 160, 89, 0.08),
+    0 0 0 1px rgba(var(--primary-rgb), 0.08),
     0 32px 80px rgba(0, 0, 0, 0.6),
-    0 0 60px rgba(197, 160, 89, 0.08);
+    0 0 60px rgba(var(--primary-rgb), 0.08);
 }
 
 .premiumInput {
@@ -19,21 +19,21 @@
 }
 
 .premiumInput::placeholder {
-  color: rgba(122, 128, 153, 0.6);
+  color: rgba(203, 213, 225, 0.6);
 }
 
 .premiumInput:hover {
   background-color: rgba(14, 16, 24, 0.85);
-  border-color: rgba(197, 160, 89, 0.25);
-  box-shadow: 0 0 12px rgba(197, 160, 89, 0.04);
+  border-color: rgba(var(--primary-rgb), 0.25);
+  box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.04);
 }
 
 .premiumInput:focus {
   background-color: rgba(8, 9, 16, 0.95);
-  border-color: rgba(197, 160, 89, 0.65) !important;
+  border-color: rgba(var(--primary-rgb), 0.65) !important;
   box-shadow:
-    0 0 0 3px rgba(197, 160, 89, 0.15),
-    0 0 20px rgba(197, 160, 89, 0.1) !important;
+    0 0 0 3px rgba(var(--primary-rgb), 0.15),
+    0 0 20px rgba(var(--primary-rgb), 0.1) !important;
 }
 
 .premiumInput option {

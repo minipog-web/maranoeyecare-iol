@@ -78,7 +78,7 @@ export default function StickyCTABar() {
                 label: 'Dismiss Sticky Bar',
               });
             }}
-            className="flex items-center justify-center w-8 h-8 text-muted-foreground/50 hover:text-muted-foreground transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="flex items-center justify-center w-11 h-11 text-muted-foreground/50 hover:text-muted-foreground transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             aria-label="Dismiss"
           >
             <Icon name="XMarkIcon" size={16} />

@@ -1,19 +1,64 @@
-.shellVivity {
-  border-color: rgba(197, 160, 89, 0.4);
-  box-shadow: 0 15px 40px rgba(197, 160, 89, 0.15);
+.resultShell {
+  border-color: rgba(var(--lens-color-rgb), 0.45) !important;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
+    0 16px 48px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(var(--lens-color-rgb), 0.22) !important;
 }
 
-.shellPanoptix {
-  border-color: rgba(139, 92, 246, 0.4);
-  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15);
+.progressTrack {
+  --progress-width: 0%;
 }
 
-.shellEyhance {
-  border-color: rgba(16, 185, 129, 0.35);
-  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.12);
+.progressBar {
+  width: var(--progress-width);
 }
 
-.shellMonofocal {
-  border-color: rgba(100, 116, 139, 0.3);
-  box-shadow: 0 15px 40px rgba(100, 116, 139, 0.1);
+.progressTip {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: white;
+  border: 1px solid rgba(197, 160, 89, 0.6);
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 1),
+    0 0 12px #c5a059;
+  z-index: 10;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logItem {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.logItem:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.logItem:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.logItem:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+.logItem:nth-child(4) {
+  animation-delay: 1.3s;
 }

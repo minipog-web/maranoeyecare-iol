@@ -62,12 +62,25 @@ const profiles = [
 ];
 
 export default function LifestyleMatchSection() {
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
+    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
+    if (!rect) {
+      rect = e.currentTarget.getBoundingClientRect();
+      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+    }
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
     e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
   };
 
   return (
@@ -174,6 +187,8 @@ export default function LifestyleMatchSection() {
             <a
               key={profile?.id}
               href="#booking"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
               onClick={() => {
                 let lensKey = '';
