@@ -64,19 +64,19 @@ export default function LensarAllySection() {
     {
       icon: 'EyeIcon',
       title: 'Augmented Reality™ 3D Mapping',
-      desc: 'Generates a high-definition 3D model of your exact eye structure. Dr. Marano can view and plan the surgery with real-time anatomical overlays.',
+      desc: 'Creates a high-definition 3D scan of your eye\'s unique structure, giving Dr. Marano real-time guidance to plan your custom procedure.',
       metric: 'High-definition 3D scan',
     },
     {
       icon: 'BoltIcon',
       title: 'Cataract Density Profiling',
-      desc: 'Intelligent imaging automatically measures the density of the cataract and customizes the laser fragmentation pattern instantly for optimal efficiency.',
+      desc: 'Measures cataract hardness automatically, allowing the laser to adjust its patterns instantly for a gentler and more efficient treatment.',
       metric: 'Adaptive real-time density',
     },
     {
       icon: 'ScaleIcon',
       title: 'Astigmatism Target Alignment',
-      desc: 'Integrates patient data directly into the surgical view, placing precise digital guidance overlay marks to align toric or multifocal IOLs perfectly.',
+      desc: 'Projects digital guides directly into the surgeon\'s view, ensuring astigmatism-correcting and premium lenses are aligned with absolute accuracy.',
       metric: 'Perfect IOL orientation',
     },
   ];
@@ -127,13 +127,13 @@ export default function LensarAllySection() {
                 size={16}
                 variant={activeTab === 'patient' ? 'solid' : 'outline'}
               />
-              For Patients
+              Patient Experience
             </button>
             <button
               onClick={() => handleTabChange('surgeon')}
               className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 ${
                 activeTab === 'surgeon'
-                  ? 'bg-accent text-white shadow-[0_0_20px_rgba(139,92,246,0.3)]'
+                  ? 'bg-primary text-[#020304] shadow-[0_0_20px_rgba(197,160,89,0.25)]'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -142,7 +142,7 @@ export default function LensarAllySection() {
                 size={16}
                 variant={activeTab === 'surgeon' ? 'solid' : 'outline'}
               />
-              For Surgeons
+              Surgical Advantages
             </button>
           </div>
         </div>

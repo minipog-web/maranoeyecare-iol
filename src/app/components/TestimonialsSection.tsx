@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './TestimonialsSection.module.css';
@@ -26,6 +27,17 @@ const testimonials = [
     lens: 'Clareon Vivity',
     lensColor: '#c5a059',
     avatar: '/assets/images/avatar_robert.jpg',
+    stars: 5,
+  },
+  {
+    concern: 'Seeing every tiny detail',
+    quote:
+      "I have a bone to pick with Dr. Marano. He recommended the Clareon Vivity lens, and yes, my cataracts are gone and my vision is crystal clear. But now I can see every single wrinkle on my face and all the dust on my walls that I happily ignored for years. I've spent more time cleaning and buying anti-aging creams than enjoying my new sight. A blessing, but a lot of work!",
+    name: 'Eleanor R.',
+    location: 'Denville, NJ',
+    lens: 'Clareon Vivity',
+    lensColor: '#c5a059',
+    avatar: '/assets/images/avatar_patricia.jpg',
     stars: 5,
   },
   {
@@ -58,13 +70,37 @@ const testimonials = [
     location: 'West Orange, NJ',
     lens: 'Standard Monofocal',
     lensColor: '#64748B',
-    avatar: '/assets/images/avatar_robert.jpg',
+    avatar: '/assets/images/avatar_harvey.png',
     stars: 4,
   },
 ];
 
 export default function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  }, []);
+
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  }, []);
+
+  // Auto-advance every 7s, paused on hover
+  useEffect(() => {
+    if (isPaused) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    }, 7000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused]);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -93,18 +129,12 @@ export default function TestimonialsSection() {
     trackRef.current?.style.setProperty('--carousel-offset', `${activeIndex * 100}%`);
   }, [activeIndex]);
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  };
-
   return (
     <section
       id="testimonials"
       className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-background"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-25" />

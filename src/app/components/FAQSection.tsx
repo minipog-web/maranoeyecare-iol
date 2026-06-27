@@ -110,8 +110,8 @@ function FAQItemRow({
     <div
       className={`border rounded-2xl overflow-hidden transition-all duration-300 animate-fade-up fill-both ${delays[index % delays.length]} ${
         isOpen
-          ? 'border-primary/30 bg-primary/[0.03] shadow-[0_0_30px_rgba(197, 160, 89,0.06)]'
-          : 'border-border bg-white/[0.02] hover:border-border-bright hover:bg-white/[0.03]'
+          ? 'border-white/10 bg-[#13151b] shadow-[0_16px_36px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,255,255,0.07)] -translate-y-0.5'
+          : 'border-border bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04] hover:shadow-[0_12px_24px_rgba(0,0,0,0.45)] hover:-translate-y-0.5'
       }`}
     >
       <button

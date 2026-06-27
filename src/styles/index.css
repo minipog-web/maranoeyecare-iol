@@ -10,7 +10,7 @@
   --accent-rgb: 226, 194, 138;
   --accent-foreground: #0c0d10;
   --muted: #161820;
-  --muted-foreground: #cbd5e1;
+  --muted-foreground: #f1f5f9;
   --card: #13151b;
   --card-foreground: #ffffff;
   --border: #1e2029;
@@ -24,12 +24,12 @@
   /* Lens Palette Variables */
   --lens-panoptix: #8b5cf6;
   --lens-vivity: #c5a059; /* Align Vivity with primary clinical gold */
-  --lens-eyhance: #3b82f6;
+  --lens-eyhance: #00a3ff;
   --lens-monofocal: #64748b;
 
   --lens-panoptix-glow: rgba(139, 92, 246, 0.15);
   --lens-vivity-glow: rgba(197, 160, 89, 0.15);
-  --lens-eyhance-glow: rgba(59, 130, 246, 0.12);
+  --lens-eyhance-glow: rgba(0, 163, 255, 0.12);
   --lens-monofocal-glow: rgba(100, 116, 139, 0.1);
 
   /* Elite Easing */
@@ -50,8 +50,18 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: 0.015em;
+  font-weight: 450;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.legible-body {
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  font-size: 1.05rem;
 }
 
 html {
@@ -923,4 +933,27 @@ h2.font-display {
     0 2px 8px rgba(0, 0, 0, 0.75),
     0 0 32px rgba(197, 160, 89, 0.12),
     0 0 64px rgba(197, 160, 89, 0.05);
+}
+
+/* ── Accessibility: Reduced Motion Support ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: scroll !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+  
+  /* Disable specifically intensive pulsing/shimmer animations */
+  .animate-pulse-glow,
+  .animate-pulse-glow-delayed,
+  .animate-glow-pulse,
+  .btn-shimmer::after {
+    animation: none !important;
+  }
 }

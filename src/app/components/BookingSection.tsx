@@ -84,6 +84,15 @@ export default function BookingSection() {
       }
     };
 
+    // Fallback: read from sessionStorage in case event fired before mount
+    try {
+      const stored = sessionStorage.getItem('preselect-lens');
+      if (stored) {
+        handleSelectLens(new CustomEvent('select-lens', { detail: stored }));
+        sessionStorage.removeItem('preselect-lens');
+      }
+    } catch {}
+
     window.addEventListener('select-lens', handleSelectLens);
     return () => window.removeEventListener('select-lens', handleSelectLens);
   }, []);
@@ -109,32 +118,33 @@ export default function BookingSection() {
   };
 
   const validateField = (name: string, value: string): string => {
+    const trimmedValue = value.trim();
     if (name === 'firstName') {
-      if (!value.trim()) return 'First name is required';
-      if (value.length > 50) return 'First name must be 50 characters or less';
-      if (!/^[A-Za-z\s'-]+$/.test(value)) {
-        return 'Only letters, spaces, hyphens, and apostrophes are allowed';
+      if (!trimmedValue) return 'First name is required';
+      if (trimmedValue.length > 50) return 'First name must be 50 characters or less';
+      if (!/^[A-Za-z\s'-]+$/.test(trimmedValue)) {
+        return 'Please enter a valid name using only letters, spaces, hyphens, or apostrophes.';
       }
     }
     if (name === 'lastName') {
-      if (!value.trim()) return 'Last name is required';
-      if (value.length > 50) return 'Last name must be 50 characters or less';
-      if (!/^[A-Za-z\s'-]+$/.test(value)) {
-        return 'Only letters, spaces, hyphens, and apostrophes are allowed';
+      if (!trimmedValue) return 'Last name is required';
+      if (trimmedValue.length > 50) return 'Last name must be 50 characters or less';
+      if (!/^[A-Za-z\s'-]+$/.test(trimmedValue)) {
+        return 'Please enter a valid name using only letters, spaces, hyphens, or apostrophes.';
       }
     }
     if (name === 'email') {
-      if (!value.trim()) return 'Email address is required';
-      if (value.length > 100) return 'Email address must be 100 characters or less';
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      if (!trimmedValue) return 'Email address is required';
+      if (trimmedValue.length > 100) return 'Email address must be 100 characters or less';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedValue)) {
         return 'Please enter a valid email address';
       }
     }
     if (name === 'phone') {
-      if (!value.trim()) return 'Phone number is required';
-      if (value.length > 25) return 'Phone number must be 25 characters or less';
-      if (!/^[\d\s()+-]{7,25}$/.test(value)) {
-        return 'Please enter a valid phone number (min 7 digits)';
+      if (!trimmedValue) return 'Phone number is required';
+      if (trimmedValue.length > 25) return 'Phone number must be 25 characters or less';
+      if (!/^[\d\s()+-]{7,25}$/.test(trimmedValue)) {
+        return 'Please enter a valid phone number (e.g., 973-555-0123)';
       }
     }
     if (name === 'location') {
@@ -193,11 +203,20 @@ export default function BookingSection() {
     setLoading(true);
     setErrorMessage(null);
 
+    const trimmedForm = {
+      ...form,
+      firstName: form.firstName.trim(),
+      lastName: form.lastName.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      message: form.message.trim(),
+    };
+
     try {
       const response = await fetch('/api/book-consultation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(trimmedForm),
       });
 
       if (response.ok) {
@@ -250,7 +269,7 @@ export default function BookingSection() {
             </h2>
 
             {/* Urgency framing */}
-            <div className="flex items-start gap-3 mb-5 sm:mb-6 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20">
+            <div className="flex items-start gap-3 mb-5 sm:mb-6 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 shadow-[0_6px_15px_rgba(0,0,0,0.3)]">
               <Icon
                 name="ExclamationTriangleIcon"
                 size={18}
@@ -297,15 +316,15 @@ export default function BookingSection() {
             {/* HSA / Financing badges */}
             <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
               {[
-                { icon: '💳', label: 'HSA / FSA Eligible' },
-                { icon: '📋', label: 'CareCredit Accepted' },
-                { icon: '🔒', label: 'HIPAA Protected' },
+                { icon: 'CreditCardIcon', label: 'HSA / FSA Eligible' },
+                { icon: 'ClipboardDocumentListIcon', label: 'CareCredit Accepted' },
+                { icon: 'LockClosedIcon', label: 'HIPAA Protected' },
               ].map((b) => (
                 <span
                   key={b.label}
                   className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/[0.04] border border-border px-3 py-1.5 rounded-full"
                 >
-                  <span>{b.icon}</span> {b.label}
+                  <Icon name={b.icon as 'CreditCardIcon'} size={12} className="text-primary shrink-0" /> {b.label}
                 </span>
               ))}
             </div>
@@ -384,7 +403,7 @@ export default function BookingSection() {
                     </div>
                   )}
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground">
+                    <h3 className={`font-display text-xl sm:text-2xl font-medium text-foreground ${styles.formHeader}`}>
                       {step === 1 ? 'Reserve Your Consultation' : 'Tell Us About Your Vision'}
                     </h3>
                     <span className="text-xs font-semibold text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full">
@@ -606,7 +625,7 @@ export default function BookingSection() {
                       />
                     </button>
 
-                    <p className="text-[11px] text-muted-foreground/70 text-center pt-1">
+                    <p className="text-[11px] text-muted-foreground text-center pt-1">
                       No commitment required · We&apos;ll call within 1 business day · Your info
                       stays private
                     </p>
@@ -616,7 +635,7 @@ export default function BookingSection() {
                     <div>
                       <label htmlFor="lens" className={labelClass}>
                         Lens I&apos;m Interested In{' '}
-                        <span className="text-muted-foreground/50 normal-case font-normal">
+                        <span className="text-muted-foreground normal-case font-normal">
                           (optional)
                         </span>
                       </label>
@@ -639,7 +658,7 @@ export default function BookingSection() {
                     <div>
                       <label htmlFor="message" className={labelClass}>
                         Questions or Notes{' '}
-                        <span className="text-muted-foreground/50 normal-case font-normal">
+                        <span className="text-muted-foreground normal-case font-normal">
                           (optional)
                         </span>
                       </label>
@@ -687,7 +706,7 @@ export default function BookingSection() {
                       </button>
                     </div>
 
-                    <p className="text-[11px] text-muted-foreground/70 text-center pt-1">
+                    <p className="text-[11px] text-muted-foreground text-center pt-1">
                       By submitting, you agree to be contacted by Marano Eye Care. Your information
                       is never shared.
                     </p>

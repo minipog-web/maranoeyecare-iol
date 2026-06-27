@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Icon from '@/components/ui/AppIcon';
 
 export default function CertificationLogos() {
   return (
@@ -24,7 +25,7 @@ export default function CertificationLogos() {
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12 opacity-75 hover:opacity-90 transition-opacity">
             {/* AAO */}
             <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
-              <span className="text-lg">👁️</span>
+              <Icon name="EyeIcon" size={18} className="text-primary shrink-0" />
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">
                   AAO
@@ -37,7 +38,7 @@ export default function CertificationLogos() {
 
             {/* ASCRS */}
             <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
-              <span className="text-lg">🔬</span>
+              <Icon name="BeakerIcon" size={18} className="text-primary shrink-0" />
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">
                   ASCRS
@@ -50,7 +51,7 @@ export default function CertificationLogos() {
 
             {/* ABO */}
             <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
-              <span className="text-lg">🛡️</span>
+              <Icon name="ShieldCheckIcon" size={18} className="text-primary shrink-0" />
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">
                   ABO
@@ -63,7 +64,7 @@ export default function CertificationLogos() {
 
             {/* Castle Connolly */}
             <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
-              <span className="text-lg">🏅</span>
+              <Icon name="StarIcon" size={18} className="text-primary shrink-0" />
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">
                   CASTLE CONNOLLY

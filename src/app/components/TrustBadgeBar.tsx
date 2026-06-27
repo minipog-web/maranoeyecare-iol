@@ -1,24 +1,33 @@
 'use client';
 
+import Icon from '@/components/ui/AppIcon';
+
+type IconName = string;
+
+interface Badge {
+  icon: IconName;
+  text: string;
+}
+
 interface TrustBadgeBarProps {
   variant?: 'authority' | 'clinical' | 'safety';
 }
 
-const variants = {
+const variants: Record<string, Badge[]> = {
   authority: [
-    { icon: '🏆', text: '15× NJ Monthly Top Doctor' },
-    { icon: '⭐', text: '40,000+ Successful Surgeries' },
-    { icon: '🎓', text: 'Board Certified Ophthalmologist' },
+    { icon: 'TrophyIcon', text: '15× NJ Monthly Top Doctor' },
+    { icon: 'HeartIcon', text: '40,000+ Successful Surgeries' },
+    { icon: 'AcademicCapIcon', text: 'Board Certified Ophthalmologist' },
   ],
   clinical: [
-    { icon: '✅', text: '99% Would Choose a Premium Lens Again' },
-    { icon: '🔬', text: 'Biometry-Guided Lens Selection' },
-    { icon: '📊', text: 'FDA-Approved IOLs Only' },
+    { icon: 'CheckCircleIcon', text: '99% Would Choose a Premium Lens Again' },
+    { icon: 'BeakerIcon', text: 'Biometry-Guided Lens Selection' },
+    { icon: 'ShieldCheckIcon', text: 'FDA-Approved IOLs Only' },
   ],
   safety: [
-    { icon: '🔒', text: 'HIPAA-Protected Information' },
-    { icon: '📞', text: 'No-Obligation Consultation' },
-    { icon: '💳', text: 'HSA · FSA · CareCredit Accepted' },
+    { icon: 'LockClosedIcon', text: 'HIPAA-Protected Information' },
+    { icon: 'ChatBubbleLeftRightIcon', text: 'No-Obligation Consultation' },
+    { icon: 'CreditCardIcon', text: 'HSA · FSA · CareCredit Accepted' },
   ],
 };
 
@@ -31,7 +40,7 @@ export default function TrustBadgeBar({ variant = 'authority' }: TrustBadgeBarPr
         <div className="flex flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-4">
           {badges.map((badge) => (
             <div key={badge.text} className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="text-base leading-none">{badge.icon}</span>
+              <Icon name={badge.icon as 'TrophyIcon'} size={14} className="text-primary shrink-0" />
               <span className="font-medium">{badge.text}</span>
             </div>
           ))}

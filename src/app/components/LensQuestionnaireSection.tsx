@@ -632,7 +632,15 @@ export default function LensQuestionnaireSection() {
                 <a
                   href="#booking"
                   onClick={() => {
+                    // Primary: fire custom event (for already-mounted BookingSection)
                     window.dispatchEvent(new CustomEvent('select-lens', { detail: result.key }));
+                    // Fallback: write to sessionStorage (for cases where BookingSection mounts after)
+                    try { sessionStorage.setItem('preselect-lens', result.key); } catch {}
+                    trackEvent({
+                      action: 'quiz_cta_click',
+                      category: 'Conversion',
+                      label: result.name,
+                    });
                   }}
                   className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#040506] font-semibold text-sm hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
@@ -685,7 +693,7 @@ export default function LensQuestionnaireSection() {
         {!result && (
           <p className="text-center text-xs text-muted-foreground mt-5 px-2">
             No personal information required · Takes about 60 seconds · Results reviewed with Dr.
-            Marano
+            Marano at time of consultation
           </p>
         )}
       </div>

@@ -209,6 +209,13 @@ const lenses = [
   },
 ];
 
+const lensRgbMap: Record<string, string> = {
+  panoptix: '139, 92, 246',
+  vivity: '197, 160, 89',
+  eyhance: '0, 163, 255',
+  monofocal: '100, 116, 139',
+};
+
 type Distance = 'distance' | 'intermediate' | 'near';
 type TimeOfDay = 'day' | 'night';
 
@@ -569,8 +576,8 @@ export default function LensVisionComparisonSection() {
           ? '50%'
           : '35%';
     const y = glowPosition ? glowPosition.y : '50%';
-    const opacity = glowPosition ? '0.95' : '0.45';
-    const glowBg = `radial-gradient(circle, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.25)' : currentGlowLens.id === 'vivity' ? 'rgba(197,160,89,0.25)' : currentGlowLens.id === 'eyhance' ? 'rgba(0,163,255,0.2)' : 'rgba(100,116,139,0.15)'} 0%, rgba(0,0,0,0) 70%)`;
+    const opacity = glowPosition ? '0.30' : '0.15';
+    const glowBg = `radial-gradient(circle, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.07)' : currentGlowLens.id === 'vivity' ? 'rgba(197,160,89,0.07)' : currentGlowLens.id === 'eyhance' ? 'rgba(0,163,255,0.06)' : 'rgba(100,116,139,0.05)'} 0%, rgba(0,0,0,0) 70%)`;
 
     ambientGlowRef.current.style.setProperty('--glow-x', x);
     ambientGlowRef.current.style.setProperty('--glow-y', y);
@@ -597,7 +604,16 @@ export default function LensVisionComparisonSection() {
   };
 
   return (
-    <section id="lenses" className="py-12 sm:py-20 relative overflow-hidden">
+    <section
+      id="lenses"
+      className="py-12 sm:py-20 relative overflow-hidden"
+      style={
+        {
+          '--lens-color': activePremiumLens.color,
+          '--lens-color-rgb': lensRgbMap[activePremiumLens.id],
+        } as React.CSSProperties
+      }
+    >
       <div className="absolute inset-0 vision-section-bg opacity-40" />
 
       {/* Subtle Central Background Ambient Glow */}
@@ -769,7 +785,7 @@ export default function LensVisionComparisonSection() {
                   Compare Premium Lens
                 </span>
               </div>
-              <div className="flex p-1 bg-black/60 rounded-xl border border-white/[0.08] gap-1 shadow-inner">
+              <div className="flex p-1 bg-black/60 rounded-full border border-white/[0.08] gap-1 shadow-inner">
                 {lenses
                   .filter((l) => l.id !== 'monofocal')
                   .map((lens) => {
@@ -779,7 +795,7 @@ export default function LensVisionComparisonSection() {
                         key={lens.id}
                         onClick={() => selectPremiumLens(lens.id)}
                         data-lens={lens.id}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none flex items-center gap-1.5 border ${
+                        className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none flex items-center gap-1.5 border ${
                           isActive
                             ? `scale-[1.02] ${styles.activePremiumBtn}`
                             : 'text-muted-foreground hover:text-foreground border-transparent'
@@ -805,6 +821,8 @@ export default function LensVisionComparisonSection() {
             {/* Left Image Viewport */}
             <div className="relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-white/[0.08] border-t-0 shadow-[0_10px_30px_rgba(0,0,0,0.4)] group">
               {renderSimulatorImages('monofocal')}
+              {/* Glass Reflection Overlay */}
+              <div className={styles.glassReflection} />
               {/* Scene Tag */}
               <div className="absolute top-3 left-3 pointer-events-none z-20">
                 <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
@@ -844,6 +862,8 @@ export default function LensVisionComparisonSection() {
               className={`relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-t-0 transition-all duration-500 group ${styles.premiumViewport}`}
             >
               {renderPremiumSimulatorImages()}
+              {/* Glass Reflection Overlay */}
+              <div className={styles.glassReflection} />
               {/* Scene Tag */}
               <div className="absolute top-4 left-4 pointer-events-none z-20">
                 <span
@@ -895,7 +915,7 @@ export default function LensVisionComparisonSection() {
 
             {/* Left Description */}
             <p
-              className="text-xs sm:text-sm text-muted-foreground/90 leading-relaxed min-h-[3rem] px-2"
+              className="text-sm sm:text-base text-slate-200 leading-relaxed min-h-[3rem] px-2"
               aria-live="polite"
             >
               {timeOfDay === 'night'
@@ -905,7 +925,7 @@ export default function LensVisionComparisonSection() {
 
             {/* Right Description */}
             <p
-              className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-2"
+              className="text-sm sm:text-base text-white leading-relaxed min-h-[3rem] px-2"
               aria-live="polite"
             >
               {timeOfDay === 'night'
@@ -969,6 +989,8 @@ export default function LensVisionComparisonSection() {
               className={`relative aspect-[4/3] rounded-2xl overflow-hidden bg-black/40 border transition-all duration-500 shadow-md ${styles.mobileViewport}`}
             >
               {renderMobileSimulatorImages()}
+              {/* Glass Reflection Overlay */}
+              <div className={styles.glassReflection} />
 
               {/* Hold to Compare Floating Button (only when premium lens is selected) */}
               {activeMobileLensId !== 'monofocal' && (
@@ -1048,7 +1070,7 @@ export default function LensVisionComparisonSection() {
 
             {/* Mobile Description */}
             <p
-              className="text-xs sm:text-sm text-foreground/90 leading-relaxed min-h-[3rem] px-1"
+              className="text-sm sm:text-base text-white leading-relaxed min-h-[3rem] px-1"
               aria-live="polite"
             >
               {timeOfDay === 'night'
@@ -1077,7 +1099,7 @@ export default function LensVisionComparisonSection() {
                 onMouseMove={handleMouseMove}
                 onClick={() => handleCardClick(lens.id)}
                 data-lens={lens.id}
-                className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col hover:-translate-y-2 cursor-pointer border animate-fade-up fill-both ${delays[i]} ${
+                className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col hover:-translate-y-2 cursor-pointer border overflow-hidden animate-fade-up fill-both ${delays[i]} ${
                   isActive
                     ? `bg-gradient-to-b from-white/12 to-white/0 border-transparent ${styles.specCard}`
                     : 'bg-gradient-to-b from-white/8 to-white/0 border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
@@ -1166,7 +1188,7 @@ export default function LensVisionComparisonSection() {
                     <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">
                       Best for
                     </p>
-                    <p className="text-xs text-foreground/80 leading-relaxed font-light">
+                    <p className="text-sm text-slate-100 leading-relaxed">
                       {lens.bestFor}
                     </p>
                   </div>

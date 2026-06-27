@@ -10,14 +10,25 @@ export default function StickyCTABar() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
+    const bookingEl = document.getElementById('booking');
+
     const handleScroll = () => {
+      const scrollY = window.scrollY;
       // Show after scrolling 400px (past the hero)
-      setVisible(window.scrollY > 400);
+      setVisible(scrollY > 400);
+
+      // Re-show if the user is within 600px of the booking section
+      if (dismissed && bookingEl) {
+        const bookingTop = bookingEl.getBoundingClientRect().top + scrollY;
+        if (scrollY > bookingTop - 600) {
+          setDismissed(false);
+        }
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [dismissed]);
 
   if (dismissed) return null;
 

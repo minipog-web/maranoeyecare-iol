@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 const schemas = [
   {
     '@context': 'https://schema.org',
-    '@type': 'MedicalBusiness',
+    '@type': ['MedicalBusiness', 'Physician'],
     name: 'Marano Eye Care',
     image: 'https://www.maranoeyecare.com/assets/images/marano_logo.png',
     url: 'https://www.maranoeyecare.com',
@@ -45,7 +45,7 @@ const schemas = [
     address: [
       {
         '@type': 'PostalAddress',
-        streetAddress: '200 South Orange Ave',
+        streetAddress: '200 South Orange Ave, Suite 209',
         addressLocality: 'Livingston',
         addressRegion: 'NJ',
         postalCode: '07039',
@@ -53,7 +53,7 @@ const schemas = [
       },
       {
         '@type': 'PostalAddress',
-        streetAddress: '16 Pocono Rd',
+        streetAddress: '16 Pocono Rd, Suite 301',
         addressLocality: 'Denville',
         addressRegion: 'NJ',
         postalCode: '07834',
@@ -61,20 +61,29 @@ const schemas = [
       },
       {
         '@type': 'PostalAddress',
-        streetAddress: '92 Ferry St',
+        streetAddress: '306 Martin L. King Blvd',
         addressLocality: 'Newark',
         addressRegion: 'NJ',
-        postalCode: '07105',
+        postalCode: '07102',
         addressCountry: 'US',
       },
     ],
-    medicalSpecialty: 'Optometry',
+    medicalSpecialty: 'Ophthalmology',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      bestRating: '5',
+      worstRating: '1',
+      reviewCount: '500',
+    },
     knowsAbout: [
       'Cataract Surgery',
       'Intraocular Lenses',
       'Clareon Vivity',
       'PanOptix Pro',
       'Tecnis Eyhance',
+      'Laser Cataract Surgery',
+      'LENSAR Ally',
     ],
   },
   {

@@ -18,7 +18,7 @@ const profiles = [
     ],
     recommendation: 'PanOptix Pro',
     reason:
-      'Trifocal design gives you sharp vision at every distance — from your 27″ monitor to a road sign 200 metres away.',
+      'Trifocal design gives you sharp vision at every distance — from your 27″ monitor to a road sign 600 feet away.',
     image: '/assets/images/profile_active_professional.jpg',
     imageAlt: 'Professional person at bright, well-lit modern office desk with laptop',
     stat: '99% would choose a premium lens again',

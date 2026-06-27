@@ -105,7 +105,7 @@ export default function Header() {
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
               <Icon name="PhoneIcon" size={13} className="text-primary" />
             </div>
-            <span className="hidden 2xl:inline font-semibold text-foreground/90 text-xs xl:text-sm tracking-wide">
+            <span className="hidden lg:inline font-semibold text-foreground/90 text-xs xl:text-sm tracking-wide">
               (973) 322-0100
             </span>
           </a>
