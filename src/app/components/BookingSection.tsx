@@ -603,7 +603,7 @@ export default function BookingSection() {
                               key={method.value}
                               type="button"
                               role="radio"
-                              aria-checked={isChecked ? 'true' : 'false'}
+                              aria-checked={isChecked}
                               tabIndex={isChecked ? 0 : -1}
                               onKeyDown={(e) => handleRadioKeyDown(e, idx)}
                               onClick={() =>

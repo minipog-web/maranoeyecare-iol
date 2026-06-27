@@ -367,6 +367,8 @@ export default function LensVisionComparisonSection() {
   const [hoveredLensId, setHoveredLensId] = useState<string | null>(null);
   const ambientGlowRef = useRef<HTMLDivElement>(null);
 
+  const sectionRef = useRef<HTMLElement>(null);
+
   const [visitedLenses, setVisitedLenses] = useState<string[]>(['panoptix', 'monofocal']);
   const [visitedStates, setVisitedStates] = useState<string[]>(['day-distance']);
 
@@ -567,6 +569,12 @@ export default function LensVisionComparisonSection() {
   const currentGlowLens = lenses.find((l) => l.id === currentGlowLensId) || lenses[0];
 
   useEffect(() => {
+    if (!sectionRef.current) return;
+    sectionRef.current.style.setProperty('--lens-color', activePremiumLens.color);
+    sectionRef.current.style.setProperty('--lens-color-rgb', lensRgbMap[activePremiumLens.id]);
+  }, [activePremiumLens]);
+
+  useEffect(() => {
     if (!ambientGlowRef.current) return;
     const x = glowPosition
       ? glowPosition.x
@@ -604,16 +612,7 @@ export default function LensVisionComparisonSection() {
   };
 
   return (
-    <section
-      id="lenses"
-      className="py-12 sm:py-20 relative overflow-hidden"
-      style={
-        {
-          '--lens-color': activePremiumLens.color,
-          '--lens-color-rgb': lensRgbMap[activePremiumLens.id],
-        } as React.CSSProperties
-      }
-    >
+    <section ref={sectionRef} id="lenses" className="py-12 sm:py-20 relative overflow-hidden">
       <div className="absolute inset-0 vision-section-bg opacity-40" />
 
       {/* Subtle Central Background Ambient Glow */}

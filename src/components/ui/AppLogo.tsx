@@ -43,7 +43,7 @@ const AppLogo = memo(function AppLogo({
       className={containerClassName}
       onClick={onClick}
       onKeyDown={onClick ? handleKeyDown : undefined}
-      role={onClick ? 'link' : undefined}
+      role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
     >
       {/* Show image if src provided, otherwise show icon */}
