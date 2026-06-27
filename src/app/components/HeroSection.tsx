@@ -82,8 +82,8 @@ export default function HeroSection() {
               </span>
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
-              <span className="block">One Surgery. One Choice.</span>{' '}
-              <span className="block text-gradient-primary font-semibold mt-1 pb-4">
+              <span className="block whitespace-nowrap">One Surgery. One Choice.</span>{' '}
+              <span className="block text-gradient-primary font-semibold mt-1 pb-4 whitespace-nowrap">
                 Compare Premium IOLs.
               </span>
             </h1>
