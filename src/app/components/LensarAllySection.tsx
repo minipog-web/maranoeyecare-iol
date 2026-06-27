@@ -64,7 +64,7 @@ export default function LensarAllySection() {
     {
       icon: 'EyeIcon',
       title: 'Augmented Reality™ 3D Mapping',
-      desc: 'Creates a high-definition 3D scan of your eye\'s unique structure, giving Dr. Marano real-time guidance to plan your custom procedure.',
+      desc: "Creates a high-definition 3D scan of your eye's unique structure, giving Dr. Marano real-time guidance to plan your custom procedure.",
       metric: 'High-definition 3D scan',
     },
     {
@@ -76,7 +76,7 @@ export default function LensarAllySection() {
     {
       icon: 'ScaleIcon',
       title: 'Astigmatism Target Alignment',
-      desc: 'Projects digital guides directly into the surgeon\'s view, ensuring astigmatism-correcting and premium lenses are aligned with absolute accuracy.',
+      desc: "Projects digital guides directly into the surgeon's view, ensuring astigmatism-correcting and premium lenses are aligned with absolute accuracy.",
       metric: 'Perfect IOL orientation',
     },
   ];

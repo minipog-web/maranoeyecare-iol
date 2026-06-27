@@ -92,14 +92,20 @@ export async function POST(req: NextRequest) {
       !['email', 'phone', 'text'].includes(preferredContact)
     ) {
       return NextResponse.json(
-        { error: 'Some required fields are missing or formatted incorrectly. Please review the form and try again.' },
+        {
+          error:
+            'Some required fields are missing or formatted incorrectly. Please review the form and try again.',
+        },
         { status: 400 }
       );
     }
 
     if (message && (typeof message !== 'string' || message.length > 1000)) {
       return NextResponse.json(
-        { error: 'Your message is too long (maximum 1,000 characters). Please shorten it and try again.' },
+        {
+          error:
+            'Your message is too long (maximum 1,000 characters). Please shorten it and try again.',
+        },
         { status: 400 }
       );
     }

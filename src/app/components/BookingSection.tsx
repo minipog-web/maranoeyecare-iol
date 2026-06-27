@@ -91,7 +91,9 @@ export default function BookingSection() {
         handleSelectLens(new CustomEvent('select-lens', { detail: stored }));
         sessionStorage.removeItem('preselect-lens');
       }
-    } catch {}
+    } catch (e) {
+      console.warn('Session storage read failed:', e);
+    }
 
     window.addEventListener('select-lens', handleSelectLens);
     return () => window.removeEventListener('select-lens', handleSelectLens);
@@ -324,7 +326,12 @@ export default function BookingSection() {
                   key={b.label}
                   className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/[0.04] border border-border px-3 py-1.5 rounded-full"
                 >
-                  <Icon name={b.icon as 'CreditCardIcon'} size={12} className="text-primary shrink-0" /> {b.label}
+                  <Icon
+                    name={b.icon as 'CreditCardIcon'}
+                    size={12}
+                    className="text-primary shrink-0"
+                  />{' '}
+                  {b.label}
                 </span>
               ))}
             </div>
@@ -403,7 +410,9 @@ export default function BookingSection() {
                     </div>
                   )}
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className={`font-display text-xl sm:text-2xl font-medium text-foreground ${styles.formHeader}`}>
+                    <h3
+                      className={`font-display text-xl sm:text-2xl font-medium text-foreground ${styles.formHeader}`}
+                    >
                       {step === 1 ? 'Reserve Your Consultation' : 'Tell Us About Your Vision'}
                     </h3>
                     <span className="text-xs font-semibold text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full">

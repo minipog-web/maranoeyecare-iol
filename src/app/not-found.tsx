@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 
 export default function NotFound() {
@@ -33,13 +34,13 @@ export default function NotFound() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-[#020304] rounded-xl text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[52px] shadow-[0_0_28px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <Icon name="HomeIcon" size={16} />
             Return Home
-          </a>
+          </Link>
           <button
             onClick={() => router.back()}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border-bright bg-muted/40 rounded-xl text-sm font-semibold text-foreground hover:border-primary/50 hover:bg-muted/80 transition-all min-h-[52px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"

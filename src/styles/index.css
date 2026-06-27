@@ -948,7 +948,7 @@ h2.font-display {
     transition-delay: 0s !important;
     transition-duration: 0s !important;
   }
-  
+
   /* Disable specifically intensive pulsing/shimmer animations */
   .animate-pulse-glow,
   .animate-pulse-glow-delayed,

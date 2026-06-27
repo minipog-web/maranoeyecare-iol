@@ -1188,9 +1188,7 @@ export default function LensVisionComparisonSection() {
                     <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">
                       Best for
                     </p>
-                    <p className="text-sm text-slate-100 leading-relaxed">
-                      {lens.bestFor}
-                    </p>
+                    <p className="text-sm text-slate-100 leading-relaxed">{lens.bestFor}</p>
                   </div>
 
                   <a

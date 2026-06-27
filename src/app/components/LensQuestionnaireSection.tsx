@@ -635,7 +635,11 @@ export default function LensQuestionnaireSection() {
                     // Primary: fire custom event (for already-mounted BookingSection)
                     window.dispatchEvent(new CustomEvent('select-lens', { detail: result.key }));
                     // Fallback: write to sessionStorage (for cases where BookingSection mounts after)
-                    try { sessionStorage.setItem('preselect-lens', result.key); } catch {}
+                    try {
+                      sessionStorage.setItem('preselect-lens', result.key);
+                    } catch (e) {
+                      console.warn('Session storage write failed:', e);
+                    }
                     trackEvent({
                       action: 'quiz_cta_click',
                       category: 'Conversion',
