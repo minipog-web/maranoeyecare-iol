@@ -82,9 +82,9 @@ export default function HeroSection() {
               </span>
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
-              <span className="block sm:whitespace-nowrap">Your world isn&apos;t fading.</span>{' '}
+              <span className="block">One Surgery. One Choice.</span>{' '}
               <span className="block text-gradient-primary font-semibold mt-1 pb-4">
-                Your lenses are.
+                Compare Premium IOLs.
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 text-justify animate-fade-up delay-300 fill-both">

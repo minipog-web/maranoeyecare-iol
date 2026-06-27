@@ -24,12 +24,39 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maranoeyecare.com'),
+  alternates: {
+    canonical: '/',
+  },
   title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
   description:
     "Compare Clareon Vivity, PanOptix Pro, and Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
+  },
+  openGraph: {
+    title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
+    description:
+      "Compare Clareon Vivity, PanOptix Pro, and Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
+    url: 'https://www.maranoeyecare.com',
+    siteName: 'Marano Eye Care',
+    images: [
+      {
+        url: '/assets/images/vivity_iol_clean.png',
+        width: 800,
+        height: 600,
+        alt: 'Marano Eye Care — Premium IOL Lens Options',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
+    description:
+      "Compare Clareon Vivity, PanOptix Pro, and Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
+    images: ['/assets/images/vivity_iol_clean.png'],
   },
 };
 
@@ -86,52 +113,6 @@ const schemas = [
       'LENSAR Ally',
     ],
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: "I'm worried about halos and glare — especially night driving.",
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "This is the #1 concern we hear — and it's why Dr. Marano recommends the Clareon Vivity for most night drivers. Unlike older diffractive lenses, Vivity uses non-diffractive X-WAVE™ technology that doesn't split light. Clinical data shows halo rates nearly identical to a standard monofocal. Robert D. from Livingston was in the same position: 'Night driving is completely clear.' That said, every patient is different — which is exactly why Dr. Marano reviews your specific eye anatomy before recommending any lens.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why should I spend thousands of dollars on my eyes?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "Think of it this way: based on an average premium upgrade, over 20 years that breaks down to less than $0.60 per day for clear vision at every distance. The average American spends over $3,000 on glasses over a decade — and still can't see clearly at arm's length or while driving. Premium IOLs are also HSA and FSA eligible, and we offer CareCredit financing. Most of our patients say it's the best financial decision they've ever made for their quality of life — not just their vision.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: "What if I don't like the result? Can the lens be changed?",
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "IOL exchange is possible, though uncommon. Here's the reassuring truth: 99% of premium lens patients say they'd choose a premium lens again. Dr. Marano's approach eliminates most regret before it happens — he uses detailed biometry, corneal mapping, and lifestyle interviews to match you to the right lens. He won't recommend a premium lens if your eye anatomy doesn't support a great outcome. That's why our satisfaction rate has remained exceptional across over 40,000 successful procedures.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'My insurance covers the basic lens. Why should I pay more?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "Insurance covers cataract removal — but only at the level of single-focus vision. With a standard monofocal, you'll see clearly at one distance (usually far) and need reading glasses or bifocals for everything else — forever. You'll be trading one pair of glasses for another. Premium IOLs restore your full range of vision. For patients who drive, use a computer, and read daily, that difference is life-changing. The out-of-pocket cost is for the visual freedom the surgery can deliver — not the surgery itself.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Will premium lenses make my surgery more complicated or risky?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "No. The surgical procedure is identical regardless of which IOL you choose — a 15-minute microsurgery performed under topical (eye drop) anesthesia. The only thing that changes is what Dr. Marano places in your eye. He has performed this procedure over 40,000 times and has been recognized as New Jersey's Top Doctor for 15 consecutive years. The lens choice affects your outcome — not your safety.",
-        },
-      },
-    ],
-  },
 ];
 
 export default function RootLayout({
@@ -156,13 +137,14 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=AW-18197167741"
           strategy="afterInteractive"
         />
-        <Script id="google-ads-tag" strategy="afterInteractive">
+        <Script id="google-tags-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
             gtag('config', 'AW-18197167741');
+            ${GA_MEASUREMENT_ID ? `gtag('config', '${GA_MEASUREMENT_ID}', { page_path: window.location.pathname });` : ''}
           `}
         </Script>
 
@@ -183,26 +165,6 @@ export default function RootLayout({
             }
           `}
         </Script>
-
-        {/* Google Analytics tag manager tracking scripts */}
-        {GA_MEASUREMENT_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_MEASUREMENT_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `}
-            </Script>
-          </>
-        )}
         {children}
       </body>
     </html>

@@ -52,19 +52,23 @@ export default function Footer() {
               973-322-0100
             </a>
             <span className="text-border hidden sm:inline">·</span>
-            <Link
-              href="#"
+            <a
+              href="https://www.maranoeyecare.com/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
             >
               Privacy
-            </Link>
+            </a>
             <span className="text-border hidden sm:inline">·</span>
-            <Link
-              href="#"
+            <a
+              href="https://www.maranoeyecare.com/terms-of-use"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
             >
               Terms
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -75,10 +79,10 @@ export default function Footer() {
           <p className="text-center">
             Livingston · Denville · Newark, NJ ·{' '}
             <a
-              href="https://maranoeyecare.com"
+              href="https://www.maranoeyecare.com"
               className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
-              maranoeyecare.com
+              www.maranoeyecare.com
             </a>
           </p>
         </div>
@@ -122,12 +126,12 @@ export default function Footer() {
             </div>
             <div className="space-y-3">
               <p id="footnote-3" className="scroll-mt-24">
-                <strong className="text-foreground">[3] Tecnis Eyhance Longitudinal Study:</strong>{' '}
-                Based on J&J Vision 5-year post-market clinical follow-up data. Demonstrates 100%
-                long-term distance independence and enhanced intermediate range compared to standard
-                monofocal lenses.{' '}
+                <strong className="text-foreground">[3] Tecnis Eyhance Clinical Study:</strong>{' '}
+                Based on peer-reviewed longitudinal clinical study data comparing TECNIS Eyhance to
+                standard monofocals. Demonstrates 100% long-term distance satisfaction and superior
+                intermediate range.{' '}
                 <a
-                  href="https://clinicaltrials.gov/study/NCT55555555"
+                  href="https://clinicaltrials.gov/study/NCT03666273"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
