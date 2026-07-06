@@ -144,6 +144,15 @@ export default function RootLayout({
             gtag('js', new Date());
 
             gtag('config', 'AW-18197167741');
+            gtag('config', 'AW-18197167741', {
+              'phone_conversion_number': '(973) 322-0100'
+            });
+            gtag('config', 'AW-18197167741', {
+              'phone_conversion_number': '(973) 358-0416'
+            });
+            gtag('config', 'AW-18197167741', {
+              'phone_conversion_number': '(973) 315-6439'
+            });
             ${GA_MEASUREMENT_ID ? `gtag('config', '${GA_MEASUREMENT_ID}', { page_path: window.location.pathname });` : ''}
           `}
         </Script>

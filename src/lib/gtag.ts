@@ -37,3 +37,14 @@ export const trackEvent = ({
     });
   }
 };
+
+// Track Google Ads Conversion events
+export const trackAdsConversion = (conversionLabel: string, value?: number) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'conversion', {
+      send_to: `AW-18197167741/${conversionLabel}`,
+      value: value,
+      currency: 'USD',
+    });
+  }
+};

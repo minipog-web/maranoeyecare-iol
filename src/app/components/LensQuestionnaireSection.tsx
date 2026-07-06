@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import { trackEvent } from '@/lib/gtag';
+import confetti from 'canvas-confetti';
 import styles from './LensQuestionnaireSection.module.css';
 
 interface Question {
@@ -293,6 +294,28 @@ export default function LensQuestionnaireSection() {
         setTimeout(() => {
           setResult(lens);
           setCalculating(false);
+          // Playful gold & warm platinum confetti matching the premium clinical brand colors
+          const end = Date.now() + 1000;
+          const colors = ['#c5a059', '#e2c28a', '#ffffff', '#1e2029'];
+          (function frame() {
+            confetti({
+              particleCount: 3,
+              angle: 60,
+              spread: 55,
+              origin: { x: 0 },
+              colors: colors,
+            });
+            confetti({
+              particleCount: 3,
+              angle: 120,
+              spread: 55,
+              origin: { x: 1 },
+              colors: colors,
+            });
+            if (Date.now() < end) {
+              requestAnimationFrame(frame);
+            }
+          })();
         }, 1800);
 
         // Notify staff via Brevo

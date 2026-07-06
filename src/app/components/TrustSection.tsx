@@ -204,6 +204,7 @@ export default function TrustSection() {
                 <ul className="space-y-3">
                   {[
                     'Chief Medical Editor — Ophthalmology 360',
+                    'Active Member — American Academy of Ophthalmology (AAO) & American Society of Cataract and Refractive Surgery (ASCRS)',
                     'Decades of experience teaching and training fellow refractive surgeons',
                     'Femto laser-assisted cataract surgery specialist',
                     'Three conveniently located NJ offices',

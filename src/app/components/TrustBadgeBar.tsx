@@ -20,9 +20,9 @@ const variants: Record<string, Badge[]> = {
     { icon: 'AcademicCapIcon', text: 'Board Certified Ophthalmologist' },
   ],
   clinical: [
-    { icon: 'CheckCircleIcon', text: '99% Would Choose a Premium Lens Again' },
+    { icon: 'CheckCircleIcon', text: '99% Patient Satisfaction Rate [1]' },
     { icon: 'BeakerIcon', text: 'Biometry-Guided Lens Selection' },
-    { icon: 'ShieldCheckIcon', text: 'FDA-Approved IOLs Only' },
+    { icon: 'BoltIcon', text: 'LENSAR® FEMTO Laser on Every Premium IOL' },
   ],
   safety: [
     { icon: 'LockClosedIcon', text: 'HIPAA-Protected Information' },
@@ -37,11 +37,20 @@ export default function TrustBadgeBar({ variant = 'authority' }: TrustBadgeBarPr
   return (
     <div className="border-y border-border/40 bg-white/[0.015] py-3 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="flex flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-4">
-          {badges.map((badge) => (
-            <div key={badge.text} className="flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-0 sm:divide-x sm:divide-white/[0.08]">
+          {badges.map((badge, idx) => (
+            <div
+              key={badge.text}
+              className={`flex items-center justify-center gap-2.5 text-xs text-muted-foreground py-1 px-4 ${
+                idx === 0
+                  ? 'sm:pl-0 sm:justify-start'
+                  : idx === 2
+                    ? 'sm:pr-0 sm:justify-end'
+                    : 'sm:justify-center'
+              }`}
+            >
               <Icon name={badge.icon as 'TrophyIcon'} size={14} className="text-primary shrink-0" />
-              <span className="font-medium">{badge.text}</span>
+              <span className="font-medium tracking-wide">{badge.text}</span>
             </div>
           ))}
         </div>

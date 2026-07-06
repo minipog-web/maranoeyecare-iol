@@ -49,7 +49,7 @@ export default function Footer() {
               aria-label="Call Marano Eye Care at 973-322-0100"
             >
               <Icon name="PhoneIcon" size={14} className="text-primary" />
-              973-322-0100
+              (973) 322-0100
             </a>
             <span className="text-border hidden sm:inline">·</span>
             <a

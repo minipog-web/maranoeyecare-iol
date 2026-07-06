@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
-import { trackEvent } from '@/lib/gtag';
+import { trackEvent, trackAdsConversion } from '@/lib/gtag';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -44,6 +44,7 @@ export default function Header() {
       category: 'Conversion',
       label: `Header Call: ${source}`,
     });
+    trackAdsConversion('phone_click');
   };
 
   const handleBookingClick = (source: string) => {

@@ -306,10 +306,12 @@ export default function TestimonialsSection() {
                 <div className="flex-1">
                   <p className="text-base sm:text-lg text-foreground/90 leading-relaxed italic mb-5 sm:mb-6">
                     &ldquo;If I were choosing a lens for myself or my family, I&apos;d want the
-                    Clareon Vivity. It gives the most natural vision with the fewest side effects
-                    for most patients. But the truth is, no single lens is right for everyone —
-                    which is exactly why I spend time getting to know every patient before I make
-                    any recommendation. The right lens depends on <em>how you live</em>.&rdquo;
+                    Clareon Vivity, and I would absolutely choose to use the LENSAR system because
+                    it provides previously unparalleled detail, control, capabilities and patient
+                    comfort, all leading to a better outcome faster. But the truth is, no single
+                    lens is right for everyone — which is exactly why I spend time getting to know
+                    every patient before I make any recommendation. The right lens depends on{' '}
+                    <em>how you live</em>.&rdquo;
                   </p>
 
                   <div className="flex items-center gap-4 flex-wrap">
@@ -351,23 +353,23 @@ export default function TestimonialsSection() {
               {[
                 {
                   city: 'Denville',
-                  phone: '973-358-0416',
+                  phone: '(973) 358-0416',
                   address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
                 },
                 {
                   city: 'Livingston',
-                  phone: '973-322-0100',
+                  phone: '(973) 322-0100',
                   address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
                 },
                 {
                   city: 'Newark',
-                  phone: '973-315-6439',
+                  phone: '(973) 315-6439',
                   address: '306 Martin L. King Blvd, Newark, NJ 07102',
                 },
               ]?.map((loc) => (
                 <a
                   key={loc?.city}
-                  href={`tel:${loc?.phone?.replace(/-/g, '')}`}
+                  href={`tel:${loc?.phone.replace(/[()\s-]/g, '')}`}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onMouseMove={handleMouseMove}

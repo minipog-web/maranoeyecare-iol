@@ -22,7 +22,7 @@ export default function CertificationLogos() {
           </div>
 
           {/* Logos Row */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12 opacity-75 hover:opacity-90 transition-opacity">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full md:w-auto shrink-0 opacity-75 hover:opacity-90 transition-opacity">
             {/* AAO */}
             <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-2.5 backdrop-blur-sm shadow-sm">
               <Icon name="EyeIcon" size={18} className="text-primary shrink-0" />

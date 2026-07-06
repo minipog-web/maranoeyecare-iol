@@ -3,9 +3,13 @@
 import React, { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
-import { trackEvent } from '@/lib/gtag';
+import { trackEvent, trackAdsConversion } from '@/lib/gtag';
 
-const locations = ['Livingston (973-322-0100)', 'Denville (973-358-0416)', 'Newark (973-315-6439)'];
+const locations = [
+  'Livingston ((973) 322-0100)',
+  'Denville ((973) 358-0416)',
+  'Newark ((973) 315-6439)',
+];
 const lensOptions = [
   'Not sure yet — need guidance',
   'PanOptix Pro (Trifocal)',
@@ -228,6 +232,7 @@ export default function BookingSection() {
           category: 'Conversion',
           label: `${form.location} - ${form.lens || 'No lens selected'}`,
         });
+        trackAdsConversion('booking_complete');
       } else {
         const data = await response.json();
         setErrorMessage(
