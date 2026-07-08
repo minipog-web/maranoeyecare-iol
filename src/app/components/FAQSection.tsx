@@ -23,8 +23,9 @@ const objectionFAQs: FAQItem[] = [
     question: 'Why should I spend thousands of dollars on my eyes?',
     concern: 'Cost',
     answer:
-      "Think of it this way: based on an average premium upgrade, over 20 years that breaks down to less than $0.60 per day for clear vision at every distance. The average American spends over $3,000 on glasses over a decade — and still can't see clearly at arm's length or while driving. Premium IOLs are also HSA and FSA eligible, and we offer CareCredit financing. Most of our patients say it's the best financial decision they've ever made for their quality of life — not just their vision.",
-    highlight: 'Less than $0.60/day over 20 years · HSA/FSA eligible · Financing available',
+      "Premium IOLs are custom-engineered optical assets designed to permanently preserve your active lifestyle. Rather than a recurring expense on temporary solutions like glasses or contacts, investing in a premium lens is comparable to acquiring high-performance equipment—such as a fine camera lens, professional artist medium, or a custom golf driver. The premium upgrade includes Dr. Marano's utilization of the LENSAR femtosecond laser targeting system and advanced 3D corneal mapping to ensure sub-micron alignment accuracy. Your investment covers a lifetime of uninterrupted visual performance. Premium upgrades are HSA and FSA eligible, and we offer competitive CareCredit financing options.",
+    highlight:
+      'Investment in a lifetime visual asset · LENSAR robotic laser alignment included · HSA/FSA eligible',
   },
   {
     question: "What if I don't like the result? Can the lens be changed?",
@@ -57,16 +58,10 @@ const proceduralFAQs: FAQItem[] = [
       'Yes. Dr. Matthew Marano Jr., MD performs every cataract surgery personally. You will meet with him at consultation, and he will be your surgeon on the day of your procedure.',
   },
   {
-    question: 'How long does the surgery take?',
+    question: 'How long is recovery, and when can I return to my hobbies?',
     concern: '',
     answer:
-      'The procedure typically takes 12–18 minutes per eye. Most patients are in and out of the surgical center within 2 hours, including prep and recovery time.',
-  },
-  {
-    question: 'When can I drive after surgery?',
-    concern: '',
-    answer:
-      'Most patients can expect to be driving again within 72 hours at their discretion, although everyone heals differently. Dr. Marano will assess your progress and discuss your recovery at your post-operative visit.',
+      "Most patients return to light activities like reading, using screens, and light walking within 24 to 48 hours. High-performance activities like golf, tennis, and cycling can typically be resumed after 1 to 2 weeks, pending Dr. Marano's post-operative evaluation. Driving is usually permitted within 72 hours, although everyone heals differently.",
   },
   {
     question: 'Will I feel any pain?',

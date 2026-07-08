@@ -224,6 +224,119 @@ export default function LensarAllySection() {
                   className="object-cover opacity-90 transition-all duration-700 hover:scale-[1.03]"
                   sizes="(max-width: 640px) 100vw, 360px"
                 />
+
+                {/* Biometric Laser-Guided Scanning Overlay */}
+                <div className="absolute inset-0 z-10 pointer-events-none select-none">
+                  {/* Rotating Outer Target Ticks */}
+                  <svg
+                    className="absolute inset-0 w-full h-full text-primary/30 animate-biometric-rotate"
+                    viewBox="0 0 100 100"
+                  >
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="44"
+                      stroke="currentColor"
+                      strokeWidth="0.5"
+                      strokeDasharray="2 12"
+                      fill="none"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="32"
+                      stroke="currentColor"
+                      strokeWidth="0.5"
+                      strokeDasharray="1 8"
+                      fill="none"
+                    />
+                  </svg>
+
+                  {/* Pulsing Capture Reticle */}
+                  <div className="absolute top-1/2 left-1/2 w-48 h-48 animate-biometric-pulse">
+                    <svg className="w-full h-full text-primary/60" viewBox="0 0 100 100">
+                      {/* Corner crop marks */}
+                      <path
+                        d="M 10 30 L 10 10 L 30 10"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                      />
+                      <path
+                        d="M 70 10 L 90 10 L 90 30"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                      />
+                      <path
+                        d="M 10 70 L 10 90 L 30 90"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                      />
+                      <path
+                        d="M 70 90 L 90 90 L 90 70"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                      />
+                      {/* Inner target crosshair */}
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="8"
+                        stroke="currentColor"
+                        strokeWidth="0.75"
+                        fill="none"
+                        strokeDasharray="2 2"
+                      />
+                      <line
+                        x1="50"
+                        y1="25"
+                        x2="50"
+                        y2="40"
+                        stroke="currentColor"
+                        strokeWidth="0.75"
+                      />
+                      <line
+                        x1="50"
+                        y1="60"
+                        x2="50"
+                        y2="75"
+                        stroke="currentColor"
+                        strokeWidth="0.75"
+                      />
+                      <line
+                        x1="25"
+                        y1="50"
+                        x2="40"
+                        y2="50"
+                        stroke="currentColor"
+                        strokeWidth="0.75"
+                      />
+                      <line
+                        x1="60"
+                        y1="50"
+                        x2="75"
+                        y2="50"
+                        stroke="currentColor"
+                        strokeWidth="0.75"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Horizontal Scan Line Sweep */}
+                  <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/80 to-transparent shadow-[0_0_10px_var(--primary)] animate-biometric-scan" />
+
+                  {/* Subtle Tech Coordinates Overlay */}
+                  <div className="absolute bottom-3 left-3 font-mono text-[8px] text-primary/70 tracking-wider">
+                    SYS.ACTIVE // TRK: 509.2
+                  </div>
+                  <div className="absolute top-3 right-3 font-mono text-[8px] text-primary/70 tracking-wider">
+                    CAL.LOCK: OK
+                  </div>
+                </div>
+
                 {/* Subtle inner glass highlight */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.02] via-transparent to-transparent pointer-events-none" />
               </div>

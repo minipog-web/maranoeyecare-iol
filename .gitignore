@@ -46,3 +46,6 @@ jest-test-results.json
 # Optional: if using TurboRepo or monorepo
 turbo/
 .belt/
+
+# Temporary scratch files
+scratch/

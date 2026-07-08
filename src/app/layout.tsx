@@ -24,21 +24,61 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maranoeyecare.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maranoeye.com'),
   alternates: {
     canonical: '/',
   },
   title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
   description:
-    "Compare Clareon Vivity, PanOptix Pro, and Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
+    "Compare Clareon Vivity, PanOptix Pro, and Tecnis Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
+  applicationName: 'Marano Eye Care',
+  generator: 'Next.js',
+  referrer: 'origin-when-cross-origin',
+  keywords: [
+    'cataract surgery nj',
+    'premium iol lenses',
+    'clareon vivity',
+    'panoptix pro',
+    'tecnis eyhance',
+    'marano eye care',
+    'dr matthew marano',
+    'nj ophthalmologist',
+    'cataract lens options',
+    'multifocal iol',
+    'laser cataract surgery',
+    'livingston nj eye doctor',
+    'denville nj eye clinic',
+    'newark nj eye surgery',
+  ],
+  authors: [{ name: 'Dr. Matthew Marano Jr., MD', url: 'https://www.maranoeye.com' }],
+  creator: 'Dr. Matthew Marano Jr., MD',
+  publisher: 'Marano Eye Care',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
   },
   openGraph: {
     title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
     description:
-      "Compare Clareon Vivity, PanOptix Pro, and Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
-    url: 'https://www.maranoeyecare.com',
+      "Compare Clareon Vivity, PanOptix Pro, and Tecnis Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
+    url: 'https://www.maranoeye.com',
     siteName: 'Marano Eye Care',
     images: [
       {
@@ -55,7 +95,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
     description:
-      "Compare Clareon Vivity, PanOptix Pro, and Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
+      "Compare Clareon Vivity, PanOptix Pro, and Tecnis Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
     images: ['/assets/images/vivity_iol_clean.png'],
   },
 };
@@ -65,8 +105,8 @@ const schemas = [
     '@context': 'https://schema.org',
     '@type': ['MedicalBusiness', 'Physician'],
     name: 'Marano Eye Care',
-    image: 'https://www.maranoeyecare.com/assets/images/marano_logo.png',
-    url: 'https://www.maranoeyecare.com',
+    image: 'https://www.maranoeye.com/assets/images/marano_logo.png',
+    url: 'https://www.maranoeye.com',
     telephone: '973-322-0100',
     priceRange: '$$$',
     address: [

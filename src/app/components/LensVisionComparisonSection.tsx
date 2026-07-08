@@ -41,10 +41,10 @@ const lenses = [
       { label: 'Night Vision Quality', value: 'Mild Halos', score: 72 },
     ],
     highlights: [
-      '99% would choose a premium lens again [1]',
-      'ENLIGHTEN NXT: 94% light capture [1]',
-      'True 20/20 vision at all 3 distances',
-      'Maximum independence from glasses',
+      'Complete freedom from glasses and contacts',
+      '99% of patients would choose this lens again [1]',
+      'Full visual spectrum (Near, Intermediate, Distance)',
+      'Designed for reading, driving, and active living',
     ],
     bestFor:
       'Patients wanting maximum glasses freedom — reading, screens, and driving — all without spectacles.',
@@ -92,9 +92,9 @@ const lenses = [
     ],
     highlights: [
       'Non-diffractive X-WAVE™ Technology [2]',
-      'Similar halos to standard monofocal [2]',
-      'Extended depth of focus (EDOF)',
-      'Neuroadaptation: 1–4 weeks',
+      'Freedom from glasses for screens and distance',
+      'Similar night halo profile to a standard lens [2]',
+      'Pristine active-lifestyle vision range',
     ],
     bestFor:
       'Active patients who use screens heavily and want extended range with the fewest visual disturbances.',
@@ -112,7 +112,7 @@ const lenses = [
     name: 'Tecnis Eyhance',
     manufacturer: 'J&J Vision',
     type: 'Enhanced Monofocal',
-    tagline: 'Monofocal clarity with a meaningful upgrade.',
+    tagline: 'Monofocal distance clarity with enhanced intermediate range.',
     color: '#00A3FF',
     featured: false,
     badge: 'Zero Added Halos',
@@ -142,9 +142,9 @@ const lenses = [
     ],
     highlights: [
       'Over 90% distance satisfaction rate [3]',
-      'Ring-free refractive optic design',
-      'No increase in halos vs. monofocal [3]',
-      'Ideal for patients with mild comorbidities',
+      'Enhanced mid-range over standard monofocals [3]',
+      'Zero added night halos or glare',
+      'Allows computer work with less spectacle dependence',
     ],
     bestFor:
       'Patients who prioritise pristine distance clarity and zero added visual disturbances, with some intermediate benefit.',
@@ -162,7 +162,7 @@ const lenses = [
     name: 'Standard Monofocal',
     manufacturer: 'Various',
     type: 'Single Vision IOL',
-    tagline: 'Proven clarity. Single focus point.',
+    tagline: 'Traditional coverage. Single focus point (glasses required for near & intermediate).',
     color: '#64748B',
     featured: false,
     badge: 'Baseline',
@@ -191,13 +191,13 @@ const lenses = [
       { label: 'Night Vision Quality', value: 'Baseline', score: 98 },
     ],
     highlights: [
-      'Standard of care for decades',
-      'Excellent distance contrast',
-      'No rings or visual disturbances',
-      'Fully covered by most insurance',
+      'Restores basic distance vision only',
+      'Dependent on glasses for screens & reading',
+      'Fully covered by basic insurance',
+      'A permanent choice with fixed visual limitations',
     ],
     bestFor:
-      'Patients comfortable wearing glasses for most tasks who want the most budget-friendly, clear distance option.',
+      'Patients who are comfortable relying on reading glasses for daily tasks and want a standard, basic insurance-covered distance option.',
     blur: {
       day: { distance: 0, intermediate: 0, near: 0 },
       night: { distance: 0, intermediate: 5.5, near: 16 },
@@ -266,15 +266,15 @@ const visualStatusOverlays: Record<
     day: {
       distance: { text: 'Distance Vision: Clear (Glasses-Free)', status: 'clear' },
       intermediate: {
-        text: 'Intermediate (Dashboard): Blurry (Glasses Required)',
-        status: 'error',
+        text: 'Intermediate (Dashboard): Blurry (Spectacles Required)',
+        status: 'warning',
       },
-      near: { text: 'Near (Reading): Blurry (Readers Required)', status: 'error' },
+      near: { text: 'Near (Reading): Blurry (Reading Glasses Required)', status: 'warning' },
     },
     night: {
       distance: { text: 'Distance: Clear Driving (Baseline Safety)', status: 'clear' },
-      intermediate: { text: 'Intermediate: Blurry (Glasses Required)', status: 'error' },
-      near: { text: 'Near: Blurry (Readers Required)', status: 'error' },
+      intermediate: { text: 'Intermediate: Blurry (Spectacles Required)', status: 'warning' },
+      near: { text: 'Near: Blurry (Reading Glasses Required)', status: 'warning' },
     },
   },
   eyhance: {

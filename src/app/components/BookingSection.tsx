@@ -343,7 +343,7 @@ export default function BookingSection() {
 
             {/* Phone numbers */}
             <div className="border-t border-border pt-6 sm:pt-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
                 {`Or call us directly`}
               </p>
               <div className="space-y-1">
@@ -438,7 +438,7 @@ export default function BookingSection() {
                         ? 'Provide your contact details to begin.'
                         : 'Optional — helps Dr. Marano prepare for your visit.'}
                     </p>
-                    <div className="flex items-center gap-1.5 text-[10px] text-primary font-medium tracking-wide uppercase">
+                    <div className="flex items-center gap-1.5 text-xs text-primary font-bold tracking-wide uppercase">
                       <svg
                         className="w-3.5 h-3.5"
                         fill="none"
@@ -608,7 +608,7 @@ export default function BookingSection() {
                               key={method.value}
                               type="button"
                               role="radio"
-                              aria-checked={isChecked}
+                              aria-checked={isChecked ? 'true' : 'false'}
                               tabIndex={isChecked ? 0 : -1}
                               onKeyDown={(e) => handleRadioKeyDown(e, idx)}
                               onClick={() =>
@@ -629,7 +629,7 @@ export default function BookingSection() {
 
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     >
                       <span>Continue to Step 2</span>
                       <Icon
@@ -639,7 +639,7 @@ export default function BookingSection() {
                       />
                     </button>
 
-                    <p className="text-[11px] text-muted-foreground text-center pt-1">
+                    <p className="text-xs text-muted-foreground text-center pt-1">
                       No commitment required · We&apos;ll call within 1 business day · Your info
                       stays private
                     </p>
@@ -700,11 +700,11 @@ export default function BookingSection() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         {loading ? (
                           <span className="flex items-center gap-3">
-                            <span className="w-4 h-4 border-2 border-[#020304]/30 border-t-[#020304] rounded-full animate-spin" />
+                            <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
                             Submitting Request...
                           </span>
                         ) : (
@@ -720,7 +720,7 @@ export default function BookingSection() {
                       </button>
                     </div>
 
-                    <p className="text-[11px] text-muted-foreground text-center pt-1">
+                    <p className="text-xs text-muted-foreground text-center pt-1">
                       By submitting, you agree to be contacted by Marano Eye Care. Your information
                       is never shared.
                     </p>

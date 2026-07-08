@@ -67,8 +67,10 @@ export default function TrustSection() {
             Surgeon
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Dr. Matthew Marano Jr., MD has been named Top Doctor by NJ Monthly Magazine for 15
-            consecutive years — the only physician to receive six International Star Diamond Awards.
+            Dr. Matthew Marano Jr., MD has spent over three decades helping patients achieve
+            permanent freedom from glasses and contacts. Named a Top Doctor for 15 consecutive
+            years, he is the specialist other surgeons consult to design customized, lifetime visual
+            solutions.
           </p>
         </div>
 

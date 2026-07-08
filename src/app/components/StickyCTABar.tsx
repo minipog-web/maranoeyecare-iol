@@ -71,7 +71,7 @@ export default function StickyCTABar() {
                 label: 'Book Free Consultation',
               })
             }
-            className="flex-1 flex items-center justify-between pl-5 pr-3 py-2.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="flex-1 flex items-center justify-between pl-5 pr-3 py-2.5 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <span>Book Free Consultation</span>
             <span className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors">
@@ -89,10 +89,10 @@ export default function StickyCTABar() {
                 label: 'Dismiss Sticky Bar',
               });
             }}
-            className="flex items-center justify-center w-11 h-11 text-muted-foreground/50 hover:text-muted-foreground transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="flex items-center justify-center w-12 h-12 text-muted-foreground/50 hover:text-muted-foreground transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             aria-label="Dismiss"
           >
-            <Icon name="XMarkIcon" size={16} />
+            <Icon name="XMarkIcon" size={18} />
           </button>
         </div>
 

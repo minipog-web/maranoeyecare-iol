@@ -51,7 +51,7 @@ const lenses = [
 // Default active lens when nothing is hovered
 const DEFAULT_ACTIVE = 'Clareon Vivity';
 
-export default function HeroSection() {
+export default function HeroSection({ badgeText }: { badgeText?: string }) {
   const [hoveredLens, setHoveredLens] = useState<string | null>(null);
 
   // The lens that should show the strong glow
@@ -78,22 +78,23 @@ export default function HeroSection() {
             <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
               <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.35em] text-primary">
-                Premium IOL Specialists — New Jersey
+                {badgeText || 'Premium IOL Specialists — New Jersey'}
               </span>
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
               <span className="block whitespace-nowrap">One Surgery. One Choice.</span>{' '}
               <span className="block text-gradient-primary font-semibold mt-1 pb-4 whitespace-nowrap">
-                Compare Premium IOLs.
+                Lifetime Visual Freedom.
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 text-justify animate-fade-up delay-300 fill-both">
-              Cataract surgery is your single, once-in-a-lifetime opportunity to upgrade your sight.
-              Stop looking at life through a haze — compare the world&apos;s most advanced lenses to
-              design a future of absolute visual freedom.
+              Cataract surgery is a single, permanent opportunity to reclaim your active lifestyle.
+              Rather than accepting standard lenses that require reading glasses for the rest of
+              your life, discover the freedom of advanced lenses designed to restore complete,
+              multi-distance clarity.
             </p>{' '}
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12 animate-fade-up delay-450 fill-both">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-4 sm:mb-5 animate-fade-up delay-450 fill-both">
               <a
                 href="#booking"
                 onClick={() =>
@@ -139,6 +140,21 @@ export default function HeroSection() {
                   className="relative z-10 transition-all duration-300 group-hover:translate-y-0.5 group-hover:translate-x-1 text-muted-foreground group-hover:text-primary"
                 />
               </a>
+            </div>
+            {/* Reassurance Indicators */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8 sm:mb-12 animate-fade-up delay-500 fill-both text-xs text-foreground/80 font-medium select-none">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                98% Patient Satisfaction
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                Quick 10-Min Procedure
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                No Out-of-Pocket Consultation Cost
+              </span>
             </div>
             {/* Editorial Proof Text */}
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl">

@@ -13,12 +13,20 @@ import LensQuestionnaireSection from '@/app/components/LensQuestionnaireSection'
 import FAQSection from '@/app/components/FAQSection';
 import BookingSection from '@/app/components/BookingSection';
 import StickyCTABar from '@/app/components/StickyCTABar';
+import { getBadgeText } from '@/lib/dynamicText';
 
-export default function HomePage() {
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function HomePage({ searchParams }: PageProps) {
+  const resolvedParams = await searchParams;
+  const badgeText = getBadgeText(resolvedParams);
+
   return (
     <main className="min-h-screen bg-background overflow-x-hidden">
       <Header />
-      <HeroSection />
+      <HeroSection badgeText={badgeText} />
       <TrustBadgeBar variant="clinical" />
       <hr className="section-divider" />
       <TrustSection />

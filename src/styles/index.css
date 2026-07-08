@@ -936,6 +936,74 @@ h2.font-display {
     0 0 64px rgba(197, 160, 89, 0.05);
 }
 
+/* ── Biometric & Precision Scan Animations ── */
+@keyframes biometricScan {
+  0% {
+    transform: translateY(-5%);
+    opacity: 0.1;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105%);
+    opacity: 0.1;
+  }
+}
+
+@keyframes biometricPulse {
+  0% {
+    transform: scale(0.96) translate(-50%, -50%);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.04) translate(-50%, -50%);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0.96) translate(-50%, -50%);
+    opacity: 0.35;
+  }
+}
+
+@keyframes biometricRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-biometric-scan {
+  animation: biometricScan 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-biometric-pulse {
+  animation: biometricPulse 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-biometric-rotate {
+  animation: biometricRotate 24s linear infinite;
+}
+
+/* ── Accessibility: WCAG AAA High-Contrast Overrides on Dark Backgrounds ── */
+.text-muted-foreground\/50 {
+  color: rgba(241, 245, 249, 0.72) !important; /* >7:1 contrast ratio */
+}
+.text-muted-foreground\/60 {
+  color: rgba(241, 245, 249, 0.76) !important;
+}
+.text-white\/50 {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+.text-foreground\/85 {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
 /* ── Accessibility: Reduced Motion Support ── */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -954,7 +1022,10 @@ h2.font-display {
   .animate-pulse-glow,
   .animate-pulse-glow-delayed,
   .animate-glow-pulse,
-  .btn-shimmer::after {
+  .btn-shimmer::after,
+  .animate-biometric-scan,
+  .animate-biometric-pulse,
+  .animate-biometric-rotate {
     animation: none !important;
   }
 }

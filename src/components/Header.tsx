@@ -66,7 +66,7 @@ export default function Header() {
       <div className="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-4 lg:gap-5 xl:gap-6">
         <div className="flex items-center gap-3">
           <a
-            href="https://www.maranoeyecare.com"
+            href="https://www.maranoeye.com"
             aria-label="Marano Eye Care — return to homepage"
             className="hover:opacity-80 transition-opacity block shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
