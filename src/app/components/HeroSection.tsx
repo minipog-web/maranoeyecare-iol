@@ -51,7 +51,19 @@ const lenses = [
 // Default active lens when nothing is hovered
 const DEFAULT_ACTIVE = 'Clareon Vivity';
 
-export default function HeroSection({ badgeText }: { badgeText?: string }) {
+interface HeroSectionProps {
+  badgeText?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroDesc?: string;
+}
+
+export default function HeroSection({
+  badgeText,
+  heroTitleLine1,
+  heroTitleLine2,
+  heroDesc,
+}: HeroSectionProps) {
   const [hoveredLens, setHoveredLens] = useState<string | null>(null);
 
   // The lens that should show the strong glow
@@ -82,16 +94,16 @@ export default function HeroSection({ badgeText }: { badgeText?: string }) {
               </span>
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
-              <span className="block whitespace-nowrap">One Surgery. One Choice.</span>{' '}
+              <span className="block whitespace-nowrap">
+                {heroTitleLine1 || 'One Surgery. One Choice.'}
+              </span>{' '}
               <span className="block text-gradient-primary font-semibold mt-1 pb-4 whitespace-nowrap">
-                Lifetime Visual Freedom.
+                {heroTitleLine2 || 'Lifetime Visual Freedom.'}
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 text-justify animate-fade-up delay-300 fill-both">
-              Cataract surgery is a single, permanent opportunity to reclaim your active lifestyle.
-              Rather than accepting standard lenses that require reading glasses for the rest of
-              your life, discover the freedom of advanced lenses designed to restore complete,
-              multi-distance clarity.
+              {heroDesc ||
+                'Cataract surgery is a single, permanent opportunity to reclaim your active lifestyle. Rather than accepting standard lenses that require reading glasses for the rest of your life, discover the freedom of advanced lenses designed to restore complete, multi-distance clarity.'}
             </p>{' '}
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-4 sm:mb-5 animate-fade-up delay-450 fill-both">

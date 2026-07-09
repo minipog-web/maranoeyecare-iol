@@ -56,22 +56,43 @@ const whatHappensNext = [
   },
 ];
 
-export default function BookingSection() {
-  const [form, setForm] = useState<FormState>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    preferredContact: 'email',
-    location: '',
-    lens: '',
-    message: '',
+interface BookingSectionProps {
+  bookingHeadline?: string;
+  bookingUrgencyTitle?: string;
+  bookingUrgencyText?: string;
+  preselectedLens?: 'vivity' | 'panoptix' | 'eyhance' | 'monofocal';
+}
+
+export default function BookingSection({
+  bookingHeadline,
+  bookingUrgencyTitle,
+  bookingUrgencyText,
+  preselectedLens,
+}: BookingSectionProps) {
+  const [form, setForm] = useState<FormState>(() => {
+    let initialLens = '';
+    if (preselectedLens === 'vivity') initialLens = 'Clareon Vivity (EDOF)';
+    else if (preselectedLens === 'panoptix') initialLens = 'PanOptix Pro (Trifocal)';
+    else if (preselectedLens === 'eyhance') initialLens = 'Tecnis Eyhance (Enhanced Monofocal)';
+    else if (preselectedLens === 'monofocal') initialLens = 'Standard Monofocal';
+
+    return {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      preferredContact: 'email',
+      location: '',
+      lens: initialLens,
+      message: '',
+    };
   });
   const [step, setStep] = useState<1 | 2>(1);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [quizResult, setQuizResult] = useState<string | null>(preselectedLens || null);
 
   React.useEffect(() => {
     const handleSelectLens = (e: Event) => {
@@ -85,6 +106,7 @@ export default function BookingSection() {
 
       if (optionValue) {
         setForm((prev) => ({ ...prev, lens: optionValue }));
+        setQuizResult(lensKey);
       }
     };
 
@@ -222,7 +244,10 @@ export default function BookingSection() {
       const response = await fetch('/api/book-consultation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(trimmedForm),
+        body: JSON.stringify({
+          ...trimmedForm,
+          quizResult: quizResult,
+        }),
       });
 
       if (response.ok) {
@@ -270,9 +295,12 @@ export default function BookingSection() {
             <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               {`IOL Consultation`}
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6 whitespace-nowrap">
-              {`Reclaim`}{' '}
-              <span className="font-semibold text-gradient-primary">{`Clear Vision`}</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
+              {bookingHeadline || (
+                <>
+                  Reclaim <span className="font-semibold text-gradient-primary">Clear Vision</span>
+                </>
+              )}
             </h2>
 
             {/* Urgency framing */}
@@ -283,8 +311,11 @@ export default function BookingSection() {
                 className="text-amber-400 shrink-0 mt-0.5"
               />
               <p className="text-sm text-amber-200/80 leading-relaxed">
-                <strong className="text-amber-300 font-semibold">{`Cataracts only progress`}</strong>
-                {` and never improve on their own. Waiting makes vision worse and recovery longer.`}
+                <strong className="text-amber-300 font-semibold">
+                  {bookingUrgencyTitle || 'Cataracts only progress'}
+                </strong>{' '}
+                {bookingUrgencyText ||
+                  'and never improve on their own. Waiting makes vision worse and recovery longer.'}
               </p>
             </div>
 

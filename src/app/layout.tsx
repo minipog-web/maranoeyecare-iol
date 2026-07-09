@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { GA_MEASUREMENT_ID } from '@/lib/gtag';
+import { GA_MEASUREMENT_ID, GTM_ID } from '@/lib/gtag';
 import { DM_Sans, Fraunces } from 'next/font/google';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
@@ -163,6 +163,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${dmSans.variable} ${fraunces.variable}`}>
       <head>
+        {/* Google Tag Manager */}
+        {GTM_ID && (
+          <Script id="gtm-script" strategy="afterInteractive">
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');`}
+          </Script>
+        )}
         {schemas.map((schema, index) => (
           <script
             key={index}
@@ -172,6 +182,17 @@ export default function RootLayout({
         ))}
       </head>
       <body className="font-sans antialiased">
+        {/* Google Tag Manager (noscript) */}
+        {GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18197167741"

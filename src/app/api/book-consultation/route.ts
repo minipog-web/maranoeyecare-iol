@@ -19,6 +19,7 @@ function buildEmailHtml(s: {
   location: string;
   lens: string;
   message: string;
+  quizResult?: string;
 }): string {
   const patientRows =
     '<p style="margin:4px 0;"><strong>Name:</strong> ' +
@@ -43,6 +44,11 @@ function buildEmailHtml(s: {
     '<p style="margin:4px 0;"><strong>Lens of Interest:</strong> ' +
     (s.lens || 'Not specified') +
     '</p>' +
+    (s.quizResult
+      ? '<p style="margin:4px 0;"><strong>Lens Quiz Result:</strong> ' +
+        s.quizResult.toUpperCase() +
+        '</p>'
+      : '') +
     '<p style="margin:4px 0;"><strong>Message:</strong></p>' +
     '<p style="color:#666;white-space:pre-wrap;">' +
     (s.message || 'No additional notes provided.') +
@@ -68,7 +74,17 @@ function buildEmailHtml(s: {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { firstName, lastName, email, phone, preferredContact, location, lens, message } = body;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      preferredContact,
+      location,
+      lens,
+      message,
+      quizResult,
+    } = body;
 
     // Server-side validation
     if (
@@ -124,6 +140,7 @@ export async function POST(req: NextRequest) {
       location: escapeHtml(location),
       lens: escapeHtml(lens),
       message: escapeHtml(message),
+      quizResult: quizResult ? escapeHtml(String(quizResult)) : undefined,
     };
 
     const htmlContent = buildEmailHtml(safe);

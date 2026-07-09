@@ -492,12 +492,18 @@ export default function LensQuestionnaireSection() {
               </div>
 
               {/* Options */}
-              <div className="flex flex-col gap-3">
+              <div
+                className="flex flex-col gap-3"
+                role="radiogroup"
+                aria-label={currentQuestion.text}
+              >
                 {currentQuestion.options.map((opt, idx) => (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => handleOption(opt, idx)}
+                    role="radio"
+                    aria-checked={selectedOption === idx}
                     className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-all duration-300 ease-out cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
                       ${
                         selectedOption === idx
