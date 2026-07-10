@@ -21,7 +21,9 @@ export default function FinancingSection() {
             <span className="font-semibold text-gradient-primary">Investment in Yourself.</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-            Standard cataract surgery is fully covered by Medicare and commercial insurance. Opting for a premium lens is an investment in permanent, glasses-free vision. We make it affordable.
+            Standard cataract surgery is fully covered by Medicare and commercial insurance. Opting
+            for a premium lens is an investment in permanent, glasses-free vision. We make it
+            affordable.
           </p>
         </div>
 
@@ -34,10 +36,14 @@ export default function FinancingSection() {
             </div>
             <h3 className="text-lg font-semibold text-foreground mb-3">HSA & FSA Eligible</h3>
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-              Premium upgrades are considered eligible medical expenses. You can use your pre-tax Flexible Spending Account (FSA) or Health Savings Account (HSA) dollars, saving up to <strong className="text-foreground">30% to 40%</strong> depending on your tax bracket.
+              Premium upgrades are considered eligible medical expenses. You can use your pre-tax
+              Flexible Spending Account (FSA) or Health Savings Account (HSA) dollars, saving up to{' '}
+              <strong className="text-foreground">30% to 40%</strong> depending on your tax bracket.
             </p>
             <div className="mt-6 pt-4 border-t border-border/60">
-              <span className="text-xs font-bold text-primary uppercase tracking-wider">Tax-Free Savings</span>
+              <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                Tax-Free Savings
+              </span>
             </div>
           </div>
 
@@ -48,10 +54,15 @@ export default function FinancingSection() {
             </div>
             <h3 className="text-lg font-semibold text-foreground mb-3">CareCredit® Financing</h3>
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-              We offer flexible payment plans through CareCredit®, including <strong className="text-foreground">0% APR promotional financing</strong> for 12 or 24 months. You can break your premium upgrade into low monthly payments that easily fit your budget.
+              We offer flexible payment plans through CareCredit®, including{' '}
+              <strong className="text-foreground">0% APR promotional financing</strong> for 12 or 24
+              months. You can break your premium upgrade into low monthly payments that easily fit
+              your budget.
             </p>
             <div className="mt-6 pt-4 border-t border-border/60">
-              <span className="text-xs font-bold text-primary uppercase tracking-wider">Interest-Free Options</span>
+              <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                Interest-Free Options
+              </span>
             </div>
           </div>
 
@@ -62,19 +73,28 @@ export default function FinancingSection() {
             </div>
             <h3 className="text-lg font-semibold text-foreground mb-3">Insurance Integration</h3>
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-              Your insurance (or Medicare) will still cover the foundation of your surgery (procedure, facility fees, standard lens). You only pay the out-of-pocket difference for the premium upgrade ($4,100 per eye). We handle all billing details.
+              Your insurance (or Medicare) will still cover the foundation of your surgery
+              (procedure, facility fees, standard lens). You only pay the out-of-pocket difference
+              for the premium upgrade ($4,100 per eye). We handle all billing details.
             </p>
             <div className="mt-6 pt-4 border-t border-border/60">
-              <span className="text-xs font-bold text-primary uppercase tracking-wider">Hassle-Free Billing</span>
+              <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                Hassle-Free Billing
+              </span>
             </div>
           </div>
         </div>
 
         {/* Financial Value Callout */}
         <div className="mt-10 sm:mt-12 max-w-3xl mx-auto glass-card border border-primary/25 bg-primary/[0.02] rounded-2xl p-6 text-center">
-          <p className="text-xs font-bold text-primary uppercase tracking-[0.15em] mb-2">Lifetime Cost Comparison</p>
+          <p className="text-xs font-bold text-primary uppercase tracking-[0.15em] mb-2">
+            Lifetime Cost Comparison
+          </p>
           <p className="text-sm sm:text-base text-foreground font-light leading-relaxed max-w-2xl mx-auto">
-            Compared to the ongoing lifetime cost of purchasing progressive designer glasses, contacts, and prescription sunglasses every few years, a one-time premium lens investment actually <strong className="text-gradient-primary">saves you money</strong> in the long run while providing permanent visual freedom.
+            Compared to the ongoing lifetime cost of purchasing progressive designer glasses,
+            contacts, and prescription sunglasses every few years, a one-time premium lens
+            investment actually <strong className="text-gradient-primary">saves you money</strong>{' '}
+            in the long run while providing permanent visual freedom.
           </p>
         </div>
       </div>

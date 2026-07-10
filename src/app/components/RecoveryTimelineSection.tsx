@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Icon from '@/components/ui/AppIcon';
 
 export default function RecoveryTimelineSection() {
   const steps = [
@@ -10,29 +9,33 @@ export default function RecoveryTimelineSection() {
       title: 'Precision Planning',
       timeframe: '1–2 Weeks Prior',
       icon: 'DocumentTextIcon',
-      description: 'Using high-resolution corneal topography and optical biometry, we create a sub-micron 3D map of your eye. This data is programmed directly into the LENSAR laser guidance system for personalized alignment.'
+      description:
+        'Using high-resolution corneal topography and optical biometry, we create a sub-micron 3D map of your eye. This data is programmed directly into the LENSAR laser guidance system for personalized alignment.',
     },
     {
       phase: '02',
       title: 'Procedure Day',
       timeframe: '15 Minutes',
       icon: 'ClockIcon',
-      description: 'An outpatient procedure. We apply local numbing eye drops—no pain, no injections, no general anesthesia. The robotic laser system replaces your cataract with your custom premium lens. You walk out the same day.'
+      description:
+        'An outpatient procedure. We apply local numbing eye drops—no pain, no injections, no general anesthesia. The robotic laser system replaces your cataract with your custom premium lens. You walk out the same day.',
     },
     {
       phase: '03',
       title: 'Immediate Shift',
       timeframe: '24–48 Hours',
       icon: 'EyeIcon',
-      description: 'Your vision begins clearing rapidly. Most patients return to light activities like reading, using computer screens, and light walking within 24 to 48 hours. Mild scratchiness is normal and easily managed with drops.'
+      description:
+        'Your vision begins clearing rapidly. Most patients return to light activities like reading, using computer screens, and light walking within 24 to 48 hours. Mild scratchiness is normal and easily managed with drops.',
     },
     {
       phase: '04',
       title: 'Neuroadaptation',
       timeframe: '4–6 Weeks',
       icon: 'SparklesIcon',
-      description: 'Your brain adapts to the new, premium optics. Contrast sensitivity peaks, night glare drops, and vision stabilizes completely, providing you with long-term, glasses-free visual freedom.'
-    }
+      description:
+        'Your brain adapts to the new, premium optics. Contrast sensitivity peaks, night glare drops, and vision stabilizes completely, providing you with long-term, glasses-free visual freedom.',
+    },
   ];
 
   return (
@@ -52,7 +55,8 @@ export default function RecoveryTimelineSection() {
             <span className="font-semibold text-gradient-primary">Visual Freedom.</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-            Fear of surgery is natural, but cataract correction is one of the safest, most common procedures in the world. Here is your step-by-step timeline.
+            Fear of surgery is natural, but cataract correction is one of the safest, most common
+            procedures in the world. Here is your step-by-step timeline.
           </p>
         </div>
 
@@ -65,22 +69,28 @@ export default function RecoveryTimelineSection() {
             {steps?.map((step, idx) => {
               const isEven = idx % 2 === 0;
               return (
-                <div key={idx} className="relative flex flex-col md:flex-row items-start md:items-center">
-                  
+                <div
+                  key={idx}
+                  className="relative flex flex-col md:flex-row items-start md:items-center"
+                >
                   {/* Timeline circle node */}
                   <div className="absolute left-[39px] md:left-1/2 w-8 h-8 rounded-full border border-primary/50 bg-[#0d0f16] flex items-center justify-center -translate-x-1/2 z-20 shadow-[0_0_12px_rgba(197,160,89,0.3)] shrink-0">
                     <span className="text-[10px] font-bold text-primary">{step.phase}</span>
                   </div>
 
                   {/* Left Column (Desktop) */}
-                  <div className={`w-full md:w-1/2 pl-16 md:pl-0 md:pr-12 text-left md:text-right ${isEven ? 'md:block' : 'md:invisible md:pointer-events-none'}`}>
+                  <div
+                    className={`w-full md:w-1/2 pl-16 md:pl-0 md:pr-12 text-left md:text-right ${isEven ? 'md:block' : 'md:invisible md:pointer-events-none'}`}
+                  >
                     {isEven && (
                       <div className="glass-card border border-border rounded-2xl p-6 hover:border-primary/20 transition-all hover:scale-[1.01]">
                         <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary mb-2">
                           {step.timeframe}
                         </span>
                         <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {step.description}
+                        </p>
                       </div>
                     )}
                   </div>
@@ -89,14 +99,18 @@ export default function RecoveryTimelineSection() {
                   <div className="w-16 hidden md:block" />
 
                   {/* Right Column (Desktop) */}
-                  <div className={`w-full md:w-1/2 pl-16 md:pl-12 text-left ${!isEven ? 'md:block' : 'md:invisible md:pointer-events-none'}`}>
+                  <div
+                    className={`w-full md:w-1/2 pl-16 md:pl-12 text-left ${!isEven ? 'md:block' : 'md:invisible md:pointer-events-none'}`}
+                  >
                     {!isEven && (
                       <div className="glass-card border border-border rounded-2xl p-6 hover:border-primary/20 transition-all hover:scale-[1.01]">
                         <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary mb-2">
                           {step.timeframe}
                         </span>
                         <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {step.description}
+                        </p>
                       </div>
                     )}
                   </div>
@@ -107,11 +121,14 @@ export default function RecoveryTimelineSection() {
                       <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary mb-1">
                         {step.timeframe}
                       </span>
-                      <h3 className="text-base font-semibold text-foreground mb-1.5">{step.title}</h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed">{step.description}</p>
+                      <h3 className="text-base font-semibold text-foreground mb-1.5">
+                        {step.title}
+                      </h3>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
                   </div>
-
                 </div>
               );
             })}

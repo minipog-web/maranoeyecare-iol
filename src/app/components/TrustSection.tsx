@@ -69,7 +69,9 @@ export default function TrustSection() {
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Dr. Matthew Marano Jr., MD has spent over three decades helping patients achieve
             permanent freedom from glasses and contacts. Named a Top Doctor for 15 consecutive
-            years, he is a renowned specialist in complex cataract cases and challenging eye anatomy—frequently undertaking high-skill procedures that other surgeons decline to attempt.
+            years, he is a renowned specialist in complex cataract cases and challenging eye
+            anatomy—frequently undertaking high-skill procedures that other surgeons decline to
+            attempt.
           </p>
         </div>
 

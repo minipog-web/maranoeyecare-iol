@@ -21,7 +21,9 @@ export default function CandidacySection() {
             <span className="font-semibold text-gradient-primary">Premium Lenses?</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-            While premium lenses deliver life-changing visual freedom, your individual eye anatomy is the ultimate deciding factor. Dr. Marano performs detailed clinical mapping to ensure a safe, high-satisfaction outcome.
+            While premium lenses deliver life-changing visual freedom, your individual eye anatomy
+            is the ultimate deciding factor. Dr. Marano performs detailed clinical mapping to ensure
+            a safe, high-satisfaction outcome.
           </p>
         </div>
 
@@ -35,7 +37,9 @@ export default function CandidacySection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Ideal Candidates</h3>
-                <p className="text-xs text-muted-foreground">Patients who typically experience the best outcomes</p>
+                <p className="text-xs text-muted-foreground">
+                  Patients who typically experience the best outcomes
+                </p>
               </div>
             </div>
 
@@ -43,26 +47,28 @@ export default function CandidacySection() {
               {[
                 {
                   title: 'Desire for Spectacle Independence',
-                  desc: 'Patients looking to read, drive, and use screens without relying on glasses.'
+                  desc: 'Patients looking to read, drive, and use screens without relying on glasses.',
                 },
                 {
                   title: 'Stable Eye Health',
-                  desc: 'A healthy cornea, retina, and optic nerve free from advanced ocular disease.'
+                  desc: 'A healthy cornea, retina, and optic nerve free from advanced ocular disease.',
                 },
                 {
                   title: 'Cataract or Presbyopia Symptoms',
-                  desc: 'Experiencing cloudy vision, glare, or difficulty focusing on close-up tasks.'
+                  desc: 'Experiencing cloudy vision, glare, or difficulty focusing on close-up tasks.',
                 },
                 {
                   title: 'Realistic Visual Expectations',
-                  desc: 'Understanding that premium optics provide functional freedom but require a short neurological adaptation period.'
-                }
+                  desc: 'Understanding that premium optics provide functional freedom but require a short neurological adaptation period.',
+                },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
                   <div>
                     <h4 className="text-sm font-semibold text-foreground/90">{item.title}</h4>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </li>
               ))}
@@ -77,7 +83,9 @@ export default function CandidacySection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Important Considerations</h3>
-                <p className="text-xs text-muted-foreground">Conditions that may require alternative lens choices</p>
+                <p className="text-xs text-muted-foreground">
+                  Conditions that may require alternative lens choices
+                </p>
               </div>
             </div>
 
@@ -85,26 +93,28 @@ export default function CandidacySection() {
               {[
                 {
                   title: 'Severe Dry Eye Disease',
-                  desc: 'Unmanaged dry eye disrupts the tear film, which can cause blurry vision or glare—especially with diffractive multifocal lenses like the PanOptix.'
+                  desc: 'Unmanaged dry eye disrupts the tear film, which can cause blurry vision or glare—especially with diffractive multifocal lenses like the PanOptix.',
                 },
                 {
                   title: 'Macular Degeneration / Retinal Scars',
-                  desc: 'Retinal conditions limit the eye\'s contrast sensitivity, making standard monofocals or Eyhance a safer, crisper choice than multifocals.'
+                  desc: "Retinal conditions limit the eye's contrast sensitivity, making standard monofocals or Eyhance a safer, crisper choice than multifocals.",
                 },
                 {
                   title: 'Advanced or Uncontrolled Glaucoma',
-                  desc: 'Optic nerve damage compromises visual field and contrast, making diffractive premium lenses clinically unsuitable.'
+                  desc: 'Optic nerve damage compromises visual field and contrast, making diffractive premium lenses clinically unsuitable.',
                 },
                 {
                   title: 'Advanced Diabetic Retinopathy',
-                  desc: 'Potential future retinal treatments require clear views of the back of the eye, which standard monofocal lenses facilitate better.'
-                }
+                  desc: 'Potential future retinal treatments require clear views of the back of the eye, which standard monofocal lenses facilitate better.',
+                },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 shrink-0" />
                   <div>
                     <h4 className="text-sm font-semibold text-foreground/90">{item.title}</h4>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </li>
               ))}
@@ -119,7 +129,10 @@ export default function CandidacySection() {
               <Icon name="InformationCircleIcon" size={18} />
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-2xl">
-              <strong className="text-foreground">Honest Clinical Advice:</strong> A comprehensive diagnostic mapping at our clinic is the only way to verify candidate status. If a premium lens isn&apos;t the safest choice for your unique eye anatomy, Dr. Marano will advise a standard lens or a custom monofocal-plus solution.
+              <strong className="text-foreground">Honest Clinical Advice:</strong> A comprehensive
+              diagnostic mapping at our clinic is the only way to verify candidate status. If a
+              premium lens isn&apos;t the safest choice for your unique eye anatomy, Dr. Marano will
+              advise a standard lens or a custom monofocal-plus solution.
             </p>
           </div>
           <a
