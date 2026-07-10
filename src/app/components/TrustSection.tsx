@@ -69,8 +69,7 @@ export default function TrustSection() {
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Dr. Matthew Marano Jr., MD has spent over three decades helping patients achieve
             permanent freedom from glasses and contacts. Named a Top Doctor for 15 consecutive
-            years, he is the specialist other surgeons consult to design customized, lifetime visual
-            solutions.
+            years, he is a renowned specialist in complex cataract cases and challenging eye anatomy—frequently undertaking high-skill procedures that other surgeons decline to attempt.
           </p>
         </div>
 
@@ -207,8 +206,8 @@ export default function TrustSection() {
                   {[
                     'Chief Medical Editor — Ophthalmology 360',
                     'Active Member — American Academy of Ophthalmology (AAO) & American Society of Cataract and Refractive Surgery (ASCRS)',
-                    'Decades of experience teaching and training fellow refractive surgeons',
-                    'Femto laser-assisted cataract surgery specialist',
+                    'Specialist in high-risk, complex cataract cases that other practices decline',
+                    'Expert in advanced microsurgical techniques for irregular corneal anatomy',
                     'Three conveniently located NJ offices',
                   ]?.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">

@@ -9,52 +9,52 @@ const profiles = [
     id: 'active',
     title: 'The High-Performance Athlete & Explorer',
     description:
-      'You are on the golf course, tennis courts, sailing, or skiing down slopes. Restoring flawless distance and intermediate tracking—without the fogging or stability issues of glasses—is essential for your active lifestyle and depth perception.',
+      'Whether you are on the golf course, tennis courts, or navigating slopes, this is the ideal lens for the digital age. It provides excellent vision for reading computer and phone screens, offering a smooth transition to distance vision with vivid color perception and no night driving glare.',
     activities: [
       'Golf, tennis, or pickleball',
       'Sailing & coastal navigation',
       'Driving at speed, day or night',
-      'Reviewing maps, scorecards, or GPS devices',
-    ],
-    recommendation: 'PanOptix Pro',
-    reason:
-      'Trifocal design delivers uncompromised tracking across all distances—from reading your watch to watching your drive land 250 yards down the fairway.',
-    image: '/assets/images/profile_active_professional.jpg',
-    imageAlt: 'Active mature athlete watching a shot outdoors on a bright course',
-    stat: '99% of athletes would choose this premium lens again',
-  },
-  {
-    id: 'tech',
-    title: 'The Creative Visionary & Artist',
-    description:
-      'You are dedicated to painting, sculpting, fine woodwork, editing photography, or playing sheet music. You require perfect color fidelity, sharp intermediate screen range, and low glare under overhead gallery lighting.',
-    activities: [
-      'Fine painting & detailing work',
-      'Photography & color-accurate editing',
-      'Reading sheet music & playing instruments',
-      'Clean night driving without added halos',
+      'Reading computer & phone screens easily',
     ],
     recommendation: 'Clareon Vivity',
     reason:
-      'X-WAVE™ non-diffractive technology preserves maximum light intensity and color purity, extending your workspace range without introducing distracting glare or diffractive rings.',
-    image: '/assets/images/profile_tech_conscious.jpg',
-    imageAlt: 'Creative artist reviewing fine details at a bright modern studio desk',
+      'X-WAVE™ non-diffractive technology offers the smoothest transition from far to intermediate, preserving vivid color perception and minimizing glare or halos for night driving.',
+    image: '/assets/images/profile_active_professional.jpg',
+    imageAlt: 'Active mature athlete watching a shot outdoors on a bright course',
     stat: '92% report pristine visual clarity and texture depth',
   },
   {
-    id: 'conservative',
-    title: 'The Detail Specialist & Avid Reader',
+    id: 'tech',
+    title: 'The Creative Visionary & Detail Specialist',
     description:
-      'You spend hours reading dense novels, studying historical print, or stargazing. You demand absolute optical clarity and natural contrast sensitivity for distance vision above all else.',
+      'You are dedicated to painting, sculpting, fine woodwork, editing photography, or spending hours reading dense novels and fine manuscript review. You require the absolute best near and intermediate vision for your detailing work.',
     activities: [
+      'Fine painting & detailing work',
       'Avid reading & fine manuscript review',
-      'Birdwatching & stargazing',
+      'Photography & close-up editing',
+      'Screen work & desktop tasks',
+    ],
+    recommendation: 'PanOptix Pro',
+    reason:
+      'Trifocal diffractive design delivers uncompromised near and intermediate vision—providing the sharpest clarity for reading fine print and performing detailed desk work.',
+    image: '/assets/images/profile_tech_conscious.jpg',
+    imageAlt: 'Creative artist reviewing fine details at a bright modern studio desk',
+    stat: '99% of patients would choose this premium lens again',
+  },
+  {
+    id: 'conservative',
+    title: 'The Conservative Candidate',
+    description:
+      'You demand pristine optical clarity and natural contrast sensitivity for distance vision above all else, while still desiring functional intermediate vision for daily tasks without the risk of dysphotopsias (halos/glare).',
+    activities: [
+      'Stargazing & night driving',
       'Highly sensitive to glare or optical effects',
+      'Watching TV & general household tasks',
       'Comfortable with occasional reading glasses',
     ],
     recommendation: 'Tecnis Eyhance',
     reason:
-      'Pure, ring-free monofocal+ optics deliver zero added halos or glare, providing immaculate scenic views with improved intermediate clarity for desktop reading.',
+      'Pure, ring-free monofocal+ optics deliver zero added halos or glare, providing immaculate scenic distance views with improved functional intermediate clarity.',
     image: '/assets/images/profile_conservative_candidate.jpg',
     imageAlt: 'Mature reader enjoying a book outdoors in natural sunlight',
     stat: 'Over 90% report flawless contrast and night clarity',
@@ -192,8 +192,8 @@ export default function LifestyleMatchSection() {
               onMouseMove={handleMouseMove}
               onClick={() => {
                 let lensKey = '';
-                if (profile?.id === 'active') lensKey = 'panoptix';
-                else if (profile?.id === 'tech') lensKey = 'vivity';
+                if (profile?.id === 'active') lensKey = 'vivity';
+                else if (profile?.id === 'tech') lensKey = 'panoptix';
                 else if (profile?.id === 'conservative') lensKey = 'eyhance';
                 if (lensKey) {
                   window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));

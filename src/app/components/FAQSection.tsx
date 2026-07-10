@@ -23,7 +23,7 @@ const objectionFAQs: FAQItem[] = [
     question: 'Why should I spend thousands of dollars on my eyes?',
     concern: 'Cost',
     answer:
-      "Premium IOLs are custom-engineered optical assets designed to permanently preserve your active lifestyle. Rather than a recurring expense on temporary solutions like glasses or contacts, investing in a premium lens is comparable to acquiring high-performance equipment—such as a fine camera lens, professional artist medium, or a custom golf driver. The premium upgrade includes Dr. Marano's utilization of the LENSAR femtosecond laser targeting system and advanced 3D corneal mapping to ensure sub-micron alignment accuracy. Your investment covers a lifetime of uninterrupted visual performance. Premium upgrades are HSA and FSA eligible, and we offer competitive CareCredit financing options.",
+      "Premium IOLs are custom-engineered optical assets designed to permanently preserve your active lifestyle. Rather than a recurring expense on temporary solutions like glasses or contacts, investing in a premium lens is comparable to acquiring high-performance equipment—such as a fine camera lens, professional artist medium, or a custom golf driver. The premium upgrade includes Dr. Marano's utilization of the LENSAR femtosecond laser targeting system and advanced 3D corneal mapping to ensure sub-micron alignment accuracy. We offer flexible CareCredit® financing and full HSA/FSA eligibility to make this lifetime investment seamless.",
     highlight:
       'Investment in a lifetime visual asset · LENSAR robotic laser alignment included · HSA/FSA eligible',
   },
@@ -73,7 +73,7 @@ const proceduralFAQs: FAQItem[] = [
     question: 'Can I use HSA or FSA funds?',
     concern: '',
     answer:
-      'Yes. The premium IOL upgrade cost is an eligible medical expense under HSA and FSA accounts. CareCredit financing is also available for those who prefer monthly payments.',
+      'Yes. Both HSA and FSA funds can be used for your premium upgrade. We also offer CareCredit® to break the cost into interest-free monthly payments.',
   },
   {
     question: 'What if I have dry eyes or other eye conditions?',

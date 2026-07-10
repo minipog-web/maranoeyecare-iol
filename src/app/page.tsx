@@ -13,6 +13,9 @@ import LensQuestionnaireSection from '@/app/components/LensQuestionnaireSection'
 import FAQSection from '@/app/components/FAQSection';
 import BookingSection from '@/app/components/BookingSection';
 import StickyCTABar from '@/app/components/StickyCTABar';
+import CandidacySection from '@/app/components/CandidacySection';
+import RecoveryTimelineSection from '@/app/components/RecoveryTimelineSection';
+import FinancingSection from '@/app/components/FinancingSection';
 import { getDynamicContent } from '@/lib/dynamicText';
 
 interface PageProps {
@@ -43,11 +46,17 @@ export default async function HomePage({ searchParams }: PageProps) {
       <hr className="section-divider" />
       <LifestyleMatchSection />
       <hr className="section-divider" />
+      <CandidacySection />
+      <hr className="section-divider" />
       <LensQuestionnaireSection />
+      <hr className="section-divider" />
+      <RecoveryTimelineSection />
       <hr className="section-divider" />
       <TestimonialsSection />
       <hr className="section-divider" />
       <FAQSection />
+      <hr className="section-divider" />
+      <FinancingSection />
       <hr className="section-divider" />
       <BookingSection
         bookingHeadline={dynamicContent.bookingHeadline}
