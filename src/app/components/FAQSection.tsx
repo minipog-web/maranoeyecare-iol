@@ -111,7 +111,7 @@ function FAQItemRow({
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-start gap-4 p-5 sm:p-6 text-left touch-manipulation group"
+        className="w-full flex items-start gap-4 p-5 sm:p-6 text-left touch-manipulation group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
         {...{ 'aria-expanded': isOpen }}
       >
         <span aria-hidden="true" className="text-xl mt-0.5 shrink-0 select-none">
@@ -185,7 +185,7 @@ function ProceduralFAQRow({
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 py-4 text-left touch-manipulation group"
+        className="w-full flex items-center justify-between gap-4 py-4 text-left touch-manipulation group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
         {...{ 'aria-expanded': isOpen }}
       >
         <p className="text-sm font-medium text-foreground/85 group-hover:text-foreground transition-colors">
@@ -301,7 +301,7 @@ export default function FAQSection() {
                   label: 'Book a Free Consultation',
                 })
               }
-              className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[52px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer"
+              className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[52px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               Book a Free Consultation
               <Icon name="ArrowRightIcon" size={16} />

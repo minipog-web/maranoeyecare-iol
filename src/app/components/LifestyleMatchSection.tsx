@@ -21,7 +21,7 @@ const profiles = [
       'X-WAVE™ non-diffractive technology offers the smoothest transition from far to intermediate, preserving vivid color perception and minimizing glare or halos for night driving.',
     image: '/assets/images/profile_active_professional.jpg',
     imageAlt: 'Active mature athlete watching a shot outdoors on a bright course',
-    stat: '92% report pristine visual clarity and texture depth',
+    stat: '92% report pristine visual clarity and texture depth [2]',
   },
   {
     id: 'tech',
@@ -39,7 +39,7 @@ const profiles = [
       'Trifocal diffractive design delivers uncompromised near and intermediate vision—providing the sharpest clarity for reading fine print and performing detailed desk work.',
     image: '/assets/images/profile_tech_conscious.jpg',
     imageAlt: 'Creative artist reviewing fine details at a bright modern studio desk',
-    stat: '99% of patients would choose this premium lens again',
+    stat: '99% of patients would choose this premium lens again [1]',
   },
   {
     id: 'conservative',
@@ -57,7 +57,7 @@ const profiles = [
       'Pure, ring-free monofocal+ optics deliver zero added halos or glare, providing immaculate scenic distance views with improved functional intermediate clarity.',
     image: '/assets/images/profile_conservative_candidate.jpg',
     imageAlt: 'Mature reader enjoying a book outdoors in natural sunlight',
-    stat: 'Over 90% report flawless contrast and night clarity',
+    stat: 'Over 90% report flawless contrast and night clarity [3]',
   },
 ];
 
@@ -172,9 +172,8 @@ export default function LifestyleMatchSection() {
                   className="text-primary/70 shrink-0 mt-0.5"
                 />
                 <p className="text-[11px] text-muted-foreground/75 leading-relaxed">
-                  Premium lenses are an investment — typically $4,100 per eye beyond insurance. Most
-                  patients report it&apos;s the best investment they&apos;ve ever made in their
-                  vision.
+                  Premium lenses are an investment beyond insurance. Most patients report it&apos;s
+                  the best investment they&apos;ve ever made in their vision.
                 </p>
               </div>
             </div>
@@ -184,13 +183,31 @@ export default function LifestyleMatchSection() {
         {/* Profile cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {profiles?.map((profile) => (
-            <a
+            <div
               key={profile?.id}
-              href="#booking"
+              role="button"
+              tabIndex={0}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
-              onClick={() => {
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  if ((e.target as HTMLElement).closest('a')) return;
+                  let lensKey = '';
+                  if (profile?.id === 'active') lensKey = 'vivity';
+                  else if (profile?.id === 'tech') lensKey = 'panoptix';
+                  else if (profile?.id === 'conservative') lensKey = 'eyhance';
+                  if (lensKey) {
+                    window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
+                  }
+                  window.location.hash = 'booking';
+                }
+              }}
+              onClick={(e) => {
+                if ((e.target as HTMLElement).closest('a')) {
+                  return;
+                }
                 let lensKey = '';
                 if (profile?.id === 'active') lensKey = 'vivity';
                 else if (profile?.id === 'tech') lensKey = 'panoptix';
@@ -198,6 +215,7 @@ export default function LifestyleMatchSection() {
                 if (lensKey) {
                   window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
                 }
+                window.location.hash = 'booking';
               }}
               className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16] focus-visible:outline-none ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
             >
@@ -259,12 +277,32 @@ export default function LifestyleMatchSection() {
                       {profile?.reason}
                     </p>
                     <p className={`text-xs font-semibold ${styles.recommendationStat}`}>
-                      {profile?.stat}
+                      {(() => {
+                        const parts = profile?.stat.split(/(\[\d+\])/);
+                        return parts.map((part, idx) => {
+                          const match = part.match(/^\[(\d+)\]$/);
+                          if (match) {
+                            const num = match[1];
+                            return (
+                              <sup key={idx} className="text-[9px] font-bold">
+                                <a
+                                  href={`#footnote-${num}`}
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="text-primary hover:underline ml-0.5"
+                                >
+                                  [{num}]
+                                </a>
+                              </sup>
+                            );
+                          }
+                          return part;
+                        });
+                      })()}
                     </p>
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>

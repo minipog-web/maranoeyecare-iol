@@ -17,7 +17,8 @@ export default function CandidacySection() {
             Clinical Safety First
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
-            Are You a Candidate for{' '}
+            Are You a Candidate for
+            <br />
             <span className="font-semibold text-gradient-primary">Premium Lenses?</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
@@ -137,7 +138,7 @@ export default function CandidacySection() {
           </div>
           <a
             href="#booking"
-            className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-primary text-[#040506] rounded-xl text-xs font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[40px] shadow-[0_4px_12px_rgba(197,160,89,0.2)]"
+            className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-primary text-[#040506] rounded-xl text-xs font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[44px] shadow-[0_4px_12px_rgba(197,160,89,0.2)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             Check Candidacy
           </a>

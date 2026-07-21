@@ -8,6 +8,7 @@ const nextConfig = {
   images: {
     remotePatterns: imageHosts,
     minimumCacheTTL: 60,
+    qualities: [85],
   },
 
   outputFileTracingRoot: path.resolve('.'),

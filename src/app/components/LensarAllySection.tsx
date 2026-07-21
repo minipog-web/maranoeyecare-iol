@@ -107,9 +107,11 @@ export default function LensarAllySection() {
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             We are proud to offer New Jersey patients the next generation of cataract surgery
             technology. ALLY combines advanced 3D imaging, Augmented Reality, and robotic laser
-            precision into a seamless procedure. **Dr. Marano utilizes the LENSAR® FEMTO laser
-            system on every patient receiving a premium IOL to ensure maximum precision and outcome
-            reliability.**
+            precision into a seamless procedure.{' '}
+            <strong>
+              Dr. Marano utilizes the LENSAR® FEMTO laser system on every patient receiving a
+              premium IOL to ensure maximum precision and outcome reliability.
+            </strong>
           </p>
         </div>
 

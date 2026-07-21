@@ -6,31 +6,31 @@
 }
 
 .profileActive {
-  --rec-color: #8b5cf6;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 0 20px rgba(139, 92, 246, 0.02);
-}
-.profileActive:hover {
-  box-shadow:
-    0 20px 45px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(139, 92, 246, 0.35),
-    0 0 40px rgba(139, 92, 246, 0.15);
-}
-
-.profileTech {
   --rec-color: #c5a059;
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.06),
     0 0 20px rgba(var(--primary-rgb), 0.02);
 }
-.profileTech:hover {
+.profileActive:hover {
   box-shadow:
     0 20px 45px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(var(--primary-rgb), 0.35),
     0 0 40px rgba(var(--primary-rgb), 0.15);
+}
+
+.profileTech {
+  --rec-color: #8b5cf6;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 20px rgba(139, 92, 246, 0.02);
+}
+.profileTech:hover {
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(139, 92, 246, 0.35),
+    0 0 40px rgba(139, 92, 246, 0.15);
 }
 
 .profileConservative {
@@ -58,13 +58,13 @@
 }
 
 .profileActive .recommendationBadge {
-  background-color: rgba(139, 92, 246, 0.12);
-  border: 1px solid rgba(139, 92, 246, 0.25);
+  background-color: rgba(var(--primary-rgb), 0.12);
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
 }
 
 .profileTech .recommendationBadge {
-  background-color: rgba(var(--primary-rgb), 0.12);
-  border: 1px solid rgba(var(--primary-rgb), 0.25);
+  background-color: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.25);
 }
 
 .profileConservative .recommendationBadge {
@@ -85,11 +85,11 @@
 }
 
 .profileActive .activityDot {
-  box-shadow: 0 0 6px rgba(139, 92, 246, 0.38);
+  box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.38);
 }
 
 .profileTech .activityDot {
-  box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.38);
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.38);
 }
 
 .profileConservative .activityDot {

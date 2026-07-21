@@ -75,7 +75,7 @@ export default function FinancingSection() {
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
               Your insurance (or Medicare) will still cover the foundation of your surgery
               (procedure, facility fees, standard lens). You only pay the out-of-pocket difference
-              for the premium upgrade ($4,100 per eye). We handle all billing details.
+              for the premium upgrade. We handle all billing details.
             </p>
             <div className="mt-6 pt-4 border-t border-border/60">
               <span className="text-xs font-bold text-primary uppercase tracking-wider">

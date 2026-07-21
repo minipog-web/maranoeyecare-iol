@@ -236,8 +236,23 @@ export default function HeroSection({
               return (
                 <div
                   key={lens?.name}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`Select ${lens?.name} lens info`}
                   onMouseEnter={() => setHoveredLens(lens.name)}
                   onMouseLeave={() => setHoveredLens(null)}
+                  onFocus={() => setHoveredLens(lens.name)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setHoveredLens(lens.name);
+                      trackEvent({
+                        action: 'hero_lens_card_click',
+                        category: 'Engagement',
+                        label: lens.name,
+                      });
+                    }
+                  }}
                   onClick={() =>
                     trackEvent({
                       action: 'hero_lens_card_click',
@@ -245,7 +260,7 @@ export default function HeroSection({
                       label: lens.name,
                     })
                   }
-                  className={`relative doppel-shell ${lens?.accent} transition-spring hover:-translate-y-3 group cursor-pointer ${styles.lensCard} ${delayClass}
+                  className={`relative doppel-shell ${lens?.accent} transition-spring hover:-translate-y-3 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.lensCard} ${delayClass}
                       ${
                         lens?.featured
                           ? 'w-[42%] min-w-[130px] sm:w-44 h-[260px] sm:h-[420px] z-20 -mt-8 snap-center sm:snap-align-none shrink-0'
@@ -292,7 +307,27 @@ export default function HeroSection({
                         {lens?.subtitle}
                       </p>
                       <p className="text-white/70 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight">
-                        {lens?.detail}
+                        {(() => {
+                          const parts = lens?.detail.split(/(\[\d+\])/);
+                          return parts.map((part, idx) => {
+                            const match = part.match(/^\[(\d+)\]$/);
+                            if (match) {
+                              const num = match[1];
+                              return (
+                                <sup key={idx} className="text-[9px] font-bold">
+                                  <a
+                                    href={`#footnote-${num}`}
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="text-primary hover:underline ml-0.5"
+                                  >
+                                    [{num}]
+                                  </a>
+                                </sup>
+                              );
+                            }
+                            return part;
+                          });
+                        })()}
                       </p>
                     </div>
                   </div>

@@ -6,6 +6,7 @@ import TrustSection from '@/app/components/TrustSection';
 import TrustBadgeBar from '@/app/components/TrustBadgeBar';
 import CertificationLogos from '@/app/components/CertificationLogos';
 import LensVisionComparisonSection from '@/app/components/LensVisionComparisonSection';
+import LensTechnologyDeepDiveSection from '@/app/components/LensTechnologyDeepDiveSection';
 import LensarAllySection from '@/app/components/LensarAllySection';
 import LifestyleMatchSection from '@/app/components/LifestyleMatchSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
@@ -41,6 +42,8 @@ export default async function HomePage({ searchParams }: PageProps) {
       <CertificationLogos />
       <hr className="section-divider" />
       <LensVisionComparisonSection />
+      <hr className="section-divider" />
+      <LensTechnologyDeepDiveSection />
       <hr className="section-divider" />
       <LensarAllySection />
       <hr className="section-divider" />

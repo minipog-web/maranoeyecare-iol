@@ -50,7 +50,29 @@ export default function TrustBadgeBar({ variant = 'authority' }: TrustBadgeBarPr
               }`}
             >
               <Icon name={badge.icon as 'TrophyIcon'} size={14} className="text-primary shrink-0" />
-              <span className="font-medium tracking-wide">{badge.text}</span>
+              <span className="font-medium tracking-wide">
+                {(() => {
+                  const parts = badge.text.split(/(\[\d+\])/);
+                  return parts.map((part, idx) => {
+                    const match = part.match(/^\[(\d+)\]$/);
+                    if (match) {
+                      const num = match[1];
+                      return (
+                        <sup key={idx} className="text-[9px] font-bold">
+                          <a
+                            href={`#footnote-${num}`}
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-primary hover:underline ml-0.5"
+                          >
+                            [{num}]
+                          </a>
+                        </sup>
+                      );
+                    }
+                    return part;
+                  });
+                })()}
+              </span>
             </div>
           ))}
         </div>
