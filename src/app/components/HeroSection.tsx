@@ -179,7 +179,7 @@ export default function HeroSection({
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
                     <strong className="text-white font-medium">Chief of Ophthalmology</strong> at
-                    Cooperman Barnabas
+                    Cooperman Barnabas &amp; St. Michael&apos;s
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">

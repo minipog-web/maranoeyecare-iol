@@ -327,7 +327,10 @@ export default function TestimonialsSection() {
                       </p>
                     </div>
                     <div className="flex gap-1.5 flex-wrap">
-                      {['15× NJ Top Doctor', 'Chief of Ophthalmology'].map((b) => (
+                      {[
+                        '15× NJ Top Doctor',
+                        "Chief of Ophthalmology (Cooperman Barnabas & St. Michael's)",
+                      ].map((b) => (
                         <span
                           key={b}
                           className="text-[10px] font-semibold text-muted-foreground bg-white/[0.05] border border-border px-2.5 py-1 rounded-full"
