@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+
 :root {
   --background: #0d0e12; /* Rich dark warm-tinted slate/charcoal background */
   --foreground: #ffffff;
@@ -17,6 +19,8 @@
   --border-bright: #292c3a;
   --input: #161820;
   --ring: #c5a059;
+  --font-sans-font: 'DM Sans', sans-serif;
+  --font-display-font: 'Fraunces', serif;
   --font-dm-sans: var(--font-sans-font), 'DM Sans', sans-serif;
   --font-fraunces: var(--font-display-font), 'Fraunces', serif;
   --font-sans: var(--font-dm-sans);

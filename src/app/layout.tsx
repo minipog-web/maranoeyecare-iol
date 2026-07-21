@@ -2,21 +2,8 @@ import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { GA_MEASUREMENT_ID, GTM_ID } from '@/lib/gtag';
-import { DM_Sans, Fraunces } from 'next/font/google';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-sans-font',
-  display: 'swap',
-});
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-display-font',
-  display: 'swap',
-});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -161,7 +148,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${dmSans.variable} ${fraunces.variable}`}>
+    <html lang="en" className="dark">
       <head>
         {/* Google Tag Manager */}
         {GTM_ID && (
