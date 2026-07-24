@@ -223,6 +223,11 @@ export default function RootLayout({
           `}
         </Script>
         {children}
+        {/* CallRail Dynamic Number Swap */}
+        <Script
+          src="//cdn.callrail.com/companies/764798499/aff735ebb2e830b3a6df/12/swap.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
