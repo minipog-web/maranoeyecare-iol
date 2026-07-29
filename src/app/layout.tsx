@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { GA_MEASUREMENT_ID, GTM_ID } from '@/lib/gtag';
+import { GTM_ID } from '@/lib/gtag';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
 
@@ -180,53 +180,26 @@ export default function RootLayout({
             />
           </noscript>
         )}
-        {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18197167741"
-          strategy="afterInteractive"
-        />
-        <Script id="google-tags-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'AW-18197167741');
-            gtag('config', 'AW-18197167741', {
-              'phone_conversion_number': '(973) 322-0100'
-            });
-            gtag('config', 'AW-18197167741', {
-              'phone_conversion_number': '(973) 358-0416'
-            });
-            gtag('config', 'AW-18197167741', {
-              'phone_conversion_number': '(973) 315-6439'
-            });
-            ${GA_MEASUREMENT_ID ? `gtag('config', '${GA_MEASUREMENT_ID}', { page_path: window.location.pathname });` : ''}
-          `}
-        </Script>
-
-        {/* Google tag (gtag.js) event - delayed navigation helper */}
-        <Script id="google-ads-delayed-nav" strategy="afterInteractive">
-          {`
-            function gtagSendEvent(url) {
-              var callback = function () {
-                if (typeof url === 'string') {
-                  window.location = url;
-                }
-              };
-              gtag('event', 'ads_conversion_Form_1', {
-                'event_callback': callback,
-                'event_timeout': 2000,
-              });
-              return false;
-            }
-          `}
-        </Script>
+        {/*
+          GA4 + Google Ads tags are managed via GTM (GTM-K525DMLF).
+          GTM is the single source of truth — do not add direct gtag('config') calls here.
+          Configure GA4, Google Ads, and conversion triggers inside the GTM container.
+        */}
         {children}
-        {/* CallRail Dynamic Number Swap */}
+        {/*
+          CallRail Dynamic Number Swap
+          The swap.js script auto-executes on load — no manual CallRail.swap() call needed.
+
+          CALLRAIL ↔ GOOGLE ADS IMPORT:
+          CallRail has a native Google Ads integration that pushes call conversions directly
+          into your Google Ads account without requiring code-level gtag conversion calls.
+          If not already enabled: CallRail Dashboard → Integrations → Google Ads.
+          Once enabled, phone-click conversion events from code are redundant for calls
+          (form submission conversions should still be tracked via GTM dataLayer).
+        */}
         <Script
           src="//cdn.callrail.com/companies/764798499/aff735ebb2e830b3a6df/12/swap.js"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       </body>
     </html>

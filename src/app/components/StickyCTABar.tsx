@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
-import { trackEvent } from '@/lib/gtag';
+import { trackEvent, trackAdsConversion } from '@/lib/gtag';
 import styles from './StickyCTABar.module.css';
 
 export default function StickyCTABar() {
@@ -48,13 +48,14 @@ export default function StickyCTABar() {
           {/* Phone CTA */}
           <a
             href="tel:9733220100"
-            onClick={() =>
+            onClick={() => {
               trackEvent({
                 action: 'phone_click',
                 category: 'Conversion',
                 label: 'Sticky CTA Bar: 9733220100',
-              })
-            }
+              });
+              trackAdsConversion('phone_click');
+            }}
             className="flex items-center justify-center w-12 h-12 rounded-xl border border-border bg-white/[0.05] hover:border-primary/50 hover:bg-primary/10 transition-all touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             aria-label="Call us"
           >
