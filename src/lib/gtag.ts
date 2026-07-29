@@ -1,6 +1,6 @@
 // Google Tag Manager & Google Analytics helper functions to track custom user events and conversions
 //
-// ARCHITECTURE: GTM (GTM-K525DMLF) is the single source of truth for GA4 and Google Ads tags.
+// ARCHITECTURE: GTM (GTM-PB9D9RHS) is the single source of truth for GA4 and Google Ads tags.
 // All tracking is done by pushing events to window.dataLayer — GTM triggers pick them up.
 // Direct gtag() calls are kept as a fallback only (they fire if GTM loads window.gtag).
 
@@ -10,7 +10,7 @@ export const GA_MEASUREMENT_ID =
     ? process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
     : 'G-1YBZ7BFJ4C';
 
-export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-K525DMLF';
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PB9D9RHS';
 
 // ─── Named conversion event names (used as GTM trigger event names) ──────────
 // These string values must match the "Custom Event" trigger names in your GTM container.

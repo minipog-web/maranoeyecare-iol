@@ -180,8 +180,9 @@ export default function RootLayout({
             />
           </noscript>
         )}
+        {/* End Google Tag Manager (noscript) */}
         {/*
-          GA4 + Google Ads tags are managed via GTM (GTM-K525DMLF).
+          GA4 + Google Ads tags are managed via GTM (GTM-PB9D9RHS).
           GTM is the single source of truth — do not add direct gtag('config') calls here.
           Configure GA4, Google Ads, and conversion triggers inside the GTM container.
         */}
