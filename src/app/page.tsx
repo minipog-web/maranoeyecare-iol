@@ -5,19 +5,30 @@ import HeroSection from '@/app/components/HeroSection';
 import TrustSection from '@/app/components/TrustSection';
 import TrustBadgeBar from '@/app/components/TrustBadgeBar';
 import CertificationLogos from '@/app/components/CertificationLogos';
-import LensVisionComparisonSection from '@/app/components/LensVisionComparisonSection';
 import LensTechnologyDeepDiveSection from '@/app/components/LensTechnologyDeepDiveSection';
 import LensarAllySection from '@/app/components/LensarAllySection';
-import LifestyleMatchSection from '@/app/components/LifestyleMatchSection';
-import TestimonialsSection from '@/app/components/TestimonialsSection';
-import LensQuestionnaireSection from '@/app/components/LensQuestionnaireSection';
-import FAQSection from '@/app/components/FAQSection';
-import BookingSection from '@/app/components/BookingSection';
 import StickyCTABar from '@/app/components/StickyCTABar';
 import CandidacySection from '@/app/components/CandidacySection';
-import RecoveryTimelineSection from '@/app/components/RecoveryTimelineSection';
 import FinancingSection from '@/app/components/FinancingSection';
 import { getDynamicContent } from '@/lib/dynamicText';
+import dynamic from 'next/dynamic';
+
+// Dynamically import heavy interactive client-side components to minimize initial JS payload
+const LensVisionComparisonSection = dynamic(
+  () => import('@/app/components/LensVisionComparisonSection')
+);
+
+const LifestyleMatchSection = dynamic(() => import('@/app/components/LifestyleMatchSection'));
+
+const LensQuestionnaireSection = dynamic(() => import('@/app/components/LensQuestionnaireSection'));
+
+const RecoveryTimelineSection = dynamic(() => import('@/app/components/RecoveryTimelineSection'));
+
+const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'));
+
+const FAQSection = dynamic(() => import('@/app/components/FAQSection'));
+
+const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

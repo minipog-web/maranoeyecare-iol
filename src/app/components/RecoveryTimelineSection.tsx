@@ -39,6 +39,16 @@ export default function RecoveryTimelineSection() {
     },
     {
       phase: '04',
+      title: 'Healing Response',
+      timeframe: 'Days 2–7',
+      icon: 'SparklesIcon',
+      description:
+        'Surgical energy causes temporary post-op swelling. A targeted drop cocktail quickly resolves inflammation; as swelling subsides, clarity increases. Though the advanced LENSAR laser minimizes swelling, individual variation occurs based on cataract density, calcification, age, and health.',
+      color: '#EC4899',
+      rgb: '236, 72, 153',
+    },
+    {
+      phase: '05',
       title: 'Neuroadaptation',
       timeframe: '4–6 Weeks',
       icon: 'BrainIcon',
@@ -106,7 +116,7 @@ export default function RecoveryTimelineSection() {
           </div>
 
           {/* Cards Grid */}
-          <div className="flex md:grid md:grid-cols-4 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-6 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="flex md:grid md:grid-cols-5 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-6 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
             {steps.map((step, idx) => {
               const isActive = idx === activeStep;
               return (

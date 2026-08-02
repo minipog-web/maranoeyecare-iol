@@ -76,13 +76,25 @@ export default function Footer() {
           <p className="text-center sm:text-left">
             © 2026 Marano Eye Care. Matthew Marano Jr., MD. All rights reserved.
           </p>
-          <p className="text-center">
-            Livingston · Denville · Newark, NJ ·{' '}
+          <p className="text-center flex flex-wrap items-center justify-center gap-1.5 sm:justify-end">
+            <span>Livingston · Denville · Newark, NJ</span>
+            <span className="hidden sm:inline">·</span>
             <a
               href="https://www.maranoeyecare.com"
-              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none font-medium"
             >
               www.maranoeyecare.com
+            </a>
+            <span>·</span>
+            <a
+              href="https://www.onjeyecare.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none font-medium"
+            >
+              www.onjeyecare.com
             </a>
           </p>
         </div>

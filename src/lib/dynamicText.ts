@@ -10,7 +10,7 @@ export interface DynamicContent {
 }
 
 export const DEFAULT_CONTENT: DynamicContent = {
-  badgeText: 'Premium IOL Specialists — New Jersey',
+  badgeText: 'Premium IOL Specialists — Livingston • Denville • Newark',
   heroTitleLine1: 'One Surgery. One Choice.',
   heroTitleLine2: 'Lifetime Visual Freedom.',
   heroDesc:
@@ -30,7 +30,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /cataract/i,
     content: {
-      badgeText: 'Cataract Surgery Specialists — New Jersey',
+      badgeText: 'Cataract Surgery Specialists — Livingston • Denville • Newark',
       heroTitleLine1: 'Modern Cataract Care.',
       heroTitleLine2: 'Lifetime Visual Freedom.',
       heroDesc:
@@ -44,7 +44,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /vivity/i,
     content: {
-      badgeText: 'Vivity IOL Specialists — New Jersey',
+      badgeText: 'Vivity IOL Specialists — Livingston • Denville • Newark',
       heroTitleLine1: 'Clareon Vivity EDOF.',
       heroTitleLine2: 'Continuous Visual Depth.',
       heroDesc:
@@ -59,7 +59,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /panoptix/i,
     content: {
-      badgeText: 'PanOptix IOL Specialists — New Jersey',
+      badgeText: 'PanOptix IOL Specialists — Livingston • Denville • Newark',
       heroTitleLine1: 'PanOptix Trifocal IOL.',
       heroTitleLine2: 'Complete Visual Range.',
       heroDesc:
@@ -74,7 +74,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /eyhance/i,
     content: {
-      badgeText: 'Eyhance IOL Specialists — New Jersey',
+      badgeText: 'Eyhance IOL Specialists — Livingston • Denville • Newark',
       heroTitleLine1: 'TECNIS Eyhance IOL.',
       heroTitleLine2: 'Enhanced Monofocal Depth.',
       heroDesc:
@@ -89,7 +89,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /astigmatism|toric/i,
     content: {
-      badgeText: 'Astigmatism Specialists — New Jersey',
+      badgeText: 'Astigmatism Specialists — Livingston • Denville • Newark',
       heroTitleLine1: 'Precision Toric Lenses.',
       heroTitleLine2: 'Astigmatism-Free Clarity.',
       heroDesc:
@@ -103,7 +103,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /doctor|surgeon|marano/i,
     content: {
-      badgeText: 'Top Eye Surgeons — New Jersey',
+      badgeText: 'Top Eye Surgeons — Livingston • Denville • Newark',
       heroTitleLine1: 'Led by Matthew Marano, MD.',
       heroTitleLine2: '40,000+ Completed Procedures.',
       heroDesc:

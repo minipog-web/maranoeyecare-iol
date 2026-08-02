@@ -90,7 +90,7 @@ export default function HeroSection({
             <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
               <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.35em] text-primary">
-                {badgeText || 'Premium IOL Specialists — New Jersey'}
+                {badgeText || 'Premium IOL Specialists — Livingston • Denville • Newark'}
               </span>
             </div>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
@@ -154,7 +154,11 @@ export default function HeroSection({
               </a>
             </div>
             {/* Reassurance Indicators */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8 sm:mb-12 animate-fade-up delay-500 fill-both text-xs text-foreground/80 font-medium select-none">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mb-8 sm:mb-12 animate-fade-up delay-500 fill-both text-xs text-foreground/80 font-medium select-none">
+              <span className="flex items-center gap-1.5 text-primary font-semibold">
+                <Icon name="MapPinIcon" size={15} className="text-primary shrink-0" />
+                Livingston, Denville & Newark Offices
+              </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                 98% Patient Satisfaction
