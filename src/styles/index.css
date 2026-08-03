@@ -150,7 +150,8 @@ p {
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: initial;
-  color: var(--primary);
+  color: #d8bb7e; /* Perfectly calibrated high-contrast rich gold */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6);
 }
 
 .text-gradient-warm {
@@ -769,11 +770,12 @@ html {
 ───────────────────────────────────────── */
 
 .text-gradient-primary {
-  background: none;
-  -webkit-background-clip: initial;
-  background-clip: initial;
-  -webkit-text-fill-color: initial;
-  color: var(--primary);
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  color: #d8bb7e !important; /* Perfectly calibrated high-contrast rich gold */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* ─────────────────────────────────────────

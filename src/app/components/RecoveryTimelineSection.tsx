@@ -116,20 +116,20 @@ export default function RecoveryTimelineSection() {
           </div>
 
           {/* Cards Grid */}
-          <div className="flex md:grid md:grid-cols-5 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-6 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="flex items-stretch md:grid md:grid-cols-5 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-6 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
             {steps.map((step, idx) => {
               const isActive = idx === activeStep;
               return (
                 <div
                   key={idx}
                   onMouseEnter={() => setActiveStep(idx)}
-                  className={`flex-none w-[280px] sm:w-[320px] md:w-auto snap-center group relative transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                  className={`flex-none w-[280px] sm:w-[320px] md:w-auto snap-center group relative transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] h-full flex flex-col ${
                     isActive ? 'scale-[1.02] md:translate-y-[-4px]' : 'opacity-70 hover:opacity-100'
                   }`}
                 >
                   {/* Outer Bezel (Doppelrand) with dynamic color border & glow */}
                   <div
-                    className="p-1.5 rounded-[2rem] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] border"
+                    className="p-1.5 rounded-[2rem] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] border h-full flex flex-col"
                     style={{
                       borderColor: isActive ? `rgba(${step.rgb}, 0.25)` : 'rgba(255,255,255,0.05)',
                       background: isActive
@@ -139,7 +139,7 @@ export default function RecoveryTimelineSection() {
                     }}
                   >
                     {/* Inner Core */}
-                    <div className="bg-[#0e1017] rounded-[calc(2rem-6px)] p-6 min-h-[260px] flex flex-col justify-between border border-white/[0.03] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
+                    <div className="bg-[#0e1017] rounded-[calc(2rem-6px)] p-6 min-h-[300px] md:min-h-0 h-full flex flex-col justify-between border border-white/[0.03] shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
                       {/* Sub-bezel glow overlay using dynamic step color */}
                       <div
                         className="absolute top-0 right-0 w-24 h-24 rounded-full blur-2xl pointer-events-none transition-opacity duration-700"

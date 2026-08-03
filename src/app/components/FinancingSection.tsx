@@ -85,17 +85,85 @@ export default function FinancingSection() {
           </div>
         </div>
 
-        {/* Financial Value Callout */}
-        <div className="mt-10 sm:mt-12 max-w-3xl mx-auto glass-card border border-primary/25 bg-primary/[0.02] rounded-2xl p-6 text-center">
-          <p className="text-xs font-bold text-primary uppercase tracking-[0.15em] mb-2">
-            Lifetime Cost Comparison
-          </p>
-          <p className="text-sm sm:text-base text-foreground font-light leading-relaxed max-w-2xl mx-auto">
-            Compared to the ongoing lifetime cost of purchasing progressive designer glasses,
-            contacts, and prescription sunglasses every few years, a one-time premium lens
-            investment actually <strong className="text-gradient-primary">saves you money</strong>{' '}
-            in the long run while providing permanent visual freedom.
-          </p>
+        {/* Financial Value Callout & Transparent Pricing */}
+        <div className="mt-12 sm:mt-16 max-w-5xl mx-auto grid lg:grid-cols-12 gap-8 items-center bg-gradient-to-br from-primary/[0.03] to-transparent border border-primary/15 rounded-3xl p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+          {/* Subtle background glow */}
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="lg:col-span-7 space-y-5">
+            <span className="text-xs font-bold text-primary uppercase tracking-[0.2em] block">
+              Transparent Investment
+            </span>
+            <h3 className="font-display text-2xl sm:text-3xl font-light text-foreground">
+              A One-Time Choice for{' '}
+              <span className="font-semibold text-gradient-primary">Decades of Clarity.</span>
+            </h3>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Premium cataract options start at <strong className="text-foreground">$1,600</strong>{' '}
+              for a standard monofocal lens paired with LENSAR® laser-assisted (Femtosecond)
+              precision. Upgrades for custom astigmatism-correcting (toric) lenses start at{' '}
+              <strong className="text-foreground">$1,900</strong>, and range up to{' '}
+              <strong className="text-foreground">$4,100</strong> per eye for highly advanced
+              multi-focal or extended depth of field (EDOF) designs.
+            </p>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              When framed against the lifetime cost of premium glasses, contact lenses, solutions,
+              and prescription sunglasses—which typically exceed{' '}
+              <strong className="text-foreground">$8,000 to $12,000</strong> over a 15-year period—a
+              premium lens is a permanent one-time choice that frees you from a lifetime of having
+              to pay for glasses or contacts. Because premium lenses never degrade or develop
+              cataracts again, this is a literal lifetime investment in your visual independence.
+            </p>
+          </div>
+
+          <div className="lg:col-span-5 w-full">
+            <div className="glass-card border border-primary/20 bg-background/50 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl relative z-10">
+              <div className="space-y-2">
+                <span className="text-xs font-medium text-muted-foreground block">
+                  Premium Surgical Upgrades
+                </span>
+                <div className="flex items-baseline gap-2">
+                  <span className="font-display text-4xl sm:text-5xl font-semibold text-foreground">
+                    $1,600
+                  </span>
+                  <span className="text-sm text-muted-foreground">to $4,100 / eye</span>
+                </div>
+                <p className="text-xs text-muted-foreground leading-normal">
+                  Standard lens with LENSAR® Femto laser starts at $1,600. Astigmatism-correcting
+                  lenses start at $1,900, up to $4,100 for multi-focal or extended depth of field
+                  (EDOF) designs.
+                </p>
+              </div>
+
+              <hr className="border-border/60" />
+
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold text-primary uppercase tracking-wider">
+                  The Lifetime Freedom Package:
+                </h4>
+                <ul className="space-y-2.5">
+                  <li className="flex items-start gap-2.5 text-xs text-muted-foreground">
+                    <span className="text-primary mt-0.5">
+                      <Icon name="CheckIcon" size={14} />
+                    </span>
+                    <span>Custom optical wavefront mapping & diagnostic screening</span>
+                  </li>
+                  <li className="flex items-start gap-2.5 text-xs text-muted-foreground">
+                    <span className="text-primary mt-0.5">
+                      <Icon name="CheckIcon" size={14} />
+                    </span>
+                    <span>Integration with LENSAR® Precision Laser System</span>
+                  </li>
+                  <li className="flex items-start gap-2.5 text-xs text-muted-foreground">
+                    <span className="text-primary mt-0.5">
+                      <Icon name="CheckIcon" size={14} />
+                    </span>
+                    <span>Permanent, medical-grade materials that never age or decay</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -12,7 +12,7 @@ export default function LensTechnologyDeepDiveSection() {
       {/* Background dot grid and ambient glows */}
       <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[140px] opacity-10 pointer-events-none transition-all duration-700"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[140px] opacity-5 pointer-events-none transition-all duration-700"
         style={{
           backgroundColor: activeTab === 'panoptix' ? '#8B5CF6' : '#C5A059',
         }}
@@ -96,11 +96,11 @@ export default function LensTechnologyDeepDiveSection() {
                       <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.4" />
                     </linearGradient>
                     <radialGradient id="focalPointGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                      <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.4" />
                       <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
                     </radialGradient>
                     <filter id="glow">
-                      <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                      <feGaussianBlur stdDeviation="1" result="coloredBlur" />
                       <feMerge>
                         <feMergeNode in="coloredBlur" />
                         <feMergeNode in="SourceGraphic" />
@@ -246,9 +246,9 @@ export default function LensTechnologyDeepDiveSection() {
                   </text>
 
                   {/* Interactive/Animated Glows at the 3 focal points */}
-                  <circle cx="450" cy="160" r="16" fill="url(#focalPointGlow)" />
-                  <circle cx="320" cy="160" r="12" fill="url(#focalPointGlow)" opacity="0.7" />
-                  <circle cx="230" cy="160" r="10" fill="url(#focalPointGlow)" opacity="0.7" />
+                  <circle cx="450" cy="160" r="10" fill="url(#focalPointGlow)" />
+                  <circle cx="320" cy="160" r="8" fill="url(#focalPointGlow)" opacity="0.4" />
+                  <circle cx="230" cy="160" r="7" fill="url(#focalPointGlow)" opacity="0.4" />
 
                   {/* Explanatory Annotations inside Diagram with Pointer Lines */}
                   {/* Near (40cm) - Positioned below the axis */}
@@ -311,12 +311,12 @@ export default function LensTechnologyDeepDiveSection() {
                       <stop offset="100%" stopColor="#C5A059" stopOpacity="0.4" />
                     </linearGradient>
                     <linearGradient id="focusTube" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#C5A059" stopOpacity="0.8" />
-                      <stop offset="40%" stopColor="#C5A059" stopOpacity="0.5" />
-                      <stop offset="100%" stopColor="#C5A059" stopOpacity="0.2" />
+                      <stop offset="0%" stopColor="#C5A059" stopOpacity="0.35" />
+                      <stop offset="40%" stopColor="#C5A059" stopOpacity="0.15" />
+                      <stop offset="100%" stopColor="#C5A059" stopOpacity="0.05" />
                     </linearGradient>
                     <filter id="vivityGlow">
-                      <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                      <feGaussianBlur stdDeviation="1" result="coloredBlur" />
                       <feMerge>
                         <feMergeNode in="coloredBlur" />
                         <feMergeNode in="SourceGraphic" />

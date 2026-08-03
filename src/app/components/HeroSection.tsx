@@ -116,14 +116,12 @@ export default function HeroSection({
                     label: 'Book Your Free Consultation',
                   })
                 }
-                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-[#020304] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(197,160,89,0.25)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                className="group inline-flex items-center justify-between sm:justify-center gap-4 pl-8 pr-3 py-3 bg-primary text-[#020304] rounded-full text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(197,160,89,0.25)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
-                Book Your Free Consultation
-                <Icon
-                  name="ArrowRightIcon"
-                  size={18}
-                  className="transition-transform group-hover:translate-x-1"
-                />
+                <span>Book Your Free Consultation</span>
+                <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:scale-105">
+                  <Icon name="ArrowRightIcon" size={18} className="text-current" />
+                </div>
               </a>
               <a
                 href="#lenses"

@@ -2,11 +2,8 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/app/components/HeroSection';
-import TrustSection from '@/app/components/TrustSection';
 import TrustBadgeBar from '@/app/components/TrustBadgeBar';
 import CertificationLogos from '@/app/components/CertificationLogos';
-import LensTechnologyDeepDiveSection from '@/app/components/LensTechnologyDeepDiveSection';
-import LensarAllySection from '@/app/components/LensarAllySection';
 import StickyCTABar from '@/app/components/StickyCTABar';
 import CandidacySection from '@/app/components/CandidacySection';
 import FinancingSection from '@/app/components/FinancingSection';
@@ -14,9 +11,17 @@ import { getDynamicContent } from '@/lib/dynamicText';
 import dynamic from 'next/dynamic';
 
 // Dynamically import heavy interactive client-side components to minimize initial JS payload
+const TrustSection = dynamic(() => import('@/app/components/TrustSection'));
+
 const LensVisionComparisonSection = dynamic(
   () => import('@/app/components/LensVisionComparisonSection')
 );
+
+const LensTechnologyDeepDiveSection = dynamic(
+  () => import('@/app/components/LensTechnologyDeepDiveSection')
+);
+
+const LensarAllySection = dynamic(() => import('@/app/components/LensarAllySection'));
 
 const LifestyleMatchSection = dynamic(() => import('@/app/components/LifestyleMatchSection'));
 

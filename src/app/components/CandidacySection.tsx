@@ -108,6 +108,10 @@ export default function CandidacySection() {
                   title: 'Advanced Diabetic Retinopathy',
                   desc: 'Potential future retinal treatments require clear views of the back of the eye, which standard monofocal lenses facilitate better.',
                 },
+                {
+                  title: 'Hidden Pre-operative Conditions',
+                  desc: 'Underlying eye disease limiting visual prognosis could exist without being seen pre-operatively due to the cataract blocking the view of the back of the eye.',
+                },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 shrink-0" />
@@ -138,9 +142,12 @@ export default function CandidacySection() {
           </div>
           <a
             href="#booking"
-            className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-primary text-[#040506] rounded-xl text-xs font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[44px] shadow-[0_4px_12px_rgba(197,160,89,0.2)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="group shrink-0 inline-flex items-center justify-center pl-6 pr-2.5 py-2.5 bg-primary text-[#040506] rounded-full text-xs font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[44px] shadow-[0_4px_12px_rgba(197,160,89,0.2)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
-            Check Candidacy
+            <span>Check Candidacy</span>
+            <div className="ml-3 w-6 h-7 rounded-full bg-black/10 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 shrink-0">
+              <Icon name="ArrowRightIcon" size={14} className="text-current" />
+            </div>
           </a>
         </div>
       </div>

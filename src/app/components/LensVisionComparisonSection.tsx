@@ -1228,6 +1228,49 @@ export default function LensVisionComparisonSection() {
           })}
         </div>
 
+        {/* Legend / FAQ */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              title: 'Range of Focus',
+              desc: 'Premium IOLs extend your vision across different focal points, reducing or eliminating the need for glasses.',
+              icon: 'EyeIcon',
+            },
+            {
+              title: 'Night Vision',
+              desc: 'Advanced optics minimize halos and glare, though some diffractive lenses may have a minor adjustment period.',
+              icon: 'MoonIcon',
+            },
+            {
+              title: 'Personalized Choice',
+              desc: 'Your visual goals and eye health dictate the best lens. Dr. Marano provides expert guidance for your unique case.',
+              icon: 'SparklesIcon',
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="glass-card border border-white/[0.05] bg-white/[0.01] hover:border-primary/20 hover:bg-white/[0.03] rounded-2xl p-5 sm:p-6 transition-all duration-500 relative overflow-hidden group"
+            >
+              {/* Radial background hover glow */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 border border-primary/10 group-hover:border-primary/30 group-hover:bg-primary/20 transition-all duration-500">
+                  <AppIcon name={item.icon} size={18} className="text-primary" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed font-light">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         {/* Toric Astigmatism Section */}
         <div className="mt-12 sm:mt-16 glass-card border border-primary/20 bg-primary/5 rounded-[2rem] p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 relative overflow-hidden">
           {/* Subtle gold glow inside */}
@@ -1249,31 +1292,6 @@ export default function LensVisionComparisonSection() {
               in Toric versions at no additional cost beyond the standard premium upgrade.
             </p>
           </div>
-        </div>
-
-        {/* Legend / FAQ */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              title: 'Range of Focus',
-              desc: 'Premium IOLs extend your vision across different focal points, reducing or eliminating the need for glasses.',
-            },
-            {
-              title: 'Night Vision',
-              desc: 'Advanced optics minimize halos and glare, though some diffractive lenses may have a minor adjustment period.',
-            },
-            {
-              title: 'Personalized Choice',
-              desc: 'Your visual goals and eye health dictate the best lens. Dr. Marano provides expert guidance for your unique case.',
-            },
-          ].map((item, i) => (
-            <div key={i} className="text-center md:text-left px-4">
-              <h4 className="text-sm font-semibold text-foreground mb-2">{item.title}</h4>
-              <p className="text-xs text-muted-foreground leading-relaxed font-light">
-                {item.desc}
-              </p>
-            </div>
-          ))}
         </div>
 
         <p className="text-center text-[10px] text-muted-foreground/85 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.1em] leading-relaxed">
