@@ -151,7 +151,7 @@ const schemas = [
       ratingValue: '4.9',
       bestRating: '5',
       worstRating: '1',
-      reviewCount: '500',
+      reviewCount: '650',
     },
     openingHoursSpecification: [
       {

@@ -20,7 +20,7 @@ export default function RecoveryTimelineSection() {
     {
       phase: '02',
       title: 'Procedure Day',
-      timeframe: '15 Minutes',
+      timeframe: '10 Minutes',
       icon: 'ClockIcon',
       description:
         'An outpatient procedure. We apply local numbing eye drops—no pain, no injections, no general anesthesia. The robotic laser system replaces your cataract with your custom premium lens. You walk out the same day.',

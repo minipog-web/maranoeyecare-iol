@@ -159,7 +159,7 @@ export default function HeroSection({
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                98% Patient Satisfaction
+                99% Patient Satisfaction
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
@@ -218,7 +218,7 @@ export default function HeroSection({
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
                     Over <strong className="text-primary font-semibold">4.9★ rating</strong> on
-                    Google
+                    Google (out of &gt;650 reviews)
                   </span>
                 </li>
               </ul>

@@ -1289,7 +1289,10 @@ export default function LensVisionComparisonSection() {
               uncorrected after surgery, meaning you will still need glasses for crisp distance
               vision. At Marano Eye Care, we believe clear sight shouldn&apos;t require checking a
               box of add-on fees: Clareon Vivity, PanOptix Pro, and Tecnis Eyhance are all provided
-              in Toric versions at no additional cost beyond the standard premium upgrade.
+              in Toric versions at no additional cost beyond the standard premium upgrade. (Please
+              note that while toric upgrades for premium lenses have no additional upgrade fee, a
+              standard monofocal toric lens is more expensive than a standard non-toric monofocal
+              lens).
             </p>
           </div>
         </div>

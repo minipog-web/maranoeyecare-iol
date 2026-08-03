@@ -45,8 +45,8 @@ const objectionFAQs: FAQItem[] = [
     question: 'Will premium lenses make my surgery more complicated or risky?',
     concern: 'Safety',
     answer:
-      "No. The surgical procedure is identical regardless of which IOL you choose — a 15-minute microsurgery performed under topical (eye drop) anesthesia. The only thing that changes is what Dr. Marano places in your eye. He has performed this procedure over 40,000 times and has been recognized as New Jersey's Top Doctor for 15 consecutive years. The lens choice affects your outcome — not your safety.",
-    highlight: 'Same 15-min procedure · Thousands of successful outcomes · No general anesthesia',
+      "No. The surgical procedure is identical regardless of which IOL you choose — a 10-minute microsurgery performed under topical (eye drop) anesthesia. The only thing that changes is what Dr. Marano places in your eye. He has performed this procedure over 40,000 times and has been recognized as New Jersey's Top Doctor for 15 consecutive years. The lens choice affects your outcome — not your safety.",
+    highlight: 'Same 10-min procedure · Thousands of successful outcomes · No general anesthesia',
   },
 ];
 
@@ -85,7 +85,7 @@ const proceduralFAQs: FAQItem[] = [
     question: 'What if I have astigmatism? Do Toric lenses cost more?',
     concern: '',
     answer:
-      'Toric lenses are specialty optics designed to correct astigmatism (an irregular curve in your cornea) during cataract surgery. If you have astigmatism and do not choose a Toric lens, you will still need glasses for distance vision. While most clinics charge extra for Toric astigmatism correction, at Marano Eye Care, all our premium lenses (Clareon Vivity, PanOptix Pro, and Tecnis Eyhance) include the Toric version at no additional charge beyond the standard premium upgrade.',
+      'Toric lenses are specialty optics designed to correct astigmatism (an irregular curve in your cornea) during cataract surgery. If you have astigmatism and do not choose a Toric lens, you will still need glasses for distance vision. While most clinics charge extra for Toric astigmatism correction, at Marano Eye Care, all our premium lenses (Clareon Vivity, PanOptix Pro, and Tecnis Eyhance) include the Toric version at no additional charge beyond the standard premium upgrade. (Note: While toric versions of premium lenses carry no additional upgrade fee, a standard monofocal toric lens does involve a higher out-of-pocket cost compared to a standard non-toric monofocal lens).',
   },
 ];
 

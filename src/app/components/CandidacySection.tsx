@@ -60,7 +60,7 @@ export default function CandidacySection() {
                 },
                 {
                   title: 'Realistic Visual Expectations',
-                  desc: 'Understanding that premium optics provide functional freedom but require a short neurological adaptation period.',
+                  desc: 'Understanding that premium optics provide functional freedom but require a short neurological adaptation period. While patients can expect functional spectacle independence with a multi-focal or extended depth of field lens, individual results may vary, and some patients may still rely on low-power over-the-counter readers for extremely fine print in poor lighting.',
                 },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
