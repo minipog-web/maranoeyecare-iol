@@ -1110,7 +1110,7 @@ export default function LensVisionComparisonSection() {
                   {/* Badge */}
                   <div className="flex items-center justify-between mb-4">
                     <span
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
                     >
                       {lens.badge}
                     </span>
@@ -1118,10 +1118,10 @@ export default function LensVisionComparisonSection() {
 
                   {/* Lens Name */}
                   <div className="mb-4 min-h-[64px]">
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1">
+                    <p className="text-xs sm:text-sm text-primary font-bold uppercase tracking-wider mb-1">
                       {lens.manufacturer} · {lens.type}
                     </p>
-                    <h3 className="font-display text-xl font-medium text-foreground">
+                    <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground">
                       {lens.name}
                     </h3>
                   </div>
@@ -1130,13 +1130,13 @@ export default function LensVisionComparisonSection() {
                   <div className="space-y-4 mb-6">
                     {lens.specs.map((spec) => (
                       <div key={spec.label} className="space-y-1.5">
-                        <div className="flex justify-between text-[11px]">
-                          <span className="text-muted-foreground font-medium">{spec.label}</span>
-                          <span className={`font-semibold ${lens.twColor}`}>{spec.value}</span>
+                        <div className="flex justify-between text-xs sm:text-sm">
+                          <span className="text-foreground font-semibold">{spec.label}</span>
+                          <span className={`font-bold ${lens.twColor}`}>{spec.value}</span>
                         </div>
-                        <div className="h-1.5 bg-white/[0.04] border border-white/[0.02] shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden">
+                        <div className="h-2 bg-white/10 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden">
                           <div
-                            className={`h-full rounded-full transition-spring opacity-80 ${lens.twSpecBar} ${scoreWidthClass(spec.score)}`}
+                            className={`h-full rounded-full transition-spring opacity-90 ${lens.twSpecBar} ${scoreWidthClass(spec.score)}`}
                           />
                         </div>
                       </div>
@@ -1148,11 +1148,11 @@ export default function LensVisionComparisonSection() {
                     {lens.highlights.map((h) => (
                       <li
                         key={h}
-                        className="flex items-start gap-2.5 text-xs text-muted-foreground leading-relaxed"
+                        className="flex items-start gap-2.5 text-sm sm:text-base text-foreground font-medium leading-relaxed"
                       >
                         <AppIcon
                           name="CheckCircleIcon"
-                          size={14}
+                          size={16}
                           className={`mt-0.5 shrink-0 ${lens.twColor}`}
                         />
                         <span>
@@ -1163,7 +1163,7 @@ export default function LensVisionComparisonSection() {
                               if (match) {
                                 const num = match[1];
                                 return (
-                                  <sup key={idx} className="text-[9px] font-bold">
+                                  <sup key={idx} className="text-xs font-bold">
                                     <a
                                       href={`#footnote-${num}`}
                                       onClick={(e) => e.stopPropagation()}
@@ -1184,10 +1184,12 @@ export default function LensVisionComparisonSection() {
 
                   {/* Best for */}
                   <div className="border-t border-border pt-5 mb-5">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5">
+                    <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-primary mb-1.5">
                       Best for
                     </p>
-                    <p className="text-sm text-slate-100 leading-relaxed">{lens.bestFor}</p>
+                    <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
+                      {lens.bestFor}
+                    </p>
                   </div>
 
                   <a
@@ -1197,7 +1199,7 @@ export default function LensVisionComparisonSection() {
                       e.stopPropagation();
                       window.dispatchEvent(new CustomEvent('select-lens', { detail: lens.id }));
                     }}
-                    className={`w-full py-3 rounded-xl text-xs font-semibold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[46px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                    className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                   >
                     <span>
                       Select{' '}
@@ -1283,7 +1285,7 @@ export default function LensVisionComparisonSection() {
               Have Astigmatism? All Premium Lenses Include Toric Upgrades at{' '}
               <span className="text-primary font-bold">No Extra Charge</span>
             </h4>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-4xl font-light">
+            <p className="text-base sm:text-lg text-white leading-relaxed max-w-4xl font-normal">
               <strong>Toric lenses</strong> are specifically engineered to correct astigmatism—the
               irregular curvature of your cornea. Without a Toric lens, astigmatism remains
               uncorrected after surgery, meaning you will still need glasses for crisp distance
@@ -1297,7 +1299,7 @@ export default function LensVisionComparisonSection() {
           </div>
         </div>
 
-        <p className="text-center text-[10px] text-muted-foreground/85 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.1em] leading-relaxed">
+        <p className="text-center text-xs sm:text-sm text-white/90 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.08em] leading-relaxed font-medium">
           Simulations are for illustrative purposes only. Specifications displayed in charts above
           represent spectacle independence rates from published clinical data (PanOptix Pro:
           meta-analysis of 13 studies with 513 patients; Vivity: Alcon clinical data; Eyhance: J&J

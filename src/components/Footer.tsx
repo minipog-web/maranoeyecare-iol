@@ -100,8 +100,8 @@ export default function Footer() {
         </div>
 
         {/* Clinical References & Footnotes */}
-        <div className="mt-8 pt-6 border-t border-border/20 text-[11px] text-muted-foreground/75 leading-relaxed max-w-5xl mx-auto">
-          <p className="font-semibold uppercase tracking-wider text-[10px] text-primary/80 mb-4 select-none text-center sm:text-left">
+        <div className="mt-8 pt-6 border-t border-border/20 text-xs sm:text-sm text-white/90 leading-relaxed max-w-5xl mx-auto">
+          <p className="font-bold uppercase tracking-wider text-xs sm:text-sm text-primary mb-4 select-none text-center sm:text-left">
             Clinical References & Study Data Disclosures:
           </p>
           <div className="grid sm:grid-cols-2 gap-6 sm:gap-10">

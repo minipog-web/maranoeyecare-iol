@@ -119,16 +119,16 @@ function FAQItemRow({
         </span>
         <div className="flex-1 min-w-0">
           {item.concern && (
-            <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-primary/70 bg-primary/10 px-2.5 py-0.5 rounded-full mb-2">
+            <span className="inline-block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full mb-2">
               {item.concern}
             </span>
           )}
-          <p className="text-sm sm:text-base font-semibold text-foreground group-hover:text-primary/90 transition-colors leading-snug">
+          <p className="text-base sm:text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
             {item.question}
           </p>
         </div>
         <span
-          className={`shrink-0 mt-0.5 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${
+          className={`shrink-0 mt-0.5 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 ${
             isOpen
               ? 'border-primary/40 bg-primary/10 rotate-45'
               : 'border-border group-hover:border-primary/40'
@@ -136,7 +136,7 @@ function FAQItemRow({
         >
           <Icon
             name="PlusIcon"
-            size={14}
+            size={16}
             className={isOpen ? 'text-primary' : 'text-muted-foreground'}
           />
         </span>
@@ -149,11 +149,13 @@ function FAQItemRow({
       >
         <div className="overflow-hidden">
           <div className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[3.75rem] sm:pl-[4.25rem]">
-            <p className="text-sm text-muted-foreground leading-relaxed mb-3">{item.answer}</p>
+            <p className="text-base sm:text-lg text-foreground/95 leading-relaxed mb-3.5 font-normal">
+              {item.answer}
+            </p>
             {item.highlight && (
-              <div className="flex items-start gap-2 px-3 py-2 rounded-xl bg-primary/8 border border-primary/15">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_6px_rgba(197, 160, 89,0.6)]" />
-                <p className="text-xs font-semibold text-primary/90 leading-relaxed">
+              <div className="flex items-start gap-2.5 px-3.5 py-2.5 rounded-xl bg-primary/10 border border-primary/20">
+                <span className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
+                <p className="text-sm sm:text-base font-bold text-primary leading-relaxed">
                   {item.highlight}
                 </p>
               </div>
@@ -188,13 +190,13 @@ function ProceduralFAQRow({
         className="w-full flex items-center justify-between gap-4 py-4 text-left touch-manipulation group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
         {...{ 'aria-expanded': isOpen }}
       >
-        <p className="text-sm font-medium text-foreground/85 group-hover:text-foreground transition-colors">
+        <p className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors">
           {item.question}
         </p>
         <span
           className={`shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
         >
-          <Icon name="ChevronDownIcon" size={16} className="text-muted-foreground" />
+          <Icon name="ChevronDownIcon" size={18} className="text-primary" />
         </span>
       </button>
       <div
@@ -203,7 +205,9 @@ function ProceduralFAQRow({
         }`}
       >
         <div className="overflow-hidden">
-          <p className="text-sm text-muted-foreground leading-relaxed pb-4">{item.answer}</p>
+          <p className="text-base sm:text-lg text-foreground/95 leading-relaxed pb-4 font-normal">
+            {item.answer}
+          </p>
         </div>
       </div>
     </div>

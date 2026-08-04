@@ -52,18 +52,24 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.65;
-  letter-spacing: 0.015em;
+  font-size: 18px;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
   font-weight: 450;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Enhanced High-Contrast Cataract Readability Utilities */
 .legible-body {
-  line-height: 1.7;
-  letter-spacing: 0.02em;
-  font-size: 1.05rem;
+  line-height: 1.8;
+  letter-spacing: 0.025em;
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.text-muted-foreground {
+  color: #f1f5f9 !important; /* High contrast off-white for cataract eyes */
 }
 
 html {

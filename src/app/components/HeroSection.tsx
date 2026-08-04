@@ -87,9 +87,9 @@ export default function HeroSection({
           {/* Left Content */}
           <div className="flex-1 w-full flex flex-col items-start">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.35em] text-primary">
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/30 bg-primary/10 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both">
+              <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_10px_rgba(197,160,89,0.9)]" />
+              <span className="text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.15em] sm:tracking-[0.25em] text-primary">
                 {badgeText || 'Premium IOL Specialists — Livingston • Denville • Newark'}
               </span>
             </div>
@@ -101,7 +101,7 @@ export default function HeroSection({
                 {heroTitleLine2 || 'Lifetime Visual Freedom.'}
               </span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 text-justify animate-fade-up delay-300 fill-both">
+            <p className="text-lg sm:text-xl md:text-2xl text-foreground font-normal max-w-xl leading-relaxed mb-8 sm:mb-10 text-justify animate-fade-up delay-300 fill-both">
               {heroDesc ||
                 'Cataract surgery is a single, permanent opportunity to reclaim your active lifestyle. Rather than accepting standard lenses that require reading glasses for the rest of your life, discover the freedom of advanced lenses designed to restore complete, multi-distance clarity.'}
             </p>{' '}
@@ -294,21 +294,21 @@ export default function HeroSection({
 
                       {/* Tag badge */}
                       <div
-                        className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2.5 py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-sm`}
+                        className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-3 py-1 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-md`}
                       >
                         {lens?.tag}
                       </div>
                     </div>
 
                     {/* Bottom info */}
-                    <div className="p-2.5 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
-                      <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
+                    <div className="p-3 sm:p-4 bg-gradient-to-t from-black/95 via-black/85 to-black/70 backdrop-blur-md border-t border-white/10">
+                      <p className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider mb-0.5">
                         {lens?.name}
                       </p>
-                      <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
+                      <p className="text-white font-semibold text-xs sm:text-base leading-snug">
                         {lens?.subtitle}
                       </p>
-                      <p className="text-white/70 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight">
+                      <p className="text-white/90 text-xs sm:text-sm mt-1 leading-snug font-medium">
                         {(() => {
                           const parts = lens?.detail.split(/(\[\d+\])/);
                           return parts.map((part, idx) => {

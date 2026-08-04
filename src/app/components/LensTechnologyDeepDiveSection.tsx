@@ -252,7 +252,7 @@ export default function LensTechnologyDeepDiveSection() {
 
                   {/* Explanatory Annotations inside Diagram with Pointer Lines */}
                   {/* Near (40cm) - Positioned below the axis */}
-                  <text x="175" y="235" fill="#10B981" fontSize="9" fontWeight="bold">
+                  <text x="160" y="235" fill="#10B981" fontSize="13" fontWeight="bold">
                     NEAR (40cm)
                   </text>
                   <line
@@ -261,12 +261,12 @@ export default function LensTechnologyDeepDiveSection() {
                     x2="228"
                     y2="173"
                     stroke="#10B981"
-                    strokeWidth="1"
-                    opacity="0.6"
+                    strokeWidth="1.5"
+                    opacity="0.8"
                   />
 
                   {/* Intermediate (60cm) - Positioned above the axis */}
-                  <text x="265" y="95" fill="#EC4899" fontSize="9" fontWeight="bold">
+                  <text x="250" y="95" fill="#EC4899" fontSize="13" fontWeight="bold">
                     INTERMEDIATE (60cm)
                   </text>
                   <line
@@ -275,12 +275,12 @@ export default function LensTechnologyDeepDiveSection() {
                     x2="320"
                     y2="146"
                     stroke="#EC4899"
-                    strokeWidth="1"
-                    opacity="0.6"
+                    strokeWidth="1.5"
+                    opacity="0.8"
                   />
 
                   {/* Distance (6m+) - Positioned below the axis */}
-                  <text x="395" y="235" fill="#8B5CF6" fontSize="9" fontWeight="bold">
+                  <text x="380" y="235" fill="#8B5CF6" fontSize="13" fontWeight="bold">
                     DISTANCE (6m+)
                   </text>
                   <line
@@ -289,12 +289,18 @@ export default function LensTechnologyDeepDiveSection() {
                     x2="447"
                     y2="178"
                     stroke="#8B5CF6"
-                    strokeWidth="1"
-                    opacity="0.6"
+                    strokeWidth="1.5"
+                    opacity="0.8"
                   />
 
                   {/* Halo Indicator Label */}
-                  <text x="310" y="80" fill="rgba(139,92,246,0.6)" fontSize="9" fontStyle="italic">
+                  <text
+                    x="290"
+                    y="75"
+                    fill="rgba(139,92,246,0.9)"
+                    fontSize="12"
+                    fontWeight="semibold"
+                  >
                     Scattered Light (Halos)
                   </text>
                 </svg>

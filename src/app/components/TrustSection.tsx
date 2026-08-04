@@ -58,7 +58,7 @@ export default function TrustSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
+          <p className="text-sm sm:text-base font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
             Your Surgeon
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-5 sm:mb-6 leading-tight">
@@ -66,7 +66,7 @@ export default function TrustSection() {
             <span className="font-semibold text-gradient-primary">{`Most Awarded`}</span> Eye
             Surgeon
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-foreground font-normal max-w-3xl mx-auto leading-relaxed">
             Dr. Matthew Marano Jr., MD has spent over three decades helping patients achieve
             permanent freedom from glasses and contacts. Named a Top Doctor for 15 consecutive
             years, he is a renowned specialist in complex cataract cases and challenging eye
@@ -170,10 +170,10 @@ export default function TrustSection() {
                       </div>
                     ) : (
                       <>
-                        <p className="text-xs sm:text-sm font-semibold text-foreground mb-1">
+                        <p className="text-sm sm:text-base font-bold text-foreground mb-1">
                           {award?.label}
                         </p>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
+                        <p className="text-sm sm:text-base text-foreground/90 font-medium leading-relaxed">
                           {award?.sublabel}
                         </p>
                       </>

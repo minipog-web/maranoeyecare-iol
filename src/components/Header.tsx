@@ -86,7 +86,7 @@ export default function Header() {
               key={link?.href}
               href={link?.href}
               onClick={() => handleNavClick(link.label)}
-              className={`px-1.5 md:px-2 lg:px-2.5 2xl:px-3 py-1.5 lg:py-2 text-[11px] md:text-[11px] lg:text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.02em] md:tracking-[0.04em] lg:tracking-[0.05em] 2xl:tracking-[0.06em] text-muted-foreground hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.06] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+              className={`px-2 md:px-2.5 lg:px-3 py-1.5 lg:py-2 text-xs md:text-xs lg:text-sm 2xl:text-base font-bold uppercase tracking-wider text-white hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.08] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                 idx === 1 || idx === 3 ? 'md:hidden lg:hidden xl:inline-block' : ''
               }`}
             >
@@ -101,12 +101,12 @@ export default function Header() {
             href="tel:9733220100"
             onClick={() => handlePhoneClick('desktop')}
             aria-label="Call Marano Eye Care at 973-322-0100"
-            className="group flex items-center gap-2.5 text-xs xl:text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap lg:ml-2 xl:ml-3 rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="group flex items-center gap-2.5 text-sm xl:text-base font-bold text-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap lg:ml-2 xl:ml-3 rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
-            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
-              <Icon name="PhoneIcon" size={13} className="text-primary" />
+            <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center shrink-0 border border-primary/30 group-hover:bg-primary/25 group-hover:border-primary/50 transition-all duration-300">
+              <Icon name="PhoneIcon" size={15} className="text-primary" />
             </div>
-            <span className="hidden lg:inline font-semibold text-foreground/90 text-xs xl:text-sm tracking-wide">
+            <span className="hidden lg:inline font-bold text-white text-sm xl:text-base tracking-wide">
               (973) 322-0100
             </span>
           </a>
