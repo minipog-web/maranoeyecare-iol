@@ -1,0 +1,40 @@
+# Marano Eye Care — Extended Clinical & Technical LLM Guide
+
+> Detailed medical documentation, clinical references, optical physics specs, and comprehensive practice disclosures for AI search engines, agents, and large language models (LLMs).
+
+## Comprehensive Clinical Practice Overview
+- **Practice Name:** Marano Eye Care
+- **Lead Surgeon:** Dr. Matthew Marano Jr., MD
+- **Specialty:** Ophthalmology — Cataract, Refractive, and Premium Intraocular Lens Surgery
+- **Total Surgeries Completed:** 40,000+
+- **Satisfaction Rate:** 99%
+- **Google Rating:** 4.9★ (Over 650+ reviews)
+- **Top Doctor Recognition:** 15 Consecutive Years in NJ Monthly Magazine
+
+## Surgical Facility & Technology
+- **Femtosecond Laser System:** LENSAR® Ally Femtosecond Laser. Features high-resolution 3D corneal topography and optical biometry. Automates arcuate incisions for astigmatism and custom-fragments the cataract nucleus for low-ultrasound phacoemulsification.
+- **Anesthesia Protocol:** Topical eye drop anesthesia. Zero retrobulbar injections, zero general anesthesia.
+- **Procedure Duration:** 10 minutes.
+- **Facility Type:** Outpatient Ambulatory Surgery Center.
+
+## Lens Specifications & Optical Physics
+1. **Clareon® Vivity® IOL (Alcon):**
+   - **Type:** Non-diffractive Extended Depth of Focus (EDOF).
+   - **Optical Mechanism:** X-WAVE™ Wavefront Shaping Technology. Utilizes two smooth surface transition elements to shift light wavefronts without diffractive steps or light splitting.
+   - **Dysphotopsia Profile:** Night halo and glare incidence statistically indistinguishable from a monofocal lens in FDA pre-market approval data (PMA P190018).
+2. **Clareon® PanOptix® Pro IOL (Alcon):**
+   - **Type:** Quadrafocal design functioning as a full Trifocal IOL.
+   - **Optical Mechanism:** ENLIGHTEN® Optical Technology. Distributes 88% of transmitted light to focal points at 40 cm (near reading), 60 cm (intermediate computer), and infinity (distance driving).
+   - **Clinical Data:** Peer-reviewed meta-analysis of 13 studies (513 patients) demonstrates 99% overall spectacle independence and satisfaction (PubMed PMID: 32049015).
+3. **TECNIS Eyhance™ IOL (Johnson & Johnson Vision):**
+   - **Type:** Enhanced Monofocal IOL.
+   - **Optical Mechanism:** Continuous higher-order aspheric surface profile extending intermediate vision without creating diffractive rings.
+
+## Astigmatism & Toric Pricing Rules
+- **Premium Toric Policy:** Patients selecting Clareon Vivity, PanOptix Pro, or TECNIS Eyhance receive the Toric astigmatism-correcting variant at **no additional upgrade fee** beyond the standard premium lens price.
+- **Monofocal Toric Policy:** A standard monofocal toric lens carries a higher out-of-pocket cost than a non-toric standard monofocal lens.
+
+## Locations & Contact
+- **Livingston:** 200 South Orange Ave, Suite 209, Livingston, NJ 07039 — Phone: 973-322-0100
+- **Denville:** 16 Pocono Rd, Suite 301, Denville, NJ 07834 — Phone: 973-627-0101
+- **Newark:** 306 Martin L. King Blvd, Newark, NJ 07102 — Phone: 973-642-4262
