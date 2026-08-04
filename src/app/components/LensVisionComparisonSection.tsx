@@ -1163,11 +1163,15 @@ export default function LensVisionComparisonSection() {
                               if (match) {
                                 const num = match[1];
                                 return (
-                                  <sup key={idx} className="text-xs font-bold">
+                                  <sup
+                                    key={idx}
+                                    className="text-xs font-bold inline-flex items-center"
+                                  >
                                     <a
                                       href={`#footnote-${num}`}
                                       onClick={(e) => e.stopPropagation()}
-                                      className="text-primary hover:underline ml-0.5"
+                                      className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-block min-w-[24px] min-h-[24px] text-center"
+                                      aria-label={`View citation footnote ${num}`}
                                     >
                                       [{num}]
                                     </a>

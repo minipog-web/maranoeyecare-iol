@@ -11,29 +11,54 @@ import { getDynamicContent } from '@/lib/dynamicText';
 import dynamic from 'next/dynamic';
 
 // Dynamically import heavy interactive client-side components to minimize initial JS payload
-const TrustSection = dynamic(() => import('@/app/components/TrustSection'));
+const SkeletonLoader = () => (
+  <div className="min-h-[400px] w-full bg-background/50 flex items-center justify-center p-8">
+    <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
+  </div>
+);
+
+const TrustSection = dynamic(() => import('@/app/components/TrustSection'), {
+  loading: SkeletonLoader,
+});
 
 const LensVisionComparisonSection = dynamic(
-  () => import('@/app/components/LensVisionComparisonSection')
+  () => import('@/app/components/LensVisionComparisonSection'),
+  { loading: SkeletonLoader }
 );
 
 const LensTechnologyDeepDiveSection = dynamic(
-  () => import('@/app/components/LensTechnologyDeepDiveSection')
+  () => import('@/app/components/LensTechnologyDeepDiveSection'),
+  { loading: SkeletonLoader }
 );
 
-const LensarAllySection = dynamic(() => import('@/app/components/LensarAllySection'));
+const LensarAllySection = dynamic(() => import('@/app/components/LensarAllySection'), {
+  loading: SkeletonLoader,
+});
 
-const LifestyleMatchSection = dynamic(() => import('@/app/components/LifestyleMatchSection'));
+const LifestyleMatchSection = dynamic(() => import('@/app/components/LifestyleMatchSection'), {
+  loading: SkeletonLoader,
+});
 
-const LensQuestionnaireSection = dynamic(() => import('@/app/components/LensQuestionnaireSection'));
+const LensQuestionnaireSection = dynamic(
+  () => import('@/app/components/LensQuestionnaireSection'),
+  { loading: SkeletonLoader }
+);
 
-const RecoveryTimelineSection = dynamic(() => import('@/app/components/RecoveryTimelineSection'));
+const RecoveryTimelineSection = dynamic(() => import('@/app/components/RecoveryTimelineSection'), {
+  loading: SkeletonLoader,
+});
 
-const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'));
+const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'), {
+  loading: SkeletonLoader,
+});
 
-const FAQSection = dynamic(() => import('@/app/components/FAQSection'));
+const FAQSection = dynamic(() => import('@/app/components/FAQSection'), {
+  loading: SkeletonLoader,
+});
 
-const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
+const BookingSection = dynamic(() => import('@/app/components/BookingSection'), {
+  loading: SkeletonLoader,
+});
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
