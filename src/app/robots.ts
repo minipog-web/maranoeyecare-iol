@@ -5,7 +5,17 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web'],
+        userAgent: [
+          'GPTBot',
+          'ChatGPT-User',
+          'ClaudeBot',
+          'Claude-Web',
+          'PerplexityBot',
+          'Google-Extended',
+          'Applebot-Extended',
+          'Bytespider',
+          'CCBot',
+        ],
         allow: '/',
       },
       {

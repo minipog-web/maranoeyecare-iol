@@ -73,6 +73,16 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'chatgpt-user': 'index, follow',
+    gptbot: 'index, follow',
+    claudebot: 'index, follow',
+    perplexitybot: 'index, follow',
+    'google-extended': 'index, follow',
+    bingbot: 'index, follow, archive',
+    applebot: 'index, follow',
+    'ai-search-bot': 'index, follow',
+  },
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
   },
@@ -85,9 +95,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/assets/images/vivity_iol_clean.png',
-        width: 800,
-        height: 600,
-        alt: 'Marano Eye Care — Premium IOL Lens Options',
+        width: 1200,
+        height: 630,
+        alt: 'Marano Eye Care — Premium IOL Lens Options & Laser Cataract Surgery',
       },
     ],
     locale: 'en_US',
@@ -225,6 +235,70 @@ const schemas = [
         },
       },
     ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': 'https://www.maranoeye.com/#faq',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: "I'm worried about halos and glare — especially night driving. Which lens is best?",
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Dr. Marano recommends the Clareon Vivity for most night drivers. Unlike older diffractive lenses, Vivity uses non-diffractive X-WAVE™ technology that doesn't split light, giving halo rates nearly identical to a standard monofocal lens.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What if I have astigmatism? Do Toric lenses cost more?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'At Marano Eye Care, all premium lenses (Clareon Vivity, PanOptix Pro, and Tecnis Eyhance) include Toric astigmatism correction at no additional charge beyond the standard premium upgrade.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does cataract surgery take?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The surgical procedure takes approximately 10 minutes under topical eye drop anesthesia—no pain, no injections, no general anesthesia required.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does Dr. Marano perform the surgery himself?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Board-Certified Ophthalmologist Dr. Matthew Marano Jr., MD performs every cataract surgery personally.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use HSA or FSA funds for premium IOLs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Both HSA and FSA funds can be fully applied toward your premium lens upgrade, and interest-free financing is available via CareCredit®.',
+        },
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    '@id': 'https://www.maranoeye.com/#cataract-procedure',
+    name: 'Laser Cataract Surgery with Premium IOL Implantation',
+    procedureHowItIsPerformed:
+      'Outpatient 10-minute microsurgery using LENSAR® Femtosecond Laser guidance under topical anesthesia.',
+    bodyLocation: 'Eye',
+    relevantSpecialty: {
+      '@type': 'MedicalSpecialty',
+      name: 'Ophthalmology',
+    },
+    performedBy: {
+      '@type': 'Physician',
+      name: 'Dr. Matthew Marano Jr., MD',
+    },
   },
 ];
 
