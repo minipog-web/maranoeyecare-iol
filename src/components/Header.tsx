@@ -18,7 +18,15 @@ export default function Header() {
   useEffect(() => {
     if (menuOpen) {
       const handleScroll = () => setMenuOpen(false);
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setMenuOpen(false);
+      };
       window.addEventListener('scroll', handleScroll, { passive: true, once: true });
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     }
   }, [menuOpen]);
 
