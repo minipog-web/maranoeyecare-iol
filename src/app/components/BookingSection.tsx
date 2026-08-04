@@ -670,9 +670,11 @@ export default function BookingSection({
                       />
                     </button>
 
-                    <div className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold mt-3">
-                      <Icon name="LockClosedIcon" size={15} className="shrink-0 text-emerald-400" />
-                      <span>HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required</span>
+                    <div className="flex items-center justify-center gap-1.5 py-2 px-2 sm:px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] xs:text-xs sm:text-sm font-semibold mt-3 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <Icon name="LockClosedIcon" size={14} className="shrink-0 text-emerald-400" />
+                      <span className="whitespace-nowrap">
+                        HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required
+                      </span>
                     </div>
                   </form>
                 ) : (
