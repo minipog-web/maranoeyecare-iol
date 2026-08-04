@@ -93,11 +93,9 @@ export default function HeroSection({
                 {badgeText || 'Premium IOL Specialists — Livingston • Denville • Newark'}
               </span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
-              <span className="block whitespace-nowrap">
-                {heroTitleLine1 || 'One Surgery. One Choice.'}
-              </span>{' '}
-              <span className="block text-gradient-primary font-semibold mt-1 pb-4 whitespace-nowrap">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.08] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
+              <span className="block">{heroTitleLine1 || 'One Surgery. One Choice.'}</span>{' '}
+              <span className="block text-gradient-primary font-semibold mt-1 pb-2">
                 {heroTitleLine2 || 'Lifetime Visual Freedom.'}
               </span>
             </h1>
@@ -226,7 +224,7 @@ export default function HeroSection({
           </div>
 
           {/* Right: Three-Lens Visual Showcase */}
-          <div className="relative flex-1 w-full flex items-end justify-center lg:justify-end gap-2 sm:gap-3 md:gap-4 py-6 lg:py-0 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="relative flex-1 w-full flex items-end justify-center gap-2 sm:gap-3 md:gap-4 py-6 lg:py-0 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0">
             {lenses?.map((lens, i) => {
               const isActive = activeLens === lens.name;
               const delayClass =
@@ -342,7 +340,7 @@ export default function HeroSection({
             })}
 
             {/* Floating lens detail card — desktop only */}
-            <div className="hidden lg:block absolute bottom-[400px] right-4 lg:right-8 w-44 glass-card-bright rounded-2xl p-4 shadow-2xl z-30 animate-float-delayed">
+            <div className="hidden lg:block absolute -top-8 right-2 xl:-top-10 xl:right-4 w-44 glass-card-bright rounded-2xl p-4 shadow-2xl z-30 animate-float-delayed">
               <div className="w-8 h-8 rounded-xl bg-primary/15 flex items-center justify-center mb-3 shadow-[0_0_12px_rgba(197, 160, 89,0.3)]">
                 <Icon name="SparklesIcon" size={18} className="text-primary" />
               </div>
