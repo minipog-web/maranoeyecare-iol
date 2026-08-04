@@ -670,10 +670,10 @@ export default function BookingSection({
                       />
                     </button>
 
-                    <p className="text-xs text-muted-foreground text-center pt-1">
-                      No commitment required · We&apos;ll call within 1 business day · Your info
-                      stays private
-                    </p>
+                    <div className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold mt-3">
+                      <Icon name="LockClosedIcon" size={15} className="shrink-0 text-emerald-400" />
+                      <span>HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required</span>
+                    </div>
                   </form>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">

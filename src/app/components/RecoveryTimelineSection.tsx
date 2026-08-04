@@ -76,7 +76,7 @@ export default function RecoveryTimelineSection() {
             Your Journey to{' '}
             <span className="font-semibold text-gradient-primary">Visual Freedom.</span>
           </h2>
-          <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto">
+          <p className="text-foreground font-normal leading-relaxed text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
             Fear of surgery is natural, but premium cataract correction is one of the safest, most
             precise procedures in modern medicine. Here is your timeline.
           </p>
@@ -153,9 +153,9 @@ export default function RecoveryTimelineSection() {
                         {/* Card Header */}
                         <div className="flex items-center justify-between mb-4">
                           <span
-                            className="text-[10px] font-bold uppercase tracking-[0.15em] transition-colors duration-500"
+                            className="text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors duration-500"
                             style={{
-                              color: isActive ? step.color : '#94a3b8',
+                              color: isActive ? step.color : '#f1f5f9',
                             }}
                           >
                             {step.timeframe}
@@ -175,12 +175,12 @@ export default function RecoveryTimelineSection() {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                        <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                           {step.title}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-xs text-muted-foreground leading-relaxed font-light">
+                        <p className="text-sm sm:text-base text-foreground/95 leading-relaxed font-normal">
                           {step.description}
                         </p>
                       </div>

@@ -125,8 +125,8 @@ export default function TrustSection() {
                   Top Doctor
                 </span>
               </div>
-              <p className="font-display text-2xl font-medium text-foreground">15 Years</p>
-              <p className="text-xs text-muted-foreground mt-1 leading-snug">
+              <p className="font-display text-2xl font-semibold text-foreground">15 Years</p>
+              <p className="text-sm text-foreground/90 mt-1 leading-snug font-medium">
                 NJ Monthly Magazine consecutive recognition
               </p>
             </div>
