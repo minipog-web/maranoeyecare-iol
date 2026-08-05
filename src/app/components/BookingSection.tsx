@@ -277,7 +277,7 @@ export default function BookingSection({
             </h2>
 
             {/* Urgency framing */}
-            <div className="flex items-start gap-3 mb-5 sm:mb-6 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 shadow-[0_6px_15px_rgba(0,0,0,0.3)]">
+            <div className="flex items-start gap-3 mb-4 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 shadow-[0_6px_15px_rgba(0,0,0,0.3)]">
               <Icon
                 name="ExclamationTriangleIcon"
                 size={18}
@@ -289,6 +289,16 @@ export default function BookingSection({
                 </strong>{' '}
                 {bookingUrgencyText ||
                   'and never improve on their own. Waiting makes vision worse and recovery longer.'}
+              </p>
+            </div>
+
+            {/* Risk Reversal Guarantee framing */}
+            <div className="flex items-center gap-3 mb-6 sm:mb-8 p-3.5 rounded-xl bg-primary/10 border border-primary/20">
+              <Icon name="ShieldCheckIcon" size={20} className="text-primary shrink-0" />
+              <p className="text-xs sm:text-sm text-white font-medium">
+                <strong className="text-primary font-bold">Zero-Pain Guarantee:</strong> 100%
+                topical numbing eye drops. No needles, no injections, and zero out-of-pocket
+                consultation fee.
               </p>
             </div>
 

@@ -159,6 +159,10 @@ export default function HeroSection({
               </span>
               <span className="flex items-center gap-1.5 text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                Zero-Needle Topical Drops
+              </span>
+              <span className="flex items-center gap-1.5 text-white">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                 99% Patient Satisfaction
               </span>
               <span className="flex items-center gap-1.5 text-white">
