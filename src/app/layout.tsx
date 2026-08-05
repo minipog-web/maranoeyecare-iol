@@ -11,6 +11,7 @@ const dmSans = DM_Sans({
   variable: '--font-sans',
   display: 'swap',
   weight: ['300', '400', '500', '700'],
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
 const fraunces = Fraunces({
@@ -18,6 +19,7 @@ const fraunces = Fraunces({
   variable: '--font-display',
   display: 'swap',
   weight: ['300', '400', '600', '700'],
+  fallback: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
 });
 
 export const viewport: Viewport = {
