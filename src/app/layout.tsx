@@ -134,19 +134,53 @@ const schemas = [
     name: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
     description:
       "Compare Clareon Vivity, PanOptix Pro, and Tecnis Eyhance IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmologist, Dr. Matthew Marano Jr., MD.",
-    about: {
-      '@type': 'MedicalSpecialty',
-      name: 'Ophthalmology',
+    medicalAudience: {
+      '@type': 'MedicalAudience',
+      audienceType: 'Cataract Patients, Presbyopia Patients, Astigmatism Patients',
     },
+    aspect: ['Overview', 'Diagnosis', 'Treatment Options', 'Risks and Benefits'],
+    about: [
+      {
+        '@type': 'MedicalCondition',
+        name: 'Cataract',
+        possibleTreatment: {
+          '@type': 'MedicalProcedure',
+          name: 'Cataract Surgery with Premium IOL Implantation',
+        },
+      },
+      {
+        '@type': 'MedicalCondition',
+        name: 'Astigmatism',
+        possibleTreatment: {
+          '@type': 'MedicalDevice',
+          name: 'Toric Intraocular Lens',
+        },
+      },
+      {
+        '@type': 'MedicalCondition',
+        name: 'Presbyopia',
+        possibleTreatment: {
+          '@type': 'MedicalDevice',
+          name: 'Multifocal and Extended Depth of Focus (EDOF) IOLs',
+        },
+      },
+    ],
     author: {
       '@type': 'Physician',
       name: 'Dr. Matthew Marano Jr., MD',
       jobTitle: 'Chief of Ophthalmology',
       medicalSpecialty: 'Ophthalmology',
-      worksFor: {
-        '@type': 'MedicalOrganization',
-        name: 'Cooperman Barnabas Medical Center',
-      },
+      almaMater: 'New Jersey Medical School',
+      hospitalAffiliation: [
+        {
+          '@type': 'Hospital',
+          name: 'Cooperman Barnabas Medical Center',
+        },
+        {
+          '@type': 'Hospital',
+          name: "St. Michael's Medical Center",
+        },
+      ],
       url: 'https://www.maranoeye.com',
       image: 'https://www.maranoeye.com/assets/images/marano_logo.png',
       sameAs: [
@@ -170,6 +204,42 @@ const schemas = [
     currenciesAccepted: 'USD',
     paymentAccepted:
       'Cash, Credit Card, Medicare, Health Savings Account (HSA), Flexible Spending Account (FSA), CareCredit',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Intraocular Lenses & Cataract Surgical Upgrades',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'MedicalDevice',
+            name: 'Clareon PanOptix Pro Trifocal IOL',
+            manufacturer: 'Alcon',
+            description:
+              'Premium Trifocal IOL for near, intermediate, and distance spectacle independence.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'MedicalDevice',
+            name: 'Clareon Vivity Non-Diffractive EDOF IOL',
+            manufacturer: 'Alcon',
+            description:
+              'Extended Depth of Focus lens utilizing X-WAVE technology for glare-free night vision.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'MedicalDevice',
+            name: 'TECNIS Eyhance Enhanced Monofocal IOL',
+            manufacturer: 'Johnson & Johnson Vision',
+            description:
+              'Enhanced monofocal lens extending intermediate range without diffractive rings.',
+          },
+        },
+      ],
+    },
     knowsAbout: [
       'Cataract Surgery',
       'Intraocular Lenses',
