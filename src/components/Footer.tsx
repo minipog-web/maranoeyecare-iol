@@ -72,11 +72,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <p className="text-center sm:text-left">
-            © 2026 Marano Eye Care. Matthew Marano Jr., MD. All rights reserved.
-          </p>
-          <p className="text-center flex flex-wrap items-center justify-center gap-1.5 sm:justify-end">
+        <div className="my-6 py-6 border-t border-b border-border/40 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-3 text-xs text-muted-foreground">
+          <p>© 2026 Marano Eye Care. Matthew Marano Jr., MD. All rights reserved.</p>
+          <p className="flex flex-wrap items-center justify-center gap-2 md:justify-end">
             <span>Livingston · Denville · Newark, NJ</span>
             <span className="hidden sm:inline">·</span>
             <a
@@ -100,7 +98,7 @@ export default function Footer() {
         </div>
 
         {/* Clinical References & Footnotes */}
-        <div className="mt-8 pt-6 border-t border-border/20 text-xs sm:text-sm text-white/90 leading-relaxed max-w-5xl mx-auto">
+        <div className="pt-2 text-xs sm:text-sm text-white/90 leading-relaxed max-w-5xl mx-auto">
           <p className="font-bold uppercase tracking-wider text-xs sm:text-sm text-primary mb-4 select-none text-center sm:text-left">
             Clinical References & Study Data Disclosures:
           </p>
@@ -151,7 +149,19 @@ export default function Footer() {
                   [View on ClinicalTrials.gov]
                 </a>
               </p>
-              <p className="text-[10px] text-muted-foreground/50 border-t border-border/20 pt-3 select-none">
+              <p id="footnote-4" className="scroll-mt-24">
+                <strong className="text-foreground">[4] Vision Simulator Imagery:</strong> Night
+                driving simulation imagery adapted from the ZEISS Medical IOL Vision Simulator Pro.{' '}
+                <a
+                  href="https://downloads.zeiss.com/medical/iol-vision-simulator-pro/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                >
+                  [View ZEISS Vision Simulator Source]
+                </a>
+              </p>
+              <p className="text-[10px] text-muted-foreground/60 border-t border-border/20 pt-3 select-none">
                 Simulations are for illustrative/educational purposes only. Individual patient
                 visual outcomes, recovery speeds, and clinical experiences may vary. A comprehensive
                 biometric consultation with Dr. Marano is required for medical diagnosis and

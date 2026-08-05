@@ -132,6 +132,12 @@ const schemas = [
     author: {
       '@type': 'Physician',
       name: 'Dr. Matthew Marano Jr., MD',
+      jobTitle: 'Chief of Ophthalmology',
+      medicalSpecialty: 'Ophthalmology',
+      worksFor: {
+        '@type': 'MedicalOrganization',
+        name: 'Cooperman Barnabas Medical Center',
+      },
       url: 'https://www.maranoeye.com',
       image: 'https://www.maranoeye.com/assets/images/marano_logo.png',
       sameAs: [
@@ -146,11 +152,15 @@ const schemas = [
     '@type': ['MedicalBusiness', 'Physician'],
     '@id': 'https://www.maranoeye.com/#medical-business',
     name: 'Marano Eye Care',
+    alternateName: ['Marano Eye Care NJ', 'Dr. Matthew Marano Ophthalmology'],
     image: 'https://www.maranoeye.com/assets/images/marano_logo.png',
     url: 'https://www.maranoeye.com',
     telephone: '973-322-0100',
     priceRange: '$$$',
     medicalSpecialty: 'Ophthalmology',
+    currenciesAccepted: 'USD',
+    paymentAccepted:
+      'Cash, Credit Card, Medicare, Health Savings Account (HSA), Flexible Spending Account (FSA), CareCredit',
     knowsAbout: [
       'Cataract Surgery',
       'Intraocular Lenses',
@@ -158,7 +168,9 @@ const schemas = [
       'PanOptix Pro',
       'Tecnis Eyhance',
       'Laser Cataract Surgery',
-      'LENSAR Ally',
+      'LENSAR Ally Femtosecond Laser',
+      'Toric Astigmatism Correction',
+      'Presbyopia Correcting IOLs',
     ],
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -292,6 +304,8 @@ const schemas = [
     '@type': 'MedicalProcedure',
     '@id': 'https://www.maranoeye.com/#cataract-procedure',
     name: 'Laser Cataract Surgery with Premium IOL Implantation',
+    description:
+      'Advanced laser-assisted outpatient cataract surgery utilizing LENSAR Ally 3D corneal mapping and premium IOLs.',
     procedureHowItIsPerformed:
       'Outpatient 10-minute microsurgery using LENSAR® Femtosecond Laser guidance under topical anesthesia.',
     bodyLocation: 'Eye',
@@ -312,7 +326,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${dmSans.variable} ${fraunces.variable}`}>
+    <html
+      lang="en"
+      className={`dark ${dmSans.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Google Tag Manager (GTM-PB9D9RHS) */}
         {GTM_ID && (
@@ -358,7 +376,7 @@ export default function RootLayout({
           />
         ))}
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         {/* Google Tag Manager (noscript) */}
         {GTM_ID && (
           <noscript>

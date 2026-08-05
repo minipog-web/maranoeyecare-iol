@@ -154,7 +154,7 @@ export default function TrustSection() {
                     </div>
                     <p
                       className={`font-display font-semibold text-primary mb-2 ${
-                        award.value.length > 10 ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'
+                        award.value.length > 10 ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl'
                       }`}
                     >
                       {award?.value}
@@ -170,10 +170,10 @@ export default function TrustSection() {
                       </div>
                     ) : (
                       <>
-                        <p className="text-sm sm:text-base font-bold text-foreground mb-1">
+                        <p className="text-xs sm:text-sm font-bold text-foreground mb-1">
                           {award?.label}
                         </p>
-                        <p className="text-sm sm:text-base text-foreground/90 font-medium leading-relaxed">
+                        <p className="text-xs sm:text-sm text-muted-foreground font-medium leading-relaxed">
                           {award?.sublabel}
                         </p>
                       </>

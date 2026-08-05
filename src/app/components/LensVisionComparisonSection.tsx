@@ -187,7 +187,7 @@ const lenses = [
     specs: [
       { label: 'Distance Vision', value: 'Excellent', score: 98 },
       { label: 'Intermediate (Screens)', value: 'Functional', score: 45 },
-      { label: 'Near (Reading)', value: 'Dependent', score: 20 },
+      { label: 'Near (Reading)', value: 'Glasses Dependent', score: 20 },
       { label: 'Night Vision Quality', value: 'Baseline', score: 98 },
     ],
     highlights: [
@@ -534,7 +534,7 @@ export default function LensVisionComparisonSection() {
               timeOfDay === 'night' ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             } ${blurClass(lens.blur.night[activeDistance])}`}
             sizes="(max-width: 768px) 100vw, 50vw"
-            priority={lens.featured}
+            loading="lazy"
           />
         )}
       </>
@@ -621,7 +621,7 @@ export default function LensVisionComparisonSection() {
       {/* Dynamic Sliding Background Glow that follows the active lens selection or mouse hover */}
       <div ref={ambientGlowRef} className={styles.ambientGlow} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
           <p className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-4 animate-fade-in">
@@ -1106,7 +1106,7 @@ export default function LensVisionComparisonSection() {
               >
                 {/* Dynamic Mouse Spotlight Glow */}
                 <div data-lens={lens.id} className={styles.spotlightGlow} />
-                <div className="relative rounded-[30px] p-6 sm:p-8 flex flex-col h-full bg-muted/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
+                <div className="relative rounded-[30px] p-5 lg:p-6 flex flex-col h-full bg-muted/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
                   {/* Badge */}
                   <div className="flex items-center justify-between mb-4">
                     <span
@@ -1121,7 +1121,7 @@ export default function LensVisionComparisonSection() {
                     <p className="text-xs sm:text-sm text-primary font-bold uppercase tracking-wider mb-1">
                       {lens.manufacturer} · {lens.type}
                     </p>
-                    <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground">
+                    <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground whitespace-nowrap">
                       {lens.name}
                     </h3>
                   </div>
@@ -1130,9 +1130,11 @@ export default function LensVisionComparisonSection() {
                   <div className="space-y-4 mb-6">
                     {lens.specs.map((spec) => (
                       <div key={spec.label} className="space-y-1.5">
-                        <div className="flex justify-between text-xs sm:text-sm">
-                          <span className="text-foreground font-semibold">{spec.label}</span>
-                          <span className={`font-bold ${lens.twColor}`}>{spec.value}</span>
+                        <div className="flex justify-between items-center text-xs sm:text-sm gap-2 whitespace-nowrap">
+                          <span className="text-foreground font-semibold truncate">
+                            {spec.label}
+                          </span>
+                          <span className={`font-bold shrink-0 ${lens.twColor}`}>{spec.value}</span>
                         </div>
                         <div className="h-2 bg-white/10 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden">
                           <div
@@ -1278,18 +1280,19 @@ export default function LensVisionComparisonSection() {
         </div>
 
         {/* Toric Astigmatism Section */}
-        <div className="mt-12 sm:mt-16 glass-card border border-primary/20 bg-primary/5 rounded-[2rem] p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 relative overflow-hidden">
+        <div className="mt-12 sm:mt-16 glass-card border border-primary/20 bg-primary/5 rounded-[2rem] p-6 sm:p-10 flex flex-col items-center text-center gap-6 relative overflow-hidden max-w-[1200px] mx-auto w-full">
           {/* Subtle gold glow inside */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[60px] pointer-events-none" />
-          <div className="w-12 h-12 rounded-2xl bg-primary/15 flex items-center justify-center shrink-0 border border-primary/20 shadow-[0_0_15px_rgba(197,160,89,0.15)]">
-            <AppIcon name="SparklesIcon" size={24} className="text-primary animate-pulse" />
+          <div className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center shrink-0 border border-primary/20 shadow-[0_0_15px_rgba(197,160,89,0.15)]">
+            <AppIcon name="SparklesIcon" size={28} className="text-primary animate-pulse" />
           </div>
-          <div className="flex-1 space-y-2">
-            <h4 className="font-display text-lg sm:text-xl font-semibold text-foreground">
-              Have Astigmatism? All Premium Lenses Include Toric Upgrades at{' '}
+          <div className="space-y-4 max-w-full w-full">
+            <h4 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground text-center whitespace-nowrap">
+              Have Astigmatism? All <span className="text-primary font-bold">Premium Lenses</span>{' '}
+              Include <span className="text-primary font-bold">Toric Upgrades</span> at{' '}
               <span className="text-primary font-bold">No Extra Charge</span>
             </h4>
-            <p className="text-base sm:text-lg text-white leading-relaxed max-w-4xl font-normal">
+            <p className="text-base sm:text-lg text-white leading-relaxed font-normal text-justify max-w-4xl mx-auto">
               <strong>Toric lenses</strong> are specifically engineered to correct astigmatism—the
               irregular curvature of your cornea. Without a Toric lens, astigmatism remains
               uncorrected after surgery, meaning you will still need glasses for crisp distance

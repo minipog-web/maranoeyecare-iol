@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
 import { trackEvent, trackAdsConversion } from '@/lib/gtag';
+import { validateConsultationBooking } from '@/lib/validation';
 
 const locations = [
   'Livingston ((973) 322-0100)',
@@ -146,39 +147,9 @@ export default function BookingSection({
   };
 
   const validateField = (name: string, value: string): string => {
-    const trimmedValue = value.trim();
-    if (name === 'firstName') {
-      if (!trimmedValue) return 'First name is required';
-      if (trimmedValue.length > 50) return 'First name must be 50 characters or less';
-      if (!/^[A-Za-z\s'-]+$/.test(trimmedValue)) {
-        return 'Please enter a valid name using only letters, spaces, hyphens, or apostrophes.';
-      }
-    }
-    if (name === 'lastName') {
-      if (!trimmedValue) return 'Last name is required';
-      if (trimmedValue.length > 50) return 'Last name must be 50 characters or less';
-      if (!/^[A-Za-z\s'-]+$/.test(trimmedValue)) {
-        return 'Please enter a valid name using only letters, spaces, hyphens, or apostrophes.';
-      }
-    }
-    if (name === 'email') {
-      if (!trimmedValue) return 'Email address is required';
-      if (trimmedValue.length > 100) return 'Email address must be 100 characters or less';
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedValue)) {
-        return 'Please enter a valid email address';
-      }
-    }
-    if (name === 'phone') {
-      if (!trimmedValue) return 'Phone number is required';
-      if (trimmedValue.length > 25) return 'Phone number must be 25 characters or less';
-      if (!/^[\d\s()+-]{7,25}$/.test(trimmedValue)) {
-        return 'Please enter a valid phone number (e.g., 973-555-0123)';
-      }
-    }
-    if (name === 'location') {
-      if (!value) return 'Please select a preferred location';
-    }
-    return '';
+    const singleFieldBooking = { ...form, [name]: value };
+    const allErrors = validateConsultationBooking(singleFieldBooking);
+    return allErrors[name] || '';
   };
 
   const handleChange = (
@@ -295,11 +266,13 @@ export default function BookingSection({
             <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               {`IOL Consultation`}
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
-              {bookingHeadline || (
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6 whitespace-nowrap">
+              {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
                 <>
                   Reclaim <span className="font-semibold text-gradient-primary">Clear Vision</span>
                 </>
+              ) : (
+                bookingHeadline
               )}
             </h2>
 
@@ -372,30 +345,63 @@ export default function BookingSection({
               ))}
             </div>
 
-            {/* Phone numbers */}
+            {/* Phone numbers & Office Addresses */}
             <div className="border-t border-border pt-6 sm:pt-8">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                {`Or call us directly`}
+                {`Or visit / call us directly`}
               </p>
-              <div className="space-y-1">
+              <div className="space-y-4">
                 {[
-                  { city: 'Livingston', phone: '973-322-0100' },
-                  { city: 'Denville', phone: '973-358-0416' },
-                  { city: 'Newark', phone: '973-315-6439' },
+                  {
+                    city: 'Livingston',
+                    phone: '973-322-0100',
+                    address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
+                    mapsUrl:
+                      'https://maps.google.com/?q=200+South+Orange+Ave+Suite+209+Livingston+NJ+07039',
+                  },
+                  {
+                    city: 'Denville',
+                    phone: '973-358-0416',
+                    address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
+                    mapsUrl: 'https://maps.google.com/?q=16+Pocono+Rd+Suite+301+Denville+NJ+07834',
+                  },
+                  {
+                    city: 'Newark',
+                    phone: '973-315-6439',
+                    address: '306 Martin L. King Blvd, Newark, NJ 07102',
+                    mapsUrl: 'https://maps.google.com/?q=306+Martin+L.+King+Blvd+Newark+NJ+07102',
+                  },
                 ].map((loc) => (
-                  <a
+                  <div
                     key={loc.city}
-                    href={`tel:${loc.phone.replace(/-/g, '')}`}
-                    className="flex items-center gap-3 text-sm hover:text-primary transition-colors group py-3 touch-manipulation min-h-[48px] rounded-xl px-2 hover:bg-primary/5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="p-3.5 rounded-xl bg-white/[0.02] border border-border/40 hover:border-primary/30 transition-all space-y-1.5"
                   >
-                    <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
-                    <span className="text-muted-foreground font-medium w-20 sm:w-24">
-                      {loc.city}:
-                    </span>
-                    <span className="font-bold text-foreground group-hover:text-primary transition-colors">
-                      {loc.phone}
-                    </span>
-                  </a>
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-foreground text-sm flex items-center gap-1.5">
+                        <Icon name="MapPinIcon" size={14} className="text-primary shrink-0" />
+                        {loc.city} Office
+                      </span>
+                      <a
+                        href={`tel:${loc.phone.replace(/-/g, '')}`}
+                        className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary hover:underline touch-manipulation"
+                        aria-label={`Call ${loc.city} office at ${loc.phone}`}
+                      >
+                        <Icon name="PhoneIcon" size={13} className="text-primary shrink-0" />
+                        {loc.phone}
+                      </a>
+                    </div>
+                    <a
+                      href={loc.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center justify-between group pt-1 border-t border-border/20"
+                    >
+                      <span className="leading-snug">{loc.address}</span>
+                      <span className="text-[11px] font-semibold text-primary group-hover:underline shrink-0 ml-2">
+                        Map & Directions &rarr;
+                      </span>
+                    </a>
+                  </div>
                 ))}
               </div>
             </div>
@@ -639,13 +645,13 @@ export default function BookingSection({
                               key={method.value}
                               type="button"
                               role="radio"
-                              aria-checked={isChecked ? 'true' : 'false'}
+                              aria-checked={isChecked}
                               tabIndex={isChecked ? 0 : -1}
                               onKeyDown={(e) => handleRadioKeyDown(e, idx)}
                               onClick={() =>
                                 setForm((prev) => ({ ...prev, preferredContact: method.value }))
                               }
-                              className={`px-3 py-3 rounded-xl border text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary ${
+                              className={`px-3 py-3 rounded-xl border text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                                 isChecked
                                   ? 'bg-primary/10 border-primary text-primary'
                                   : 'bg-transparent border-border hover:border-muted-foreground/30 text-muted-foreground'

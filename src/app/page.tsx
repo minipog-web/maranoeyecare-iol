@@ -88,13 +88,13 @@ export default async function HomePage({ searchParams }: PageProps) {
       <hr className="section-divider" />
       <LensarAllySection />
       <hr className="section-divider" />
+      <RecoveryTimelineSection />
+      <hr className="section-divider" />
       <LifestyleMatchSection />
       <hr className="section-divider" />
       <CandidacySection />
       <hr className="section-divider" />
       <LensQuestionnaireSection />
-      <hr className="section-divider" />
-      <RecoveryTimelineSection />
       <hr className="section-divider" />
       <TestimonialsSection />
       <hr className="section-divider" />

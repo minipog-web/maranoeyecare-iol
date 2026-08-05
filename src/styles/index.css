@@ -52,24 +52,30 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 1.75;
-  letter-spacing: 0.02em;
-  font-weight: 450;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Enhanced High-Contrast Cataract Readability Utilities */
+@media (min-width: 768px) {
+  body {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+}
+
+/* Clear, High-Contrast Cataract Readability Utilities */
 .legible-body {
-  line-height: 1.8;
-  letter-spacing: 0.025em;
-  font-size: 1.15rem;
+  line-height: 1.7;
+  letter-spacing: 0.015em;
   color: #ffffff;
 }
 
 .text-muted-foreground {
-  color: #f1f5f9 !important; /* High contrast off-white for cataract eyes */
+  color: #e2e8f0 !important; /* Clean, accessible 7:1+ contrast ratio off-white */
 }
 
 html {
@@ -152,11 +158,11 @@ p {
 
 /* ── Text gradients ── */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #FFF2D1 0%, #E6C587 35%, #C5A059 65%, #FFF2D1 100%);
+  background: linear-gradient(135deg, #fff2d1 0%, #e6c587 35%, #c5a059 65%, #fff2d1 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #E6C587; /* Fallback balanced clinical gold */
+  color: #e6c587; /* Fallback balanced clinical gold */
   text-shadow: none !important;
   filter: none !important;
 }
@@ -168,11 +174,9 @@ p {
   background-clip: text;
 }
 
-/* ── Glass cards ── */
+/* ── Glass cards (GPU optimized) ── */
 .glass-card {
-  background: rgba(14, 16, 24, 0.75);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  background: rgba(14, 16, 24, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.05),
@@ -180,15 +184,33 @@ p {
     0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
+@supports (backdrop-filter: blur(12px)) {
+  @media (min-width: 768px) {
+    .glass-card {
+      background: rgba(14, 16, 24, 0.75);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+  }
+}
+
 .glass-card-bright {
-  background: rgba(20, 22, 34, 0.85);
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
+  background: rgba(20, 22, 34, 0.92);
   border: 1px solid rgba(197, 160, 89, 0.25);
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.1),
     0 12px 35px rgba(0, 0, 0, 0.6),
     0 0 45px rgba(197, 160, 89, 0.1);
+}
+
+@supports (backdrop-filter: blur(16px)) {
+  @media (min-width: 768px) {
+    .glass-card-bright {
+      background: rgba(20, 22, 34, 0.85);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+    }
+  }
 }
 
 /* ── Double-Bezel Enclosures (Doppelrand) ── */
@@ -498,7 +520,7 @@ p {
 }
 
 .btn-premium-primary {
-  background: linear-gradient(135deg, #FFF0CA 0%, #F5D08B 50%, #C5A059 100%);
+  background: linear-gradient(135deg, #fff0ca 0%, #f5d08b 50%, #c5a059 100%);
   color: #0c0d10;
   border: 1px solid rgba(197, 160, 89, 0.6);
   border-radius: 12px;
@@ -515,7 +537,7 @@ p {
     0 12px 30px rgba(0, 0, 0, 0.4);
 }
 .btn-premium-primary:hover {
-  background: linear-gradient(135deg, #FFFFFF 0%, #FFF0CA 50%, #F5D08B 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #fff0ca 50%, #f5d08b 100%);
   color: #0c0d10;
   border-color: rgba(197, 160, 89, 0.85);
   box-shadow:
@@ -532,7 +554,7 @@ p {
 /* Global metallic gold overrides for utility-styled CTA buttons */
 button.bg-primary,
 a.bg-primary {
-  background: linear-gradient(135deg, #FFF0CA 0%, #F5D08B 50%, #C5A059 100%) !important;
+  background: linear-gradient(135deg, #fff0ca 0%, #f5d08b 50%, #c5a059 100%) !important;
   color: #0c0d10 !important;
   border: 1px solid rgba(197, 160, 89, 0.6) !important;
   box-shadow:
@@ -543,7 +565,7 @@ a.bg-primary {
 }
 button.bg-primary:hover,
 a.bg-primary:hover {
-  background: linear-gradient(135deg, #FFFFFF 0%, #FFF0CA 50%, #F5D08B 100%) !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fff0ca 50%, #f5d08b 100%) !important;
   color: #0c0d10 !important;
   border-color: rgba(197, 160, 89, 0.85) !important;
   box-shadow:
@@ -776,11 +798,17 @@ html {
 ───────────────────────────────────────── */
 
 .text-gradient-primary {
-  background: linear-gradient(135deg, #FFF2D1 0%, #E6C587 35%, #C5A059 65%, #FFF2D1 100%) !important;
+  background: linear-gradient(
+    135deg,
+    #fff2d1 0%,
+    #e6c587 35%,
+    #c5a059 65%,
+    #fff2d1 100%
+  ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  color: #E6C587 !important; /* Fallback balanced clinical gold */
+  color: #e6c587 !important; /* Fallback balanced clinical gold */
   text-shadow: none !important;
   filter: none !important;
 }

@@ -102,7 +102,7 @@ export default function FinancingSection() {
               Premium cataract options start at <strong className="text-foreground">$1,600</strong>{' '}
               for a standard monofocal lens paired with LENSAR® laser-assisted (Femtosecond)
               precision. Upgrades for custom astigmatism-correcting (toric) lenses start at{' '}
-              <strong className="text-foreground">$1,900</strong>, and range up to{' '}
+              <strong className="text-foreground">$1,900</strong>, and premium lenses range up to{' '}
               <strong className="text-foreground">$4,100</strong> per eye for highly advanced
               multi-focal or extended depth of field (EDOF) designs.
             </p>

@@ -36,21 +36,15 @@ export default function TrustBadgeBar({ variant = 'authority' }: TrustBadgeBarPr
 
   return (
     <div className="border-y border-border/40 bg-white/[0.015] py-3 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-0 sm:divide-x sm:divide-white/[0.08]">
-          {badges.map((badge, idx) => (
+          {badges.map((badge) => (
             <div
               key={badge.text}
-              className={`flex items-center justify-center gap-3 text-sm sm:text-base text-foreground font-semibold py-1.5 px-4 ${
-                idx === 0
-                  ? 'sm:pl-0 sm:justify-start'
-                  : idx === 2
-                    ? 'sm:pr-0 sm:justify-end'
-                    : 'sm:justify-center'
-              }`}
+              className="flex items-center justify-center text-center gap-2 text-xs sm:text-sm lg:text-base text-foreground font-semibold py-1.5 px-4 sm:px-6"
             >
               <Icon name={badge.icon as 'TrophyIcon'} size={18} className="text-primary shrink-0" />
-              <span className="font-semibold tracking-wider">
+              <span className="font-semibold tracking-wider whitespace-nowrap text-xs sm:text-sm lg:text-base">
                 {(() => {
                   const parts = badge.text.split(/(\[\d+\])/);
                   return parts.map((part, idx) => {

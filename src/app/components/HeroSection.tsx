@@ -151,21 +151,21 @@ export default function HeroSection({
                 />
               </a>
             </div>
-            {/* Reassurance Indicators */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mb-8 sm:mb-12 animate-fade-up delay-500 fill-both text-xs text-foreground/80 font-medium select-none">
-              <span className="flex items-center gap-1.5 text-primary font-semibold">
+            {/* Reassurance Indicators (Positioned above horizontal border line) */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mb-6 sm:mb-8 animate-fade-up delay-500 fill-both text-xs text-foreground/80 font-medium select-none">
+              <span className="flex items-center gap-1.5 text-white font-semibold">
                 <Icon name="MapPinIcon" size={15} className="text-primary shrink-0" />
-                Livingston, Denville & Newark Offices
+                Livingston, Denville &amp; Newark Offices
               </span>
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-1.5 text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                 99% Patient Satisfaction
               </span>
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-1.5 text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                 Quick 10-Min Procedure
               </span>
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-1.5 text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                 No Out-of-Pocket Consultation Cost
               </span>
@@ -180,8 +180,8 @@ export default function HeroSection({
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    <strong className="text-white font-medium">Chief of Ophthalmology</strong> at
-                    Cooperman Barnabas &amp; St. Michael&apos;s
+                    <strong className="text-primary font-semibold">Chief of Ophthalmology</strong>{' '}
+                    at Cooperman Barnabas &amp; St. Michael&apos;s
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -316,11 +316,15 @@ export default function HeroSection({
                             if (match) {
                               const num = match[1];
                               return (
-                                <sup key={idx} className="text-[9px] font-bold">
+                                <sup
+                                  key={idx}
+                                  className="text-[9px] font-bold inline-flex items-center"
+                                >
                                   <a
                                     href={`#footnote-${num}`}
                                     onClick={(e) => e.stopPropagation()}
-                                    className="text-primary hover:underline ml-0.5"
+                                    className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-flex items-center justify-center min-w-[36px] min-h-[36px] sm:min-w-[44px] sm:min-h-[44px] text-center font-bold"
+                                    aria-label={`View citation footnote ${num}`}
                                   >
                                     [{num}]
                                   </a>
