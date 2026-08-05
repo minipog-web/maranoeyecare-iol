@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { GTM_ID } from '@/lib/gtag';
+import { GTM_ID, TAG_GATEWAY_URL } from '@/lib/gtag';
 import { DM_Sans, Fraunces } from 'next/font/google';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
@@ -11,7 +11,14 @@ const dmSans = DM_Sans({
   variable: '--font-sans',
   display: 'swap',
   weight: ['300', '400', '500', '700'],
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+  fallback: [
+    'system-ui',
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Segoe UI',
+    'Roboto',
+    'sans-serif',
+  ],
 });
 
 const fraunces = Fraunces({
@@ -334,20 +341,20 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Google Tag Manager (GTM-PB9D9RHS) */}
+        {/* Google Tag Gateway / Google Tag Manager (GTM-PB9D9RHS) */}
         {GTM_ID && (
           <Script id="gtm-script" strategy="beforeInteractive">
             {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            '${TAG_GATEWAY_URL}/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${GTM_ID}');`}
           </Script>
         )}
-        {/* Google tag (gtag.js) - GA4 (G-1YBZ7BFJ4C) & Google Ads */}
+        {/* Google tag (gtag.js) - GA4 (G-1YBZ7BFJ4C) & Tag Gateway Server Transport */}
         <Script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-1YBZ7BFJ4C"
+          src={`${TAG_GATEWAY_URL}/gtag/js?id=G-1YBZ7BFJ4C`}
           strategy="afterInteractive"
         />
         <Script id="google-gtag-init" strategy="afterInteractive">
@@ -358,7 +365,9 @@ export default function RootLayout({
 
             gtag('config', 'G-1YBZ7BFJ4C', {
               page_path: window.location.pathname,
-              send_page_view: true
+              send_page_view: true,
+              transport_url: '${TAG_GATEWAY_URL}',
+              first_party_collection: true
             });
           `}
         </Script>

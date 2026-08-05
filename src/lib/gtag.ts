@@ -12,6 +12,10 @@ export const GA_MEASUREMENT_ID =
 
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PB9D9RHS';
 
+// Google Tag Gateway / Server-Side Tagging first-party endpoint configuration
+export const TAG_GATEWAY_URL =
+  process.env.NEXT_PUBLIC_TAG_GATEWAY_URL || 'https://www.googletagmanager.com';
+
 // ─── Named conversion event names (used as GTM trigger event names) ──────────
 // These string values must match the "Custom Event" trigger names in your GTM container.
 // For Google Ads conversions, configure a Google Ads Conversion tag in GTM triggered
