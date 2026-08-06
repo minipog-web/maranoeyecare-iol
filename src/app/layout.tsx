@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { GTM_ID, TAG_GATEWAY_URL, GA_MEASUREMENT_ID } from '@/lib/gtag';
+
 import { DM_Sans, Fraunces } from 'next/font/google';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
@@ -411,36 +411,15 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Google Tag Gateway / Google Tag Manager (GTM-PB9D9RHS) */}
-        {GTM_ID && (
-          <Script id="gtm-script" strategy="beforeInteractive">
-            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            '${TAG_GATEWAY_URL}/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');`}
-          </Script>
-        )}
-        {/* Google tag (gtag.js) - GA4 (G-1YBZ7BFJ4C) & Tag Gateway Server Transport */}
-        <Script
-          async
-          src={`${TAG_GATEWAY_URL}/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_path: window.location.pathname,
-              send_page_view: true,
-              transport_url: '${TAG_GATEWAY_URL}',
-              first_party_collection: true
-            });
-          `}
+        {/* Google Tag Manager */}
+        <Script id="gtm-script" strategy="beforeInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KBWXBRFV');`}
         </Script>
+        {/* End Google Tag Manager */}
         {/* Official LLM & AI Assistant Discovery Links (llms.txt standard) */}
         <link rel="help" type="text/markdown" href="/llms.txt" />
         <link
@@ -459,16 +438,14 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         {/* Google Tag Manager (noscript) */}
-        {GTM_ID && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-        )}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KBWXBRFV"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         {/* End Google Tag Manager (noscript) */}
         {children}
         {/*
