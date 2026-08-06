@@ -89,10 +89,10 @@ export default function Header() {
 
         {/* Desktop Nav — pill with subtle gradient border */}
         <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 px-2 py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
-          {navLinks?.map((link) => (
+          {navLinks.map((link) => (
             <a
-              key={link?.href}
-              href={link?.href}
+              key={link.href}
+              href={link.href}
               onClick={() => handleNavClick(link.label)}
               className="px-2.5 xl:px-3.5 py-1.5 text-xs xl:text-sm font-bold uppercase tracking-wider text-white hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.08] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
@@ -142,10 +142,10 @@ export default function Header() {
       {menuOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-2xl border-b border-border px-4 sm:px-6 py-5 flex flex-col gap-4">
           <div className="flex flex-col border-b border-border/40 pb-2">
-            {navLinks?.map((link) => (
+            {navLinks.map((link) => (
               <a
-                key={link?.href}
-                href={link?.href}
+                key={link.href}
+                href={link.href}
                 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary py-3 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 onClick={() => {
                   handleNavClick(link.label);

@@ -25,6 +25,13 @@ const contactMethods = [
   { value: 'text', label: 'Text' },
 ];
 
+const LENS_KEY_TO_LABEL: Record<string, string> = {
+  vivity: 'Clareon Vivity (EDOF)',
+  panoptix: 'PanOptix Pro (Trifocal)',
+  eyhance: 'Tecnis Eyhance (Enhanced Monofocal)',
+  monofocal: 'Standard Monofocal',
+};
+
 interface FormState {
   firstName: string;
   lastName: string;
@@ -71,12 +78,6 @@ export default function BookingSection({
   preselectedLens,
 }: BookingSectionProps) {
   const [form, setForm] = useState<FormState>(() => {
-    let initialLens = '';
-    if (preselectedLens === 'vivity') initialLens = 'Clareon Vivity (EDOF)';
-    else if (preselectedLens === 'panoptix') initialLens = 'PanOptix Pro (Trifocal)';
-    else if (preselectedLens === 'eyhance') initialLens = 'Tecnis Eyhance (Enhanced Monofocal)';
-    else if (preselectedLens === 'monofocal') initialLens = 'Standard Monofocal';
-
     return {
       firstName: '',
       lastName: '',
@@ -84,7 +85,7 @@ export default function BookingSection({
       phone: '',
       preferredContact: 'email',
       location: '',
-      lens: initialLens,
+      lens: preselectedLens ? (LENS_KEY_TO_LABEL[preselectedLens] ?? '') : '',
       message: '',
     };
   });
@@ -99,11 +100,7 @@ export default function BookingSection({
     const handleSelectLens = (e: Event) => {
       const customEvent = e as CustomEvent;
       const lensKey = customEvent.detail;
-      let optionValue = '';
-      if (lensKey === 'vivity') optionValue = 'Clareon Vivity (EDOF)';
-      else if (lensKey === 'panoptix') optionValue = 'PanOptix Pro (Trifocal)';
-      else if (lensKey === 'eyhance') optionValue = 'Tecnis Eyhance (Enhanced Monofocal)';
-      else if (lensKey === 'monofocal') optionValue = 'Standard Monofocal';
+      const optionValue = LENS_KEY_TO_LABEL[lensKey] ?? '';
 
       if (optionValue) {
         setForm((prev) => ({ ...prev, lens: optionValue }));
@@ -152,6 +149,16 @@ export default function BookingSection({
     return allErrors[name] || '';
   };
 
+  const validateStep1Fields = (): Record<string, string> => {
+    const newErrors: Record<string, string> = {};
+    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location', 'email'];
+    fieldsToValidate.forEach((field) => {
+      const err = validateField(field, form[field as keyof FormState] || '');
+      if (err) newErrors[field] = err;
+    });
+    return newErrors;
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -164,13 +171,7 @@ export default function BookingSection({
 
   const handleStep1 = (e: React.FormEvent) => {
     e.preventDefault();
-    const newErrors: Record<string, string> = {};
-    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location', 'email'];
-    fieldsToValidate.forEach((field) => {
-      const err = validateField(field, form[field as keyof FormState] || '');
-      if (err) newErrors[field] = err;
-    });
-
+    const newErrors = validateStep1Fields();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -186,13 +187,7 @@ export default function BookingSection({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newErrors: Record<string, string> = {};
-    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location', 'email'];
-    fieldsToValidate.forEach((field) => {
-      const err = validateField(field, form[field as keyof FormState] || '');
-      if (err) newErrors[field] = err;
-    });
-
+    const newErrors = validateStep1Fields();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       setStep(1);
@@ -486,19 +481,7 @@ export default function BookingSection({
                         : 'Optional — helps Dr. Marano prepare for your visit.'}
                     </p>
                     <div className="flex items-center gap-1.5 text-xs text-primary font-bold tracking-wide uppercase">
-                      <svg
-                        className="w-3.5 h-3.5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                        />
-                      </svg>
+                      <Icon name="LockClosedIcon" size={14} className="shrink-0" />
                       {step === 1
                         ? 'HIPAA Compliant · No Medical History Required'
                         : 'Privacy Protected & HIPAA Secure'}

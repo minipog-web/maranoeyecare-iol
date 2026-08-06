@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
+import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
 import confetti from 'canvas-confetti';
 import styles from './LensQuestionnaireSection.module.css';
@@ -545,15 +546,7 @@ export default function LensQuestionnaireSection() {
                   onClick={handleBack}
                   className="mt-5 flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm transition-colors touch-manipulation py-2 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
+                  <Icon name="ChevronLeftIcon" size={16} />
                   Back to previous question
                 </button>
               )}
@@ -634,19 +627,7 @@ export default function LensQuestionnaireSection() {
                       {result.highlights.map((h, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
                           <span className={`mt-0.5 shrink-0 ${result.color}`}>
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth={2.5}
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
+                            <Icon name="CheckIcon" size={16} />
                           </span>
                           <span className="text-foreground/80">{h}</span>
                         </li>
@@ -678,37 +659,13 @@ export default function LensQuestionnaireSection() {
                   className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#040506] font-semibold text-sm hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   {result.cta}
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                  <Icon name="ArrowRightIcon" size={16} />
                 </a>
                 <button
                   onClick={handleRestart}
                   className="flex items-center justify-center gap-2 px-5 py-4 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                    />
-                  </svg>
+                  <Icon name="ArrowPathIcon" size={16} />
                   Retake Quiz
                 </button>
               </div>

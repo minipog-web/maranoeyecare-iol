@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { GTM_ID, TAG_GATEWAY_URL } from '@/lib/gtag';
+import { GTM_ID, TAG_GATEWAY_URL, GA_MEASUREMENT_ID } from '@/lib/gtag';
 import { DM_Sans, Fraunces } from 'next/font/google';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
@@ -424,7 +424,7 @@ export default function RootLayout({
         {/* Google tag (gtag.js) - GA4 (G-1YBZ7BFJ4C) & Tag Gateway Server Transport */}
         <Script
           async
-          src={`${TAG_GATEWAY_URL}/gtag/js?id=G-1YBZ7BFJ4C`}
+          src={`${TAG_GATEWAY_URL}/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-gtag-init" strategy="afterInteractive">
@@ -433,7 +433,7 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-1YBZ7BFJ4C', {
+            gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
               send_page_view: true,
               transport_url: '${TAG_GATEWAY_URL}',

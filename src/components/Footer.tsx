@@ -30,10 +30,10 @@ export default function Footer() {
               { label: 'Vision Outcomes', href: '#vision' },
               { label: 'Our Doctors', href: '#trust' },
               { label: 'Book Consultation', href: '#booking' },
-            ]?.map((link) => (
+            ].map((link) => (
               <Link
-                key={link?.href}
-                href={link?.href}
+                key={link.href}
+                href={link.href}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
               >
                 {link?.label}
