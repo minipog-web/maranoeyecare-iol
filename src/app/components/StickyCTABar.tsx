@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackAdsConversion } from '@/lib/gtag';
-import styles from './StickyCTABar.module.css';
 
 export default function StickyCTABar() {
   const [visible, setVisible] = useState(false);
@@ -98,7 +97,7 @@ export default function StickyCTABar() {
         </div>
 
         {/* Safe area for iPhone home indicator */}
-        <div className={styles.safeAreaBottom} />
+        <div className="safe-area-pb" />
       </div>
     </div>
   );

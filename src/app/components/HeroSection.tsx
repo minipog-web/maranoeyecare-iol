@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './HeroSection.module.css';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
@@ -70,9 +69,7 @@ export default function HeroSection({
   const activeLens = hoveredLens ?? DEFAULT_ACTIVE;
 
   return (
-    <section
-      className={`relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 ${styles.hero}`}
-    >
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 safe-area-pb">
       {/* Background layers */}
       <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 grid-lines-bg opacity-100" />
@@ -266,7 +263,7 @@ export default function HeroSection({
                       label: lens.name,
                     })
                   }
-                  className={`relative doppel-shell ${lens?.accent} transition-spring hover:-translate-y-3 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.lensCard} ${delayClass}
+                  className={`relative doppel-shell ${lens?.accent} transition-spring hover:-translate-y-3 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none will-change-transform ${delayClass}
                       ${
                         lens?.featured
                           ? 'w-[42%] min-w-[130px] sm:w-44 h-[260px] sm:h-[420px] z-20 -mt-8 snap-center sm:snap-align-none shrink-0'

@@ -475,7 +475,7 @@ export default function RootLayout({
           CallRail Dynamic Number Swap & Google Ads Call Tracking
         */}
         <Script
-          src="//cdn.callrail.com/companies/764798499/aff735ebb2e830b3a6df/12/swap.js"
+          src="//cdn.callrail.com/companies/570973368/3348eb3c5c72e54f1c23/12/swap.js"
           strategy="afterInteractive"
         />
       </body>
