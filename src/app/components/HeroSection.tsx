@@ -33,13 +33,13 @@ const lenses = [
     inactiveGlow: 'shadow-[0_0_20px_rgba(139,92,246,0.08)] border-white/[0.08]',
   },
   {
-    name: 'Eyhance',
-    tag: 'Monofocal+',
+    name: 'TECNIS PureSee',
+    tag: 'Newest EDOF',
     tagColor: 'bg-primary/20 text-primary border border-primary/30',
-    subtitle: 'Enhanced monofocal',
-    detail: 'Enhanced range over standard monofocals [3]',
-    src: '/assets/images/eyhance_iol_clean.png',
-    alt: 'TECNIS Eyhance IOL — enhanced monofocal intraocular lens',
+    subtitle: 'Pure refractive extended vision',
+    detail: 'FDA-approved EDOF with zero contrast warning [3]',
+    src: '/assets/images/puresee_iol_clean.png',
+    alt: 'TECNIS PureSee IOL — purely refractive extended depth of focus intraocular lens',
     accent: 'border-primary/25',
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(0,163,255,0.35),0_0_0_1px_rgba(0,163,255,0.2)] border-[rgba(0,163,255,0.45)] bg-white/[0.05]',
@@ -90,11 +90,11 @@ export default function HeroSection({
                 {badgeText || 'Premium IOL Specialists — Livingston • Denville • Newark'}
               </span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
-              <span className="block whitespace-nowrap">
+            <h1 className="font-display text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-light leading-[1.12] sm:leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
+              <span className="block sm:whitespace-nowrap">
                 {heroTitleLine1 || 'One Surgery. One Choice.'}
               </span>{' '}
-              <span className="block text-gradient-primary font-semibold mt-1 pb-4 whitespace-nowrap">
+              <span className="block text-gradient-primary font-semibold mt-1 pb-2 sm:pb-4 sm:whitespace-nowrap">
                 {heroTitleLine2 || 'Lifetime Visual Freedom.'}
               </span>
             </h1>
@@ -182,7 +182,7 @@ export default function HeroSection({
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
                     <strong className="text-primary font-semibold">Chief of Ophthalmology</strong>{' '}
-                    at Cooperman Barnabas &amp; St. Michael&apos;s
+                    at Cooperman Barnabas &amp; St. Michael&apos;s Medical Center
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -309,7 +309,7 @@ export default function HeroSection({
                       <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
                         {lens?.subtitle}
                       </p>
-                      <p className="text-white/70 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight">
+                      <p className="text-white/75 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight">
                         {(() => {
                           const parts = lens?.detail.split(/(\[\d+\])/);
                           return parts.map((part, idx) => {
@@ -319,12 +319,12 @@ export default function HeroSection({
                               return (
                                 <sup
                                   key={idx}
-                                  className="text-[9px] font-bold inline-flex items-center"
+                                  className="text-[9px] font-bold text-primary inline-block ml-0.5"
                                 >
                                   <a
                                     href={`#footnote-${num}`}
                                     onClick={(e) => e.stopPropagation()}
-                                    className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-flex items-center justify-center min-w-[36px] min-h-[36px] sm:min-w-[44px] sm:min-h-[44px] text-center font-bold"
+                                    className="text-primary hover:underline hover:text-accent font-bold"
                                     aria-label={`View citation footnote ${num}`}
                                   >
                                     [{num}]

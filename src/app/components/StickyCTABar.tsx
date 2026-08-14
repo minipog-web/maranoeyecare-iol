@@ -47,6 +47,7 @@ export default function StickyCTABar() {
           {/* Phone CTA */}
           <a
             href="tel:9733220100"
+            suppressHydrationWarning
             onClick={() => {
               trackEvent({
                 action: 'phone_click',

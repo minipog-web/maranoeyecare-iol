@@ -45,11 +45,12 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <a
               href="tel:9733220100"
+              suppressHydrationWarning
               className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation py-2.5 px-3 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               aria-label="Call Marano Eye Care at 973-322-0100"
             >
               <Icon name="PhoneIcon" size={14} className="text-primary" />
-              (973) 322-0100
+              <span suppressHydrationWarning>(973) 322-0100</span>
             </a>
             <span className="text-border hidden sm:inline">·</span>
             <a
@@ -136,17 +137,20 @@ export default function Footer() {
             </div>
             <div className="space-y-3">
               <p id="footnote-3" className="scroll-mt-24">
-                <strong className="text-foreground">[3] Tecnis Eyhance Clinical Study:</strong>{' '}
-                Based on peer-reviewed longitudinal clinical study data comparing TECNIS Eyhance to
-                standard monofocals. Demonstrates 100% long-term distance satisfaction and superior
-                intermediate range.{' '}
+                <strong className="text-foreground">
+                  [3] TECNIS PureSee Clinical Study &amp; FDA Registry:
+                </strong>{' '}
+                Based on Johnson &amp; Johnson FDA pre-market clinical registry data and
+                peer-reviewed studies for the TECNIS PureSee™ refractive EDOF IOL. Demonstrates
+                continuous vision from distance to functional near with monofocal-like dysphotopsia
+                and zero contrast sensitivity warning.{' '}
                 <a
-                  href="https://clinicaltrials.gov/study/NCT03666273"
+                  href="https://www.fda.gov/medical-devices/recently-approved-devices"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
                 >
-                  [View on ClinicalTrials.gov]
+                  [View FDA Approval Registry Data]
                 </a>
               </p>
               <p id="footnote-4" className="scroll-mt-24">

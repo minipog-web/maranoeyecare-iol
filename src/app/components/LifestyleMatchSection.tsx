@@ -52,12 +52,12 @@ const profiles = [
       'Watching TV & general household tasks',
       'Comfortable with occasional reading glasses',
     ],
-    recommendation: 'Tecnis Eyhance',
+    recommendation: 'TECNIS PureSee',
     reason:
-      'Pure, ring-free monofocal+ optics deliver zero added halos or glare, providing immaculate scenic distance views with improved functional intermediate clarity.',
+      'Purely refractive EDOF optics deliver zero diffractive halos or glare, providing immaculate scenic distance views with continuous intermediate clarity and functional near vision.',
     image: '/assets/images/profile_conservative_candidate.jpg',
     imageAlt: 'Mature reader enjoying a book outdoors in natural sunlight',
-    stat: 'Over 90% report flawless contrast and night clarity [3]',
+    stat: 'First FDA-approved EDOF with zero contrast sensitivity warning [3]',
   },
 ];
 
@@ -197,7 +197,7 @@ export default function LifestyleMatchSection() {
                   let lensKey = '';
                   if (profile?.id === 'active') lensKey = 'vivity';
                   else if (profile?.id === 'tech') lensKey = 'panoptix';
-                  else if (profile?.id === 'conservative') lensKey = 'eyhance';
+                  else if (profile?.id === 'conservative') lensKey = 'puresee';
                   if (lensKey) {
                     window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
                   }
@@ -211,7 +211,7 @@ export default function LifestyleMatchSection() {
                 let lensKey = '';
                 if (profile?.id === 'active') lensKey = 'vivity';
                 else if (profile?.id === 'tech') lensKey = 'panoptix';
-                else if (profile?.id === 'conservative') lensKey = 'eyhance';
+                else if (profile?.id === 'conservative') lensKey = 'puresee';
                 if (lensKey) {
                   window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
                 }

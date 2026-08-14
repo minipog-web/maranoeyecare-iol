@@ -43,10 +43,10 @@ const testimonials = [
   {
     concern: 'Dashboard and screen blur',
     quote:
-      "I chose Eyhance because I wanted clear distance vision for golf and driving, and didn't want any night glare. The intermediate range is an amazing bonus. I can read my dashboard and laptop without glasses perfectly.",
+      'I chose PureSee because I wanted clear distance vision for driving and golf, with zero night glare. The continuous intermediate and near range is an amazing bonus. I can read my dashboard, phone, and laptop without glasses perfectly.',
     name: 'Linda M.',
     location: 'Morristown, NJ',
-    lens: 'Tecnis Eyhance',
+    lens: 'TECNIS PureSee',
     lensColor: '#00A3FF',
     avatar: '/assets/images/avatar_linda.jpg',
     stars: 5,
@@ -188,7 +188,7 @@ export default function TestimonialsSection() {
                               ? styles.spotlightPanoptix
                               : t.lens.toLowerCase().includes('vivity')
                                 ? styles.spotlightVivity
-                                : styles.spotlightEyhance
+                                : styles.spotlightPuresee
                           }`}
                         />
 
@@ -243,7 +243,7 @@ export default function TestimonialsSection() {
                                 ? styles.lensPanoptix
                                 : t.lens.toLowerCase().includes('vivity')
                                   ? styles.lensVivity
-                                  : styles.lensEyhance
+                                  : styles.lensPuresee
                             }`}
                           >
                             <span className={styles.lensBadge}>{t?.lens}</span>
@@ -329,7 +329,7 @@ export default function TestimonialsSection() {
                     <div className="flex gap-1.5 flex-wrap">
                       {[
                         '15× NJ Top Doctor',
-                        "Chief of Ophthalmology (Cooperman Barnabas & St. Michael's)",
+                        "Chief of Ophthalmology (Cooperman Barnabas & St. Michael's Medical Center)",
                       ].map((b) => (
                         <span
                           key={b}
@@ -373,6 +373,7 @@ export default function TestimonialsSection() {
                 <a
                   key={loc?.city}
                   href={`tel:${loc?.phone.replace(/[()\s-]/g, '')}`}
+                  suppressHydrationWarning
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onMouseMove={handleMouseMove}
@@ -391,7 +392,10 @@ export default function TestimonialsSection() {
                     <p className="text-xs text-muted-foreground line-clamp-1 leading-normal">
                       {loc?.address}
                     </p>
-                    <p className="text-sm font-semibold text-primary group-hover:underline leading-tight">
+                    <p
+                      className="text-sm font-semibold text-primary group-hover:underline leading-tight"
+                      suppressHydrationWarning
+                    >
                       {loc?.phone}
                     </p>
                   </div>

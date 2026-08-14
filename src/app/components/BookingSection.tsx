@@ -7,15 +7,15 @@ import { trackEvent, trackAdsConversion } from '@/lib/gtag';
 import { validateConsultationBooking } from '@/lib/validation';
 
 const locations = [
-  'Livingston ((973) 322-0100)',
-  'Denville ((973) 358-0416)',
-  'Newark ((973) 315-6439)',
+  'Livingston Office (200 South Orange Ave)',
+  'Denville Office (16 Pocono Rd)',
+  'Newark Office (306 Martin Luther King Blvd)',
 ];
 const lensOptions = [
   'Not sure yet — need guidance',
   'PanOptix Pro (Trifocal)',
   'Clareon Vivity (EDOF)',
-  'Tecnis Eyhance (Enhanced Monofocal)',
+  'TECNIS PureSee (Refractive EDOF)',
   'Standard Monofocal',
 ];
 
@@ -28,7 +28,7 @@ const contactMethods = [
 const LENS_KEY_TO_LABEL: Record<string, string> = {
   vivity: 'Clareon Vivity (EDOF)',
   panoptix: 'PanOptix Pro (Trifocal)',
-  eyhance: 'Tecnis Eyhance (Enhanced Monofocal)',
+  puresee: 'TECNIS PureSee (Refractive EDOF)',
   monofocal: 'Standard Monofocal',
 };
 
@@ -68,7 +68,7 @@ interface BookingSectionProps {
   bookingHeadline?: string;
   bookingUrgencyTitle?: string;
   bookingUrgencyText?: string;
-  preselectedLens?: 'vivity' | 'panoptix' | 'eyhance' | 'monofocal';
+  preselectedLens?: 'vivity' | 'panoptix' | 'puresee' | 'monofocal';
 }
 
 export default function BookingSection({
@@ -206,15 +206,21 @@ export default function BookingSection({
       message: form.message.trim(),
     };
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+
     try {
       const response = await fetch('/api/book-consultation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
           ...trimmedForm,
           quizResult: quizResult,
         }),
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         setSubmitted(true);
@@ -225,16 +231,26 @@ export default function BookingSection({
         });
         trackAdsConversion('booking_complete');
       } else {
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
+        if (data.errors && typeof data.errors === 'object') {
+          setErrors(data.errors);
+          const step1Fields = ['firstName', 'lastName', 'phone', 'location', 'email'];
+          const hasStep1Error = Object.keys(data.errors).some((key) => step1Fields.includes(key));
+          if (hasStep1Error) setStep(1);
+        }
         setErrorMessage(
           data.error ||
-            'We encountered an issue submitting your request. Please try again or call us directly.'
+            'We encountered an issue submitting your request. Please review your entries or call us directly at 973-322-0100.'
         );
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      clearTimeout(timeoutId);
+      const isAbort = (error as Error)?.name === 'AbortError';
       console.error('Submission error:', error);
       setErrorMessage(
-        'A network connection issue occurred. Please check your connection or call us directly.'
+        isAbort
+          ? 'The request timed out. Please check your connection or call us directly at 973-322-0100.'
+          : 'A network connection issue occurred. Please check your connection or call us directly at 973-322-0100.'
       );
     } finally {
       setLoading(false);
@@ -388,6 +404,7 @@ export default function BookingSection({
                       </span>
                       <a
                         href={`tel:${loc.phone.replace(/-/g, '')}`}
+                        suppressHydrationWarning
                         className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary hover:underline touch-manipulation"
                         aria-label={`Call ${loc.city} office at ${loc.phone}`}
                       >
@@ -442,7 +459,12 @@ export default function BookingSection({
                 {/* Step progress */}
                 <div className="mb-6 sm:mb-8">
                   {errorMessage && (
-                    <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex gap-3 text-sm text-red-200 leading-relaxed">
+                    <div
+                      role="alert"
+                      aria-live="assertive"
+                      aria-atomic="true"
+                      className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex gap-3 text-sm text-red-200 leading-relaxed"
+                    >
                       <Icon
                         name="ExclamationCircleIcon"
                         size={18}
@@ -501,6 +523,7 @@ export default function BookingSection({
                           id="firstName"
                           name="firstName"
                           type="text"
+                          autoComplete="given-name"
                           value={form.firstName}
                           onChange={handleChange}
                           placeholder="Jane"
@@ -526,6 +549,7 @@ export default function BookingSection({
                           id="lastName"
                           name="lastName"
                           type="text"
+                          autoComplete="family-name"
                           value={form.lastName}
                           onChange={handleChange}
                           placeholder="Smith"
@@ -553,6 +577,7 @@ export default function BookingSection({
                         id="phone"
                         name="phone"
                         type="tel"
+                        autoComplete="tel"
                         value={form.phone}
                         onChange={handleChange}
                         placeholder="(973) 555-0123"
@@ -579,6 +604,7 @@ export default function BookingSection({
                         value={form.location}
                         onChange={handleChange}
                         required
+                        suppressHydrationWarning
                         className={`${inputClass} ${
                           errors.location
                             ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
@@ -587,7 +613,7 @@ export default function BookingSection({
                       >
                         <option value="">Select a location</option>
                         {locations.map((l) => (
-                          <option key={l} value={l}>
+                          <option key={l} value={l} suppressHydrationWarning>
                             {l}
                           </option>
                         ))}
@@ -605,6 +631,7 @@ export default function BookingSection({
                         id="email"
                         name="email"
                         type="email"
+                        autoComplete="email"
                         value={form.email}
                         onChange={handleChange}
                         placeholder="jane.smith@example.com"
@@ -718,6 +745,11 @@ export default function BookingSection({
                         maxLength={1000}
                         className={`${inputClass} resize-none`}
                       />
+                      <div className="flex justify-end mt-1">
+                        <span className="text-[10px] text-muted-foreground/60">
+                          {form.message.length} / 1000
+                        </span>
+                      </div>
                     </div>
 
                     <div className="flex gap-3">

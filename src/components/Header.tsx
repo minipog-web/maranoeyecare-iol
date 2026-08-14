@@ -71,7 +71,7 @@ export default function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-4 lg:gap-5 xl:gap-6">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-3 lg:gap-4 xl:gap-6">
         <div className="flex items-center gap-3 shrink-0">
           <a
             href="https://www.maranoeye.com"
@@ -82,7 +82,7 @@ export default function Header() {
               src="/assets/images/marano_logo.png"
               width={240}
               height={60}
-              className="w-[140px] sm:w-[160px] md:w-[170px] lg:w-[190px] xl:w-[220px] 2xl:w-[250px] h-auto shrink-0"
+              className="w-[130px] sm:w-[150px] lg:w-[165px] xl:w-[195px] 2xl:w-[220px] h-auto shrink-0"
             />
           </a>
         </div>
@@ -94,7 +94,7 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={() => handleNavClick(link.label)}
-              className="px-2.5 xl:px-3.5 py-1.5 text-xs xl:text-sm font-bold uppercase tracking-wider text-white hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.08] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="px-2 lg:px-2.5 xl:px-3.5 py-1.5 text-[11px] lg:text-xs xl:text-xs font-bold uppercase tracking-wider text-white hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.08] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               {link?.label}
             </a>
@@ -105,6 +105,7 @@ export default function Header() {
         <div className="hidden sm:flex items-center gap-2.5 lg:gap-3.5 xl:gap-4 shrink-0">
           <a
             href="tel:9733220100"
+            suppressHydrationWarning
             onClick={() => handlePhoneClick('desktop')}
             aria-label="Call Marano Eye Care at 973-322-0100"
             className="group flex items-center gap-2 text-sm xl:text-base font-bold text-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
@@ -112,7 +113,10 @@ export default function Header() {
             <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center shrink-0 border border-primary/30 group-hover:bg-primary/25 group-hover:border-primary/50 transition-all duration-300">
               <Icon name="PhoneIcon" size={15} className="text-primary" />
             </div>
-            <span className="hidden xl:inline font-bold text-white text-sm xl:text-base tracking-wide">
+            <span
+              className="hidden xl:inline font-bold text-white text-sm xl:text-base tracking-wide"
+              suppressHydrationWarning
+            >
               (973) 322-0100
             </span>
           </a>
@@ -160,13 +164,14 @@ export default function Header() {
           <div className="flex flex-col gap-3 pt-2">
             <a
               href="tel:9733220100"
+              suppressHydrationWarning
               onClick={() => handlePhoneClick('mobile')}
               className="group flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground py-3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-primary/30 transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
                 <Icon name="PhoneIcon" size={12} className="text-primary" />
               </div>
-              (973) 322-0100
+              <span suppressHydrationWarning>(973) 322-0100</span>
             </a>
 
             <a

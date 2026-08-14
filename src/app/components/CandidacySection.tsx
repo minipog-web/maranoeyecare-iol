@@ -98,7 +98,7 @@ export default function CandidacySection() {
                 },
                 {
                   title: 'Macular Degeneration / Retinal Scars',
-                  desc: "Retinal conditions limit the eye's contrast sensitivity, making standard monofocals or Eyhance a safer, crisper choice than multifocals.",
+                  desc: "Retinal conditions limit the eye's contrast sensitivity, making standard monofocals or TECNIS PureSee (the first EDOF with zero contrast sensitivity warning) a safer, crisper choice than diffractive multifocals.",
                 },
                 {
                   title: 'Advanced or Uncontrolled Glaucoma',

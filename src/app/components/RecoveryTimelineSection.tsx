@@ -43,7 +43,7 @@ export default function RecoveryTimelineSection() {
       timeframe: 'Days 2–7',
       icon: 'SparklesIcon',
       description:
-        'Surgical energy causes temporary post-op swelling. A targeted drop cocktail quickly resolves inflammation; as swelling subsides, clarity increases. Though the advanced LENSAR laser minimizes swelling, individual variation occurs based on cataract density, calcification, age, and health.',
+        'Surgical energy causes temporary swelling that quickly resolves with drops. Distance vision typically sharpens first; reading vision naturally lags behind distance vision by about two weeks as the brain begins neuroadapting to the new optics.',
       color: '#EC4899',
       rgb: '236, 72, 153',
     },
@@ -53,7 +53,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '4–6 Weeks',
       icon: 'BrainIcon',
       description:
-        'Your brain adapts to the new, premium optics. Contrast sensitivity peaks, night glare drops, and vision stabilizes completely, providing you with long-term, glasses-free visual freedom.',
+        'Your brain fully adapts to the multi-focal or extended depth optics. Near and reading vision catch up to distance clarity, contrast sensitivity peaks, and vision stabilizes completely for long-term freedom.',
       color: '#C5A059',
       rgb: '197, 160, 89',
     },

@@ -26,12 +26,12 @@
   /* Lens Palette Variables */
   --lens-panoptix: #8b5cf6;
   --lens-vivity: #c5a059; /* Align Vivity with primary clinical gold */
-  --lens-eyhance: #00a3ff;
+  --lens-puresee: #00a3ff;
   --lens-monofocal: #64748b;
 
   --lens-panoptix-glow: rgba(139, 92, 246, 0.15);
   --lens-vivity-glow: rgba(197, 160, 89, 0.15);
-  --lens-eyhance-glow: rgba(0, 163, 255, 0.12);
+  --lens-puresee-glow: rgba(0, 163, 255, 0.12);
   --lens-monofocal-glow: rgba(100, 116, 139, 0.1);
 
   /* Elite Easing */
@@ -719,9 +719,9 @@ a.bg-primary:active {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
-.blur-overlay-bottom-eyhance {
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+.blur-overlay-bottom-puresee {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 .blur-overlay-top {
   -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 45%);
@@ -731,9 +731,9 @@ a.bg-primary:active {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
-.blur-overlay-top-eyhance {
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+.blur-overlay-top-puresee {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 
 /* ─────────────────────────────────────────
@@ -750,8 +750,8 @@ a.bg-primary:active {
 .glare-bar-fill-panoptix {
   background: linear-gradient(90deg, #1d4ed8, #3a86ff);
 }
-.glare-bar-fill-eyhance {
-  background: linear-gradient(90deg, #8090a8, #a8b4c8);
+.glare-bar-fill-puresee {
+  background: linear-gradient(90deg, #0077c8, #00a3ff);
 }
 .glare-bar-fill-monofocal {
   background: linear-gradient(90deg, #4a5260, #6b7280);
@@ -762,8 +762,8 @@ a.bg-primary:active {
 .glare-bar-fill-high-panoptix {
   background: linear-gradient(90deg, #3a86ff, #ff6b6b);
 }
-.glare-bar-fill-high-eyhance {
-  background: linear-gradient(90deg, #a8b4c8, #ff6b6b);
+.glare-bar-fill-high-puresee {
+  background: linear-gradient(90deg, #00a3ff, #ff6b6b);
 }
 .glare-bar-fill-high-monofocal {
   background: linear-gradient(90deg, #6b7280, #ff6b6b);
@@ -923,9 +923,9 @@ textarea:focus {
   --lens-color: #c5a059;
   --lens-color-rgb: 197, 160, 89;
 }
-[data-lens='eyhance'] {
-  --lens-color: #3b82f6;
-  --lens-color-rgb: 59, 130, 246;
+[data-lens='puresee'] {
+  --lens-color: #00a3ff;
+  --lens-color-rgb: 0, 163, 255;
 }
 [data-lens='monofocal'] {
   --lens-color: #64748b;

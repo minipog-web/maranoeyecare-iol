@@ -108,14 +108,14 @@ const lenses = [
     },
   },
   {
-    id: 'eyhance',
-    name: 'Tecnis Eyhance',
-    manufacturer: 'J&J Vision',
-    type: 'Enhanced Monofocal',
-    tagline: 'Monofocal distance clarity with enhanced intermediate range.',
+    id: 'puresee',
+    name: 'TECNIS PureSee',
+    manufacturer: 'J&J MedTech',
+    type: 'Purely Refractive EDOF',
+    tagline: 'Continuous extended vision with zero contrast sensitivity warning.',
     color: '#00A3FF',
     featured: false,
-    badge: 'Zero Added Halos',
+    badge: 'Zero Contrast Warning',
     twColor: 'text-[#00A3FF]',
     twBadgeBg: 'bg-[#00A3FF15]',
     twBadgeBorder: 'border-[#00A3FF30]',
@@ -124,37 +124,37 @@ const lenses = [
     twSpecBar: 'bg-[#00A3FF]',
     images: {
       day: {
-        distance: '/assets/images/eyhance_day_distance_pro.jpg',
+        distance: '/assets/images/day_driving_pro.jpg',
         intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
-        near: '/assets/images/eyhance_day_near_pro_v2.png',
+        near: '/assets/images/vivity_day_near_pro.png',
       },
       night: {
-        distance: '/assets/images/eyhance_night_pro.jpg',
-        intermediate: '/assets/images/eyhance_night_pro.jpg',
-        near: '/assets/images/eyhance_night_pro.jpg',
+        distance: '/assets/images/vivity_night_pro.jpg',
+        intermediate: '/assets/images/vivity_night_pro.jpg',
+        near: '/assets/images/vivity_night_pro.jpg',
       },
     },
     specs: [
       { label: 'Distance Vision', value: 'Excellent', score: 98 },
-      { label: 'Intermediate (Screens)', value: 'Good', score: 75 },
-      { label: 'Near (Reading)', value: 'Limited', score: 30 },
-      { label: 'Night Vision Quality', value: 'No Added Halos', score: 98 },
+      { label: 'Intermediate (Screens)', value: 'Excellent', score: 92 },
+      { label: 'Near (Reading)', value: 'Functional', score: 60 },
+      { label: 'Night Vision Quality', value: 'Monofocal-like', score: 98 },
     ],
     highlights: [
-      'Over 90% distance satisfaction rate [3]',
-      'Enhanced mid-range over standard monofocals [3]',
-      'Zero added night halos or glare',
-      'Allows computer work with less spectacle dependence',
+      'Purely refractive optics — zero diffractive rings',
+      'First FDA-approved EDOF with zero contrast warning [3]',
+      'Continuous vision from distance to functional near (~40cm)',
+      'Monofocal-like night vision & glare safety profile',
     ],
     bestFor:
-      'Patients who prioritise pristine distance clarity and zero added visual disturbances, with some intermediate benefit.',
+      'Patients who want continuous intermediate and functional near vision with the glare-free night clarity and contrast of a monofocal lens.',
     blur: {
-      day: { distance: 0, intermediate: 0.8, near: 0 },
-      night: { distance: 0, intermediate: 2.8, near: 6.5 },
+      day: { distance: 0, intermediate: 0, near: 0.5 },
+      night: { distance: 0, intermediate: 1.2, near: 3.5 },
     },
     glareLabel: {
       day: 'None',
-      night: 'None',
+      night: 'Monofocal-like',
     },
   },
   {
@@ -212,7 +212,7 @@ const lenses = [
 const lensRgbMap: Record<string, string> = {
   panoptix: '139, 92, 246',
   vivity: '197, 160, 89',
-  eyhance: '0, 163, 255',
+  puresee: '0, 163, 255',
   monofocal: '100, 116, 139',
 };
 
@@ -277,16 +277,19 @@ const visualStatusOverlays: Record<
       near: { text: 'Near: Blurry (Reading Glasses Required)', status: 'warning' },
     },
   },
-  eyhance: {
+  puresee: {
     day: {
       distance: { text: 'Distance Vision: Pristine Clear (Glasses-Free)', status: 'clear' },
-      intermediate: { text: 'Intermediate: Good (Screen Reading Benefit)', status: 'info' },
-      near: { text: 'Near (Reading): Blurry (Readers Required)', status: 'error' },
+      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
+      near: { text: 'Near (Reading): Functional (Cellphone & Menus)', status: 'info' },
     },
     night: {
-      distance: { text: 'Distance: Crisp Night Driving (Zero Added Halos)', status: 'clear' },
-      intermediate: { text: 'Intermediate: Good (Screen Reading Benefit)', status: 'info' },
-      near: { text: 'Near: Blurry (Readers Required)', status: 'error' },
+      distance: {
+        text: 'Distance: Crisp Night Driving (Monofocal Glare Profile)',
+        status: 'clear',
+      },
+      intermediate: { text: 'Intermediate: Clear Computer & Dashboard', status: 'clear' },
+      near: { text: 'Near: Functional (Reading in Car)', status: 'info' },
     },
   },
   vivity: {
@@ -323,12 +326,12 @@ const visionDescriptions: Record<string, Record<Distance, string>> = {
       'Screens and dashboard dials are blurry. Reading glasses or computer-specific lenses are required.',
     near: 'Fine print, smartphones, and reading materials are highly blurred. Reading glasses are strictly necessary.',
   },
-  eyhance: {
+  puresee: {
     distance:
       'Pristine distance clarity. High-contrast driving and outdoor vision with a standard-monofocal safety profile.',
     intermediate:
-      'Meaningful improvement. Good for computer screens and car dashboards, though mild glasses assistance may be needed.',
-    near: 'Functional for larger print in good lighting, but reading glasses are still required for most close-up reading.',
+      'Clear, continuous intermediate focus. Effortless computer work, dashboard dials, and tablet viewing.',
+    near: 'Functional near vision. Easily check text messages, read car console screens, and view menus at arm’s length.',
   },
   vivity: {
     distance:
@@ -349,8 +352,8 @@ const visionDescriptions: Record<string, Record<Distance, string>> = {
 const nightVisionDescriptions: Record<string, string> = {
   monofocal:
     'Pristine night driving. Standard single-focus lens with no added glare, halos, or starbursts around headlights.',
-  eyhance:
-    'Crisp night driving. Enhanced distance vision with a baseline safety profile and zero added glare or halos.',
+  puresee:
+    'Crisp, glare-free night driving. Purely refractive optics maintain monofocal-level contrast with zero diffractive rings or added halos.',
   vivity:
     'Very low glare and minimal halos around headlights. Extremely safe and comfortable night driving.',
   panoptix:
@@ -585,7 +588,7 @@ export default function LensVisionComparisonSection() {
           : '35%';
     const y = glowPosition ? glowPosition.y : '50%';
     const opacity = glowPosition ? '0.30' : '0.15';
-    const glowBg = `radial-gradient(circle, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.07)' : currentGlowLens.id === 'vivity' ? 'rgba(197,160,89,0.07)' : currentGlowLens.id === 'eyhance' ? 'rgba(0,163,255,0.06)' : 'rgba(100,116,139,0.05)'} 0%, rgba(0,0,0,0) 70%)`;
+    const glowBg = `radial-gradient(circle, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.07)' : currentGlowLens.id === 'vivity' ? 'rgba(197,160,89,0.07)' : currentGlowLens.id === 'puresee' ? 'rgba(0,163,255,0.06)' : 'rgba(100,116,139,0.05)'} 0%, rgba(0,0,0,0) 70%)`;
 
     ambientGlowRef.current.style.setProperty('--glow-x', x);
     ambientGlowRef.current.style.setProperty('--glow-y', y);
@@ -809,7 +812,7 @@ export default function LensVisionComparisonSection() {
                             ? 'PanOptix Pro'
                             : lens.id === 'vivity'
                               ? 'Clareon Vivity'
-                              : 'Tecnis Eyhance'}
+                              : 'TECNIS PureSee'}
                         </span>
                       </button>
                     );
@@ -965,7 +968,7 @@ export default function LensVisionComparisonSection() {
                             ? 'PanOptix'
                             : lens.id === 'vivity'
                               ? 'Vivity'
-                              : 'Eyhance'}
+                              : 'PureSee'}
                       </span>
                       <span className="block text-[8px] opacity-60 font-medium mt-1 uppercase tracking-wider">
                         {lens.id === 'monofocal'
@@ -974,7 +977,7 @@ export default function LensVisionComparisonSection() {
                             ? 'Trifocal'
                             : lens.id === 'vivity'
                               ? 'EDOF'
-                              : 'Enhanced'}
+                              : 'Refractive'}
                       </span>
                     </button>
                   );
@@ -1297,7 +1300,7 @@ export default function LensVisionComparisonSection() {
               irregular curvature of your cornea. Without a Toric lens, astigmatism remains
               uncorrected after surgery, meaning you will still need glasses for crisp distance
               vision. At Marano Eye Care, we believe clear sight shouldn&apos;t require checking a
-              box of add-on fees: Clareon Vivity, PanOptix Pro, and Tecnis Eyhance are all provided
+              box of add-on fees: Clareon Vivity, PanOptix Pro, and TECNIS PureSee are all provided
               in Toric versions at no additional cost beyond the standard premium upgrade. (Please
               note that while toric upgrades for premium lenses have no additional upgrade fee, a
               standard monofocal toric lens is more expensive than a standard non-toric monofocal
@@ -1309,10 +1312,10 @@ export default function LensVisionComparisonSection() {
         <p className="text-center text-xs sm:text-sm text-white/90 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.08em] leading-relaxed font-medium">
           Simulations are for illustrative purposes only. Specifications displayed in charts above
           represent spectacle independence rates from published clinical data (PanOptix Pro:
-          meta-analysis of 13 studies with 513 patients; Vivity: Alcon clinical data; Eyhance: J&J
-          Vision 5-year follow-up). Individual patient experiences and clinical results may vary
-          significantly. A comprehensive consultation with Dr. Marano is required for medical
-          diagnosis and personalized treatment planning.
+          meta-analysis of 13 studies with 513 patients; Vivity: Alcon clinical data; PureSee: J&J
+          MedTech FDA registry clinical study data). Individual patient experiences and clinical
+          results may vary significantly. A comprehensive consultation with Dr. Marano is required
+          for medical diagnosis and personalized treatment planning.
         </p>
       </div>
     </section>

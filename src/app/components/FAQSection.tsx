@@ -61,7 +61,7 @@ const proceduralFAQs: FAQItem[] = [
     question: 'How long is recovery, and when can I return to my hobbies?',
     concern: '',
     answer:
-      "Most patients return to light activities like reading, using screens, and light walking within 24 to 48 hours. High-performance activities like golf, tennis, and cycling can typically be resumed after 1 to 2 weeks, pending Dr. Marano's post-operative evaluation. Driving is usually permitted within 72 hours, although everyone heals differently.",
+      "Most patients return to light daily activities within 24 to 48 hours. Distance vision typically clears rapidly first, while fine reading vision naturally lags behind by about two weeks as your brain neuroadapts to the new premium optics. High-performance activities like golf, tennis, and cycling can typically be resumed after 1 to 2 weeks following Dr. Marano's post-operative evaluation.",
   },
   {
     question: 'Will I feel any pain?',
@@ -85,7 +85,7 @@ const proceduralFAQs: FAQItem[] = [
     question: 'What if I have astigmatism? Do Toric lenses cost more?',
     concern: '',
     answer:
-      'Toric lenses are specialty optics designed to correct astigmatism (an irregular curve in your cornea) during cataract surgery. If you have astigmatism and do not choose a Toric lens, you will still need glasses for distance vision. While most clinics charge extra for Toric astigmatism correction, at Marano Eye Care, all our premium lenses (Clareon Vivity, PanOptix Pro, and Tecnis Eyhance) include the Toric version at no additional charge beyond the standard premium upgrade. (Note: While toric versions of premium lenses carry no additional upgrade fee, a standard monofocal toric lens does involve a higher out-of-pocket cost compared to a standard non-toric monofocal lens).',
+      'Toric lenses are specialty optics designed to correct astigmatism (an irregular curve in your cornea) during cataract surgery. If you have astigmatism and do not choose a Toric lens, you will still need glasses for distance vision. While most clinics charge extra for Toric astigmatism correction, at Marano Eye Care, all our premium lenses (Clareon Vivity, PanOptix Pro, and TECNIS PureSee) include the Toric version at no additional charge beyond the standard premium upgrade. (Note: While toric versions of premium lenses carry no additional upgrade fee, a standard monofocal toric lens does involve a higher out-of-pocket cost compared to a standard non-toric monofocal lens).',
   },
 ];
 

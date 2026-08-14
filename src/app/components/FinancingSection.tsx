@@ -161,6 +161,14 @@ export default function FinancingSection() {
                     <span>Permanent, medical-grade materials that never age or decay</span>
                   </li>
                 </ul>
+
+                <a
+                  href="#booking"
+                  className="btn-premium-primary btn-shimmer w-full py-3 px-4 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 mt-4 text-center focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                >
+                  <span>Request Financing Consultation</span>
+                  <Icon name="ArrowRightIcon" size={14} />
+                </a>
               </div>
             </div>
           </div>

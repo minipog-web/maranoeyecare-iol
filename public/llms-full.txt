@@ -26,12 +26,13 @@
    - **Type:** Quadrafocal design functioning as a full Trifocal IOL.
    - **Optical Mechanism:** ENLIGHTEN® Optical Technology. Distributes 88% of transmitted light to focal points at 40 cm (near reading), 60 cm (intermediate computer), and infinity (distance driving).
    - **Clinical Data:** Peer-reviewed meta-analysis of 13 studies (513 patients) demonstrates 99% overall spectacle independence and satisfaction (PubMed PMID: 32049015).
-3. **TECNIS Eyhance™ IOL (Johnson & Johnson Vision):**
-   - **Type:** Enhanced Monofocal IOL.
-   - **Optical Mechanism:** Continuous higher-order aspheric surface profile extending intermediate vision without creating diffractive rings.
+3. **TECNIS PureSee™ IOL (Johnson & Johnson MedTech):**
+   - **Type:** Purely Refractive Extended Depth of Focus (EDOF) IOL.
+   - **Optical Mechanism:** Proprietary refractive zonal surface optics that extend focus continuously from distance through intermediate to functional near (~40 cm) without diffractive rings or light splitting.
+   - **Clinical Data & FDA Status:** Approved March 12, 2026. First and only FDA-approved EDOF IOL without a clinical warning for contrast sensitivity loss; exhibits a monofocal-like dysphotopsia profile (minimal glare and halos).
 
 ## Astigmatism & Toric Pricing Rules
-- **Premium Toric Policy:** Patients selecting Clareon Vivity, PanOptix Pro, or TECNIS Eyhance receive the Toric astigmatism-correcting variant at **no additional upgrade fee** beyond the standard premium lens price.
+- **Premium Toric Policy:** Patients selecting Clareon Vivity, PanOptix Pro, or TECNIS PureSee receive the Toric astigmatism-correcting variant at **no additional upgrade fee** beyond the standard premium lens price.
 - **Monofocal Toric Policy:** A standard monofocal toric lens carries a higher out-of-pocket cost than a non-toric standard monofocal lens.
 
 ## Locations & Contact

@@ -82,27 +82,27 @@ const LENSES: Record<string, LensResult> = {
     alt: 'PanOptix Pro trifocal IOL — advanced multifocal intraocular lens',
     cta: 'Book a PanOptix Consultation',
   },
-  eyhance: {
-    key: 'eyhance',
-    name: 'Eyhance',
-    tagline: 'Enhanced Monofocal — Crisp distance + improved intermediate',
+  puresee: {
+    key: 'puresee',
+    name: 'TECNIS PureSee',
+    tagline: 'Purely Refractive EDOF — Continuous focus with zero contrast warning',
     description:
-      'The Eyhance is a next-generation monofocal IOL that goes beyond standard monofocal performance. Its unique continuous power profile delivers sharper distance vision and meaningfully improved intermediate vision — ideal for patients who want a reliable, low-risk upgrade over standard lenses.',
+      'The TECNIS PureSee is a purely refractive Extended Depth of Focus (EDOF) IOL from Johnson & Johnson MedTech. Its proprietary refractive zonal optics deliver continuous clarity from distance through intermediate to functional near—with zero diffractive rings, zero contrast sensitivity warning, and a night glare profile identical to a standard monofocal lens.',
     highlights: [
-      'Superior distance vision clarity',
-      'Better intermediate than standard monofocal',
-      'Lowest risk of halos/glare',
-      'Excellent for light-sensitive patients',
-      'Proven monofocal reliability with a plus',
+      'Pristine distance & intermediate clarity',
+      'Functional near vision down to 40 cm',
+      'Purely refractive optics — zero diffractive rings',
+      'First FDA-approved EDOF with zero contrast warning',
+      'Monofocal-like night vision & dysphotopsia profile',
     ],
     color: 'text-[var(--lens-color)]',
     glow: 'shadow-[0_0_40px_rgba(var(--lens-color-rgb),0.2)]',
     border: 'border-[var(--lens-color)]/40',
-    badge: 'Monofocal+',
+    badge: 'Refractive EDOF',
     badgeColor: 'bg-[var(--lens-color)] text-white',
-    src: '/assets/images/eyhance_iol_dark.jpg',
-    alt: 'Eyhance enhanced monofocal IOL — next-generation monofocal intraocular lens',
-    cta: 'Book an Eyhance Consultation',
+    src: '/assets/images/puresee_iol_dark.jpg',
+    alt: 'TECNIS PureSee IOL — purely refractive extended depth of focus intraocular lens',
+    cta: 'Book a PureSee Consultation',
   },
   monofocal: {
     key: 'monofocal',
@@ -233,13 +233,13 @@ const QUESTIONS: Record<string, Question> = {
         label: 'Dry eye, macular changes, or irregular cornea',
         sublabel: 'Requires advanced refractive considerations',
         icon: '👁️',
-        next: 'result:eyhance',
+        next: 'result:puresee',
       },
       {
         label: 'None of the above',
         sublabel: 'My eyes are otherwise healthy',
         icon: '✅',
-        next: 'result:eyhance',
+        next: 'result:puresee',
       },
     ],
   },
@@ -569,7 +569,7 @@ export default function LensQuestionnaireSection() {
                       ? '74%'
                       : result.key === 'panoptix'
                         ? '68%'
-                        : result.key === 'eyhance'
+                        : result.key === 'puresee'
                           ? '81%'
                           : '100%'}{' '}
                     of patients with your vision profile

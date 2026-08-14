@@ -6,7 +6,7 @@ export interface DynamicContent {
   bookingHeadline: string;
   bookingUrgencyTitle: string;
   bookingUrgencyText: string;
-  preselectedLens?: 'vivity' | 'panoptix' | 'eyhance' | 'monofocal';
+  preselectedLens?: 'vivity' | 'panoptix' | 'puresee' | 'monofocal';
 }
 
 export const DEFAULT_CONTENT: DynamicContent = {
@@ -72,18 +72,18 @@ const KEYWORD_MAPS: KeywordMapping[] = [
     },
   },
   {
-    pattern: /eyhance/i,
+    pattern: /puresee/i,
     content: {
-      badgeText: 'Eyhance IOL Specialists — Livingston • Denville • Newark',
-      heroTitleLine1: 'TECNIS Eyhance IOL.',
-      heroTitleLine2: 'Enhanced Monofocal Depth.',
+      badgeText: 'PureSee IOL Specialists — Livingston • Denville • Newark',
+      heroTitleLine1: 'TECNIS PureSee IOL.',
+      heroTitleLine2: 'Pure Refractive EDOF Depth.',
       heroDesc:
-        'Upgrade your standard cataract surgery experience. The TECNIS Eyhance offers enhanced intermediate vision to help you navigate daily activities with greater ease and independence.',
-      bookingHeadline: 'Discuss Eyhance With Dr. Marano',
-      bookingUrgencyTitle: 'Upgrade Your Standard Lens',
+        'Experience continuous vision with zero contrast compromise. The TECNIS PureSee is the first FDA-approved purely refractive EDOF IOL delivering seamless clarity from distance to intermediate and functional near, with a night glare profile identical to a standard monofocal lens.',
+      bookingHeadline: 'Discuss PureSee With Dr. Marano',
+      bookingUrgencyTitle: 'Pure Refractive EDOF Technology',
       bookingUrgencyText:
-        'Standard monofocals only focus at a single distance. Eyhance extends your vision range for a more natural everyday experience.',
-      preselectedLens: 'eyhance',
+        'Unlike diffractive lenses, PureSee uses proprietary refractive optics to eliminate glare and halos while restoring continuous visual depth.',
+      preselectedLens: 'puresee',
     },
   },
   {

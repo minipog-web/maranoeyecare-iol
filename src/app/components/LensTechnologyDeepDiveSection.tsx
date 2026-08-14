@@ -2,10 +2,37 @@
 
 import React, { useState } from 'react';
 
-type LensTab = 'panoptix' | 'vivity';
+type LensTab = 'panoptix' | 'vivity' | 'puresee';
 
 export default function LensTechnologyDeepDiveSection() {
-  const [activeTab, setActiveTab] = useState<LensTab>('panoptix');
+  const [activeTab, setActiveTab] = useState<LensTab>('vivity');
+
+  const tabColors: Record<
+    LensTab,
+    { hex: string; bg: string; border: string; glow: string; text: string }
+  > = {
+    panoptix: {
+      hex: '#8B5CF6',
+      bg: '#8B5CF615',
+      border: '#8B5CF630',
+      glow: 'rgba(139,92,246,0.12)',
+      text: '#a78bfa',
+    },
+    vivity: {
+      hex: '#C5A059',
+      bg: '#C5A05915',
+      border: '#C5A05930',
+      glow: 'rgba(197,160,89,0.12)',
+      text: '#e9c481',
+    },
+    puresee: {
+      hex: '#00A3FF',
+      bg: '#00A3FF15',
+      border: '#00A3FF30',
+      glow: 'rgba(0,163,255,0.12)',
+      text: '#38bdf8',
+    },
+  };
 
   return (
     <section className="relative w-full bg-[#0a0c10] py-20 sm:py-28 overflow-hidden">
@@ -14,7 +41,7 @@ export default function LensTechnologyDeepDiveSection() {
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[140px] opacity-5 pointer-events-none transition-all duration-700"
         style={{
-          backgroundColor: activeTab === 'panoptix' ? '#8B5CF6' : '#C5A059',
+          backgroundColor: tabColors[activeTab].hex,
         }}
       />
 
@@ -34,24 +61,39 @@ export default function LensTechnologyDeepDiveSection() {
           </p>
         </div>
 
-        {/* Unified Tab Switcher */}
+        {/* Unified 3-Tab Switcher */}
         <div className="flex justify-center mb-12 sm:mb-16">
-          <div className="relative p-1 bg-black/40 border border-white/[0.08] rounded-2xl flex w-full max-w-md shadow-lg">
+          <div className="relative p-1 bg-black/40 border border-white/[0.08] rounded-2xl flex w-full max-w-lg shadow-lg">
             {/* Active sliding background */}
             <div
               className="absolute top-1 bottom-1 rounded-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
               style={{
-                width: 'calc(50% - 4px)',
-                left: activeTab === 'panoptix' ? '4px' : 'calc(50% + 2px)',
-                backgroundColor: activeTab === 'panoptix' ? '#8B5CF615' : '#C5A05915',
-                border: `1px solid ${activeTab === 'panoptix' ? '#8B5CF630' : '#C5A05930'}`,
-                boxShadow: `0 4px 12px ${activeTab === 'panoptix' ? 'rgba(139,92,246,0.1)' : 'rgba(197,160,89,0.1)'}`,
+                width: 'calc(33.333% - 3px)',
+                left:
+                  activeTab === 'vivity'
+                    ? '4px'
+                    : activeTab === 'panoptix'
+                      ? 'calc(33.333% + 2px)'
+                      : 'calc(66.666% + 1px)',
+                backgroundColor: tabColors[activeTab].bg,
+                border: `1px solid ${tabColors[activeTab].border}`,
+                boxShadow: `0 4px 12px ${tabColors[activeTab].glow}`,
               }}
             />
 
             <button
+              onClick={() => setActiveTab('vivity')}
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl ${
+                activeTab === 'vivity'
+                  ? 'text-[#e9c481]'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Vivity<sup>®</sup> EDOF
+            </button>
+            <button
               onClick={() => setActiveTab('panoptix')}
-              className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl ${
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl ${
                 activeTab === 'panoptix'
                   ? 'text-[#a78bfa]'
                   : 'text-muted-foreground hover:text-foreground'
@@ -60,14 +102,14 @@ export default function LensTechnologyDeepDiveSection() {
               PanOptix<sup>®</sup> Trifocal
             </button>
             <button
-              onClick={() => setActiveTab('vivity')}
-              className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl ${
-                activeTab === 'vivity'
-                  ? 'text-[#e9c481]'
+              onClick={() => setActiveTab('puresee')}
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl ${
+                activeTab === 'puresee'
+                  ? 'text-[#38bdf8]'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              Vivity<sup>®</sup> EDOF
+              TECNIS PureSee™
             </button>
           </div>
         </div>
@@ -100,7 +142,7 @@ export default function LensTechnologyDeepDiveSection() {
                       <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
                     </radialGradient>
                     <filter id="glow">
-                      <feGaussianBlur stdDeviation="1" result="coloredBlur" />
+                      <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
                       <feMerge>
                         <feMergeNode in="coloredBlur" />
                         <feMergeNode in="SourceGraphic" />
@@ -152,50 +194,49 @@ export default function LensTechnologyDeepDiveSection() {
                     />
                   </g>
 
-                  {/* Lens Body Cross Section with Diffractive Concentric Rings */}
+                  {/* Lens Body Cross Section with Diffractive Steps */}
                   <g transform="translate(140, 60)">
                     <path
-                      d="M 0,0 Q 25,100 0,200 Q -25,100 0,0"
+                      d="M 0,0 Q 20,100 0,200 Q -20,100 0,0"
                       fill="rgba(139, 92, 246, 0.08)"
                       stroke="rgba(139, 92, 246, 0.4)"
                       strokeWidth="2"
                     />
-                    {/* Ring ridges representing the diffractive zones */}
                     <path
-                      d="M 3,40 Q 15,40 3,45 M 6,80 Q 20,80 6,85 M 7,120 Q 20,120 7,125 M 3,160 Q 15,160 3,165"
-                      stroke="rgba(139, 92, 246, 0.6)"
+                      d="M 2,40 C 6,45 6,55 2,60 M 4,70 C 8,75 8,85 4,90 M 5,95 C 10,100 10,110 5,115 M 4,120 C 8,125 8,135 4,140 M 2,150 C 6,155 6,165 2,170"
+                      stroke="#8B5CF6"
                       fill="none"
                       strokeWidth="1.5"
                     />
                   </g>
 
-                  {/* Refracted & Split Rays (Diffractive orders) */}
+                  {/* Refracted & Split Rays to 3 Distinct Focal Points */}
                   <g filter="url(#glow)">
-                    {/* Ray 1 (Distance Focus - Far) */}
-                    <path d="M 152,160 L 450,160" stroke="#8B5CF6" strokeWidth="2" />
-                    <path d="M 148,90 L 450,160" stroke="#8B5CF6" strokeWidth="1.5" opacity="0.7" />
+                    {/* Distance Rays (Focus at Retina: x=450, y=160) */}
+                    <path d="M 144,90 L 450,160" stroke="#8B5CF6" strokeWidth="2" opacity="0.9" />
                     <path
-                      d="M 148,230 L 450,160"
+                      d="M 144,160 L 450,160"
                       stroke="#8B5CF6"
-                      strokeWidth="1.5"
-                      opacity="0.7"
+                      strokeWidth="2.5"
+                      opacity="0.9"
                     />
+                    <path d="M 144,230 L 450,160" stroke="#8B5CF6" strokeWidth="2" opacity="0.9" />
 
-                    {/* Ray 2 (Intermediate Focus - 60cm) */}
+                    {/* Intermediate Rays (Focus at 60cm: x=320, y=160 -> Crosses to Retina) */}
                     <path
-                      d="M 149,120 L 320,160 L 450,195"
+                      d="M 144,90 L 320,160 L 450,195"
                       stroke="#EC4899"
                       strokeWidth="1.5"
                       opacity="0.8"
                     />
                     <path
-                      d="M 149,200 L 320,160 L 450,125"
+                      d="M 144,230 L 320,160 L 450,125"
                       stroke="#EC4899"
                       strokeWidth="1.5"
                       opacity="0.8"
                     />
 
-                    {/* Ray 3 (Near Focus - 40cm) */}
+                    {/* Near Rays (Focus at 40cm: x=230, y=160 -> Crosses to Retina) */}
                     <path
                       d="M 144,90 L 230,160 L 450,225"
                       stroke="#10B981"
@@ -209,7 +250,7 @@ export default function LensTechnologyDeepDiveSection() {
                       opacity="0.8"
                     />
 
-                    {/* Scattered Halo Rays (The visual trade-off demonstration) */}
+                    {/* Scattered Halo Rays */}
                     <path
                       d="M 144,90 Q 280,70 450,110"
                       stroke="rgba(139,92,246,0.3)"
@@ -245,13 +286,12 @@ export default function LensTechnologyDeepDiveSection() {
                     RETINA
                   </text>
 
-                  {/* Interactive/Animated Glows at the 3 focal points */}
+                  {/* Animated Glows at 3 focal points */}
                   <circle cx="450" cy="160" r="10" fill="url(#focalPointGlow)" />
                   <circle cx="320" cy="160" r="8" fill="url(#focalPointGlow)" opacity="0.4" />
                   <circle cx="230" cy="160" r="7" fill="url(#focalPointGlow)" opacity="0.4" />
 
-                  {/* Explanatory Annotations inside Diagram with Pointer Lines */}
-                  {/* Near (40cm) - Positioned below the axis */}
+                  {/* Annotations */}
                   <text x="160" y="235" fill="#10B981" fontSize="13" fontWeight="bold">
                     NEAR (40cm)
                   </text>
@@ -265,7 +305,6 @@ export default function LensTechnologyDeepDiveSection() {
                     opacity="0.8"
                   />
 
-                  {/* Intermediate (60cm) - Positioned above the axis */}
                   <text x="250" y="95" fill="#EC4899" fontSize="13" fontWeight="bold">
                     INTERMEDIATE (60cm)
                   </text>
@@ -279,7 +318,6 @@ export default function LensTechnologyDeepDiveSection() {
                     opacity="0.8"
                   />
 
-                  {/* Distance (6m+) - Positioned below the axis */}
                   <text x="380" y="235" fill="#8B5CF6" fontSize="13" fontWeight="bold">
                     DISTANCE (6m+)
                   </text>
@@ -293,7 +331,6 @@ export default function LensTechnologyDeepDiveSection() {
                     opacity="0.8"
                   />
 
-                  {/* Halo Indicator Label */}
                   <text
                     x="290"
                     y="75"
@@ -304,7 +341,7 @@ export default function LensTechnologyDeepDiveSection() {
                     Scattered Light (Halos)
                   </text>
                 </svg>
-              ) : (
+              ) : activeTab === 'vivity' ? (
                 /* Vivity Non-Diffractive Wavefront-Shaping Simulator */
                 <svg
                   className="w-full max-w-[560px] aspect-[1.6/1] overflow-visible"
@@ -376,14 +413,12 @@ export default function LensTechnologyDeepDiveSection() {
 
                   {/* Lens Body Cross Section with 1-Micron Transition Plateau */}
                   <g transform="translate(140, 60)">
-                    {/* Lens is mostly standard monofocal-smooth */}
                     <path
                       d="M 0,0 Q 25,100 0,200 Q -25,100 0,0"
                       fill="rgba(197, 160, 89, 0.08)"
                       stroke="rgba(197, 160, 89, 0.4)"
                       strokeWidth="2"
                     />
-                    {/* The 1-micron flat optical element at the very center */}
                     <rect x="7" y="94" width="3" height="12" fill="#C5A059" rx="0.5" />
                     <path
                       d="M 6,90 C 8,92 8,108 6,110"
@@ -395,9 +430,7 @@ export default function LensTechnologyDeepDiveSection() {
 
                   {/* Stretched Wavefront & Elongated Focus Tube */}
                   <g filter="url(#vivityGlow)">
-                    {/* Continuous focal cylinder representing the EDOF range */}
                     <polygon points="152,160 450,150 450,170" fill="url(#focusTube)" />
-
                     <path
                       d="M 148,90 L 320,158 L 450,159"
                       stroke="#C5A059"
@@ -410,8 +443,6 @@ export default function LensTechnologyDeepDiveSection() {
                       strokeWidth="1.5"
                       opacity="0.8"
                     />
-
-                    {/* Central ray delayed and stretched */}
                     <path d="M 153,160 L 450,160" stroke="#C5A059" strokeWidth="3" />
                   </g>
 
@@ -451,7 +482,6 @@ export default function LensTechnologyDeepDiveSection() {
                     EXTENDED DEPTH OF FOCUS (EDOF)
                   </text>
 
-                  {/* Notes inside diagram highlighting low glare */}
                   <text
                     x="180"
                     y="275"
@@ -460,6 +490,184 @@ export default function LensTechnologyDeepDiveSection() {
                     fontStyle="italic"
                   >
                     Zero scattered light = Monofocal night safety profile
+                  </text>
+                </svg>
+              ) : (
+                /* TECNIS PureSee Purely Refractive EDOF Simulator */
+                <svg
+                  className="w-full max-w-[560px] aspect-[1.6/1] overflow-visible"
+                  viewBox="0 0 500 320"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <linearGradient id="pureseeLaserGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="rgba(255,255,255,0.02)" />
+                      <stop offset="100%" stopColor="#00A3FF" stopOpacity="0.45" />
+                    </linearGradient>
+                    <linearGradient id="pureseeFocusBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#00A3FF" stopOpacity="0.4" />
+                      <stop offset="50%" stopColor="#00A3FF" stopOpacity="0.22" />
+                      <stop offset="100%" stopColor="#00A3FF" stopOpacity="0.08" />
+                    </linearGradient>
+                    <filter id="pureseeGlow">
+                      <feGaussianBlur stdDeviation="1.2" result="coloredBlur" />
+                      <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  {/* Incoming Light Waves/Rays */}
+                  <g opacity="0.65">
+                    <line
+                      x1="10"
+                      y1="85"
+                      x2="140"
+                      y2="85"
+                      stroke="url(#pureseeLaserGrad)"
+                      strokeWidth="2"
+                    />
+                    <line
+                      x1="10"
+                      y1="115"
+                      x2="140"
+                      y2="115"
+                      stroke="url(#pureseeLaserGrad)"
+                      strokeWidth="2"
+                    />
+                    <line
+                      x1="10"
+                      y1="160"
+                      x2="140"
+                      y2="160"
+                      stroke="url(#pureseeLaserGrad)"
+                      strokeWidth="3"
+                    />
+                    <line
+                      x1="10"
+                      y1="205"
+                      x2="140"
+                      y2="205"
+                      stroke="url(#pureseeLaserGrad)"
+                      strokeWidth="2"
+                    />
+                    <line
+                      x1="10"
+                      y1="235"
+                      x2="140"
+                      y2="235"
+                      stroke="url(#pureseeLaserGrad)"
+                      strokeWidth="2"
+                    />
+                  </g>
+
+                  {/* Purely Refractive Smooth Aspheric Lens Body (Zero Diffractive Micro-Steps) */}
+                  <g transform="translate(140, 60)">
+                    <path
+                      d="M 0,0 Q 28,100 0,200 Q -22,100 0,0"
+                      fill="rgba(0, 163, 255, 0.09)"
+                      stroke="rgba(0, 163, 255, 0.45)"
+                      strokeWidth="2"
+                    />
+                    {/* Continuous Refractive Power Profile Curves */}
+                    <path
+                      d="M 6,30 Q 18,100 6,170"
+                      stroke="#00A3FF"
+                      strokeOpacity="0.4"
+                      fill="none"
+                      strokeWidth="1"
+                      strokeDasharray="2,2"
+                    />
+                    <path
+                      d="M 12,60 Q 22,100 12,140"
+                      stroke="#00A3FF"
+                      strokeOpacity="0.6"
+                      fill="none"
+                      strokeWidth="1.5"
+                    />
+                  </g>
+
+                  {/* Continuous Pure Refractive Convergence Beam */}
+                  <g filter="url(#pureseeGlow)">
+                    {/* Smooth continuous focal envelope */}
+                    <polygon points="152,160 450,146 450,174" fill="url(#pureseeFocusBeam)" />
+
+                    {/* Smooth marginal and paraxial refractive ray paths */}
+                    <path
+                      d="M 148,85 C 240,120 350,158 450,158"
+                      stroke="#00A3FF"
+                      strokeWidth="1.8"
+                      opacity="0.85"
+                    />
+                    <path
+                      d="M 148,235 C 240,200 350,162 450,162"
+                      stroke="#00A3FF"
+                      strokeWidth="1.8"
+                      opacity="0.85"
+                    />
+                    <path
+                      d="M 148,115 L 340,159 L 450,159"
+                      stroke="#38BDF8"
+                      strokeWidth="1.5"
+                      opacity="0.75"
+                    />
+                    <path
+                      d="M 148,205 L 340,161 L 450,161"
+                      stroke="#38BDF8"
+                      strokeWidth="1.5"
+                      opacity="0.75"
+                    />
+
+                    {/* Central continuous axis ray */}
+                    <path d="M 152,160 L 450,160" stroke="#00A3FF" strokeWidth="3" />
+                  </g>
+
+                  {/* Retinal Plane */}
+                  <line
+                    x1="450"
+                    y1="40"
+                    x2="450"
+                    y2="280"
+                    stroke="rgba(255,255,255,0.15)"
+                    strokeWidth="2"
+                    strokeDasharray="4,4"
+                  />
+                  <text
+                    x="460"
+                    y="55"
+                    fill="rgba(255,255,255,0.4)"
+                    fontSize="9"
+                    fontWeight="bold"
+                    letterSpacing="1"
+                  >
+                    RETINA
+                  </text>
+
+                  {/* Continuous Refractive EDOF Box */}
+                  <rect
+                    x="260"
+                    y="142"
+                    width="190"
+                    height="36"
+                    fill="none"
+                    stroke="rgba(0, 163, 255, 0.35)"
+                    strokeDasharray="2,2"
+                    rx="4"
+                  />
+                  <text x="272" y="135" fill="#00A3FF" fontSize="9" fontWeight="bold">
+                    PURE REFRACTIVE CONTINUOUS FOCUS
+                  </text>
+
+                  {/* Bottom Safety Highlight */}
+                  <text
+                    x="160"
+                    y="275"
+                    fill="rgba(255,255,255,0.5)"
+                    fontSize="9"
+                    fontStyle="italic"
+                  >
+                    Zero diffractive rings = 100% natural contrast &amp; zero contrast warning
                   </text>
                 </svg>
               )}
@@ -472,7 +680,9 @@ export default function LensTechnologyDeepDiveSection() {
                 <p className="text-sm text-foreground/80 leading-relaxed font-light">
                   {activeTab === 'panoptix'
                     ? 'Incoming light is split by concentric micro-ridges, creating sharp focus points at 40cm, 60cm, and distance.'
-                    : 'The central transition element alters the wavefront phase, stretching light into a single continuous tube of focus.'}
+                    : activeTab === 'vivity'
+                      ? 'The central transition element alters the wavefront phase, stretching light into a single continuous tube of focus.'
+                      : 'A purely refractive aspheric design continuously modulates optical power with zero diffractive rings, preserving 100% natural contrast.'}
                 </p>
               </div>
             </div>
@@ -484,10 +694,7 @@ export default function LensTechnologyDeepDiveSection() {
             <div
               className="p-[1px] rounded-3xl overflow-hidden bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-xl shadow-xl transition-all duration-500"
               style={{
-                boxShadow:
-                  activeTab === 'panoptix'
-                    ? '0 10px 30px -10px rgba(139,92,246,0.15)'
-                    : '0 10px 30px -10px rgba(197,160,89,0.15)',
+                boxShadow: `0 10px 30px -10px ${tabColors[activeTab].glow}`,
               }}
             >
               <div className="bg-[#0e1017] rounded-[calc(1.5rem-1px)] p-6 sm:p-8 flex flex-col gap-6 border border-white/[0.03]">
@@ -495,21 +702,25 @@ export default function LensTechnologyDeepDiveSection() {
                 <div>
                   <span
                     className="text-xs font-bold uppercase tracking-widest block mb-2"
-                    style={{ color: activeTab === 'panoptix' ? '#a78bfa' : '#e9c481' }}
+                    style={{ color: tabColors[activeTab].text }}
                   >
                     {activeTab === 'panoptix'
                       ? 'Proprietary ENLIGHTEN Optics'
-                      : 'Advanced X-WAVE™ Wavefront Technology'}
+                      : activeTab === 'vivity'
+                        ? 'Advanced X-WAVE™ Wavefront Technology'
+                        : 'Purely Refractive EDOF Innovation'}
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-serif text-foreground font-medium flex items-center">
                     {activeTab === 'panoptix' ? (
                       <>
                         PanOptix<sup>®</sup>
                       </>
-                    ) : (
+                    ) : activeTab === 'vivity' ? (
                       <>
                         Vivity<sup>®</sup>
                       </>
+                    ) : (
+                      <>TECNIS PureSee™</>
                     )}
                   </h3>
                 </div>
@@ -532,20 +743,9 @@ export default function LensTechnologyDeepDiveSection() {
                       </sup>
                       . By focusing 88% of available light directly to the retina, it optimizes
                       light utilization to provide clear, high-resolution vision at distance,
-                      arm&apos;s length, and close-up{' '}
-                      <sup className="text-[10px] ml-0.5">
-                        <a
-                          href="https://pubmed.ncbi.nlm.nih.gov/32049015/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline font-mono"
-                        >
-                          [1]
-                        </a>
-                      </sup>
-                      .
+                      arm&apos;s length, and close-up.
                     </>
-                  ) : (
+                  ) : activeTab === 'vivity' ? (
                     <>
                       Unlike traditional multifocals, Vivity is non-diffractive{' '}
                       <sup className="text-[10px] ml-0.5">
@@ -559,19 +759,29 @@ export default function LensTechnologyDeepDiveSection() {
                         </a>
                       </sup>
                       . It uses a microscopic 1-micron transition element to bend and stretch
-                      incoming light rays instead of splitting them{' '}
+                      incoming light rays instead of splitting them. This provides an elongated
+                      range of vision with the pristine contrast sensitivity of a standard
+                      monofocal.
+                    </>
+                  ) : (
+                    <>
+                      The TECNIS PureSee is a purely refractive extended depth of focus (EDOF) IOL
+                      that delivers uninterrupted continuous vision without diffractive rings or
+                      light splitting{' '}
                       <sup className="text-[10px] ml-0.5">
                         <a
-                          href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P190018"
+                          href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary hover:underline font-mono"
                         >
-                          [2]
+                          [3]
                         </a>
                       </sup>
-                      . This provides an elongated range of vision with the pristine contrast
-                      sensitivity of a standard monofocal lens.
+                      . By utilizing advanced continuous surface refraction, 100% of incoming light
+                      is harnessed without scatter. It is the first FDA-approved EDOF lens with zero
+                      contrast sensitivity warning, providing a dysphotopsia profile identical to a
+                      monofocal control.
                     </>
                   )}
                 </p>
@@ -586,55 +796,46 @@ export default function LensTechnologyDeepDiveSection() {
                     <div className="grid grid-cols-3 gap-2 text-center text-xs">
                       <div className="bg-white/[0.02] border border-white/[0.04] p-2.5 rounded-xl">
                         <span className="text-muted-foreground block mb-1">Near (Reading)</span>
-                        <span className="font-semibold text-emerald-400">
-                          Excellent{' '}
-                          <sup className="text-[9px] ml-0.5">
-                            <a
-                              href="https://pubmed.ncbi.nlm.nih.gov/32049015/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-primary hover:underline font-mono"
-                            >
-                              [1]
-                            </a>
-                          </sup>
-                        </span>
+                        <span className="font-semibold text-emerald-400">Excellent</span>
                       </div>
                       <div className="bg-white/[0.02] border border-white/[0.04] p-2.5 rounded-xl">
                         <span className="text-muted-foreground block mb-1">Intermediate</span>
-                        <span className="font-semibold text-emerald-400">
-                          Excellent{' '}
-                          <sup className="text-[9px] ml-0.5">
-                            <a
-                              href="https://pubmed.ncbi.nlm.nih.gov/32049015/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-primary hover:underline font-mono"
-                            >
-                              [1]
-                            </a>
-                          </sup>
-                        </span>
+                        <span className="font-semibold text-emerald-400">Excellent</span>
                       </div>
                       <div className="bg-white/[0.02] border border-white/[0.04] p-2.5 rounded-xl">
                         <span className="text-muted-foreground block mb-1">Night Driving</span>
                         <span className="font-semibold text-purple-400">Halos Present</span>
                       </div>
                     </div>
+                  ) : activeTab === 'vivity' ? (
+                    <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                      <div className="bg-white/[0.02] border border-white/[0.04] p-2.5 rounded-xl">
+                        <span className="text-muted-foreground block mb-1">Near (Reading)</span>
+                        <span className="font-semibold text-[#e9c481]">Functional</span>
+                      </div>
+                      <div className="bg-white/[0.02] border border-white/[0.04] p-2.5 rounded-xl">
+                        <span className="text-muted-foreground block mb-1">Intermediate</span>
+                        <span className="font-semibold text-emerald-400">Excellent</span>
+                      </div>
+                      <div className="bg-white/[0.02] border border-white/[0.04] p-2.5 rounded-xl">
+                        <span className="text-muted-foreground block mb-1">Night Driving</span>
+                        <span className="font-semibold text-emerald-400">Glare-Free</span>
+                      </div>
+                    </div>
                   ) : (
                     <div className="grid grid-cols-3 gap-2 text-center text-xs">
                       <div className="bg-white/[0.02] border border-white/[0.04] p-2.5 rounded-xl">
                         <span className="text-muted-foreground block mb-1">Near (Reading)</span>
-                        <span className="font-semibold text-[#e9c481]">
+                        <span className="font-semibold text-[#38bdf8]">
                           Functional{' '}
                           <sup className="text-[9px] ml-0.5">
                             <a
-                              href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P190018"
+                              href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-primary hover:underline font-mono"
                             >
-                              [2]
+                              [3]
                             </a>
                           </sup>
                         </span>
@@ -645,19 +846,19 @@ export default function LensTechnologyDeepDiveSection() {
                           Excellent{' '}
                           <sup className="text-[9px] ml-0.5">
                             <a
-                              href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P190018"
+                              href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-primary hover:underline font-mono"
                             >
-                              [2]
+                              [3]
                             </a>
                           </sup>
                         </span>
                       </div>
                       <div className="bg-white/[0.02] border border-white/[0.04] p-2.5 rounded-xl">
                         <span className="text-muted-foreground block mb-1">Night Driving</span>
-                        <span className="font-semibold text-emerald-400">Glare-Free</span>
+                        <span className="font-semibold text-emerald-400">Monofocal-Like</span>
                       </div>
                     </div>
                   )}
@@ -667,48 +868,44 @@ export default function LensTechnologyDeepDiveSection() {
                 <div
                   className="p-4 rounded-2xl border"
                   style={{
-                    backgroundColor:
-                      activeTab === 'panoptix' ? 'rgba(139,92,246,0.04)' : 'rgba(197,160,89,0.04)',
-                    borderColor:
-                      activeTab === 'panoptix' ? 'rgba(139,92,246,0.15)' : 'rgba(197,160,89,0.15)',
+                    backgroundColor: `${tabColors[activeTab].hex}0A`,
+                    borderColor: `${tabColors[activeTab].hex}26`,
                   }}
                 >
                   <h4
                     className="text-xs font-bold uppercase tracking-wider mb-1.5"
-                    style={{ color: activeTab === 'panoptix' ? '#a78bfa' : '#e9c481' }}
+                    style={{ color: tabColors[activeTab].text }}
                   >
                     {activeTab === 'panoptix'
                       ? 'Spectacle Independence'
-                      : 'Monofocal-Like Contrast'}
+                      : activeTab === 'vivity'
+                        ? 'Monofocal-Like Contrast'
+                        : 'Zero Diffractive Rings & 100% Contrast'}
                   </h4>
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     {activeTab === 'panoptix' ? (
                       <>
-                        Engineered for active lifestyles{' '}
-                        <sup className="text-[10px] ml-0.5">
-                          <a
-                            href="https://pubmed.ncbi.nlm.nih.gov/32049015/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary hover:underline font-mono"
-                          >
-                            [1]
-                          </a>
-                        </sup>
-                        . Allows reading, screen work, and outdoor hobbies without spectacles.
+                        Engineered for active lifestyles. Allows reading, screen work, and outdoor
+                        hobbies without spectacles.
+                      </>
+                    ) : activeTab === 'vivity' ? (
+                      <>
+                        Ideal for night driving, stargazing, and patients seeking a smooth, visual
+                        range with zero glare risk.
                       </>
                     ) : (
                       <>
-                        Ideal for night driving, stargazing, and patients seeking a smooth, visual
-                        range with zero glare risk{' '}
+                        Engineered for patients seeking seamless computer and functional near vision
+                        with the exact high-contrast clarity and dysphotopsia-free night profile of
+                        a standard monofocal lens{' '}
                         <sup className="text-[10px] ml-0.5">
                           <a
-                            href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P190018"
+                            href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-primary hover:underline font-mono"
                           >
-                            [2]
+                            [3]
                           </a>
                         </sup>
                         .
@@ -723,7 +920,7 @@ export default function LensTechnologyDeepDiveSection() {
             <div className="glass-card border border-white/[0.08] backdrop-blur-md rounded-3xl p-6 bg-gradient-to-r from-primary/5 to-transparent relative overflow-hidden flex items-start gap-4">
               <div
                 className="absolute left-0 top-0 bottom-0 w-1.5"
-                style={{ backgroundColor: activeTab === 'panoptix' ? '#8B5CF6' : '#C5A059' }}
+                style={{ backgroundColor: tabColors[activeTab].hex }}
               />
               <div className="flex-1">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1">
@@ -763,7 +960,7 @@ export default function LensTechnologyDeepDiveSection() {
               [View PubMed Study]
             </a>
           </p>
-          <p>
+          <p className="mb-2">
             <strong>
               [2] Clareon<sup>®</sup> Vivity<sup>®</sup> Optical Assessment:
             </strong>{' '}
@@ -772,6 +969,20 @@ export default function LensTechnologyDeepDiveSection() {
             focus.{' '}
             <a
               href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P190018"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-semibold"
+            >
+              [View FDA PMA Registry]
+            </a>
+          </p>
+          <p>
+            <strong>[3] TECNIS PureSee™ FDA Approval &amp; Clinical Data:</strong> FDA PMA Approval
+            P980040 registry. Confirms purely refractive extended depth of focus with zero
+            diffractive rings, zero contrast sensitivity warning, and a dysphotopsia (glare/halo)
+            rate comparable to a monofocal control lens.{' '}
+            <a
+              href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline font-semibold"

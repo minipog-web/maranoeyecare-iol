@@ -48,7 +48,7 @@ export default function LensarAllySection() {
     },
     {
       icon: 'SparklesIcon',
-      title: 'Micron-level laser precision',
+      title: 'Micron-Level Laser Precision',
       desc: 'Computer-guided technology makes incisions with micron-level accuracy, creating the optimal foundation for aligning premium astigmatism and multifocal lenses.',
       metric: 'Micron-level accuracy',
     },
