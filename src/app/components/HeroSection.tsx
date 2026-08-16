@@ -45,9 +45,6 @@ const lenses = [
   },
 ];
 
-// Default active lens when nothing is hovered
-const DEFAULT_ACTIVE = 'Clareon Vivity';
-
 interface HeroSectionProps {
   badgeText?: string;
   heroTitleLine1?: string;
