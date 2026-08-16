@@ -32,8 +32,8 @@ export default function Header() {
 
   const navLinks = [
     { label: 'Lens Options', href: '#lenses' },
-    { label: 'Vision Outcomes', href: '#vision' },
-    { label: 'IOL Simulator', href: '#iol-simulator' },
+    { label: 'Vision Simulator', href: '#vision' },
+    { label: 'Lens Technology', href: '#physics' },
     { label: 'Find My Lens', href: '#lifestyle' },
     { label: 'Our Doctors', href: '#trust' },
   ];
@@ -75,7 +75,7 @@ export default function Header() {
         <div className="flex items-center gap-3 shrink-0">
           <a
             href="https://www.maranoeye.com"
-            aria-label="Marano Eye Care — return to homepage"
+            aria-label="Marano Eye Care: return to homepage"
             className="hover:opacity-80 transition-opacity block shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <AppLogo
@@ -96,7 +96,7 @@ export default function Header() {
               onClick={() => handleNavClick(link.label)}
               className="px-2 lg:px-2.5 xl:px-3.5 py-1.5 text-[11px] lg:text-xs xl:text-xs font-bold uppercase tracking-wider text-white hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.08] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
-              {link?.label}
+              {link.label}
             </a>
           ))}
         </nav>
@@ -156,7 +156,7 @@ export default function Header() {
                   setMenuOpen(false);
                 }}
               >
-                {link?.label}
+                {link.label}
               </a>
             ))}
           </div>

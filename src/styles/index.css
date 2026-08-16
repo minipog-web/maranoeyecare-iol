@@ -122,10 +122,6 @@ p {
   }
 }
 
-.pb-safe {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-
 .pt-safe {
   padding-top: env(safe-area-inset-top, 0px);
 }
@@ -800,26 +796,6 @@ html {
   html {
     scroll-padding-top: 70px;
   }
-}
-
-/* ─────────────────────────────────────────
-   GRADIENT TEXT (override for specificity)
-───────────────────────────────────────── */
-
-.text-gradient-primary {
-  background: linear-gradient(
-    135deg,
-    #fff2d1 0%,
-    #e6c587 35%,
-    #c5a059 65%,
-    #fff2d1 100%
-  ) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: #e6c587 !important; /* Fallback balanced clinical gold */
-  text-shadow: none !important;
-  filter: none !important;
 }
 
 /* ─────────────────────────────────────────

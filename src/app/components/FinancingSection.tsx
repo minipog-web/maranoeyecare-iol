@@ -5,7 +5,7 @@ import Icon from '@/components/ui/AppIcon';
 
 export default function FinancingSection() {
   return (
-    <section id="financing" className="py-12 sm:py-20 relative overflow-hidden bg-card">
+    <section id="financing" className="py-16 sm:py-24 relative overflow-hidden bg-card">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
@@ -14,16 +14,16 @@ export default function FinancingSection() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
           <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
-            Pricing & Accessibility
+            Pricing & Economic Value
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
-            Visual Freedom is an{' '}
-            <span className="font-semibold text-gradient-primary">Investment in Yourself.</span>
+            The Economics of Clear Vision:{' '}
+            <span className="font-semibold text-gradient-primary">A Lifetime Optical Asset.</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
             Standard cataract surgery is fully covered by Medicare and commercial insurance. Opting
-            for a premium lens is an investment in permanent, glasses-free vision. We make it
-            affordable.
+            for a premium lens is a single, permanent investment that frees you from a lifetime of
+            progressive glasses, bifocals, and contact lenses.
           </p>
         </div>
 
@@ -107,12 +107,12 @@ export default function FinancingSection() {
               multi-focal or extended depth of field (EDOF) designs.
             </p>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              When framed against the lifetime cost of premium glasses, contact lenses, solutions,
-              and prescription sunglasses—which typically exceed{' '}
-              <strong className="text-foreground">$8,000 to $12,000</strong> over a 15-year period—a
-              premium lens is a permanent one-time choice that frees you from a lifetime of having
-              to pay for glasses or contacts. Because premium lenses never degrade or develop
-              cataracts again, this is a literal lifetime investment in your visual independence.
+              Over a 10 to 15 year period, the ongoing cost of progressive lenses, replacement
+              frames, contact lenses, and prescription sunglasses easily adds up to{' '}
+              <strong className="text-foreground">$8,000 to $12,000</strong>. Choosing a premium
+              lens is a single investment in your daily convenience and confidence. Because your
+              artificial lens will never cloud over or develop another cataract, the visual clarity
+              you gain stays with you for life.
             </p>
           </div>
 

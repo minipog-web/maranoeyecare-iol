@@ -47,5 +47,7 @@ jest-test-results.json
 turbo/
 .belt/
 
-# Temporary scratch files
+# Temporary scratch files & test captures
 scratch/
+/*.png
+/*.jpg

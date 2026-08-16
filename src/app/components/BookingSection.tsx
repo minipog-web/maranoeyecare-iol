@@ -12,7 +12,7 @@ const locations = [
   'Newark Office (306 Martin Luther King Blvd)',
 ];
 const lensOptions = [
-  'Not sure yet — need guidance',
+  'Not sure yet (need guidance)',
   'PanOptix Pro (Trifocal)',
   'Clareon Vivity (EDOF)',
   'TECNIS PureSee (Refractive EDOF)',
@@ -262,7 +262,7 @@ export default function BookingSection({
     'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
 
   return (
-    <section id="booking" className="py-12 sm:py-20 relative overflow-hidden bg-muted">
+    <section id="booking" className="py-16 sm:py-24 relative overflow-hidden bg-muted">
       {/* Background */}
       <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(245,158,11,0.06)_0%,transparent_70%)]" />
       <div className="absolute inset-0 grid-lines-bg opacity-10" />
@@ -478,13 +478,15 @@ export default function BookingSection({
                       </div>
                     </div>
                   )}
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between gap-3 sm:gap-4 mb-3">
                     <h3
                       className={`font-display text-xl sm:text-2xl font-medium text-foreground ${styles.formHeader}`}
                     >
-                      {step === 1 ? 'Reserve Your Consultation' : 'Tell Us About Your Vision'}
+                      {step === 1
+                        ? 'Reserve Your Consultation with Dr. Marano'
+                        : 'Customize Your Visual Goals'}
                     </h3>
-                    <span className="text-xs font-semibold text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full">
+                    <span className="text-xs font-semibold text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full whitespace-nowrap shrink-0">
                       Step {step} of 2
                     </span>
                   </div>
@@ -500,7 +502,7 @@ export default function BookingSection({
                     <p className="text-xs text-muted-foreground">
                       {step === 1
                         ? 'Provide your contact details to begin.'
-                        : 'Optional — helps Dr. Marano prepare for your visit.'}
+                        : 'Optional, helps Dr. Marano prepare for your visit.'}
                     </p>
                     <div className="flex items-center gap-1.5 text-xs text-primary font-bold tracking-wide uppercase">
                       <Icon name="LockClosedIcon" size={14} className="shrink-0" />
@@ -773,7 +775,7 @@ export default function BookingSection({
                           </span>
                         ) : (
                           <>
-                            <span>Reserve My Consultation</span>
+                            <span>Request Consultation with Dr. Marano</span>
                             <Icon
                               name="ArrowRightIcon"
                               size={18}
@@ -785,8 +787,8 @@ export default function BookingSection({
                     </div>
 
                     <p className="text-xs text-muted-foreground text-center pt-1">
-                      By submitting, you agree to be contacted by Marano Eye Care. Your information
-                      is never shared.
+                      🔒 100% Confidential · Zero Obligation · Dr. Marano Personally Reviews Every
+                      Request
                     </p>
                   </form>
                 )}

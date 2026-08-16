@@ -23,7 +23,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '10 Minutes',
       icon: 'ClockIcon',
       description:
-        'An outpatient procedure. We apply local numbing eye drops—no pain, no injections, no general anesthesia. The robotic laser system replaces your cataract with your custom premium lens. You walk out the same day.',
+        'A gentle outpatient procedure. We apply numbing eye drops with no needles, no injections, and no general anesthesia required. Dr. Marano uses the LENSAR laser system to replace your cloudy natural lens with your custom IOL. You walk out comfortably the same morning.',
       color: '#8B5CF6',
       rgb: '139, 92, 246',
     },
@@ -60,7 +60,7 @@ export default function RecoveryTimelineSection() {
   ];
 
   return (
-    <section id="recovery" className="py-24 relative overflow-hidden bg-[#0a0c10]">
+    <section id="recovery" className="py-16 sm:py-24 relative overflow-hidden bg-[#0a0c10]">
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/2 rounded-full blur-[100px] pointer-events-none" />

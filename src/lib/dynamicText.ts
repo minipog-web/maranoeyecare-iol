@@ -10,11 +10,11 @@ export interface DynamicContent {
 }
 
 export const DEFAULT_CONTENT: DynamicContent = {
-  badgeText: 'Premium IOL Specialists — Livingston • Denville • Newark',
+  badgeText: 'Premium IOL Specialists • Livingston, Denville & Newark',
   heroTitleLine1: 'One Surgery. One Choice.',
   heroTitleLine2: 'Lifetime Visual Freedom.',
   heroDesc:
-    'Cataract surgery is a single, permanent opportunity to reclaim your active lifestyle. Rather than accepting standard lenses that require reading glasses for the rest of your life, discover the freedom of advanced lenses designed to restore complete, multi-distance clarity.',
+    'Cataract surgery is a once-in-a-lifetime opportunity to restore your vision. Rather than accepting standard lenses that require reading glasses every day, discover the freedom of advanced lenses designed to restore complete, multi-distance clarity.',
   bookingHeadline: 'Reclaim Clear Vision',
   bookingUrgencyTitle: 'Cataracts only progress',
   bookingUrgencyText:
@@ -30,11 +30,11 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /cataract/i,
     content: {
-      badgeText: 'Cataract Surgery Specialists — Livingston • Denville • Newark',
+      badgeText: 'Cataract Surgery Specialists • Livingston, Denville & Newark',
       heroTitleLine1: 'Modern Cataract Care.',
       heroTitleLine2: 'Lifetime Visual Freedom.',
       heroDesc:
-        'Cataract surgery is a single, permanent choice to reclaim your active lifestyle. Rather than accepting standard lenses, discover the freedom of advanced premium lenses designed to restore crystal-clear, multi-distance vision.',
+        'Cataract surgery is a single, permanent choice to reclaim your active lifestyle. Rather than accepting standard lenses, discover the freedom of advanced premium lenses designed to restore clear, multi-distance vision.',
       bookingHeadline: 'Schedule Your Cataract Consultation',
       bookingUrgencyTitle: 'Cataracts only progress',
       bookingUrgencyText:
@@ -44,7 +44,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /vivity/i,
     content: {
-      badgeText: 'Vivity IOL Specialists — Livingston • Denville • Newark',
+      badgeText: 'Vivity IOL Specialists • Livingston, Denville & Newark',
       heroTitleLine1: 'Clareon Vivity EDOF.',
       heroTitleLine2: 'Continuous Visual Depth.',
       heroDesc:
@@ -59,7 +59,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /panoptix/i,
     content: {
-      badgeText: 'PanOptix IOL Specialists — Livingston • Denville • Newark',
+      badgeText: 'PanOptix IOL Specialists • Livingston, Denville & Newark',
       heroTitleLine1: 'PanOptix Trifocal IOL.',
       heroTitleLine2: 'Complete Visual Range.',
       heroDesc:
@@ -74,7 +74,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /puresee/i,
     content: {
-      badgeText: 'PureSee IOL Specialists — Livingston • Denville • Newark',
+      badgeText: 'PureSee IOL Specialists • Livingston, Denville & Newark',
       heroTitleLine1: 'TECNIS PureSee IOL.',
       heroTitleLine2: 'Pure Refractive EDOF Depth.',
       heroDesc:
@@ -89,7 +89,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /astigmatism|toric/i,
     content: {
-      badgeText: 'Astigmatism Specialists — Livingston • Denville • Newark',
+      badgeText: 'Astigmatism Specialists • Livingston, Denville & Newark',
       heroTitleLine1: 'Precision Toric Lenses.',
       heroTitleLine2: 'Astigmatism-Free Clarity.',
       heroDesc:
@@ -103,7 +103,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
   {
     pattern: /doctor|surgeon|marano/i,
     content: {
-      badgeText: 'Top Eye Surgeons — Livingston • Denville • Newark',
+      badgeText: 'Top Eye Surgeons • Livingston, Denville & Newark',
       heroTitleLine1: 'Led by Matthew Marano, MD.',
       heroTitleLine2: '40,000+ Completed Procedures.',
       heroDesc:

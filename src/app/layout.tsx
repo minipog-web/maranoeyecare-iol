@@ -110,7 +110,7 @@ export const metadata: Metadata = {
         url: '/assets/images/vivity_iol_clean.png',
         width: 1200,
         height: 630,
-        alt: 'Marano Eye Care — Premium IOL Lens Options & Laser Cataract Surgery',
+        alt: 'Marano Eye Care: Premium IOL Lens Options & Laser Cataract Surgery',
       },
     ],
     locale: 'en_US',
@@ -338,7 +338,7 @@ const schemas = [
     mainEntity: [
       {
         '@type': 'Question',
-        name: "I'm worried about halos and glare — especially night driving. Which lens is best?",
+        name: "I'm worried about halos and glare, especially night driving. Which lens is best?",
         acceptedAnswer: {
           '@type': 'Answer',
           text: "Dr. Marano recommends the Clareon Vivity for most night drivers. Unlike older diffractive lenses, Vivity uses non-diffractive X-WAVE™ technology that doesn't split light, giving halo rates nearly identical to a standard monofocal lens.",
@@ -357,7 +357,7 @@ const schemas = [
         name: 'How long does cataract surgery take?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The surgical procedure takes approximately 10 minutes under topical eye drop anesthesia—no pain, no injections, no general anesthesia required.',
+          text: 'The surgical procedure takes approximately 10 minutes under topical eye drop anesthesia, with no pain, no needles, and no general anesthesia required.',
         },
       },
       {

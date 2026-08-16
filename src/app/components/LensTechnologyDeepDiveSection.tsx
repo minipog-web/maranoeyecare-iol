@@ -35,7 +35,10 @@ export default function LensTechnologyDeepDiveSection() {
   };
 
   return (
-    <section className="relative w-full bg-[#0a0c10] py-20 sm:py-28 overflow-hidden">
+    <section
+      id="physics"
+      className="relative w-full bg-[#0a0c10] py-16 sm:py-24 overflow-hidden scroll-mt-16"
+    >
       {/* Background dot grid and ambient glows */}
       <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
       <div

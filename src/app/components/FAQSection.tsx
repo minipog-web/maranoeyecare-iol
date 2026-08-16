@@ -13,39 +13,39 @@ interface FAQItem {
 
 const objectionFAQs: FAQItem[] = [
   {
-    question: "I'm worried about halos and glare — especially night driving.",
+    question: "I'm worried about glare and halos, especially when driving at night.",
     concern: 'Night Vision',
     answer:
-      "This is the #1 concern we hear — and it's why Dr. Marano recommends the Clareon Vivity for most night drivers. Unlike older diffractive lenses, Vivity uses non-diffractive X-WAVE™ technology that doesn't split light. Clinical data shows halo rates nearly identical to a standard monofocal. Robert D. from Livingston was in the same position: 'Night driving is completely clear.' That said, every patient is different — which is exactly why Dr. Marano reviews your specific eye anatomy before recommending any lens.",
+      'This is the most common concern patients share with us. It is why Dr. Marano frequently recommends the Clareon Vivity lens for active drivers. Unlike older multifocal lenses that divide light rays, Vivity uses non-diffractive optics. In clinical trials, patients experienced night glare levels virtually identical to standard single-vision lenses. Every eye is unique, which is why Dr. Marano reviews your corneal measurements carefully before making any recommendation.',
     highlight: 'Vivity: halo rates nearly identical to standard monofocal',
   },
   {
-    question: 'Why should I spend thousands of dollars on my eyes?',
+    question: 'Why should I consider paying out-of-pocket for premium lenses?',
     concern: 'Cost',
     answer:
-      "Premium IOLs are custom-engineered optical assets designed to permanently preserve your active lifestyle. Rather than a recurring expense on temporary solutions like glasses or contacts, investing in a premium lens is comparable to acquiring high-performance equipment—such as a fine camera lens, professional artist medium, or a custom golf driver. The premium upgrade includes Dr. Marano's utilization of the LENSAR femtosecond laser targeting system and advanced 3D corneal mapping to ensure sub-micron alignment accuracy. We offer flexible CareCredit® financing and full HSA/FSA eligibility to make this lifetime investment seamless.",
+      'Cataract surgery is a once-in-a-lifetime procedure. The lens you choose permanently replaces your cloudy natural lens. Standard lenses leave you dependent on reading glasses for phones, menus, computers, and hobbies. Choosing a premium lens gives you continuous, multi-distance focus every single day without searching for glasses. The upgrade also includes precision 3D mapping and the LENSAR femtosecond laser system. We offer interest-free CareCredit financing and HSA/FSA payment options to keep monthly payments easy.',
     highlight:
-      'Investment in a lifetime visual asset · LENSAR robotic laser alignment included · HSA/FSA eligible',
+      'Investment in lifetime visual clarity · LENSAR laser precision included · HSA/FSA eligible',
   },
   {
     question: "What if I don't like the result? Can the lens be changed?",
     concern: 'Regret Risk',
     answer:
-      "IOL exchange is possible, though uncommon. Here's the reassuring truth: 99% of premium lens patients say they'd choose a premium lens again. Dr. Marano's approach eliminates most regret before it happens — he uses detailed biometry, corneal mapping, and lifestyle interviews to match you to the right lens. He won't recommend a premium lens if your eye anatomy doesn't support a great outcome. That's why our satisfaction rate has remained exceptional across over 40,000 successful procedures.",
+      'Lens exchanges are possible, but they are exceptionally rare. Across clinical studies, 99% of premium lens recipients state they would make the same choice again. Dr. Marano prevents disappointment before surgery begins by performing comprehensive corneal topography and discussing your daily routine. If your eye anatomy is not an ideal fit for a premium lens, he will clearly advise against it.',
     highlight: '99% of patients would choose a premium lens again',
   },
   {
     question: 'My insurance covers the basic lens. Why should I pay more?',
     concern: 'Insurance',
     answer:
-      "Insurance covers cataract removal — but only at the level of single-focus vision. With a standard monofocal, you'll see clearly at one distance (usually far) and need reading glasses or bifocals for everything else — forever. You'll be trading one pair of glasses for another. Premium IOLs restore your full range of vision. For patients who drive, use a computer, and read daily, that difference is life-changing. The out-of-pocket cost is for the visual freedom the surgery can deliver — not the surgery itself.",
-    highlight: 'Standard lens = glasses forever. Premium lens = visual freedom.',
+      'Medicare and private insurance cover standard cataract removal with a monofocal lens. A monofocal lens gives you clear vision at one fixed distance, usually far away, so you still require reading glasses for your phone, computer, and close-up tasks every day. A premium lens restores a broader depth of focus so you can navigate your day without reaching for glasses. The out-of-pocket fee covers that added visual independence, while your insurance still pays for the core surgery and facility fees.',
+    highlight: 'Standard lens = glasses for reading. Premium lens = everyday visual freedom.',
   },
   {
     question: 'Will premium lenses make my surgery more complicated or risky?',
     concern: 'Safety',
     answer:
-      "No. The surgical procedure is identical regardless of which IOL you choose — a 10-minute microsurgery performed under topical (eye drop) anesthesia. The only thing that changes is what Dr. Marano places in your eye. He has performed this procedure over 40,000 times and has been recognized as New Jersey's Top Doctor for 15 consecutive years. The lens choice affects your outcome — not your safety.",
+      'No. The surgery is the same gentle, 10-minute outpatient procedure performed with numbing eye drops. The only difference is the optical design of the lens placed inside your eye. Dr. Marano has performed over 40,000 successful eye surgeries and has been named a New Jersey Top Doctor for 15 consecutive years.',
     highlight: 'Same 10-min procedure · Thousands of successful outcomes · No general anesthesia',
   },
 ];
@@ -67,7 +67,7 @@ const proceduralFAQs: FAQItem[] = [
     question: 'Will I feel any pain?',
     concern: '',
     answer:
-      'No. Topical anesthetic eye drops are used — no injections, no general anesthesia. Most patients describe feeling light pressure, but no pain. You will be awake but comfortable throughout.',
+      'No. Numbing eye drops are used with no needles, no injections, and no general anesthesia. Most patients describe feeling light pressure for a few minutes, but no pain. You remain awake and comfortable throughout.',
   },
   {
     question: 'Can I use HSA or FSA funds?',
@@ -267,7 +267,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-12 sm:py-20 relative overflow-hidden bg-secondary">
+    <section id="faq" className="py-16 sm:py-24 relative overflow-hidden bg-secondary">
       {/* FAQ Schema Markup */}
       <script
         type="application/ld+json"

@@ -3,6 +3,7 @@
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './TrustSection.module.css';
+import { handleSpotlightMouseMove } from '@/lib/ui';
 
 const awards = [
   { value: '15×', label: 'NJ Monthly Top Doctor', sublabel: 'Consecutive years', icon: 'StarIcon' },
@@ -27,29 +28,8 @@ const awards = [
 ];
 
 export default function TrustSection() {
-  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-    if (!rect) {
-      rect = e.currentTarget.getBoundingClientRect();
-      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
-    }
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
-    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-  };
-
   return (
-    <section id="trust" className="py-12 sm:py-20 relative overflow-hidden bg-secondary">
+    <section id="trust" className="py-16 sm:py-24 relative overflow-hidden bg-secondary">
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-25" />
       <div className="absolute bottom-0 left-0 w-[700px] h-[500px] bg-primary/4 rounded-full blur-[140px] pointer-events-none" />
@@ -57,8 +37,8 @@ export default function TrustSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12">
-          <p className="text-sm sm:text-base font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
+        <div className="text-center mb-10 sm:mb-16">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
             Your Surgeon
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-5 sm:mb-6 leading-tight">
@@ -67,11 +47,10 @@ export default function TrustSection() {
             Surgeon
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-foreground font-normal max-w-3xl mx-auto leading-relaxed">
-            Dr. Matthew Marano Jr., MD has spent over three decades helping patients achieve
-            permanent freedom from glasses and contacts. Named a Top Doctor for 15 consecutive
-            years, he is a renowned specialist in complex cataract cases and challenging eye
-            anatomy—frequently undertaking high-skill procedures that other surgeons decline to
-            attempt.
+            Dr. Matthew Marano Jr., MD has spent over three decades helping patients achieve lasting
+            freedom from glasses and contacts. Named a Top Doctor for 15 consecutive years, he is a
+            recognized specialist in complex cataract surgery and challenging eye anatomy,
+            frequently performing advanced procedures that other surgeons decline to attempt.
           </p>
         </div>
 
@@ -80,9 +59,7 @@ export default function TrustSection() {
           {/* Left: Photo */}
           <div className="relative pb-10 sm:pb-0">
             <div
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onMouseMove={handleMouseMove}
+              onMouseMove={handleSpotlightMouseMove}
               className={`relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group ${styles.photoWrapper}`}
             >
               <AppImage
@@ -135,12 +112,10 @@ export default function TrustSection() {
           {/* Right: Awards grid */}
           <div className="space-y-6 sm:space-y-8">
             <div className="grid grid-cols-2 gap-x-6 sm:gap-x-10 gap-y-6 sm:gap-y-8">
-              {awards?.map((award) => (
+              {awards.map((award) => (
                 <div
-                  key={award?.value}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseMove={handleMouseMove}
+                  key={award.value}
+                  onMouseMove={handleSpotlightMouseMove}
                   className="group relative overflow-hidden glass-card border border-border rounded-3xl p-5 sm:p-6 transition-all duration-300 hover:border-primary/30"
                 >
                   {/* Dynamic Mouse Spotlight Glow */}
@@ -157,24 +132,24 @@ export default function TrustSection() {
                         award.value.length > 10 ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl'
                       }`}
                     >
-                      {award?.value}
+                      {award.value}
                     </p>
                     {award.value === 'Chief of Ophthalmology' ? (
                       <div className="space-y-1">
                         <p className="text-xs sm:text-sm font-semibold text-foreground">
-                          {award?.label}
+                          {award.label}
                         </p>
                         <p className="text-xs sm:text-sm font-semibold text-foreground">
-                          {award?.sublabel}
+                          {award.sublabel}
                         </p>
                       </div>
                     ) : (
                       <>
                         <p className="text-xs sm:text-sm font-bold text-foreground mb-1">
-                          {award?.label}
+                          {award.label}
                         </p>
                         <p className="text-xs sm:text-sm text-muted-foreground font-medium leading-relaxed">
-                          {award?.sublabel}
+                          {award.sublabel}
                         </p>
                       </>
                     )}
@@ -184,9 +159,7 @@ export default function TrustSection() {
             </div>
 
             <div
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onMouseMove={handleMouseMove}
+              onMouseMove={handleSpotlightMouseMove}
               className="group relative overflow-hidden glass-card border border-border rounded-3xl p-5 sm:p-6"
             >
               {/* Dynamic Mouse Spotlight Glow */}
@@ -206,11 +179,11 @@ export default function TrustSection() {
                 </div>
                 <ul className="space-y-3">
                   {[
-                    'Chief Medical Editor — Ophthalmology 360',
-                    'Active Member — American Academy of Ophthalmology (AAO) & American Society of Cataract and Refractive Surgery (ASCRS)',
-                    'Specialist in high-risk, complex cataract cases that other practices decline',
+                    'Chief Medical Editor at Ophthalmology 360',
+                    'Active Member, American Academy of Ophthalmology (AAO) & American Society of Cataract and Refractive Surgery (ASCRS)',
+                    'Specialist in complex cataract cases that other practices decline',
                     'Expert in advanced microsurgical techniques for irregular corneal anatomy',
-                    'Three conveniently located NJ offices',
+                    'Three conveniently located New Jersey offices',
                   ]?.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197, 160, 89,0.6)]" />

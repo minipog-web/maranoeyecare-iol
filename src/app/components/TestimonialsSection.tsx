@@ -5,12 +5,13 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './TestimonialsSection.module.css';
+import { handleSpotlightMouseMove } from '@/lib/ui';
 
 const testimonials = [
   {
     concern: 'Glasses dependency after surgery',
     quote:
-      "Dr. Marano is simply the best in his field. I've been a patient for 25 years and have never felt rushed or unheard. After my PanOptix surgery, I haven't touched my glasses once — and it's been over 2 years.",
+      "When Dr. Marano told me I needed cataract surgery, I was honestly anxious. But he has been looking after my family's eyes for decades. He suggested the PanOptix trifocal. Two years later, I bake with my grandkids, read recipes off my iPad, and drive home after dark without once digging through my purse for readers.",
     name: 'Patricia W.',
     location: 'Denville, NJ',
     lens: 'PanOptix Pro',
@@ -19,9 +20,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Night driving halos',
+    concern: 'Night driving glare and highway commute',
     quote:
-      'I was nervous about halos at night because I drive a lot. Dr. Marano recommended Vivity and the results exceeded every expectation. Night driving is completely clear.',
+      'My biggest worry was night driving on Route 24. With my old cataracts, oncoming high beams were blinding halos. Dr. Marano explained why the Vivity or PureSee optics would protect my contrast sensitivity. I chose the Vivity because it was the more proven lens. Night driving feels just like it did thirty years ago, and my dashboard is crystal clear.',
     name: 'Robert D.',
     location: 'Livingston, NJ',
     lens: 'Clareon Vivity',
@@ -32,7 +33,7 @@ const testimonials = [
   {
     concern: 'Seeing every tiny detail',
     quote:
-      "I have a bone to pick with Dr. Marano. He recommended the Clareon Vivity lens, and yes, my cataracts are gone and my vision is crystal clear. But now I can see every single wrinkle on my face and all the dust on my walls that I happily ignored for years. I've spent more time cleaning and buying anti-aging creams than enjoying my new sight. A blessing, but a lot of work!",
+      'I have a bone to pick with Dr. Marano. He put the Clareon Vivity lenses in my eyes, and yes, my cataracts are gone and everything looks vivid. But now I can see every single wrinkle on my face and every speck of dust on the baseboards that I happily ignored for fifteen years! It is a genuine blessing, but nobody warned me about the extra vacuuming.',
     name: 'Eleanor R.',
     location: 'Denville, NJ',
     lens: 'Clareon Vivity',
@@ -41,9 +42,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Dashboard and screen blur',
+    concern: 'Golf ball tracking and scorecard clarity',
     quote:
-      'I chose PureSee because I wanted clear distance vision for driving and golf, with zero night glare. The continuous intermediate and near range is an amazing bonus. I can read my dashboard, phone, and laptop without glasses perfectly.',
+      'Tracking a golf ball against an overcast sky used to be impossible for me. I went with the PureSee lens because I wanted crisp distance on the fairway without any glare around the clubhouse lights in the evening. Now I can track my drive off the tee and write my scorecard without switching to bifocals.',
     name: 'Linda M.',
     location: 'Morristown, NJ',
     lens: 'TECNIS PureSee',
@@ -52,9 +53,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Constant reading with glasses',
+    concern: 'Grading papers and constant book reading',
     quote:
-      "As a teacher, I am constantly reading student essays and working on screens. Getting the PanOptix trifocal completely changed my day. I don't carry readers around anymore, and my night vision is wonderfully sharp.",
+      "I teach high school English, so my day is spent grading essays on a laptop and reading small print in vintage paperbacks. Before surgery, I kept four separate pairs of reading glasses in my classroom, car, and jacket pockets. The PanOptix lens gave me total freedom. I haven't worn a pair of reading glasses to school since the week after my procedure.",
     name: 'James K.',
     location: 'Summit, NJ',
     lens: 'PanOptix Pro',
@@ -65,7 +66,7 @@ const testimonials = [
   {
     concern: "Only what's covered by insurance",
     quote:
-      "I chose a standard monofocal lens to save on cost, thinking I wouldn't mind reading glasses. I was wrong. The constant cycle of taking my readers on and off to look at my phone, type, or check a menu is exhausting. I truly wish I had invested in Vivity or PanOptix for visual freedom.",
+      "I tried to be frugal and stuck with the standard lens because Medicare paid for it in full. Big mistake. Having to put glasses on to read a text message, check a menu, or read the price on a grocery shelf is a constant hassle. If you have the option to upgrade to Vivity or PanOptix, take it. Don't make the compromise I did.",
     name: 'Harvey S.',
     location: 'West Orange, NJ',
     lens: 'Standard Monofocal',
@@ -101,27 +102,6 @@ export default function TestimonialsSection() {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [isPaused]);
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-    if (!rect) {
-      rect = e.currentTarget.getBoundingClientRect();
-      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
-    }
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
-    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-  };
 
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -172,12 +152,10 @@ export default function TestimonialsSection() {
             {/* Carousel Viewport */}
             <div className="overflow-hidden rounded-3xl">
               <div ref={trackRef} className={styles.carouselTrack}>
-                {testimonials?.map((t, idx) => (
+                {testimonials.map((t, idx) => (
                   <div key={idx} className="w-full shrink-0 px-2">
                     <div
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                      onMouseMove={handleMouseMove}
+                      onMouseMove={handleSpotlightMouseMove}
                       className="group relative doppel-shell transition-spring cursor-pointer flex flex-col min-h-[320px]"
                     >
                       <div className="w-full h-full flex flex-col bg-muted/90 rounded-[calc(2rem-6px)] p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative overflow-hidden">
@@ -281,9 +259,7 @@ export default function TestimonialsSection() {
           {/* Dr. Marano's Recommendation Card — Authority Bias + Pratfall Effect */}
           <div className="mt-8 sm:mt-12">
             <div
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onMouseMove={handleMouseMove}
+              onMouseMove={handleSpotlightMouseMove}
               className="group relative overflow-hidden glass-card border border-primary/20 rounded-3xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-primary/[0.04] to-transparent"
             >
               {/* Dynamic Mouse Spotlight */}
@@ -305,13 +281,12 @@ export default function TestimonialsSection() {
 
                 <div className="flex-1">
                   <p className="text-base sm:text-lg text-foreground/90 leading-relaxed italic mb-5 sm:mb-6">
-                    &ldquo;If I were choosing a lens for myself or my family, I&apos;d want the
-                    Clareon Vivity, and I would absolutely choose to use the LENSAR system because
-                    it provides previously unparalleled detail, control, capabilities and patient
-                    comfort, all leading to a better outcome faster. But the truth is, no single
-                    lens is right for everyone — which is exactly why I spend time getting to know
-                    every patient before I make any recommendation. The right lens depends on{' '}
-                    <em>how you live</em>.&rdquo;
+                    &ldquo;If I were choosing a lens for myself or my own family, I would personally
+                    choose the Clareon Vivity with the LENSAR 3D laser system. It provides
+                    extraordinary precision and comfort throughout the procedure. But the honest
+                    reality is that no single lens fits every life. That is why I sit down with
+                    every patient to understand your daily routines, hobbies, and work before
+                    recommending an option. Your eyes, and how you live, guide the decision.&rdquo;
                   </p>
 
                   <div className="flex items-center gap-4 flex-wrap">
@@ -369,14 +344,12 @@ export default function TestimonialsSection() {
                   phone: '(973) 315-6439',
                   address: '306 Martin L. King Blvd, Newark, NJ 07102',
                 },
-              ]?.map((loc) => (
+              ].map((loc) => (
                 <a
-                  key={loc?.city}
-                  href={`tel:${loc?.phone.replace(/[()\s-]/g, '')}`}
+                  key={loc.city}
+                  href={`tel:${loc.phone.replace(/[()\s-]/g, '')}`}
                   suppressHydrationWarning
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseMove={handleMouseMove}
+                  onMouseMove={handleSpotlightMouseMove}
                   className="relative overflow-hidden flex items-center gap-4 glass-card border border-border rounded-3xl p-4 sm:p-5 card-hover-glow group touch-manipulation min-h-[72px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   {/* Dynamic Mouse Spotlight Glow */}

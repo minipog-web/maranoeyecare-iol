@@ -5,7 +5,7 @@ import Icon from '@/components/ui/AppIcon';
 
 export default function CandidacySection() {
   return (
-    <section id="candidacy" className="py-12 sm:py-20 relative overflow-hidden bg-card">
+    <section id="candidacy" className="py-16 sm:py-24 relative overflow-hidden bg-card">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
@@ -14,17 +14,16 @@ export default function CandidacySection() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
           <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
-            Clinical Safety First
+            Surgical Integrity & Safety
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
-            Are You a Candidate for
-            <br />
-            <span className="font-semibold text-gradient-primary">Premium Lenses?</span>
+            Why Dr. Marano Declines Premium Lenses for{' '}
+            <span className="font-semibold text-gradient-primary">~20% of Inquiries.</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-            While premium lenses deliver life-changing visual freedom, your individual eye anatomy
-            is the ultimate deciding factor. Dr. Marano performs detailed clinical mapping to ensure
-            a safe, high-satisfaction outcome.
+            A premium lens only delivers life-changing results when the underlying cornea and retina
+            support it. If our 3D biometry indicates that dry eye or retinal changes would
+            compromise your clarity, Dr. Marano will explicitly advise against an upgrade.
           </p>
         </div>
 
@@ -94,7 +93,7 @@ export default function CandidacySection() {
               {[
                 {
                   title: 'Severe Dry Eye Disease',
-                  desc: 'Unmanaged dry eye disrupts the tear film, which can cause blurry vision or glare—especially with diffractive multifocal lenses like the PanOptix.',
+                  desc: 'Unmanaged dry eye disrupts the tear film, which can cause blurry vision or glare, especially with diffractive multifocal lenses such as PanOptix.',
                 },
                 {
                   title: 'Macular Degeneration / Retinal Scars',

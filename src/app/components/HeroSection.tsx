@@ -4,16 +4,16 @@ import { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
+import { renderFootnoteText } from '@/lib/ui';
 
 const lenses = [
   {
     name: 'Clareon Vivity',
     tag: 'Most Popular',
-    tagColor: 'bg-primary text-primary-foreground',
     subtitle: 'Non-diffractive EDOF',
     detail: 'Glare & halo profile similar to monofocal [2]',
     src: '/assets/images/vivity_iol_clean.png',
-    alt: 'Clareon Vivity IOL — non-diffractive extended depth of focus intraocular lens',
+    alt: 'Clareon Vivity IOL, non-diffractive extended depth of focus intraocular lens',
     accent: 'border-primary/50',
     featured: true,
     glow: 'shadow-[0_0_60px_rgba(197,160,89,0.35),0_0_0_1px_rgba(197,160,89,0.2)] border-primary/45 bg-white/[0.05]',
@@ -22,11 +22,10 @@ const lenses = [
   {
     name: 'PanOptix Pro',
     tag: 'Trifocal',
-    tagColor: 'bg-primary/20 text-primary border border-primary/30',
     subtitle: 'Full trifocal range',
     detail: '99% would choose this lens again [1]',
     src: '/assets/images/panoptix_iol_clean.png',
-    alt: 'Clareon PanOptix Pro trifocal IOL — trifocal intraocular lens',
+    alt: 'Clareon PanOptix Pro trifocal IOL, trifocal intraocular lens',
     accent: 'border-primary/25',
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(139,92,246,0.35),0_0_0_1px_rgba(139,92,246,0.2)] border-[rgba(139,92,246,0.45)] bg-white/[0.05]',
@@ -35,11 +34,10 @@ const lenses = [
   {
     name: 'TECNIS PureSee',
     tag: 'Newest EDOF',
-    tagColor: 'bg-primary/20 text-primary border border-primary/30',
     subtitle: 'Pure refractive extended vision',
     detail: 'FDA-approved EDOF with zero contrast warning [3]',
     src: '/assets/images/puresee_iol_clean.png',
-    alt: 'TECNIS PureSee IOL — purely refractive extended depth of focus intraocular lens',
+    alt: 'TECNIS PureSee IOL, purely refractive extended depth of focus intraocular lens',
     accent: 'border-primary/25',
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(0,163,255,0.35),0_0_0_1px_rgba(0,163,255,0.2)] border-[rgba(0,163,255,0.45)] bg-white/[0.05]',
@@ -63,13 +61,11 @@ export default function HeroSection({
   heroTitleLine2,
   heroDesc,
 }: HeroSectionProps) {
-  const [hoveredLens, setHoveredLens] = useState<string | null>(null);
-
-  // The lens that should show the strong glow
-  const activeLens = hoveredLens ?? DEFAULT_ACTIVE;
+  // Starts with Clareon Vivity enlarged at onset until user hovers over another card
+  const [activeLens, setActiveLens] = useState<string>('Clareon Vivity');
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 safe-area-pb">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-14 sm:pt-16 lg:pt-20 safe-area-pb">
       {/* Background layers */}
       <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 grid-lines-bg opacity-100" />
@@ -79,28 +75,26 @@ export default function HeroSection({
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[500px] bg-[radial-gradient(circle,rgba(197,160,89,0.06)_0%,transparent_70%)] rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full py-8 lg:py-24">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full py-4 sm:py-6 lg:py-8">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-10 items-start">
           {/* Left Content */}
-          <div className="flex-1 w-full flex flex-col items-start">
+          <div className="lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
               <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.35em] text-primary">
-                {badgeText || 'Premium IOL Specialists — Livingston • Denville • Newark'}
+                {badgeText || 'Premium IOL Specialists • Livingston, Denville & Newark'}
               </span>
             </div>
-            <h1 className="font-display text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-light leading-[1.12] sm:leading-[1.05] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
-              <span className="block sm:whitespace-nowrap">
-                {heroTitleLine1 || 'One Surgery. One Choice.'}
-              </span>{' '}
-              <span className="block text-gradient-primary font-semibold mt-1 pb-2 sm:pb-4 sm:whitespace-nowrap">
+            <h1 className="font-display text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] tracking-tight text-foreground mb-5 sm:mb-6 animate-fade-up delay-150 fill-both">
+              <span className="block">{heroTitleLine1 || 'One Surgery. One Choice.'}</span>{' '}
+              <span className="block text-gradient-primary font-semibold mt-1 pb-1 sm:pb-2">
                 {heroTitleLine2 || 'Lifetime Visual Freedom.'}
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 text-justify animate-fade-up delay-300 fill-both">
               {heroDesc ||
-                'Cataract surgery is a single, permanent opportunity to reclaim your active lifestyle. Rather than accepting standard lenses that require reading glasses for the rest of your life, discover the freedom of advanced lenses designed to restore complete, multi-distance clarity.'}
+                'Cataract surgery is a once-in-a-lifetime opportunity to restore your vision. Standard lenses only focus at a single distance, meaning you still depend on reading glasses every day. Advanced lenses are designed to restore clear vision across distance, intermediate, and near ranges so you can leave glasses behind.'}
             </p>{' '}
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-4 sm:mb-5 animate-fade-up delay-450 fill-both">
@@ -110,12 +104,12 @@ export default function HeroSection({
                   trackEvent({
                     action: 'hero_primary_cta_click',
                     category: 'Engagement',
-                    label: 'Book Your Free Consultation',
+                    label: 'Check My Lens Candidacy',
                   })
                 }
                 className="group inline-flex items-center justify-between sm:justify-center gap-4 pl-8 pr-3 py-3 bg-primary text-[#020304] rounded-full text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(197,160,89,0.25)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
-                <span>Book Your Free Consultation</span>
+                <span>Check My Lens Candidacy</span>
                 <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:scale-105">
                   <Icon name="ArrowRightIcon" size={18} className="text-current" />
                 </div>
@@ -174,8 +168,8 @@ export default function HeroSection({
             {/* Editorial Proof Text */}
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl">
               <p className="text-sm sm:text-base text-white/95 font-semibold mb-4 font-display">
-                Led by Matthew Marano Jr., MD — The NJ pioneer teaching other surgeons how to
-                restore absolute clarity:
+                Led by Dr. Matthew Marano Jr., MD, a top New Jersey eye surgeon who trains other
+                ophthalmologists on advanced cataract procedures:
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm">
                 <li className="flex items-start gap-2.5">
@@ -226,146 +220,151 @@ export default function HeroSection({
             </div>
           </div>
 
-          {/* Right: Three-Lens Visual Showcase */}
-          <div className="relative flex-1 w-full flex items-end justify-center lg:justify-end gap-2 sm:gap-3 md:gap-4 py-6 lg:py-0 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0">
-            {lenses?.map((lens, i) => {
-              const isActive = activeLens === lens.name;
-              const delayClass =
-                i === 0
-                  ? 'animate-fade-up delay-600 fill-both'
-                  : i === 1
-                    ? 'animate-fade-up delay-750 fill-both'
-                    : 'animate-fade-up delay-900 fill-both';
-              return (
-                <div
-                  key={lens?.name}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`Select ${lens?.name} lens info`}
-                  onMouseEnter={() => setHoveredLens(lens.name)}
-                  onMouseLeave={() => setHoveredLens(null)}
-                  onFocus={() => setHoveredLens(lens.name)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      setHoveredLens(lens.name);
-                      trackEvent({
-                        action: 'hero_lens_card_click',
-                        category: 'Engagement',
-                        label: lens.name,
-                      });
-                    }
-                  }}
-                  onClick={() =>
-                    trackEvent({
-                      action: 'hero_lens_card_click',
-                      category: 'Engagement',
-                      label: lens.name,
-                    })
-                  }
-                  className={`relative doppel-shell ${lens?.accent} transition-spring hover:-translate-y-3 group cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none will-change-transform ${delayClass}
-                      ${
-                        lens?.featured
-                          ? 'w-[42%] min-w-[130px] sm:w-44 h-[260px] sm:h-[420px] z-20 -mt-8 snap-center sm:snap-align-none shrink-0'
-                          : 'w-[27%] min-w-[100px] sm:w-36 h-[210px] sm:h-[360px] z-10 snap-center sm:snap-align-none shrink-0'
-                      }
-                      ${isActive ? lens.glow : lens.inactiveGlow}`}
-                >
-                  <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
-                    {/* Image */}
-                    <div className="relative flex-1 overflow-hidden">
-                      <AppImage
-                        src={lens?.src}
-                        alt={lens?.alt}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-2"
-                        sizes="(max-width: 640px) 38vw, 176px"
-                        priority={true}
-                      />
-
-                      {/* Rich gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
-
-                      {/* Ambient inner glow — follows active state */}
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-b from-primary/8 to-transparent transition-opacity duration-500 ${
-                          isActive ? 'opacity-100' : 'opacity-0'
-                        }`}
-                      />
-
-                      {/* Tag badge */}
-                      <div
-                        className={`absolute top-2 left-2 sm:top-3 sm:left-3 px-2.5 py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider ${lens?.tagColor} shadow-lg backdrop-blur-sm`}
-                      >
-                        {lens?.tag}
-                      </div>
-                    </div>
-
-                    {/* Bottom info */}
-                    <div className="p-2.5 sm:p-4 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
-                      <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
-                        {lens?.name}
-                      </p>
-                      <p className="text-white font-medium text-[10px] sm:text-sm leading-tight">
-                        {lens?.subtitle}
-                      </p>
-                      <p className="text-white/75 text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 leading-tight">
-                        {(() => {
-                          const parts = lens?.detail.split(/(\[\d+\])/);
-                          return parts.map((part, idx) => {
-                            const match = part.match(/^\[(\d+)\]$/);
-                            if (match) {
-                              const num = match[1];
-                              return (
-                                <sup
-                                  key={idx}
-                                  className="text-[9px] font-bold text-primary inline-block ml-0.5"
-                                >
-                                  <a
-                                    href={`#footnote-${num}`}
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="text-primary hover:underline hover:text-accent font-bold"
-                                    aria-label={`View citation footnote ${num}`}
-                                  >
-                                    [{num}]
-                                  </a>
-                                </sup>
-                              );
-                            }
-                            return part;
-                          });
-                        })()}
-                      </p>
-                    </div>
+          {/* Right: Three-Lens Visual Showcase with Top Comparison Text Box */}
+          <div className="lg:col-span-5 xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start">
+            {/* Elegant Lens Comparison Text Box — Positioned cleanly above cards with ample clearance */}
+            <div className="w-full max-w-[250px] sm:max-w-[260px] mb-6 sm:mb-8 lg:mb-10 animate-fade-up delay-450 fill-both z-20">
+              <div className="glass-card-bright border border-primary/25 bg-[#0d0f15]/95 backdrop-blur-xl rounded-2xl p-2.5 sm:p-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-6 h-6 rounded-lg bg-primary/15 flex items-center justify-center shrink-0 border border-primary/25 shadow-[0_0_10px_rgba(197,160,89,0.25)]">
+                    <Icon name="SparklesIcon" size={13} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-bold text-primary uppercase tracking-[0.16em] leading-none mb-0.5">
+                      Compare All 3
+                    </p>
+                    <p className="font-display text-xs sm:text-xs font-semibold text-foreground leading-tight">
+                      Find Your Perfect Lens
+                    </p>
                   </div>
                 </div>
-              );
-            })}
-
-            {/* Floating lens detail card — desktop only */}
-            <div className="hidden lg:block absolute bottom-[400px] right-4 lg:right-8 w-44 glass-card-bright rounded-2xl p-4 shadow-2xl z-30 animate-float-delayed">
-              <div className="w-8 h-8 rounded-xl bg-primary/15 flex items-center justify-center mb-3 shadow-[0_0_12px_rgba(197, 160, 89,0.3)]">
-                <Icon name="SparklesIcon" size={18} className="text-primary" />
+                <div className="mt-1.5 pt-1 border-t border-white/[0.06] flex justify-center">
+                  <a
+                    href="#lenses"
+                    onClick={() =>
+                      trackEvent({
+                        action: 'hero_floating_card_click',
+                        category: 'Engagement',
+                        label: 'See comparison',
+                      })
+                    }
+                    className="inline-flex items-center justify-center gap-1.5 text-xs text-primary font-bold hover:text-accent hover:gap-2 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                  >
+                    <span>See comparison</span>
+                    <Icon name="ArrowRightIcon" size={11} />
+                  </a>
+                </div>
               </div>
-              <p className="text-xs text-muted-foreground mb-1 uppercase tracking-widest">
-                Compare All 3
-              </p>
-              <p className="font-display text-sm font-medium text-foreground leading-tight">
-                Find Your Perfect Lens
-              </p>
-              <a
-                href="#lenses"
-                onClick={() =>
-                  trackEvent({
-                    action: 'hero_floating_card_click',
-                    category: 'Engagement',
-                    label: 'See comparison',
-                  })
-                }
-                className="mt-3 flex items-center gap-1.5 text-xs text-primary font-semibold hover:gap-2.5 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-              >
-                See comparison <Icon name="ArrowRightIcon" size={12} />
-              </a>
+            </div>
+
+            {/* Lens Cards Row */}
+            <div className="w-full flex items-end justify-center lg:justify-end gap-2.5 sm:gap-3.5 xl:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pt-3 pb-2">
+              {lenses.map((lens, i) => {
+                const isActive = activeLens === lens.name;
+                const delayClass =
+                  i === 0
+                    ? 'animate-fade-up delay-600 fill-both'
+                    : i === 1
+                      ? 'animate-fade-up delay-750 fill-both'
+                      : 'animate-fade-up delay-900 fill-both';
+                return (
+                  <div
+                    key={lens.name}
+                    onMouseEnter={() => setActiveLens(lens.name)}
+                    onPointerEnter={() => setActiveLens(lens.name)}
+                    className={`w-[31%] min-w-[105px] max-w-[125px] sm:w-32 sm:max-w-none lg:w-[124px] xl:w-[148px] 2xl:w-[164px] shrink-0 snap-center sm:snap-align-none ${delayClass}`}
+                  >
+                    <div
+                      tabIndex={0}
+                      role="button"
+                      aria-label={`Select ${lens.name} lens info`}
+                      onMouseEnter={() => setActiveLens(lens.name)}
+                      onPointerEnter={() => setActiveLens(lens.name)}
+                      onMouseOver={() => setActiveLens(lens.name)}
+                      onMouseMove={() => {
+                        if (activeLens !== lens.name) setActiveLens(lens.name);
+                      }}
+                      onFocus={() => setActiveLens(lens.name)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setActiveLens(lens.name);
+                          trackEvent({
+                            action: 'hero_lens_card_click',
+                            category: 'Engagement',
+                            label: lens.name,
+                          });
+                        }
+                      }}
+                      onClick={() => {
+                        setActiveLens(lens.name);
+                        trackEvent({
+                          action: 'hero_lens_card_click',
+                          category: 'Engagement',
+                          label: lens.name,
+                        });
+                      }}
+                      className={`relative doppel-shell ${lens.accent} w-full h-[235px] sm:h-[330px] xl:h-[370px] cursor-pointer origin-bottom transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none will-change-transform
+                        ${
+                          isActive
+                            ? 'scale-[1.07] -translate-y-2 z-30 opacity-100'
+                            : 'scale-100 translate-y-0 z-10 opacity-75 hover:opacity-100 hover:scale-[1.07] hover:-translate-y-2 hover:z-30'
+                        }
+                        ${isActive ? lens.glow : lens.inactiveGlow}`}
+                    >
+                      <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
+                        {/* Image */}
+                        <div className="relative flex-1 overflow-hidden">
+                          <AppImage
+                            src={lens.src}
+                            alt={lens.alt}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 640px) 35vw, 176px"
+                            priority={true}
+                          />
+
+                          {/* Rich gradient overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent pointer-events-none" />
+
+                          {/* Ambient inner glow — follows active state */}
+                          <div
+                            className={`absolute inset-0 bg-gradient-to-b from-primary/8 to-transparent transition-opacity duration-400 pointer-events-none ${
+                              isActive ? 'opacity-100' : 'opacity-0'
+                            }`}
+                          />
+
+                          {/* Tag badge — Centered horizontally, turns gold with black text on active/hover */}
+                          <div className="absolute top-2 sm:top-2.5 inset-x-0 flex justify-center z-10 pointer-events-none px-1">
+                            <span
+                              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[8px] sm:text-[9px] xl:text-[10px] font-bold uppercase tracking-wider transition-all duration-300 backdrop-blur-sm whitespace-nowrap ${
+                                isActive
+                                  ? 'bg-primary text-[#020304] border border-primary shadow-[0_0_14px_rgba(197,160,89,0.5)]'
+                                  : 'bg-black/65 text-white/80 border border-white/15 shadow-md group-hover:bg-primary group-hover:text-[#020304] group-hover:border-primary'
+                              }`}
+                            >
+                              {lens.tag}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Bottom info */}
+                        <div className="p-2 sm:p-3 xl:p-3.5 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
+                          <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
+                            {lens.name}
+                          </p>
+                          <p className="text-white font-medium text-[10px] sm:text-xs xl:text-sm leading-tight">
+                            {lens.subtitle}
+                          </p>
+                          <p className="text-white/75 text-[8px] sm:text-[9px] xl:text-[10px] mt-0.5 sm:mt-1 leading-tight">
+                            {renderFootnoteText(lens.detail)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

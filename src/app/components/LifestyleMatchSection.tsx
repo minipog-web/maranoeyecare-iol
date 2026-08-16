@@ -3,6 +3,7 @@
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './LifestyleMatchSection.module.css';
+import { handleSpotlightMouseMove } from '@/lib/ui';
 
 const profiles = [
   {
@@ -36,7 +37,7 @@ const profiles = [
     ],
     recommendation: 'PanOptix Pro',
     reason:
-      'Trifocal diffractive design delivers uncompromised near and intermediate vision—providing the sharpest clarity for reading fine print and performing detailed desk work.',
+      'Trifocal diffractive optics deliver exceptional near and intermediate clarity, making it easy to read fine print and work comfortably at a desk without glasses.',
     image: '/assets/images/profile_tech_conscious.jpg',
     imageAlt: 'Creative artist reviewing fine details at a bright modern studio desk',
     stat: '99% of patients would choose this premium lens again [1]',
@@ -62,29 +63,8 @@ const profiles = [
 ];
 
 export default function LifestyleMatchSection() {
-  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-    if (!rect) {
-      rect = e.currentTarget.getBoundingClientRect();
-      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
-    }
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
-    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-  };
-
   return (
-    <section id="lifestyle" className="py-12 sm:py-20 relative overflow-hidden bg-card">
+    <section id="lifestyle" className="py-16 sm:py-24 relative overflow-hidden bg-card">
       {/* Background */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[100px] pointer-events-none" />
@@ -102,9 +82,9 @@ export default function LifestyleMatchSection() {
               <span className="font-semibold text-gradient-primary">Perfect Lens.</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-lg">
-              The best IOL isn&apos;t the most expensive — it&apos;s the one matched precisely to
-              how you live. Dr. Marano spends time understanding your daily vision needs before
-              recommending any lens.
+              The ideal lens is not just the most expensive option. It is the one tailored directly
+              to how you live, work, and spend your free time. Dr. Marano evaluates your visual
+              routine thoroughly before recommending an implant.
             </p>
             <a
               href="#booking"
@@ -130,20 +110,20 @@ export default function LifestyleMatchSection() {
                   { label: 'Near (reading)', standard: false, premium: true },
                   { label: 'Covered by insurance', standard: true, premium: false },
                   { label: 'Glasses-free lifestyle', standard: false, premium: true },
-                ]?.map((row) => (
+                ].map((row) => (
                   <div
-                    key={row?.label}
+                    key={row.label}
                     className="flex items-center justify-between py-3.5 border-b border-border/60 last:border-0 gap-2"
                   >
                     <span className="text-xs sm:text-sm text-muted-foreground flex-1 min-w-0 pr-2">
-                      {row?.label}
+                      {row.label}
                     </span>
                     <div className="flex items-center gap-4 sm:gap-8 shrink-0">
                       <div className="text-center w-12 sm:w-14">
                         <span className="text-[10px] text-muted-foreground block mb-1.5 uppercase tracking-wide">
                           Standard
                         </span>
-                        {row?.standard ? (
+                        {row.standard ? (
                           <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
                         ) : (
                           <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
@@ -153,7 +133,7 @@ export default function LifestyleMatchSection() {
                         <span className="text-[10px] text-primary block mb-1.5 uppercase tracking-wide">
                           Premium
                         </span>
-                        {row?.premium ? (
+                        {row.premium ? (
                           <Icon name="CheckCircleIcon" size={18} className="text-primary mx-auto" />
                         ) : (
                           <Icon name="XCircleIcon" size={18} className="text-red-500/50 mx-auto" />
@@ -182,22 +162,20 @@ export default function LifestyleMatchSection() {
 
         {/* Profile cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
-          {profiles?.map((profile) => (
+          {profiles.map((profile) => (
             <div
-              key={profile?.id}
+              key={profile.id}
               role="button"
               tabIndex={0}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onMouseMove={handleMouseMove}
+              onMouseMove={handleSpotlightMouseMove}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   if ((e.target as HTMLElement).closest('a')) return;
                   let lensKey = '';
-                  if (profile?.id === 'active') lensKey = 'vivity';
-                  else if (profile?.id === 'tech') lensKey = 'panoptix';
-                  else if (profile?.id === 'conservative') lensKey = 'puresee';
+                  if (profile.id === 'active') lensKey = 'vivity';
+                  else if (profile.id === 'tech') lensKey = 'panoptix';
+                  else if (profile.id === 'conservative') lensKey = 'puresee';
                   if (lensKey) {
                     window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
                   }
@@ -209,15 +187,15 @@ export default function LifestyleMatchSection() {
                   return;
                 }
                 let lensKey = '';
-                if (profile?.id === 'active') lensKey = 'vivity';
-                else if (profile?.id === 'tech') lensKey = 'panoptix';
-                else if (profile?.id === 'conservative') lensKey = 'puresee';
+                if (profile.id === 'active') lensKey = 'vivity';
+                else if (profile.id === 'tech') lensKey = 'panoptix';
+                else if (profile.id === 'conservative') lensKey = 'puresee';
                 if (lensKey) {
                   window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
                 }
                 window.location.hash = 'booking';
               }}
-              className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16] focus-visible:outline-none ${styles.profileCard} ${styles[`profile${profile?.id.charAt(0).toUpperCase() + profile?.id.slice(1)}`]}`}
+              className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16] focus-visible:outline-none ${styles.profileCard} ${styles[`profile${profile.id.charAt(0).toUpperCase() + profile.id.slice(1)}`]}`}
             >
               <div className="w-full h-full flex flex-col bg-muted/90 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
                 {/* Dynamic Mouse Spotlight Glow */}
@@ -228,8 +206,8 @@ export default function LifestyleMatchSection() {
                 {/* Image */}
                 <div className="relative aspect-[16/9] overflow-hidden z-10 border-b border-white/[0.05]">
                   <AppImage
-                    src={profile?.image}
-                    alt={profile?.imageAlt}
+                    src={profile.image}
+                    alt={profile.imageAlt}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

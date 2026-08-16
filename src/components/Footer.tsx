@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <a
               href="https://www.maranoeye.com"
-              aria-label="Marano Eye Care — return to homepage"
+              aria-label="Marano Eye Care: return to homepage"
               className="hover:opacity-80 transition-opacity block rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <AppLogo
@@ -36,7 +36,7 @@ export default function Footer() {
                 href={link.href}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
               >
-                {link?.label}
+                {link.label}
               </Link>
             ))}
           </nav>
@@ -110,23 +110,24 @@ export default function Footer() {
                   [1] PanOptix Pro Spectacle Independence:
                 </strong>{' '}
                 Based on a peer-reviewed clinical meta-analysis of 13 global studies evaluating 513
-                patients. Shows a 99% patient satisfaction and spectacle independence rate.{' '}
+                patients (Zhu et al., <em>Ophthalmol Ther</em> 2023). Demonstrates a 99% patient
+                satisfaction and high spectacle independence rate.{' '}
                 <a
-                  href="https://pubmed.ncbi.nlm.nih.gov/32049015/"
+                  href="https://pubmed.ncbi.nlm.nih.gov/36745314/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
                 >
-                  [View on PubMed]
+                  [View PubMed Meta-Analysis]
                 </a>
               </p>
               <p id="footnote-2" className="scroll-mt-24">
                 <strong className="text-foreground">[2] Clareon Vivity Optical Profiles:</strong>{' '}
-                Based on Alcon FDA pre-market clinical registry data. Confirms EDOF (Extended Depth
-                of Focus) performance utilizing non-diffractive X-WAVE™ technology with glare/halo
-                rates matching standard monofocal lenses.{' '}
+                Based on Alcon FDA Premarket Approval registry data (PMA P930014/S126). Confirms
+                extended depth of focus performance utilizing non-diffractive X-WAVE™ technology
+                with glare/halo rates matching standard monofocal lenses.{' '}
                 <a
-                  href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P190018"
+                  href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P930014S126"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
@@ -140,29 +141,33 @@ export default function Footer() {
                 <strong className="text-foreground">
                   [3] TECNIS PureSee Clinical Study &amp; FDA Registry:
                 </strong>{' '}
-                Based on Johnson &amp; Johnson FDA pre-market clinical registry data and
-                peer-reviewed studies for the TECNIS PureSee™ refractive EDOF IOL. Demonstrates
-                continuous vision from distance to functional near with monofocal-like dysphotopsia
-                and zero contrast sensitivity warning.{' '}
+                Based on Johnson &amp; Johnson FDA Premarket Approval registry data (PMA
+                P980040/S176) and pivotal clinical study for the TECNIS PureSee™ refractive EDOF
+                IOL. Demonstrates continuous vision from distance to functional near with zero
+                contrast sensitivity warning.{' '}
                 <a
-                  href="https://www.fda.gov/medical-devices/recently-approved-devices"
+                  href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040S176"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
                 >
-                  [View FDA Approval Registry Data]
+                  [View FDA PMA Approval]
                 </a>
               </p>
               <p id="footnote-4" className="scroll-mt-24">
-                <strong className="text-foreground">[4] Vision Simulator Imagery:</strong> Night
-                driving simulation imagery adapted from the ZEISS Medical IOL Vision Simulator Pro.{' '}
+                <strong className="text-foreground">
+                  [4] Clinical IOL Education &amp; Simulation:
+                </strong>{' '}
+                Reference standards and clinical education guide for cataract surgery and premium
+                intraocular lenses provided by the American Academy of Ophthalmology (AAO
+                EyeSmart®).{' '}
                 <a
-                  href="https://downloads.zeiss.com/medical/iol-vision-simulator-pro/"
+                  href="https://www.aao.org/eye-health/diseases/cataracts-iol-implants"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
                 >
-                  [View ZEISS Vision Simulator Source]
+                  [View AAO IOL Guide]
                 </a>
               </p>
               <p className="text-[10px] text-muted-foreground/60 border-t border-border/20 pt-3 select-none">

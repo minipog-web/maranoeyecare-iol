@@ -47,7 +47,7 @@ const lenses = [
       'Designed for reading, driving, and active living',
     ],
     bestFor:
-      'Patients wanting maximum glasses freedom — reading, screens, and driving — all without spectacles.',
+      'Patients wanting maximum freedom from reading glasses, phone screens, and driving without reaching for specs.',
     blur: {
       day: { distance: 0, intermediate: 0, near: 0 },
       night: { distance: 0, intermediate: 0, near: 0 },
@@ -141,7 +141,7 @@ const lenses = [
       { label: 'Night Vision Quality', value: 'Monofocal-like', score: 98 },
     ],
     highlights: [
-      'Purely refractive optics — zero diffractive rings',
+      'Purely refractive optics with zero diffractive rings',
       'First FDA-approved EDOF with zero contrast warning [3]',
       'Continuous vision from distance to functional near (~40cm)',
       'Monofocal-like night vision & glare safety profile',
@@ -240,19 +240,6 @@ function blurClass(px: number): string {
   if (px <= 6.5) return 'blur-[6.5px] scale-[1.05]';
   if (px <= 15) return 'blur-[15px] scale-[1.05]';
   return 'blur-[16px] scale-[1.05]';
-}
-
-function scoreWidthClass(score: number): string {
-  if (score <= 10) return 'w-[10%]';
-  if (score <= 30) return 'w-[30%]';
-  if (score <= 55) return 'w-[55%]';
-  if (score <= 72) return 'w-[72%]';
-  if (score <= 75) return 'w-[75%]';
-  if (score <= 90) return 'w-[90%]';
-  if (score <= 92) return 'w-[92%]';
-  if (score <= 95) return 'w-[95%]';
-  if (score <= 97) return 'w-[97%]';
-  return 'w-[98%]';
 }
 
 const visualStatusOverlays: Record<
@@ -615,7 +602,11 @@ export default function LensVisionComparisonSection() {
   };
 
   return (
-    <section ref={sectionRef} id="lenses" className="py-12 sm:py-20 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="vision"
+      className="py-16 sm:py-24 relative overflow-hidden scroll-mt-16"
+    >
       <div className="absolute inset-0 vision-section-bg opacity-40" />
 
       {/* Subtle Central Background Ambient Glow */}
@@ -1087,156 +1078,168 @@ export default function LensVisionComparisonSection() {
         </div>
 
         {/* Detailed Specs Grid (Below Simulator) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch relative z-10">
-          {lenses.map((lens, i) => {
-            const isHovered = hoveredLensId === lens.id;
-            const isActive = hoveredLensId ? isHovered : lens.id === activeMobileLensId;
-            const delays = ['delay-75', 'delay-150', 'delay-300', 'delay-450'];
+        <div id="lenses" className="scroll-mt-24 pt-6 sm:pt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch relative z-10">
+            {lenses.map((lens, i) => {
+              const isHovered = hoveredLensId === lens.id;
+              const isActive = hoveredLensId ? isHovered : lens.id === activeMobileLensId;
+              const delays = ['delay-75', 'delay-150', 'delay-300', 'delay-450'];
 
-            return (
-              <div
-                key={lens.id}
-                onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
-                onMouseLeave={handleMouseLeave}
-                onMouseMove={handleMouseMove}
-                onClick={() => handleCardClick(lens.id)}
-                data-lens={lens.id}
-                className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col hover:-translate-y-2 cursor-pointer border overflow-hidden animate-fade-up fill-both ${delays[i]} ${
-                  isActive
-                    ? `bg-gradient-to-b from-white/12 to-white/0 border-transparent ${styles.specCard}`
-                    : 'bg-gradient-to-b from-white/8 to-white/0 border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
-                }`}
-              >
-                {/* Dynamic Mouse Spotlight Glow */}
-                <div data-lens={lens.id} className={styles.spotlightGlow} />
-                <div className="relative rounded-[30px] p-5 lg:p-6 flex flex-col h-full bg-muted/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
-                  {/* Badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
-                    >
-                      {lens.badge}
-                    </span>
-                  </div>
-
-                  {/* Lens Name */}
-                  <div className="mb-4 min-h-[64px]">
-                    <p className="text-xs sm:text-sm text-primary font-bold uppercase tracking-wider mb-1">
-                      {lens.manufacturer} · {lens.type}
-                    </p>
-                    <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground whitespace-nowrap">
-                      {lens.name}
-                    </h3>
-                  </div>
-
-                  {/* Specs bars */}
-                  <div className="space-y-4 mb-6">
-                    {lens.specs.map((spec) => (
-                      <div key={spec.label} className="space-y-1.5">
-                        <div className="flex justify-between items-center text-xs sm:text-sm gap-2 whitespace-nowrap">
-                          <span className="text-foreground font-semibold truncate">
-                            {spec.label}
-                          </span>
-                          <span className={`font-bold shrink-0 ${lens.twColor}`}>{spec.value}</span>
-                        </div>
-                        <div className="h-2 bg-white/10 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full transition-spring opacity-90 ${lens.twSpecBar} ${scoreWidthClass(spec.score)}`}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Highlights */}
-                  <ul className="space-y-3 mb-6 flex-1">
-                    {lens.highlights.map((h) => (
-                      <li
-                        key={h}
-                        className="flex items-start gap-2.5 text-sm sm:text-base text-foreground font-medium leading-relaxed"
+              return (
+                <div
+                  key={lens.id}
+                  onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseMove={handleMouseMove}
+                  onClick={() => handleCardClick(lens.id)}
+                  data-lens={lens.id}
+                  className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col hover:-translate-y-2 cursor-pointer border overflow-hidden animate-fade-up fill-both ${delays[i]} ${
+                    isActive
+                      ? `bg-gradient-to-b from-white/12 to-white/0 border-transparent ${styles.specCard}`
+                      : 'bg-gradient-to-b from-white/8 to-white/0 border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
+                  }`}
+                >
+                  {/* Dynamic Mouse Spotlight Glow */}
+                  <div data-lens={lens.id} className={styles.spotlightGlow} />
+                  <div className="relative rounded-[30px] p-5 lg:p-6 flex flex-col h-full bg-muted/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
+                    {/* Badge */}
+                    <div className="flex items-center justify-between mb-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
                       >
-                        <AppIcon
-                          name="CheckCircleIcon"
-                          size={16}
-                          className={`mt-0.5 shrink-0 ${lens.twColor}`}
-                        />
-                        <span>
-                          {(() => {
-                            const parts = h.split(/(\[\d+\])/);
-                            return parts.map((part, idx) => {
-                              const match = part.match(/^\[(\d+)\]$/);
-                              if (match) {
-                                const num = match[1];
-                                return (
-                                  <sup
-                                    key={idx}
-                                    className="text-xs font-bold inline-flex items-center"
-                                  >
-                                    <a
-                                      href={`#footnote-${num}`}
-                                      onClick={(e) => e.stopPropagation()}
-                                      className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-block min-w-[24px] min-h-[24px] text-center"
-                                      aria-label={`View citation footnote ${num}`}
+                        {lens.badge}
+                      </span>
+                    </div>
+
+                    {/* Lens Name */}
+                    <div className="mb-4 min-h-[64px]">
+                      <p className="text-xs sm:text-sm text-primary font-bold uppercase tracking-wider mb-1">
+                        {lens.manufacturer} · {lens.type}
+                      </p>
+                      <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground whitespace-nowrap">
+                        {lens.name}
+                      </h3>
+                    </div>
+
+                    {/* Specs bars */}
+                    <div className="space-y-4 mb-6">
+                      {lens.specs.map((spec) => (
+                        <div key={spec.label} className="space-y-1.5">
+                          <div className="flex justify-between items-center text-xs sm:text-sm gap-2 whitespace-nowrap">
+                            <span className="text-foreground font-semibold truncate">
+                              {spec.label}
+                            </span>
+                            <span className={`font-bold shrink-0 ${lens.twColor}`}>
+                              {spec.value}
+                            </span>
+                          </div>
+                          <div
+                            className="h-2 bg-white/10 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden"
+                            role="progressbar"
+                            aria-valuenow={spec.score}
+                            aria-valuemin={0}
+                            aria-valuemax={100}
+                            aria-label={`${spec.label} score`}
+                          >
+                            <div
+                              className={`h-full rounded-full transition-spring opacity-90 ${lens.twSpecBar}`}
+                              style={{ width: `${spec.score}%` }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Highlights */}
+                    <ul className="space-y-3 mb-6 flex-1">
+                      {lens.highlights.map((h) => (
+                        <li
+                          key={h}
+                          className="flex items-start gap-2.5 text-sm sm:text-base text-foreground font-medium leading-relaxed"
+                        >
+                          <AppIcon
+                            name="CheckCircleIcon"
+                            size={16}
+                            className={`mt-0.5 shrink-0 ${lens.twColor}`}
+                          />
+                          <span>
+                            {(() => {
+                              const parts = h.split(/(\[\d+\])/);
+                              return parts.map((part, idx) => {
+                                const match = part.match(/^\[(\d+)\]$/);
+                                if (match) {
+                                  const num = match[1];
+                                  return (
+                                    <sup
+                                      key={idx}
+                                      className="text-xs font-bold inline-flex items-center"
                                     >
-                                      [{num}]
-                                    </a>
-                                  </sup>
-                                );
-                              }
-                              return part;
-                            });
-                          })()}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                                      <a
+                                        href={`#footnote-${num}`}
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-block min-w-[24px] min-h-[24px] text-center"
+                                        aria-label={`View citation footnote ${num}`}
+                                      >
+                                        [{num}]
+                                      </a>
+                                    </sup>
+                                  );
+                                }
+                                return part;
+                              });
+                            })()}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
 
-                  {/* Best for */}
-                  <div className="border-t border-border pt-5 mb-5">
-                    <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-primary mb-1.5">
-                      Best for
-                    </p>
-                    <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
-                      {lens.bestFor}
-                    </p>
-                  </div>
+                    {/* Best for */}
+                    <div className="border-t border-border pt-5 mb-5">
+                      <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-primary mb-1.5">
+                        Best for
+                      </p>
+                      <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
+                        {lens.bestFor}
+                      </p>
+                    </div>
 
-                  <a
-                    href="#booking"
-                    data-lens={lens.id}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.dispatchEvent(new CustomEvent('select-lens', { detail: lens.id }));
-                    }}
-                    className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
-                  >
-                    <span>
-                      Select{' '}
-                      {lens.name
-                        .replace('Clareon ', '')
-                        .replace('Tecnis ', '')
-                        .replace('Standard ', '')
-                        .replace(' Pro', '')}
-                    </span>
-                    <svg
+                    <a
+                      href="#booking"
                       data-lens={lens.id}
-                      className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.dispatchEvent(new CustomEvent('select-lens', { detail: lens.id }));
+                      }}
+                      className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </a>
+                      <span>
+                        Select{' '}
+                        {lens.name
+                          .replace('Clareon ', '')
+                          .replace('Tecnis ', '')
+                          .replace('Standard ', '')
+                          .replace(' Pro', '')}
+                      </span>
+                      <svg
+                        data-lens={lens.id}
+                        className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Legend / FAQ */}
@@ -1296,13 +1299,13 @@ export default function LensVisionComparisonSection() {
               <span className="text-primary font-bold">No Extra Charge</span>
             </h4>
             <p className="text-base sm:text-lg text-white leading-relaxed font-normal text-justify max-w-4xl mx-auto">
-              <strong>Toric lenses</strong> are specifically engineered to correct astigmatism—the
-              irregular curvature of your cornea. Without a Toric lens, astigmatism remains
+              <strong>Toric lenses</strong> are specially engineered to correct astigmatism, which
+              is the irregular curvature of your cornea. Without a Toric lens, astigmatism remains
               uncorrected after surgery, meaning you will still need glasses for crisp distance
-              vision. At Marano Eye Care, we believe clear sight shouldn&apos;t require checking a
-              box of add-on fees: Clareon Vivity, PanOptix Pro, and TECNIS PureSee are all provided
-              in Toric versions at no additional cost beyond the standard premium upgrade. (Please
-              note that while toric upgrades for premium lenses have no additional upgrade fee, a
+              vision. At Marano Eye Care, we believe clear sight shouldn&apos;t come with hidden
+              add-on fees: Clareon Vivity, PanOptix Pro, and TECNIS PureSee are all provided in
+              Toric versions at no additional cost beyond the standard premium upgrade. (Please note
+              that while toric upgrades for premium lenses have no additional upgrade fee, a
               standard monofocal toric lens is more expensive than a standard non-toric monofocal
               lens).
             </p>

@@ -5,30 +5,10 @@ import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
 import styles from './LensarAllySection.module.css';
 import { trackEvent } from '@/lib/gtag';
+import { handleSpotlightMouseMove } from '@/lib/ui';
 
 export default function LensarAllySection() {
   const [activeTab, setActiveTab] = useState<'patient' | 'surgeon'>('patient');
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-    if (!rect) {
-      rect = e.currentTarget.getBoundingClientRect();
-      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
-    }
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
-    delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-  };
 
   const handleTabChange = (tab: 'patient' | 'surgeon') => {
     setActiveTab(tab);
@@ -42,20 +22,20 @@ export default function LensarAllySection() {
   const patientBenefits = [
     {
       icon: 'HeartIcon',
-      title: 'Gentler on the Eye',
-      desc: 'The laser pre-softens the cataract before removal, reducing the amount of ultrasound energy needed. This means significantly less stress on delicate eye tissues.',
+      title: 'Gentler on Delicate Ocular Tissues',
+      desc: 'The femtosecond laser pre-softens cataracts before extraction, reducing ultrasound energy by up to 50%. This dramatically minimizes post-operative inflammation and accelerates corneal recovery.',
       metric: 'Up to 50% less energy',
     },
     {
       icon: 'SparklesIcon',
-      title: 'Micron-Level Laser Precision',
-      desc: 'Computer-guided technology makes incisions with micron-level accuracy, creating the optimal foundation for aligning premium astigmatism and multifocal lenses.',
-      metric: 'Micron-level accuracy',
+      title: 'Sub-Micron Robotic Centration',
+      desc: 'While traditional surgery relies on manual handheld blade incisions that can vary by fractions of a millimeter, ALLY creates a 99.8% mathematically circular opening to lock your premium lens into exact focal center.',
+      metric: 'Sub-micron accuracy',
     },
     {
       icon: 'BuildingOfficeIcon',
       title: 'Seamless Single-Bed Comfort',
-      desc: 'No moving between rooms or shifting surgical tables mid-procedure. The integrated system allows the entire surgery to be completed in one comfortable spot.',
+      desc: 'No transferring between rooms or repositioning surgical beds mid-procedure. The entire laser and micro-implantation process is completed in one relaxed, state-of-the-art suite.',
       metric: '100% single-suite flow',
     },
   ];
@@ -63,20 +43,20 @@ export default function LensarAllySection() {
   const surgeonBenefits = [
     {
       icon: 'EyeIcon',
-      title: 'Augmented Reality™ 3D Mapping',
-      desc: "Creates a high-definition 3D scan of your eye's unique structure, giving Dr. Marano real-time guidance to plan your custom procedure.",
+      title: 'Augmented Reality™ 3D Biometry',
+      desc: "Generates a high-definition 3D reconstruction of your eye's unique anterior chamber, giving Dr. Marano real-time anatomical depth guidance during every second of the procedure.",
       metric: 'High-definition 3D scan',
     },
     {
       icon: 'BoltIcon',
-      title: 'Cataract Density Profiling',
-      desc: 'Measures cataract hardness automatically, allowing the laser to adjust its patterns instantly for a gentler and more efficient treatment.',
+      title: 'Adaptive Cataract Density Profiling',
+      desc: 'Automatically quantifies cataract hardness, allowing the laser to dynamically adapt fragmentation grids for the gentlest, most efficient tissue removal.',
       metric: 'Adaptive real-time density',
     },
     {
       icon: 'ScaleIcon',
-      title: 'Astigmatism Target Alignment',
-      desc: "Projects digital guides directly into the surgeon's view, ensuring astigmatism-correcting and premium lenses are aligned with absolute accuracy.",
+      title: 'Digital Astigmatism Axis Guidance',
+      desc: 'Projects digital alignment reticles directly onto the cornea, ensuring toric astigmatism and multi-focal lenses are placed with flawless rotational accuracy.',
       metric: 'Perfect IOL orientation',
     },
   ];
@@ -84,7 +64,7 @@ export default function LensarAllySection() {
   const activeBenefits = activeTab === 'patient' ? patientBenefits : surgeonBenefits;
 
   return (
-    <section id="lensar-ally" className="py-12 sm:py-24 relative overflow-hidden bg-background">
+    <section id="lensar-ally" className="py-16 sm:py-24 relative overflow-hidden bg-background">
       {/* Background layer */}
       <div className={`absolute inset-0 opacity-20 pointer-events-none ${styles.gridLines}`} />
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/4 rounded-full blur-[140px] pointer-events-none" />
@@ -164,9 +144,7 @@ export default function LensarAllySection() {
               {activeBenefits.map((benefit) => (
                 <div
                   key={benefit.title}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseMove={handleMouseMove}
+                  onMouseMove={handleSpotlightMouseMove}
                   className={`group relative overflow-hidden rounded-3xl p-5 sm:p-6 transition-all duration-300 ${styles.glassCard} ${
                     activeTab === 'surgeon' ? styles.glassCardDoctor : ''
                   }`}

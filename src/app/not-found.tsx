@@ -29,8 +29,8 @@ export default function NotFound() {
           <span className="font-semibold text-gradient-primary">in focus.</span>
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-10 max-w-sm mx-auto">
-          The page you&apos;re looking for doesn&apos;t exist. But your clarity does — let&apos;s
-          get you back on track.
+          The page you&apos;re looking for cannot be found, but we can help you find the right
+          information.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

@@ -41,13 +41,13 @@ const LENSES: Record<string, LensResult> = {
   vivity: {
     key: 'vivity',
     name: 'Clareon Vivity',
-    tagline: 'Extended Depth of Focus — Fewest halos of any premium IOL',
+    tagline: 'Extended Depth of Focus: Lowest rate of halos among premium IOLs',
     description:
-      'The Clareon Vivity uses non-diffractive X-WAVE™ technology to stretch and shift light, delivering seamless vision from distance through intermediate — with the lowest rate of halos and glare among premium lenses. Ideal for active patients who drive frequently and want natural, comfortable vision.',
+      'The Clareon Vivity uses non-diffractive X-WAVE™ technology to stretch and shift light, delivering smooth continuous vision from distance through intermediate, with the lowest rate of halos and glare among premium lenses. It is ideal for active patients who drive often and value natural, comfortable vision.',
     highlights: [
       'Excellent distance & intermediate vision',
       'Fewest halos & glare of any premium IOL',
-      'Non-diffractive — no light splitting',
+      'Non-diffractive technology with no light splitting',
       'Great for night driving',
       'FDA-approved extended depth of focus',
     ],
@@ -57,15 +57,15 @@ const LENSES: Record<string, LensResult> = {
     badge: 'Most Popular',
     badgeColor: 'bg-[var(--lens-color)] text-background',
     src: '/assets/images/vivity_iol_dark.jpg',
-    alt: 'Clareon Vivity IOL — extended depth of focus intraocular lens',
+    alt: 'Clareon Vivity IOL, extended depth of focus intraocular lens',
     cta: 'Book a Vivity Consultation',
   },
   panoptix: {
     key: 'panoptix',
     name: 'PanOptix Pro',
-    tagline: 'Trifocal — Full range: near, intermediate & distance',
+    tagline: 'Trifocal: Full visual range across near, intermediate, and distance',
     description:
-      'The PanOptix Pro trifocal IOL is the only FDA-approved trifocal lens in the US, delivering clear vision at all three focal points — near, intermediate, and distance. Perfect for patients who want to minimize reading glasses entirely and live a fully glasses-free lifestyle.',
+      'The PanOptix Pro trifocal IOL delivers clear vision at near, intermediate, and distance focal points. It is the leading option for patients who want to eliminate reading glasses and enjoy genuine visual freedom throughout the day.',
     highlights: [
       'Near, intermediate & distance vision',
       '99% would choose a premium lens again',
@@ -79,19 +79,19 @@ const LENSES: Record<string, LensResult> = {
     badge: 'Trifocal',
     badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/panoptix_iol_dark.jpg',
-    alt: 'PanOptix Pro trifocal IOL — advanced multifocal intraocular lens',
+    alt: 'PanOptix Pro trifocal IOL, advanced multifocal intraocular lens',
     cta: 'Book a PanOptix Consultation',
   },
   puresee: {
     key: 'puresee',
     name: 'TECNIS PureSee',
-    tagline: 'Purely Refractive EDOF — Continuous focus with zero contrast warning',
+    tagline: 'Purely Refractive EDOF: Continuous focus with zero contrast warning',
     description:
-      'The TECNIS PureSee is a purely refractive Extended Depth of Focus (EDOF) IOL from Johnson & Johnson MedTech. Its proprietary refractive zonal optics deliver continuous clarity from distance through intermediate to functional near—with zero diffractive rings, zero contrast sensitivity warning, and a night glare profile identical to a standard monofocal lens.',
+      'The TECNIS PureSee is a purely refractive Extended Depth of Focus (EDOF) IOL from Johnson & Johnson MedTech. Its refractive zonal optics deliver continuous clarity from distance through intermediate to functional near vision, with zero diffractive rings, zero contrast sensitivity warnings, and a night glare profile identical to a standard monofocal lens.',
     highlights: [
       'Pristine distance & intermediate clarity',
       'Functional near vision down to 40 cm',
-      'Purely refractive optics — zero diffractive rings',
+      'Purely refractive optics with zero diffractive rings',
       'First FDA-approved EDOF with zero contrast warning',
       'Monofocal-like night vision & dysphotopsia profile',
     ],
@@ -101,15 +101,15 @@ const LENSES: Record<string, LensResult> = {
     badge: 'Refractive EDOF',
     badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/puresee_iol_dark.jpg',
-    alt: 'TECNIS PureSee IOL — purely refractive extended depth of focus intraocular lens',
+    alt: 'TECNIS PureSee IOL, purely refractive extended depth of focus intraocular lens',
     cta: 'Book a PureSee Consultation',
   },
   monofocal: {
     key: 'monofocal',
     name: 'Standard Monofocal',
-    tagline: 'Insurance-Covered — Reliable single-focus clarity',
+    tagline: 'Insurance-Covered: Dependable single-focus clarity',
     description:
-      'The standard monofocal IOL is the most widely used cataract lens and is fully covered by Medicare and most insurance plans. It delivers excellent vision at one focal distance (typically distance), with reading glasses used for near tasks. A trusted, proven choice for patients who prefer the insurance-covered option.',
+      'The standard monofocal IOL is the most widely used cataract lens and is fully covered by Medicare and most insurance plans. It delivers clear vision at one focal distance (typically distance), with reading glasses used for near tasks. A trusted, proven choice for patients who prefer the standard insurance option.',
     highlights: [
       'Fully covered by Medicare & most insurance',
       'Excellent single-distance clarity',
@@ -123,7 +123,7 @@ const LENSES: Record<string, LensResult> = {
     badge: 'Insurance Covered',
     badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/monofocal_iol_dark.jpg',
-    alt: 'Standard monofocal IOL — insurance-covered intraocular lens for cataract surgery',
+    alt: 'Standard monofocal IOL, insurance-covered intraocular lens for cataract surgery',
     cta: 'Book a Consultation',
   },
 };
@@ -166,13 +166,13 @@ const QUESTIONS: Record<string, Question> = {
     subtext: 'Think of reaching for readers to view your phone, restaurant menus, or price tags.',
     options: [
       {
-        label: 'Extremely — I want to read phones, menus, and fine print entirely glasses-free',
+        label: 'Very frustrating, I want to read phones, menus, and fine print glasses-free',
         sublabel: 'Maximize near-vision independence',
         icon: '📖',
         next: 'result:panoptix',
       },
       {
-        label: "Manageable — I don't mind wearing readers for small print occasionally",
+        label: "Manageable, I don't mind keeping readers nearby for tiny print",
         sublabel: 'Acceptable trade-off for other vision benefits',
         icon: '📱',
         next: 'q3',
@@ -185,20 +185,20 @@ const QUESTIONS: Record<string, Question> = {
     subtext: "Intermediate range (arm's length) is critical for modern digital life.",
     options: [
       {
-        label: 'Over 4 hours a day — screen clarity is critical to my lifestyle',
-        sublabel: 'Active working, Zoom calls, and laptop use',
+        label: 'Over 4 hours a day, screen clarity is essential for my work and life',
+        sublabel: 'Active computer work, Zoom calls, and laptop use',
         icon: '💻',
         next: 'result:vivity',
       },
       {
-        label: '1 to 3 hours a day — standard casual check-ins and reading',
-        sublabel: 'Casual browsing, tablet reading, social media',
+        label: '1 to 3 hours a day, casual browsing and messaging',
+        sublabel: 'Casual tablet reading and social media',
         icon: '🖥️',
         next: 'q4',
       },
       {
-        label: 'Rarely — I prioritize long-distance focus like driving and watching TV',
-        sublabel: 'Minimize computer use, focus on distance activities',
+        label: 'Rarely, I prioritize distance activities like driving, golf, and watching TV',
+        sublabel: 'Minimal computer use, focusing on distance tasks',
         icon: '📺',
         next: 'q5',
       },
@@ -206,19 +206,18 @@ const QUESTIONS: Record<string, Question> = {
   },
   q4: {
     id: 'q4',
-    text: 'How critical is visual purity at night (e.g., night driving without starbursts or halos)?',
-    subtext:
-      'Certain advanced multifocal lenses may introduce rings or light rays around headlights.',
+    text: 'How critical is visual purity at night (for example, night driving without glare or halos)?',
+    subtext: 'Certain multifocal designs may produce mild halos around oncoming headlights.',
     options: [
       {
-        label: 'Vital — I drive frequently at night and cannot tolerate visual distractions',
+        label: 'Extremely important, I drive frequently after dark and want minimal glare',
         sublabel: 'Prioritize halo-free night vision',
         icon: '💡',
         next: 'q5',
       },
       {
-        label: 'Flexible — I can adapt to mild halos if it means full range freedom',
-        sublabel: 'Willing to neuroadapt for near and intermediate vision',
+        label: 'Flexible, I can easily adapt if it gives me complete glasses-free near vision',
+        sublabel: 'Willing to neuroadapt for full near and intermediate focus',
         icon: '😎',
         next: 'result:panoptix',
       },
@@ -372,7 +371,7 @@ export default function LensQuestionnaireSection() {
   }, [calculating, progress]);
 
   return (
-    <section id="lens-quiz" className="relative py-12 sm:py-20 overflow-hidden">
+    <section id="lens-quiz" className="relative py-16 sm:py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-lines-bg opacity-60" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
@@ -574,7 +573,7 @@ export default function LensQuestionnaireSection() {
                           : '100%'}{' '}
                     of patients with your vision profile
                   </strong>{' '}
-                  chose {result.name} — and{' '}
+                  chose {result.name}, and{' '}
                   {result.key === 'monofocal'
                     ? 'appreciate the reliability'
                     : "99% say they'd choose a premium lens again"}
@@ -671,9 +670,9 @@ export default function LensQuestionnaireSection() {
               </div>
 
               <p className="mt-4 text-xs text-muted-foreground text-center">
-                This quiz can&apos;t replace Dr. Marano&apos;s clinical exam — but it gives you a
-                strong starting point. In your consultation, he&apos;ll confirm the perfect match
-                for your unique eyes.
+                This quiz cannot replace Dr. Marano&apos;s thorough clinical evaluation, but it
+                provides a clear starting point. During your consultation, he will confirm the ideal
+                match for your individual eyes.
               </p>
             </div>
           )}
