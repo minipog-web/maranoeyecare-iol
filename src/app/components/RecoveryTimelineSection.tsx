@@ -13,7 +13,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '1–2 Weeks Prior',
       icon: 'DocumentTextIcon',
       description:
-        'Using high-resolution corneal topography and optical biometry, we create a sub-micron 3D map of your eye. This data is programmed directly into the LENSAR laser guidance system for personalized alignment.',
+        'Using high-resolution corneal topography and optical biometry, we create a sub-micron 3D map of your eye including the natural lens with cataract. We select the best replacement lens power for your eye. This data is programmed directly into the LENSAR laser guidance system for personalized alignment.',
       color: '#00A3FF',
       rgb: '0, 163, 255',
     },
@@ -23,7 +23,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '10 Minutes',
       icon: 'ClockIcon',
       description:
-        'A gentle outpatient procedure. We apply numbing eye drops with no needles, no injections, and no general anesthesia required. Dr. Marano uses the LENSAR laser system to replace your cloudy natural lens with your custom IOL. You walk out comfortably the same morning.',
+        "Once you arrive at the outpatient surgical center, we apply numbing eye drops. There are no needles, no injections, and no general anesthesia required. We use a light twilight sedation for the procedure, similar to what's used during a colonoscopy. Dr. Marano uses the LENSAR laser system to replace your cloudy natural lens with your custom IOL. You walk out comfortably the same day.",
       color: '#8B5CF6',
       rgb: '139, 92, 246',
     },
@@ -33,7 +33,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '24–48 Hours',
       icon: 'EyeIcon',
       description:
-        'Your vision begins clearing rapidly. Most patients return to light activities like reading, using computer screens, and light walking within 24 to 48 hours. Mild scratchiness is normal and easily managed with drops.',
+        'Your vision will be blurred immediately after the surgery, but begins clearing rapidly as the inflammation improves on prescription drops. Most patients note an immediate improvement in brightness and color perception. You can return to light activities like reading, using computer screens, and light walking within 24 to 48 hours. Some mild scratchiness is normal and easily managed with drops.',
       color: '#10B981',
       rgb: '16, 185, 129',
     },
@@ -43,7 +43,7 @@ export default function RecoveryTimelineSection() {
       timeframe: 'Days 2–7',
       icon: 'SparklesIcon',
       description:
-        'Surgical energy causes temporary swelling that quickly resolves with drops. Distance vision typically sharpens first; reading vision naturally lags behind distance vision by about two weeks as the brain begins neuroadapting to the new optics.',
+        'Surgical energy inevitably introduces tissue swelling. The eye is such a small space that even a little bit of swelling can cause blurred vision. As the anti-inflammatory drops kick in, distance vision typically sharpens first; reading vision naturally lags behind distance vision by about two weeks as the brain begins neuroadapting to the new optics.',
       color: '#EC4899',
       rgb: '236, 72, 153',
     },
@@ -53,18 +53,19 @@ export default function RecoveryTimelineSection() {
       timeframe: '4–6 Weeks',
       icon: 'BrainIcon',
       description:
-        'Your brain fully adapts to the multi-focal or extended depth optics. Near and reading vision catch up to distance clarity, contrast sensitivity peaks, and vision stabilizes completely for long-term freedom.',
+        'Neuroadaptation is the natural process where your visual cortex learns to seamlessly process and select images from your new multi-focal or extended depth optics. As your brain rewires how it interprets light from varying focal distances, near and reading vision catch up to distance clarity, contrast sensitivity peaks, and your vision stabilizes for effortless, lifelong visual freedom.',
       color: '#C5A059',
       rgb: '197, 160, 89',
     },
   ];
 
   return (
-    <section id="recovery" className="py-16 sm:py-24 relative overflow-hidden bg-[#0a0c10]">
+    <section id="recovery" className="py-16 sm:py-24 relative overflow-hidden bg-[#08090d]">
       {/* Background elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(197,160,89,0.05)_0%,transparent_80%)] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/2 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 dot-grid-bg opacity-25 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}

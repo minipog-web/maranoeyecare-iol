@@ -33,18 +33,18 @@
     0 0 40px rgba(139, 92, 246, 0.15);
 }
 
-.profileConservative {
-  --rec-color: #3b82f6;
+.profileInnovator {
+  --rec-color: #00a3ff;
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 0 20px rgba(59, 130, 246, 0.02);
+    0 0 20px rgba(0, 163, 255, 0.02);
 }
-.profileConservative:hover {
+.profileInnovator:hover {
   box-shadow:
     0 20px 45px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(59, 130, 246, 0.35),
-    0 0 40px rgba(59, 130, 246, 0.15);
+    0 0 0 1px rgba(0, 163, 255, 0.35),
+    0 0 40px rgba(0, 163, 255, 0.15);
 }
 
 .comparisonCard {
@@ -67,9 +67,9 @@
   border: 1px solid rgba(139, 92, 246, 0.25);
 }
 
-.profileConservative .recommendationBadge {
-  background-color: rgba(59, 130, 246, 0.12);
-  border: 1px solid rgba(59, 130, 246, 0.25);
+.profileInnovator .recommendationBadge {
+  background-color: rgba(0, 163, 255, 0.12);
+  border: 1px solid rgba(0, 163, 255, 0.25);
 }
 
 .recommendationLabel {
@@ -92,8 +92,8 @@
   box-shadow: 0 0 6px rgba(139, 92, 246, 0.38);
 }
 
-.profileConservative .activityDot {
-  box-shadow: 0 0 6px rgba(59, 130, 246, 0.38);
+.profileInnovator .activityDot {
+  box-shadow: 0 0 6px rgba(0, 163, 255, 0.38);
 }
 
 .spotlight {

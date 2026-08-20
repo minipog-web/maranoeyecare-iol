@@ -5,25 +5,26 @@ import Icon from '@/components/ui/AppIcon';
 
 export default function FinancingSection() {
   return (
-    <section id="financing" className="py-16 sm:py-24 relative overflow-hidden bg-card">
+    <section id="financing" className="py-16 sm:py-24 relative overflow-hidden bg-[#090a0e]">
       {/* Background decoration */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(197,160,89,0.06)_0%,transparent_70%)] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 dot-grid-bg opacity-25 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
           <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
-            Pricing & Economic Value
+            Flexible Financing & Insurance
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
-            The Economics of Clear Vision:{' '}
-            <span className="font-semibold text-gradient-primary">A Lifetime Optical Asset.</span>
+            Clear Vision Made Accessible:{' '}
+            <span className="font-semibold text-gradient-primary">Flexible Payment Options.</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-            Standard cataract surgery is fully covered by Medicare and commercial insurance. Opting
-            for a premium lens is a single, permanent investment that frees you from a lifetime of
-            progressive glasses, bifocals, and contact lenses.
+            Standard cataract surgery is covered by Medicare and most commercial insurance plans. We
+            offer flexible payment solutions and interest-free options so you can choose the lens
+            that fits your active lifestyle with confidence.
           </p>
         </div>
 
@@ -37,8 +38,8 @@ export default function FinancingSection() {
             <h3 className="text-lg font-semibold text-foreground mb-3">HSA & FSA Eligible</h3>
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
               Premium upgrades are considered eligible medical expenses. You can use your pre-tax
-              Flexible Spending Account (FSA) or Health Savings Account (HSA) dollars, saving up to{' '}
-              <strong className="text-foreground">30% to 40%</strong> depending on your tax bracket.
+              Flexible Spending Account (FSA) or Health Savings Account (HSA) dollars, maximizing
+              your tax-advantaged healthcare savings.
             </p>
             <div className="mt-6 pt-4 border-t border-border/60">
               <span className="text-xs font-bold text-primary uppercase tracking-wider">
@@ -56,8 +57,8 @@ export default function FinancingSection() {
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
               We offer flexible payment plans through CareCredit®, including{' '}
               <strong className="text-foreground">0% APR promotional financing</strong> for 12 or 24
-              months. You can break your premium upgrade into low monthly payments that easily fit
-              your budget.
+              months. You can break your procedure into manageable monthly payments that comfortably
+              fit your budget.
             </p>
             <div className="mt-6 pt-4 border-t border-border/60">
               <span className="text-xs font-bold text-primary uppercase tracking-wider">
@@ -73,105 +74,34 @@ export default function FinancingSection() {
             </div>
             <h3 className="text-lg font-semibold text-foreground mb-3">Insurance Integration</h3>
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-              Your insurance (or Medicare) will still cover the foundation of your surgery
-              (procedure, facility fees, standard lens). You only pay the out-of-pocket difference
-              for the premium upgrade. We handle all billing details.
+              Your insurance or Medicare covers the foundational surgery, facility fees, and
+              baseline care. Our dedicated billing coordinators handle all insurance authorizations
+              and provide a clear breakdown during your consultation.
             </p>
             <div className="mt-6 pt-4 border-t border-border/60">
               <span className="text-xs font-bold text-primary uppercase tracking-wider">
-                Hassle-Free Billing
+                Hassle-Free Coordination
               </span>
             </div>
           </div>
         </div>
 
-        {/* Financial Value Callout & Transparent Pricing */}
-        <div className="mt-12 sm:mt-16 max-w-5xl mx-auto grid lg:grid-cols-12 gap-8 items-center bg-gradient-to-br from-primary/[0.03] to-transparent border border-primary/15 rounded-3xl p-6 sm:p-10 lg:p-12 relative overflow-hidden">
-          {/* Subtle background glow */}
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
-
-          <div className="lg:col-span-7 space-y-5">
-            <span className="text-xs font-bold text-primary uppercase tracking-[0.2em] block">
-              Transparent Investment
-            </span>
-            <h3 className="font-display text-2xl sm:text-3xl font-light text-foreground">
-              A One-Time Choice for{' '}
-              <span className="font-semibold text-gradient-primary">Decades of Clarity.</span>
-            </h3>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Premium cataract options start at <strong className="text-foreground">$1,600</strong>{' '}
-              for a standard monofocal lens paired with LENSAR® laser-assisted (Femtosecond)
-              precision. Upgrades for custom astigmatism-correcting (toric) lenses start at{' '}
-              <strong className="text-foreground">$1,900</strong>, and premium lenses range up to{' '}
-              <strong className="text-foreground">$4,100</strong> per eye for highly advanced
-              multi-focal or extended depth of field (EDOF) designs.
-            </p>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Over a 10 to 15 year period, the ongoing cost of progressive lenses, replacement
-              frames, contact lenses, and prescription sunglasses easily adds up to{' '}
-              <strong className="text-foreground">$8,000 to $12,000</strong>. Choosing a premium
-              lens is a single investment in your daily convenience and confidence. Because your
-              artificial lens will never cloud over or develop another cataract, the visual clarity
-              you gain stays with you for life.
-            </p>
-          </div>
-
-          <div className="lg:col-span-5 w-full">
-            <div className="glass-card border border-primary/20 bg-background/50 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl relative z-10">
-              <div className="space-y-2">
-                <span className="text-xs font-medium text-muted-foreground block">
-                  Premium Surgical Upgrades
-                </span>
-                <div className="flex items-baseline gap-2">
-                  <span className="font-display text-4xl sm:text-5xl font-semibold text-foreground">
-                    $1,600
-                  </span>
-                  <span className="text-sm text-muted-foreground">to $4,100 / eye</span>
-                </div>
-                <p className="text-xs text-muted-foreground leading-normal">
-                  Standard lens with LENSAR® Femto laser starts at $1,600. Astigmatism-correcting
-                  lenses start at $1,900, up to $4,100 for multi-focal or extended depth of field
-                  (EDOF) designs.
-                </p>
-              </div>
-
-              <hr className="border-border/60" />
-
-              <div className="space-y-3">
-                <h4 className="text-xs font-bold text-primary uppercase tracking-wider">
-                  The Lifetime Freedom Package:
-                </h4>
-                <ul className="space-y-2.5">
-                  <li className="flex items-start gap-2.5 text-xs text-muted-foreground">
-                    <span className="text-primary mt-0.5">
-                      <Icon name="CheckIcon" size={14} />
-                    </span>
-                    <span>Custom optical wavefront mapping & diagnostic screening</span>
-                  </li>
-                  <li className="flex items-start gap-2.5 text-xs text-muted-foreground">
-                    <span className="text-primary mt-0.5">
-                      <Icon name="CheckIcon" size={14} />
-                    </span>
-                    <span>Integration with LENSAR® Precision Laser System</span>
-                  </li>
-                  <li className="flex items-start gap-2.5 text-xs text-muted-foreground">
-                    <span className="text-primary mt-0.5">
-                      <Icon name="CheckIcon" size={14} />
-                    </span>
-                    <span>Permanent, medical-grade materials that never age or decay</span>
-                  </li>
-                </ul>
-
-                <a
-                  href="#booking"
-                  className="btn-premium-primary btn-shimmer w-full py-3 px-4 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 mt-4 text-center focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                >
-                  <span>Request Financing Consultation</span>
-                  <Icon name="ArrowRightIcon" size={14} />
-                </a>
-              </div>
-            </div>
-          </div>
+        {/* CTA banner */}
+        <div className="mt-12 max-w-4xl mx-auto text-center glass-card border border-white/[0.08] rounded-3xl p-8 sm:p-10">
+          <h3 className="font-display text-2xl sm:text-3xl font-light text-foreground mb-3">
+            Explore Your Options with Our Care Team
+          </h3>
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
+            During your private consultation, our patient coordinators will review your insurance
+            benefits, HSA/FSA eligibility, and custom financing plans tailored to your needs.
+          </p>
+          <a
+            href="#booking"
+            className="btn-premium-primary btn-shimmer inline-flex items-center justify-center gap-2 py-3 px-8 text-sm font-bold uppercase tracking-wider rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+          >
+            <span>Schedule Consultation</span>
+            <Icon name="ArrowRightIcon" size={16} />
+          </a>
         </div>
       </div>
     </section>

@@ -37,9 +37,10 @@ export default function LensTechnologyDeepDiveSection() {
   return (
     <section
       id="physics"
-      className="relative w-full bg-[#0a0c10] py-16 sm:py-24 overflow-hidden scroll-mt-16"
+      className="relative w-full bg-[#06070a] py-16 sm:py-24 overflow-hidden scroll-mt-16"
     >
       {/* Background dot grid and ambient glows */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_40%_at_50%_100%,rgba(197,160,89,0.03)_0%,transparent_100%)] pointer-events-none" />
       <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[140px] opacity-5 pointer-events-none transition-all duration-700"
@@ -86,7 +87,7 @@ export default function LensTechnologyDeepDiveSection() {
 
             <button
               onClick={() => setActiveTab('vivity')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl ${
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 activeTab === 'vivity'
                   ? 'text-[#e9c481]'
                   : 'text-muted-foreground hover:text-foreground'
@@ -96,7 +97,7 @@ export default function LensTechnologyDeepDiveSection() {
             </button>
             <button
               onClick={() => setActiveTab('panoptix')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl ${
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 activeTab === 'panoptix'
                   ? 'text-[#a78bfa]'
                   : 'text-muted-foreground hover:text-foreground'
@@ -106,7 +107,7 @@ export default function LensTechnologyDeepDiveSection() {
             </button>
             <button
               onClick={() => setActiveTab('puresee')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl ${
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 activeTab === 'puresee'
                   ? 'text-[#38bdf8]'
                   : 'text-muted-foreground hover:text-foreground'
@@ -735,12 +736,7 @@ export default function LensTechnologyDeepDiveSection() {
                       The PanOptix trifocal design splits light into three distinct optical focus
                       paths to deliver true vision independence{' '}
                       <sup className="text-[10px] ml-0.5">
-                        <a
-                          href="https://pubmed.ncbi.nlm.nih.gov/32049015/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline font-mono"
-                        >
+                        <a href="#footnote-1" className="text-primary hover:underline font-mono">
                           [1]
                         </a>
                       </sup>
@@ -752,12 +748,7 @@ export default function LensTechnologyDeepDiveSection() {
                     <>
                       Unlike traditional multifocals, Vivity is non-diffractive{' '}
                       <sup className="text-[10px] ml-0.5">
-                        <a
-                          href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P190018"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline font-mono"
-                        >
+                        <a href="#footnote-2" className="text-primary hover:underline font-mono">
                           [2]
                         </a>
                       </sup>
@@ -772,12 +763,7 @@ export default function LensTechnologyDeepDiveSection() {
                       that delivers uninterrupted continuous vision without diffractive rings or
                       light splitting{' '}
                       <sup className="text-[10px] ml-0.5">
-                        <a
-                          href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline font-mono"
-                        >
+                        <a href="#footnote-3" className="text-primary hover:underline font-mono">
                           [3]
                         </a>
                       </sup>
@@ -833,9 +819,7 @@ export default function LensTechnologyDeepDiveSection() {
                           Functional{' '}
                           <sup className="text-[9px] ml-0.5">
                             <a
-                              href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
-                              target="_blank"
-                              rel="noopener noreferrer"
+                              href="#footnote-3"
                               className="text-primary hover:underline font-mono"
                             >
                               [3]
@@ -849,9 +833,7 @@ export default function LensTechnologyDeepDiveSection() {
                           Excellent{' '}
                           <sup className="text-[9px] ml-0.5">
                             <a
-                              href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
-                              target="_blank"
-                              rel="noopener noreferrer"
+                              href="#footnote-3"
                               className="text-primary hover:underline font-mono"
                             >
                               [3]
@@ -902,12 +884,7 @@ export default function LensTechnologyDeepDiveSection() {
                         with the exact high-contrast clarity and dysphotopsia-free night profile of
                         a standard monofocal lens{' '}
                         <sup className="text-[10px] ml-0.5">
-                          <a
-                            href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary hover:underline font-mono"
-                          >
+                          <a href="#footnote-3" className="text-primary hover:underline font-mono">
                             [3]
                           </a>
                         </sup>
@@ -918,6 +895,41 @@ export default function LensTechnologyDeepDiveSection() {
                 </div>
               </div>
             </div>
+
+            {/* Dedicated Guide Link for PanOptix / Vivity / PureSee */}
+            {activeTab === 'panoptix' && (
+              <a
+                href="/panoptix-pro"
+                className="flex items-center justify-between p-4 rounded-2xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/20 hover:border-[#8b5cf6]/50 transition-all text-xs sm:text-sm font-bold text-[#a78bfa] group focus-visible:ring-2 focus-visible:ring-[#8b5cf6] focus-visible:outline-none"
+              >
+                <span>Read Full Clareon® PanOptix® Pro Clinical Outcomes Guide</span>
+                <span className="group-hover:translate-x-1 transition-transform font-mono text-base">
+                  &rarr;
+                </span>
+              </a>
+            )}
+            {activeTab === 'vivity' && (
+              <a
+                href="/clareon-vivity"
+                className="flex items-center justify-between p-4 rounded-2xl bg-primary/10 border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all text-xs sm:text-sm font-bold text-primary group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              >
+                <span>Read Full Clareon® Vivity® Clinical Outcomes Guide</span>
+                <span className="group-hover:translate-x-1 transition-transform font-mono text-base">
+                  &rarr;
+                </span>
+              </a>
+            )}
+            {activeTab === 'puresee' && (
+              <a
+                href="/tecnis-puresee"
+                className="flex items-center justify-between p-4 rounded-2xl bg-[#00a3ff]/10 border border-[#00a3ff]/30 hover:bg-[#00a3ff]/20 hover:border-[#00a3ff]/50 transition-all text-xs sm:text-sm font-bold text-[#38bdf8] group focus-visible:ring-2 focus-visible:ring-[#00a3ff] focus-visible:outline-none"
+              >
+                <span>Read Full TECNIS PureSee™ Clinical Outcomes Guide</span>
+                <span className="group-hover:translate-x-1 transition-transform font-mono text-base">
+                  &rarr;
+                </span>
+              </a>
+            )}
 
             {/* Promotional LENSAR Precision Callout Card */}
             <div className="glass-card border border-white/[0.08] backdrop-blur-md rounded-3xl p-6 bg-gradient-to-r from-primary/5 to-transparent relative overflow-hidden flex items-start gap-4">

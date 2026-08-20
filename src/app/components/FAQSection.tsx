@@ -267,7 +267,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-16 sm:py-24 relative overflow-hidden bg-secondary">
+    <section id="faq" className="py-16 sm:py-24 relative overflow-hidden bg-[#0e1118]">
       {/* FAQ Schema Markup */}
       <script
         type="application/ld+json"
@@ -275,7 +275,8 @@ export default function FAQSection() {
       />
 
       {/* Background */}
-      <div className="absolute inset-0 grid-lines-bg opacity-20" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_10%_30%,rgba(197,160,89,0.05)_0%,transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 grid-lines-bg opacity-15" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/4 rounded-full blur-[100px] pointer-events-none" />
 

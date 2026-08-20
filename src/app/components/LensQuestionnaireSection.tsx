@@ -371,10 +371,10 @@ export default function LensQuestionnaireSection() {
   }, [calculating, progress]);
 
   return (
-    <section id="lens-quiz" className="relative py-16 sm:py-24 overflow-hidden">
+    <section id="lens-quiz" className="relative py-16 sm:py-24 overflow-hidden bg-[#0d1017]">
       {/* Background */}
-      <div className="absolute inset-0 grid-lines-bg opacity-60" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(197,160,89,0.08)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 grid-lines-bg opacity-30" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">

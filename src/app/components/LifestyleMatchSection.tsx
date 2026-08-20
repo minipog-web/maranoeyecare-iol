@@ -43,32 +43,33 @@ const profiles = [
     stat: '99% of patients would choose this premium lens again [1]',
   },
   {
-    id: 'conservative',
-    title: 'The Conservative Candidate',
+    id: 'innovator',
+    title: 'The Modern Innovator & Tech Explorer',
     description:
-      'You demand pristine optical clarity and natural contrast sensitivity for distance vision above all else, while still desiring functional intermediate vision for daily tasks without the risk of dysphotopsias (halos/glare).',
+      'You are drawn to the newest, most advanced optical engineering. You want cutting-edge refractive technology that delivers continuous visual depth from distance to functional near, while maintaining immaculate, monofocal-level contrast and zero diffractive halos.',
     activities: [
-      'Stargazing & night driving',
-      'Highly sensitive to glare or optical effects',
-      'Watching TV & general household tasks',
-      'Comfortable with occasional reading glasses',
+      'Early adopter of cutting-edge technology',
+      'Demands state-of-the-art optical engineering',
+      'Dynamic multi-distance digital lifestyle',
+      'Uncompromising night driving & contrast clarity',
     ],
     recommendation: 'TECNIS PureSee',
     reason:
-      'Purely refractive EDOF optics deliver zero diffractive halos or glare, providing immaculate scenic distance views with continuous intermediate clarity and functional near vision.',
+      'The newest FDA-approved purely refractive EDOF design delivers continuous extended depth with zero diffractive rings, giving you tomorrow’s optical innovation with pristine night contrast.',
     image: '/assets/images/profile_conservative_candidate.jpg',
-    imageAlt: 'Mature reader enjoying a book outdoors in natural sunlight',
+    imageAlt: 'Tech-conscious individual exploring modern digital devices outdoors',
     stat: 'First FDA-approved EDOF with zero contrast sensitivity warning [3]',
   },
 ];
 
 export default function LifestyleMatchSection() {
   return (
-    <section id="lifestyle" className="py-16 sm:py-24 relative overflow-hidden bg-card">
+    <section id="lifestyle" className="py-16 sm:py-24 relative overflow-hidden bg-[#10131b]">
       {/* Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_80%_30%,rgba(197,160,89,0.06)_0%,transparent_70%)] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute inset-0 dot-grid-bg opacity-40" />
+      <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
@@ -172,12 +173,17 @@ export default function LifestyleMatchSection() {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   if ((e.target as HTMLElement).closest('a')) return;
-                  let lensKey = '';
-                  if (profile.id === 'active') lensKey = 'vivity';
-                  else if (profile.id === 'tech') lensKey = 'panoptix';
-                  else if (profile.id === 'conservative') lensKey = 'puresee';
-                  if (lensKey) {
-                    window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
+                  if (profile.id === 'tech') {
+                    window.location.href = '/panoptix-pro';
+                    return;
+                  }
+                  if (profile.id === 'active') {
+                    window.location.href = '/clareon-vivity';
+                    return;
+                  }
+                  if (profile.id === 'innovator') {
+                    window.location.href = '/tecnis-puresee';
+                    return;
                   }
                   window.location.hash = 'booking';
                 }
@@ -186,12 +192,17 @@ export default function LifestyleMatchSection() {
                 if ((e.target as HTMLElement).closest('a')) {
                   return;
                 }
-                let lensKey = '';
-                if (profile.id === 'active') lensKey = 'vivity';
-                else if (profile.id === 'tech') lensKey = 'panoptix';
-                else if (profile.id === 'conservative') lensKey = 'puresee';
-                if (lensKey) {
-                  window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
+                if (profile.id === 'tech') {
+                  window.location.href = '/panoptix-pro';
+                  return;
+                }
+                if (profile.id === 'active') {
+                  window.location.href = '/clareon-vivity';
+                  return;
+                }
+                if (profile.id === 'innovator') {
+                  window.location.href = '/tecnis-puresee';
+                  return;
                 }
                 window.location.hash = 'booking';
               }}
@@ -277,6 +288,42 @@ export default function LifestyleMatchSection() {
                         });
                       })()}
                     </p>
+                    {profile.id === 'active' && (
+                      <div className="mt-4 pt-3 border-t border-white/[0.06]">
+                        <a
+                          href="/clareon-vivity"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                        >
+                          <span>Explore Dedicated Vivity Clinical Guide</span>
+                          <span className="font-mono text-sm">&rarr;</span>
+                        </a>
+                      </div>
+                    )}
+                    {profile.id === 'tech' && (
+                      <div className="mt-4 pt-3 border-t border-white/[0.06]">
+                        <a
+                          href="/panoptix-pro"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a78bfa] hover:underline"
+                        >
+                          <span>Explore Dedicated PanOptix Pro Clinical Guide</span>
+                          <span className="font-mono text-sm">&rarr;</span>
+                        </a>
+                      </div>
+                    )}
+                    {profile.id === 'innovator' && (
+                      <div className="mt-4 pt-3 border-t border-white/[0.06]">
+                        <a
+                          href="/tecnis-puresee"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#38bdf8] hover:underline"
+                        >
+                          <span>Explore Dedicated PureSee Clinical Guide</span>
+                          <span className="font-mono text-sm">&rarr;</span>
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

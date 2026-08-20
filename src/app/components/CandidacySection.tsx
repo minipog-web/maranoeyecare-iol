@@ -5,10 +5,11 @@ import Icon from '@/components/ui/AppIcon';
 
 export default function CandidacySection() {
   return (
-    <section id="candidacy" className="py-16 sm:py-24 relative overflow-hidden bg-card">
+    <section id="candidacy" className="py-16 sm:py-24 relative overflow-hidden bg-[#090b10]">
       {/* Background decoration */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(16,185,129,0.03)_0%,transparent_70%)] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 dot-grid-bg opacity-25 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}

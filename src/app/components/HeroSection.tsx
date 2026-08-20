@@ -218,9 +218,9 @@ export default function HeroSection({
           </div>
 
           {/* Right: Three-Lens Visual Showcase with Top Comparison Text Box */}
-          <div className="lg:col-span-5 xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start">
-            {/* Elegant Lens Comparison Text Box — Positioned cleanly above cards with ample clearance */}
-            <div className="w-full max-w-[250px] sm:max-w-[260px] mb-6 sm:mb-8 lg:mb-10 animate-fade-up delay-450 fill-both z-20">
+          <div className="lg:col-span-5 xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start pt-2">
+            {/* Elegant Lens Comparison Text Box — Generously spaced above the cards so enlargement never collides */}
+            <div className="w-full max-w-[250px] sm:max-w-[260px] mb-12 sm:mb-16 lg:mb-20 animate-fade-up delay-450 fill-both z-20">
               <div className="glass-card-bright border border-primary/25 bg-[#0d0f15]/95 backdrop-blur-xl rounded-2xl p-2.5 sm:p-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-6 h-6 rounded-lg bg-primary/15 flex items-center justify-center shrink-0 border border-primary/25 shadow-[0_0_10px_rgba(197,160,89,0.25)]">
@@ -255,7 +255,7 @@ export default function HeroSection({
             </div>
 
             {/* Lens Cards Row */}
-            <div className="w-full flex items-end justify-center lg:justify-end gap-2.5 sm:gap-3.5 xl:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pt-3 pb-2">
+            <div className="w-full flex items-end justify-center lg:justify-end gap-2.5 sm:gap-3.5 xl:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pt-4 pb-2">
               {lenses.map((lens, i) => {
                 const isActive = activeLens === lens.name;
                 const delayClass =
@@ -285,6 +285,33 @@ export default function HeroSection({
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
+                          if (lens.name.includes('PanOptix')) {
+                            trackEvent({
+                              action: 'hero_panoptix_card_click',
+                              category: 'Navigation',
+                              label: 'Hero PanOptix Card to /panoptix-pro',
+                            });
+                            window.location.href = '/panoptix-pro';
+                            return;
+                          }
+                          if (lens.name.includes('Vivity')) {
+                            trackEvent({
+                              action: 'hero_vivity_card_click',
+                              category: 'Navigation',
+                              label: 'Hero Vivity Card to /clareon-vivity',
+                            });
+                            window.location.href = '/clareon-vivity';
+                            return;
+                          }
+                          if (lens.name.includes('PureSee')) {
+                            trackEvent({
+                              action: 'hero_puresee_card_click',
+                              category: 'Navigation',
+                              label: 'Hero PureSee Card to /tecnis-puresee',
+                            });
+                            window.location.href = '/tecnis-puresee';
+                            return;
+                          }
                           setActiveLens(lens.name);
                           trackEvent({
                             action: 'hero_lens_card_click',
@@ -294,6 +321,33 @@ export default function HeroSection({
                         }
                       }}
                       onClick={() => {
+                        if (lens.name.includes('PanOptix')) {
+                          trackEvent({
+                            action: 'hero_panoptix_card_click',
+                            category: 'Navigation',
+                            label: 'Hero PanOptix Card to /panoptix-pro',
+                          });
+                          window.location.href = '/panoptix-pro';
+                          return;
+                        }
+                        if (lens.name.includes('Vivity')) {
+                          trackEvent({
+                            action: 'hero_vivity_card_click',
+                            category: 'Navigation',
+                            label: 'Hero Vivity Card to /clareon-vivity',
+                          });
+                          window.location.href = '/clareon-vivity';
+                          return;
+                        }
+                        if (lens.name.includes('PureSee')) {
+                          trackEvent({
+                            action: 'hero_puresee_card_click',
+                            category: 'Navigation',
+                            label: 'Hero PureSee Card to /tecnis-puresee',
+                          });
+                          window.location.href = '/tecnis-puresee';
+                          return;
+                        }
                         setActiveLens(lens.name);
                         trackEvent({
                           action: 'hero_lens_card_click',
@@ -301,27 +355,30 @@ export default function HeroSection({
                           label: lens.name,
                         });
                       }}
-                      className={`relative doppel-shell ${lens.accent} w-full h-[235px] sm:h-[330px] xl:h-[370px] cursor-pointer origin-bottom transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none will-change-transform
+                      className={`relative doppel-shell ${lens.accent} w-full h-[245px] sm:h-[340px] xl:h-[380px] cursor-pointer origin-bottom transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none will-change-transform
                         ${
                           isActive
-                            ? 'scale-[1.07] -translate-y-2 z-30 opacity-100'
-                            : 'scale-100 translate-y-0 z-10 opacity-75 hover:opacity-100 hover:scale-[1.07] hover:-translate-y-2 hover:z-30'
+                            ? 'scale-[1.08] -translate-y-3 z-30 opacity-100'
+                            : 'scale-100 translate-y-0 z-10 opacity-75 hover:opacity-100 hover:scale-[1.08] hover:-translate-y-3 hover:z-30'
                         }
                         ${isActive ? lens.glow : lens.inactiveGlow}`}
                     >
                       <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
-                        {/* Image */}
+                        {/* Image: Full bleed, edge-to-edge, seamlessly blended */}
                         <div className="relative flex-1 overflow-hidden">
                           <AppImage
                             src={lens.src}
                             alt={lens.alt}
                             fill
-                            className="object-cover"
+                            className="object-cover object-center scale-[1.02]"
                             sizes="(max-width: 640px) 35vw, 176px"
                             priority={true}
                           />
 
-                          {/* Rich gradient overlay */}
+                          {/* Top subtle vignette so pill sits over dark gradient */}
+                          <div className="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
+
+                          {/* Rich bottom gradient overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent pointer-events-none" />
 
                           {/* Ambient inner glow — follows active state */}
@@ -331,13 +388,13 @@ export default function HeroSection({
                             }`}
                           />
 
-                          {/* Tag badge — Centered horizontally, turns gold with black text on active/hover */}
-                          <div className="absolute top-2 sm:top-2.5 inset-x-0 flex justify-center z-10 pointer-events-none px-1">
+                          {/* Floating Top Tag Badge with ultra-clean compact footprint */}
+                          <div className="absolute top-2 sm:top-2.5 inset-x-0 flex justify-center z-20 pointer-events-none px-1">
                             <span
-                              className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[8px] sm:text-[9px] xl:text-[10px] font-bold uppercase tracking-wider transition-all duration-300 backdrop-blur-sm whitespace-nowrap ${
+                              className={`px-2 sm:px-2.5 py-0.5 rounded-full text-[7.5px] sm:text-[8.5px] xl:text-[9.5px] font-bold uppercase tracking-wider transition-all duration-300 backdrop-blur-md whitespace-nowrap ${
                                 isActive
-                                  ? 'bg-primary text-[#020304] border border-primary shadow-[0_0_14px_rgba(197,160,89,0.5)]'
-                                  : 'bg-black/65 text-white/80 border border-white/15 shadow-md group-hover:bg-primary group-hover:text-[#020304] group-hover:border-primary'
+                                  ? 'bg-primary text-[#020304] border border-primary/80 shadow-[0_0_12px_rgba(197,160,89,0.5)]'
+                                  : 'bg-black/75 text-white/90 border border-white/20 shadow-md group-hover:bg-primary group-hover:text-[#020304] group-hover:border-primary'
                               }`}
                             >
                               {lens.tag}

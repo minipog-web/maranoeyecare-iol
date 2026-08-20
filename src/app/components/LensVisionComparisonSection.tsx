@@ -149,8 +149,8 @@ const lenses = [
     bestFor:
       'Patients who want continuous intermediate and functional near vision with the glare-free night clarity and contrast of a monofocal lens.',
     blur: {
-      day: { distance: 0, intermediate: 0, near: 0.5 },
-      night: { distance: 0, intermediate: 1.2, near: 3.5 },
+      day: { distance: 0, intermediate: 0, near: 0 },
+      night: { distance: 0, intermediate: 0, near: 0.8 },
     },
     glareLabel: {
       day: 'None',
@@ -399,6 +399,33 @@ export default function LensVisionComparisonSection() {
   };
 
   const handleCardClick = (id: string) => {
+    if (id === 'panoptix') {
+      trackEvent({
+        action: 'lens_card_click_to_panoptix_page',
+        category: 'Navigation',
+        label: 'PanOptix Card Click to /panoptix-pro',
+      });
+      window.location.href = '/panoptix-pro';
+      return;
+    }
+    if (id === 'vivity') {
+      trackEvent({
+        action: 'lens_card_click_to_vivity_page',
+        category: 'Navigation',
+        label: 'Vivity Card Click to /clareon-vivity',
+      });
+      window.location.href = '/clareon-vivity';
+      return;
+    }
+    if (id === 'puresee') {
+      trackEvent({
+        action: 'lens_card_click_to_puresee_page',
+        category: 'Navigation',
+        label: 'PureSee Card Click to /tecnis-puresee',
+      });
+      window.location.href = '/tecnis-puresee';
+      return;
+    }
     if (id === 'monofocal') {
       setActiveMobileLensId('monofocal');
     } else {
@@ -605,9 +632,10 @@ export default function LensVisionComparisonSection() {
     <section
       ref={sectionRef}
       id="vision"
-      className="py-16 sm:py-24 relative overflow-hidden scroll-mt-16"
+      className="py-16 sm:py-24 relative overflow-hidden scroll-mt-16 bg-[#090a0d]"
     >
-      <div className="absolute inset-0 vision-section-bg opacity-40" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(139,92,246,0.04)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 vision-section-bg opacity-30" />
 
       {/* Subtle Central Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-white/[0.01] rounded-full blur-[160px] pointer-events-none z-0" />
@@ -1203,38 +1231,130 @@ export default function LensVisionComparisonSection() {
                       </p>
                     </div>
 
-                    <a
-                      href="#booking"
-                      data-lens={lens.id}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.dispatchEvent(new CustomEvent('select-lens', { detail: lens.id }));
-                      }}
-                      className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
-                    >
-                      <span>
-                        Select{' '}
-                        {lens.name
-                          .replace('Clareon ', '')
-                          .replace('Tecnis ', '')
-                          .replace('Standard ', '')
-                          .replace(' Pro', '')}
-                      </span>
-                      <svg
+                    {lens.id === 'panoptix' ? (
+                      <a
+                        href="/panoptix-pro"
                         data-lens={lens.id}
-                        className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          trackEvent({
+                            action: 'panoptix_spec_card_cta_click',
+                            category: 'Navigation',
+                            label: 'PanOptix Spec CTA to /panoptix-pro',
+                          });
+                        }}
+                        className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
+                        <span>Explore PanOptix Pro Guide</span>
+                        <svg
+                          data-lens={lens.id}
+                          className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </a>
+                    ) : lens.id === 'vivity' ? (
+                      <a
+                        href="/clareon-vivity"
+                        data-lens={lens.id}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          trackEvent({
+                            action: 'vivity_spec_card_cta_click',
+                            category: 'Navigation',
+                            label: 'Vivity Spec CTA to /clareon-vivity',
+                          });
+                        }}
+                        className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                      >
+                        <span>Explore Vivity Guide</span>
+                        <svg
+                          data-lens={lens.id}
+                          className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </a>
+                    ) : lens.id === 'puresee' ? (
+                      <a
+                        href="/tecnis-puresee"
+                        data-lens={lens.id}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          trackEvent({
+                            action: 'puresee_spec_card_cta_click',
+                            category: 'Navigation',
+                            label: 'PureSee Spec CTA to /tecnis-puresee',
+                          });
+                        }}
+                        className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-[#00a3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                      >
+                        <span>Explore PureSee Guide</span>
+                        <svg
+                          data-lens={lens.id}
+                          className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </a>
+                    ) : (
+                      <a
+                        href="#booking"
+                        data-lens={lens.id}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.dispatchEvent(new CustomEvent('select-lens', { detail: lens.id }));
+                        }}
+                        className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                      >
+                        <span>
+                          Select{' '}
+                          {lens.name
+                            .replace('Clareon ', '')
+                            .replace('Tecnis ', '')
+                            .replace('Standard ', '')
+                            .replace(' Pro', '')}
+                        </span>
+                        <svg
+                          data-lens={lens.id}
+                          className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </a>
+                    )}
                   </div>
                 </div>
               );

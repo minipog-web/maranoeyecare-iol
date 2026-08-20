@@ -43,6 +43,25 @@
   --glow-accent: rgba(226, 194, 138, 0.08);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [class*='spotlight'],
+  [class*='Spotlight'],
+  [class*='ambientGlow'],
+  [class*='ambient-glow'] {
+    opacity: 0 !important;
+    display: none !important;
+  }
+}
+
 * {
   box-sizing: border-box;
   border-color: var(--border);
@@ -99,6 +118,15 @@ p {
 
 .safe-area-pb {
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Footnote target highlight when jumping from in-line citations */
+p[id^='footnote-']:target {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  background-color: rgba(197, 160, 89, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
 /* ── Utility classes ── */

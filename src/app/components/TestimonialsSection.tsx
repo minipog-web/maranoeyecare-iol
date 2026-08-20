@@ -112,14 +112,15 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-background"
+      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#08090c]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background */}
-      <div className="absolute inset-0 grid-lines-bg opacity-25" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/4 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(197,160,89,0.06)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 grid-lines-bg opacity-15" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Testimonials */}

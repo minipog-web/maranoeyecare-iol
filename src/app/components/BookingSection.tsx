@@ -262,13 +262,13 @@ export default function BookingSection({
     'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
 
   return (
-    <section id="booking" className="py-16 sm:py-24 relative overflow-hidden bg-muted">
+    <section id="booking" className="py-16 sm:py-24 relative overflow-hidden bg-[#0c0f16]">
       {/* Background */}
-      <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(245,158,11,0.06)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(197,160,89,0.08)_0%,transparent_70%)]" />
       <div className="absolute inset-0 grid-lines-bg opacity-10" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[2px] bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/3 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-600/2 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/3 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
@@ -277,10 +277,18 @@ export default function BookingSection({
             <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               {`IOL Consultation`}
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6 whitespace-nowrap">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
                 <>
                   Reclaim <span className="font-semibold text-gradient-primary">Clear Vision</span>
+                </>
+              ) : bookingHeadline.includes('Clareon® Vivity®') ? (
+                <>
+                  Schedule Your{' '}
+                  <span className="font-semibold text-gradient-primary block sm:inline">
+                    Clareon<sup>®</sup> Vivity<sup>®</sup>
+                  </span>{' '}
+                  Consultation
                 </>
               ) : (
                 bookingHeadline
@@ -449,6 +457,7 @@ export default function BookingSection({
                 </p>
                 <a
                   href="tel:9733220100"
+                  suppressHydrationWarning
                   className="text-sm text-primary mt-6 font-semibold hover:underline touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   Need immediate assistance? Call 973-322-0100
