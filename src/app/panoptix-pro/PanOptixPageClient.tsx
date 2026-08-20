@@ -260,11 +260,8 @@ export default function PanOptixPageClient() {
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-[380px] sm:max-w-[420px] aspect-square rounded-[36px] bg-gradient-to-b from-white/[0.06] to-transparent p-1 border border-white/10 shadow-2xl overflow-hidden group">
                 <div className="w-full h-full rounded-[34px] bg-[#07080b] relative overflow-hidden flex items-center justify-center p-6">
-                  {/* Subtle Violet Radial Aura */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.08)_0%,transparent_70%)] pointer-events-none" />
-
                   <AppImage
-                    src="/assets/images/panoptix_iol_real.jpg"
+                    src="/assets/images/panoptix_iol_clean.png"
                     alt="Clareon PanOptix Pro Trifocal IOL with ENLIGHTEN optical rings and STABLEFORCE haptics"
                     width={400}
                     height={400}

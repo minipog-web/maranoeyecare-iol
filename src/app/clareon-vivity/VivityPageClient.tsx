@@ -249,11 +249,8 @@ export default function VivityPageClient() {
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-[380px] sm:max-w-[420px] aspect-square rounded-[36px] bg-gradient-to-b from-white/[0.06] to-transparent p-1 border border-white/10 shadow-2xl overflow-hidden group">
                 <div className="w-full h-full rounded-[34px] bg-[#07080b] relative overflow-hidden flex items-center justify-center p-6">
-                  {/* Subtle Optic Radial Aura */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(197,160,89,0.22)_0%,transparent_65%)] pointer-events-none animate-pulse duration-1000" />
-
                   <AppImage
-                    src="/assets/images/vivity_iol_real.jpg"
+                    src="/assets/images/vivity_iol_clean.png"
                     alt="Clareon Vivity IOL with X-WAVE optical plateau and STABLEFORCE haptics"
                     width={400}
                     height={400}
