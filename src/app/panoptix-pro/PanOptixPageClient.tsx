@@ -259,14 +259,14 @@ export default function PanOptixPageClient() {
             {/* Right Column: High-Res Lens Physical Model Showcase */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-[380px] sm:max-w-[420px] aspect-square rounded-[36px] bg-gradient-to-b from-white/[0.06] to-transparent p-1 border border-white/10 shadow-2xl overflow-hidden group">
-                <div className="w-full h-full rounded-[34px] bg-[#07080b] relative overflow-hidden flex items-center justify-center p-6">
+                <div className="w-full h-full rounded-[34px] bg-[#07080b] relative overflow-hidden flex items-center justify-center">
                   <AppImage
-                    src="/assets/images/panoptix_iol_clean.png"
-                    alt="Clareon PanOptix Pro Trifocal IOL with ENLIGHTEN optical rings and STABLEFORCE haptics"
-                    width={400}
-                    height={400}
+                    src="/assets/images/panoptix_iol_real.jpg"
+                    alt="Clareon PanOptix Pro Trifocal IOL with real ENLIGHTEN optical rings and STABLEFORCE haptics"
+                    fill
                     priority={true}
-                    className="object-contain relative z-10 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 640px) 90vw, 420px"
+                    className="object-cover relative z-10 scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
 
                   {/* Optical Feature Pill Callouts */}
@@ -666,15 +666,15 @@ export default function PanOptixPageClient() {
             {/* PureSee Card */}
             <div className="glass-card border border-[#00a3ff]/30 bg-[#00a3ff]/[0.02] rounded-3xl p-6 sm:p-8 flex flex-col relative">
               <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#00a3ff] text-white text-[11px] font-bold uppercase tracking-wider">
-                Pure Refractive EDOF
+                Latest EDOF
               </div>
               <h3 className="text-xl font-bold text-[#38bdf8] mt-2 mb-1">TECNIS PureSee™</h3>
               <p className="text-xs font-semibold text-white/80 uppercase tracking-wider mb-4">
-                Refractive Extended Depth
+                Latest Refractive Extended Depth
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
-                Best for patients seeking Johnson &amp; Johnson’s newest purely refractive EDOF
-                optic with zero FDA contrast sensitivity warning.
+                Best for patients seeking the latest, most cutting-edge purely refractive EDOF optic
+                from Johnson &amp; Johnson with zero FDA contrast sensitivity warning.
               </p>
               <div className="space-y-2 pt-4 border-t border-border/80 text-xs">
                 <div className="flex justify-between py-1">
@@ -693,6 +693,12 @@ export default function PanOptixPageClient() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Mobile Swipe Hint */}
+          <div className="flex md:hidden items-center justify-end gap-1.5 text-[11px] text-muted-foreground mb-2 px-1">
+            <Icon name="ArrowsRightLeftIcon" size={13} className="text-[#a78bfa] animate-pulse" />
+            <span>Swipe horizontally to compare all lenses &rarr;</span>
           </div>
 
           {/* Full Side-by-Side Specifications Matrix Table */}

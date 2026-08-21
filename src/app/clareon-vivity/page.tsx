@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     siteName: 'Marano Eye Care',
     images: [
       {
-        url: '/assets/images/vivity_iol_clean.png',
+        url: '/assets/images/vivity_iol_real.jpg',
         width: 1200,
         height: 630,
-        alt: 'Clareon Vivity IOL Non-Diffractive Wavefront Shaping Lens',
+        alt: 'Clareon Vivity Non-Diffractive Extended Depth of Focus IOL',
       },
     ],
     locale: 'en_US',

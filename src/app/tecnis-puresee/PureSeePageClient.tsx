@@ -161,7 +161,7 @@ export default function PureSeePageClient() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#00a3ff]/10 border border-[#00a3ff]/30 text-[#38bdf8] text-xs font-bold uppercase tracking-wider mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#00a3ff] animate-pulse" />
-                <span>Purely Refractive EDOF Innovation</span>
+                <span>Latest &amp; Most Cutting-Edge EDOF Technology</span>
               </div>
 
               <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.12] mb-6">
@@ -172,10 +172,11 @@ export default function PureSeePageClient() {
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-                The world’s premier purely refractive extended depth of focus (EDOF) lens with zero
-                clinical contrast sensitivity warning. PureSee utilizes continuous surface
-                refraction to deliver seamless distance, intermediate, and functional near vision
-                without diffractive rings.
+                The latest, most cutting-edge purely refractive extended depth of focus (EDOF) lens
+                from Johnson &amp; Johnson MedTech, engineered with zero clinical contrast
+                sensitivity warning. PureSee utilizes breakthrough continuous surface refraction to
+                deliver seamless distance, intermediate, and functional near vision without
+                diffractive rings.
               </p>
 
               {/* 4 Clinical Benefit Badges */}
@@ -260,14 +261,14 @@ export default function PureSeePageClient() {
             {/* Right Column: High-Res Lens Physical Model Showcase */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-[380px] sm:max-w-[420px] aspect-square rounded-[36px] bg-gradient-to-b from-white/[0.06] to-transparent p-1 border border-white/10 shadow-2xl overflow-hidden group">
-                <div className="w-full h-full rounded-[34px] bg-[#07080b] relative overflow-hidden flex items-center justify-center p-6">
+                <div className="w-full h-full rounded-[34px] bg-[#07080b] relative overflow-hidden flex items-center justify-center">
                   <AppImage
-                    src="/assets/images/puresee_iol_clean.png"
+                    src="/assets/images/puresee_iol_real.jpg"
                     alt="TECNIS PureSee Refractive Extended Depth of Focus IOL with Frosted 360 Edge Barrier"
-                    width={400}
-                    height={400}
+                    fill
                     priority={true}
-                    className="object-contain relative z-10 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 640px) 90vw, 420px"
+                    className="object-cover relative z-10 scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
 
                   {/* Optical Feature Pill Callouts */}
@@ -612,15 +613,16 @@ export default function PureSeePageClient() {
             {/* PureSee Card */}
             <div className="glass-card border-2 border-[#00a3ff]/50 bg-[#00a3ff]/[0.04] rounded-3xl p-6 sm:p-8 flex flex-col relative shadow-[0_0_40px_rgba(0,163,255,0.15)]">
               <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#00a3ff] text-white text-[11px] font-bold uppercase tracking-wider">
-                Pure Refractive EDOF
+                Latest EDOF
               </div>
               <h3 className="text-xl font-bold text-[#38bdf8] mt-2 mb-1">TECNIS PureSee™</h3>
               <p className="text-xs font-semibold text-white/80 uppercase tracking-wider mb-4">
-                Refractive Extended Depth
+                Latest Refractive Extended Depth
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
-                Best for patients seeking maximum low-light contrast sensitivity, zero diffractive
-                rings, and high optical clarity for screens and driving.
+                The latest, most cutting-edge refractive EDOF lens, best for patients seeking
+                maximum low-light contrast sensitivity, zero diffractive rings, and high optical
+                clarity for screens and driving.
               </p>
               <div className="space-y-2 pt-4 border-t border-border/80 text-xs">
                 <div className="flex justify-between py-1">
@@ -701,6 +703,12 @@ export default function PureSeePageClient() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Mobile Swipe Hint */}
+          <div className="flex md:hidden items-center justify-end gap-1.5 text-[11px] text-muted-foreground mb-2 px-1">
+            <Icon name="ArrowsRightLeftIcon" size={13} className="text-[#38bdf8] animate-pulse" />
+            <span>Swipe horizontally to compare all lenses &rarr;</span>
           </div>
 
           {/* Full Side-by-Side Specifications Matrix Table */}

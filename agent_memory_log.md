@@ -17,4 +17,5 @@
 ## Architectural & UX Patterns
 * **Dual-Perspective Toggling**: Use responsive dual-perspective toggles (e.g. For Patients vs For Surgeons) coupled with CSS spotlight hover modules to group technical diagnostic specifications separate from patient benefits.
 * **Biometric Vector Graphics**: Use lightweight, animated inline SVG target crosshairs and biometric eye silhouettes to simulate real-time robotic surgery precision without high loading payloads.
-
+## Deployment Rules
+* **Netlify Deployments**: STRICT CONSTRAINT — NEVER run Netlify build or deploy CLI commands (`netlify deploy`, etc.) automatically, during routine fixes, or as part of general tasks. Only run Netlify deployments when the user explicitly and directly instructs to deploy to Netlify. Local hosting (`localhost:4000`) and git commits/pushes are used for development.

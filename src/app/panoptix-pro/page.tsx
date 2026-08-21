@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: 'Marano Eye Care',
     images: [
       {
-        url: '/assets/images/panoptix_iol_clean.png',
+        url: '/assets/images/panoptix_iol_real.jpg',
         width: 1200,
         height: 630,
         alt: 'Clareon PanOptix Pro Trifocal IOL with ENLIGHTEN Optical Technology',

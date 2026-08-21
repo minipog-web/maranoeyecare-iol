@@ -8,24 +8,24 @@ import BookingSection from '@/app/components/BookingSection';
 import PureSeePageClient from './PureSeePageClient';
 
 export const metadata: Metadata = {
-  title: 'TECNIS PureSee IOL Guide: Refractive Extended Depth of Focus | Marano Eye Care NJ',
+  title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',
   description:
-    'Comprehensive clinical guide to the TECNIS PureSee™ IOL by Johnson & Johnson MedTech. Discover pure refractive continuous zonal optics, 100% light utilization, zero FDA contrast warning, and comparisons with PanOptix and Vivity.',
+    'Comprehensive clinical guide to the TECNIS PureSee™ IOL by Johnson & Johnson MedTech — the latest, most cutting-edge refractive EDOF lens. Discover pure refractive continuous zonal optics, 100% light utilization, zero FDA contrast warning, and comparisons with PanOptix and Vivity.',
   alternates: {
     canonical: '/tecnis-puresee',
   },
   openGraph: {
-    title: 'TECNIS PureSee IOL Guide: Refractive EDOF & Contrast Clarity | Marano Eye Care NJ',
+    title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',
     description:
-      'Explore the TECNIS PureSee™ purely refractive EDOF lens with Dr. Matthew Marano Jr., MD. Zero diffractive rings, monofocal-like night vision, and continuous intermediate clarity with LENSAR ALLY laser precision.',
+      'Explore the TECNIS PureSee™ — the latest, most cutting-edge purely refractive EDOF lens with Dr. Matthew Marano Jr., MD. Zero diffractive rings, monofocal-like night vision, and continuous intermediate clarity with LENSAR ALLY laser precision.',
     url: 'https://www.maranoeye.com/tecnis-puresee',
     siteName: 'Marano Eye Care',
     images: [
       {
-        url: '/assets/images/puresee_iol_clean.png',
+        url: '/assets/images/puresee_iol_real.jpg',
         width: 1200,
         height: 630,
-        alt: 'TECNIS PureSee Refractive Extended Depth of Focus IOL',
+        alt: 'TECNIS PureSee Pure Refractive Extended Depth of Focus IOL',
       },
     ],
     locale: 'en_US',

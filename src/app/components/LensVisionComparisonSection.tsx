@@ -111,11 +111,12 @@ const lenses = [
     id: 'puresee',
     name: 'TECNIS PureSee',
     manufacturer: 'J&J MedTech',
-    type: 'Purely Refractive EDOF',
-    tagline: 'Continuous extended vision with zero contrast sensitivity warning.',
+    type: 'Latest Refractive EDOF',
+    tagline:
+      'The latest, most cutting-edge purely refractive EDOF lens with zero contrast warning.',
     color: '#00A3FF',
     featured: false,
-    badge: 'Zero Contrast Warning',
+    badge: 'Latest EDOF',
     twColor: 'text-[#00A3FF]',
     twBadgeBg: 'bg-[#00A3FF15]',
     twBadgeBorder: 'border-[#00A3FF30]',
@@ -220,13 +221,13 @@ type Distance = 'distance' | 'intermediate' | 'near';
 type TimeOfDay = 'day' | 'night';
 
 const distanceLabels: Record<Distance, { label: string; desc: string; icon: string }> = {
-  distance: { label: 'Distance', desc: 'Driving, TV, outdoors (6m+)', icon: 'EyeIcon' },
+  distance: { label: 'Distance', desc: 'Driving, TV & Outdoors (6+ ft)', icon: 'EyeIcon' },
   intermediate: {
     label: 'Intermediate',
-    desc: 'Computer, dashboard (60–70cm)',
+    desc: 'Screens, Dashboard & Cooking (24")',
     icon: 'ComputerDesktopIcon',
   },
-  near: { label: 'Near', desc: 'Reading, phone (40cm)', icon: 'BookOpenIcon' },
+  near: { label: 'Near', desc: 'Reading & Smartphone (14–16")', icon: 'BookOpenIcon' },
 };
 
 function blurClass(px: number): string {
@@ -660,448 +661,450 @@ export default function LensVisionComparisonSection() {
 
         <div
           id="iol-simulator"
-          className="glass-card border border-white/[0.08] backdrop-blur-md rounded-[32px] p-3 sm:p-5 lg:p-10 mb-10 sm:mb-12 shadow-[0_15px_40px_rgba(0,0,0,0.4)] relative z-10"
+          className="double-bezel p-1.5 sm:p-2.5 lg:p-3 mb-10 sm:mb-12 relative z-10"
         >
-          {/* Integrated Toggles Bar */}
-          <div className="flex flex-col gap-6 pb-6 mb-8 border-b border-white/[0.06]">
-            {/* Centered Environment Panel */}
-            <div className="flex flex-col gap-4 sm:gap-6 p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/[0.02] border border-white/[0.06] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)] backdrop-blur-lg max-w-4xl mx-auto w-full">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-                {/* Column 1: Lighting Time */}
-                <div className="md:col-span-4 flex flex-col justify-center md:border-r border-white/[0.06] md:pr-6">
-                  <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] mb-2.5 block text-center md:text-left">
-                    Lighting Environment
-                  </span>
-                  <div className="relative flex p-1 bg-black/40 border border-white/[0.06] rounded-2xl w-full">
-                    {/* Sliding background */}
-                    <div
-                      className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                        timeOfDay === 'day'
-                          ? 'left-1 bg-amber-500/10 border border-amber-500/20 shadow-[0_2px_8px_rgba(245,158,11,0.15)]'
-                          : 'left-[calc(50%+2px)] bg-blue-500/10 border border-blue-500/20 shadow-[0_2px_8px_rgba(59,130,246,0.15)]'
-                      }`}
-                    />
-                    {(['day', 'night'] as TimeOfDay[]).map((t) => (
-                      <button
-                        key={t}
-                        onClick={() => handleTimeOfDayChange(t)}
-                        className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
-                          timeOfDay === t
-                            ? t === 'night'
-                              ? 'text-[#60A5FA]'
-                              : 'text-[#F59E0B]'
-                            : 'text-muted-foreground hover:text-foreground'
+          <div className="double-bezel-inner p-3 sm:p-5 lg:p-10 bg-[#0d0f16]/95 backdrop-blur-xl">
+            {/* Integrated Toggles Bar */}
+            <div className="flex flex-col gap-6 pb-6 mb-8 border-b border-white/[0.06]">
+              {/* Centered Environment Panel */}
+              <div className="flex flex-col gap-4 sm:gap-6 p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-white/[0.02] border border-white/[0.06] shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)] backdrop-blur-lg max-w-4xl mx-auto w-full">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+                  {/* Column 1: Lighting Time */}
+                  <div className="md:col-span-4 flex flex-col justify-center md:border-r border-white/[0.06] md:pr-6">
+                    <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] mb-2.5 block text-center md:text-left">
+                      Lighting Environment
+                    </span>
+                    <div className="relative flex p-1 bg-black/40 border border-white/[0.06] rounded-2xl w-full">
+                      {/* Sliding background */}
+                      <div
+                        className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                          timeOfDay === 'day'
+                            ? 'left-1 bg-amber-500/10 border border-amber-500/20 shadow-[0_2px_8px_rgba(245,158,11,0.15)]'
+                            : 'left-[calc(50%+2px)] bg-blue-500/10 border border-blue-500/20 shadow-[0_2px_8px_rgba(59,130,246,0.15)]'
                         }`}
-                      >
-                        <AppIcon
-                          name={t === 'day' ? 'SunIcon' : 'MoonIcon'}
-                          size={16}
-                          variant="solid"
-                          className={
+                      />
+                      {(['day', 'night'] as TimeOfDay[]).map((t) => (
+                        <button
+                          key={t}
+                          onClick={() => handleTimeOfDayChange(t)}
+                          className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                             timeOfDay === t
-                              ? t === 'day'
-                                ? 'text-[#F59E0B]'
-                                : 'text-[#60A5FA]'
-                              : 'text-muted-foreground'
-                          }
+                              ? t === 'night'
+                                ? 'text-[#60A5FA]'
+                                : 'text-[#F59E0B]'
+                              : 'text-muted-foreground hover:text-foreground'
+                          }`}
+                        >
+                          <AppIcon
+                            name={t === 'day' ? 'SunIcon' : 'MoonIcon'}
+                            size={16}
+                            variant="solid"
+                            className={
+                              timeOfDay === t
+                                ? t === 'day'
+                                  ? 'text-[#F59E0B]'
+                                  : 'text-[#60A5FA]'
+                                : 'text-muted-foreground'
+                            }
+                          />
+                          <span>{t === 'day' ? 'Daytime' : 'Night driving'}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Column 2: Focus Distance */}
+                  <div className="md:col-span-8 flex flex-col justify-center">
+                    <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] mb-2.5 block text-center md:text-left">
+                      Simulated Focus distance
+                    </span>
+                    {timeOfDay === 'day' ? (
+                      <div className="relative p-1 bg-black/40 border border-white/[0.06] rounded-2xl w-full grid grid-cols-3 gap-1 shadow-inner">
+                        {/* Sliding Highlight Track */}
+                        <div data-active={activeDistance} className={styles.distanceHighlight} />
+                        {(Object.keys(distanceLabels) as Distance[]).map((d) => {
+                          const isActive = activeDistance === d;
+                          const details = distanceLabels[d];
+                          return (
+                            <button
+                              key={d}
+                              onClick={() => {
+                                setActiveDistance(d);
+                                trackEvent({
+                                  action: 'lens_comparison_distance_select',
+                                  category: 'Engagement',
+                                  label: d,
+                                });
+                              }}
+                              className={`relative z-10 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border text-center transition-colors duration-300 group active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border-transparent ${
+                                isActive
+                                  ? 'text-white'
+                                  : 'bg-transparent text-muted-foreground hover:text-foreground'
+                              }`}
+                            >
+                              <AppIcon
+                                name={details.icon}
+                                size={16}
+                                className={`mb-1.5 sm:mb-2 transition-transform duration-300 group-hover:scale-110 ${
+                                  isActive ? 'text-primary' : 'text-muted-foreground'
+                                }`}
+                              />
+                              <span className="block text-[10px] sm:text-xs font-bold leading-none">
+                                {details.label}
+                              </span>
+                              <span className="hidden sm:block text-[8px] text-muted-foreground/80 font-light mt-1 truncate max-w-full">
+                                {details.desc.split('(')[0].trim()}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-4 p-3 rounded-xl bg-blue-950/10 border border-blue-900/20 text-left w-full h-full min-h-[74px]">
+                        <AppIcon
+                          name="ExclamationTriangleIcon"
+                          size={24}
+                          className="text-[#60A5FA] shrink-0"
                         />
-                        <span>{t === 'day' ? 'Daytime' : 'Night driving'}</span>
-                      </button>
-                    ))}
+                        <div>
+                          <p className="text-xs font-bold text-white leading-none mb-1">
+                            Distance Focus Locked
+                          </p>
+                          <p className="text-[10px] text-muted-foreground/90 font-light leading-relaxed">
+                            Night simulation focuses specifically on distance headlight glare and
+                            halos (critical for driving safety).
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
+              </div>
+            </div>
 
-                {/* Column 2: Focus Distance */}
-                <div className="md:col-span-8 flex flex-col justify-center">
-                  <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] mb-2.5 block text-center md:text-left">
-                    Simulated Focus distance
+            {/* Desktop Simulator Viewport (md and up) */}
+            <div className="hidden md:grid grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-4">
+              {/* Left Header */}
+              <div className="flex items-center justify-between px-5 py-3 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-gray-500 shadow-[0_0_8px_rgba(107,114,128,0.6)]" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/90">
+                    Baseline Vision
                   </span>
-                  {timeOfDay === 'day' ? (
-                    <div className="relative p-1 bg-black/40 border border-white/[0.06] rounded-2xl w-full grid grid-cols-3 gap-1 shadow-inner">
-                      {/* Sliding Highlight Track */}
-                      <div data-active={activeDistance} className={styles.distanceHighlight} />
-                      {(Object.keys(distanceLabels) as Distance[]).map((d) => {
-                        const isActive = activeDistance === d;
-                        const details = distanceLabels[d];
-                        return (
-                          <button
-                            key={d}
-                            onClick={() => {
-                              setActiveDistance(d);
-                              trackEvent({
-                                action: 'lens_comparison_distance_select',
-                                category: 'Engagement',
-                                label: d,
-                              });
-                            }}
-                            className={`relative z-10 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border text-center transition-colors duration-300 group active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border-transparent ${
-                              isActive
-                                ? 'text-white'
-                                : 'bg-transparent text-muted-foreground hover:text-foreground'
-                            }`}
-                          >
-                            <AppIcon
-                              name={details.icon}
-                              size={16}
-                              className={`mb-1.5 sm:mb-2 transition-transform duration-300 group-hover:scale-110 ${
-                                isActive ? 'text-primary' : 'text-muted-foreground'
-                              }`}
-                            />
-                            <span className="block text-[10px] sm:text-xs font-bold leading-none">
-                              {details.label}
-                            </span>
-                            <span className="hidden sm:block text-[8px] text-muted-foreground/80 font-light mt-1 truncate max-w-full">
-                              {details.desc.split('(')[0].trim()}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-4 p-3 rounded-xl bg-blue-950/10 border border-blue-900/20 text-left w-full h-full min-h-[74px]">
-                      <AppIcon
-                        name="ExclamationTriangleIcon"
-                        size={24}
-                        className="text-[#60A5FA] shrink-0"
-                      />
-                      <div>
-                        <p className="text-xs font-bold text-white leading-none mb-1">
-                          Distance Focus Locked
-                        </p>
-                        <p className="text-[10px] text-muted-foreground/90 font-light leading-relaxed">
-                          Night simulation focuses specifically on distance headlight glare and
-                          halos (critical for driving safety).
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                </div>
+                <span className="text-[10px] font-bold text-muted-foreground/80 uppercase tracking-widest bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 rounded-lg">
+                  Standard Monofocal
+                </span>
+              </div>
+
+              {/* Right Header */}
+              <div className="flex items-center justify-between px-5 py-2 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
+                <div className="flex items-center gap-2">
+                  <span
+                    data-lens={activePremiumLens.id}
+                    className={`w-2 h-2 rounded-full transition-all duration-500 animate-pulse ${styles.indicatorDot}`}
+                  />
+                  <span className="text-xs font-bold uppercase tracking-wider text-white">
+                    Compare Premium Lens
+                  </span>
+                </div>
+                <div className="flex p-1 bg-black/60 rounded-full border border-white/[0.08] gap-1 shadow-inner">
+                  {lenses
+                    .filter((l) => l.id !== 'monofocal')
+                    .map((lens) => {
+                      const isActive = activePremiumLensId === lens.id;
+                      return (
+                        <button
+                          key={lens.id}
+                          onClick={() => selectPremiumLens(lens.id)}
+                          data-lens={lens.id}
+                          className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none flex items-center gap-1.5 border ${
+                            isActive
+                              ? `scale-[1.02] ${styles.activePremiumBtn}`
+                              : 'text-muted-foreground hover:text-foreground border-transparent'
+                          }`}
+                        >
+                          <span
+                            data-lens={lens.id}
+                            className={`w-1.5 h-1.5 rounded-full transition-transform duration-300 ${isActive ? `${styles.sceneTagDot} scale-[1.2]` : styles.lensDot}`}
+                          />
+                          <span>
+                            {lens.id === 'panoptix'
+                              ? 'PanOptix Pro'
+                              : lens.id === 'vivity'
+                                ? 'Clareon Vivity'
+                                : 'TECNIS PureSee'}
+                          </span>
+                        </button>
+                      );
+                    })}
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Desktop Simulator Viewport (md and up) */}
-          <div className="hidden md:grid grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-4">
-            {/* Left Header */}
-            <div className="flex items-center justify-between px-5 py-3 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-gray-500 shadow-[0_0_8px_rgba(107,114,128,0.6)]" />
-                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground/90">
-                  Baseline Vision
-                </span>
+              {/* Left Image Viewport */}
+              <div className="relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-white/[0.08] border-t-0 shadow-[0_10px_30px_rgba(0,0,0,0.4)] group">
+                {renderSimulatorImages('monofocal')}
+                {/* Glass Reflection Overlay */}
+                <div className={styles.glassReflection} />
+                {/* Scene Tag */}
+                <div className="absolute top-3 left-3 pointer-events-none z-20">
+                  <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
+                    {timeOfDay === 'day' ? 'Day' : 'Night'} · Monofocal
+                  </span>
+                </div>
+                {/* In-Image Visual Explanation Overlay */}
+                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
+                  <div className="flex items-center gap-2">
+                    {(() => {
+                      const overlay = visualStatusOverlays.monofocal[timeOfDay][activeDistance];
+                      return (
+                        <>
+                          <AppIcon
+                            name={
+                              overlay.status === 'clear'
+                                ? 'CheckCircleIcon'
+                                : 'ExclamationTriangleIcon'
+                            }
+                            size={16}
+                            variant="solid"
+                            className={
+                              overlay.status === 'clear' ? 'text-emerald-400' : 'text-amber-500'
+                            }
+                          />
+                          <span className="text-xs font-medium text-white/95">{overlay.text}</span>
+                        </>
+                      );
+                    })()}
+                  </div>
+                </div>
               </div>
-              <span className="text-[10px] font-bold text-muted-foreground/80 uppercase tracking-widest bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 rounded-lg">
-                Standard Monofocal
-              </span>
+
+              {/* Right Image Viewport */}
+              <div
+                data-lens={activePremiumLens.id}
+                className={`relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-t-0 transition-all duration-500 group ${styles.premiumViewport}`}
+              >
+                {renderPremiumSimulatorImages()}
+                {/* Glass Reflection Overlay */}
+                <div className={styles.glassReflection} />
+                {/* Scene Tag */}
+                <div className="absolute top-4 left-4 pointer-events-none z-20">
+                  <span
+                    data-lens={activePremiumLens.id}
+                    className={`bg-black/75 backdrop-blur-md text-[10px] px-3 py-1.5 rounded-xl uppercase tracking-wider font-bold border flex items-center gap-2 transition-all duration-500 ${styles.sceneTag}`}
+                  >
+                    <span
+                      data-lens={activePremiumLens.id}
+                      className={`w-2 h-2 rounded-full ${styles.sceneTagDot}`}
+                    />
+                    <span>
+                      {timeOfDay === 'day' ? 'Daytime' : 'Night driving'} · {activePremiumLens.name}
+                    </span>
+                  </span>
+                </div>
+                {/* In-Image Visual Explanation Overlay */}
+                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
+                  <div className="flex items-center gap-2">
+                    {(() => {
+                      const overlay =
+                        visualStatusOverlays[activePremiumLensId][timeOfDay][activeDistance];
+                      return (
+                        <>
+                          <AppIcon
+                            name={
+                              overlay.status === 'clear'
+                                ? 'CheckCircleIcon'
+                                : overlay.status === 'info'
+                                  ? 'InformationCircleIcon'
+                                  : 'ExclamationTriangleIcon'
+                            }
+                            size={16}
+                            variant="solid"
+                            className={
+                              overlay.status === 'clear'
+                                ? 'text-emerald-400'
+                                : overlay.status === 'info'
+                                  ? 'text-sky-400'
+                                  : 'text-amber-500'
+                            }
+                          />
+                          <span className="text-xs font-medium text-white/95">{overlay.text}</span>
+                        </>
+                      );
+                    })()}
+                  </div>
+                </div>
+              </div>
+
+              {/* Left Description */}
+              <p
+                className="text-sm sm:text-base text-slate-200 leading-relaxed min-h-[3rem] px-2"
+                aria-live="polite"
+              >
+                {timeOfDay === 'night'
+                  ? nightVisionDescriptions.monofocal
+                  : visionDescriptions.monofocal[activeDistance]}
+              </p>
+
+              {/* Right Description */}
+              <p
+                className="text-sm sm:text-base text-white leading-relaxed min-h-[3rem] px-2"
+                aria-live="polite"
+              >
+                {timeOfDay === 'night'
+                  ? nightVisionDescriptions[activePremiumLensId]
+                  : visionDescriptions[activePremiumLensId][activeDistance]}
+              </p>
             </div>
 
-            {/* Right Header */}
-            <div className="flex items-center justify-between px-5 py-2 bg-white/[0.02] border border-white/[0.06] rounded-t-2xl border-b-0">
-              <div className="flex items-center gap-2">
-                <span
-                  data-lens={activePremiumLens.id}
-                  className={`w-2 h-2 rounded-full transition-all duration-500 animate-pulse ${styles.indicatorDot}`}
-                />
-                <span className="text-xs font-bold uppercase tracking-wider text-white">
-                  Compare Premium Lens
+            {/* Mobile Simulator Viewport (less than md) */}
+            <div className="md:hidden flex flex-col gap-5">
+              {/* Mobile Consolidated Lens Selector */}
+              <div className="flex flex-col w-full gap-2">
+                <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] text-center">
+                  Select Lens to Simulate
                 </span>
-              </div>
-              <div className="flex p-1 bg-black/60 rounded-full border border-white/[0.08] gap-1 shadow-inner">
-                {lenses
-                  .filter((l) => l.id !== 'monofocal')
-                  .map((lens) => {
-                    const isActive = activePremiumLensId === lens.id;
+                <div className="flex p-1 bg-black/60 rounded-2xl border border-white/[0.08] w-full min-h-[65px] gap-1 shadow-inner">
+                  {lenses.map((lens) => {
+                    const isActive = activeMobileLensId === lens.id;
                     return (
                       <button
                         key={lens.id}
-                        onClick={() => selectPremiumLens(lens.id)}
+                        onClick={() => selectMobileLens(lens.id)}
                         data-lens={lens.id}
-                        className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none flex items-center gap-1.5 border ${
+                        className={`flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
                           isActive
-                            ? `scale-[1.02] ${styles.activePremiumBtn}`
+                            ? `scale-[1.02] ${styles.mobileLensBtn}`
                             : 'text-muted-foreground hover:text-foreground border-transparent'
                         }`}
                       >
-                        <span
-                          data-lens={lens.id}
-                          className={`w-1.5 h-1.5 rounded-full transition-transform duration-300 ${isActive ? `${styles.sceneTagDot} scale-[1.2]` : styles.lensDot}`}
-                        />
-                        <span>
-                          {lens.id === 'panoptix'
-                            ? 'PanOptix Pro'
-                            : lens.id === 'vivity'
-                              ? 'Clareon Vivity'
-                              : 'TECNIS PureSee'}
+                        <span className="text-[11px] font-bold leading-none flex items-center gap-1">
+                          <span
+                            data-lens={lens.id}
+                            className={`w-1.5 h-1.5 rounded-full inline-block shrink-0 ${isActive ? styles.mobileLensDot : styles.lensDot}`}
+                          />
+                          {lens.id === 'monofocal'
+                            ? 'Mono'
+                            : lens.id === 'panoptix'
+                              ? 'PanOptix'
+                              : lens.id === 'vivity'
+                                ? 'Vivity'
+                                : 'PureSee'}
+                        </span>
+                        <span className="block text-[8px] opacity-60 font-medium mt-1 uppercase tracking-wider">
+                          {lens.id === 'monofocal'
+                            ? 'Baseline'
+                            : lens.id === 'panoptix'
+                              ? 'Trifocal'
+                              : lens.id === 'vivity'
+                                ? 'EDOF'
+                                : 'Refractive'}
                         </span>
                       </button>
                     );
                   })}
-              </div>
-            </div>
-
-            {/* Left Image Viewport */}
-            <div className="relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-white/[0.08] border-t-0 shadow-[0_10px_30px_rgba(0,0,0,0.4)] group">
-              {renderSimulatorImages('monofocal')}
-              {/* Glass Reflection Overlay */}
-              <div className={styles.glassReflection} />
-              {/* Scene Tag */}
-              <div className="absolute top-3 left-3 pointer-events-none z-20">
-                <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
-                  {timeOfDay === 'day' ? 'Day' : 'Night'} · Monofocal
-                </span>
-              </div>
-              {/* In-Image Visual Explanation Overlay */}
-              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
-                <div className="flex items-center gap-2">
-                  {(() => {
-                    const overlay = visualStatusOverlays.monofocal[timeOfDay][activeDistance];
-                    return (
-                      <>
-                        <AppIcon
-                          name={
-                            overlay.status === 'clear'
-                              ? 'CheckCircleIcon'
-                              : 'ExclamationTriangleIcon'
-                          }
-                          size={16}
-                          variant="solid"
-                          className={
-                            overlay.status === 'clear' ? 'text-emerald-400' : 'text-amber-500'
-                          }
-                        />
-                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
-                      </>
-                    );
-                  })()}
                 </div>
               </div>
-            </div>
 
-            {/* Right Image Viewport */}
-            <div
-              data-lens={activePremiumLens.id}
-              className={`relative aspect-[4/3] rounded-b-2xl overflow-hidden bg-black/40 border border-t-0 transition-all duration-500 group ${styles.premiumViewport}`}
-            >
-              {renderPremiumSimulatorImages()}
-              {/* Glass Reflection Overlay */}
-              <div className={styles.glassReflection} />
-              {/* Scene Tag */}
-              <div className="absolute top-4 left-4 pointer-events-none z-20">
-                <span
-                  data-lens={activePremiumLens.id}
-                  className={`bg-black/75 backdrop-blur-md text-[10px] px-3 py-1.5 rounded-xl uppercase tracking-wider font-bold border flex items-center gap-2 transition-all duration-500 ${styles.sceneTag}`}
-                >
-                  <span
-                    data-lens={activePremiumLens.id}
-                    className={`w-2 h-2 rounded-full ${styles.sceneTagDot}`}
-                  />
-                  <span>
-                    {timeOfDay === 'day' ? 'Daytime' : 'Night driving'} · {activePremiumLens.name}
-                  </span>
-                </span>
-              </div>
-              {/* In-Image Visual Explanation Overlay */}
-              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
-                <div className="flex items-center gap-2">
-                  {(() => {
-                    const overlay =
-                      visualStatusOverlays[activePremiumLensId][timeOfDay][activeDistance];
-                    return (
-                      <>
-                        <AppIcon
-                          name={
-                            overlay.status === 'clear'
-                              ? 'CheckCircleIcon'
-                              : overlay.status === 'info'
-                                ? 'InformationCircleIcon'
-                                : 'ExclamationTriangleIcon'
-                          }
-                          size={16}
-                          variant="solid"
-                          className={
-                            overlay.status === 'clear'
-                              ? 'text-emerald-400'
-                              : overlay.status === 'info'
-                                ? 'text-sky-400'
-                                : 'text-amber-500'
-                          }
-                        />
-                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
-                      </>
-                    );
-                  })()}
-                </div>
-              </div>
-            </div>
+              {/* Mobile Viewport Image Box */}
+              <div
+                data-lens={activeMobileConfigLens.id}
+                className={`relative aspect-[4/3] rounded-2xl overflow-hidden bg-black/40 border transition-all duration-500 shadow-md ${styles.mobileViewport}`}
+              >
+                {renderMobileSimulatorImages()}
+                {/* Glass Reflection Overlay */}
+                <div className={styles.glassReflection} />
 
-            {/* Left Description */}
-            <p
-              className="text-sm sm:text-base text-slate-200 leading-relaxed min-h-[3rem] px-2"
-              aria-live="polite"
-            >
-              {timeOfDay === 'night'
-                ? nightVisionDescriptions.monofocal
-                : visionDescriptions.monofocal[activeDistance]}
-            </p>
+                {/* Hold to Compare Floating Button (only when premium lens is selected) */}
+                {activeMobileLensId !== 'monofocal' && (
+                  <button
+                    onMouseDown={() => setIsPeekingBaseline(true)}
+                    onMouseUp={() => setIsPeekingBaseline(false)}
+                    onMouseLeave={() => setIsPeekingBaseline(false)}
+                    onTouchStart={(e) => {
+                      e.preventDefault();
+                      setIsPeekingBaseline(true);
+                    }}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      setIsPeekingBaseline(false);
+                    }}
+                    className="absolute top-3 right-3 z-30 px-3 py-2 bg-black/75 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                  >
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    <span>Hold to Compare Monofocal</span>
+                  </button>
+                )}
 
-            {/* Right Description */}
-            <p
-              className="text-sm sm:text-base text-white leading-relaxed min-h-[3rem] px-2"
-              aria-live="polite"
-            >
-              {timeOfDay === 'night'
-                ? nightVisionDescriptions[activePremiumLensId]
-                : visionDescriptions[activePremiumLensId][activeDistance]}
-            </p>
-          </div>
-
-          {/* Mobile Simulator Viewport (less than md) */}
-          <div className="md:hidden flex flex-col gap-5">
-            {/* Mobile Consolidated Lens Selector */}
-            <div className="flex flex-col w-full gap-2">
-              <span className="text-[10px] text-primary/80 font-bold uppercase tracking-[0.2em] text-center">
-                Select Lens to Simulate
-              </span>
-              <div className="flex p-1 bg-black/60 rounded-2xl border border-white/[0.08] w-full min-h-[65px] gap-1 shadow-inner">
-                {lenses.map((lens) => {
-                  const isActive = activeMobileLensId === lens.id;
-                  return (
-                    <button
-                      key={lens.id}
-                      onClick={() => selectMobileLens(lens.id)}
-                      data-lens={lens.id}
-                      className={`flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
-                        isActive
-                          ? `scale-[1.02] ${styles.mobileLensBtn}`
-                          : 'text-muted-foreground hover:text-foreground border-transparent'
-                      }`}
-                    >
-                      <span className="text-[11px] font-bold leading-none flex items-center gap-1">
-                        <span
-                          data-lens={lens.id}
-                          className={`w-1.5 h-1.5 rounded-full inline-block shrink-0 ${isActive ? styles.mobileLensDot : styles.lensDot}`}
-                        />
-                        {lens.id === 'monofocal'
-                          ? 'Mono'
-                          : lens.id === 'panoptix'
-                            ? 'PanOptix'
-                            : lens.id === 'vivity'
-                              ? 'Vivity'
-                              : 'PureSee'}
-                      </span>
-                      <span className="block text-[8px] opacity-60 font-medium mt-1 uppercase tracking-wider">
-                        {lens.id === 'monofocal'
-                          ? 'Baseline'
-                          : lens.id === 'panoptix'
-                            ? 'Trifocal'
-                            : lens.id === 'vivity'
-                              ? 'EDOF'
-                              : 'Refractive'}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Mobile Viewport Image Box */}
-            <div
-              data-lens={activeMobileConfigLens.id}
-              className={`relative aspect-[4/3] rounded-2xl overflow-hidden bg-black/40 border transition-all duration-500 shadow-md ${styles.mobileViewport}`}
-            >
-              {renderMobileSimulatorImages()}
-              {/* Glass Reflection Overlay */}
-              <div className={styles.glassReflection} />
-
-              {/* Hold to Compare Floating Button (only when premium lens is selected) */}
-              {activeMobileLensId !== 'monofocal' && (
-                <button
-                  onMouseDown={() => setIsPeekingBaseline(true)}
-                  onMouseUp={() => setIsPeekingBaseline(false)}
-                  onMouseLeave={() => setIsPeekingBaseline(false)}
-                  onTouchStart={(e) => {
-                    e.preventDefault();
-                    setIsPeekingBaseline(true);
-                  }}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    setIsPeekingBaseline(false);
-                  }}
-                  className="absolute top-3 right-3 z-30 px-3 py-2 bg-black/75 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                >
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                  </span>
-                  <span>Hold to Compare Monofocal</span>
-                </button>
-              )}
-
-              {/* Status Overlay */}
-              <div className="absolute top-4 left-4 pointer-events-none z-20">
-                <span
-                  data-lens={isPeekingBaseline ? 'monofocal' : activeMobileLensId}
-                  className={`bg-black/75 backdrop-blur-md text-[10px] px-3 py-1.5 rounded-xl uppercase tracking-wider font-bold border flex items-center gap-2 transition-all duration-500 ${styles.mobileSceneTag}`}
-                >
+                {/* Status Overlay */}
+                <div className="absolute top-4 left-4 pointer-events-none z-20">
                   <span
                     data-lens={isPeekingBaseline ? 'monofocal' : activeMobileLensId}
-                    className={`w-2 h-2 rounded-full ${styles.mobileSceneTagDot}`}
-                  />
-                  <span>
-                    {isPeekingBaseline
-                      ? 'Monofocal (Baseline)'
-                      : lenses.find((l) => l.id === activeMobileLensId)?.name}
+                    className={`bg-black/75 backdrop-blur-md text-[10px] px-3 py-1.5 rounded-xl uppercase tracking-wider font-bold border flex items-center gap-2 transition-all duration-500 ${styles.mobileSceneTag}`}
+                  >
+                    <span
+                      data-lens={isPeekingBaseline ? 'monofocal' : activeMobileLensId}
+                      className={`w-2 h-2 rounded-full ${styles.mobileSceneTagDot}`}
+                    />
+                    <span>
+                      {isPeekingBaseline
+                        ? 'Monofocal (Baseline)'
+                        : lenses.find((l) => l.id === activeMobileLensId)?.name}
+                    </span>
                   </span>
-                </span>
-              </div>
+                </div>
 
-              {/* In-Image Visual Explanation Overlay */}
-              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
-                <div className="flex items-center gap-2">
-                  {(() => {
-                    const overlay =
-                      visualStatusOverlays[mobileDisplayLensId][timeOfDay][activeDistance];
-                    return (
-                      <>
-                        <AppIcon
-                          name={
-                            overlay.status === 'clear'
-                              ? 'CheckCircleIcon'
-                              : overlay.status === 'info'
-                                ? 'InformationCircleIcon'
-                                : 'ExclamationTriangleIcon'
-                          }
-                          size={16}
-                          variant="solid"
-                          className={
-                            overlay.status === 'clear'
-                              ? 'text-emerald-400'
-                              : overlay.status === 'info'
-                                ? 'text-sky-400'
-                                : 'text-amber-500'
-                          }
-                        />
-                        <span className="text-xs font-medium text-white/95">{overlay.text}</span>
-                      </>
-                    );
-                  })()}
+                {/* In-Image Visual Explanation Overlay */}
+                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/60 to-transparent backdrop-blur-[2px] z-20">
+                  <div className="flex items-center gap-2">
+                    {(() => {
+                      const overlay =
+                        visualStatusOverlays[mobileDisplayLensId][timeOfDay][activeDistance];
+                      return (
+                        <>
+                          <AppIcon
+                            name={
+                              overlay.status === 'clear'
+                                ? 'CheckCircleIcon'
+                                : overlay.status === 'info'
+                                  ? 'InformationCircleIcon'
+                                  : 'ExclamationTriangleIcon'
+                            }
+                            size={16}
+                            variant="solid"
+                            className={
+                              overlay.status === 'clear'
+                                ? 'text-emerald-400'
+                                : overlay.status === 'info'
+                                  ? 'text-sky-400'
+                                  : 'text-amber-500'
+                            }
+                          />
+                          <span className="text-xs font-medium text-white/95">{overlay.text}</span>
+                        </>
+                      );
+                    })()}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Mobile Description */}
-            <p
-              className="text-sm sm:text-base text-white leading-relaxed min-h-[3rem] px-1"
-              aria-live="polite"
-            >
-              {timeOfDay === 'night'
-                ? isPeekingBaseline || activeMobileLensId === 'monofocal'
-                  ? nightVisionDescriptions.monofocal
-                  : nightVisionDescriptions[activeMobileLensId]
-                : isPeekingBaseline
-                  ? visionDescriptions.monofocal[activeDistance]
-                  : visionDescriptions[activeMobileLensId][activeDistance]}
-            </p>
+              {/* Mobile Description */}
+              <p
+                className="text-sm sm:text-base text-white leading-relaxed min-h-[3rem] px-1"
+                aria-live="polite"
+              >
+                {timeOfDay === 'night'
+                  ? isPeekingBaseline || activeMobileLensId === 'monofocal'
+                    ? nightVisionDescriptions.monofocal
+                    : nightVisionDescriptions[activeMobileLensId]
+                  : isPeekingBaseline
+                    ? visionDescriptions.monofocal[activeDistance]
+                    : visionDescriptions[activeMobileLensId][activeDistance]}
+              </p>
+            </div>
           </div>
         </div>
 

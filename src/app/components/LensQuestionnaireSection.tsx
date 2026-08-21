@@ -56,7 +56,7 @@ const LENSES: Record<string, LensResult> = {
     border: 'border-[var(--lens-color)]/50',
     badge: 'Most Popular',
     badgeColor: 'bg-[var(--lens-color)] text-background',
-    src: '/assets/images/vivity_iol_dark.jpg',
+    src: '/assets/images/vivity_iol_real.jpg',
     alt: 'Clareon Vivity IOL, extended depth of focus intraocular lens',
     cta: 'Book a Vivity Consultation',
   },
@@ -78,16 +78,17 @@ const LENSES: Record<string, LensResult> = {
     border: 'border-[var(--lens-color)]/50',
     badge: 'Trifocal',
     badgeColor: 'bg-[var(--lens-color)] text-white',
-    src: '/assets/images/panoptix_iol_dark.jpg',
+    src: '/assets/images/panoptix_iol_real.jpg',
     alt: 'PanOptix Pro trifocal IOL, advanced multifocal intraocular lens',
     cta: 'Book a PanOptix Consultation',
   },
   puresee: {
     key: 'puresee',
     name: 'TECNIS PureSee',
-    tagline: 'Purely Refractive EDOF: Continuous focus with zero contrast warning',
+    tagline:
+      'Latest & Most Cutting-Edge Refractive EDOF: Continuous focus with zero contrast warning',
     description:
-      'The TECNIS PureSee is a purely refractive Extended Depth of Focus (EDOF) IOL from Johnson & Johnson MedTech. Its refractive zonal optics deliver continuous clarity from distance through intermediate to functional near vision, with zero diffractive rings, zero contrast sensitivity warnings, and a night glare profile identical to a standard monofocal lens.',
+      'The TECNIS PureSee is the latest, most cutting-edge purely refractive Extended Depth of Focus (EDOF) IOL from Johnson & Johnson MedTech. Its advanced refractive zonal optics deliver continuous clarity from distance through intermediate to functional near vision, with zero diffractive rings, zero contrast sensitivity warnings, and a night glare profile identical to a standard monofocal lens.',
     highlights: [
       'Pristine distance & intermediate clarity',
       'Functional near vision down to 40 cm',
@@ -98,10 +99,10 @@ const LENSES: Record<string, LensResult> = {
     color: 'text-[var(--lens-color)]',
     glow: 'shadow-[0_0_40px_rgba(var(--lens-color-rgb),0.2)]',
     border: 'border-[var(--lens-color)]/40',
-    badge: 'Refractive EDOF',
+    badge: 'Latest EDOF',
     badgeColor: 'bg-[var(--lens-color)] text-white',
-    src: '/assets/images/puresee_iol_dark.jpg',
-    alt: 'TECNIS PureSee IOL, purely refractive extended depth of focus intraocular lens',
+    src: '/assets/images/puresee_iol_real.jpg',
+    alt: 'TECNIS PureSee IOL, the latest and most cutting-edge purely refractive extended depth of focus intraocular lens',
     cta: 'Book a PureSee Consultation',
   },
   monofocal: {
@@ -123,7 +124,7 @@ const LENSES: Record<string, LensResult> = {
     badge: 'Insurance Covered',
     badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/monofocal_iol_dark.jpg',
-    alt: 'Standard monofocal IOL, insurance-covered intraocular lens for cataract surgery',
+    alt: 'Standard Monofocal IOL, traditional single focus lens',
     cta: 'Book a Consultation',
   },
 };
@@ -428,254 +429,261 @@ export default function LensQuestionnaireSection() {
           </div>
         </div>
 
-        {/* Card */}
+        {/* Card with Doppelrand / Double-Bezel Architecture */}
         <div
-          className={`relative bg-card border rounded-2xl p-5 sm:p-8 card-glow transition-all duration-300 ${
+          className={`double-bezel transition-all duration-300 ${
             animating && !calculating ? 'opacity-60 scale-[0.99]' : 'opacity-100 scale-100'
           }`}
         >
-          {calculating ? (
-            <div className="flex flex-col items-center justify-center py-10 text-center min-h-[300px]">
-              {/* Spinning optical grid/reticle simulator */}
-              <div className="relative w-24 h-24 mb-8">
-                {/* Outermost pulsing ring */}
-                <div className="absolute inset-0 rounded-full border border-primary/20 animate-ping" />
-                {/* Secondary rotating scanner ticks */}
-                <div className="absolute inset-2 rounded-full border border-dashed border-primary/45 animate-[spin_8s_linear_infinite]" />
-                {/* Inner solid tracking ring */}
-                <div className="absolute inset-4 rounded-full border border-primary/60" />
-                {/* Core focus dot */}
-                <div className="absolute inset-9 rounded-full bg-primary/20 border border-primary flex items-center justify-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          <div className="double-bezel-inner bg-card p-5 sm:p-8 card-glow">
+            {calculating ? (
+              <div className="flex flex-col items-center justify-center py-10 text-center min-h-[300px]">
+                {/* Spinning optical grid/reticle simulator */}
+                <div className="relative w-24 h-24 mb-8">
+                  {/* Outermost pulsing ring */}
+                  <div className="absolute inset-0 rounded-full border border-primary/20 animate-ping" />
+                  {/* Secondary rotating scanner ticks */}
+                  <div className="absolute inset-2 rounded-full border border-dashed border-primary/45 animate-[spin_8s_linear_infinite]" />
+                  {/* Inner solid tracking ring */}
+                  <div className="absolute inset-4 rounded-full border border-primary/60" />
+                  {/* Core focus dot */}
+                  <div className="absolute inset-9 rounded-full bg-primary/20 border border-primary flex items-center justify-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  </div>
                 </div>
-              </div>
-              <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-4 tracking-wide uppercase">
-                Finding Your Best Match...
-              </h3>
-              <div className="w-64 max-w-full text-left font-mono text-[10px] sm:text-xs text-muted-foreground/85 space-y-1.5 bg-white/[0.01] border border-white/[0.04] p-3.5 rounded-lg">
-                <div
-                  className={`flex items-center justify-between text-primary/80 ${styles.logItem}`}
-                >
-                  <span>{`>`} Scanning answers...</span>
-                  <span className="animate-pulse">PASS</span>
-                </div>
-                <div
-                  className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
-                >
-                  <span>{`>`} Assessing lifestyle tier...</span>
-                  <span className="font-semibold text-foreground">OK</span>
-                </div>
-                <div
-                  className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
-                >
-                  <span>{`>`} Evaluating glare tolerance...</span>
-                  <span className="font-semibold text-foreground">OK</span>
-                </div>
-                <div
-                  className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
-                >
-                  <span>{`>`} Calibrating lens optics...</span>
-                  <span className="font-semibold text-primary animate-pulse">CALIBRATED</span>
-                </div>
-              </div>
-            </div>
-          ) : !result ? (
-            <>
-              {/* Question */}
-              <div className="mb-5 sm:mb-6">
-                <h3 className="text-lg sm:text-2xl font-semibold text-foreground mb-2 leading-snug">
-                  {currentQuestion.text}
+                <h3 className="font-display text-lg sm:text-xl font-medium text-foreground mb-4 tracking-wide uppercase">
+                  Finding Your Best Match...
                 </h3>
-                {currentQuestion.subtext && (
-                  <p className="text-muted-foreground text-sm">{currentQuestion.subtext}</p>
-                )}
+                <div className="w-64 max-w-full text-left font-mono text-[10px] sm:text-xs text-muted-foreground/85 space-y-1.5 bg-white/[0.01] border border-white/[0.04] p-3.5 rounded-lg">
+                  <div
+                    className={`flex items-center justify-between text-primary/80 ${styles.logItem}`}
+                  >
+                    <span>{`>`} Scanning answers...</span>
+                    <span className="animate-pulse">PASS</span>
+                  </div>
+                  <div
+                    className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
+                  >
+                    <span>{`>`} Assessing lifestyle tier...</span>
+                    <span className="font-semibold text-foreground">OK</span>
+                  </div>
+                  <div
+                    className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
+                  >
+                    <span>{`>`} Evaluating glare tolerance...</span>
+                    <span className="font-semibold text-foreground">OK</span>
+                  </div>
+                  <div
+                    className={`flex items-center justify-between text-muted-foreground ${styles.logItem}`}
+                  >
+                    <span>{`>`} Calibrating lens optics...</span>
+                    <span className="font-semibold text-primary animate-pulse">CALIBRATED</span>
+                  </div>
+                </div>
               </div>
+            ) : !result ? (
+              <>
+                {/* Question */}
+                <div className="mb-5 sm:mb-6">
+                  <h3 className="text-lg sm:text-2xl font-semibold text-foreground mb-2 leading-snug">
+                    {currentQuestion.text}
+                  </h3>
+                  {currentQuestion.subtext && (
+                    <p className="text-muted-foreground text-sm">{currentQuestion.subtext}</p>
+                  )}
+                </div>
 
-              {/* Options */}
-              <div
-                className="flex flex-col gap-3"
-                role="radiogroup"
-                aria-label={currentQuestion.text}
-              >
-                {currentQuestion.options.map((opt, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => handleOption(opt, idx)}
-                    role="radio"
-                    aria-checked={selectedOption === idx}
-                    className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-all duration-300 ease-out cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
+                {/* Options */}
+                <div
+                  className="flex flex-col gap-3"
+                  role="radiogroup"
+                  aria-label={currentQuestion.text}
+                >
+                  {currentQuestion.options.map((opt, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => handleOption(opt, idx)}
+                      role="radio"
+                      aria-checked={selectedOption === idx}
+                      className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-all duration-300 ease-out cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
                       ${
                         selectedOption === idx
                           ? 'border-primary bg-primary/10 shadow-[0_0_24px_rgba(197,160,89,0.15)] scale-[0.99]'
                           : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(197,160,89,0.06)] active:scale-[0.99]'
                       }`}
-                  >
-                    <span aria-hidden="true" className="text-xl sm:text-2xl shrink-0 leading-none">
-                      {opt.icon}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-foreground font-medium text-sm sm:text-base leading-snug">
-                        {opt.label}
-                      </p>
-                      {opt.sublabel && (
-                        <p className="text-muted-foreground text-xs mt-0.5">{opt.sublabel}</p>
-                      )}
-                    </div>
-                    <span
-                      aria-hidden="true"
-                      className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-spring
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="text-xl sm:text-2xl shrink-0 leading-none"
+                      >
+                        {opt.icon}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-foreground font-medium text-sm sm:text-base leading-snug">
+                          {opt.label}
+                        </p>
+                        {opt.sublabel && (
+                          <p className="text-muted-foreground text-xs mt-0.5">{opt.sublabel}</p>
+                        )}
+                      </div>
+                      <span
+                        aria-hidden="true"
+                        className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-spring
                         ${
                           selectedOption === idx
                             ? 'border-primary bg-primary'
                             : 'border-muted-foreground/40 group-hover:border-primary/60'
                         }`}
-                    >
-                      {selectedOption === idx && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-background animate-fade-in-scale" />
-                      )}
-                    </span>
-                  </button>
-                ))}
-              </div>
-
-              {/* Back button */}
-              {history.length > 0 && (
-                <button
-                  onClick={handleBack}
-                  className="mt-5 flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm transition-colors touch-manipulation py-2 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                >
-                  <Icon name="ChevronLeftIcon" size={16} />
-                  Back to previous question
-                </button>
-              )}
-            </>
-          ) : (
-            /* Result */
-            <div>
-              <div className="flex items-center gap-2 mb-5">
-                <span className="text-sm text-muted-foreground">
-                  Based on your answers, here&apos;s what patients like you most often choose:
-                </span>
-              </div>
-
-              {/* Mimetic Desire framing */}
-              <div className="flex items-center gap-3 mb-4 px-4 py-3 rounded-xl bg-primary/6 border border-primary/15">
-                <span className="text-lg shrink-0">👥</span>
-                <p className="text-xs text-primary/90 font-medium leading-snug">
-                  <strong className="text-primary">
-                    {result.key === 'vivity'
-                      ? '74%'
-                      : result.key === 'panoptix'
-                        ? '68%'
-                        : result.key === 'puresee'
-                          ? '81%'
-                          : '100%'}{' '}
-                    of patients with your vision profile
-                  </strong>{' '}
-                  chose {result.name}, and{' '}
-                  {result.key === 'monofocal'
-                    ? 'appreciate the reliability'
-                    : "99% say they'd choose a premium lens again"}
-                  .
-                </p>
-              </div>
-
-              <div
-                data-lens={result.key}
-                className={`doppel-shell p-1.5 mb-6 transition-spring ${styles.resultShell}`}
-              >
-                <div className="bg-muted/90 rounded-[calc(2rem-6px)] p-5 sm:p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
-                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
-                    {/* Lens image */}
-                    <div className="shrink-0 w-full sm:w-36 h-40 sm:h-36 rounded-xl overflow-hidden border border-white/[0.08] relative">
-                      <AppImage
-                        src={result.src}
-                        alt={result.alt}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    {/* Info */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-center gap-2 mb-2">
-                        <span
-                          className={`text-xs font-semibold px-2.5 py-1 rounded-full ${result.badgeColor}`}
-                        >
-                          {result.badge}
-                        </span>
-                      </div>
-                      <h3
-                        className={`text-2xl sm:text-3xl font-display font-bold mb-1 ${result.color}`}
                       >
-                        {result.name}
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-3">{result.tagline}</p>
-                      <p className="text-foreground/80 text-sm leading-relaxed">
-                        {result.description}
-                      </p>
-                    </div>
-                  </div>
+                        {selectedOption === idx && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-background animate-fade-in-scale" />
+                        )}
+                      </span>
+                    </button>
+                  ))}
+                </div>
 
-                  {/* Highlights */}
-                  <div className="mt-5 pt-5 border-t border-white/[0.08]">
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-3">
-                      Key Benefits
-                    </p>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {result.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm">
-                          <span className={`mt-0.5 shrink-0 ${result.color}`}>
-                            <Icon name="CheckIcon" size={16} />
+                {/* Back button */}
+                {history.length > 0 && (
+                  <button
+                    onClick={handleBack}
+                    className="mt-5 flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm transition-colors touch-manipulation py-2 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                  >
+                    <Icon name="ChevronLeftIcon" size={16} />
+                    Back to previous question
+                  </button>
+                )}
+              </>
+            ) : (
+              /* Result */
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="text-sm text-muted-foreground">
+                    Based on your answers, here&apos;s what patients like you most often choose:
+                  </span>
+                </div>
+
+                {/* Mimetic Desire framing */}
+                <div className="flex items-center gap-3 mb-4 px-4 py-3 rounded-xl bg-primary/6 border border-primary/15">
+                  <span className="text-lg shrink-0">👥</span>
+                  <p className="text-xs text-primary/90 font-medium leading-snug">
+                    <strong className="text-primary">
+                      {result.key === 'vivity'
+                        ? '74%'
+                        : result.key === 'panoptix'
+                          ? '68%'
+                          : result.key === 'puresee'
+                            ? '81%'
+                            : '100%'}{' '}
+                      of patients with your vision profile
+                    </strong>{' '}
+                    chose {result.name}, and{' '}
+                    {result.key === 'monofocal'
+                      ? 'appreciate the reliability'
+                      : "99% say they'd choose a premium lens again"}
+                    .
+                  </p>
+                </div>
+
+                <div
+                  data-lens={result.key}
+                  className={`doppel-shell p-1.5 mb-6 transition-spring ${styles.resultShell}`}
+                >
+                  <div className="bg-muted/90 rounded-[calc(2rem-6px)] p-5 sm:p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
+                      {/* Lens image */}
+                      <div className="shrink-0 w-full sm:w-36 h-40 sm:h-36 rounded-xl overflow-hidden border border-white/[0.08] relative">
+                        <AppImage
+                          src={result.src}
+                          alt={result.alt}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 144px"
+                          className="object-cover"
+                        />
+                      </div>
+
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <span
+                            className={`text-xs font-semibold px-2.5 py-1 rounded-full ${result.badgeColor}`}
+                          >
+                            {result.badge}
                           </span>
-                          <span className="text-foreground/80">{h}</span>
-                        </li>
-                      ))}
-                    </ul>
+                        </div>
+                        <h3
+                          className={`text-2xl sm:text-3xl font-display font-bold mb-1 ${result.color}`}
+                        >
+                          {result.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mb-3">{result.tagline}</p>
+                        <p className="text-foreground/80 text-sm leading-relaxed">
+                          {result.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Highlights */}
+                    <div className="mt-5 pt-5 border-t border-white/[0.08]">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium mb-3">
+                        Key Benefits
+                      </p>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {result.highlights.map((h, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm">
+                            <span className={`mt-0.5 shrink-0 ${result.color}`}>
+                              <Icon name="CheckIcon" size={16} />
+                            </span>
+                            <span className="text-foreground/80">{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href="#booking"
-                  onClick={() => {
-                    // Primary: fire custom event (for already-mounted BookingSection)
-                    window.dispatchEvent(new CustomEvent('select-lens', { detail: result.key }));
-                    // Fallback: write to sessionStorage (for cases where BookingSection mounts after)
-                    try {
-                      sessionStorage.setItem('preselect-lens', result.key);
-                    } catch (e) {
-                      console.warn('Session storage write failed:', e);
-                    }
-                    trackEvent({
-                      action: 'quiz_cta_click',
-                      category: 'Conversion',
-                      label: result.name,
-                    });
-                  }}
-                  className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#040506] font-semibold text-sm hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                >
-                  {result.cta}
-                  <Icon name="ArrowRightIcon" size={16} />
-                </a>
-                <button
-                  onClick={handleRestart}
-                  className="flex items-center justify-center gap-2 px-5 py-4 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                >
-                  <Icon name="ArrowPathIcon" size={16} />
-                  Retake Quiz
-                </button>
-              </div>
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href="#booking"
+                    onClick={() => {
+                      // Primary: fire custom event (for already-mounted BookingSection)
+                      window.dispatchEvent(new CustomEvent('select-lens', { detail: result.key }));
+                      // Fallback: write to sessionStorage (for cases where BookingSection mounts after)
+                      try {
+                        sessionStorage.setItem('preselect-lens', result.key);
+                      } catch (e) {
+                        console.warn('Session storage write failed:', e);
+                      }
+                      trackEvent({
+                        action: 'quiz_cta_click',
+                        category: 'Conversion',
+                        label: result.name,
+                      });
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#040506] font-semibold text-sm hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                  >
+                    {result.cta}
+                    <Icon name="ArrowRightIcon" size={16} />
+                  </a>
+                  <button
+                    onClick={handleRestart}
+                    className="flex items-center justify-center gap-2 px-5 py-4 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                  >
+                    <Icon name="ArrowPathIcon" size={16} />
+                    Retake Quiz
+                  </button>
+                </div>
 
-              <p className="mt-4 text-xs text-muted-foreground text-center">
-                This quiz cannot replace Dr. Marano&apos;s thorough clinical evaluation, but it
-                provides a clear starting point. During your consultation, he will confirm the ideal
-                match for your individual eyes.
-              </p>
-            </div>
-          )}
+                <p className="mt-4 text-xs text-muted-foreground text-center">
+                  This quiz cannot replace Dr. Marano&apos;s thorough clinical evaluation, but it
+                  provides a clear starting point. During your consultation, he will confirm the
+                  ideal match for your individual eyes.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Disclaimer */}

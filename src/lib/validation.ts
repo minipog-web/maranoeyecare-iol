@@ -26,7 +26,7 @@ export function validateConsultationBooking(
     errors.firstName = 'Please enter your first name.';
   } else if (firstName.length > 50) {
     errors.firstName = 'First name must be 50 characters or fewer.';
-  } else if (!/^[A-Za-z\s'-]+$/.test(firstName)) {
+  } else if (!/^[\p{L}\s'-]+$/u.test(firstName)) {
     errors.firstName = 'Please use letters, spaces, hyphens, or apostrophes only.';
   }
 
@@ -35,7 +35,7 @@ export function validateConsultationBooking(
     errors.lastName = 'Please enter your last name.';
   } else if (lastName.length > 50) {
     errors.lastName = 'Last name must be 50 characters or fewer.';
-  } else if (!/^[A-Za-z\s'-]+$/.test(lastName)) {
+  } else if (!/^[\p{L}\s'-]+$/u.test(lastName)) {
     errors.lastName = 'Please use letters, spaces, hyphens, or apostrophes only.';
   }
 

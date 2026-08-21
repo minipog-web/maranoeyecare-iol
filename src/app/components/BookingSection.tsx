@@ -11,6 +11,31 @@ const locations = [
   'Denville Office (16 Pocono Rd)',
   'Newark Office (306 Martin Luther King Blvd)',
 ];
+
+const offices = [
+  {
+    city: 'Livingston',
+    badge: 'Main Surgical Center',
+    phone: '973-322-0100',
+    address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
+    mapsUrl: 'https://maps.google.com/?q=200+South+Orange+Ave+Suite+209+Livingston+NJ+07039',
+  },
+  {
+    city: 'Denville',
+    badge: 'Morris County Office',
+    phone: '973-358-0416',
+    address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
+    mapsUrl: 'https://maps.google.com/?q=16+Pocono+Rd+Suite+301+Denville+NJ+07834',
+  },
+  {
+    city: 'Newark',
+    badge: 'Essex County Office',
+    phone: '973-315-6439',
+    address: '306 Martin L. King Blvd, Newark, NJ 07102',
+    mapsUrl: 'https://maps.google.com/?q=306+Martin+L.+King+Blvd+Newark+NJ+07102',
+  },
+];
+
 const lensOptions = [
   'Not sure yet (need guidance)',
   'PanOptix Pro (Trifocal)',
@@ -48,19 +73,19 @@ const whatHappensNext = [
     step: '1',
     icon: 'ClipboardDocumentCheckIcon',
     title: 'Submit Your Request',
-    desc: 'Takes 60 seconds. No medical history needed.',
+    desc: 'Takes 30 seconds · 100% free · No medical history or credit card needed.',
   },
   {
     step: '2',
     icon: 'PhoneIcon',
-    title: 'We Call Within 1 Business Day',
-    desc: 'Our team confirms a time that works for you.',
+    title: 'Quick 5-Min Phone Callback',
+    desc: 'Our friendly patient care coordinator calls within 1 business hour to confirm your time.',
   },
   {
     step: '3',
     icon: 'ChatBubbleLeftRightIcon',
-    title: '30-Min Consultation',
-    desc: 'No obligation. No pressure. Just answers.',
+    title: 'Dr. Marano Evaluation',
+    desc: 'Comprehensive 1-on-1 optical scan with Dr. Marano. Zero obligation.',
   },
 ];
 
@@ -95,6 +120,7 @@ export default function BookingSection({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [quizResult, setQuizResult] = useState<string | null>(preselectedLens || null);
+  const [activeOfficeTab, setActiveOfficeTab] = useState(0);
 
   React.useEffect(() => {
     const handleSelectLens = (e: Event) => {
@@ -295,66 +321,49 @@ export default function BookingSection({
               )}
             </h2>
 
-            {/* Urgency framing */}
-            <div className="flex items-start gap-3 mb-4 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 shadow-[0_6px_15px_rgba(0,0,0,0.3)]">
-              <Icon
-                name="ExclamationTriangleIcon"
-                size={18}
-                className="text-amber-400 shrink-0 mt-0.5"
-              />
-              <p className="text-sm text-amber-200/80 leading-relaxed">
-                <strong className="text-amber-300 font-semibold">
-                  {bookingUrgencyTitle || 'Cataracts only progress'}
-                </strong>{' '}
-                {bookingUrgencyText ||
-                  'and never improve on their own. Waiting makes vision worse and recovery longer.'}
-              </p>
+            {/* Unified Reassurance & Urgency Card */}
+            <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-primary/10 via-white/[0.03] to-transparent border border-primary/20 shadow-lg">
+              <div className="flex items-start gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 mt-1.5" />
+                <p className="text-xs sm:text-sm text-foreground/90 font-medium leading-relaxed">
+                  {bookingUrgencyTitle && bookingUrgencyText
+                    ? `${bookingUrgencyTitle} ${bookingUrgencyText}`
+                    : 'Cataracts only progress and never improve on their own. Waiting makes vision worse and recovery longer.'}
+                </p>
+              </div>
             </div>
 
-            {/* Risk Reversal Guarantee framing */}
-            <div className="flex items-center gap-3 mb-6 sm:mb-8 p-3.5 rounded-xl bg-primary/10 border border-primary/20">
-              <Icon name="ShieldCheckIcon" size={20} className="text-primary shrink-0" />
-              <p className="text-xs sm:text-sm text-white font-medium">
-                <strong className="text-primary font-bold">Zero-Pain Guarantee:</strong> 100%
-                topical numbing eye drops. No needles, no injections, and zero out-of-pocket
-                consultation fee.
-              </p>
-            </div>
-
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10">
-              {`Book a no-obligation consultation to discuss which lens best matches your eyes, lifestyle and goals.`}
+            <p className="text-base sm:text-lg text-white font-medium leading-relaxed mb-3">
+              {`Call any of our 3 New Jersey offices directly to schedule by phone, or complete the form to have our care coordinator contact you.`}
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+              {`Whether you call or submit online, our dedicated team is here to answer your questions and find a time that fits your schedule.`}
             </p>
 
             {/* What happens next */}
-            <div className="mb-8 sm:mb-10">
-              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground mb-5">
-                {`What Happens Next`}
+            <div className="mb-6">
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground mb-3.5">
+                {`What Happens When You Submit`}
               </p>
-              <div className="relative">
-                <div className="space-y-5">
-                  {whatHappensNext.map((item) => (
-                    <div key={item.step} className="flex items-start gap-4 group">
-                      <div className="relative shrink-0">
-                        <div className="w-11 h-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors z-10 relative">
-                          <Icon
-                            name={item.icon as 'PhoneIcon'}
-                            size={18}
-                            className="text-primary"
-                          />
-                        </div>
-                      </div>
-                      <div className="pt-1">
-                        <p className="text-sm font-semibold text-foreground mb-0.5">{item.title}</p>
-                        <p className="text-sm text-muted-foreground leading-snug">{item.desc}</p>
-                      </div>
+              <div className="grid grid-cols-1 gap-3">
+                {whatHappensNext.map((item) => (
+                  <div key={item.step} className="flex items-start gap-3 group">
+                    <div className="w-7 h-7 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 text-xs font-bold text-primary">
+                      {item.step}
                     </div>
-                  ))}
-                </div>
+                    <div className="pt-0.5">
+                      <p className="text-xs sm:text-sm font-semibold text-foreground leading-tight mb-0.5">
+                        {item.title}
+                      </p>
+                      <p className="text-xs text-muted-foreground leading-snug">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
             {/* HSA / Financing badges */}
-            <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
+            <div className="flex flex-wrap gap-2 mb-6">
               {[
                 { icon: 'CreditCardIcon', label: 'HSA / FSA Eligible' },
                 { icon: 'ClipboardDocumentListIcon', label: 'CareCredit Accepted' },
@@ -362,7 +371,7 @@ export default function BookingSection({
               ].map((b) => (
                 <span
                   key={b.label}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/[0.04] border border-border px-3 py-1.5 rounded-full"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full"
                 >
                   <Icon
                     name={b.icon as 'CreditCardIcon'}
@@ -374,65 +383,66 @@ export default function BookingSection({
               ))}
             </div>
 
-            {/* Phone numbers & Office Addresses */}
-            <div className="border-t border-border pt-6 sm:pt-8">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                {`Or visit / call us directly`}
-              </p>
-              <div className="space-y-4">
-                {[
-                  {
-                    city: 'Livingston',
-                    phone: '973-322-0100',
-                    address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
-                    mapsUrl:
-                      'https://maps.google.com/?q=200+South+Orange+Ave+Suite+209+Livingston+NJ+07039',
-                  },
-                  {
-                    city: 'Denville',
-                    phone: '973-358-0416',
-                    address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
-                    mapsUrl: 'https://maps.google.com/?q=16+Pocono+Rd+Suite+301+Denville+NJ+07834',
-                  },
-                  {
-                    city: 'Newark',
-                    phone: '973-315-6439',
-                    address: '306 Martin L. King Blvd, Newark, NJ 07102',
-                    mapsUrl: 'https://maps.google.com/?q=306+Martin+L.+King+Blvd+Newark+NJ+07102',
-                  },
-                ].map((loc) => (
-                  <div
+            {/* Office Locations Segmented Card */}
+            <div className="border-t border-border pt-5">
+              <div className="flex items-center justify-between mb-2.5">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary flex items-center gap-1.5">
+                  <Icon name="PhoneIcon" size={13} className="text-primary animate-pulse" />
+                  {`Prefer to Call? Select Your Office:`}
+                </p>
+                <span className="text-[10px] text-primary font-mono font-medium">
+                  {offices[activeOfficeTab].badge}
+                </span>
+              </div>
+
+              {/* Location tabs */}
+              <div className="flex gap-1.5 p-1 bg-black/40 border border-white/[0.08] rounded-xl mb-3">
+                {offices.map((loc, idx) => (
+                  <button
                     key={loc.city}
-                    className="p-3.5 rounded-xl bg-white/[0.02] border border-border/40 hover:border-primary/30 transition-all space-y-1.5"
+                    type="button"
+                    onClick={() => setActiveOfficeTab(idx)}
+                    className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                      activeOfficeTab === idx
+                        ? 'bg-primary/20 text-primary border border-primary/40 shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
                   >
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-foreground text-sm flex items-center gap-1.5">
-                        <Icon name="MapPinIcon" size={14} className="text-primary shrink-0" />
-                        {loc.city} Office
-                      </span>
-                      <a
-                        href={`tel:${loc.phone.replace(/-/g, '')}`}
-                        suppressHydrationWarning
-                        className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary hover:underline touch-manipulation"
-                        aria-label={`Call ${loc.city} office at ${loc.phone}`}
-                      >
-                        <Icon name="PhoneIcon" size={13} className="text-primary shrink-0" />
-                        {loc.phone}
-                      </a>
-                    </div>
-                    <a
-                      href={loc.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center justify-between group pt-1 border-t border-border/20"
-                    >
-                      <span className="leading-snug">{loc.address}</span>
-                      <span className="text-[11px] font-semibold text-primary group-hover:underline shrink-0 ml-2">
-                        Map & Directions &rarr;
-                      </span>
-                    </a>
-                  </div>
+                    {loc.city}
+                  </button>
                 ))}
+              </div>
+
+              {/* Active Office Detail Card */}
+              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-primary/25 space-y-2 shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-bold text-foreground text-sm flex items-center gap-1.5 truncate">
+                    <Icon name="MapPinIcon" size={14} className="text-primary shrink-0" />
+                    {offices[activeOfficeTab].city} Office
+                  </span>
+                  <a
+                    href={`tel:${offices[activeOfficeTab].phone.replace(/-/g, '')}`}
+                    suppressHydrationWarning
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-black font-bold text-xs hover:bg-primary/90 transition-all shrink-0 shadow-[0_0_12px_rgba(197,160,89,0.35)] active:scale-95 touch-manipulation"
+                    aria-label={`Call ${offices[activeOfficeTab].city} office at ${offices[activeOfficeTab].phone}`}
+                  >
+                    <Icon name="PhoneIcon" size={12} className="text-black shrink-0" />
+                    <span>Call {offices[activeOfficeTab].phone}</span>
+                  </a>
+                </div>
+                <a
+                  href={offices[activeOfficeTab].mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center justify-between group pt-1.5 border-t border-border/20"
+                >
+                  <span className="leading-snug text-xs truncate">
+                    {offices[activeOfficeTab].address}
+                  </span>
+                  <span className="text-[11px] font-semibold text-primary group-hover:underline shrink-0 ml-2">
+                    Get Directions &rarr;
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -447,12 +457,12 @@ export default function BookingSection({
                   <Icon name="CheckCircleIcon" size={36} className="text-primary" />
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-medium text-foreground mb-3">
-                  {`Consultation Requested!`}
+                  {`You're All Set!`}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed max-w-sm">
-                  {`We have received your information. A member of the Marano Eye Care team will call you within one business day to finalize a date and time that fits your schedule.`}
+                  {`We have received your request. Our patient care coordinator will call you within 1 business hour to confirm your preferred office location and time, and answer any initial questions.`}
                 </p>
-                <p className="text-sm text-primary/80 mt-3 font-medium italic max-w-sm">
+                <p className="text-sm text-primary/90 mt-3 font-medium italic max-w-sm">
                   {`Most patients say their only regret is not doing this sooner.`}
                 </p>
                 <a
@@ -510,13 +520,13 @@ export default function BookingSection({
                   <div className="flex flex-wrap items-center justify-between gap-2 mt-2">
                     <p className="text-xs text-muted-foreground">
                       {step === 1
-                        ? 'Provide your contact details to begin.'
+                        ? 'Complete this 30-second form, or call any office directly on the left.'
                         : 'Optional, helps Dr. Marano prepare for your visit.'}
                     </p>
                     <div className="flex items-center gap-1.5 text-xs text-primary font-bold tracking-wide uppercase">
                       <Icon name="LockClosedIcon" size={14} className="shrink-0" />
                       {step === 1
-                        ? 'HIPAA Compliant · No Medical History Required'
+                        ? 'HIPAA Compliant · No Medical History Required · Pressure Free'
                         : 'Privacy Protected & HIPAA Secure'}
                     </div>
                   </div>

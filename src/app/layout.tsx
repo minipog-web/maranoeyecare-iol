@@ -447,6 +447,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
+
+        {/* Subtle Tactile Film-Grain Overlay Layer */}
+        <div
+          className="film-grain-overlay pointer-events-none fixed inset-0 z-50 opacity-[0.025] select-none"
+          aria-hidden="true"
+        />
+
         {children}
         {/*
           CallRail Dynamic Number Swap & Google Ads Call Tracking

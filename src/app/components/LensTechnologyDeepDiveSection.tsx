@@ -56,8 +56,8 @@ export default function LensTechnologyDeepDiveSection() {
             Optical Physics & Innovation
           </p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-6">
-            The Physics of{' '}
-            <span className="font-semibold text-gradient-primary">Visual Freedom.</span>
+            The Science of{' '}
+            <span className="font-semibold text-gradient-primary">Seamless Sight.</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto">
             Not all premium lenses work the same way. Explore the advanced science and
@@ -696,37 +696,54 @@ export default function LensTechnologyDeepDiveSection() {
           <div className="lg:col-span-5 flex flex-col justify-between gap-6">
             {/* The Lens Card Detail */}
             <div
-              className="p-[1px] rounded-3xl overflow-hidden bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-xl shadow-xl transition-all duration-500"
+              className="double-bezel transition-all duration-500"
               style={{
-                boxShadow: `0 10px 30px -10px ${tabColors[activeTab].glow}`,
+                boxShadow: `0 12px 36px -8px ${tabColors[activeTab].glow}`,
               }}
             >
-              <div className="bg-[#0e1017] rounded-[calc(1.5rem-1px)] p-6 sm:p-8 flex flex-col gap-6 border border-white/[0.03]">
-                {/* Badge and Title */}
-                <div>
-                  <span
-                    className="text-xs font-bold uppercase tracking-widest block mb-2"
-                    style={{ color: tabColors[activeTab].text }}
-                  >
-                    {activeTab === 'panoptix'
-                      ? 'Proprietary ENLIGHTEN Optics'
-                      : activeTab === 'vivity'
-                        ? 'Advanced X-WAVE™ Wavefront Technology'
-                        : 'Purely Refractive EDOF Innovation'}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-serif text-foreground font-medium flex items-center">
-                    {activeTab === 'panoptix' ? (
-                      <>
-                        PanOptix<sup>®</sup>
-                      </>
-                    ) : activeTab === 'vivity' ? (
-                      <>
-                        Vivity<sup>®</sup>
-                      </>
-                    ) : (
-                      <>TECNIS PureSee™</>
-                    )}
-                  </h3>
+              <div className="double-bezel-inner bg-[#0e1017] p-6 sm:p-8 flex flex-col gap-6">
+                {/* Badge, Title & Specular Macro Preview */}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <span
+                      className="text-xs font-bold uppercase tracking-widest block mb-2"
+                      style={{ color: tabColors[activeTab].text }}
+                    >
+                      {activeTab === 'panoptix'
+                        ? 'Proprietary ENLIGHTEN Optics'
+                        : activeTab === 'vivity'
+                          ? 'Advanced X-WAVE™ Wavefront Technology'
+                          : 'Latest & Most Cutting-Edge Refractive EDOF'}
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-serif text-foreground font-medium flex items-center">
+                      {activeTab === 'panoptix' ? (
+                        <>
+                          PanOptix<sup>®</sup>
+                        </>
+                      ) : activeTab === 'vivity' ? (
+                        <>
+                          Vivity<sup>®</sup>
+                        </>
+                      ) : (
+                        <>TECNIS PureSee™</>
+                      )}
+                    </h3>
+                  </div>
+
+                  {/* Optical Diagnostic Pill */}
+                  <div className="shrink-0 hidden sm:block">
+                    <span className="optical-diagnostic-pill">
+                      <span
+                        className="indicator-dot"
+                        style={{ color: tabColors[activeTab].text }}
+                      />
+                      {activeTab === 'panoptix'
+                        ? 'TRIFOCAL 3-ZONE'
+                        : activeTab === 'vivity'
+                          ? 'NON-DIFFRACTIVE'
+                          : 'PURE-REFRACTIVE'}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Physics explanation text */}
@@ -759,18 +776,19 @@ export default function LensTechnologyDeepDiveSection() {
                     </>
                   ) : (
                     <>
-                      The TECNIS PureSee is a purely refractive extended depth of focus (EDOF) IOL
-                      that delivers uninterrupted continuous vision without diffractive rings or
-                      light splitting{' '}
+                      The TECNIS PureSee is the latest, most cutting-edge purely refractive extended
+                      depth of focus (EDOF) IOL from Johnson &amp; Johnson MedTech, delivering
+                      uninterrupted continuous vision without diffractive rings or light splitting{' '}
                       <sup className="text-[10px] ml-0.5">
                         <a href="#footnote-3" className="text-primary hover:underline font-mono">
                           [3]
                         </a>
                       </sup>
-                      . By utilizing advanced continuous surface refraction, 100% of incoming light
-                      is harnessed without scatter. It is the first FDA-approved EDOF lens with zero
-                      contrast sensitivity warning, providing a dysphotopsia profile identical to a
-                      monofocal control.
+                      . By utilizing breakthrough continuous surface refraction, 100% of incoming
+                      light is harnessed without scatter. It is the first FDA-approved EDOF lens
+                      with zero contrast sensitivity warning, delivering clear, natural night vision
+                      with virtually no glare, halos, or starbursts—matching the night comfort of a
+                      standard single-focus lens.
                     </>
                   )}
                 </p>
@@ -895,41 +913,6 @@ export default function LensTechnologyDeepDiveSection() {
                 </div>
               </div>
             </div>
-
-            {/* Dedicated Guide Link for PanOptix / Vivity / PureSee */}
-            {activeTab === 'panoptix' && (
-              <a
-                href="/panoptix-pro"
-                className="flex items-center justify-between p-4 rounded-2xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/20 hover:border-[#8b5cf6]/50 transition-all text-xs sm:text-sm font-bold text-[#a78bfa] group focus-visible:ring-2 focus-visible:ring-[#8b5cf6] focus-visible:outline-none"
-              >
-                <span>Read Full Clareon® PanOptix® Pro Clinical Outcomes Guide</span>
-                <span className="group-hover:translate-x-1 transition-transform font-mono text-base">
-                  &rarr;
-                </span>
-              </a>
-            )}
-            {activeTab === 'vivity' && (
-              <a
-                href="/clareon-vivity"
-                className="flex items-center justify-between p-4 rounded-2xl bg-primary/10 border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all text-xs sm:text-sm font-bold text-primary group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-              >
-                <span>Read Full Clareon® Vivity® Clinical Outcomes Guide</span>
-                <span className="group-hover:translate-x-1 transition-transform font-mono text-base">
-                  &rarr;
-                </span>
-              </a>
-            )}
-            {activeTab === 'puresee' && (
-              <a
-                href="/tecnis-puresee"
-                className="flex items-center justify-between p-4 rounded-2xl bg-[#00a3ff]/10 border border-[#00a3ff]/30 hover:bg-[#00a3ff]/20 hover:border-[#00a3ff]/50 transition-all text-xs sm:text-sm font-bold text-[#38bdf8] group focus-visible:ring-2 focus-visible:ring-[#00a3ff] focus-visible:outline-none"
-              >
-                <span>Read Full TECNIS PureSee™ Clinical Outcomes Guide</span>
-                <span className="group-hover:translate-x-1 transition-transform font-mono text-base">
-                  &rarr;
-                </span>
-              </a>
-            )}
 
             {/* Promotional LENSAR Precision Callout Card */}
             <div className="glass-card border border-white/[0.08] backdrop-blur-md rounded-3xl p-6 bg-gradient-to-r from-primary/5 to-transparent relative overflow-hidden flex items-start gap-4">

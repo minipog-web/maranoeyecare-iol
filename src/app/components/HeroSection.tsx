@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
@@ -33,11 +34,11 @@ const lenses = [
   },
   {
     name: 'TECNIS PureSee',
-    tag: 'Newest EDOF',
-    subtitle: 'Pure refractive extended vision',
-    detail: 'FDA-approved EDOF with zero contrast warning [3]',
+    tag: 'Latest EDOF',
+    subtitle: 'Latest refractive extended vision',
+    detail: 'Latest, most cutting-edge EDOF IOL with zero contrast warning [3]',
     src: '/assets/images/puresee_iol_clean.png',
-    alt: 'TECNIS PureSee IOL, purely refractive extended depth of focus intraocular lens',
+    alt: 'TECNIS PureSee IOL, the latest and most cutting-edge purely refractive extended depth of focus intraocular lens',
     accent: 'border-primary/25',
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(0,163,255,0.35),0_0_0_1px_rgba(0,163,255,0.2)] border-[rgba(0,163,255,0.45)] bg-white/[0.05]',
@@ -58,6 +59,7 @@ export default function HeroSection({
   heroTitleLine2,
   heroDesc,
 }: HeroSectionProps) {
+  const router = useRouter();
   // Starts with Clareon Vivity enlarged at onset until user hovers over another card
   const [activeLens, setActiveLens] = useState<string>('Clareon Vivity');
 
@@ -327,7 +329,7 @@ export default function HeroSection({
                             category: 'Navigation',
                             label: 'Hero PanOptix Card to /panoptix-pro',
                           });
-                          window.location.href = '/panoptix-pro';
+                          router.push('/panoptix-pro');
                           return;
                         }
                         if (lens.name.includes('Vivity')) {
@@ -336,7 +338,7 @@ export default function HeroSection({
                             category: 'Navigation',
                             label: 'Hero Vivity Card to /clareon-vivity',
                           });
-                          window.location.href = '/clareon-vivity';
+                          router.push('/clareon-vivity');
                           return;
                         }
                         if (lens.name.includes('PureSee')) {
@@ -345,7 +347,7 @@ export default function HeroSection({
                             category: 'Navigation',
                             label: 'Hero PureSee Card to /tecnis-puresee',
                           });
-                          window.location.href = '/tecnis-puresee';
+                          router.push('/tecnis-puresee');
                           return;
                         }
                         setActiveLens(lens.name);
