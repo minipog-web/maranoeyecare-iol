@@ -427,7 +427,7 @@ export default function BookingSection({
                     aria-label={`Call ${offices[activeOfficeTab].city} office at ${offices[activeOfficeTab].phone}`}
                   >
                     <Icon name="PhoneIcon" size={12} className="text-black shrink-0" />
-                    <span>Call {offices[activeOfficeTab].phone}</span>
+                    <span suppressHydrationWarning>Call {offices[activeOfficeTab].phone}</span>
                   </a>
                 </div>
                 <a

@@ -282,12 +282,16 @@ export default function TestimonialsSection() {
 
                 <div className="flex-1">
                   <p className="text-base sm:text-lg text-foreground/90 leading-relaxed italic mb-5 sm:mb-6">
-                    &ldquo;If I were choosing a lens for myself or my own family, I would personally
-                    choose the Clareon Vivity with the LENSAR 3D laser system. It provides
-                    extraordinary precision and comfort throughout the procedure. But the honest
-                    reality is that no single lens fits every life. That is why I sit down with
-                    every patient to understand your daily routines, hobbies, and work before
-                    recommending an option. Your eyes, and how you live, guide the decision.&rdquo;
+                    &ldquo;By far, the most meaningful and rewarding experience as an eye surgeon is
+                    hearing back from patients about the life-liberating visual restoration they
+                    experience after cataract surgery. Seeing someone regain effortless clarity and
+                    independence—whether that means driving comfortably at night or seeing their loved
+                    ones without hunting for glasses—is what makes this work so special. If I were
+                    choosing a lens for myself or my own family, I would personally choose the Clareon
+                    Vivity with the LENSAR 3D laser system for its extraordinary precision and comfort.
+                    But no single lens fits every life. That is why I sit down with every patient to
+                    understand your daily routines, hobbies, and work first. Your eyes, and how you
+                    live, guide the decision.&rdquo;
                   </p>
 
                   <div className="flex items-center gap-4 flex-wrap">

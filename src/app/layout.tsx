@@ -460,7 +460,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         */}
         <Script
           src="//cdn.callrail.com/companies/570973368/3348eb3c5c72e54f1c23/12/swap.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>
