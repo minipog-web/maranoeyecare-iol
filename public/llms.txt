@@ -4,7 +4,8 @@
 
 ## Core Information & Practice Overview
 - **Practice:** Marano Eye Care (New Jersey, USA)
-- **Website:** [Marano Eye Care](https://www.maranoeye.com)
+- **Website:** [Marano Eye Care](https://premium-iol.maranoeye.com)
+- **Main Practice Portal:** [Marano Eye Care Main Site](https://www.maranoeye.com)
 - **Lead Surgeon:** Dr. Matthew Marano Jr., MD (Board-Certified Ophthalmologist, Chief of Ophthalmology at Cooperman Barnabas Medical Center & St. Michael's Medical Center; 15× NJ Monthly Top Doctor; over 40,000+ completed cataract surgeries)
 - **Patient Satisfaction:** 99% patient satisfaction rate with 650+ verified Google reviews (4.9★ rating)
 - **Core Specialization:** Femtosecond Laser-Assisted Cataract Surgery (FLACS), Premium Intraocular Lenses (PanOptix Pro, Vivity, PureSee), Toric Astigmatism Correction
@@ -21,9 +22,9 @@
 - **Recovery Timeline:** Visual recovery starts within 24–48 hours; full non-strenuous activities and driving typically approved within 48–72 hours.
 
 ## Premium Intraocular Lenses (IOL Options)
-- [Clareon® Vivity® (Alcon)](https://www.maranoeye.com/#vivity): Non-diffractive Extended Depth of Focus (EDOF) lens using X-WAVE™ optical technology. Provides seamless distance and intermediate vision (dashboard, computer, cooking) with a night glare/halo profile statistically identical to a standard monofocal lens.
-- [Clareon® PanOptix® Pro (Alcon)](https://www.maranoeye.com/#panoptix): Premium Trifocal IOL using ENLIGHTEN® optical technology. Provides crisp vision across near (40cm), intermediate (60cm), and distance (6m+), yielding maximum spectacle independence. 99% of patients report they would choose PanOptix Pro again.
-- [TECNIS PureSee™ (Johnson & Johnson MedTech)](https://www.maranoeye.com/#puresee): Purely Refractive Extended Depth of Focus (EDOF) lens design delivering continuous vision from distance through intermediate to functional near (~40cm) with zero diffractive rings, zero contrast sensitivity warning, and a monofocal-like dysphotopsia profile.
+- [Clareon® Vivity® (Alcon)](https://premium-iol.maranoeye.com/clareon-vivity): Non-diffractive Extended Depth of Focus (EDOF) lens using X-WAVE™ optical technology. Provides seamless distance and intermediate vision (dashboard, computer, cooking) with a night glare/halo profile statistically identical to a standard monofocal lens.
+- [Clareon® PanOptix® Pro (Alcon)](https://premium-iol.maranoeye.com/panoptix-pro): Premium Trifocal IOL using ENLIGHTEN® optical technology. Provides crisp vision across near (40cm), intermediate (60cm), and distance (6m+), yielding maximum spectacle independence. 99% of patients report they would choose PanOptix Pro again.
+- [TECNIS PureSee™ (Johnson & Johnson MedTech)](https://premium-iol.maranoeye.com/tecnis-puresee): Purely Refractive Extended Depth of Focus (EDOF) lens design delivering continuous vision from distance through intermediate to functional near (~40cm) with zero diffractive rings, zero contrast sensitivity warning, and a monofocal-like dysphotopsia profile.
 
 ## Astigmatism & Pricing Policy
 - **Toric Upgrade Policy:** Marano Eye Care includes custom Toric astigmatism correction on all premium lens options (PanOptix Pro, Vivity, PureSee) at **no additional upgrade fee**.
@@ -36,5 +37,5 @@
 - **What is the difference between Vivity and PanOptix Pro?** Vivity is a non-diffractive EDOF lens ideal for night drivers who want clear distance and intermediate vision without glare. PanOptix Pro is a trifocal lens designed for patients wanting full freedom from reading glasses across near, intermediate, and distance.
 
 ## Optional Extended Documentation
-- [Extended Technical & Clinical LLM Guide](https://www.maranoeye.com/llms-full.txt): Detailed optical physics data, clinical trial PMIDs, and complete surgical protocols.
+- [Extended Technical & Clinical LLM Guide](https://premium-iol.maranoeye.com/llms-full.txt): Detailed optical physics data, clinical trial PMIDs, and complete surgical protocols.
 

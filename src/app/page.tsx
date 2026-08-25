@@ -21,6 +21,11 @@ const TrustSection = dynamic(() => import('@/app/components/TrustSection'), {
   loading: SkeletonLoader,
 });
 
+const CataractFormationSection = dynamic(
+  () => import('@/app/components/CataractFormationSection'),
+  { loading: SkeletonLoader }
+);
+
 const LensVisionComparisonSection = dynamic(
   () => import('@/app/components/LensVisionComparisonSection'),
   { loading: SkeletonLoader }
@@ -81,6 +86,8 @@ export default async function HomePage({ searchParams }: PageProps) {
       <hr className="section-divider" />
       <TrustSection />
       <CertificationLogos />
+      <hr className="section-divider" />
+      <CataractFormationSection />
       <hr className="section-divider" />
       <LensVisionComparisonSection />
       <hr className="section-divider" />

@@ -98,6 +98,11 @@ const faqs = [
       'PanOptix Pro is a diffractive trifocal lens that delivers maximum near reading freedom (20/20 at 40 cm) with a brief neuroadaptation period. Clareon Vivity is a non-diffractive extended depth of focus (EDOF) lens that delivers exceptional intermediate computer vision and monofocal-like night driving safety with fewer night halos, but may require lightweight reading glasses for prolonged small book reading.',
   },
   {
+    question: 'How does cataract surgery work with PanOptix Pro, and is the result permanent?',
+    answer:
+      'Cataracts form when natural crystalline lens proteins break down, causing the lens to turn cloudy, yellow, and eventually brown and opaque. During surgery, Dr. Matthew Marano Jr. removes the cloudy natural lens and replaces it with the Clareon PanOptix Pro acrylic IOL. Because high-purity acrylic never clouds or degrades, the custom prescription inside your new lens remains stable for the rest of your life.',
+  },
+  {
     question: 'How fast is the recovery after PanOptix Pro cataract surgery?',
     answer:
       'Dr. Matthew Marano Jr. performs outpatient laser cataract surgery in approximately 10 minutes using gentle zero-needle numbing eye drops. Most patients notice dramatic improvements in brightness and color vibrancy within 24 to 48 hours, and can resume light daily activities the very next day.',

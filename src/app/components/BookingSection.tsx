@@ -290,11 +290,11 @@ export default function BookingSection({
   return (
     <section id="booking" className="py-16 sm:py-24 relative overflow-hidden bg-[#0c0f16]">
       {/* Background */}
-      <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(197,160,89,0.08)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(56,189,248,0.02)_0%,transparent_70%)]" />
       <div className="absolute inset-0 grid-lines-bg opacity-10" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/3 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/[0.015] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/[0.02] rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
@@ -303,11 +303,11 @@ export default function BookingSection({
             <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               {`IOL Consultation`}
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
-                <>
+                <span className="whitespace-nowrap">
                   Reclaim <span className="font-semibold text-gradient-primary">Clear Vision</span>
-                </>
+                </span>
               ) : bookingHeadline.includes('Clareon® Vivity®') ? (
                 <>
                   Schedule Your{' '}

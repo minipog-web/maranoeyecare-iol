@@ -98,6 +98,11 @@ const faqs = [
       'The Abbe number measures optical dispersion. A higher Abbe number means lower chromatic aberration (less color distortion and sharper edge contrast). PureSee is engineered from Johnson & Johnson’s proprietary biomaterial with an Abbe number of 55, providing superior optical clarity and color fidelity in both bright daylight and dim evening conditions [3].',
   },
   {
+    question: 'What causes cataracts, and will the TECNIS PureSee lens ever need replacement?',
+    answer:
+      'A cataract forms in your eye’s natural crystalline lens as proteins break down and turn cloudy, yellow, and eventually brown and opaque. During surgery, Dr. Marano removes the cataractous natural lens and implants the clear acrylic TECNIS PureSee IOL. Because high-purity optical acrylic never ages or clouds, the lens provides lifetime optical clarity with a permanent, stable prescription that never changes.',
+  },
+  {
     question: 'How fast is recovery after TECNIS PureSee cataract surgery?',
     answer:
       'Dr. Matthew Marano Jr. performs outpatient laser cataract surgery in approximately 10 minutes using gentle zero-needle numbing eye drops. Most patients notice clear vision within 24 to 48 hours and can resume light driving and work the following day.',

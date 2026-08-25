@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Clareon PanOptix Pro Trifocal IOL Guide: Full-Range Clarity | Marano Eye Care NJ',
     description:
       'Explore the Clareon® PanOptix® Pro trifocal lens with Dr. Matthew Marano Jr., MD. High spectacle independence at 40cm near, 60cm intermediate, and distance with LENSAR ALLY laser precision.',
-    url: 'https://www.maranoeye.com/panoptix-pro',
+    url: 'https://premium-iol.maranoeye.com/panoptix-pro',
     siteName: 'Marano Eye Care',
     images: [
       {
@@ -38,8 +38,8 @@ const panoptixSchemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
-    '@id': 'https://www.maranoeye.com/panoptix-pro#webpage',
-    url: 'https://www.maranoeye.com/panoptix-pro',
+    '@id': 'https://premium-iol.maranoeye.com/panoptix-pro#webpage',
+    url: 'https://premium-iol.maranoeye.com/panoptix-pro',
     name: 'Clareon PanOptix Pro Trifocal IOL Clinical Guide & Outcomes | Marano Eye Care',
     description:
       'Detailed clinical overview of the Alcon Clareon PanOptix Pro trifocal intraocular lens, ENLIGHTEN optical design, 88% light transmission, and 3-way comparisons.',
@@ -58,7 +58,7 @@ const panoptixSchemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    '@id': 'https://www.maranoeye.com/panoptix-pro#faq',
+    '@id': 'https://premium-iol.maranoeye.com/panoptix-pro#faq',
     mainEntity: [
       {
         '@type': 'Question',

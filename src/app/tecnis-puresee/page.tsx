@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',
     description:
       'Explore the TECNIS PureSee™ — the latest, most cutting-edge purely refractive EDOF lens with Dr. Matthew Marano Jr., MD. Zero diffractive rings, monofocal-like night vision, and continuous intermediate clarity with LENSAR ALLY laser precision.',
-    url: 'https://www.maranoeye.com/tecnis-puresee',
+    url: 'https://premium-iol.maranoeye.com/tecnis-puresee',
     siteName: 'Marano Eye Care',
     images: [
       {
@@ -37,8 +37,8 @@ const pureseeSchemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
-    '@id': 'https://www.maranoeye.com/tecnis-puresee#webpage',
-    url: 'https://www.maranoeye.com/tecnis-puresee',
+    '@id': 'https://premium-iol.maranoeye.com/tecnis-puresee#webpage',
+    url: 'https://premium-iol.maranoeye.com/tecnis-puresee',
     name: 'TECNIS PureSee IOL Clinical Guide & Outcomes | Marano Eye Care',
     description:
       'Detailed clinical overview of the Johnson & Johnson TECNIS PureSee refractive extended depth of focus intraocular lens, optical physics, contrast sensitivity, and 3-way comparisons.',
@@ -57,7 +57,7 @@ const pureseeSchemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    '@id': 'https://www.maranoeye.com/tecnis-puresee#faq',
+    '@id': 'https://premium-iol.maranoeye.com/tecnis-puresee#faq',
     mainEntity: [
       {
         '@type': 'Question',

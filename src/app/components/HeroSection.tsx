@@ -69,10 +69,10 @@ export default function HeroSection({
       <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 grid-lines-bg opacity-100" />
 
-      {/* Rich ambient lighting */}
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[500px] bg-[radial-gradient(circle,rgba(197,160,89,0.06)_0%,transparent_70%)] rounded-full blur-[120px] pointer-events-none" />
+      {/* Rich ambient lighting - tuned to avoid warm hue interference behind gold title text */}
+      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-primary/[0.02] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/[0.02] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[500px] bg-[radial-gradient(circle,rgba(56,189,248,0.02)_0%,transparent_70%)] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full py-4 sm:py-6 lg:py-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-10 items-start">
@@ -91,7 +91,7 @@ export default function HeroSection({
                 {heroTitleLine2 || 'Lifetime Visual Freedom.'}
               </span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 text-justify animate-fade-up delay-300 fill-both">
+            <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-10 text-left animate-fade-up delay-300 fill-both">
               {heroDesc ||
                 'Cataract surgery is a once-in-a-lifetime opportunity to restore your vision. Standard lenses only focus at a single distance, meaning you still depend on reading glasses every day. Advanced lenses are designed to restore clear vision across distance, intermediate, and near ranges so you can leave glasses behind.'}
             </p>{' '}

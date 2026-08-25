@@ -88,9 +88,9 @@ const faqs = [
       'Most Vivity patients enjoy freedom from glasses for distance tasks (driving, golf, watching movies) and intermediate tasks (computer monitors, car dashboards, tablets, grocery shelves, price tags). For small fine print, such as paperback books in dim light or prescription medicine labels, having a pair of lightweight reading glasses is normal and expected. Patients wanting complete near reading independence often consider the Clareon PanOptix Pro instead.',
   },
   {
-    question: 'What is the Clareon hydrophobic acrylic biomaterial?',
+    question: 'What is the Clareon hydrophobic acrylic biomaterial, and does it last for life?',
     answer:
-      'The Clareon platform is Alcon’s most advanced IOL biomaterial. It is made from ultra-pure hydrophobic acrylic with exceptional optical clarity. Long-term laboratory and clinical studies show 0.0 glistenings (micro-vacuoles that can cloud older lenses over decades) and features STABLEFORCE® haptics for unmatched centration and long-term rotational stability in the capsular bag.',
+      'A cataract develops when the proteins in your biological crystalline lens break down, turning cloudy, yellow, and eventually brown and opaque. During surgery, Dr. Marano removes that cataractous natural lens and replaces it with the Clareon acrylic IOL. Made from ultra-pure hydrophobic acrylic with exceptional optical clarity, Clareon features 0.0 glistenings and STABLEFORCE® haptics. Because high-grade acrylic never ages or degrades, the prescription implanted in your eye remains stable for the rest of your life, and cataracts can never return.',
   },
   {
     question: 'What if I have astigmatism? Does Clareon Vivity Toric cost more?',
@@ -140,7 +140,7 @@ export default function VivityPageClient() {
 
       {/* ── HERO SECTION: Clinical Authority & Core Value Proposition ── */}
       <section className="relative overflow-hidden py-12 sm:py-16 lg:py-20 bg-[#0c0e14]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(197,160,89,0.12)_0%,transparent_75%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(255,255,255,0.02)_0%,transparent_75%)] pointer-events-none" />
         <div className="absolute inset-0 grid-lines-bg opacity-20 pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">

@@ -8,56 +8,56 @@ import { handleSpotlightMouseMove } from '@/lib/ui';
 const profiles = [
   {
     id: 'active',
-    title: 'The High-Performance Athlete & Explorer',
+    title: 'The Active Athlete & Outdoor Explorer',
     description:
-      'Whether you are on the golf course, tennis courts, or navigating slopes, this is the ideal lens for the digital age. It provides excellent vision for reading computer and phone screens, offering a smooth transition to distance vision with vivid color perception and no night driving glare.',
+      'Engineered for dynamic lifestyles where seamless focus from distance to dashboard and digital screens is vital, without the glare, starbursts, or halo rings associated with traditional multi-focal lenses.',
     activities: [
-      'Golf, tennis, or pickleball',
-      'Sailing & coastal navigation',
-      'Driving at speed, day or night',
-      'Reading computer & phone screens easily',
+      'Golf, tennis, pickleball & cycling',
+      'Boating, hiking & outdoor recreation',
+      'Day and nighttime highway driving',
+      'Computer screens & smartphone navigation',
     ],
     recommendation: 'Clareon Vivity',
     reason:
-      'X-WAVE™ non-diffractive technology offers the smoothest transition from far to intermediate, preserving vivid color perception and minimizing glare or halos for night driving.',
+      'Proprietary X-WAVE™ non-diffractive optics stretch light smoothly without splitting it, delivering natural intermediate depth and pristine night-driving comfort.',
     image: '/assets/images/profile_active_professional.jpg',
-    imageAlt: 'Active mature athlete watching a shot outdoors on a bright course',
-    stat: '92% report pristine visual clarity and texture depth [2]',
+    imageAlt: 'Active mature athlete enjoying bright outdoor recreation',
+    stat: '92% of patients report exceptional intermediate and distance visual comfort [2]',
   },
   {
     id: 'tech',
-    title: 'The Creative Visionary & Detail Specialist',
+    title: 'The Avid Reader & Detail Craftsman',
     description:
-      'You are dedicated to painting, sculpting, fine woodwork, editing photography, or spending hours reading dense novels and fine manuscript review. You require the absolute best near and intermediate vision for your detailing work.',
+      'Engineered for maximum daily independence from reading glasses. Delivers sharp clarity at close-up reading range, intermediate computer distance, and far driving vision.',
     activities: [
-      'Fine painting & detailing work',
-      'Avid reading & fine manuscript review',
-      'Photography & close-up editing',
-      'Screen work & desktop tasks',
+      'Reading fine print, books & smartphone text',
+      'Woodworking, sewing & precision hobbies',
+      'Desktop computer & laptop productivity',
+      'Daily tasks without searching for reading glasses',
     ],
     recommendation: 'PanOptix Pro',
     reason:
-      'Trifocal diffractive optics deliver exceptional near and intermediate clarity, making it easy to read fine print and work comfortably at a desk without glasses.',
+      'Advanced trifocal optics focus light at near (40 cm), intermediate (60 cm), and far distances, enabling 99% of patients to go through their day completely glasses-free.',
     image: '/assets/images/profile_tech_conscious.jpg',
-    imageAlt: 'Creative artist reviewing fine details at a bright modern studio desk',
-    stat: '99% of patients would choose this premium lens again [1]',
+    imageAlt: 'Individual reading and working comfortably at a bright modern desk',
+    stat: '99% of PanOptix patients would choose the same lens again [1]',
   },
   {
     id: 'innovator',
-    title: 'The Modern Innovator & Tech Explorer',
+    title: 'The Modern Innovator & Night Driver',
     description:
-      'You are drawn to the newest, most advanced optical engineering. You want cutting-edge refractive technology that delivers continuous visual depth from distance to functional near, while maintaining immaculate, monofocal-level contrast and zero diffractive halos.',
+      'The newest FDA-approved purely refractive EDOF technology. Delivers continuous extended visual depth with zero diffractive rings and a nighttime contrast profile identical to a standard single-focus lens.',
     activities: [
-      'Early adopter of cutting-edge technology',
-      'Demands state-of-the-art optical engineering',
-      'Dynamic multi-distance digital lifestyle',
-      'Uncompromising night driving & contrast clarity',
+      'Demands the newest optical engineering',
+      'Frequent night driving on dark roads',
+      'Seamless multi-distance screen lifestyle',
+      'Zero tolerance for halo rings or contrast loss',
     ],
     recommendation: 'TECNIS PureSee',
     reason:
-      'The newest FDA-approved purely refractive EDOF design delivers continuous extended depth with zero diffractive rings, giving you tomorrow’s optical innovation with pristine night contrast.',
+      'Refractive zonal optics eliminate dysphotopsia (halos/glare) entirely, delivering continuous clarity from distance through intermediate and functional near vision.',
     image: '/assets/images/profile_conservative_candidate.jpg',
-    imageAlt: 'Tech-conscious individual exploring modern digital devices outdoors',
+    imageAlt: 'Tech-conscious individual using modern digital devices outdoors',
     stat: 'First FDA-approved EDOF with zero contrast sensitivity warning [3]',
   },
 ];
@@ -66,9 +66,9 @@ export default function LifestyleMatchSection() {
   return (
     <section id="lifestyle" className="py-16 sm:py-24 relative overflow-hidden bg-[#10131b]">
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_80%_30%,rgba(197,160,89,0.06)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_80%_30%,rgba(255,255,255,0.015)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/[0.015] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/[0.02] rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -102,15 +102,27 @@ export default function LifestyleMatchSection() {
               className={`glass-card border border-border rounded-3xl p-5 sm:p-8 w-full lg:max-w-md ${styles.comparisonCard}`}
             >
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-5 sm:mb-6">
-                Standard Monofocal vs. Premium IOL
+                Standard Monofocal vs. Premium IOL Comparison
               </p>
               <div className="flex flex-col">
                 {[
-                  { label: 'Distance', standard: true, premium: true },
-                  { label: 'Intermediate (screens)', standard: false, premium: true },
-                  { label: 'Near (reading)', standard: false, premium: true },
-                  { label: 'Covered by insurance', standard: true, premium: false },
-                  { label: 'Glasses-free lifestyle', standard: false, premium: true },
+                  {
+                    label: 'Distance vision (driving & television)',
+                    standard: true,
+                    premium: true,
+                  },
+                  {
+                    label: 'Intermediate vision (dashboards & computers)',
+                    standard: false,
+                    premium: true,
+                  },
+                  { label: 'Near vision (reading books & phones)', standard: false, premium: true },
+                  { label: 'Standard surgery covered by insurance', standard: true, premium: true },
+                  {
+                    label: 'Freedom from reading glasses & bifocals',
+                    standard: false,
+                    premium: true,
+                  },
                 ].map((row) => (
                   <div
                     key={row.label}
@@ -152,9 +164,13 @@ export default function LifestyleMatchSection() {
                   size={16}
                   className="text-primary/70 shrink-0 mt-0.5"
                 />
-                <p className="text-[11px] text-muted-foreground/75 leading-relaxed">
-                  Premium lenses are an investment beyond insurance. Most patients report it&apos;s
-                  the best investment they&apos;ve ever made in their vision.
+                <p className="text-[11px] text-muted-foreground/85 leading-relaxed">
+                  <strong className="text-foreground/90 font-medium">
+                    Insurance Coverage Note:
+                  </strong>{' '}
+                  Medicare and private insurance cover standard cataract removal and basic monofocal
+                  lenses. The premium optical upgrade is a lifetime investment in continuous,
+                  glasses-free vision.
                 </p>
               </div>
             </div>
@@ -295,7 +311,7 @@ export default function LifestyleMatchSection() {
                           onClick={(e) => e.stopPropagation()}
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
                         >
-                          <span>Explore Dedicated Vivity Clinical Guide</span>
+                          <span>View Clareon Vivity Patient Guide</span>
                           <span className="font-mono text-sm">&rarr;</span>
                         </a>
                       </div>
@@ -307,7 +323,7 @@ export default function LifestyleMatchSection() {
                           onClick={(e) => e.stopPropagation()}
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a78bfa] hover:underline"
                         >
-                          <span>Explore Dedicated PanOptix Pro Clinical Guide</span>
+                          <span>View PanOptix Pro Patient Guide</span>
                           <span className="font-mono text-sm">&rarr;</span>
                         </a>
                       </div>
@@ -319,7 +335,7 @@ export default function LifestyleMatchSection() {
                           onClick={(e) => e.stopPropagation()}
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-[#38bdf8] hover:underline"
                         >
-                          <span>Explore Dedicated PureSee Clinical Guide</span>
+                          <span>View TECNIS PureSee Patient Guide</span>
                           <span className="font-mono text-sm">&rarr;</span>
                         </a>
                       </div>

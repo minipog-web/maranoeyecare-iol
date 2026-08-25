@@ -1147,7 +1147,7 @@ export default function LensVisionComparisonSection() {
                       <p className="text-xs sm:text-sm text-primary font-bold uppercase tracking-wider mb-1">
                         {lens.manufacturer} · {lens.type}
                       </p>
-                      <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground whitespace-nowrap">
+                      <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground">
                         {lens.name}
                       </h3>
                     </div>
@@ -1416,12 +1416,12 @@ export default function LensVisionComparisonSection() {
             <AppIcon name="SparklesIcon" size={28} className="text-primary animate-pulse" />
           </div>
           <div className="space-y-4 max-w-full w-full">
-            <h4 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground text-center whitespace-nowrap">
+            <h4 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground text-center">
               Have Astigmatism? All <span className="text-primary font-bold">Premium Lenses</span>{' '}
               Include <span className="text-primary font-bold">Toric Upgrades</span> at{' '}
               <span className="text-primary font-bold">No Extra Charge</span>
             </h4>
-            <p className="text-base sm:text-lg text-white leading-relaxed font-normal text-justify max-w-4xl mx-auto">
+            <p className="text-base sm:text-lg text-white leading-relaxed font-normal text-left sm:text-center max-w-4xl mx-auto">
               <strong>Toric lenses</strong> are specially engineered to correct astigmatism, which
               is the irregular curvature of your cornea. Without a Toric lens, astigmatism remains
               uncorrected after surgery, meaning you will still need glasses for crisp distance

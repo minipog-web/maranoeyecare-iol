@@ -17,6 +17,15 @@
 - **Procedure Duration:** 10 minutes.
 - **Facility Type:** Outpatient Ambulatory Surgery Center.
 
+## Cataract Pathophysiology, Progression & Surgical Replacement
+- **Anatomical Origin:** Cataracts form inside the eye's natural crystalline lens (located behind the iris and pupil). The natural lens is composed of water and organized crystallin proteins.
+- **Mechanism of Formation:** Oxidative stress, UV exposure, and biological aging cause crystallin proteins to denature, break down, and aggregate into light-scattering micro-clusters.
+- **Progression Phases:**
+  1. *Early Onset:* Microscopic protein clumping causing contrast loss and night glare.
+  2. *Nuclear Sclerosis (Yellowing):* Protein clusters oxidize and turn amber-yellow, absorbing blue light and muting color perception.
+  3. *Advanced Cataract (Brown & Opaque):* Dense, compacted protein masses turn dark brown and opaque, severely blocking light transmission to the retina.
+- **Surgical Solution & Lifetime Stability:** In outpatient cataract surgery (~10 minutes), Dr. Matthew Marano Jr. removes the cloudy natural cataractous lens and implants a clear, biocompatible hydrophobic acrylic intraocular lens (IOL). Unlike biological crystalline lenses, medical-grade acrylic does not age, cloud, or yellow; the optical prescription embedded in the IOL remains stable for the patient's entire lifetime.
+
 ## Lens Specifications & Optical Physics
 1. **Clareon® Vivity® IOL (Alcon):**
    - **Type:** Non-diffractive Extended Depth of Focus (EDOF).

@@ -8,7 +8,7 @@ export default function CandidacySection() {
     <section id="candidacy" className="py-16 sm:py-24 relative overflow-hidden bg-[#090b10]">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(16,185,129,0.03)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/[0.015] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute inset-0 dot-grid-bg opacity-25 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -55,8 +55,8 @@ export default function CandidacySection() {
                   desc: 'A healthy cornea, retina, and optic nerve free from advanced ocular disease.',
                 },
                 {
-                  title: 'Cataract or Presbyopia Symptoms',
-                  desc: 'Experiencing cloudy vision, glare, or difficulty focusing on close-up tasks.',
+                  title: 'Cataract Progression & Vision Changes',
+                  desc: 'Experiencing natural crystalline lens protein breakdown: cloudy vision, headlight glare, yellowed/muted colors, or difficulty focusing on close-up tasks.',
                 },
                 {
                   title: 'Realistic Visual Expectations',
@@ -109,8 +109,8 @@ export default function CandidacySection() {
                   desc: 'Potential future retinal treatments require clear views of the back of the eye, which standard monofocal lenses facilitate better.',
                 },
                 {
-                  title: 'Hidden Pre-operative Conditions',
-                  desc: 'Underlying eye disease limiting visual prognosis could exist without being seen pre-operatively due to the cataract blocking the view of the back of the eye.',
+                  title: 'Dense Brown / Hyper-Mature Cataracts',
+                  desc: 'Advanced brown cataracts with severe opacity can obscure views of the underlying retina pre-operatively and require specialized femtosecond laser pre-fragmentation to protect delicate corneal endothelial cells.',
                 },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">

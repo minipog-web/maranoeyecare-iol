@@ -171,7 +171,7 @@ p[id^='footnote-']:target {
 .radial-glow-left {
   background: radial-gradient(
     ellipse 50% 60% at 15% 60%,
-    rgba(197, 160, 89, 0.07) 0%,
+    rgba(197, 160, 89, 0.03) 0%,
     transparent 70%
   );
 }
@@ -179,27 +179,29 @@ p[id^='footnote-']:target {
 .radial-glow-center {
   background: radial-gradient(
     ellipse 70% 50% at 50% 50%,
-    rgba(197, 160, 89, 0.06) 0%,
+    rgba(197, 160, 89, 0.03) 0%,
     transparent 70%
   );
 }
 
 /* ── Text gradients ── */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #fff2d1 0%, #e6c587 35%, #c5a059 65%, #fff2d1 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #fae8c8 25%, #e8c47e 55%, #dfb363 80%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #e6c587; /* Fallback balanced clinical gold */
+  color: #fae8c8; /* Fallback balanced clinical gold */
   text-shadow: none !important;
   filter: none !important;
 }
 
 .text-gradient-warm {
-  background: linear-gradient(125deg, #e8d5c0 0%, #f5edd8 100%);
+  background: linear-gradient(125deg, #ffffff 0%, #faecd7 40%, #e8d5c0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 /* ── Glass cards (GPU optimized) ── */
@@ -957,7 +959,7 @@ textarea:focus {
 }
 
 .shimmer-text-glow {
-  text-shadow: 0 0 20px rgba(197, 160, 89, 0.35);
+  text-shadow: none;
 }
 
 .luxury-nav-blur {
@@ -979,13 +981,10 @@ textarea:focus {
   box-shadow: 0 0 20px rgba(197, 160, 89, 0.08);
 }
 
-/* ── Section Titles Pop Shadowing ── */
+/* ── Section Titles Clean Typography (No Muddy Shadow Bleed) ── */
 h1.font-display,
 h2.font-display {
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.75),
-    0 0 32px rgba(197, 160, 89, 0.12),
-    0 0 64px rgba(197, 160, 89, 0.05);
+  text-shadow: none !important;
 }
 
 /* ── Biometric & Precision Scan Animations ── */
@@ -1188,4 +1187,20 @@ h2.font-display {
     radial-gradient(at 15% 15%, rgba(197, 160, 89, 0.07) 0px, transparent 50%),
     radial-gradient(at 85% 20%, rgba(0, 163, 255, 0.05) 0px, transparent 50%),
     radial-gradient(at 50% 80%, rgba(139, 92, 246, 0.04) 0px, transparent 55%);
+}
+
+/* 6. Performance: Content-Visibility for Below-The-Fold Sections */
+#cataract-education,
+#comparison,
+#physics,
+#lensar,
+#timeline,
+#lifestyle,
+#candidacy,
+#questionnaire,
+#testimonials,
+#faq,
+#financing {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }

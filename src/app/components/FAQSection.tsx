@@ -82,6 +82,18 @@ const proceduralFAQs: FAQItem[] = [
       'Conditions like dry eye, macular changes, or a history of LASIK affect which lens is safest and most effective for you. Dr. Marano performs a full biometric evaluation at consultation and will only recommend premium lenses when the clinical data supports an excellent outcome.',
   },
   {
+    question: 'How do cataracts form and progress inside the eye?',
+    concern: 'Cataract Science',
+    answer:
+      'A cataract forms inside your natural crystalline lens as specialized proteins (crystallins) break down, denature, and clump together. Initially, this causes subtle micro-clouding and glare. As protein compaction accelerates, the lens turns noticeably yellow, absorbing blue light and muting color vibrancy. In advanced stages, it turns dark brown and opaque, severely obstructing light from reaching your retina. Cataracts only progress and never reverse on their own.',
+  },
+  {
+    question: 'How does cataract surgery work, and will the new lens prescription ever change?',
+    concern: 'Permanent Solution',
+    answer:
+      'During a gentle 10-minute outpatient procedure with numbing eye drops, Dr. Marano removes your cloudy natural cataractous lens and replaces it with a crystal-clear acrylic intraocular lens (IOL). High-purity medical acrylic does not age, degrade, or develop cataracts again. The lens contains a customized optical prescription engineered to remain permanently stable for the rest of your life.',
+  },
+  {
     question: 'What if I have astigmatism? Do Toric lenses cost more?',
     concern: '',
     answer:
@@ -275,10 +287,10 @@ export default function FAQSection() {
       />
 
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_10%_30%,rgba(197,160,89,0.05)_0%,transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,rgba(255,255,255,0.015)_0%,transparent_60%)] pointer-events-none" />
       <div className="absolute inset-0 grid-lines-bg opacity-15" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/4 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/[0.015] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/[0.02] rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
@@ -363,7 +375,7 @@ export default function FAQSection() {
 
           <div className="grid sm:grid-cols-2 gap-x-10 sm:gap-x-16">
             <div>
-              {proceduralFAQs.slice(0, 3).map((faq, i) => (
+              {proceduralFAQs.slice(0, Math.ceil(proceduralFAQs.length / 2)).map((faq, i) => (
                 <ProceduralFAQRow
                   key={i}
                   item={faq}
@@ -374,15 +386,18 @@ export default function FAQSection() {
               ))}
             </div>
             <div>
-              {proceduralFAQs.slice(3).map((faq, i) => (
-                <ProceduralFAQRow
-                  key={i + 3}
-                  item={faq}
-                  index={i + 3}
-                  isOpen={openProcedural === i + 3}
-                  onToggle={() => handleProceduralToggle(i + 3, faq.question)}
-                />
-              ))}
+              {proceduralFAQs.slice(Math.ceil(proceduralFAQs.length / 2)).map((faq, i) => {
+                const actualIndex = i + Math.ceil(proceduralFAQs.length / 2);
+                return (
+                  <ProceduralFAQRow
+                    key={actualIndex}
+                    item={faq}
+                    index={actualIndex}
+                    isOpen={openProcedural === actualIndex}
+                    onToggle={() => handleProceduralToggle(actualIndex, faq.question)}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'Clareon Vivity IOL Guide: Extended Depth of Focus & Outcomes | Marano Eye Care NJ',
     description:
       'Explore the Clareon® Vivity® non-diffractive EDOF lens. Monofocal-like night vision, crisp intermediate & distance clarity, and zero-needle laser cataract surgery with Dr. Matthew Marano Jr., MD.',
-    url: 'https://www.maranoeye.com/clareon-vivity',
+    url: 'https://premium-iol.maranoeye.com/clareon-vivity',
     siteName: 'Marano Eye Care',
     images: [
       {
@@ -37,8 +37,8 @@ const vivitySchemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
-    '@id': 'https://www.maranoeye.com/clareon-vivity#webpage',
-    url: 'https://www.maranoeye.com/clareon-vivity',
+    '@id': 'https://premium-iol.maranoeye.com/clareon-vivity#webpage',
+    url: 'https://premium-iol.maranoeye.com/clareon-vivity',
     name: 'Clareon Vivity IOL Clinical Guide & Outcomes | Marano Eye Care',
     description:
       'Detailed clinical overview of the Alcon Clareon Vivity extended depth of focus intraocular lens, optical physics, defocus curves, and 3-way comparisons.',

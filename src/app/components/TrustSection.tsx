@@ -31,10 +31,10 @@ export default function TrustSection() {
   return (
     <section id="trust" className="py-16 sm:py-24 relative overflow-hidden bg-[#0c0e14]">
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_40%,rgba(197,160,89,0.06)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(255,255,255,0.015)_0%,transparent_70%)]" />
       <div className="absolute inset-0 grid-lines-bg opacity-20" />
-      <div className="absolute bottom-0 left-0 w-[700px] h-[500px] bg-primary/4 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[700px] h-[500px] bg-primary/[0.02] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/[0.015] rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}

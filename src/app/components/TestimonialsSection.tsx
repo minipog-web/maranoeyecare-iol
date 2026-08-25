@@ -71,7 +71,7 @@ const testimonials = [
     location: 'West Orange, NJ',
     lens: 'Standard Monofocal',
     lensColor: '#64748B',
-    avatar: '/assets/images/avatar_harvey.png',
+    avatar: '/assets/images/avatar_harvey.jpg',
     stars: 4,
   },
 ];
@@ -117,10 +117,10 @@ export default function TestimonialsSection() {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(197,160,89,0.06)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(255,255,255,0.015)_0%,transparent_70%)]" />
       <div className="absolute inset-0 grid-lines-bg opacity-15" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-500/[0.015] rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Testimonials */}
@@ -285,13 +285,13 @@ export default function TestimonialsSection() {
                     &ldquo;By far, the most meaningful and rewarding experience as an eye surgeon is
                     hearing back from patients about the life-liberating visual restoration they
                     experience after cataract surgery. Seeing someone regain effortless clarity and
-                    independence—whether that means driving comfortably at night or seeing their loved
-                    ones without hunting for glasses—is what makes this work so special. If I were
-                    choosing a lens for myself or my own family, I would personally choose the Clareon
-                    Vivity with the LENSAR 3D laser system for its extraordinary precision and comfort.
-                    But no single lens fits every life. That is why I sit down with every patient to
-                    understand your daily routines, hobbies, and work first. Your eyes, and how you
-                    live, guide the decision.&rdquo;
+                    independence—whether that means driving comfortably at night or seeing their
+                    loved ones without hunting for glasses—is what makes this work so special. If I
+                    were choosing a lens for myself or my own family, I would personally choose the
+                    Clareon Vivity with the LENSAR 3D laser system for its extraordinary precision
+                    and comfort. But no single lens fits every life. That is why I sit down with
+                    every patient to understand your daily routines, hobbies, and work first. Your
+                    eyes, and how you live, guide the decision.&rdquo;
                   </p>
 
                   <div className="flex items-center gap-4 flex-wrap">
