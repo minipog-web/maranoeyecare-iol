@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTABar from '@/app/components/StickyCTABar';
@@ -98,15 +97,17 @@ export default function ClareonVivityPage() {
   return (
     <>
       {vivitySchemas.map((schema, index) => (
-        <Script
+        <script
           key={`vivity-schema-${index}`}
-          id={`vivity-schema-${index}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
 
-      <main className="min-h-screen bg-background overflow-x-hidden text-foreground">
+      <main
+        className="min-h-screen bg-background overflow-x-hidden text-foreground"
+        suppressHydrationWarning
+      >
         <Header />
 
         {/* Client Interactive Body Content */}
