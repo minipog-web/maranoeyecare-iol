@@ -74,7 +74,10 @@ export default function Footer() {
         </div>
 
         <div className="my-6 py-6 border-t border-b border-border/40 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-3 text-xs text-muted-foreground">
-          <p>© 2026 Marano Eye Care. Matthew Marano Jr., MD. All rights reserved.</p>
+          <p>
+            © 2026 Marano Eye Care. Matthew Marano Jr., MD &amp; Sherief Raouf, MD. All rights
+            reserved.
+          </p>
           <p className="flex flex-wrap items-center justify-center gap-2 md:justify-end">
             <span>Livingston · Denville · Newark, NJ</span>
             <span className="hidden sm:inline">·</span>
@@ -173,8 +176,8 @@ export default function Footer() {
               <p className="text-[10px] text-muted-foreground/60 border-t border-border/20 pt-3 select-none">
                 Simulations are for illustrative/educational purposes only. Individual patient
                 visual outcomes, recovery speeds, and clinical experiences may vary. A comprehensive
-                biometric consultation with Dr. Marano is required for medical diagnosis and
-                personalized surgical treatment planning.
+                biometric consultation with Dr. Marano or Dr. Raouf is required for medical
+                diagnosis and personalized surgical treatment planning.
               </p>
             </div>
           </div>

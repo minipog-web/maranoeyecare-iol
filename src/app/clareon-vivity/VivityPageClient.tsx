@@ -97,7 +97,7 @@ const faqs = [
   {
     question: 'Can Vivity correct my astigmatism?',
     answer:
-      'Yes. The Clareon Vivity Toric II IOL corrects corneal astigmatism with exact rotational stability. At Marano Eye Care, Dr. Marano pairs the Vivity Toric II with high-resolution 3D LENSAR ALLY laser mapping to align your lens with precise degree accuracy.',
+      'Yes. The Clareon Vivity Toric II IOL corrects corneal astigmatism with exact rotational stability. At Marano Eye Care, our surgeons pair the Vivity Toric II with high-resolution 3D LENSAR ALLY laser mapping to align your lens with precise degree accuracy.',
   },
   {
     question: 'Is Clareon Vivity covered by Medicare or private medical insurance?',
@@ -107,7 +107,7 @@ const faqs = [
   {
     question: 'How long does the recovery take after Clareon Vivity surgery?',
     answer:
-      'Laser cataract surgery with the Clareon Vivity takes approximately 10 minutes per eye at our accredited outpatient surgical center. Dr. Marano uses 100% topical numbing eye drops—no needles, no retrobulbar injections, and no general anesthesia. Most patients return to light driving, reading, and screen use within 24 to 48 hours.',
+      'Laser cataract surgery with the Clareon Vivity takes approximately 10 minutes per eye at our accredited outpatient surgical center. Our surgeons use 100% topical numbing eye drops—no needles, no retrobulbar injections, and no general anesthesia. Most patients return to light driving, reading, and screen use within 24 to 48 hours.',
   },
 ];
 
@@ -622,7 +622,7 @@ export default function VivityPageClient() {
                   </div>
                   <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                     <AppImage
-                      src="/assets/images/vivity_day_near_pro.png"
+                      src="/assets/images/vivity_day_near_pro.jpg"
                       alt="Clareon Vivity daytime near reading smartphone and menu clarity"
                       fill
                       className="object-cover"
@@ -654,8 +654,9 @@ export default function VivityPageClient() {
               Clareon Vivity vs. PanOptix Pro vs. TECNIS PureSee.
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
-              Every eye is unique. Dr. Matthew Marano Jr. offers all three premier FDA-approved
-              advanced optics so you receive the exact lens engineered for your visual priorities.
+              Every eye is unique. Dr. Matthew Marano Jr. and Dr. Sherief Raouf offer all three
+              premier FDA-approved advanced optics so you receive the exact lens engineered for your
+              visual priorities.
             </p>
           </div>
 
@@ -833,8 +834,9 @@ export default function VivityPageClient() {
               Is Clareon Vivity the Right Choice for You?
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
-              Dr. Matthew Marano Jr. evaluates each patient’s corneal topography, lifestyle habits,
-              and visual expectations before recommending an intraocular lens.
+              Dr. Matthew Marano Jr. and Dr. Sherief Raouf evaluate each patient’s corneal
+              topography, lifestyle habits, and visual expectations before recommending an
+              intraocular lens.
             </p>
           </div>
 
@@ -909,7 +911,7 @@ export default function VivityPageClient() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground">
-                        When Dr. Marano Suggests Alternatives:
+                        When Our Surgeons Suggest Alternatives:
                       </h3>
                       <p className="text-xs text-primary/90 font-mono uppercase tracking-wider">
                         Alternative clinical considerations
@@ -974,7 +976,7 @@ export default function VivityPageClient() {
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed mb-8 font-light max-w-xl">
                 {renderFootnoteText(
-                  'Over 60% of cataract patients have corneal astigmatism that distorts light rays. Dr. Marano pairs the Clareon Vivity Toric IOL with the LENSAR ALLY Femtosecond Laser system to create sub-micron arcuate incisions and align the lens precisely to your eye’s steep axis [2].'
+                  'Over 60% of cataract patients have corneal astigmatism that distorts light rays. Dr. Marano and Dr. Raouf pair the Clareon Vivity Toric IOL with the LENSAR ALLY Femtosecond Laser system to create sub-micron arcuate incisions and align the lens precisely to your eye’s steep axis [2].'
                 )}
               </p>
               <div className="p-1 rounded-2xl bg-gradient-to-r from-primary/30 to-transparent border border-primary/30 shadow-lg mb-4 max-w-xl">
@@ -1042,8 +1044,8 @@ export default function VivityPageClient() {
               Frequently Asked Questions About Clareon Vivity.
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto font-light">
-              Clear, transparent clinical guidance from Board-Certified Surgeon Dr. Matthew Marano
-              Jr., MD.
+              Clear, transparent clinical guidance from Board-Certified Surgeons Dr. Matthew Marano
+              Jr., MD &amp; Dr. Sherief Raouf, MD.
             </p>
           </div>
 

@@ -14,9 +14,22 @@ const testimonials = [
       "When Dr. Marano told me I needed cataract surgery, I was honestly anxious. But he has been looking after my family's eyes for decades. He suggested the PanOptix trifocal. Two years later, I bake with my grandkids, read recipes off my iPad, and drive home after dark without once digging through my purse for readers.",
     name: 'Patricia W.',
     location: 'Denville, NJ',
+    surgeon: 'Dr. Matthew Marano Jr.',
     lens: 'PanOptix Pro',
     lensColor: '#8B5CF6',
     avatar: '/assets/images/avatar_patricia.jpg',
+    stars: 5,
+  },
+  {
+    concern: 'Feeling rushed & pressure to book surgery',
+    quote:
+      "I consulted two other practices before finding Dr. Raouf. Everywhere else felt like an assembly line where surgeons pushed immediate booking. Dr. Raouf was the complete opposite—he is extraordinarily kind, sat with me for over forty minutes, and explained every scan and lens nuance in plain English. He told me, 'We do not operate until you feel 100% ready.' That zero-pressure guidance gave me complete peace of mind. The surgery was completely painless, and he personally called me that evening to check on my recovery. My vision with the Clareon Vivity is razor-sharp—truly life-changing results.",
+    name: 'Thomas B.',
+    location: 'Short Hills, NJ',
+    surgeon: 'Dr. Sherief Raouf',
+    lens: 'Clareon Vivity',
+    lensColor: '#c5a059',
+    avatar: '/assets/images/avatar_thomas.jpg',
     stars: 5,
   },
   {
@@ -25,9 +38,22 @@ const testimonials = [
       'My biggest worry was night driving on Route 24. With my old cataracts, oncoming high beams were blinding halos. Dr. Marano explained why the Vivity or PureSee optics would protect my contrast sensitivity. I chose the Vivity because it was the more proven lens. Night driving feels just like it did thirty years ago, and my dashboard is crystal clear.',
     name: 'Robert D.',
     location: 'Livingston, NJ',
+    surgeon: 'Dr. Matthew Marano Jr.',
     lens: 'Clareon Vivity',
     lensColor: '#c5a059',
     avatar: '/assets/images/avatar_robert.jpg',
+    stars: 5,
+  },
+  {
+    concern: 'Post-op recovery & after-hours questions',
+    quote:
+      "As a retired nurse, I had dozens of questions about healing timelines and drops. Dr. Raouf answered every single one with genuine warmth and never made me feel rushed. When I had an urgent question late on a Thursday evening, I expected an answering service; instead, Dr. Raouf personally called me back within twenty minutes to reassure me. His surgical skill is remarkable—my vision is 20/15 today, and I haven't touched glasses in six months. His bedside manner and follow-up care are unmatched.",
+    name: 'Donna S.',
+    location: 'Florham Park, NJ',
+    surgeon: 'Dr. Sherief Raouf',
+    lens: 'PanOptix Pro',
+    lensColor: '#8B5CF6',
+    avatar: '/assets/images/avatar_donna.jpg',
     stars: 5,
   },
   {
@@ -36,9 +62,22 @@ const testimonials = [
       'I have a bone to pick with Dr. Marano. He put the Clareon Vivity lenses in my eyes, and yes, my cataracts are gone and everything looks vivid. But now I can see every single wrinkle on my face and every speck of dust on the baseboards that I happily ignored for fifteen years! It is a genuine blessing, but nobody warned me about the extra vacuuming.',
     name: 'Eleanor R.',
     location: 'Denville, NJ',
+    surgeon: 'Dr. Matthew Marano Jr.',
     lens: 'Clareon Vivity',
     lensColor: '#c5a059',
-    avatar: '/assets/images/avatar_patricia.jpg',
+    avatar: '/assets/images/avatar_eleanor.jpg',
+    stars: 5,
+  },
+  {
+    concern: 'Corneal astigmatism & fear of surgical complications',
+    quote:
+      "Having had prior corneal issues, I was terrified that cataract surgery would leave me with distortion. Dr. Raouf's advanced Cornea and Refractive fellowship training at MEETH immediately put my mind at ease. He took unhurried time during my consultation, mapped my eyes with the LENSAR laser, and recommended the PureSee. The results have been completely life-changing—colors are vibrant, street signs are crisp from a block away, and night driving is effortless. He checked in on me personally after the procedure. An exceptional surgeon.",
+    name: 'Marcus L.',
+    location: 'Montclair, NJ',
+    surgeon: 'Dr. Sherief Raouf',
+    lens: 'TECNIS PureSee',
+    lensColor: '#00A3FF',
+    avatar: '/assets/images/avatar_marcus.jpg',
     stars: 5,
   },
   {
@@ -47,9 +86,22 @@ const testimonials = [
       'Tracking a golf ball against an overcast sky used to be impossible for me. I went with the PureSee lens because I wanted crisp distance on the fairway without any glare around the clubhouse lights in the evening. Now I can track my drive off the tee and write my scorecard without switching to bifocals.',
     name: 'Linda M.',
     location: 'Morristown, NJ',
+    surgeon: 'Dr. Matthew Marano Jr.',
     lens: 'TECNIS PureSee',
     lensColor: '#00A3FF',
     avatar: '/assets/images/avatar_linda.jpg',
+    stars: 5,
+  },
+  {
+    concern: 'Hesitation to commit & fear of being pushed into surgery',
+    quote:
+      'When cataracts began affecting my watercolor painting, I was hesitant to proceed. Dr. Raouf is one of the kindest doctors I have ever met. He never pushed surgery; instead, he carefully monitored my eyes across multiple visits and gave me honest, thoughtful answers every step of the way. When we finally implanted the Clareon Vivity, the visual clarity was breathtaking. I can paint the finest details without reading glasses. Both Dr. Marano and Dr. Raouf represent the highest standard of surgical care.',
+    name: 'Evelyn C.',
+    location: 'Chatham, NJ',
+    surgeon: 'Dr. Sherief Raouf',
+    lens: 'Clareon Vivity',
+    lensColor: '#c5a059',
+    avatar: '/assets/images/avatar_evelyn.jpg',
     stars: 5,
   },
   {
@@ -58,6 +110,7 @@ const testimonials = [
       "I teach high school English, so my day is spent grading essays on a laptop and reading small print in vintage paperbacks. Before surgery, I kept four separate pairs of reading glasses in my classroom, car, and jacket pockets. The PanOptix lens gave me total freedom. I haven't worn a pair of reading glasses to school since the week after my procedure.",
     name: 'James K.',
     location: 'Summit, NJ',
+    surgeon: 'Dr. Matthew Marano Jr.',
     lens: 'PanOptix Pro',
     lensColor: '#8B5CF6',
     avatar: '/assets/images/avatar_james.jpg',
@@ -69,6 +122,7 @@ const testimonials = [
       "I tried to be frugal and stuck with the standard lens because Medicare paid for it in full. Big mistake. Having to put glasses on to read a text message, check a menu, or read the price on a grocery shelf is a constant hassle. If you have the option to upgrade to Vivity or PanOptix, take it. Don't make the compromise I did.",
     name: 'Harvey S.',
     location: 'West Orange, NJ',
+    surgeon: 'Standard Care',
     lens: 'Standard Monofocal',
     lensColor: '#64748B',
     avatar: '/assets/images/avatar_harvey.jpg',
@@ -171,19 +225,20 @@ export default function TestimonialsSection() {
                           }`}
                         />
 
-                        {/* Decorative quote mark */}
-                        <div className="absolute top-4 right-6 sm:top-6 sm:right-8 font-display text-7xl sm:text-8xl text-primary/6 font-bold leading-none select-none pointer-events-none z-10">
-                          &ldquo;
-                        </div>
-
-                        {/* Concern label */}
-                        {t.concern && (
-                          <div className="flex items-center gap-2 mb-3 relative z-10">
+                        {/* Concern and Surgeon labels */}
+                        <div className="flex items-center gap-2 mb-3 relative z-10 flex-wrap">
+                          {t.surgeon && (
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-full flex items-center gap-1">
+                              <Icon name="CheckBadgeIcon" size={12} className="text-primary" />
+                              {t.surgeon}
+                            </span>
+                          )}
+                          {t.concern && (
                             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
                               Was worried about: {t.concern}
                             </span>
-                          </div>
-                        )}
+                          )}
+                        </div>
 
                         {/* Stars */}
                         <div className="flex items-center gap-1 mb-4 relative z-10">
@@ -257,7 +312,7 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Dr. Marano's Recommendation Card — Authority Bias + Pratfall Effect */}
+          {/* Surgical Team Clinical Philosophy Card — Authority & Trust */}
           <div className="mt-8 sm:mt-12">
             <div
               onMouseMove={handleSpotlightMouseMove}
@@ -269,55 +324,62 @@ export default function TestimonialsSection() {
               />
 
               <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-10">
-                {/* Dr. Marano Profile Photo */}
-                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/30 shrink-0 shadow-[0_0_15px_rgba(197, 160, 89,0.2)]">
-                  <AppImage
-                    src="/assets/images/marano_thumbnail.png"
-                    alt="Dr. Matthew Marano Jr., MD"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 64px, 80px"
-                  />
+                {/* Doctors Profile Photos */}
+                <div className="flex -space-x-3 sm:-space-x-4 shrink-0">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/40 shadow-[0_0_15px_rgba(197,160,89,0.25)] z-20">
+                    <AppImage
+                      src="/assets/images/marano_thumbnail.png"
+                      alt="Dr. Matthew Marano Jr., MD"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 64px, 80px"
+                    />
+                  </div>
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/40 shadow-[0_0_15px_rgba(197,160,89,0.25)] z-10">
+                    <AppImage
+                      src="/assets/images/Raouf.jpg"
+                      alt="Dr. Sherief Raouf, MD"
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 640px) 64px, 80px"
+                    />
+                  </div>
                 </div>
 
                 <div className="flex-1">
                   <p className="text-base sm:text-lg text-foreground/90 leading-relaxed italic mb-5 sm:mb-6">
-                    &ldquo;By far, the most meaningful and rewarding experience as an eye surgeon is
+                    &ldquo;By far, the most meaningful and rewarding experience as eye surgeons is
                     hearing back from patients about the life-liberating visual restoration they
                     experience after cataract surgery. Seeing someone regain effortless clarity and
                     independence—whether that means driving comfortably at night or seeing their
-                    loved ones without hunting for glasses—is what makes this work so special. If I
-                    were choosing a lens for myself or my own family, I would personally choose the
-                    Clareon Vivity with the LENSAR 3D laser system for its extraordinary precision
-                    and comfort. But no single lens fits every life. That is why I sit down with
-                    every patient to understand your daily routines, hobbies, and work first. Your
-                    eyes, and how you live, guide the decision.&rdquo;
+                    loved ones without hunting for glasses—is what makes this work so special. If we
+                    were choosing a lens for our own families, we would pair the Clareon Vivity or
+                    PureSee with the precision 3D LENSAR ALLY laser. But no single lens fits every
+                    life. That is why we sit down with every patient to understand your daily
+                    routines, hobbies, and work first. Your eyes, and how you live, guide the
+                    decision.&rdquo;
                   </p>
 
-                  <div className="flex items-center gap-4 flex-wrap">
+                  <div className="grid sm:grid-cols-2 gap-4 pt-2 border-t border-white/[0.08]">
                     <div>
                       <p className="text-sm font-bold text-foreground">
                         Dr. Matthew Marano Jr., MD
                       </p>
                       <p className="text-xs text-primary mt-0.5 font-medium">
-                        Board-Certified Ophthalmologist
+                        Founder · Board-Certified Ophthalmologist · 40k+ Surgeries
                       </p>
-                      <p className="text-[11px] text-primary mt-0.5 font-medium">
-                        40,000+ Cataract Surgeries Completed
+                      <p className="text-[11px] text-muted-foreground mt-0.5">
+                        15× NJ Monthly Top Doctor · Chief of Ophthalmology
                       </p>
                     </div>
-                    <div className="flex gap-1.5 flex-wrap">
-                      {[
-                        '15× NJ Top Doctor',
-                        "Chief of Ophthalmology (Cooperman Barnabas & St. Michael's Medical Center)",
-                      ].map((b) => (
-                        <span
-                          key={b}
-                          className="text-[10px] font-semibold text-muted-foreground bg-white/[0.05] border border-border px-2.5 py-1 rounded-full"
-                        >
-                          {b}
-                        </span>
-                      ))}
+                    <div>
+                      <p className="text-sm font-bold text-foreground">Dr. Sherief Raouf, MD</p>
+                      <p className="text-xs text-primary mt-0.5 font-medium">
+                        Board-Certified Ophthalmologist · Cornea Subspecialist
+                      </p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">
+                        MEETH Fellowship Trained · 12+ Published Research Studies
+                      </p>
                     </div>
                   </div>
                 </div>

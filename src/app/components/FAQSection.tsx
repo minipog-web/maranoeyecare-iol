@@ -16,7 +16,7 @@ const objectionFAQs: FAQItem[] = [
     question: "I'm worried about glare and halos, especially when driving at night.",
     concern: 'Night Vision',
     answer:
-      'This is the most common concern patients share with us. It is why Dr. Marano frequently recommends the Clareon Vivity lens for active drivers. Unlike older multifocal lenses that divide light rays, Vivity uses non-diffractive optics. In clinical trials, patients experienced night glare levels virtually identical to standard single-vision lenses. Every eye is unique, which is why Dr. Marano reviews your corneal measurements carefully before making any recommendation.',
+      'This is the most common concern patients share with us. It is why our surgeons frequently recommend the Clareon Vivity lens for active drivers. Unlike older multifocal lenses that divide light rays, Vivity uses non-diffractive optics. In clinical trials, patients experienced night glare levels virtually identical to standard single-vision lenses. Every eye is unique, which is why Dr. Marano and Dr. Raouf review your corneal measurements carefully before making any recommendation.',
     highlight: 'Vivity: halo rates nearly identical to standard monofocal',
   },
   {
@@ -31,7 +31,7 @@ const objectionFAQs: FAQItem[] = [
     question: "What if I don't like the result? Can the lens be changed?",
     concern: 'Regret Risk',
     answer:
-      'Lens exchanges are possible, but they are exceptionally rare. Across clinical studies, 99% of premium lens recipients state they would make the same choice again. Dr. Marano prevents disappointment before surgery begins by performing comprehensive corneal topography and discussing your daily routine. If your eye anatomy is not an ideal fit for a premium lens, he will clearly advise against it.',
+      'Lens exchanges are possible, but they are exceptionally rare. Across clinical studies, 99% of premium lens recipients state they would make the same choice again. Our surgeons prevent disappointment before surgery begins by performing comprehensive corneal topography and discussing your daily routine. If your eye anatomy is not an ideal fit for a premium lens, Dr. Marano and Dr. Raouf will clearly advise against it.',
     highlight: '99% of patients would choose a premium lens again',
   },
   {
@@ -45,23 +45,23 @@ const objectionFAQs: FAQItem[] = [
     question: 'Will premium lenses make my surgery more complicated or risky?',
     concern: 'Safety',
     answer:
-      'No. The surgery is the same gentle, 10-minute outpatient procedure performed with numbing eye drops. The only difference is the optical design of the lens placed inside your eye. Dr. Marano has performed over 40,000 successful eye surgeries and has been named a New Jersey Top Doctor for 15 consecutive years.',
+      'No. The surgery is the same gentle, 10-minute outpatient procedure performed with numbing eye drops. The only difference is the optical design of the lens placed inside your eye. Our board-certified surgeons, Dr. Matthew Marano Jr. and Dr. Sherief Raouf, bring over four decades of combined surgical excellence and fellowship-trained precision.',
     highlight: 'Same 10-min procedure · Thousands of successful outcomes · No general anesthesia',
   },
 ];
 
 const proceduralFAQs: FAQItem[] = [
   {
-    question: 'Does Dr. Marano perform the surgery himself?',
+    question: 'Do Dr. Marano and Dr. Raouf perform the surgery themselves?',
     concern: '',
     answer:
-      'Yes. Dr. Matthew Marano Jr., MD performs every cataract surgery personally. You will meet with him at consultation, and he will be your surgeon on the day of your procedure.',
+      'Yes. Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD personally perform every cataract surgery. You will meet directly with your surgeon during your consultation, and they will personally perform your procedure and oversee your post-operative care.',
   },
   {
     question: 'How long is recovery, and when can I return to my hobbies?',
     concern: '',
     answer:
-      "Most patients return to light daily activities within 24 to 48 hours. Distance vision typically clears rapidly first, while fine reading vision naturally lags behind by about two weeks as your brain neuroadapts to the new premium optics. High-performance activities like golf, tennis, and cycling can typically be resumed after 1 to 2 weeks following Dr. Marano's post-operative evaluation.",
+      "Most patients return to light daily activities within 24 to 48 hours. Distance vision typically clears rapidly first, while fine reading vision naturally lags behind by about two weeks as your brain neuroadapts to the new premium optics. High-performance activities like golf, tennis, and cycling can typically be resumed after 1 to 2 weeks following your surgeon's post-operative evaluation.",
   },
   {
     question: 'Will I feel any pain?',
@@ -79,7 +79,7 @@ const proceduralFAQs: FAQItem[] = [
     question: 'What if I have dry eyes or other eye conditions?',
     concern: '',
     answer:
-      'Conditions like dry eye, macular changes, or a history of LASIK affect which lens is safest and most effective for you. Dr. Marano performs a full biometric evaluation at consultation and will only recommend premium lenses when the clinical data supports an excellent outcome.',
+      'Conditions like dry eye, macular changes, or a history of LASIK affect which lens is safest and most effective for you. Dr. Marano and Dr. Raouf perform a full biometric evaluation at consultation and will only recommend premium lenses when the clinical data supports an excellent outcome.',
   },
   {
     question: 'How do cataracts form and progress inside the eye?',
@@ -91,7 +91,7 @@ const proceduralFAQs: FAQItem[] = [
     question: 'How does cataract surgery work, and will the new lens prescription ever change?',
     concern: 'Permanent Solution',
     answer:
-      'During a gentle 10-minute outpatient procedure with numbing eye drops, Dr. Marano removes your cloudy natural cataractous lens and replaces it with a crystal-clear acrylic intraocular lens (IOL). High-purity medical acrylic does not age, degrade, or develop cataracts again. The lens contains a customized optical prescription engineered to remain permanently stable for the rest of your life.',
+      'During a gentle 10-minute outpatient procedure with numbing eye drops, Dr. Marano or Dr. Raouf removes your cloudy natural cataractous lens and replaces it with a crystal-clear acrylic intraocular lens (IOL). High-purity medical acrylic does not age, degrade, or develop cataracts again. The lens contains a customized optical prescription engineered to remain permanently stable for the rest of your life.',
   },
   {
     question: 'What if I have astigmatism? Do Toric lenses cost more?',
@@ -304,7 +304,7 @@ export default function FAQSection() {
               <span className="font-semibold text-gradient-primary">Answered Honestly.</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base mb-8 md:hidden lg:block">
-              These are the questions Dr. Marano hears most often. He&apos;d rather you come in
+              These are the questions our surgeons hear most often. We&apos;d rather you come in
               already informed than arrive with unanswered fears.
             </p>
 

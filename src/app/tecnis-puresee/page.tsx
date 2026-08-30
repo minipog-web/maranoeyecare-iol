@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',
     description:
-      'Explore the TECNIS PureSee™ — the latest, most cutting-edge purely refractive EDOF lens with Dr. Matthew Marano Jr., MD. Zero diffractive rings, monofocal-like night vision, and continuous intermediate clarity with LENSAR ALLY laser precision.',
+      'Explore the TECNIS PureSee™ — the latest, most cutting-edge purely refractive EDOF lens with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. Zero diffractive rings, monofocal-like night vision, and continuous intermediate clarity with LENSAR ALLY laser precision.',
     url: 'https://premium-iol.maranoeye.com/tecnis-puresee',
     siteName: 'Marano Eye Care',
     images: [
@@ -87,7 +87,7 @@ const pureseeSchemas = [
         name: 'Is there a Toric option for astigmatism with TECNIS PureSee?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. The TECNIS PureSee Toric II lens corrects corneal astigmatism with squared-edge haptics for rotational stability. At Marano Eye Care, Dr. Matthew Marano Jr. provides custom Toric upgrades on all premium lenses with zero extra upgrade fees.',
+          text: 'Yes. The TECNIS PureSee Toric II lens corrects corneal astigmatism with squared-edge haptics for rotational stability. At Marano Eye Care, Dr. Matthew Marano Jr. and Dr. Sherief Raouf provide custom Toric upgrades on all premium lenses with zero extra upgrade fees.',
         },
       },
       {
@@ -128,7 +128,7 @@ export default function TecnisPureSeePage() {
             preselectedLens="puresee"
             bookingHeadline="Schedule Your TECNIS PureSee™ Consultation"
             bookingUrgencyTitle="Precision LENSAR ALLY Laser Cataract Surgery"
-            bookingUrgencyText="Personalized 3D corneal biometry with Dr. Matthew Marano Jr., MD. All premium lenses include custom Toric astigmatism correction at no extra fee."
+            bookingUrgencyText="Personalized 3D corneal biometry with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. All premium lenses include custom Toric astigmatism correction at no extra fee."
           />
         </div>
 

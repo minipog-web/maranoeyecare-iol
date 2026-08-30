@@ -677,9 +677,9 @@ export default function LensQuestionnaireSection() {
                 </div>
 
                 <p className="mt-4 text-xs text-muted-foreground text-center">
-                  This quiz cannot replace Dr. Marano&apos;s thorough clinical evaluation, but it
-                  provides a clear starting point. During your consultation, he will confirm the
-                  ideal match for your individual eyes.
+                  This quiz cannot replace a thorough clinical evaluation by Dr. Marano or Dr.
+                  Raouf, but it provides a clear starting point. During your consultation, your
+                  surgeon will confirm the ideal match for your individual eyes.
                 </p>
               </div>
             )}
@@ -689,8 +689,8 @@ export default function LensQuestionnaireSection() {
         {/* Disclaimer */}
         {!result && (
           <p className="text-center text-xs text-muted-foreground mt-5 px-2">
-            No personal information required · Takes about 60 seconds · Results reviewed with Dr.
-            Marano at time of consultation
+            No personal information required · Takes about 60 seconds · Results reviewed with your
+            surgeon at time of consultation
           </p>
         )}
       </div>

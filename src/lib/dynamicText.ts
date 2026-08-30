@@ -49,7 +49,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
       heroTitleLine2: 'Continuous Visual Depth.',
       heroDesc:
         'Reclaim sharp, high-definition vision without the glare and halo profile of traditional multi-focal lenses. The non-diffractive Clareon Vivity IOL offers seamless focus from distance to intermediate ranges.',
-      bookingHeadline: 'Discuss Vivity With Dr. Marano',
+      bookingHeadline: 'Discuss Vivity With Our Surgeons',
       bookingUrgencyTitle: 'A Single, Permanent Opportunity',
       bookingUrgencyText:
         'Your lens choice is a once-in-a-lifetime decision. Explore Vivity to minimize dependence on glasses.',
@@ -64,7 +64,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
       heroTitleLine2: 'Complete Visual Range.',
       heroDesc:
         'Imagine reading your phone, working on your computer, and driving safely without glasses. The Clareon PanOptix trifocal lens delivers exceptional clarity across near, intermediate, and far distances.',
-      bookingHeadline: 'Discuss PanOptix With Dr. Marano',
+      bookingHeadline: 'Discuss PanOptix With Our Surgeons',
       bookingUrgencyTitle: 'A Single, Permanent Opportunity',
       bookingUrgencyText:
         'Restore your natural visual spectrum in a single 10-minute procedure. Compare premium options today.',
@@ -79,7 +79,7 @@ const KEYWORD_MAPS: KeywordMapping[] = [
       heroTitleLine2: 'Pure Refractive EDOF Depth.',
       heroDesc:
         'Experience continuous vision with zero contrast compromise. The TECNIS PureSee is the first FDA-approved purely refractive EDOF IOL delivering seamless clarity from distance to intermediate and functional near, with a night glare profile identical to a standard monofocal lens.',
-      bookingHeadline: 'Discuss PureSee With Dr. Marano',
+      bookingHeadline: 'Discuss PureSee With Our Surgeons',
       bookingUrgencyTitle: 'Pure Refractive EDOF Technology',
       bookingUrgencyText:
         'Unlike diffractive lenses, PureSee uses proprietary refractive optics to eliminate glare and halos while restoring continuous visual depth.',
@@ -101,17 +101,17 @@ const KEYWORD_MAPS: KeywordMapping[] = [
     },
   },
   {
-    pattern: /doctor|surgeon|marano/i,
+    pattern: /doctor|surgeon|marano|raouf/i,
     content: {
       badgeText: 'Top Eye Surgeons • Livingston, Denville & Newark',
-      heroTitleLine1: 'Led by Matthew Marano, MD.',
+      heroTitleLine1: 'Led by Matthew Marano, MD & Sherief Raouf, MD.',
       heroTitleLine2: '40,000+ Completed Procedures.',
       heroDesc:
-        'Trust your eyes to a recognized leader teaching other surgeons how to restore absolute clarity. Dr. Marano is a 15-time NJ Monthly Top Doctor dedicated to premium lens technology.',
-      bookingHeadline: 'Request a Visit with Dr. Marano',
+        'Trust your eyes to recognized leaders in cataract and corneal microsurgery. With 40,000+ completed procedures and fellowship training, our team is dedicated to premium lens technology.',
+      bookingHeadline: 'Request a Visit with Our Surgeons',
       bookingUrgencyTitle: 'Experience Matters',
       bookingUrgencyText:
-        "Schedule with NJ's leading premium IOL surgeon. Consultations are highly personalized and comprehensive.",
+        "Schedule with NJ's leading premium IOL surgeons. Consultations are highly personalized and comprehensive.",
     },
   },
 ];

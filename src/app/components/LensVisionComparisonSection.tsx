@@ -26,7 +26,7 @@ const lenses = [
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
         intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
-        near: '/assets/images/panoptix_day_near_pro.png',
+        near: '/assets/images/panoptix_day_near_pro.jpg',
       },
       night: {
         distance: '/assets/images/panoptix_night_pro_v2.jpg',
@@ -76,7 +76,7 @@ const lenses = [
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
         intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
-        near: '/assets/images/vivity_day_near_pro.png',
+        near: '/assets/images/vivity_day_near_pro.jpg',
       },
       night: {
         distance: '/assets/images/vivity_night_pro.jpg',
@@ -127,7 +127,7 @@ const lenses = [
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
         intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
-        near: '/assets/images/vivity_day_near_pro.png',
+        near: '/assets/images/puresee_day_near_pro_v2.jpg',
       },
       night: {
         distance: '/assets/images/vivity_night_pro.jpg',
@@ -177,7 +177,7 @@ const lenses = [
       day: {
         distance: '/assets/images/monofocal_day_distance_pro.jpg',
         intermediate: '/assets/images/monofocal_day_intermediate_pro.jpg',
-        near: '/assets/images/monofocal_day_near_pro_v2.png',
+        near: '/assets/images/monofocal_day_near_pro_v2.jpg',
       },
       night: {
         distance: '/assets/images/monofocal_night_pro.jpg',
@@ -1380,7 +1380,7 @@ export default function LensVisionComparisonSection() {
             },
             {
               title: 'Personalized Choice',
-              desc: 'Your visual goals and eye health dictate the best lens. Dr. Marano provides expert guidance for your unique case.',
+              desc: 'Your visual goals and eye health dictate the best lens. Our surgeons provide expert guidance for your unique case.',
               icon: 'SparklesIcon',
             },
           ].map((item, i) => (
@@ -1440,8 +1440,8 @@ export default function LensVisionComparisonSection() {
           represent spectacle independence rates from published clinical data (PanOptix Pro:
           meta-analysis of 13 studies with 513 patients; Vivity: Alcon clinical data; PureSee: J&J
           MedTech FDA registry clinical study data). Individual patient experiences and clinical
-          results may vary significantly. A comprehensive consultation with Dr. Marano is required
-          for medical diagnosis and personalized treatment planning.
+          results may vary significantly. A comprehensive consultation with Dr. Marano or Dr. Raouf
+          is required for medical diagnosis and personalized treatment planning.
         </p>
       </div>
     </section>

@@ -186,7 +186,14 @@ p[id^='footnote-']:target {
 
 /* ── Text gradients ── */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #ffffff 0%, #fae8c8 25%, #e8c47e 55%, #dfb363 80%, #ffffff 100%);
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fae8c8 25%,
+    #e8c47e 55%,
+    #dfb363 80%,
+    #ffffff 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

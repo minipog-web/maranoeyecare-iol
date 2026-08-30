@@ -91,7 +91,7 @@ const faqs = [
   {
     question: 'Is there a Toric option for PanOptix Pro to correct astigmatism?',
     answer:
-      'Yes. The Clareon PanOptix Toric IOL corrects pre-existing corneal astigmatism at the exact same moment your cataract is removed. Dr. Matthew Marano Jr. uses the 3D high-resolution LENSAR ALLY femtosecond laser system to align the Toric axis with sub-micron accuracy. At Marano Eye Care, Toric astigmatism correction is included on all premium lenses at no extra upgrade charge.',
+      'Yes. The Clareon PanOptix Toric IOL corrects pre-existing corneal astigmatism at the exact same moment your cataract is removed. Dr. Matthew Marano Jr. and Dr. Sherief Raouf use the 3D high-resolution LENSAR ALLY femtosecond laser system to align the Toric axis with sub-micron accuracy. At Marano Eye Care, Toric astigmatism correction is included on all premium lenses at no extra upgrade charge.',
   },
   {
     question: 'How does Clareon PanOptix Pro compare to Clareon Vivity?',
@@ -101,12 +101,12 @@ const faqs = [
   {
     question: 'How does cataract surgery work with PanOptix Pro, and is the result permanent?',
     answer:
-      'Cataracts form when natural crystalline lens proteins break down, causing the lens to turn cloudy, yellow, and eventually brown and opaque. During surgery, Dr. Matthew Marano Jr. removes the cloudy natural lens and replaces it with the Clareon PanOptix Pro acrylic IOL. Because high-purity acrylic never clouds or degrades, the custom prescription inside your new lens remains stable for the rest of your life.',
+      'Cataracts form when natural crystalline lens proteins break down, causing the lens to turn cloudy, yellow, and eventually brown and opaque. During surgery, our board-certified eye surgeons remove the cloudy natural lens and replace it with the Clareon PanOptix Pro acrylic IOL. Because high-purity acrylic never clouds or degrades, the custom prescription inside your new lens remains stable for the rest of your life.',
   },
   {
     question: 'How fast is the recovery after PanOptix Pro cataract surgery?',
     answer:
-      'Dr. Matthew Marano Jr. performs outpatient laser cataract surgery in approximately 10 minutes using gentle zero-needle numbing eye drops. Most patients notice dramatic improvements in brightness and color vibrancy within 24 to 48 hours, and can resume light daily activities the very next day.',
+      'Dr. Matthew Marano Jr. and Dr. Sherief Raouf perform outpatient laser cataract surgery in approximately 10 minutes using gentle zero-needle numbing eye drops. Most patients notice dramatic improvements in brightness and color vibrancy within 24 to 48 hours, and can resume light daily activities the very next day.',
   },
 ];
 
@@ -562,7 +562,7 @@ export default function PanOptixPageClient() {
                   </div>
                   <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                     <AppImage
-                      src="/assets/images/panoptix_day_near_pro.png"
+                      src="/assets/images/panoptix_day_near_pro.jpg"
                       alt="Clareon PanOptix Pro crisp daytime near reading simulation"
                       fill
                       className="object-cover"
@@ -863,8 +863,8 @@ export default function PanOptixPageClient() {
               Is Clareon PanOptix Pro the Right Choice for You?
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
-              Dr. Matthew Marano Jr. evaluates your lifestyle habits, hobbies, and corneal
-              measurements before recommending an advanced intraocular lens.
+              Dr. Matthew Marano Jr. and Dr. Sherief Raouf evaluate your lifestyle habits, hobbies,
+              and corneal measurements before recommending an advanced intraocular lens.
             </p>
           </div>
 
@@ -939,7 +939,7 @@ export default function PanOptixPageClient() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground">
-                        When Dr. Marano Suggests Alternatives:
+                        When Our Surgeons Suggest Alternatives:
                       </h3>
                       <p className="text-xs text-primary/90 font-mono uppercase tracking-wider">
                         Alternative clinical pathways
@@ -1002,7 +1002,7 @@ export default function PanOptixPageClient() {
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed mb-8 font-light max-w-xl">
                 {renderFootnoteText(
-                  'Over 60% of cataract patients have corneal astigmatism that blurs light focus. Dr. Marano combines the Clareon PanOptix Toric IOL with the LENSAR ALLY Femtosecond Laser system to create sub-micron arcuate cuts and position the lens precisely along your eye’s steep axis [1].'
+                  'Over 60% of cataract patients have corneal astigmatism that blurs light focus. Dr. Marano and Dr. Raouf combine the Clareon PanOptix Toric IOL with the LENSAR ALLY Femtosecond Laser system to create sub-micron arcuate cuts and position the lens precisely along your eye’s steep axis [1].'
                 )}
               </p>
               <div className="p-1 rounded-2xl bg-gradient-to-r from-[#8b5cf6]/30 to-transparent border border-[#8b5cf6]/30 shadow-lg mb-4 max-w-xl">
@@ -1070,7 +1070,8 @@ export default function PanOptixPageClient() {
               Frequently Asked Questions About PanOptix Pro.
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto font-light">
-              Clear clinical guidance from Board-Certified Surgeon Dr. Matthew Marano Jr., MD.
+              Clear clinical guidance from Board-Certified Surgeons Dr. Matthew Marano Jr., MD &amp;
+              Dr. Sherief Raouf, MD.
             </p>
           </div>
 

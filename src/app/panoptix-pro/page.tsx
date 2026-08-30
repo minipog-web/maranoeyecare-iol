@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Clareon PanOptix Pro Trifocal IOL Guide: Full-Range Clarity | Marano Eye Care NJ',
     description:
-      'Explore the Clareon® PanOptix® Pro trifocal lens with Dr. Matthew Marano Jr., MD. High spectacle independence at 40cm near, 60cm intermediate, and distance with LENSAR ALLY laser precision.',
+      'Explore the Clareon® PanOptix® Pro trifocal lens with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. High spectacle independence at 40cm near, 60cm intermediate, and distance with LENSAR ALLY laser precision.',
     url: 'https://premium-iol.maranoeye.com/panoptix-pro',
     siteName: 'Marano Eye Care',
     images: [
@@ -88,7 +88,7 @@ const panoptixSchemas = [
         name: 'Is astigmatism correction available with PanOptix Pro?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. The Clareon PanOptix Toric IOL is designed for patients with corneal astigmatism. Dr. Matthew Marano Jr. aligns the lens using the LENSAR ALLY femtosecond laser system. At Marano Eye Care, Toric astigmatism correction is included on all premium lenses at no extra upgrade charge.',
+          text: 'Yes. The Clareon PanOptix Toric IOL is designed for patients with corneal astigmatism. Dr. Matthew Marano Jr. and Dr. Sherief Raouf align the lens using the LENSAR ALLY femtosecond laser system. At Marano Eye Care, Toric astigmatism correction is included on all premium lenses at no extra upgrade charge.',
         },
       },
       {
@@ -129,7 +129,7 @@ export default function ClareonPanOptixPage() {
             preselectedLens="panoptix"
             bookingHeadline="Schedule Your Clareon® PanOptix® Pro Consultation"
             bookingUrgencyTitle="Precision LENSAR ALLY Laser Cataract Surgery"
-            bookingUrgencyText="Personalized 3D corneal biometry with Dr. Matthew Marano Jr., MD. All premium lenses include custom Toric astigmatism correction at no extra fee."
+            bookingUrgencyText="Personalized 3D corneal biometry with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. All premium lenses include custom Toric astigmatism correction at no extra fee."
           />
         </div>
 

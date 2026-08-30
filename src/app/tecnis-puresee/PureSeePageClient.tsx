@@ -93,7 +93,7 @@ const faqs = [
   {
     question: 'Is there a Toric option for astigmatism with TECNIS PureSee?',
     answer:
-      'Yes. The TECNIS PureSee Toric II lens corrects corneal astigmatism with squared-edge haptics for rotational stability. At Marano Eye Care, Dr. Matthew Marano Jr. provides custom Toric upgrades on all premium lenses with zero extra upgrade fees.',
+      'Yes. The TECNIS PureSee Toric II lens corrects corneal astigmatism with squared-edge haptics for rotational stability. At Marano Eye Care, Dr. Matthew Marano Jr. and Dr. Sherief Raouf provide custom Toric upgrades on all premium lenses with zero extra upgrade fees.',
   },
   {
     question: 'What is the Abbe number and why does Abbe 55 matter?',
@@ -103,12 +103,12 @@ const faqs = [
   {
     question: 'What causes cataracts, and will the TECNIS PureSee lens ever need replacement?',
     answer:
-      'A cataract forms in your eye’s natural crystalline lens as proteins break down and turn cloudy, yellow, and eventually brown and opaque. During surgery, Dr. Marano removes the cataractous natural lens and implants the clear acrylic TECNIS PureSee IOL. Because high-purity optical acrylic never ages or clouds, the lens provides lifetime optical clarity with a permanent, stable prescription that never changes.',
+      'A cataract forms in your eye’s natural crystalline lens as proteins break down and turn cloudy, yellow, and eventually brown and opaque. During surgery, our board-certified surgeons remove the cataractous natural lens and implant the clear acrylic TECNIS PureSee IOL. Because high-purity optical acrylic never ages or clouds, the lens provides lifetime optical clarity with a permanent, stable prescription that never changes.',
   },
   {
     question: 'How fast is recovery after TECNIS PureSee cataract surgery?',
     answer:
-      'Dr. Matthew Marano Jr. performs outpatient laser cataract surgery in approximately 10 minutes using gentle zero-needle numbing eye drops. Most patients notice clear vision within 24 to 48 hours and can resume light driving and work the following day.',
+      'Dr. Matthew Marano Jr. and Dr. Sherief Raouf perform outpatient laser cataract surgery in approximately 10 minutes using gentle zero-needle numbing eye drops. Most patients notice clear vision within 24 to 48 hours and can resume light driving and work the following day.',
   },
 ];
 
@@ -659,7 +659,7 @@ export default function PureSeePageClient() {
                   </div>
                   <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                     <AppImage
-                      src="/assets/images/vivity_day_near_pro.png"
+                      src="/assets/images/puresee_day_near_pro_v2.jpg"
                       alt="TECNIS PureSee daytime near reading smartphone and menu clarity"
                       fill
                       className="object-cover"
@@ -867,8 +867,8 @@ export default function PureSeePageClient() {
               Is TECNIS PureSee the Right Choice for You?
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
-              Dr. Matthew Marano Jr. examines your corneal curvature, lifestyle habits, and visual
-              needs before personalizing your IOL recommendation.
+              Dr. Matthew Marano Jr. and Dr. Sherief Raouf examine your corneal curvature, lifestyle
+              habits, and visual needs before personalizing your IOL recommendation.
             </p>
           </div>
 
@@ -940,7 +940,7 @@ export default function PureSeePageClient() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground">
-                        When Dr. Marano Suggests Alternatives:
+                        When Our Surgeons Suggest Alternatives:
                       </h3>
                       <p className="text-xs text-primary/90 font-mono uppercase tracking-wider">
                         Alternative clinical pathways
@@ -1003,7 +1003,7 @@ export default function PureSeePageClient() {
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed mb-8 font-light max-w-xl">
                 {renderFootnoteText(
-                  'Over 60% of cataract patients have corneal astigmatism. Dr. Marano pairs the TECNIS PureSee Toric II lens with the LENSAR ALLY Femtosecond Laser system to create sub-micron arcuate incisions and align the lens with exact-degree rotational accuracy [3].'
+                  'Over 60% of cataract patients have corneal astigmatism. Dr. Marano and Dr. Raouf pair the TECNIS PureSee Toric II lens with the LENSAR ALLY Femtosecond Laser system to create sub-micron arcuate incisions and align the lens with exact-degree rotational accuracy [3].'
                 )}
               </p>
               <div className="p-1 rounded-2xl bg-gradient-to-r from-[#00a3ff]/30 to-transparent border border-[#00a3ff]/30 shadow-lg mb-4 max-w-xl">
@@ -1071,7 +1071,8 @@ export default function PureSeePageClient() {
               Frequently Asked Questions About TECNIS PureSee.
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto font-light">
-              Clear clinical guidance from Board-Certified Surgeon Dr. Matthew Marano Jr., MD.
+              Clear clinical guidance from Board-Certified Surgeons Dr. Matthew Marano Jr., MD &amp;
+              Dr. Sherief Raouf, MD.
             </p>
           </div>
 

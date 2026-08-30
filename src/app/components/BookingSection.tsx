@@ -84,8 +84,8 @@ const whatHappensNext = [
   {
     step: '3',
     icon: 'ChatBubbleLeftRightIcon',
-    title: 'Dr. Marano Evaluation',
-    desc: 'Comprehensive 1-on-1 optical scan with Dr. Marano. Zero obligation.',
+    title: 'Surgeon Evaluation',
+    desc: 'Comprehensive 1-on-1 optical scan with Dr. Marano or Dr. Raouf. Zero obligation.',
   },
 ];
 
@@ -502,7 +502,7 @@ export default function BookingSection({
                       className={`font-display text-xl sm:text-2xl font-medium text-foreground ${styles.formHeader}`}
                     >
                       {step === 1
-                        ? 'Reserve Your Consultation with Dr. Marano'
+                        ? 'Reserve Your Consultation with Our Surgeons'
                         : 'Customize Your Visual Goals'}
                     </h3>
                     <span className="text-xs font-semibold text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full whitespace-nowrap shrink-0">
@@ -521,7 +521,7 @@ export default function BookingSection({
                     <p className="text-xs text-muted-foreground">
                       {step === 1
                         ? 'Complete this 30-second form, or call any office directly on the left.'
-                        : 'Optional, helps Dr. Marano prepare for your visit.'}
+                        : 'Optional, helps our surgeons prepare for your visit.'}
                     </p>
                     <div className="flex items-center gap-1.5 text-xs text-primary font-bold tracking-wide uppercase">
                       <Icon name="LockClosedIcon" size={14} className="shrink-0" />
@@ -761,7 +761,7 @@ export default function BookingSection({
                         name="message"
                         value={form.message}
                         onChange={handleChange}
-                        placeholder="Any specific concerns, current glasses prescription, or questions for Dr. Marano..."
+                        placeholder="Any specific concerns, current glasses prescription, or questions for Dr. Marano or Dr. Raouf..."
                         rows={3}
                         maxLength={1000}
                         className={`${inputClass} resize-none`}
@@ -794,7 +794,7 @@ export default function BookingSection({
                           </span>
                         ) : (
                           <>
-                            <span>Request Consultation with Dr. Marano</span>
+                            <span>Request Consultation with Our Surgeons</span>
                             <Icon
                               name="ArrowRightIcon"
                               size={18}
@@ -806,7 +806,7 @@ export default function BookingSection({
                     </div>
 
                     <p className="text-xs text-muted-foreground text-center pt-1">
-                      🔒 100% Confidential · Zero Obligation · Dr. Marano Personally Reviews Every
+                      🔒 100% Confidential · Zero Obligation · Our Surgeons Personally Review Every
                       Request
                     </p>
                   </form>

@@ -167,22 +167,21 @@ export default function HeroSection({
             {/* Editorial Proof Text */}
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl">
               <p className="text-sm sm:text-base text-white/95 font-semibold mb-4 font-display">
-                Led by Dr. Matthew Marano Jr., MD, a top New Jersey eye surgeon who trains other
-                ophthalmologists on advanced cataract procedures:
+                Led by Board-Certified Surgeons Dr. Matthew Marano Jr. &amp; Dr. Sherief Raouf:
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm">
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    <strong className="text-primary font-semibold">Chief of Ophthalmology</strong>{' '}
-                    at Cooperman Barnabas &amp; St. Michael&apos;s Medical Center
+                    <strong className="text-primary font-semibold">Board-Certified</strong>{' '}
+                    Ophthalmologists &amp; Cornea Specialist
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    <strong className="text-white font-medium">Board-Certified</strong>{' '}
-                    Ophthalmologist
+                    <strong className="text-primary font-semibold">Chief of Ophthalmology</strong>{' '}
+                    at Cooperman Barnabas Medical Center
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -197,22 +196,22 @@ export default function HeroSection({
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    Over <strong className="text-primary font-semibold">40,000+ surgeries</strong>{' '}
-                    completed
+                    <strong className="text-white font-medium">Fellowship-Trained</strong> in Cornea
+                    &amp; Refractive Surgery
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    Patient satisfaction rate of{' '}
-                    <strong className="text-primary font-semibold">99%</strong>
+                    Over <strong className="text-primary font-semibold">40,000+ surgeries</strong>{' '}
+                    completed with 99% satisfaction
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
                     Over <strong className="text-primary font-semibold">4.9★ rating</strong> on
-                    Google (out of &gt;650 reviews)
+                    Google (&gt;650 reviews)
                   </span>
                 </li>
               </ul>

@@ -44,7 +44,7 @@ export default function LensarAllySection() {
     {
       icon: 'EyeIcon',
       title: 'Augmented Reality™ 3D Biometry',
-      desc: "Generates a high-definition 3D reconstruction of your eye's unique anterior chamber, giving Dr. Marano real-time anatomical depth guidance during every second of the procedure.",
+      desc: "Generates a high-definition 3D reconstruction of your eye's unique anterior chamber, giving Dr. Marano and Dr. Raouf real-time anatomical depth guidance during every second of the procedure.",
       metric: 'High-definition 3D scan',
     },
     {
@@ -90,8 +90,8 @@ export default function LensarAllySection() {
             technology. ALLY combines advanced 3D imaging, Augmented Reality, and robotic laser
             precision into a seamless procedure.{' '}
             <strong>
-              Dr. Marano utilizes the LENSAR® FEMTO laser system on every patient receiving a
-              premium IOL to ensure maximum precision and outcome reliability.
+              Dr. Marano and Dr. Raouf utilize the LENSAR® FEMTO laser system on every patient
+              receiving a premium IOL to ensure maximum precision and outcome reliability.
             </strong>
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function LensarAllySection() {
             <h3 className="font-display text-xl sm:text-3xl font-semibold text-foreground mb-4">
               {activeTab === 'patient'
                 ? 'Designed for Comfort and Faster Recovery'
-                : 'Empowering Dr. Marano with Sub-Micron Precision'}
+                : 'Empowering Our Surgeons with Sub-Micron Precision'}
             </h3>
 
             <div className="grid gap-4 sm:gap-6">

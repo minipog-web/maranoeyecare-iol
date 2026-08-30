@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Clareon Vivity IOL Guide: Extended Depth of Focus & Outcomes | Marano Eye Care NJ',
     description:
-      'Explore the Clareon® Vivity® non-diffractive EDOF lens. Monofocal-like night vision, crisp intermediate & distance clarity, and zero-needle laser cataract surgery with Dr. Matthew Marano Jr., MD.',
+      'Explore the Clareon® Vivity® non-diffractive EDOF lens. Monofocal-like night vision, crisp intermediate & distance clarity, and zero-needle laser cataract surgery with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.',
     url: 'https://premium-iol.maranoeye.com/clareon-vivity',
     siteName: 'Marano Eye Care',
     images: [
@@ -78,7 +78,7 @@ const vivitySchemas = [
         name: 'Is there a Toric version of Clareon Vivity for astigmatism?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. The Clareon Vivity Toric IOL corrects pre-existing corneal astigmatism simultaneously during cataract surgery. At Marano Eye Care, Dr. Matthew Marano Jr. provides custom Toric upgrades on all premium IOLs at no additional fee beyond the standard premium lens price.',
+          text: 'Yes. The Clareon Vivity Toric IOL corrects pre-existing corneal astigmatism simultaneously during cataract surgery. At Marano Eye Care, Dr. Matthew Marano Jr. and Dr. Sherief Raouf provide custom Toric upgrades on all premium IOLs at no additional fee beyond the standard premium lens price.',
         },
       },
       {
@@ -119,7 +119,7 @@ export default function ClareonVivityPage() {
             preselectedLens="vivity"
             bookingHeadline="Schedule Your Clareon® Vivity® Consultation"
             bookingUrgencyTitle="Precision LENSAR Ally Laser Cataract Surgery"
-            bookingUrgencyText="Personalized 3D corneal biometry with Dr. Matthew Marano Jr., MD. All premium lenses include custom Toric astigmatism correction at no extra fee."
+            bookingUrgencyText="Personalized 3D corneal biometry with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. All premium lenses include custom Toric astigmatism correction at no extra fee."
           />
         </div>
 

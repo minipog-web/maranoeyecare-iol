@@ -38,8 +38,8 @@ const profiles = [
     recommendation: 'PanOptix Pro',
     reason:
       'Advanced trifocal optics focus light at near (40 cm), intermediate (60 cm), and far distances, enabling 99% of patients to go through their day completely glasses-free.',
-    image: '/assets/images/profile_tech_conscious.jpg',
-    imageAlt: 'Individual reading and working comfortably at a bright modern desk',
+    image: '/assets/images/profile_conservative_candidate.jpg',
+    imageAlt: 'Avid reader enjoying fine book print comfortably outdoors without glasses',
     stat: '99% of PanOptix patients would choose the same lens again [1]',
   },
   {
@@ -56,8 +56,8 @@ const profiles = [
     recommendation: 'TECNIS PureSee',
     reason:
       'Refractive zonal optics eliminate dysphotopsia (halos/glare) entirely, delivering continuous clarity from distance through intermediate and functional near vision.',
-    image: '/assets/images/profile_conservative_candidate.jpg',
-    imageAlt: 'Tech-conscious individual using modern digital devices outdoors',
+    image: '/assets/images/day_driving_pro.jpg',
+    imageAlt: 'Night driver experiencing crisp high-contrast highway visibility',
     stat: 'First FDA-approved EDOF with zero contrast sensitivity warning [3]',
   },
 ];
@@ -84,8 +84,8 @@ export default function LifestyleMatchSection() {
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-lg">
               The ideal lens is not just the most expensive option. It is the one tailored directly
-              to how you live, work, and spend your free time. Dr. Marano evaluates your visual
-              routine thoroughly before recommending an implant.
+              to how you live, work, and spend your free time. Dr. Marano and Dr. Raouf evaluate
+              your visual routine thoroughly before recommending an implant.
             </p>
             <a
               href="#booking"

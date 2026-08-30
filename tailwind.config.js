@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   darkMode: 'class',
   theme: {
     container: {
@@ -43,7 +41,7 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
         '4xl': '2rem',
         '5xl': '2.5rem',
-        'arch': '10rem',
+        arch: '10rem',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'sans-serif'],

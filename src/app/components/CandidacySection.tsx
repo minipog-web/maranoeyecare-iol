@@ -18,13 +18,14 @@ export default function CandidacySection() {
             Surgical Integrity & Safety
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
-            Why Dr. Marano Declines Premium Lenses for{' '}
+            Why Our Surgeons Decline Premium Lenses for{' '}
             <span className="font-semibold text-gradient-primary">~20% of Inquiries.</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
             A premium lens only delivers life-changing results when the underlying cornea and retina
             support it. If our 3D biometry indicates that dry eye or retinal changes would
-            compromise your clarity, Dr. Marano will explicitly advise against an upgrade.
+            compromise your clarity, Dr. Marano and Dr. Raouf will explicitly advise against an
+            upgrade.
           </p>
         </div>
 
@@ -136,8 +137,8 @@ export default function CandidacySection() {
             <p className="text-xs text-muted-foreground leading-relaxed max-w-2xl">
               <strong className="text-foreground">Honest Clinical Advice:</strong> A comprehensive
               diagnostic mapping at our clinic is the only way to verify candidate status. If a
-              premium lens isn&apos;t the safest choice for your unique eye anatomy, Dr. Marano will
-              advise a standard lens or a custom monofocal-plus solution.
+              premium lens isn&apos;t the safest choice for your unique eye anatomy, Dr. Marano and
+              Dr. Raouf will advise a standard lens or a custom monofocal-plus solution.
             </p>
           </div>
           <a

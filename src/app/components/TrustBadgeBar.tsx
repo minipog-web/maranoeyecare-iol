@@ -37,14 +37,14 @@ export default function TrustBadgeBar({ variant = 'authority' }: TrustBadgeBarPr
   return (
     <div className="border-y border-border/40 bg-white/[0.015] py-3 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-0 sm:divide-x sm:divide-white/[0.08]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/[0.08]">
           {badges.map((badge) => (
             <div
               key={badge.text}
-              className="flex items-center justify-center text-center gap-2 text-xs sm:text-sm lg:text-base text-foreground font-semibold py-1.5 px-4 sm:px-6"
+              className="flex items-center justify-center text-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs md:text-sm lg:text-[13px] xl:text-sm 2xl:text-base text-foreground font-semibold py-2 lg:py-1.5 px-2 sm:px-3 lg:px-2 xl:px-4"
             >
-              <Icon name={badge.icon as 'TrophyIcon'} size={18} className="text-primary shrink-0" />
-              <span className="font-semibold tracking-wider whitespace-nowrap text-xs sm:text-sm lg:text-base">
+              <Icon name={badge.icon as 'TrophyIcon'} size={17} className="text-primary shrink-0" />
+              <span className="font-semibold tracking-wide sm:tracking-wider whitespace-nowrap">
                 {(() => {
                   const parts = badge.text.split(/(\[\d+\])/);
                   return parts.map((part, idx) => {
@@ -52,11 +52,11 @@ export default function TrustBadgeBar({ variant = 'authority' }: TrustBadgeBarPr
                     if (match) {
                       const num = match[1];
                       return (
-                        <sup key={idx} className="text-xs font-bold inline-flex items-center">
+                        <sup key={idx} className="text-[10px] font-bold inline-flex items-center">
                           <a
                             href={`#footnote-${num}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-block min-w-[24px] min-h-[24px] text-center"
+                            className="text-primary hover:underline px-0.5 py-0.5 touch-manipulation inline-block text-center"
                             aria-label={`View citation footnote ${num}`}
                           >
                             [{num}]

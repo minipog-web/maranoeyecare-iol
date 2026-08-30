@@ -132,7 +132,7 @@ const progressionStages: ProgressionStage[] = [
     lensState: 'Advanced Premium Intraocular Lens',
     colorGrade: 'Permanent Optical Clarity · Pure Hydrophobic Acrylic',
     description:
-      'During a gentle 10-minute outpatient procedure, Dr. Marano removes the cloudy, cataractous natural lens and replaces it with a medical-grade clear acrylic intraocular lens (IOL) with a customized prescription engineered to remain stable for life.',
+      'During a gentle 10-minute outpatient procedure, Dr. Marano or Dr. Raouf removes the cloudy, cataractous natural lens and replaces it with a medical-grade clear acrylic intraocular lens (IOL) with a customized prescription engineered to remain stable for life.',
     biologicalMechanism:
       'High-purity acrylic polymers do not age, degrade, or break down. Unlike your biological lens, an acrylic IOL will never yellow, fog, or develop a cataract again.',
     visualSymptoms: [
@@ -209,7 +209,7 @@ export default function CataractFormationSection() {
                   <span>Lens Clarity Simulation · Side-by-Side Progression Spectrum</span>
                 </p>
                 <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground mt-1">
-                  How the Natural Lens Deteriorates from Youthful Clarity to Brown Opacity
+                  How the Natural Lens Deteriorates From Youthful Clarity to Cataracts
                 </h3>
               </div>
               <span className="text-[11px] text-muted-foreground/80 bg-white/[0.04] border border-white/10 px-3 py-1.5 rounded-full shrink-0 self-start sm:self-auto">
@@ -590,10 +590,10 @@ export default function CataractFormationSection() {
               <div>
                 <div className="flex items-center justify-between gap-3 mb-5">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-                    <Icon name="SparklesIcon" size={20} />
+                    <Icon name="CheckBadgeIcon" size={20} />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">
-                    Permanent & Stable
+                  <span className="inline-flex items-center text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-[#d4af37] via-primary to-[#f3e5ab] px-3.5 py-1.5 rounded-full shadow-[0_0_20px_rgba(197,160,89,0.45)] border border-primary-light/40">
+                    Permanent &amp; Stable
                   </span>
                 </div>
 
@@ -642,13 +642,13 @@ export default function CataractFormationSection() {
             </div>
             <div>
               <h4 className="text-sm sm:text-base font-bold text-foreground">
-                How Dr. Marano Performs Your Cataract Replacement
+                How Our Surgeons Perform Your Cataract Replacement
               </h4>
               <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-2xl leading-relaxed">
                 Using gentle numbing eye drops (zero needles) and the precision 3D LENSAR ALLY
-                laser, Dr. Marano gently removes the cloudy cataractous lens in approximately 10
-                minutes and places your customized clear acrylic lens. Most patients see clearly
-                within 24 to 48 hours.
+                laser, Dr. Marano and Dr. Raouf gently remove the cloudy cataractous lens in
+                approximately 10 minutes and place your customized clear acrylic lens. Most patients
+                see clearly within 24 to 48 hours.
               </p>
             </div>
           </div>
