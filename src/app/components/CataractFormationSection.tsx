@@ -202,23 +202,27 @@ export default function CataractFormationSection() {
         {/* Visual 5-Stage Lens Clarity Simulation Spectrum */}
         <div className="max-w-5xl mx-auto mb-10">
           <div className="glass-card border border-border/90 rounded-3xl p-5 sm:p-7 md:p-8 shadow-2xl bg-[#090b10]/95">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-white/[0.08]">
-              <div>
+            <div className="pb-5 mb-6 border-b border-white/[0.08]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-2.5">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary flex items-center gap-2">
                   <Icon name="EyeIcon" size={15} />
                   <span>Lens Clarity Simulation · Side-by-Side Progression Spectrum</span>
                 </p>
-                <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground mt-1">
-                  How the Natural Lens Deteriorates From Youthful Clarity to Cataracts
-                </h3>
+                <span className="text-[11px] text-muted-foreground/80 bg-white/[0.04] border border-white/10 px-3 py-1 rounded-full shrink-0 self-start sm:self-auto">
+                  Tap any stage to inspect biological details
+                </span>
               </div>
-              <span className="text-[11px] text-muted-foreground/80 bg-white/[0.04] border border-white/10 px-3 py-1.5 rounded-full shrink-0 self-start sm:self-auto">
-                Tap any stage to inspect biological details
-              </span>
+              <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-medium text-foreground tracking-tight whitespace-normal lg:whitespace-nowrap">
+                How the Natural Lens Deteriorates From Youthful Clarity to Cataracts
+              </h3>
             </div>
 
             {/* 5 Lens Discs Side-by-Side */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            <div
+              role="tablist"
+              aria-label="Lens clarity progression stages"
+              className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 sm:gap-2 lg:gap-4"
+            >
               {progressionStages.map((stage) => {
                 const isSelected = stage.id === activeStageId;
                 const isPermanentSolution = stage.id === 5;
@@ -231,7 +235,9 @@ export default function CataractFormationSection() {
                     aria-selected={isSelected}
                     aria-controls={`stage-panel-${stage.id}`}
                     id={`stage-tab-${stage.id}`}
-                    className={`relative flex flex-col items-center text-center p-3.5 sm:p-4 rounded-2xl transition-all duration-300 touch-manipulation group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                    className={`relative flex flex-col items-center text-center p-3 sm:p-3 lg:p-4 rounded-2xl transition-all duration-300 touch-manipulation group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                      isPermanentSolution ? 'col-span-2 sm:col-span-1' : ''
+                    } ${
                       isSelected
                         ? isPermanentSolution
                           ? 'bg-gradient-to-b from-primary/20 via-primary/10 to-transparent border-2 border-primary shadow-[0_0_25px_rgba(197,160,89,0.35)] scale-[1.02]'
@@ -264,33 +270,36 @@ export default function CataractFormationSection() {
                     </div>
 
                     {/* Lens Graphic Simulation Disc */}
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full my-2 flex items-center justify-center bg-black/60 p-1 border border-white/10 shadow-inner">
-                      {/* Grid Pattern inside to show optical transparency */}
-                      <div className="absolute inset-2 rounded-full overflow-hidden opacity-25">
-                        <div className="w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:6px_6px]" />
-                      </div>
-
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full my-2 flex items-center justify-center bg-black/80 p-1 border border-white/10 shadow-inner">
                       {/* Visual Lens State Simulation Disc */}
                       <div
-                        className={`relative w-full h-full rounded-full transition-all duration-500 flex items-center justify-center ${
+                        className={`relative w-full h-full rounded-full transition-all duration-500 flex items-center justify-center overflow-hidden ${
                           stage.id === 1
-                            ? 'bg-gradient-to-br from-cyan-300/30 via-blue-400/20 to-cyan-500/10 border-2 border-cyan-300/50 shadow-[0_0_15px_rgba(34,211,238,0.25)]'
+                            ? 'bg-gradient-to-br from-cyan-300/25 via-blue-400/15 to-cyan-500/10 border-2 border-cyan-300/50 shadow-[0_0_18px_rgba(34,211,238,0.25)]'
                             : stage.id === 2
                               ? 'bg-gradient-to-br from-amber-100/40 via-slate-300/30 to-amber-200/20 backdrop-blur-[2px] border-2 border-amber-200/40 shadow-[0_0_12px_rgba(251,191,36,0.15)]'
                               : stage.id === 3
                                 ? 'bg-gradient-to-br from-amber-500/60 via-yellow-600/50 to-amber-700/40 backdrop-blur-[4px] border-2 border-amber-500/60 shadow-[0_0_18px_rgba(245,158,11,0.25)]'
                                 : stage.id === 4
                                   ? 'bg-gradient-to-br from-[#451a03] via-[#290e02] to-[#120601] border-2 border-amber-900/80 shadow-[0_0_20px_rgba(69,26,3,0.5)]'
-                                  : 'bg-gradient-to-br from-primary/35 via-accent/25 to-primary/15 border-2 border-primary shadow-[0_0_22px_rgba(197,160,89,0.4)]'
+                                  : 'bg-gradient-to-br from-primary/30 via-accent/20 to-primary/10 border-2 border-primary shadow-[0_0_22px_rgba(197,160,89,0.35)]'
                         }`}
                       >
-                        {/* Stage 5 Acrylic IOL Haptic Arms (Medical Implant Visualization) */}
-                        {stage.id === 5 && (
+                        {/* Pristine Specular Glass Sheen (for clear optical lenses: Stage 1 & Stage 5) */}
+                        {(stage.id === 1 || stage.id === 5) && (
                           <>
-                            <div className="absolute -top-1.5 -left-1.5 w-6 h-6 border-t-2 border-l-2 border-primary/80 rounded-tl-full pointer-events-none" />
-                            <div className="absolute -bottom-1.5 -right-1.5 w-6 h-6 border-b-2 border-r-2 border-primary/80 rounded-br-full pointer-events-none" />
-                            <div className="w-2.5 h-2.5 rounded-full border border-primary/80 bg-primary/20 animate-ping opacity-75 pointer-events-none" />
+                            <div className="absolute top-1 inset-x-2.5 h-4 rounded-[100%] bg-gradient-to-b from-white/40 via-white/10 to-transparent pointer-events-none" />
+                            <div className="absolute inset-1 rounded-full border border-white/15 pointer-events-none" />
                           </>
+                        )}
+
+                        {/* Stage 5 Acrylic IOL Aspheric / Precision Optical Rings */}
+                        {stage.id === 5 && (
+                          <div className="w-12 h-12 rounded-full border border-primary/40 bg-primary/5 flex items-center justify-center pointer-events-none">
+                            <div className="w-6 h-6 rounded-full border border-primary/50 flex items-center justify-center">
+                              <div className="w-2 h-2 rounded-full bg-primary/60" />
+                            </div>
+                          </div>
                         )}
 
                         {/* Stage 2 Micro-Clouding Flecks */}
@@ -559,7 +568,9 @@ export default function CataractFormationSection() {
                 </h4>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">
                   Living biological tissue made of water and crystallin proteins. While highly
-                  flexible in youth, it naturally deteriorates over time.
+                  flexible in youth, it naturally deteriorates over time. Over time, cataract
+                  formation blocks the amount of light able to reach the back of the eye, meaning
+                  that updated glasses are no longer effective at improving vision.
                 </p>
 
                 <ul className="space-y-3.5 text-xs sm:text-sm mb-6">
@@ -567,6 +578,7 @@ export default function CataractFormationSection() {
                     'Subject to continuous oxidative stress and protein degradation',
                     'Loses flexibility around age 45 (presbyopia / reading glasses)',
                     'Inevitably turns cloudy, yellow, and brown over decades',
+                    'Blocks light reaching the back of the eye, rendering updated glasses ineffective',
                     'Causes unpredictable prescription shifts as the nucleus swells',
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">

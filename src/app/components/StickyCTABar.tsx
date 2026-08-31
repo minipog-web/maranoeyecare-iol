@@ -10,23 +10,38 @@ export default function StickyCTABar() {
 
   useEffect(() => {
     const bookingEl = document.getElementById('booking');
+    let isAtBooking = false;
 
+    let observer: IntersectionObserver | null = null;
+    if (bookingEl && typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          isAtBooking = entry.isIntersecting;
+          setVisible(window.scrollY > 400 && !isAtBooking);
+        },
+        { rootMargin: '100px 0px 0px 0px' }
+      );
+      observer.observe(bookingEl);
+    }
+
+    let ticking = false;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      // Show after scrolling 400px (past the hero)
-      setVisible(scrollY > 400);
-
-      // Re-show if the user is within 600px of the booking section
-      if (dismissed && bookingEl) {
-        const bookingTop = bookingEl.getBoundingClientRect().top + scrollY;
-        if (scrollY > bookingTop - 600) {
-          setDismissed(false);
-        }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setVisible(window.scrollY > 400 && !isAtBooking);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (observer) observer.disconnect();
+    };
   }, [dismissed]);
 
   if (dismissed) return null;

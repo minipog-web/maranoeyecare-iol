@@ -4,17 +4,44 @@ import { sendConsultationNotification } from '@/lib/notifications';
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    // Validate Content-Type
+    const contentType = req.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
+      return NextResponse.json(
+        { error: 'Invalid content type. Expected application/json.' },
+        { status: 415 }
+      );
+    }
+
+    // Safely parse JSON body
+    let body: Record<string, unknown>;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { error: 'Malformed JSON payload in request body.' },
+        { status: 400 }
+      );
+    }
+
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json(
+        { error: 'Request body must be a valid JSON object.' },
+        { status: 400 }
+      );
+    }
+
     const bookingData: ConsultationBooking = {
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      phone: body.phone,
-      preferredContact: body.preferredContact,
-      location: body.location,
-      lens: body.lens,
-      message: body.message,
-      quizResult: body.quizResult,
+      firstName: typeof body.firstName === 'string' ? body.firstName.trim() : '',
+      lastName: typeof body.lastName === 'string' ? body.lastName.trim() : '',
+      email: typeof body.email === 'string' ? body.email.trim() : '',
+      phone: typeof body.phone === 'string' ? body.phone.trim() : '',
+      preferredContact:
+        typeof body.preferredContact === 'string' ? body.preferredContact.trim() : 'phone',
+      location: typeof body.location === 'string' ? body.location.trim() : '',
+      lens: typeof body.lens === 'string' ? body.lens.trim() : '',
+      message: typeof body.message === 'string' ? body.message.trim() : undefined,
+      quizResult: typeof body.quizResult === 'string' ? body.quizResult.trim() : undefined,
     };
 
     // Domain validation

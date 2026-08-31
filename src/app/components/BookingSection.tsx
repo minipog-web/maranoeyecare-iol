@@ -185,11 +185,23 @@ export default function BookingSection({
     return newErrors;
   };
 
+  const formatPhoneInput = (val: string): string => {
+    if (val.startsWith('+')) {
+      return val.replace(/[^\d+\s()-]/g, '').slice(0, 25);
+    }
+    const digits = val.replace(/\D/g, '');
+    if (!digits) return '';
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const finalValue = name === 'phone' ? formatPhoneInput(value) : value;
+    setForm((prev) => ({ ...prev, [name]: finalValue }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
@@ -197,6 +209,7 @@ export default function BookingSection({
 
   const handleStep1 = (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     const newErrors = validateStep1Fields();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -213,6 +226,7 @@ export default function BookingSection({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     const newErrors = validateStep1Fields();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -384,49 +398,61 @@ export default function BookingSection({
             </div>
 
             {/* Office Locations Segmented Card */}
-            <div className="border-t border-border pt-5">
-              <div className="flex items-center justify-between mb-2.5">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary flex items-center gap-1.5">
-                  <Icon name="PhoneIcon" size={13} className="text-primary animate-pulse" />
-                  {`Prefer to Call? Select Your Office:`}
+            <div className="border-t border-border pt-6">
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-primary flex items-center gap-2">
+                  <Icon name="PhoneIcon" size={14} className="text-primary animate-pulse" />
+                  Prefer to Call? Select Your Office:
                 </p>
-                <span className="text-[10px] text-primary font-mono font-medium">
-                  {offices[activeOfficeTab].badge}
-                </span>
               </div>
 
-              {/* Location tabs */}
-              <div className="flex gap-1.5 p-1 bg-black/40 border border-white/[0.08] rounded-xl mb-3">
-                {offices.map((loc, idx) => (
-                  <button
-                    key={loc.city}
-                    type="button"
-                    onClick={() => setActiveOfficeTab(idx)}
-                    className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
-                      activeOfficeTab === idx
-                        ? 'bg-primary/20 text-primary border border-primary/40 shadow-sm'
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    {loc.city}
-                  </button>
-                ))}
+              {/* Bold Location tabs */}
+              <div className="grid grid-cols-3 gap-2 p-1.5 bg-black/60 border border-primary/25 rounded-2xl mb-3.5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
+                {offices.map((loc, idx) => {
+                  const isActive = activeOfficeTab === idx;
+                  return (
+                    <button
+                      key={loc.city}
+                      type="button"
+                      onClick={() => setActiveOfficeTab(idx)}
+                      className={`relative flex items-center justify-center gap-1.5 sm:gap-2 py-3 px-2 sm:px-4 text-xs sm:text-sm md:text-base font-bold rounded-xl transition-all duration-200 min-h-[48px] touch-manipulation select-none ${
+                        isActive
+                          ? 'bg-gradient-to-r from-primary via-[#e6c378] to-primary text-black font-extrabold shadow-[0_4px_20px_rgba(197,160,89,0.45)] border border-primary-light scale-[1.02] z-10'
+                          : 'bg-white/[0.04] hover:bg-white/[0.08] text-white/90 hover:text-white border border-white/10 hover:border-primary/40 active:scale-[0.98]'
+                      }`}
+                    >
+                      <Icon
+                        name="MapPinIcon"
+                        size={15}
+                        className={isActive ? 'text-black shrink-0' : 'text-primary/70 shrink-0'}
+                      />
+                      <span>{loc.city}</span>
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Active Office Detail Card */}
-              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-primary/25 space-y-2 shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-bold text-foreground text-sm flex items-center gap-1.5 truncate">
-                    <Icon name="MapPinIcon" size={14} className="text-primary shrink-0" />
-                    {offices[activeOfficeTab].city} Office
-                  </span>
+              <div className="p-4 rounded-2xl bg-white/[0.03] border border-primary/30 space-y-3 shadow-[0_8px_30px_rgba(0,0,0,0.4)] relative overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-display font-bold text-foreground text-sm sm:text-base flex items-center gap-1.5">
+                        <Icon name="MapPinIcon" size={15} className="text-primary shrink-0" />
+                        {offices[activeOfficeTab].city} Office
+                      </span>
+                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/25 font-semibold">
+                        {offices[activeOfficeTab].badge}
+                      </span>
+                    </div>
+                    <p className="text-xs text-white/70 mt-1">{offices[activeOfficeTab].address}</p>
+                  </div>
                   <a
                     href={`tel:${offices[activeOfficeTab].phone.replace(/-/g, '')}`}
                     suppressHydrationWarning
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-black font-bold text-xs hover:bg-primary/90 transition-all shrink-0 shadow-[0_0_12px_rgba(197,160,89,0.35)] active:scale-95 touch-manipulation"
-                    aria-label={`Call ${offices[activeOfficeTab].city} office at ${offices[activeOfficeTab].phone}`}
+                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-primary text-black font-extrabold text-xs sm:text-sm hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(197,160,89,0.5)] transition-all shrink-0 shadow-[0_0_15px_rgba(197,160,89,0.35)] active:scale-95 touch-manipulation min-h-[44px]"
                   >
-                    <Icon name="PhoneIcon" size={12} className="text-black shrink-0" />
+                    <Icon name="PhoneIcon" size={13} className="text-black shrink-0" />
                     <span suppressHydrationWarning>Call {offices[activeOfficeTab].phone}</span>
                   </a>
                 </div>
@@ -434,12 +460,12 @@ export default function BookingSection({
                   href={offices[activeOfficeTab].mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center justify-between group pt-1.5 border-t border-border/20"
+                  className="text-xs text-primary/90 hover:text-primary transition-colors flex items-center justify-between group pt-2 border-t border-white/[0.08]"
                 >
-                  <span className="leading-snug text-xs truncate">
-                    {offices[activeOfficeTab].address}
+                  <span className="leading-snug text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                    View on Google Maps
                   </span>
-                  <span className="text-[11px] font-semibold text-primary group-hover:underline shrink-0 ml-2">
+                  <span className="text-xs font-bold text-primary group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
                     Get Directions &rarr;
                   </span>
                 </a>
@@ -481,20 +507,28 @@ export default function BookingSection({
                     <div
                       role="alert"
                       aria-live="assertive"
-                      aria-atomic="true"
-                      className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex gap-3 text-sm text-red-200 leading-relaxed"
+                      className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-red-200 leading-relaxed"
                     >
-                      <Icon
-                        name="ExclamationCircleIcon"
-                        size={18}
-                        className="text-red-400 shrink-0 mt-0.5"
-                      />
-                      <div>
-                        <strong className="font-semibold block text-red-300 mb-0.5">
-                          Submission Error
-                        </strong>
-                        {errorMessage}
+                      <div className="flex gap-3 items-start">
+                        <Icon
+                          name="ExclamationCircleIcon"
+                          size={18}
+                          className="text-red-400 shrink-0 mt-0.5"
+                        />
+                        <div>
+                          <strong className="font-semibold block text-red-300 mb-0.5">
+                            Submission Notice
+                          </strong>
+                          {errorMessage}
+                        </div>
                       </div>
+                      <a
+                        href="tel:9733220100"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-xs font-bold text-red-200 border border-red-500/30 shrink-0 whitespace-nowrap transition-colors touch-manipulation min-h-[36px]"
+                      >
+                        <Icon name="PhoneIcon" size={13} />
+                        <span>Call Us Directly</span>
+                      </a>
                     </div>
                   )}
                   <div className="flex items-center justify-between gap-3 sm:gap-4 mb-3">
@@ -533,7 +567,7 @@ export default function BookingSection({
                 </div>
 
                 {step === 1 ? (
-                  <form onSubmit={handleStep1} className="space-y-4 sm:space-y-5">
+                  <form onSubmit={handleStep1} className="space-y-4 sm:space-y-5" noValidate>
                     {/* Name */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -547,9 +581,14 @@ export default function BookingSection({
                           autoComplete="given-name"
                           value={form.firstName}
                           onChange={handleChange}
+                          onBlur={(e) =>
+                            setForm((prev) => ({ ...prev, firstName: e.target.value.trim() }))
+                          }
                           placeholder="Jane"
                           maxLength={50}
                           required
+                          aria-invalid={errors.firstName ? 'true' : 'false'}
+                          aria-describedby={errors.firstName ? 'firstName-error' : undefined}
                           className={`${inputClass} ${
                             errors.firstName
                               ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
@@ -557,7 +596,11 @@ export default function BookingSection({
                           }`}
                         />
                         {errors.firstName && (
-                          <p className="text-red-400 text-xs mt-1.5 font-medium">
+                          <p
+                            id="firstName-error"
+                            role="alert"
+                            className="text-red-400 text-xs mt-1.5 font-medium"
+                          >
                             {errors.firstName}
                           </p>
                         )}
@@ -573,9 +616,14 @@ export default function BookingSection({
                           autoComplete="family-name"
                           value={form.lastName}
                           onChange={handleChange}
+                          onBlur={(e) =>
+                            setForm((prev) => ({ ...prev, lastName: e.target.value.trim() }))
+                          }
                           placeholder="Smith"
                           maxLength={50}
                           required
+                          aria-invalid={errors.lastName ? 'true' : 'false'}
+                          aria-describedby={errors.lastName ? 'lastName-error' : undefined}
                           className={`${inputClass} ${
                             errors.lastName
                               ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
@@ -583,7 +631,11 @@ export default function BookingSection({
                           }`}
                         />
                         {errors.lastName && (
-                          <p className="text-red-400 text-xs mt-1.5 font-medium">
+                          <p
+                            id="lastName-error"
+                            role="alert"
+                            className="text-red-400 text-xs mt-1.5 font-medium"
+                          >
                             {errors.lastName}
                           </p>
                         )}
@@ -601,9 +653,14 @@ export default function BookingSection({
                         autoComplete="tel"
                         value={form.phone}
                         onChange={handleChange}
+                        onBlur={(e) =>
+                          setForm((prev) => ({ ...prev, phone: e.target.value.trim() }))
+                        }
                         placeholder="(973) 555-0123"
                         maxLength={25}
                         required
+                        aria-invalid={errors.phone ? 'true' : 'false'}
+                        aria-describedby={errors.phone ? 'phone-error' : undefined}
                         className={`${inputClass} ${
                           errors.phone
                             ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
@@ -611,7 +668,13 @@ export default function BookingSection({
                         }`}
                       />
                       {errors.phone && (
-                        <p className="text-red-400 text-xs mt-1.5 font-medium">{errors.phone}</p>
+                        <p
+                          id="phone-error"
+                          role="alert"
+                          className="text-red-400 text-xs mt-1.5 font-medium"
+                        >
+                          {errors.phone}
+                        </p>
                       )}
                     </div>
 
@@ -626,6 +689,8 @@ export default function BookingSection({
                         onChange={handleChange}
                         required
                         suppressHydrationWarning
+                        aria-invalid={errors.location ? 'true' : 'false'}
+                        aria-describedby={errors.location ? 'location-error' : undefined}
                         className={`${inputClass} ${
                           errors.location
                             ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
@@ -640,7 +705,13 @@ export default function BookingSection({
                         ))}
                       </select>
                       {errors.location && (
-                        <p className="text-red-400 text-xs mt-1.5 font-medium">{errors.location}</p>
+                        <p
+                          id="location-error"
+                          role="alert"
+                          className="text-red-400 text-xs mt-1.5 font-medium"
+                        >
+                          {errors.location}
+                        </p>
                       )}
                     </div>
 
@@ -655,9 +726,14 @@ export default function BookingSection({
                         autoComplete="email"
                         value={form.email}
                         onChange={handleChange}
+                        onBlur={(e) =>
+                          setForm((prev) => ({ ...prev, email: e.target.value.trim() }))
+                        }
                         placeholder="jane.smith@example.com"
                         maxLength={100}
                         required
+                        aria-invalid={errors.email ? 'true' : 'false'}
+                        aria-describedby={errors.email ? 'email-error' : undefined}
                         className={`${inputClass} ${
                           errors.email
                             ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
@@ -665,7 +741,13 @@ export default function BookingSection({
                         }`}
                       />
                       {errors.email && (
-                        <p className="text-red-400 text-xs mt-1.5 font-medium">{errors.email}</p>
+                        <p
+                          id="email-error"
+                          role="alert"
+                          className="text-red-400 text-xs mt-1.5 font-medium"
+                        >
+                          {errors.email}
+                        </p>
                       )}
                     </div>
 
@@ -717,11 +799,9 @@ export default function BookingSection({
                       />
                     </button>
 
-                    <div className="flex items-center justify-center gap-1.5 py-2 px-2 sm:px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] xs:text-xs sm:text-sm font-semibold mt-3 whitespace-nowrap overflow-hidden text-ellipsis">
+                    <div className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] sm:text-xs font-semibold mt-3 text-center leading-snug">
                       <Icon name="LockClosedIcon" size={14} className="shrink-0 text-emerald-400" />
-                      <span className="whitespace-nowrap">
-                        HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required
-                      </span>
+                      <span>HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required</span>
                     </div>
                   </form>
                 ) : (
@@ -761,11 +841,29 @@ export default function BookingSection({
                         name="message"
                         value={form.message}
                         onChange={handleChange}
+                        onBlur={(e) =>
+                          setForm((prev) => ({ ...prev, message: e.target.value.trim() }))
+                        }
                         placeholder="Any specific concerns, current glasses prescription, or questions for Dr. Marano or Dr. Raouf..."
                         rows={3}
                         maxLength={1000}
-                        className={`${inputClass} resize-none`}
+                        aria-invalid={errors.message ? 'true' : 'false'}
+                        aria-describedby={errors.message ? 'message-error' : undefined}
+                        className={`${inputClass} resize-none ${
+                          errors.message
+                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                            : ''
+                        }`}
                       />
+                      {errors.message && (
+                        <p
+                          id="message-error"
+                          role="alert"
+                          className="text-red-400 text-xs mt-1.5 font-medium"
+                        >
+                          {errors.message}
+                        </p>
+                      )}
                       <div className="flex justify-end mt-1">
                         <span className="text-[10px] text-muted-foreground/60">
                           {form.message.length} / 1000

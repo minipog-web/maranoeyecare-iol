@@ -16,8 +16,8 @@ export default function Footer() {
             >
               <AppLogo
                 src="/assets/images/marano_logo.png"
-                width={160}
-                height={40}
+                width={200}
+                height={50}
                 className="opacity-90 hover:opacity-100 transition-opacity"
               />
             </a>
@@ -47,7 +47,6 @@ export default function Footer() {
               href="tel:9733220100"
               suppressHydrationWarning
               className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation py-2.5 px-3 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-              aria-label="Call Marano Eye Care at 973-322-0100"
             >
               <Icon name="PhoneIcon" size={14} className="text-primary" />
               <span suppressHydrationWarning>(973) 322-0100</span>

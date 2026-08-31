@@ -127,7 +127,7 @@ const lenses = [
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
         intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
-        near: '/assets/images/puresee_day_near_pro_v2.jpg',
+        near: '/assets/images/vivity_day_near_pro.jpg',
       },
       night: {
         distance: '/assets/images/vivity_night_pro.jpg',
@@ -661,9 +661,43 @@ export default function LensVisionComparisonSection() {
 
         <div
           id="iol-simulator"
-          className="double-bezel p-1.5 sm:p-2.5 lg:p-3 mb-10 sm:mb-12 relative z-10"
+          className="optical-bezel rounded-3xl p-2 sm:p-3.5 lg:p-5 mb-10 sm:mb-12 relative z-10"
         >
-          <div className="double-bezel-inner p-3 sm:p-5 lg:p-10 bg-[#0d0f16]/95 backdrop-blur-xl">
+          <div className="rounded-[1.6rem] p-3 sm:p-5 lg:p-8 bg-[#090b11]/90 backdrop-blur-xl">
+            {/* Precision Optical Bench Telemetry HUD */}
+            <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 mb-6 rounded-xl bg-black/60 border border-white/[0.08] text-[11px] font-mono tracking-wider shadow-inner">
+              <div className="flex items-center gap-2 text-primary">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="font-bold uppercase tracking-widest text-[10px] sm:text-[11px]">
+                  Precision Optical Bench
+                </span>
+                <span className="text-white/30 hidden sm:inline">|</span>
+                <span className="text-muted-foreground hidden sm:inline text-[10px]">
+                  Calibrated 1:1 Human Cornea Projection
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary font-bold text-[10px] sm:text-[11px]">
+                  {timeOfDay === 'night'
+                    ? 'FOCAL PLANE: ∞ DISTANCE (NIGHT ROAD PROFILE)'
+                    : activeDistance === 'near'
+                      ? 'FOCAL PLANE: 40 CM (READING & DIGITAL SCREENS)'
+                      : activeDistance === 'intermediate'
+                        ? activePremiumLens.id === 'panoptix'
+                          ? 'FOCAL PLANE: 60 CM (COMPUTER & DASHBOARD)'
+                          : 'FOCAL PLANE: 66 CM (COMPUTER & DASHBOARD)'
+                        : 'FOCAL PLANE: ∞ DISTANCE (DRIVING & PANORAMIC)'}
+                </span>
+                <span className="text-white/50 hidden lg:inline text-[10px]">
+                  {activePremiumLens.id === 'panoptix'
+                    ? 'QUADRAFOCAL ENLIGHTEN® · 88% LIGHT TRANSMITTANCE'
+                    : activePremiumLens.id === 'vivity'
+                      ? 'X-WAVE™ WAVEFRONT SHAPING · NON-DIFFRACTIVE'
+                      : 'REFRACTIVE EDOF OPTIC · HIGH CONTRAST PROFILE'}
+                </span>
+              </div>
+            </div>
+
             {/* Integrated Toggles Bar */}
             <div className="flex flex-col gap-6 pb-6 mb-8 border-b border-white/[0.06]">
               {/* Centered Environment Panel */}
@@ -846,10 +880,21 @@ export default function LensVisionComparisonSection() {
                 {renderSimulatorImages('monofocal')}
                 {/* Glass Reflection Overlay */}
                 <div className={styles.glassReflection} />
+                {/* Optical Reticle Crosshairs */}
+                <div className="absolute top-2.5 left-2.5 w-3.5 h-3.5 border-t border-l border-white/30 pointer-events-none z-20" />
+                <div className="absolute top-2.5 right-2.5 w-3.5 h-3.5 border-t border-r border-white/30 pointer-events-none z-20" />
+                <div className="absolute bottom-14 left-2.5 w-3.5 h-3.5 border-b border-l border-white/30 pointer-events-none z-20" />
+                <div className="absolute bottom-14 right-2.5 w-3.5 h-3.5 border-b border-r border-white/30 pointer-events-none z-20" />
                 {/* Scene Tag */}
                 <div className="absolute top-3 left-3 pointer-events-none z-20">
                   <span className="bg-black/60 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
                     {timeOfDay === 'day' ? 'Day' : 'Night'} · Monofocal
+                  </span>
+                </div>
+                {/* Spec Stamp */}
+                <div className="absolute top-3 right-3 pointer-events-none z-20 hidden sm:block">
+                  <span className="text-[9px] font-mono text-white/50 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded border border-white/10 uppercase tracking-wider">
+                    MONOFOCAL · 13.0MM · FIXED 1-PLANE
                   </span>
                 </div>
                 {/* In-Image Visual Explanation Overlay */}
@@ -887,6 +932,11 @@ export default function LensVisionComparisonSection() {
                 {renderPremiumSimulatorImages()}
                 {/* Glass Reflection Overlay */}
                 <div className={styles.glassReflection} />
+                {/* Optical Reticle Crosshairs */}
+                <div className="absolute top-2.5 left-2.5 w-3.5 h-3.5 border-t border-l border-primary/40 pointer-events-none z-20" />
+                <div className="absolute top-2.5 right-2.5 w-3.5 h-3.5 border-t border-r border-primary/40 pointer-events-none z-20" />
+                <div className="absolute bottom-14 left-2.5 w-3.5 h-3.5 border-b border-l border-primary/40 pointer-events-none z-20" />
+                <div className="absolute bottom-14 right-2.5 w-3.5 h-3.5 border-b border-r border-primary/40 pointer-events-none z-20" />
                 {/* Scene Tag */}
                 <div className="absolute top-4 left-4 pointer-events-none z-20">
                   <span
@@ -900,6 +950,16 @@ export default function LensVisionComparisonSection() {
                     <span>
                       {timeOfDay === 'day' ? 'Daytime' : 'Night driving'} · {activePremiumLens.name}
                     </span>
+                  </span>
+                </div>
+                {/* Spec Stamp */}
+                <div className="absolute top-4 right-4 pointer-events-none z-20 hidden sm:block">
+                  <span className="text-[9px] font-mono text-primary/90 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-primary/30 uppercase tracking-wider">
+                    {activePremiumLens.id === 'panoptix'
+                      ? 'PANOPTIX PRO · TRIPLE FOCI · 4.5MM DIFFRACTIVE'
+                      : activePremiumLens.id === 'vivity'
+                        ? 'CLAREON VIVITY · X-WAVE™ · NON-DIFFRACTIVE'
+                        : 'TECNIS PURESEE · REFRACTIVE EDOF · 0 RINGS'}
                   </span>
                 </div>
                 {/* In-Image Visual Explanation Overlay */}
@@ -1014,6 +1074,11 @@ export default function LensVisionComparisonSection() {
                 {renderMobileSimulatorImages()}
                 {/* Glass Reflection Overlay */}
                 <div className={styles.glassReflection} />
+                {/* Optical Reticle Crosshairs */}
+                <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-white/30 pointer-events-none z-20" />
+                <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-white/30 pointer-events-none z-20" />
+                <div className="absolute bottom-14 left-2 w-3 h-3 border-b border-l border-white/30 pointer-events-none z-20" />
+                <div className="absolute bottom-14 right-2 w-3 h-3 border-b border-r border-white/30 pointer-events-none z-20" />
 
                 {/* Hold to Compare Floating Button (only when premium lens is selected) */}
                 {activeMobileLensId !== 'monofocal' && (
@@ -1412,9 +1477,6 @@ export default function LensVisionComparisonSection() {
         <div className="mt-12 sm:mt-16 glass-card border border-primary/20 bg-primary/5 rounded-[2rem] p-6 sm:p-10 flex flex-col items-center text-center gap-6 relative overflow-hidden max-w-[1200px] mx-auto w-full">
           {/* Subtle gold glow inside */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[60px] pointer-events-none" />
-          <div className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center shrink-0 border border-primary/20 shadow-[0_0_15px_rgba(197,160,89,0.15)]">
-            <AppIcon name="SparklesIcon" size={28} className="text-primary animate-pulse" />
-          </div>
           <div className="space-y-4 max-w-full w-full">
             <h4 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground text-center">
               Have Astigmatism? All <span className="text-primary font-bold">Premium Lenses</span>{' '}

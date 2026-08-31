@@ -11,8 +11,8 @@ export interface DynamicContent {
 
 export const DEFAULT_CONTENT: DynamicContent = {
   badgeText: 'Premium IOL Specialists • Livingston, Denville & Newark',
-  heroTitleLine1: 'One Surgery. One Choice.',
-  heroTitleLine2: 'Lifetime Visual Freedom.',
+  heroTitleLine1: 'One Surgery. One Decision.',
+  heroTitleLine2: 'A Lifetime of Visual Freedom.',
   heroDesc:
     'Cataract surgery is a once-in-a-lifetime opportunity to restore your vision. Rather than accepting standard lenses that require reading glasses every day, discover the freedom of advanced lenses designed to restore complete, multi-distance clarity.',
   bookingHeadline: 'Reclaim Clear Vision',

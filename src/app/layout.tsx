@@ -445,6 +445,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Preconnect & DNS prefetch for critical third-party origins */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://cdn.callrail.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.callrail.com" />
+
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

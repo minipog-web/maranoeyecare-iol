@@ -10,7 +10,16 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -80,8 +89,8 @@ export default function Header() {
           >
             <AppLogo
               src="/assets/images/marano_logo.png"
-              width={240}
-              height={60}
+              width={200}
+              height={50}
               className="w-[130px] sm:w-[150px] lg:w-[165px] xl:w-[195px] 2xl:w-[220px] h-auto shrink-0"
             />
           </a>
@@ -107,7 +116,7 @@ export default function Header() {
             href="tel:9733220100"
             suppressHydrationWarning
             onClick={() => handlePhoneClick('desktop')}
-            aria-label="Call Marano Eye Care at 973-322-0100"
+            aria-label="Call Marano Eye Care"
             className="group flex items-center gap-2 text-sm xl:text-base font-bold text-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center shrink-0 border border-primary/30 group-hover:bg-primary/25 group-hover:border-primary/50 transition-all duration-300">

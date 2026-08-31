@@ -71,8 +71,8 @@ export default function TrustSection() {
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-5 sm:mb-6 leading-tight">
             New Jersey&apos;s{' '}
-            <span className="font-semibold text-gradient-primary">Leading Cataract & Cornea</span>{' '}
-            Microsurgeons
+            <span className="font-semibold text-gradient-primary">Most Awarded Cataract</span>{' '}
+            Surgeons
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-foreground font-normal max-w-3xl mx-auto leading-relaxed">
             At Marano Eye Care, your surgery is personally performed by renowned board-certified
@@ -163,7 +163,7 @@ export default function TrustSection() {
                   <div
                     key={award.value}
                     onMouseMove={handleSpotlightMouseMove}
-                    className="group relative overflow-hidden glass-card border border-border rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/30"
+                    className="group relative overflow-hidden luxury-rim-card border border-border/80 rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40"
                   >
                     <div
                       className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
@@ -205,7 +205,7 @@ export default function TrustSection() {
 
               <div
                 onMouseMove={handleSpotlightMouseMove}
-                className="group relative overflow-hidden glass-card border border-border rounded-3xl p-5 sm:p-6"
+                className="group relative overflow-hidden luxury-rim-card border border-border/80 rounded-3xl p-5 sm:p-6"
               >
                 <div
                   className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
@@ -337,7 +337,7 @@ export default function TrustSection() {
                   <div
                     key={cred.label}
                     onMouseMove={handleSpotlightMouseMove}
-                    className="group relative overflow-hidden glass-card border border-border rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/30"
+                    className="group relative overflow-hidden luxury-rim-card border border-border/80 rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40"
                   >
                     <div
                       className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
@@ -366,7 +366,7 @@ export default function TrustSection() {
 
               <div
                 onMouseMove={handleSpotlightMouseMove}
-                className="group relative overflow-hidden glass-card border border-border rounded-3xl p-5 sm:p-6"
+                className="group relative overflow-hidden luxury-rim-card border border-border/80 rounded-3xl p-5 sm:p-6"
               >
                 <div
                   className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}

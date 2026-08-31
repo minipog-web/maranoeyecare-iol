@@ -6,7 +6,7 @@ import TrustBadgeBar from '@/app/components/TrustBadgeBar';
 import CertificationLogos from '@/app/components/CertificationLogos';
 import StickyCTABar from '@/app/components/StickyCTABar';
 import CandidacySection from '@/app/components/CandidacySection';
-import FinancingSection from '@/app/components/FinancingSection';
+import InsuranceCostSection from '@/app/components/InsuranceCostSection';
 import { getDynamicContent } from '@/lib/dynamicText';
 import dynamic from 'next/dynamic';
 
@@ -84,37 +84,57 @@ export default async function HomePage({ searchParams }: PageProps) {
       />
       <TrustBadgeBar variant="clinical" />
       <hr className="section-divider" />
-      <TrustSection />
-      <CertificationLogos />
-      <hr className="section-divider" />
       <CataractFormationSection />
       <hr className="section-divider" />
       <LensVisionComparisonSection />
       <hr className="section-divider" />
       <LensTechnologyDeepDiveSection />
       <hr className="section-divider" />
-      <LensarAllySection />
+      <div className="content-auto">
+        <LifestyleMatchSection />
+      </div>
       <hr className="section-divider" />
-      <RecoveryTimelineSection />
+      <div className="content-auto">
+        <LensarAllySection />
+      </div>
       <hr className="section-divider" />
-      <LifestyleMatchSection />
+      <div className="content-auto">
+        <RecoveryTimelineSection />
+      </div>
       <hr className="section-divider" />
-      <CandidacySection />
+      <div className="content-auto">
+        <TrustSection />
+      </div>
+      <CertificationLogos />
       <hr className="section-divider" />
-      <LensQuestionnaireSection />
+      <div className="content-auto">
+        <CandidacySection />
+      </div>
       <hr className="section-divider" />
-      <TestimonialsSection />
+      <div className="content-auto">
+        <TestimonialsSection />
+      </div>
       <hr className="section-divider" />
-      <FAQSection />
+      <div className="content-auto">
+        <LensQuestionnaireSection />
+      </div>
       <hr className="section-divider" />
-      <FinancingSection />
+      <div className="content-auto">
+        <FAQSection />
+      </div>
       <hr className="section-divider" />
-      <BookingSection
-        bookingHeadline={dynamicContent.bookingHeadline}
-        bookingUrgencyTitle={dynamicContent.bookingUrgencyTitle}
-        bookingUrgencyText={dynamicContent.bookingUrgencyText}
-        preselectedLens={dynamicContent.preselectedLens}
-      />
+      <div className="content-auto">
+        <InsuranceCostSection />
+      </div>
+      <hr className="section-divider" />
+      <div className="content-auto">
+        <BookingSection
+          bookingHeadline={dynamicContent.bookingHeadline}
+          bookingUrgencyTitle={dynamicContent.bookingUrgencyTitle}
+          bookingUrgencyText={dynamicContent.bookingUrgencyText}
+          preselectedLens={dynamicContent.preselectedLens}
+        />
+      </div>
       <StickyCTABar />
       <Footer />
     </main>
