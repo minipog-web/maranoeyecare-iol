@@ -23,7 +23,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '10 Minutes',
       icon: 'ClockIcon',
       description:
-        "Once you arrive at the outpatient surgical center, we apply numbing eye drops. There are no needles, no injections, and no general anesthesia required. We use a light twilight sedation for the procedure, similar to what's used during a colonoscopy. Your surgeon (Dr. Marano or Dr. Raouf) uses the LENSAR laser system to replace your cloudy natural lens with your custom IOL. You walk out comfortably the same day.",
+        "Once you arrive at Ridgedale Surgery Center in Cedar Knolls, our team applies gentle numbing eye drops. There are no needles, no injections, and no general anesthesia required. We use a light twilight sedation for the procedure, similar to what's used during a colonoscopy. Your surgeon (Dr. Marano or Dr. Raouf) uses the LENSAR laser system to replace your cloudy natural lens with your custom IOL. You walk out comfortably the same day.",
       color: '#8B5CF6',
       rgb: '139, 92, 246',
     },

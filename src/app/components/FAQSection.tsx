@@ -58,6 +58,12 @@ const proceduralFAQs: FAQItem[] = [
       'Yes. Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD personally perform every cataract surgery. You will meet directly with your surgeon during your consultation, and they will personally perform your procedure and oversee your post-operative care.',
   },
   {
+    question: 'Where is the cataract surgery performed?',
+    concern: 'Surgical Location',
+    answer:
+      'Our outpatient cataract microsurgeries are performed at the accredited, state-of-the-art Ridgedale Surgery Center in Cedar Knolls, NJ, utilizing the LENSAR ALLY femtosecond laser system. All preliminary consultations, 3D corneal biometry measurements, and post-operative follow-up appointments take place at your preferred local Marano Eye Care office in Livingston, Denville, or Newark.',
+  },
+  {
     question: 'How long is recovery, and when can I return to my hobbies?',
     concern: '',
     answer:

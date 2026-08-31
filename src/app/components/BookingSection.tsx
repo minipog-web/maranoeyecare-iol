@@ -15,21 +15,21 @@ const locations = [
 const offices = [
   {
     city: 'Livingston',
-    badge: 'Main Surgical Center',
+    badge: 'Livingston (Essex Co.)',
     phone: '973-322-0100',
     address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
     mapsUrl: 'https://maps.google.com/?q=200+South+Orange+Ave+Suite+209+Livingston+NJ+07039',
   },
   {
     city: 'Denville',
-    badge: 'Morris County Office',
+    badge: 'Denville (Morris Co.)',
     phone: '973-358-0416',
     address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
     mapsUrl: 'https://maps.google.com/?q=16+Pocono+Rd+Suite+301+Denville+NJ+07834',
   },
   {
     city: 'Newark',
-    badge: 'Essex County Office',
+    badge: 'Newark (Essex Co.)',
     phone: '973-315-6439',
     address: '306 Martin L. King Blvd, Newark, NJ 07102',
     mapsUrl: 'https://maps.google.com/?q=306+Martin+L.+King+Blvd+Newark+NJ+07102',
@@ -469,6 +469,27 @@ export default function BookingSection({
                     Get Directions &rarr;
                   </span>
                 </a>
+              </div>
+
+              {/* Surgical Center Facility Note */}
+              <div className="mt-3 p-3.5 rounded-2xl bg-primary/[0.04] border border-primary/25 flex items-start gap-3">
+                <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 mt-0.5">
+                  <Icon name="BuildingOfficeIcon" size={16} className="text-primary" />
+                </div>
+                <div className="text-xs space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-foreground">Surgical Center:</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/25 font-semibold uppercase tracking-wider">
+                      Cedar Knolls, NJ
+                    </span>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Surgeries are performed at the accredited{' '}
+                    <strong className="text-foreground">Ridgedale Surgery Center</strong>.
+                    Consultations, advanced 3D corneal biometry, and follow-up care take place at
+                    your selected local office above.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

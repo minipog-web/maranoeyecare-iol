@@ -108,7 +108,7 @@ const faqs = [
   {
     question: 'How fast is recovery after TECNIS PureSee cataract surgery?',
     answer:
-      'Dr. Matthew Marano Jr. and Dr. Sherief Raouf perform outpatient laser cataract surgery in approximately 10 minutes using gentle zero-needle numbing eye drops. Most patients notice clear vision within 24 to 48 hours and can resume light driving and work the following day.',
+      'Dr. Matthew Marano Jr. and Dr. Sherief Raouf perform outpatient laser cataract surgery at Ridgedale Surgery Center in approximately 10 minutes using gentle zero-needle numbing eye drops. Most patients notice clear vision within 24 to 48 hours and can resume light driving and work the following day.',
   },
 ];
 

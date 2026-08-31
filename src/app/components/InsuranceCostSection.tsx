@@ -25,7 +25,7 @@ const costPillars: CostPillar[] = [
     priceSub: 'Subject only to your routine medical deductible & copay',
     highlights: [
       'Board-certified ophthalmic microsurgeon procedure fee (CPT 66984)',
-      'Licensed Ambulatory Surgical Center (ASC) operating room & nursing care',
+      'Licensed Ambulatory Surgical Center (ASC) care at Ridgedale Surgery Center',
       'Board-certified anesthesiologist & gentle sedation monitoring',
       'Standard baseline monofocal lens (single-distance focus)',
       'Full 90-day post-operative surgical examinations & care',
