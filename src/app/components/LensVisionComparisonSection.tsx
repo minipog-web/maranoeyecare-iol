@@ -1396,6 +1396,11 @@ export default function LensVisionComparisonSection() {
                         onClick={(e) => {
                           e.stopPropagation();
                           window.dispatchEvent(new CustomEvent('select-lens', { detail: lens.id }));
+                          try {
+                            sessionStorage.setItem('preselect-lens', lens.id);
+                          } catch {
+                            // ignore in SSR or restricted storage
+                          }
                         }}
                         className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                       >

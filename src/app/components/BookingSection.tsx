@@ -139,7 +139,6 @@ export default function BookingSection({
       const stored = sessionStorage.getItem('preselect-lens');
       if (stored) {
         handleSelectLens(new CustomEvent('select-lens', { detail: stored }));
-        sessionStorage.removeItem('preselect-lens');
       }
     } catch (e) {
       console.warn('Session storage read failed:', e);
@@ -397,6 +396,31 @@ export default function BookingSection({
               ))}
             </div>
 
+            {/* Surgeon Direct Care Guarantee */}
+            <div className="mb-6 p-4 rounded-2xl bg-[#11131a] border border-primary/30 shadow-[0_4px_25px_rgba(0,0,0,0.5)] relative overflow-hidden">
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/35 flex items-center justify-center shrink-0 text-primary shadow-[0_0_15px_rgba(197,160,89,0.25)]">
+                  <Icon name="ShieldCheckIcon" size={20} />
+                </div>
+                <div className="space-y-1 text-xs">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-bold text-foreground text-xs sm:text-sm">
+                      Surgeon Direct Care Pledge
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/25 font-bold uppercase tracking-wider">
+                      Dr. Marano &amp; Dr. Raouf
+                    </span>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-xs">
+                    &ldquo;Every surgical evaluation is conducted directly with Dr. Matthew Marano
+                    Jr. or Dr. Sherief Raouf. We personally analyze your 3D corneal biometry and
+                    perform your procedure. If an advanced lifestyle lens is not clinically superior
+                    for your eye anatomy, we will be the first to advise you.&rdquo;
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Office Locations Segmented Card */}
             <div className="border-t border-border pt-6">
               <div className="flex items-center justify-between mb-3">
@@ -586,6 +610,59 @@ export default function BookingSection({
                     </div>
                   </div>
                 </div>
+
+                {/* Dynamic Biometric Consultation Profile Card */}
+                {form.lens ? (
+                  <div className="mb-5 p-4 rounded-2xl bg-gradient-to-r from-primary/15 via-primary/10 to-primary/5 border border-primary/35 shadow-[0_4px_20px_rgba(197,160,89,0.15)] relative overflow-hidden">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-start gap-3 min-w-0">
+                        <div className="w-10 h-10 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0 mt-0.5 text-primary shadow-[0_0_12px_rgba(197,160,89,0.3)]">
+                          <Icon name="SparklesIcon" size={20} />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 mb-1">
+                            <span className="text-[10px] font-extrabold uppercase tracking-widest text-primary bg-primary/20 px-2.5 py-0.5 rounded-full border border-primary/30">
+                              Personalized Lens Focus
+                            </span>
+                            <span className="text-[11px] text-muted-foreground">
+                              Pre-Configured for Your Visit
+                            </span>
+                          </div>
+                          <h4 className="text-base sm:text-lg font-bold text-foreground truncate">
+                            {form.lens}
+                          </h4>
+                          <p className="text-xs text-muted-foreground mt-0.5">
+                            Dr. Marano &amp; Dr. Raouf will evaluate your custom 3D corneal biometry
+                            for this lens profile.
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setStep(2)}
+                        className="text-xs text-primary hover:text-white font-semibold underline underline-offset-4 shrink-0 p-1 touch-manipulation transition-colors"
+                      >
+                        Change
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-5 p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <Icon name="SparklesIcon" size={16} className="text-primary shrink-0" />
+                      <span className="text-xs text-muted-foreground truncate">
+                        Unsure which lens fits your lifestyle? 3D corneal biometry is included with
+                        your visit.
+                      </span>
+                    </div>
+                    <a
+                      href="#vision"
+                      className="text-xs text-primary font-bold hover:underline shrink-0 whitespace-nowrap"
+                    >
+                      Try Simulator &rarr;
+                    </a>
+                  </div>
+                )}
 
                 {step === 1 ? (
                   <form onSubmit={handleStep1} className="space-y-4 sm:space-y-5" noValidate>

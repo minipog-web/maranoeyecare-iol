@@ -9,12 +9,14 @@ interface FAQItem {
   concern: string;
   answer: string;
   highlight?: string;
+  icon?: string;
 }
 
 const objectionFAQs: FAQItem[] = [
   {
     question: "I'm worried about glare and halos, especially when driving at night.",
     concern: 'Night Vision',
+    icon: 'EyeIcon',
     answer:
       'This is the most common concern patients share with us. It is why our surgeons frequently recommend the Clareon Vivity lens for active drivers. Unlike older multifocal lenses that divide light rays, Vivity uses non-diffractive optics. In clinical trials, patients experienced night glare levels virtually identical to standard single-vision lenses. Every eye is unique, which is why Dr. Marano and Dr. Raouf review your corneal measurements carefully before making any recommendation.',
     highlight: 'Vivity: halo rates nearly identical to standard monofocal',
@@ -22,6 +24,7 @@ const objectionFAQs: FAQItem[] = [
   {
     question: 'Why should I consider paying out-of-pocket for premium lenses?',
     concern: 'Cost',
+    icon: 'SparklesIcon',
     answer:
       'Cataract surgery is a once-in-a-lifetime procedure. The lens you choose permanently replaces your cloudy natural lens. Standard lenses leave you dependent on reading glasses for phones, menus, computers, and hobbies. Choosing a premium lens gives you continuous, multi-distance focus every single day without searching for glasses. The upgrade also includes precision 3D mapping and the LENSAR femtosecond laser system. We offer interest-free CareCredit financing and HSA/FSA payment options to keep monthly payments easy.',
     highlight:
@@ -30,6 +33,7 @@ const objectionFAQs: FAQItem[] = [
   {
     question: "What if I don't like the result? Can the lens be changed?",
     concern: 'Regret Risk',
+    icon: 'ArrowPathIcon',
     answer:
       'Lens exchanges are possible, but they are exceptionally rare. Across clinical studies, 99% of premium lens recipients state they would make the same choice again. Our surgeons prevent disappointment before surgery begins by performing comprehensive corneal topography and discussing your daily routine. If your eye anatomy is not an ideal fit for a premium lens, Dr. Marano and Dr. Raouf will clearly advise against it.',
     highlight: '99% of patients would choose a premium lens again',
@@ -37,6 +41,7 @@ const objectionFAQs: FAQItem[] = [
   {
     question: 'My insurance covers the basic lens. Why should I pay more?',
     concern: 'Insurance',
+    icon: 'ShieldCheckIcon',
     answer:
       'Medicare and private insurance cover standard cataract removal with a monofocal lens. A monofocal lens gives you clear vision at one fixed distance, usually far away, so you still require reading glasses for your phone, computer, and close-up tasks every day. A premium lens restores a broader depth of focus so you can navigate your day without reaching for glasses. The out-of-pocket fee covers that added visual independence, while your insurance still pays for the core surgery and facility fees.',
     highlight: 'Standard lens = glasses for reading. Premium lens = everyday visual freedom.',
@@ -44,6 +49,7 @@ const objectionFAQs: FAQItem[] = [
   {
     question: 'Will premium lenses make my surgery more complicated or risky?',
     concern: 'Safety',
+    icon: 'CheckBadgeIcon',
     answer:
       'No. The surgery is the same gentle, 10-minute outpatient procedure performed with numbing eye drops. The only difference is the optical design of the lens placed inside your eye. Our board-certified surgeons, Dr. Matthew Marano Jr. and Dr. Sherief Raouf, bring over four decades of combined surgical excellence and fellowship-trained precision.',
     highlight: 'Same 10-min procedure · Thousands of successful outcomes · No general anesthesia',
@@ -54,54 +60,63 @@ const proceduralFAQs: FAQItem[] = [
   {
     question: 'Do Dr. Marano and Dr. Raouf perform the surgery themselves?',
     concern: '',
+    icon: 'UserGroupIcon',
     answer:
       'Yes. Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD personally perform every cataract surgery. You will meet directly with your surgeon during your consultation, and they will personally perform your procedure and oversee your post-operative care.',
   },
   {
     question: 'Where is the cataract surgery performed?',
     concern: 'Surgical Location',
+    icon: 'BuildingOfficeIcon',
     answer:
       'Our outpatient cataract microsurgeries are performed at the accredited, state-of-the-art Ridgedale Surgery Center in Cedar Knolls, NJ, utilizing the LENSAR ALLY femtosecond laser system. All preliminary consultations, 3D corneal biometry measurements, and post-operative follow-up appointments take place at your preferred local Marano Eye Care office in Livingston, Denville, or Newark.',
   },
   {
     question: 'How long is recovery, and when can I return to my hobbies?',
     concern: '',
+    icon: 'ClockIcon',
     answer:
       "Most patients return to light daily activities within 24 to 48 hours. Distance vision typically clears rapidly first, while fine reading vision naturally lags behind by about two weeks as your brain neuroadapts to the new premium optics. High-performance activities like golf, tennis, and cycling can typically be resumed after 1 to 2 weeks following your surgeon's post-operative evaluation.",
   },
   {
     question: 'Will I feel any pain?',
     concern: '',
+    icon: 'HeartIcon',
     answer:
       'No. Numbing eye drops are used with no needles, no injections, and no general anesthesia. Most patients describe feeling light pressure for a few minutes, but no pain. You remain awake and comfortable throughout.',
   },
   {
     question: 'Can I use HSA or FSA funds?',
     concern: '',
+    icon: 'CreditCardIcon',
     answer:
       'Yes. Both HSA and FSA funds can be used for your premium upgrade. We also offer CareCredit® to break the cost into interest-free monthly payments.',
   },
   {
     question: 'What if I have dry eyes or other eye conditions?',
     concern: '',
+    icon: 'MagnifyingGlassIcon',
     answer:
       'Conditions like dry eye, macular changes, or a history of LASIK affect which lens is safest and most effective for you. Dr. Marano and Dr. Raouf perform a full biometric evaluation at consultation and will only recommend premium lenses when the clinical data supports an excellent outcome.',
   },
   {
     question: 'How do cataracts form and progress inside the eye?',
     concern: 'Cataract Science',
+    icon: 'EyeIcon',
     answer:
       'A cataract forms inside your natural crystalline lens as specialized proteins (crystallins) break down, denature, and clump together. Initially, this causes subtle micro-clouding and glare. As protein compaction accelerates, the lens turns noticeably yellow, absorbing blue light and muting color vibrancy. In advanced stages, it turns dark brown and opaque, severely obstructing light from reaching your retina. Cataracts only progress and never reverse on their own.',
   },
   {
     question: 'How does cataract surgery work, and will the new lens prescription ever change?',
     concern: 'Permanent Solution',
+    icon: 'SparklesIcon',
     answer:
       'During a gentle 10-minute outpatient procedure with numbing eye drops, Dr. Marano or Dr. Raouf removes your cloudy natural cataractous lens and replaces it with a crystal-clear acrylic intraocular lens (IOL). High-purity medical acrylic does not age, degrade, or develop cataracts again. The lens contains a customized optical prescription engineered to remain permanently stable for the rest of your life.',
   },
   {
     question: 'What if I have astigmatism? Do Toric lenses cost more?',
     concern: '',
+    icon: 'AdjustmentsHorizontalIcon',
     answer:
       'Toric lenses are specialty optics designed to correct astigmatism (an irregular curve in your cornea) during cataract surgery. If you have astigmatism and do not choose a Toric lens, you will still need glasses for distance vision. While most clinics charge extra for Toric astigmatism correction, at Marano Eye Care, all our premium lenses (Clareon Vivity, PanOptix Pro, and TECNIS PureSee) include the Toric version at no additional charge beyond the standard premium upgrade. (Note: While toric versions of premium lenses carry no additional upgrade fee, a standard monofocal toric lens does involve a higher out-of-pocket cost compared to a standard non-toric monofocal lens).',
   },
@@ -132,12 +147,19 @@ function FAQItemRow({
         className="w-full flex items-start gap-4 p-5 sm:p-6 text-left touch-manipulation group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
         {...{ 'aria-expanded': isOpen }}
       >
-        <span aria-hidden="true" className="text-xl mt-0.5 shrink-0 select-none">
-          {['🌙', '💰', '🔄', '🛡️', '✅'][index] ?? '❓'}
-        </span>
+        <div
+          aria-hidden="true"
+          className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300 mt-0.5 ${
+            isOpen
+              ? 'bg-primary/20 border-primary/50 text-primary shadow-[0_0_15px_rgba(197,160,89,0.3)]'
+              : 'bg-primary/10 border-primary/20 text-primary/80 group-hover:text-primary group-hover:border-primary/40 group-hover:bg-primary/15'
+          }`}
+        >
+          <Icon name={item.icon || 'QuestionMarkCircleIcon'} size={18} />
+        </div>
         <div className="flex-1 min-w-0">
           {item.concern && (
-            <span className="inline-block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full mb-2">
+            <span className="inline-block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full mb-2 border border-primary/20">
               {item.concern}
             </span>
           )}
@@ -208,9 +230,21 @@ function ProceduralFAQRow({
         className="w-full flex items-center justify-between gap-4 py-4 text-left touch-manipulation group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
         {...{ 'aria-expanded': isOpen }}
       >
-        <p className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-          {item.question}
-        </p>
+        <div className="flex items-center gap-3 min-w-0">
+          <div
+            aria-hidden="true"
+            className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border transition-all duration-300 ${
+              isOpen
+                ? 'bg-primary/20 border-primary/40 text-primary'
+                : 'bg-white/[0.04] border-white/10 text-muted-foreground group-hover:text-primary group-hover:border-primary/30'
+            }`}
+          >
+            <Icon name={item.icon || 'QuestionMarkCircleIcon'} size={14} />
+          </div>
+          <p className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+            {item.question}
+          </p>
+        </div>
         <span
           className={`shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
         >
@@ -223,7 +257,7 @@ function ProceduralFAQRow({
         }`}
       >
         <div className="overflow-hidden">
-          <p className="text-base sm:text-lg text-foreground/95 leading-relaxed pb-4 font-normal">
+          <p className="text-base sm:text-lg text-foreground/95 leading-relaxed pb-4 pl-[2.5rem] font-normal">
             {item.answer}
           </p>
         </div>
