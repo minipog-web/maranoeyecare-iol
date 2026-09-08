@@ -83,34 +83,43 @@ export const trackEvent = ({
   }
 };
 
-// ─── Track Google Ads conversion via GTM dataLayer ───────────────────────────
-// GTM should have a Google Ads Conversion tag triggered by the 'ads_conversion' event.
-// Set the conversion action label on the GTM tag — not here.
-//
-// CALLRAIL NOTE: If CallRail's native Google Ads integration is enabled, phone call
-// conversions are reported directly by CallRail. In that case, calling this function
-// for phone clicks is redundant for calls (but harmless). Form submission conversions
-// should always use this function.
-export const trackAdsConversion = (conversionLabel: string, value?: number) => {
+// ─── Google Ads Conversion Labels & Triggers ─────────────────────────────────
+// Specific Google Ads conversion triggers:
+// - Lead Form (Step 1 Complete): AW-17962563730/P12NCJ6IgdwcEJLxm_VC
+// - Book Appointment (Full Booking Complete): AW-17962563730/IsEZCL66_dscEJLxm_VC
+export const GOOGLE_ADS_CONVERSIONS = {
+  LEAD_FORM: 'AW-17962563730/P12NCJ6IgdwcEJLxm_VC',
+  BOOK_APPOINTMENT: 'AW-17962563730/IsEZCL66_dscEJLxm_VC',
+} as const;
+
+// ─── Track Google Ads conversion via gtag and GTM dataLayer ──────────────────
+export const trackAdsConversion = (
+  conversionIdOrLabel: string,
+  value?: number,
+  currency: string = 'USD'
+) => {
   if (typeof window !== 'undefined') {
-    // Primary: push conversion event to GTM dataLayer
-    // GTM picks this up via a Custom Event trigger → Google Ads Conversion tag
+    // Determine the send_to target
+    const sendTo = conversionIdOrLabel.startsWith('AW-')
+      ? conversionIdOrLabel
+      : `AW-18197167741/${conversionIdOrLabel}`;
+
+    // 1. Primary: push conversion event to GTM dataLayer
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'ads_conversion',
-      conversionLabel: conversionLabel,
+      conversionLabel: conversionIdOrLabel,
+      send_to: sendTo,
       value: value,
-      currency: 'USD',
+      currency: currency,
     });
 
-    // Fallback: direct gtag (only works if GTM's Google Ads tag has exposed window.gtag)
-    // Note: 'AW-18197167741/conversionLabel' — replace conversionLabel with the actual
-    // Google Ads conversion action label from: Google Ads → Goals → Conversions → [action] → Tag details
-    if (window.gtag) {
+    // 2. Direct gtag execution
+    if (typeof window.gtag === 'function') {
       window.gtag('event', 'conversion', {
-        send_to: `AW-18197167741/${conversionLabel}`,
+        send_to: sendTo,
         value: value,
-        currency: 'USD',
+        currency: currency,
       });
     }
   }

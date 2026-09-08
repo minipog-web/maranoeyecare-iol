@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
-import { trackEvent, trackAdsConversion } from '@/lib/gtag';
+import { trackEvent, trackAdsConversion, GOOGLE_ADS_CONVERSIONS } from '@/lib/gtag';
 import { validateConsultationBooking } from '@/lib/validation';
 
 const locations = [
@@ -221,6 +221,8 @@ export default function BookingSection({
       category: 'Engagement',
       label: form.location,
     });
+    // Trigger Google Ads Lead Form conversion (Step 1 complete)
+    trackAdsConversion(GOOGLE_ADS_CONVERSIONS.LEAD_FORM);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -268,7 +270,8 @@ export default function BookingSection({
           category: 'Conversion',
           label: `${form.location} - ${form.lens || 'No lens selected'}`,
         });
-        trackAdsConversion('booking_complete');
+        // Trigger Google Ads Book Appointment conversion
+        trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT);
       } else {
         const data = await response.json().catch(() => ({}));
         if (data.errors && typeof data.errors === 'object') {
@@ -412,10 +415,11 @@ export default function BookingSection({
                     </span>
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-xs">
-                    &ldquo;Every surgical evaluation is conducted directly with Dr. Matthew Marano
-                    Jr. or Dr. Sherief Raouf. We personally analyze your 3D corneal biometry and
-                    perform your procedure. If an advanced lifestyle lens is not clinically superior
-                    for your eye anatomy, we will be the first to advise you.&rdquo;
+                    Every surgical evaluation is conducted directly with Dr. Matthew Marano or Dr.
+                    Sherief Raouf. They personally analyze your 3D corneal biometry while planning
+                    your procedure. If an advanced lifestyle lens is not clinically superior for
+                    your eye anatomy, they would be the first to advise you against spending the
+                    extra money.
                   </p>
                 </div>
               </div>

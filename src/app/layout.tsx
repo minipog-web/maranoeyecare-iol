@@ -445,6 +445,19 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Google tag (gtag.js) - GT-WKTZM5GN & Google Ads AW-18197167741 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=GT-WKTZM5GN" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GT-WKTZM5GN');
+gtag('config', 'AW-18197167741');`,
+          }}
+        />
+        {/* End Google tag (gtag.js) */}
+
         {/* Preconnect & DNS prefetch for critical third-party origins */}
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />

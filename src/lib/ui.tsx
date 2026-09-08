@@ -42,12 +42,26 @@ export function handleSpotlightMouseMove(e: React.MouseEvent<HTMLElement>) {
  * Parses and renders text containing footnote references like "[1]", "[2]"
  * into clickable sup links with proper accessibility labels.
  */
-export function renderFootnoteText(text: string): React.ReactNode {
+export function renderFootnoteText(
+  text: string,
+  options?: { withoutLink?: boolean }
+): React.ReactNode {
   const parts = text.split(/(\[\d+(?:,\s*\d+)*\])/);
   return parts.map((part, idx) => {
     const match = part.match(/^\[([\d,\s]+)\]$/);
     if (match) {
       const nums = match[1].split(',').map((n) => n.trim());
+      if (options?.withoutLink) {
+        return (
+          <sup
+            key={idx}
+            className="text-[9px] font-bold text-primary inline-block ml-0.5"
+            aria-label={`Citation reference ${match[1]}`}
+          >
+            [{nums.join(', ')}]
+          </sup>
+        );
+      }
       return (
         <sup key={idx} className="text-[9px] font-bold text-primary inline-block ml-0.5">
           [

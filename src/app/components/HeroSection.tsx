@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
@@ -15,6 +15,7 @@ const lenses = [
     detail: 'Glare & halo profile similar to monofocal [2]',
     src: '/assets/images/vivity_iol_clean.png',
     alt: 'Clareon Vivity IOL, non-diffractive extended depth of focus intraocular lens',
+    href: '/clareon-vivity',
     accent: 'border-primary/50',
     featured: true,
     glow: 'shadow-[0_0_60px_rgba(197,160,89,0.35),0_0_0_1px_rgba(197,160,89,0.2)] border-primary/45 bg-white/[0.05]',
@@ -27,6 +28,7 @@ const lenses = [
     detail: '99% would choose this lens again [1]',
     src: '/assets/images/panoptix_iol_clean.png',
     alt: 'Clareon PanOptix Pro trifocal IOL, trifocal intraocular lens',
+    href: '/panoptix-pro',
     accent: 'border-primary/25',
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(139,92,246,0.35),0_0_0_1px_rgba(139,92,246,0.2)] border-[rgba(139,92,246,0.45)] bg-white/[0.05]',
@@ -39,6 +41,7 @@ const lenses = [
     detail: 'Latest, most cutting-edge EDOF IOL with zero contrast warning [3]',
     src: '/assets/images/puresee_iol_clean.png',
     alt: 'TECNIS PureSee IOL, the latest and most cutting-edge purely refractive extended depth of focus intraocular lens',
+    href: '/tecnis-puresee',
     accent: 'border-primary/25',
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(0,163,255,0.35),0_0_0_1px_rgba(0,163,255,0.2)] border-[rgba(0,163,255,0.45)] bg-white/[0.05]',
@@ -124,37 +127,8 @@ export default function HeroSection({
   heroTitleLine2,
   heroDesc,
 }: HeroSectionProps) {
-  const router = useRouter();
   // Starts with Clareon Vivity selected at onset
   const [activeLens, setActiveLens] = useState<string>('Clareon Vivity');
-
-  // Mouse tracking state for 3D card tilt & prismatic caustics
-  const [cardTilt, setCardTilt] = useState<{
-    lens: string | null;
-    rx: number;
-    ry: number;
-    px: number;
-    py: number;
-  }>({
-    lens: null,
-    rx: 0,
-    ry: 0,
-    px: 50,
-    py: 50,
-  });
-
-  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>, lensName: string) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    const rx = (0.5 - y) * 14;
-    const ry = (x - 0.5) * 14;
-    setCardTilt({ lens: lensName, rx, ry, px: Math.round(x * 100), py: Math.round(y * 100) });
-  };
-
-  const handleCardMouseLeave = () => {
-    setCardTilt({ lens: null, rx: 0, ry: 0, px: 50, py: 50 });
-  };
 
   const activeData = lensRangeData[activeLens] || lensRangeData['Clareon Vivity'];
 
@@ -316,13 +290,12 @@ export default function HeroSection({
             </div>
           </div>
 
-          {/* Right: Three-Lens Visual Showcase with Interactive 3D Physics & Vision Reach Meter */}
+          {/* Right: Three-Lens Visual Showcase & Vision Reach Meter */}
           <div className="lg:col-span-5 xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start pt-2 lg:pt-6">
-            {/* Lens Cards Row with 3D Tilt Physics & Prismatic Sheen */}
+            {/* Lens Cards Row */}
             <div className="w-full flex items-end justify-center lg:justify-end gap-2.5 sm:gap-3.5 xl:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pt-2 pb-2">
               {lenses.map((lens, i) => {
                 const isActive = activeLens === lens.name;
-                const isHovered = cardTilt.lens === lens.name;
                 const cardOrigin =
                   i === 0
                     ? 'origin-bottom-right'
@@ -336,12 +309,6 @@ export default function HeroSection({
                       ? 'animate-fade-up delay-750 fill-both'
                       : 'animate-fade-up delay-900 fill-both';
 
-                const tiltTransform = isHovered
-                  ? `perspective(900px) rotateX(${cardTilt.rx}deg) rotateY(${cardTilt.ry}deg) translateY(-8px) scale(1.03)`
-                  : isActive
-                    ? 'translateY(-4px) scale(1.015)'
-                    : 'translateY(0) scale(1)';
-
                 return (
                   <div
                     key={lens.name}
@@ -349,93 +316,23 @@ export default function HeroSection({
                     onPointerEnter={() => setActiveLens(lens.name)}
                     className={`w-[31%] min-w-[105px] max-w-[125px] sm:w-32 sm:max-w-none lg:w-[124px] xl:w-[148px] 2xl:w-[164px] shrink-0 snap-center sm:snap-align-none ${delayClass}`}
                   >
-                    <div
-                      tabIndex={0}
-                      role="button"
-                      onMouseMove={(e) => handleCardMouseMove(e, lens.name)}
-                      onMouseLeave={handleCardMouseLeave}
+                    <Link
+                      href={lens.href}
+                      aria-label={`Learn more about ${lens.name}`}
                       onMouseEnter={() => setActiveLens(lens.name)}
                       onPointerEnter={() => setActiveLens(lens.name)}
                       onFocus={() => setActiveLens(lens.name)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          if (activeLens !== lens.name) {
-                            setActiveLens(lens.name);
-                            trackEvent({
-                              action: 'hero_lens_card_select',
-                              category: 'Engagement',
-                              label: lens.name,
-                            });
-                          } else {
-                            if (lens.name.includes('PanOptix')) {
-                              trackEvent({
-                                action: 'hero_panoptix_card_click',
-                                category: 'Navigation',
-                                label: 'Hero PanOptix Card to /panoptix-pro',
-                              });
-                              window.location.href = '/panoptix-pro';
-                            } else if (lens.name.includes('Vivity')) {
-                              trackEvent({
-                                action: 'hero_vivity_card_click',
-                                category: 'Navigation',
-                                label: 'Hero Vivity Card to /clareon-vivity',
-                              });
-                              window.location.href = '/clareon-vivity';
-                            } else if (lens.name.includes('PureSee')) {
-                              trackEvent({
-                                action: 'hero_puresee_card_click',
-                                category: 'Navigation',
-                                label: 'Hero PureSee Card to /tecnis-puresee',
-                              });
-                              window.location.href = '/tecnis-puresee';
-                            }
-                          }
-                        }
-                      }}
                       onClick={() => {
-                        if (activeLens !== lens.name) {
-                          setActiveLens(lens.name);
-                          trackEvent({
-                            action: 'hero_lens_card_select',
-                            category: 'Engagement',
-                            label: lens.name,
-                          });
-                        } else {
-                          if (lens.name.includes('PanOptix')) {
-                            trackEvent({
-                              action: 'hero_panoptix_card_click',
-                              category: 'Navigation',
-                              label: 'Hero PanOptix Card to /panoptix-pro',
-                            });
-                            router.push('/panoptix-pro');
-                          } else if (lens.name.includes('Vivity')) {
-                            trackEvent({
-                              action: 'hero_vivity_card_click',
-                              category: 'Navigation',
-                              label: 'Hero Vivity Card to /clareon-vivity',
-                            });
-                            router.push('/clareon-vivity');
-                          } else if (lens.name.includes('PureSee')) {
-                            trackEvent({
-                              action: 'hero_puresee_card_click',
-                              category: 'Navigation',
-                              label: 'Hero PureSee Card to /tecnis-puresee',
-                            });
-                            router.push('/tecnis-puresee');
-                          }
-                        }
+                        trackEvent({
+                          action: 'hero_lens_card_navigate',
+                          category: 'Navigation',
+                          label: `Hero ${lens.name} Card to ${lens.href}`,
+                        });
                       }}
-                      style={{
-                        transform: tiltTransform,
-                        transition: isHovered
-                          ? 'transform 0.08s ease-out'
-                          : 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-                      }}
-                      className={`relative doppel-shell ${lens.accent} w-full h-[245px] sm:h-[330px] xl:h-[370px] cursor-pointer ${cardOrigin} focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none will-change-transform
+                      className={`block relative doppel-shell ${lens.accent} w-full h-[245px] sm:h-[330px] xl:h-[370px] cursor-pointer ${cardOrigin} focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02]
                         ${
                           isActive
-                            ? 'z-30 opacity-100'
+                            ? 'z-30 opacity-100 -translate-y-1 scale-[1.015]'
                             : 'z-10 opacity-75 hover:opacity-100 hover:z-30'
                         }
                         ${isActive ? lens.glow : lens.inactiveGlow}`}
@@ -447,26 +344,15 @@ export default function HeroSection({
                             src={lens.src}
                             alt={lens.alt}
                             fill
-                            className="object-cover object-center scale-[1.02]"
+                            className="object-cover object-center scale-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
                             sizes="(max-width: 640px) 35vw, 176px"
                             priority={true}
-                          />
-
-                          {/* Dynamic Prismatic Caustic / Specular Sheen Layer */}
-                          <div
-                            className="absolute inset-0 pointer-events-none transition-opacity duration-200 z-25 mix-blend-screen overflow-hidden rounded-t-[calc(2rem-6px)]"
-                            style={{
-                              opacity: isHovered ? 0.75 : isActive ? 0.25 : 0,
-                              background: isHovered
-                                ? `radial-gradient(circle 120px at ${cardTilt.px}% ${cardTilt.py}%, rgba(255,255,255,0.7) 0%, rgba(255,230,170,0.35) 25%, rgba(120,200,255,0.2) 50%, transparent 75%)`
-                                : 'radial-gradient(circle 100px at 50% 40%, rgba(255,255,255,0.35) 0%, rgba(197,160,89,0.15) 40%, transparent 70%)',
-                            }}
                           />
 
                           {/* Fine Optical Edge Highlight */}
                           <div
                             className={`absolute inset-0 rounded-[calc(2rem-6px)] border transition-all duration-300 pointer-events-none z-20 ${
-                              isActive || isHovered
+                              isActive
                                 ? 'border-white/35 shadow-[inset_0_0_10px_rgba(255,255,255,0.1)]'
                                 : 'border-transparent'
                             }`}
@@ -494,18 +380,21 @@ export default function HeroSection({
 
                         {/* Bottom info */}
                         <div className="p-2 sm:p-3 xl:p-3.5 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
-                          <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5">
-                            {lens.name}
+                          <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5 flex items-center justify-between">
+                            <span>{lens.name}</span>
+                            <span className="text-[9px] text-primary/80 font-normal opacity-0 hover:opacity-100 sm:inline-block transition-opacity">
+                              &rarr;
+                            </span>
                           </p>
                           <p className="text-white font-medium text-[10px] sm:text-xs xl:text-sm leading-tight">
                             {lens.subtitle}
                           </p>
                           <p className="text-white/75 text-[8px] sm:text-[9px] xl:text-[10px] mt-0.5 sm:mt-1 leading-tight">
-                            {renderFootnoteText(lens.detail)}
+                            {renderFootnoteText(lens.detail, { withoutLink: true })}
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 );
               })}
@@ -588,7 +477,7 @@ export default function HeroSection({
                 <div className="flex items-center justify-between pt-1 border-t border-white/[0.05] text-[10px] text-white/60">
                   <span className="flex items-center gap-1">
                     <Icon name="SparklesIcon" size={11} className="text-primary shrink-0" />
-                    <span>Hover or tap cards to compare optical reach</span>
+                    <span>Select card to view details &amp; optical reach</span>
                   </span>
                   <a
                     href="#vision"
