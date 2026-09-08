@@ -55,10 +55,11 @@ const costPillars: CostPillar[] = [
     badgeType: 'financing',
     title: '0% APR & Pre-Tax Savings',
     subtitle: 'CareCredit · Alphaeon · HSA · FSA',
-    priceHeadline: 'From ~$89 / Month',
-    priceSub: '12 to 24-month 0% interest financing plans available',
+    priceHeadline: 'From ~$170 / Month',
+    priceSub: '24-month 0% APR financing for premium IOLs (or ~$66/mo for laser-only)',
     highlights: [
-      '12 to 24-month 0% APR deferred interest financing via CareCredit & Alphaeon',
+      '24-month 0% APR deferred interest financing from ~$170/mo for advanced premium IOLs',
+      'Laser-only option available from ~$66/mo over 24 months (without premium lens)',
       'HSA & FSA 100% eligible — save an immediate 20%–35% using pre-tax dollars',
       'Zero pre-payment penalties or hidden maintenance fees',
       'Soft credit check pre-qualification in 2 minutes with zero impact to credit score',
@@ -243,11 +244,9 @@ export default function InsuranceCostSection() {
                   </div>
                   <div className="flex justify-between py-2 border-b border-white/[0.06]">
                     <span className="text-muted-foreground">
-                      Prescription Reading Glasses &amp; Lost Replacements
+                      Reading Glasses &amp; Backup Pairs
                     </span>
-                    <span className="font-mono text-foreground font-semibold">
-                      ~$1,200 – $1,800
-                    </span>
+                    <span className="font-mono text-foreground font-semibold">~$100 – $200</span>
                   </div>
                   <div className="flex justify-between py-2 border-b border-white/[0.06]">
                     <span className="text-muted-foreground">
@@ -278,7 +277,7 @@ export default function InsuranceCostSection() {
                   </div>
                 </div>
                 <div className="text-xl sm:text-2xl font-bold font-mono text-red-300 text-right shrink-0">
-                  $8,500 – $12,000+
+                  $7,400 – $10,400+
                 </div>
               </div>
             </div>
@@ -339,8 +338,8 @@ export default function InsuranceCostSection() {
                       className="text-primary mt-0.5 shrink-0"
                     />
                     <span className="text-foreground/90">
-                      <strong>0% APR financing:</strong> Spread your investment over 12–24 months
-                      from ~$89/mo with zero interest.
+                      <strong>0% APR financing:</strong> Spread your investment over 24 months from
+                      ~$170/mo for premium IOLs (or ~$66/mo for laser-only) with zero interest.
                     </span>
                   </div>
                 </div>
@@ -397,12 +396,12 @@ export default function InsuranceCostSection() {
                 trackEvent({
                   action: 'insurance_section_cta_click',
                   category: 'Conversion',
-                  label: 'Verify Benefits Consultation',
+                  label: 'Request Surgical Consultation',
                 });
               }}
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-black font-extrabold text-sm hover:bg-primary/90 hover:shadow-[0_0_25px_rgba(197,160,89,0.5)] transition-all shrink-0 active:scale-95 touch-manipulation min-h-[48px]"
             >
-              <span>Verify My Insurance Benefits</span>
+              <span>Request Surgical Consultation</span>
               <Icon name="ArrowRightIcon" size={16} className="text-black shrink-0" />
             </a>
             <p className="text-center text-xs text-muted-foreground">

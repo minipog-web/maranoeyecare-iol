@@ -1313,7 +1313,7 @@ export default function LensVisionComparisonSection() {
                         }}
                         className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                       >
-                        <span>Explore PanOptix Pro Guide</span>
+                        <span>Explore PanOptix Pro Details</span>
                         <svg
                           data-lens={lens.id}
                           className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
@@ -1343,7 +1343,7 @@ export default function LensVisionComparisonSection() {
                         }}
                         className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                       >
-                        <span>Explore Vivity Guide</span>
+                        <span>Explore Clareon Vivity Details</span>
                         <svg
                           data-lens={lens.id}
                           className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
@@ -1373,7 +1373,7 @@ export default function LensVisionComparisonSection() {
                         }}
                         className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-[#00a3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                       >
-                        <span>Explore PureSee Guide</span>
+                        <span>Explore PureSee Details</span>
                         <svg
                           data-lens={lens.id}
                           className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}

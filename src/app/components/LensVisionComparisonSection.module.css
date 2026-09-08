@@ -32,6 +32,15 @@
 .lensDot {
   background-color: var(--lens-color);
 }
+.lensDot[data-lens='panoptix'] {
+  background-color: #8B5CF6;
+}
+.lensDot[data-lens='vivity'] {
+  background-color: #c5a059;
+}
+.lensDot[data-lens='puresee'] {
+  background-color: #00A3FF;
+}
 
 /* ── Right viewport (desktop) ── */
 .premiumViewport {
@@ -170,6 +179,10 @@
 
 /* ── Distance Highlight Track ── */
 .distanceHighlight {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  pointer-events: none;
+  z-index: 0;
   width: calc(33.333% - 6px);
   position: absolute;
   top: 4px;

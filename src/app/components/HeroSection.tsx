@@ -20,6 +20,9 @@ const lenses = [
     featured: true,
     glow: 'shadow-[0_0_60px_rgba(197,160,89,0.35),0_0_0_1px_rgba(197,160,89,0.2)] border-primary/45 bg-white/[0.05]',
     inactiveGlow: 'shadow-[0_0_20px_rgba(197,160,89,0.08)] border-white/[0.08]',
+    imgFilter: 'brightness-[1.48] contrast-[1.04] saturate-[1.18]',
+    backGlow:
+      'radial-gradient(circle at 50% 50%, rgba(220,180,110,0.45) 0%, rgba(197,160,89,0.20) 40%, transparent 75%)',
   },
   {
     name: 'PanOptix Pro',
@@ -33,6 +36,9 @@ const lenses = [
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(139,92,246,0.35),0_0_0_1px_rgba(139,92,246,0.2)] border-[rgba(139,92,246,0.45)] bg-white/[0.05]',
     inactiveGlow: 'shadow-[0_0_20px_rgba(139,92,246,0.08)] border-white/[0.08]',
+    imgFilter: 'brightness-[1.48] contrast-[1.04] saturate-[1.18]',
+    backGlow:
+      'radial-gradient(circle at 50% 50%, rgba(190,170,130,0.42) 0%, rgba(139,92,246,0.22) 42%, transparent 75%)',
   },
   {
     name: 'TECNIS PureSee',
@@ -46,6 +52,9 @@ const lenses = [
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(0,163,255,0.35),0_0_0_1px_rgba(0,163,255,0.2)] border-[rgba(0,163,255,0.45)] bg-white/[0.05]',
     inactiveGlow: 'shadow-[0_0_20px_rgba(0,163,255,0.08)] border-white/[0.08]',
+    imgFilter: 'brightness-[1.38] contrast-[1.02] saturate-[1.15]',
+    backGlow:
+      'radial-gradient(circle at 50% 50%, rgba(100,180,255,0.38) 0%, rgba(0,163,255,0.18) 45%, transparent 75%)',
   },
 ];
 
@@ -237,8 +246,8 @@ export default function HeroSection({
             </div>
 
             {/* Editorial Proof Text */}
-            <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl">
-              <p className="text-sm sm:text-base text-white/95 font-semibold mb-4 font-display">
+            <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl lg:max-w-2xl">
+              <p className="text-sm sm:text-base text-white/95 font-semibold mb-4 font-display xl:whitespace-nowrap">
                 Led by Board-Certified Surgeons Dr. Matthew Marano Jr. &amp; Dr. Sherief Raouf:
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm">
@@ -314,7 +323,7 @@ export default function HeroSection({
                     key={lens.name}
                     onMouseEnter={() => setActiveLens(lens.name)}
                     onPointerEnter={() => setActiveLens(lens.name)}
-                    className={`w-[31%] min-w-[105px] max-w-[125px] sm:w-32 sm:max-w-none lg:w-[124px] xl:w-[148px] 2xl:w-[164px] shrink-0 snap-center sm:snap-align-none ${delayClass}`}
+                    className={`w-[31%] min-w-[110px] max-w-[135px] sm:w-36 sm:max-w-none lg:w-[136px] xl:w-[162px] 2xl:w-[178px] shrink-0 snap-center sm:snap-align-none ${delayClass}`}
                   >
                     <Link
                       href={lens.href}
@@ -329,7 +338,7 @@ export default function HeroSection({
                           label: `Hero ${lens.name} Card to ${lens.href}`,
                         });
                       }}
-                      className={`block relative doppel-shell ${lens.accent} w-full h-[245px] sm:h-[330px] xl:h-[370px] cursor-pointer ${cardOrigin} focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02]
+                      className={`block relative doppel-shell ${lens.accent} w-full h-[260px] sm:h-[355px] xl:h-[395px] cursor-pointer ${cardOrigin} focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none transition-all duration-300 hover:-translate-y-2 hover:scale-[1.04]
                         ${
                           isActive
                             ? 'z-30 opacity-100 -translate-y-1 scale-[1.015]'
@@ -338,8 +347,8 @@ export default function HeroSection({
                         ${isActive ? lens.glow : lens.inactiveGlow}`}
                     >
                       <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
-                        {/* Image: Full bleed, edge-to-edge */}
-                        <div className="relative flex-1 overflow-hidden">
+                        {/* Image: Explicit fixed height so all 3 lenses render at exact identical size */}
+                        <div className="relative w-full h-[155px] sm:h-[215px] xl:h-[245px] flex-none overflow-hidden">
                           <AppImage
                             src={lens.src}
                             alt={lens.alt}
@@ -379,17 +388,19 @@ export default function HeroSection({
                         </div>
 
                         {/* Bottom info */}
-                        <div className="p-2 sm:p-3 xl:p-3.5 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
-                          <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5 flex items-center justify-between">
-                            <span>{lens.name}</span>
-                            <span className="text-[9px] text-primary/80 font-normal opacity-0 hover:opacity-100 sm:inline-block transition-opacity">
-                              &rarr;
-                            </span>
-                          </p>
-                          <p className="text-white font-medium text-[10px] sm:text-xs xl:text-sm leading-tight">
-                            {lens.subtitle}
-                          </p>
-                          <p className="text-white/75 text-[8px] sm:text-[9px] xl:text-[10px] mt-0.5 sm:mt-1 leading-tight">
+                        <div className="flex-1 flex flex-col justify-between p-2 sm:p-3 xl:p-3.5 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
+                          <div>
+                            <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5 flex items-center justify-between">
+                              <span>{lens.name}</span>
+                              <span className="text-[9px] text-primary/80 font-normal opacity-0 hover:opacity-100 sm:inline-block transition-opacity">
+                                &rarr;
+                              </span>
+                            </p>
+                            <p className="text-white font-medium text-[10px] sm:text-xs xl:text-sm leading-tight">
+                              {lens.subtitle}
+                            </p>
+                          </div>
+                          <p className="text-white/75 text-[8px] sm:text-[9px] xl:text-[10px] mt-0.5 sm:mt-1 leading-normal">
                             {renderFootnoteText(lens.detail, { withoutLink: true })}
                           </p>
                         </div>

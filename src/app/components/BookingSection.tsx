@@ -528,7 +528,7 @@ export default function BookingSection({
           >
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-12 sm:py-16">
-                <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(197, 160, 89,0.25)]">
+                <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(197,160,89,0.25)]">
                   <Icon name="CheckCircleIcon" size={36} className="text-primary" />
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-medium text-foreground mb-3">
@@ -651,17 +651,17 @@ export default function BookingSection({
                     </div>
                   </div>
                 ) : (
-                  <div className="mb-5 p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between gap-3">
+                  <div className="mb-5 p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
                     <div className="flex items-center gap-2.5 min-w-0">
                       <Icon name="SparklesIcon" size={16} className="text-primary shrink-0" />
-                      <span className="text-xs text-muted-foreground truncate">
+                      <span className="text-xs text-muted-foreground leading-snug">
                         Unsure which lens fits your lifestyle? 3D corneal biometry is included with
                         your visit.
                       </span>
                     </div>
                     <a
                       href="#vision"
-                      className="text-xs text-primary font-bold hover:underline shrink-0 whitespace-nowrap"
+                      className="text-xs text-primary font-bold hover:underline shrink-0 whitespace-nowrap self-start sm:self-center ml-6 sm:ml-0"
                     >
                       Try Simulator &rarr;
                     </a>

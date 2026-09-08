@@ -57,8 +57,9 @@ export default function FinancingSection() {
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
               We offer flexible payment plans through CareCredit®, including{' '}
               <strong className="text-foreground">0% APR promotional financing</strong> for 12 or 24
-              months. You can break your procedure into manageable monthly payments that comfortably
-              fit your budget.
+              months. Premium IOL packages start from ~$170/month over 24 months, or ~$66/month for
+              laser-only without a premium lens, allowing you to comfortably fit your visual goals
+              into your budget.
             </p>
             <div className="mt-6 pt-4 border-t border-border/60">
               <span className="text-xs font-bold text-primary uppercase tracking-wider">

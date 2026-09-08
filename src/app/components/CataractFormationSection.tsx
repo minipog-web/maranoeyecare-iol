@@ -154,9 +154,9 @@ const progressionStages: ProgressionStage[] = [
 ];
 
 export default function CataractFormationSection() {
-  const [activeStageId, setActiveStageId] = useState<number>(2);
+  const [activeStageId, setActiveStageId] = useState<number>(1);
 
-  const activeStage = progressionStages.find((s) => s.id === activeStageId) || progressionStages[1];
+  const activeStage = progressionStages.find((s) => s.id === activeStageId) || progressionStages[0];
 
   const handleStageSelect = (stageId: number, stageName: string) => {
     setActiveStageId(stageId);
