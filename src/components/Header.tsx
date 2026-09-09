@@ -40,11 +40,12 @@ export default function Header() {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Lens Options', href: '#lenses' },
-    { label: 'Vision Simulator', href: '#vision' },
-    { label: 'Lens Technology', href: '#physics' },
-    { label: 'Find My Lens', href: '#lifestyle' },
+    { label: 'Lens Simulator', href: '#lenses' },
+    { label: 'Optical Physics', href: '#physics' },
+    { label: 'Lens Quiz', href: '#lens-quiz' },
     { label: 'Our Doctors', href: '#trust' },
+    { label: 'Patient Stories', href: '#testimonials' },
+    { label: 'FAQ', href: '#faq' },
   ];
 
   const handleNavClick = (label: string) => {

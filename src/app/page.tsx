@@ -40,10 +40,6 @@ const LensarAllySection = dynamic(() => import('@/app/components/LensarAllySecti
   loading: SkeletonLoader,
 });
 
-const LifestyleMatchSection = dynamic(() => import('@/app/components/LifestyleMatchSection'), {
-  loading: SkeletonLoader,
-});
-
 const LensQuestionnaireSection = dynamic(
   () => import('@/app/components/LensQuestionnaireSection'),
   { loading: SkeletonLoader }
@@ -88,10 +84,8 @@ export default async function HomePage({ searchParams }: PageProps) {
       <hr className="section-divider" />
       <LensVisionComparisonSection />
       <hr className="section-divider" />
-      <LensTechnologyDeepDiveSection />
-      <hr className="section-divider" />
       <div className="content-auto">
-        <LifestyleMatchSection />
+        <LensTechnologyDeepDiveSection />
       </div>
       <hr className="section-divider" />
       <div className="content-auto">

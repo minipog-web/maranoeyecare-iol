@@ -1502,6 +1502,31 @@ export default function LensVisionComparisonSection() {
           </div>
         </div>
 
+        {/* Interactive Quiz Bridge Banner */}
+        <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-primary/[0.12] via-primary/[0.04] to-transparent border border-primary/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+          <div className="text-center sm:text-left">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              Not Sure Which Lens Fits Your Routine?
+            </span>
+            <h4 className="font-display text-xl sm:text-2xl font-light text-foreground">
+              Take the{' '}
+              <span className="font-semibold text-gradient-primary">60-Second Lens Match Quiz</span>
+            </h4>
+            <p className="text-sm text-muted-foreground mt-1 max-w-xl leading-relaxed">
+              Answer 5 quick lifestyle questions to discover whether PanOptix Pro, Clareon Vivity,
+              or TECNIS PureSee is engineered for your daily routine.
+            </p>
+          </div>
+          <a
+            href="#lens-quiz"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-primary text-[#050608] rounded-xl text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap shadow-[0_4px_16px_rgba(197,160,89,0.3)] btn-shimmer"
+          >
+            Start Lens Quiz
+            <AppIcon name="ArrowDownIcon" size={16} />
+          </a>
+        </div>
+
         <p className="text-center text-xs sm:text-sm text-white/90 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.08em] leading-relaxed font-medium">
           Simulations are for illustrative purposes only. Specifications displayed in charts above
           represent spectacle independence rates from published clinical data (PanOptix Pro:

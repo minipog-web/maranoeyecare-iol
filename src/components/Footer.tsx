@@ -112,8 +112,9 @@ export default function Footer() {
                   [1] PanOptix Pro Spectacle Independence:
                 </strong>{' '}
                 Based on a peer-reviewed clinical meta-analysis of 13 global studies evaluating 513
-                patients (Zhu et al., <em>Ophthalmol Ther</em> 2023). Demonstrates a 99% patient
-                satisfaction and high spectacle independence rate.{' '}
+                patients (Zhu et al., <em>Ophthalmol Ther</em> 2023) and Alcon FDA PMA Approval
+                registry. Demonstrates an 88% light transmission rate to the retina and a 99%
+                patient satisfaction and high spectacle independence rate.{' '}
                 <a
                   href="https://pubmed.ncbi.nlm.nih.gov/36745314/"
                   target="_blank"
@@ -125,9 +126,10 @@ export default function Footer() {
               </p>
               <p id="footnote-2" className="scroll-mt-24">
                 <strong className="text-foreground">[2] Clareon Vivity Optical Profiles:</strong>{' '}
-                Based on Alcon FDA Premarket Approval registry data (PMA P930014/S126). Confirms
-                extended depth of focus performance utilizing non-diffractive X-WAVE™ technology
-                with glare/halo rates matching standard monofocal lenses.{' '}
+                Based on Alcon FDA Premarket Approval registry data (PMA P930014/S126 &amp;
+                P190018). Confirms extended depth of focus performance utilizing non-diffractive
+                X-WAVE™ wavefront-shaping technology with glare/halo rates matching standard
+                monofocal lenses.{' '}
                 <a
                   href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P930014S126"
                   target="_blank"
@@ -145,8 +147,9 @@ export default function Footer() {
                 </strong>{' '}
                 Based on Johnson &amp; Johnson FDA Premarket Approval registry data (PMA
                 P980040/S176) and pivotal clinical study for the TECNIS PureSee™ refractive EDOF
-                IOL. Demonstrates continuous vision from distance to functional near with zero
-                contrast sensitivity warning.{' '}
+                IOL. Confirms purely refractive extended depth of focus with zero diffractive rings,
+                zero contrast sensitivity warning, and a dysphotopsia profile comparable to a
+                monofocal control lens.{' '}
                 <a
                   href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040S176"
                   target="_blank"
