@@ -13,7 +13,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '1–2 Weeks Prior',
       icon: 'DocumentTextIcon',
       description:
-        'Using high-resolution corneal topography and optical biometry, we create a sub-micron 3D map of your eye including the natural lens with cataract. We select the best replacement lens power for your eye. This data is programmed directly into the LENSAR laser guidance system for personalized alignment.',
+        'High-resolution 3D biometry maps your eye’s unique anatomy, calculating the exact replacement power to program into the LENSAR laser system.',
       color: '#00A3FF',
       rgb: '0, 163, 255',
     },
@@ -23,7 +23,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '10 Minutes',
       icon: 'ClockIcon',
       description:
-        "Once you arrive at Ridgedale Surgery Center in Cedar Knolls, our team applies gentle numbing eye drops. There are no needles, no injections, and no general anesthesia required. We use a light twilight sedation for the procedure, similar to what's used during a colonoscopy. Your surgeon (Dr. Marano or Dr. Raouf) uses the LENSAR laser system to replace your cloudy natural lens with your custom IOL. You walk out comfortably the same day.",
+        'A painless 10-minute outpatient procedure under gentle numbing drops and light twilight sedation. No needles, no stitches, and you head home shortly after.',
       color: '#8B5CF6',
       rgb: '139, 92, 246',
     },
@@ -33,7 +33,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '24–48 Hours',
       icon: 'EyeIcon',
       description:
-        'Your vision will be blurred immediately after the surgery, but begins clearing rapidly as the inflammation improves on prescription drops. Most patients note an immediate improvement in brightness and color perception. You can return to light activities like reading, using computer screens, and light walking within 24 to 48 hours. Some mild scratchiness is normal and easily managed with drops.',
+        'Colors instantly brighten and initial blur clears rapidly. Most patients resume driving, screens, and everyday routines within one to two days.',
       color: '#10B981',
       rgb: '16, 185, 129',
     },
@@ -43,7 +43,7 @@ export default function RecoveryTimelineSection() {
       timeframe: 'Days 2–7',
       icon: 'SparklesIcon',
       description:
-        'Surgical energy inevitably introduces tissue swelling. The eye is such a small space that even a little bit of swelling can cause blurred vision. As the anti-inflammatory drops kick in, distance vision typically sharpens first; reading vision naturally lags behind distance vision by about two weeks as the brain begins neuroadapting to the new optics.',
+        'Prescription anti-inflammatory drops resolve minor tissue swelling while distance vision locks in sharp and contrast begins to stabilize.',
       color: '#EC4899',
       rgb: '236, 72, 153',
     },
@@ -53,7 +53,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '4–6 Weeks',
       icon: 'BrainIcon',
       description:
-        'Neuroadaptation is the natural process where your visual cortex learns to seamlessly process and select images from your new multi-focal or extended depth optics. As your brain rewires how it interprets light from varying focal distances, near and reading vision catch up to distance clarity, contrast sensitivity peaks, and your vision stabilizes for effortless, lifelong visual freedom.',
+        'Your brain seamlessly adapts to the advanced optics. Near and intermediate focus sync with distance clarity for effortless visual independence.',
       color: '#C5A059',
       rgb: '197, 160, 89',
     },

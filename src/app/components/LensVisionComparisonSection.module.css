@@ -33,13 +33,13 @@
   background-color: var(--lens-color);
 }
 .lensDot[data-lens='panoptix'] {
-  background-color: #8B5CF6;
+  background-color: #8b5cf6;
 }
 .lensDot[data-lens='vivity'] {
   background-color: #c5a059;
 }
 .lensDot[data-lens='puresee'] {
-  background-color: #00A3FF;
+  background-color: #00a3ff;
 }
 
 /* ── Right viewport (desktop) ── */

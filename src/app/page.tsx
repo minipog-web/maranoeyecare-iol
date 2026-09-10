@@ -21,8 +21,8 @@ const TrustSection = dynamic(() => import('@/app/components/TrustSection'), {
   loading: SkeletonLoader,
 });
 
-const CataractFormationSection = dynamic(
-  () => import('@/app/components/CataractFormationSection'),
+const CataractEducationTeaserSection = dynamic(
+  () => import('@/app/components/CataractEducationTeaserSection'),
   { loading: SkeletonLoader }
 );
 
@@ -80,7 +80,7 @@ export default async function HomePage({ searchParams }: PageProps) {
       />
       <TrustBadgeBar variant="clinical" />
       <hr className="section-divider" />
-      <CataractFormationSection />
+      <CataractEducationTeaserSection />
       <hr className="section-divider" />
       <LensVisionComparisonSection />
       <hr className="section-divider" />

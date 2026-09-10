@@ -26,10 +26,11 @@ export default function Footer() {
           {/* Links */}
           <nav className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
             {[
-              { label: 'Lens Options', href: '#lenses' },
-              { label: 'Vision Outcomes', href: '#vision' },
-              { label: 'Our Doctors', href: '#trust' },
-              { label: 'Book Consultation', href: '#booking' },
+              { label: 'Lens Options', href: '/#lenses' },
+              { label: 'Vision Outcomes', href: '/#vision' },
+              { label: 'Cataract Guide', href: '/cataract-education' },
+              { label: 'Our Doctors', href: '/#trust' },
+              { label: 'Book Consultation', href: '/#booking' },
             ].map((link) => (
               <Link
                 key={link.href}

@@ -13,48 +13,39 @@ const lenses = [
     tag: 'Most Popular',
     subtitle: 'Non-diffractive EDOF',
     detail: 'Glare & halo profile similar to monofocal [2]',
-    src: '/assets/images/vivity_iol_real.jpg',
+    src: '/assets/images/vivity_hero.jpg',
     alt: 'Clareon Vivity IOL, non-diffractive extended depth of focus intraocular lens',
     href: '/clareon-vivity',
     accent: 'border-primary/50',
     featured: true,
     glow: 'shadow-[0_0_60px_rgba(197,160,89,0.35),0_0_0_1px_rgba(197,160,89,0.2)] border-primary/45 bg-white/[0.05]',
     inactiveGlow: 'shadow-[0_0_20px_rgba(197,160,89,0.08)] border-white/[0.08]',
-    imgFilter: 'brightness-[1.48] contrast-[1.04] saturate-[1.18]',
-    backGlow:
-      'radial-gradient(circle at 50% 50%, rgba(220,180,110,0.45) 0%, rgba(197,160,89,0.20) 40%, transparent 75%)',
   },
   {
     name: 'PanOptix Pro',
     tag: 'Trifocal',
     subtitle: 'Full trifocal range',
     detail: '99% would choose this lens again [1]',
-    src: '/assets/images/panoptix_iol_real.jpg',
+    src: '/assets/images/panoptix_hero.jpg',
     alt: 'Clareon PanOptix Pro trifocal IOL, trifocal intraocular lens',
     href: '/panoptix-pro',
     accent: 'border-primary/25',
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(139,92,246,0.35),0_0_0_1px_rgba(139,92,246,0.2)] border-[rgba(139,92,246,0.45)] bg-white/[0.05]',
     inactiveGlow: 'shadow-[0_0_20px_rgba(139,92,246,0.08)] border-white/[0.08]',
-    imgFilter: 'brightness-[1.48] contrast-[1.04] saturate-[1.18]',
-    backGlow:
-      'radial-gradient(circle at 50% 50%, rgba(190,170,130,0.42) 0%, rgba(139,92,246,0.22) 42%, transparent 75%)',
   },
   {
     name: 'TECNIS PureSee',
     tag: 'Latest EDOF',
     subtitle: 'Latest refractive extended vision',
     detail: 'Latest, most cutting-edge EDOF IOL with zero contrast warning [3]',
-    src: '/assets/images/puresee_iol_real.jpg',
+    src: '/assets/images/puresee_hero.jpg',
     alt: 'TECNIS PureSee IOL, the latest and most cutting-edge purely refractive extended depth of focus intraocular lens',
     href: '/tecnis-puresee',
     accent: 'border-primary/25',
     featured: false,
     glow: 'shadow-[0_0_60px_rgba(0,163,255,0.35),0_0_0_1px_rgba(0,163,255,0.2)] border-[rgba(0,163,255,0.45)] bg-white/[0.05]',
     inactiveGlow: 'shadow-[0_0_20px_rgba(0,163,255,0.08)] border-white/[0.08]',
-    imgFilter: 'brightness-[1.38] contrast-[1.02] saturate-[1.15]',
-    backGlow:
-      'radial-gradient(circle at 50% 50%, rgba(100,180,255,0.38) 0%, rgba(0,163,255,0.18) 45%, transparent 75%)',
   },
 ];
 
@@ -342,17 +333,18 @@ export default function HeroSection({
                         ${
                           isActive
                             ? 'z-30 opacity-100 -translate-y-1 scale-[1.015]'
-                            : 'z-10 opacity-75 hover:opacity-100 hover:z-30'
+                            : 'z-10 opacity-90 hover:opacity-100 hover:z-30'
                         }
                         ${isActive ? lens.glow : lens.inactiveGlow}`}
                     >
                       <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
                         {/* Image: Explicit fixed height so all 3 lenses render at exact identical size */}
-                        <div className="relative w-full h-[155px] sm:h-[215px] xl:h-[245px] flex-none overflow-hidden">
+                        <div className="relative w-full h-[155px] sm:h-[215px] xl:h-[245px] flex-none overflow-hidden bg-[#07090e]">
                           <AppImage
                             src={lens.src}
                             alt={lens.alt}
                             fill
+                            unoptimized={true}
                             className="object-cover object-center scale-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
                             sizes="(max-width: 640px) 35vw, 176px"
                             priority={true}
@@ -367,11 +359,8 @@ export default function HeroSection({
                             }`}
                           />
 
-                          {/* Top subtle vignette */}
-                          <div className="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
-
-                          {/* Rich bottom gradient overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent pointer-events-none" />
+                          {/* Top subtle badge backing vignette */}
+                          <div className="absolute top-0 inset-x-0 h-8 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-10" />
 
                           {/* Floating Top Tag Badge */}
                           <div className="absolute top-2 sm:top-2.5 inset-x-0 flex justify-center z-20 pointer-events-none px-1">
