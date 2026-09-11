@@ -8,7 +8,6 @@ import CertificationLogos from '@/app/components/CertificationLogos';
 import StickyCTABar from '@/app/components/StickyCTABar';
 import CandidacySection from '@/app/components/CandidacySection';
 import InsuranceCostSection from '@/app/components/InsuranceCostSection';
-import { getDynamicContent } from '@/lib/dynamicText';
 import dynamic from 'next/dynamic';
 
 // Dynamically import heavy interactive client-side components to minimize initial JS payload
@@ -62,55 +61,37 @@ const BookingSection = dynamic(() => import('@/app/components/BookingSection'), 
   loading: SkeletonLoader,
 });
 
-interface HomePageProps {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}
-
-export async function generateMetadata({ searchParams }: HomePageProps): Promise<Metadata> {
-  const resolvedParams = await searchParams;
-  const dynamicContent = getDynamicContent(resolvedParams);
-
-  return {
+export const metadata: Metadata = {
+  title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
+  description:
+    "Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmic microsurgeons, Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.",
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
     title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
     description:
-      dynamicContent.heroDesc ||
-      "Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmic microsurgeons, Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.",
-    alternates: {
-      canonical: '/',
-    },
-    openGraph: {
-      title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
-      description:
-        'Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Discover customized multi-distance vision freedom with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.',
-      url: 'https://premium-iol.maranoeye.com',
-      siteName: 'Marano Eye Care',
-      images: [
-        {
-          url: '/assets/images/vivity_hero.jpg',
-          width: 1200,
-          height: 630,
-          alt: 'Premium Cataract Lens Options at Marano Eye Care',
-        },
-      ],
-      locale: 'en_US',
-      type: 'website',
-    },
-  };
-}
+      'Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Discover customized multi-distance vision freedom with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.',
+    url: 'https://premium-iol.maranoeye.com',
+    siteName: 'Marano Eye Care',
+    images: [
+      {
+        url: '/assets/images/vivity_hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Premium Cataract Lens Options at Marano Eye Care',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+};
 
-export default async function HomePage({ searchParams }: HomePageProps) {
-  const resolvedParams = await searchParams;
-  const dynamicContent = getDynamicContent(resolvedParams);
-
+export default function HomePage() {
   return (
     <main className="min-h-screen bg-background overflow-x-hidden">
       <Header />
-      <HeroSection
-        badgeText={dynamicContent.badgeText}
-        heroTitleLine1={dynamicContent.heroTitleLine1}
-        heroTitleLine2={dynamicContent.heroTitleLine2}
-        heroDesc={dynamicContent.heroDesc}
-      />
+      <HeroSection />
       <TrustBadgeBar variant="clinical" />
       <hr className="section-divider" />
       <div className="content-auto">
@@ -159,12 +140,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       </div>
       <hr className="section-divider" />
       <div className="content-auto">
-        <BookingSection
-          bookingHeadline={dynamicContent.bookingHeadline}
-          bookingUrgencyTitle={dynamicContent.bookingUrgencyTitle}
-          bookingUrgencyText={dynamicContent.bookingUrgencyText}
-          preselectedLens={dynamicContent.preselectedLens}
-        />
+        <BookingSection />
       </div>
       <StickyCTABar />
       <Footer />

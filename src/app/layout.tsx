@@ -444,26 +444,30 @@ export default function RootLayout({
       className={`dark ${dmSans.variable} ${fraunces.variable}`}
       suppressHydrationWarning
     >
-      <head>
+      <body className="font-sans antialiased" suppressHydrationWarning>
+        {/* Google Consent Mode v2 & Google Tag Manager */}
+        <Script id="google-consent-mode" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'analytics_storage': 'granted'
+});`}
+        </Script>
+
         {/* Google tag (gtag.js) - GT-WKTZM5GN & Google Ads AW-18197167741 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=GT-WKTZM5GN"
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
+          {`gtag('js', new Date());
 gtag('config', 'GT-WKTZM5GN');
 gtag('config', 'AW-18197167741');`}
         </Script>
         {/* End Google tag (gtag.js) */}
-
-        {/* Preconnect & DNS prefetch for critical third-party origins */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://cdn.callrail.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cdn.callrail.com" />
 
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
@@ -474,14 +478,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-PB9D9RHS');`}
         </Script>
         {/* End Google Tag Manager */}
-        {/* Official LLM & AI Assistant Discovery Links (llms.txt standard) */}
-        <link rel="help" type="text/markdown" href="/llms.txt" />
-        <link
-          rel="alternate"
-          type="text/markdown"
-          href="/llms-full.txt"
-          title="Full Clinical LLM Guide for AI Assistants"
-        />
+
         {schemas.map((schema, index) => (
           <script
             key={index}
@@ -489,8 +486,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
         ))}
-      </head>
-      <body className="font-sans antialiased" suppressHydrationWarning>
+
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
