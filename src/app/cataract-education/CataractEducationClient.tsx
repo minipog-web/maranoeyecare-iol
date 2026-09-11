@@ -236,7 +236,7 @@ export default function CataractEducationClient() {
 
         {/* 4 Clinical Takeaway Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-5xl mx-auto">
-          <div className="p-1 rounded-2xl bg-white/[0.02] border border-white/[0.08] shadow-sm">
+          <div className="p-1 rounded-2xl bg-white/[0.02] border border-white/[0.08] shadow-sm transition-all duration-300 hover:border-white/20 hover:-translate-y-0.5">
             <div className="p-3.5 rounded-[calc(1rem-2px)] bg-black/40 h-full flex items-start gap-3">
               <div className="w-8 h-8 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-0.5 text-primary">
                 <Icon name="ClockIcon" size={16} />
@@ -252,7 +252,7 @@ export default function CataractEducationClient() {
             </div>
           </div>
 
-          <div className="p-1 rounded-2xl bg-white/[0.02] border border-white/[0.08] shadow-sm">
+          <div className="p-1 rounded-2xl bg-white/[0.02] border border-white/[0.08] shadow-sm transition-all duration-300 hover:border-emerald-500/30 hover:-translate-y-0.5">
             <div className="p-3.5 rounded-[calc(1rem-2px)] bg-black/40 h-full flex items-start gap-3">
               <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5 text-emerald-400">
                 <Icon name="SparklesIcon" size={16} />
@@ -268,7 +268,7 @@ export default function CataractEducationClient() {
             </div>
           </div>
 
-          <div className="p-1 rounded-2xl bg-white/[0.02] border border-white/[0.08] shadow-sm">
+          <div className="p-1 rounded-2xl bg-white/[0.02] border border-white/[0.08] shadow-sm transition-all duration-300 hover:border-primary/30 hover:-translate-y-0.5">
             <div className="p-3.5 rounded-[calc(1rem-2px)] bg-black/40 h-full flex items-start gap-3">
               <div className="w-8 h-8 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-0.5 text-primary">
                 <Icon name="ShieldCheckIcon" size={16} />
@@ -284,7 +284,7 @@ export default function CataractEducationClient() {
             </div>
           </div>
 
-          <div className="p-1 rounded-2xl bg-white/[0.02] border border-white/[0.08] shadow-sm">
+          <div className="p-1 rounded-2xl bg-white/[0.02] border border-white/[0.08] shadow-sm transition-all duration-300 hover:border-cyan-500/30 hover:-translate-y-0.5">
             <div className="p-3.5 rounded-[calc(1rem-2px)] bg-black/40 h-full flex items-start gap-3">
               <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0 mt-0.5 text-cyan-400">
                 <Icon name="BoltIcon" size={16} />
@@ -684,7 +684,7 @@ export default function CataractEducationClient() {
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
           {/* Natural Biological Lens */}
-          <div className="glass-card border border-amber-500/20 bg-amber-500/[0.01] rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="glass-card border border-amber-500/20 bg-amber-500/[0.01] rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-amber-500/40 hover:-translate-y-0.5">
             <div>
               <div className="flex items-center justify-between gap-3 mb-5">
                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0 text-amber-400">
@@ -729,7 +729,7 @@ export default function CataractEducationClient() {
           </div>
 
           {/* Clear Acrylic IOL */}
-          <div className="glass-card border border-primary/40 bg-primary/[0.02] rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-[0_0_30px_rgba(197,160,89,0.08)]">
+          <div className="glass-card border border-primary/40 bg-primary/[0.02] rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-[0_0_30px_rgba(197,160,89,0.08)] transition-all duration-300 hover:border-primary/60 hover:-translate-y-0.5">
             <div>
               <div className="flex items-center justify-between gap-3 mb-5">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary">
@@ -800,12 +800,14 @@ export default function CataractEducationClient() {
               return (
                 <div
                   key={index}
-                  className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden transition-all duration-300"
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden transition-all duration-300 hover:border-white/20"
                 >
                   <button
                     onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none cursor-pointer"
                     aria-expanded={isOpen}
+                    aria-controls={`cataract-faq-answer-${index}`}
+                    id={`cataract-faq-button-${index}`}
                   >
                     <span className="text-base sm:text-lg font-semibold text-foreground">
                       {faq.question}
@@ -822,7 +824,12 @@ export default function CataractEducationClient() {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-muted-foreground leading-relaxed border-t border-white/[0.04]">
+                    <div
+                      id={`cataract-faq-answer-${index}`}
+                      role="region"
+                      aria-labelledby={`cataract-faq-button-${index}`}
+                      className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-muted-foreground leading-relaxed border-t border-white/[0.04]"
+                    >
                       {faq.answer}
                     </div>
                   )}
@@ -853,13 +860,13 @@ export default function CataractEducationClient() {
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
             <Link
               href="/#lenses"
-              className="w-full sm:w-auto px-5 py-3 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-foreground text-xs sm:text-sm font-semibold transition-all text-center touch-manipulation min-h-[46px] flex items-center justify-center"
+              className="w-full sm:w-auto px-5 py-3 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-foreground text-xs sm:text-sm font-semibold transition-all text-center touch-manipulation min-h-[48px] flex items-center justify-center"
             >
               Compare Lens Options
             </Link>
             <a
               href="#consultation"
-              className="w-full sm:w-auto group inline-flex items-center justify-center pl-6 pr-3 py-3 bg-primary text-[#040506] rounded-full text-xs sm:text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[46px] shadow-[0_4px_16px_rgba(197,160,89,0.25)]"
+              className="w-full sm:w-auto group inline-flex items-center justify-center pl-6 pr-3 py-3 bg-primary text-[#040506] rounded-full text-xs sm:text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25)]"
             >
               <span>Schedule Evaluation</span>
               <div className="ml-3 w-6 h-6 rounded-full bg-black/10 flex items-center justify-center transition-all duration-500 group-hover:translate-x-1 shrink-0">
