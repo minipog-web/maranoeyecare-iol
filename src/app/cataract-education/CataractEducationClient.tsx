@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
+import CataractEducation3DViewer from '@/components/cataract-3d/CataractEducation3DViewer';
 
 interface ProgressionStage {
   id: number;
@@ -302,8 +303,21 @@ export default function CataractEducationClient() {
         </div>
       </section>
 
-      {/* ── 5-STAGE PROGRESSION SIMULATOR ── */}
+      {/* ── 5-STAGE PROGRESSION SIMULATOR & 3D TIME-LAPSE ── */}
       <section className="px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-16 sm:mb-20">
+        {/* 3D Anatomical Time-Lapse Viewer */}
+        <div className="max-w-5xl mx-auto mb-10">
+          <CataractEducation3DViewer
+            activeStageId={activeStageId}
+            onStageChange={(newStageId) => {
+              const matchedStage = progressionStages.find((s) => s.id === newStageId);
+              if (matchedStage) {
+                handleStageSelect(matchedStage.id, matchedStage.stageName);
+              }
+            }}
+          />
+        </div>
+
         {/* Unified Master Interactive Simulator Card */}
         <div className="max-w-5xl mx-auto glass-card border border-white/[0.12] rounded-3xl shadow-2xl bg-[#090b10]/95 overflow-hidden">
           {/* Card Top: Header & Stage Selector Deck */}
