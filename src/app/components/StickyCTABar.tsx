@@ -80,13 +80,19 @@ export default function StickyCTABar() {
           {/* Primary CTA */}
           <a
             href="#booking"
-            onClick={() =>
+            onClick={(e) => {
               trackEvent({
                 action: 'sticky_booking_click',
                 category: 'Engagement',
                 label: 'Book Free Consultation',
-              })
-            }
+              });
+              const el = document.getElementById('booking') || document.getElementById('consultation');
+              if (el) {
+                e.preventDefault();
+                el.scrollIntoView({ behavior: 'smooth' });
+                window.history.pushState(null, '', '#booking');
+              }
+            }}
             className="flex-1 flex items-center justify-between pl-5 pr-2 py-2 bg-primary text-[#0d0e12] rounded-full text-sm font-semibold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <span>Book Free Consultation</span>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
 import { trackEvent, trackAdsConversion, GOOGLE_ADS_CONVERSIONS } from '@/lib/gtag';
@@ -659,12 +660,12 @@ export default function BookingSection({
                         your visit.
                       </span>
                     </div>
-                    <a
-                      href="#vision"
+                    <Link
+                      href="/#vision"
                       className="text-xs text-primary font-bold hover:underline shrink-0 whitespace-nowrap self-start sm:self-center ml-6 sm:ml-0"
                     >
                       Try Simulator &rarr;
-                    </a>
+                    </Link>
                   </div>
                 )}
 

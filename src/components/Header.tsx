@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackAdsConversion } from '@/lib/gtag';
@@ -8,6 +10,7 @@ import { trackEvent, trackAdsConversion } from '@/lib/gtag';
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     let ticking = false;
@@ -40,20 +43,43 @@ export default function Header() {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Lens Simulator', href: '#lenses' },
-    { label: 'Optical Physics', href: '#physics' },
-    { label: 'Lens Quiz', href: '#lens-quiz' },
-    { label: 'Our Doctors', href: '#trust' },
-    { label: 'Patient Stories', href: '#testimonials' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Lens Simulator', href: '/#vision' },
+    { label: 'Optical Physics', href: '/#physics' },
+    { label: 'Lens Quiz', href: '/#lens-quiz' },
+    { label: 'Our Doctors', href: '/#trust' },
+    { label: 'Patient Stories', href: '/#testimonials' },
+    { label: 'FAQ', href: '/#faq' },
   ];
 
-  const handleNavClick = (label: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    label: string
+  ) => {
     trackEvent({
       action: 'header_nav_click',
       category: 'Engagement',
       label: label,
     });
+
+    if (href.includes('#')) {
+      const [targetPath, hash] = href.split('#');
+      const normalizedCurrentPath = pathname?.replace(/\/$/, '') || '/';
+      const normalizedTargetPath = targetPath ? targetPath.replace(/\/$/, '') || '/' : normalizedCurrentPath;
+
+      // If we are on the target page, scroll smoothly to the element
+      if (normalizedTargetPath === normalizedCurrentPath) {
+        const targetElement = document.getElementById(hash);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          window.history.pushState(null, '', `#${hash}`);
+        }
+      }
+    } else if (href === pathname) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handlePhoneClick = (source: string) => {
@@ -65,12 +91,22 @@ export default function Header() {
     trackAdsConversion('phone_click');
   };
 
-  const handleBookingClick = (source: string) => {
+  const handleBookingClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    source: string
+  ) => {
     trackEvent({
       action: 'header_booking_click',
       category: 'Engagement',
       label: `Header Booking: ${source}`,
     });
+
+    const bookingEl = document.getElementById('booking') || document.getElementById('consultation');
+    if (bookingEl) {
+      e.preventDefault();
+      bookingEl.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', '#booking');
+    }
   };
 
   return (
@@ -81,10 +117,10 @@ export default function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-3 lg:gap-4 xl:gap-6">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-2 lg:gap-3 xl:gap-6">
         <div className="flex items-center gap-3 shrink-0">
-          <a
-            href="https://www.maranoeye.com"
+          <Link
+            href="/"
             aria-label="Marano Eye Care: return to homepage"
             className="hover:opacity-80 transition-opacity block shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
@@ -92,27 +128,34 @@ export default function Header() {
               src="/assets/images/marano_logo.png"
               width={200}
               height={50}
-              className="w-[130px] sm:w-[150px] lg:w-[165px] xl:w-[195px] 2xl:w-[220px] h-auto shrink-0"
+              className="w-[130px] sm:w-[150px] lg:w-[160px] xl:w-[195px] 2xl:w-[220px] h-auto shrink-0"
             />
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Nav — pill with subtle gradient border */}
-        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 px-2 py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => handleNavClick(link.label)}
-              className="px-2 lg:px-2.5 xl:px-3.5 py-1.5 text-[11px] lg:text-xs xl:text-xs font-bold uppercase tracking-wider text-white hover:text-primary transition-all duration-200 rounded-full hover:bg-white/[0.08] whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-            >
-              {link.label}
-            </a>
-          ))}
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 px-1.5 xl:px-2 py-1 xl:py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
+          {navLinks.map((link) => {
+            const isActive = link.href === pathname;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href, link.label)}
+                className={`px-2 xl:px-3 py-1 xl:py-1.5 text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-all duration-200 rounded-full whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                  isActive
+                    ? 'text-primary bg-white/[0.08]'
+                    : 'text-white hover:text-primary hover:bg-white/[0.08]'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* CTA */}
-        <div className="hidden sm:flex items-center gap-2.5 lg:gap-3.5 xl:gap-4 shrink-0">
+        <div className="hidden sm:flex items-center gap-2 lg:gap-2.5 xl:gap-4 shrink-0">
           <a
             href="tel:9733220100"
             suppressHydrationWarning
@@ -133,13 +176,13 @@ export default function Header() {
 
           <div className="h-5 w-[1px] bg-white/[0.08] hidden xl:block" />
 
-          <a
-            href="#booking"
-            onClick={() => handleBookingClick('desktop')}
-            className="btn-premium-primary btn-shimmer whitespace-nowrap text-xs xl:text-sm px-3.5 py-2.5 lg:px-4 lg:py-2.5 xl:px-5 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
+          <Link
+            href="/#booking"
+            onClick={(e) => handleBookingClick(e, 'desktop')}
+            className="btn-premium-primary btn-shimmer whitespace-nowrap text-xs xl:text-sm px-3 py-2 lg:px-3.5 lg:py-2.5 xl:px-5 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
           >
             Book Consultation
-          </a>
+          </Link>
         </div>
 
         {/* Mobile/Tablet Hamburger */}
@@ -156,19 +199,24 @@ export default function Header() {
       {menuOpen && (
         <div className="lg:hidden bg-background/95 backdrop-blur-2xl border-b border-border px-4 sm:px-6 py-5 flex flex-col gap-4">
           <div className="flex flex-col border-b border-border/40 pb-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary py-3 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                onClick={() => {
-                  handleNavClick(link.label);
-                  setMenuOpen(false);
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.href === pathname;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-semibold uppercase tracking-wider py-3 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                    isActive ? 'text-primary font-bold' : 'text-muted-foreground hover:text-primary'
+                  }`}
+                  onClick={(e) => {
+                    handleNavClick(e, link.href, link.label);
+                    setMenuOpen(false);
+                  }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="flex flex-col gap-3 pt-2">
@@ -184,16 +232,16 @@ export default function Header() {
               <span suppressHydrationWarning>(973) 322-0100</span>
             </a>
 
-            <a
-              href="#booking"
+            <Link
+              href="/#booking"
               className="w-full py-3.5 bg-primary text-[#040506] rounded-xl text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation flex items-center justify-center shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-              onClick={() => {
-                handleBookingClick('mobile');
+              onClick={(e) => {
+                handleBookingClick(e, 'mobile');
                 setMenuOpen(false);
               }}
             >
               Book Consultation
-            </a>
+            </Link>
           </div>
         </div>
       )}

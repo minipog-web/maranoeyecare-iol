@@ -1032,9 +1032,10 @@ export default function VivityPageClient() {
 
       {/* ── SECTION 6: FREQUENTLY ASKED QUESTIONS (Double-Bezel Accordions) ── */}
       <section
-        id="faqs"
+        id="faq"
         className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#07080c] scroll-mt-20"
       >
+        <div id="faqs" className="relative -top-28" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 sm:mb-18">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] mb-4">

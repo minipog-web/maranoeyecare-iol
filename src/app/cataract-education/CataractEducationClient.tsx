@@ -779,7 +779,10 @@ export default function CataractEducationClient() {
       </section>
 
       {/* ── CLINICAL FAQS ── */}
-      <section className="px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-16 sm:mb-20">
+      <section
+        id="faq"
+        className="px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-16 sm:mb-20 scroll-mt-24"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-light text-foreground">
