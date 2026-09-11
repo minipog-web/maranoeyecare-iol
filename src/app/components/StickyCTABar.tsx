@@ -86,7 +86,8 @@ export default function StickyCTABar() {
                 category: 'Engagement',
                 label: 'Book Free Consultation',
               });
-              const el = document.getElementById('booking') || document.getElementById('consultation');
+              const el =
+                document.getElementById('booking') || document.getElementById('consultation');
               if (el) {
                 e.preventDefault();
                 el.scrollIntoView({ behavior: 'smooth' });

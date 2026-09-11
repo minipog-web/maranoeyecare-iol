@@ -51,11 +51,7 @@ export default function Header() {
     { label: 'FAQ', href: '/#faq' },
   ];
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-    label: string
-  ) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, label: string) => {
     trackEvent({
       action: 'header_nav_click',
       category: 'Engagement',
@@ -65,7 +61,9 @@ export default function Header() {
     if (href.includes('#')) {
       const [targetPath, hash] = href.split('#');
       const normalizedCurrentPath = pathname?.replace(/\/$/, '') || '/';
-      const normalizedTargetPath = targetPath ? targetPath.replace(/\/$/, '') || '/' : normalizedCurrentPath;
+      const normalizedTargetPath = targetPath
+        ? targetPath.replace(/\/$/, '') || '/'
+        : normalizedCurrentPath;
 
       // If we are on the target page, scroll smoothly to the element
       if (normalizedTargetPath === normalizedCurrentPath) {
@@ -91,10 +89,7 @@ export default function Header() {
     trackAdsConversion('phone_click');
   };
 
-  const handleBookingClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    source: string
-  ) => {
+  const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>, source: string) => {
     trackEvent({
       action: 'header_booking_click',
       category: 'Engagement',
