@@ -508,7 +508,7 @@ export default function LensVisionComparisonSection() {
                 : 'opacity-0 z-0 pointer-events-none'
             } ${blurClass(lens.blur.day.distance)}`}
             sizes="(max-width: 768px) 100vw, 50vw"
-            priority={lens.featured}
+            loading="lazy"
           />
         )}
 

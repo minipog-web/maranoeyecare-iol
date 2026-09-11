@@ -318,7 +318,6 @@ export default function HeroSection({
                   >
                     <Link
                       href={lens.href}
-                      aria-label={`Learn more about ${lens.name}`}
                       onMouseEnter={() => setActiveLens(lens.name)}
                       onPointerEnter={() => setActiveLens(lens.name)}
                       onFocus={() => setActiveLens(lens.name)}
@@ -344,7 +343,6 @@ export default function HeroSection({
                             src={lens.src}
                             alt={lens.alt}
                             fill
-                            unoptimized={true}
                             className="object-cover object-center scale-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
                             sizes="(max-width: 640px) 35vw, 176px"
                             priority={true}
