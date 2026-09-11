@@ -144,13 +144,13 @@ export default function HeroSection({
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[500px] bg-[radial-gradient(circle,rgba(56,189,248,0.02)_0%,transparent_70%)] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full py-4 sm:py-6 lg:py-8">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start min-w-0 w-full">
           {/* Left Content */}
-          <div className="lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
+          <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
             {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both max-w-fit">
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both max-w-full">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.14em] sm:tracking-[0.18em] text-primary whitespace-nowrap">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.18em] text-primary text-center sm:text-left">
                 {badgeText || 'Premium IOL Specialists • Livingston, Denville & Newark'}
               </span>
             </div>
@@ -291,7 +291,7 @@ export default function HeroSection({
           </div>
 
           {/* Right: Three-Lens Visual Showcase & Vision Reach Meter */}
-          <div className="lg:col-span-5 xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start pt-2 lg:pt-6">
+          <div className="min-w-0 lg:col-span-5 xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start pt-2 lg:pt-6">
             {/* Lens Cards Row */}
             <div className="w-full flex items-end justify-center lg:justify-end gap-2.5 sm:gap-3.5 xl:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pt-2 pb-2">
               {lenses.map((lens, i) => {
