@@ -64,6 +64,7 @@ export class CataractEyeScene {
   private playSpeed = 0.09; // Default 2x speed
   private isIOLMode = false;
   private iolTransition = 0.0;
+  private iolHoldTimer = 0;
 
   // Meshes & Groups
   private eyeGroup!: THREE.Group;
@@ -1298,6 +1299,19 @@ export class CataractEyeScene {
     this.isIOLMode = enabled;
   }
 
+  public setStage(stageIndex: number) {
+    if (stageIndex === 4) {
+      this.isIOLMode = true;
+      this.targetProgress = 1.0;
+      this.iolHoldTimer = 0;
+    } else {
+      this.isIOLMode = false;
+      this.iolHoldTimer = 0;
+      const progressMap = [0.0, 0.35, 0.62, 0.95];
+      this.targetProgress = progressMap[stageIndex] ?? 0.0;
+    }
+  }
+
   public setPlaying(playing: boolean) {
     this.isPlaying = playing;
   }
@@ -1508,10 +1522,32 @@ export class CataractEyeScene {
   private renderLoop = () => {
     if (this.isDisposed) return;
 
-    if (this.isPlaying && !this.isIOLMode) {
-      this.targetProgress += this.playSpeed * 0.016;
-      if (this.targetProgress > 1.0) {
-        this.targetProgress = 0.0;
+    if (this.isPlaying) {
+      if (this.isMinimal) {
+        if (!this.isIOLMode) {
+          this.targetProgress += this.playSpeed * 0.016;
+          if (this.targetProgress >= 1.0) {
+            this.targetProgress = 1.0;
+            this.isIOLMode = true;
+            this.iolHoldTimer = 0;
+          }
+        } else {
+          this.iolHoldTimer += 0.016;
+          // Hold IOL mode for 2.6 seconds so viewers see the permanent clarity restoration
+          if (this.iolHoldTimer > 2.6) {
+            this.isIOLMode = false;
+            this.iolHoldTimer = 0;
+            this.targetProgress = 0.0;
+            this.currentProgress = 0.0;
+          }
+        }
+      } else {
+        if (!this.isIOLMode) {
+          this.targetProgress += this.playSpeed * 0.016;
+          if (this.targetProgress > 1.0) {
+            this.targetProgress = 0.0;
+          }
+        }
       }
     }
 
