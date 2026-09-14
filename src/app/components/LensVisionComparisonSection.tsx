@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import AppIcon from '@/components/ui/AppIcon';
 import Image from 'next/image';
 import styles from './LensVisionComparisonSection.module.css';
 import { trackEvent } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 
 const lenses = [
   {
@@ -664,40 +666,6 @@ export default function LensVisionComparisonSection() {
           className="optical-bezel rounded-3xl p-2 sm:p-3.5 lg:p-5 mb-10 sm:mb-12 relative z-10"
         >
           <div className="rounded-[1.6rem] p-3 sm:p-5 lg:p-8 bg-[#090b11]/90 backdrop-blur-xl">
-            {/* Precision Optical Bench Telemetry HUD */}
-            <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 mb-6 rounded-xl bg-black/60 border border-white/[0.08] text-[11px] font-mono tracking-wider shadow-inner">
-              <div className="flex items-center gap-2 text-primary">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="font-bold uppercase tracking-widest text-[10px] sm:text-[11px]">
-                  Precision Optical Bench
-                </span>
-                <span className="text-white/30 hidden sm:inline">|</span>
-                <span className="text-muted-foreground hidden sm:inline text-[10px]">
-                  Calibrated 1:1 Human Cornea Projection
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary font-bold text-[10px] sm:text-[11px]">
-                  {timeOfDay === 'night'
-                    ? 'FOCAL PLANE: ∞ DISTANCE (NIGHT ROAD PROFILE)'
-                    : activeDistance === 'near'
-                      ? 'FOCAL PLANE: 40 CM (READING & DIGITAL SCREENS)'
-                      : activeDistance === 'intermediate'
-                        ? activePremiumLens.id === 'panoptix'
-                          ? 'FOCAL PLANE: 60 CM (COMPUTER & DASHBOARD)'
-                          : 'FOCAL PLANE: 66 CM (COMPUTER & DASHBOARD)'
-                        : 'FOCAL PLANE: ∞ DISTANCE (DRIVING & PANORAMIC)'}
-                </span>
-                <span className="text-white/50 hidden lg:inline text-[10px]">
-                  {activePremiumLens.id === 'panoptix'
-                    ? 'QUADRAFOCAL ENLIGHTEN® · 88% LIGHT TRANSMITTANCE'
-                    : activePremiumLens.id === 'vivity'
-                      ? 'X-WAVE™ WAVEFRONT SHAPING · NON-DIFFRACTIVE'
-                      : 'REFRACTIVE EDOF OPTIC · HIGH CONTRAST PROFILE'}
-                </span>
-              </div>
-            </div>
-
             {/* Integrated Toggles Bar */}
             <div className="flex flex-col gap-6 pb-6 mb-8 border-b border-white/[0.06]">
               {/* Centered Environment Panel */}
@@ -1518,13 +1486,28 @@ export default function LensVisionComparisonSection() {
               or TECNIS PureSee is engineered for your daily routine.
             </p>
           </div>
-          <a
-            href="#lens-quiz"
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-primary text-[#050608] rounded-xl text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap shadow-[0_4px_16px_rgba(197,160,89,0.3)] btn-shimmer"
+          <Link
+            href="/#lens-quiz"
+            onClick={(e) => {
+              e.preventDefault();
+              const quizEl = document.getElementById('lens-quiz');
+              if (quizEl) {
+                smoothScrollToElement('lens-quiz');
+                window.history.pushState(null, '', '#lens-quiz');
+              } else {
+                window.location.href = '/#lens-quiz';
+              }
+              trackEvent({
+                action: 'lens_bridge_quiz_click',
+                category: 'Engagement',
+                label: 'Bridge CTA - Interactive Quiz',
+              });
+            }}
+            className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-accent hover:text-accent-foreground transition-all duration-300 shadow-md hover:shadow-primary/20 shrink-0 min-h-[48px] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
-            Start Lens Quiz
-            <AppIcon name="ArrowDownIcon" size={16} />
-          </a>
+            <span>Start Lens Quiz</span>
+            <AppIcon name="ArrowRightIcon" size={16} />
+          </Link>
         </div>
 
         <p className="text-center text-xs sm:text-sm text-white/90 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.08em] leading-relaxed font-medium">

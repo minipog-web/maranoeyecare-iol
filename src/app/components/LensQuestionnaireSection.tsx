@@ -374,7 +374,10 @@ export default function LensQuestionnaireSection() {
   }, [calculating, progress]);
 
   return (
-    <section id="lens-quiz" className="relative py-16 sm:py-24 overflow-hidden bg-[#0d1017]">
+    <section
+      id="lens-quiz"
+      className="relative py-16 sm:py-24 overflow-hidden bg-[#0d1017] scroll-mt-20 sm:scroll-mt-24"
+    >
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(56,189,248,0.02)_0%,transparent_60%)]" />
       <div className="absolute inset-0 grid-lines-bg opacity-30" />

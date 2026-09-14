@@ -149,7 +149,7 @@ const progressionStages: ProgressionStage[] = [
     patientVisionLabel: 'Permanent Crystal Clarity & Full Color Spectrum',
     opticalTransmission: '100% Focused Optical Transmission (Permanent)',
     doctorNote:
-      'Cataract surgery is a once-in-a-lifetime cure. The clear acrylic lens we place inside your eye will provide stable, beautiful vision for the rest of your life.',
+      'Cataract surgery provides a permanent replacement. The clear acrylic lens we place inside your eye will provide stable, beautiful vision for the rest of your life.',
   },
 ];
 
@@ -252,7 +252,7 @@ export default function CataractFormationSection() {
                           isPermanentSolution ? 'text-primary' : 'text-muted-foreground/80'
                         }`}
                       >
-                        {stage.id === 5 ? 'Permanent Cure' : `Stage 0${stage.id}`}
+                        {stage.id === 5 ? 'Permanent Replacement' : `Stage 0${stage.id}`}
                       </span>
                       <span
                         className={`w-2 h-2 rounded-full ${

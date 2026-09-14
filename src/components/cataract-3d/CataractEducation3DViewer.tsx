@@ -66,7 +66,7 @@ export default function CataractEducation3DViewer({
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentProgress, setCurrentProgress] = useState(0.0);
   const [activeStageIdx, setActiveStageIdx] = useState(0);
-  const [playbackSpeed, setPlaybackSpeed] = useState<number>(2.0);
+  const [playbackSpeed, setPlaybackSpeed] = useState<number>(1.0);
   const [showLabels, setShowLabels] = useState(true);
   const [isIOLActive, setIsIOLActive] = useState(false);
   const [cameraView, setCameraView] = useState<CameraViewMode>('crossSection');
@@ -89,12 +89,13 @@ export default function CataractEducation3DViewer({
       onProgressUpdate: (progress, stageIdx) => {
         setCurrentProgress(progress);
         setActiveStageIdx(stageIdx);
+        setIsIOLActive(stageIdx === 4);
       },
       onLandmarksUpdate: (newLandmarks) => {
         setLandmarks(newLandmarks);
       },
     });
-    scene.setPlaySpeed(0.045 * 2.0);
+    scene.setPlaySpeed(0.1 * 1.0);
     sceneRef.current = scene;
 
     const handleResize = () => {
@@ -193,12 +194,12 @@ export default function CataractEducation3DViewer({
 
   // Speed Toggle
   const handleSpeedCycle = () => {
-    const speeds = [0.5, 1.0, 2.0];
+    const speeds = [0.75, 1.0, 1.5];
     const nextIdx = (speeds.indexOf(playbackSpeed) + 1) % speeds.length;
     const nextSpeed = speeds[nextIdx];
     setPlaybackSpeed(nextSpeed);
     if (sceneRef.current) {
-      sceneRef.current.setPlaySpeed(0.045 * nextSpeed);
+      sceneRef.current.setPlaySpeed(0.1 * nextSpeed);
     }
   };
 
@@ -506,7 +507,7 @@ export default function CataractEducation3DViewer({
                       <div className="flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                         <span className="text-[9px] uppercase tracking-wider font-bold text-primary">
-                          {isIOLActive ? 'Permanent Cure' : 'Cataract Focus Site'}
+                          {isIOLActive ? 'Permanent Replacement' : 'Cataract Focus Site'}
                         </span>
                       </div>
                       <span className="font-bold text-white leading-tight">
@@ -760,7 +761,7 @@ export default function CataractEducation3DViewer({
           </div>
           {isIOLActive ? (
             <span className="text-primary font-bold text-[11px] shrink-0 bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20">
-              ✓ Acrylic Permanent Cure Active
+              ✓ Acrylic Permanent Replacement Active
             </span>
           ) : (
             <span className="text-amber-400 font-medium text-[11px] shrink-0">

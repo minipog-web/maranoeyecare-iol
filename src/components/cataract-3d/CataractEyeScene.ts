@@ -28,6 +28,7 @@ export class CataractEyeScene {
   private onProgressUpdate?: (progress: number, stageIndex: number) => void;
   private onLandmarksUpdate?: (landmarks: LandmarkMap) => void;
   private lastLandmarkEmit = 0;
+  private lastEmittedStage = -1;
 
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -61,10 +62,12 @@ export class CataractEyeScene {
   private targetProgress = 0.0;
   private currentProgress = 0.0;
   private isPlaying = true;
-  private playSpeed = 0.09; // Default 2x speed
+  private playSpeed = 0.12;
   private isIOLMode = false;
   private iolTransition = 0.0;
   private iolHoldTimer = 0;
+  private denseCataractHoldTimer = 0;
+  private lastFrameTime = 0;
 
   // Meshes & Groups
   private eyeGroup!: THREE.Group;
@@ -76,6 +79,10 @@ export class CataractEyeScene {
   private proteinPositions!: Float32Array;
   private proteinColors!: Float32Array;
   private iolGroup!: THREE.Group;
+  private iolOpticMesh!: THREE.Mesh;
+  private iolRingMesh!: THREE.Mesh;
+  private iolHaptic1Mesh!: THREE.Mesh;
+  private iolHaptic2Mesh!: THREE.Mesh;
 
   // Optical Ray Meshes
   private rayGroup!: THREE.Group;
@@ -95,7 +102,7 @@ export class CataractEyeScene {
     this.onLandmarksUpdate = options.onLandmarksUpdate;
 
     if (this.isMinimal) {
-      this.playSpeed = 0.13; // 2x speed for minimal landing hook
+      this.playSpeed = 0.125; // 8.0s for biological progression
       this.targetDistance = 4.65;
       this.currentDistance = 4.65;
       this.targetAzimuth = 0.12;
@@ -181,7 +188,8 @@ export class CataractEyeScene {
     this.scene.add(rimLight);
 
     // High-precision spotlight pointing right at the crystalline lens center (-0.95, 0, 0)
-    const lensSpot = new THREE.SpotLight(0xc5a059, 4.2, 8, Math.PI * 0.35, 0.45);
+    // Neutral surgical illumination to keep the clear acrylic IOL pristine without amber cast
+    const lensSpot = new THREE.SpotLight(0xf8fafc, 3.8, 8, Math.PI * 0.35, 0.45);
     lensSpot.position.set(-0.95, 2.8, 2.5);
     lensSpot.target.position.set(-0.95, 0, 0);
     this.scene.add(lensSpot);
@@ -390,7 +398,7 @@ export class CataractEyeScene {
           cx + Math.cos(rad) * r2,
           cy + Math.sin(rad) * r2
         );
-        grad.addColorStop(0, '#c5a059');
+        grad.addColorStop(0, '#000000');
         grad.addColorStop(0.28, '#2563eb');
         grad.addColorStop(0.72, '#1e3a8a');
         grad.addColorStop(1, '#0f172a');
@@ -569,11 +577,11 @@ export class CataractEyeScene {
     iris.position.set(-1.16, 0.0, 0.0);
     this.eyeGroup.add(iris);
 
-    // Golden pupillary margin sphincter ring
+    // Pupillary margin sphincter ring (black, representing the pupil aperture)
     const sphincterGeo = new THREE.RingGeometry(irisInnerR - 0.02, irisInnerR + 0.02, 48);
     sphincterGeo.rotateY(Math.PI * 0.5);
     const sphincterMat = new THREE.MeshBasicMaterial({
-      color: 0xc5a059,
+      color: 0x000000,
       side: THREE.DoubleSide,
       clippingPlanes: [this.clipPlane],
     });
@@ -620,138 +628,51 @@ export class CataractEyeScene {
     ciliaryGroup.add(processInst);
 
     // Suspensory Zonules of Zinn (Apparatus suspensorius lentis)
-    // Tri-laminar architecture: Anterior, Equatorial, and Posterior leaves with arborizing capsular insertion
+    // Clear, taut straight radial suspension fibers connecting the ciliary body directly to the lens
     const zonuleLines: number[] = [];
-    const glintLines: number[] = [];
+    const numZonules = 96;
 
-    for (let i = 0; i < numProcesses; i++) {
-      const angle = (i / numProcesses) * Math.PI * 2;
+    for (let i = 0; i < numZonules; i++) {
+      const angle = (i / numZonules) * Math.PI * 2;
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
 
-      // Ciliary origin point inside valley of Kuhnt
-      const origX = -1.03;
-      const origR = 0.865;
+      // Ciliary process origin point
+      const origX = -1.02;
+      const origR = 0.845;
       const pOrig = [origX, cosA * origR, sinA * origR];
 
-      // 1. ANTERIOR ZONULAR LEAF (Inserts into anterior lens capsule at X = -1.00, R = 0.605)
-      const antMidX = -1.015;
-      const antMidR = 0.735;
-      const pAntMid = [antMidX, cosA * antMidR, sinA * antMidR];
-      zonuleLines.push(...pOrig, ...pAntMid);
+      // 1. Equatorial Straight Fiber (Direct straight line to lens equator)
+      const eqX = -0.95;
+      const eqR = 0.65;
+      const pEq = [eqX, cosA * eqR, sinA * eqR];
+      zonuleLines.push(...pOrig, ...pEq);
 
-      // Branching arborization into anterior capsule (2 distinct divergent micro-tendrils)
-      const antInsX = -0.995;
-      const antInsR = 0.605;
-      const dTheta = 0.016;
-      const pAnt1 = [
-        antInsX,
-        Math.cos(angle + dTheta) * antInsR,
-        Math.sin(angle + dTheta) * antInsR,
-      ];
-      const pAnt2 = [
-        antInsX,
-        Math.cos(angle - dTheta) * antInsR,
-        Math.sin(angle - dTheta) * antInsR,
-      ];
-      zonuleLines.push(...pAntMid, ...pAnt1);
-      zonuleLines.push(...pAntMid, ...pAnt2);
+      // 2. Anterior Straight Fiber (Direct straight line to anterior lens capsule)
+      const antX = -0.985;
+      const antR = 0.61;
+      const dTheta = 0.012;
+      const pAnt = [antX, Math.cos(angle + dTheta) * antR, Math.sin(angle + dTheta) * antR];
+      zonuleLines.push(...pOrig, ...pAnt);
 
-      // 2. EQUATORIAL ZONULAR LEAF (Inserts directly onto lens equatorial rim at X = -0.95, R = 0.65)
-      const eqMidX = -0.985;
-      const eqMidR = 0.75;
-      const pEqMid = [eqMidX, cosA * eqMidR, sinA * eqMidR];
-      zonuleLines.push(...pOrig, ...pEqMid);
-
-      const eqInsX = -0.95;
-      const eqInsR = 0.65;
-      const pEqCenter = [eqInsX, cosA * eqInsR, sinA * eqInsR];
-      const pEqSide = [
-        eqInsX,
-        Math.cos(angle + dTheta * 1.2) * eqInsR,
-        Math.sin(angle + dTheta * 1.2) * eqInsR,
-      ];
-      zonuleLines.push(...pEqMid, ...pEqCenter);
-      zonuleLines.push(...pEqMid, ...pEqSide);
-
-      // 3. POSTERIOR ZONULAR LEAF (Inserts into posterior lens capsule at X = -0.905, R = 0.61)
-      const postMidX = -0.955;
-      const postMidR = 0.735;
-      const pPostMid = [postMidX, cosA * postMidR, sinA * postMidR];
-      zonuleLines.push(...pOrig, ...pPostMid);
-
-      const postInsX = -0.905;
-      const postInsR = 0.61;
-      const pPost1 = [
-        postInsX,
-        Math.cos(angle + dTheta) * postInsR,
-        Math.sin(angle + dTheta) * postInsR,
-      ];
-      const pPost2 = [
-        postInsX,
-        Math.cos(angle - dTheta) * postInsR,
-        Math.sin(angle - dTheta) * postInsR,
-      ];
-      zonuleLines.push(...pPostMid, ...pPost1);
-      zonuleLines.push(...pPostMid, ...pPost2);
-
-      // 4. CANAL OF HANNOVER INTERLACING CROSS-FIBERS (Stabilizing webbing between adjacent processes)
-      if (i % 2 === 0) {
-        const nextAngle = ((i + 1) / numProcesses) * Math.PI * 2;
-        const pNextPostMid = [
-          postMidX,
-          Math.cos(nextAngle) * postMidR,
-          Math.sin(nextAngle) * postMidR,
-        ];
-        zonuleLines.push(...pAntMid, ...pNextPostMid);
-      }
-
-      // Specular glistening crystalline glint fibers
-      if (i % 3 === 0) {
-        glintLines.push(...pOrig, ...pEqCenter);
-        glintLines.push(...pAntMid, ...pAnt1);
-      }
+      // 3. Posterior Straight Fiber (Direct straight line to posterior lens capsule)
+      const postX = -0.915;
+      const postR = 0.61;
+      const pPost = [postX, Math.cos(angle - dTheta) * postR, Math.sin(angle - dTheta) * postR];
+      zonuleLines.push(...pOrig, ...pPost);
     }
 
-    // Layer 1: Primary Fibrillin Silk Micro-Fibers (Pearlescent translucent platinum white)
+    // High-visibility, crisp straight suspensory fibers
     const zonuleGeo = new THREE.BufferGeometry();
     zonuleGeo.setAttribute('position', new THREE.Float32BufferAttribute(zonuleLines, 3));
     const zonuleMat = new THREE.LineBasicMaterial({
-      color: 0xf8fafc,
+      color: 0xffffff,
       transparent: true,
-      opacity: 0.82,
+      opacity: 1.0,
       clippingPlanes: [this.clipPlane],
     });
     const zonules = new THREE.LineSegments(zonuleGeo, zonuleMat);
     ciliaryGroup.add(zonules);
-
-    // Layer 2: Crystalline Iridescent Glint (Diamond-sheen light catch)
-    const glintGeo = new THREE.BufferGeometry();
-    glintGeo.setAttribute('position', new THREE.Float32BufferAttribute(glintLines, 3));
-    const glintMat = new THREE.LineBasicMaterial({
-      color: 0xbae6fd,
-      transparent: true,
-      opacity: 0.4,
-      blending: THREE.AdditiveBlending,
-      clippingPlanes: [this.clipPlane],
-    });
-    const glints = new THREE.LineSegments(glintGeo, glintMat);
-    ciliaryGroup.add(glints);
-
-    // Layer 3: Translucent Pericapsular Insertion Collar (Zonular Lamella)
-    const collarGeo = new THREE.CylinderGeometry(0.652, 0.652, 0.11, 64, 1, true);
-    collarGeo.rotateZ(Math.PI * 0.5);
-    const collarMat = new THREE.MeshPhysicalMaterial({
-      color: 0xf8fafc,
-      transmission: 0.88,
-      opacity: 0.28,
-      roughness: 0.16,
-      side: THREE.DoubleSide,
-      clippingPlanes: [this.clipPlane],
-    });
-    const collar = new THREE.Mesh(collarGeo, collarMat);
-    collar.position.set(-0.95, 0.0, 0.0);
-    ciliaryGroup.add(collar);
 
     // ── 7. THE CRYSTALLINE LENS (The Star of the Scene, X = -0.95) ──
     // Unclipped by clipPlane! Positioned right in the center of the optical path!
@@ -769,6 +690,7 @@ export class CataractEyeScene {
       transmission: 0.76,
       opacity: 0.94,
       transparent: true,
+      depthWrite: false,
       roughness: 0.05,
       ior: 1.41,
       thickness: 0.82,
@@ -777,6 +699,7 @@ export class CataractEyeScene {
       clearcoatRoughness: 0.02,
     });
     this.lensMesh = new THREE.Mesh(lensGeo, lensMat);
+    this.lensMesh.renderOrder = 3;
     this.lensGroup.add(this.lensMesh);
 
     // Luminous capsule rim glow outlining the biconvex crystalline profile
@@ -788,8 +711,10 @@ export class CataractEyeScene {
       opacity: 0.26,
       blending: THREE.AdditiveBlending,
       side: THREE.BackSide,
+      depthWrite: false,
     });
     this.lensGlowMesh = new THREE.Mesh(glowGeo, glowMat);
+    this.lensGlowMesh.renderOrder = 4;
     this.lensGroup.add(this.lensGlowMesh);
 
     // Lens Nucleus (Central core that develops nuclear sclerosis amber color)
@@ -800,8 +725,10 @@ export class CataractEyeScene {
       transparent: true,
       opacity: 0.0,
       roughness: 0.32,
+      depthWrite: false,
     });
     this.lensNucleusMesh = new THREE.Mesh(nucleusGeo, nucleusMat);
+    this.lensNucleusMesh.renderOrder = 1;
     this.lensGroup.add(this.lensNucleusMesh);
 
     // ── 8. VOLUMETRIC PROTEIN PARTICLES (Cortical & Nuclear Opacities) ──
@@ -840,6 +767,7 @@ export class CataractEyeScene {
       depthWrite: false,
     });
     this.proteinParticles = new THREE.Points(particleGeo, particleMat);
+    this.proteinParticles.renderOrder = 2;
     this.lensGroup.add(this.proteinParticles);
 
     // ── 9. POSTERIOR OPTIC NERVE & RETINAL VASCULAR ARCADES ──
@@ -1140,41 +1068,51 @@ export class CataractEyeScene {
     const opticMat = new THREE.MeshPhysicalMaterial({
       color: 0xffffff,
       transmission: 0.99,
-      opacity: 0.98,
+      opacity: 0.0,
       transparent: true,
       roughness: 0.01,
       ior: 1.55,
       specularIntensity: 1.6,
       clearcoat: 1.0,
+      depthWrite: false,
     });
-    const optic = new THREE.Mesh(opticGeo, opticMat);
-    this.iolGroup.add(optic);
+    this.iolOpticMesh = new THREE.Mesh(opticGeo, opticMat);
+    this.iolGroup.add(this.iolOpticMesh);
 
-    // Golden Diffractive Rings (Presbyopia / EDOF optical rings)
+    // Clear Diffractive Optics Rings (Presbyopia / EDOF optical micro-grooves)
     const ringGeo = new THREE.RingGeometry(0.2, 0.44, 48);
     ringGeo.rotateY(Math.PI * 0.5);
     const ringMat = new THREE.MeshBasicMaterial({
-      color: 0xc5a059,
+      color: 0xffffff,
       transparent: true,
-      opacity: 0.62,
+      opacity: 0.0,
       side: THREE.DoubleSide,
+      depthWrite: false,
     });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.position.set(0.042, 0, 0);
-    this.iolGroup.add(ring);
+    this.iolRingMesh = new THREE.Mesh(ringGeo, ringMat);
+    this.iolRingMesh.position.set(0.042, 0, 0);
+    this.iolGroup.add(this.iolRingMesh);
 
-    // Dual Flexible Open-Loop C-Haptics (Anchoring the IOL inside capsular bag)
+    // Dual Flexible Open-Loop C-Haptics (Anchoring the clear IOL inside capsular bag)
     const curve1 = new THREE.CubicBezierCurve3(
       new THREE.Vector3(0.0, 0.52, 0.0),
       new THREE.Vector3(0.0, 0.82, 0.3),
       new THREE.Vector3(0.0, 0.82, 0.75),
       new THREE.Vector3(0.0, 0.4, 0.88)
     );
-    const haptic1 = new THREE.Mesh(
+    const haptic1Mat = new THREE.MeshStandardMaterial({
+      color: 0xe0f2fe,
+      roughness: 0.15,
+      metalness: 0.1,
+      transparent: true,
+      opacity: 0.0,
+      depthWrite: false,
+    });
+    this.iolHaptic1Mesh = new THREE.Mesh(
       new THREE.TubeGeometry(curve1, 36, 0.024, 8, false),
-      new THREE.MeshStandardMaterial({ color: 0x93c5fd, roughness: 0.2, metalness: 0.4 })
+      haptic1Mat
     );
-    this.iolGroup.add(haptic1);
+    this.iolGroup.add(this.iolHaptic1Mesh);
 
     const curve2 = new THREE.CubicBezierCurve3(
       new THREE.Vector3(0.0, -0.52, 0.0),
@@ -1182,11 +1120,19 @@ export class CataractEyeScene {
       new THREE.Vector3(0.0, -0.82, -0.75),
       new THREE.Vector3(0.0, -0.4, -0.88)
     );
-    const haptic2 = new THREE.Mesh(
+    const haptic2Mat = new THREE.MeshStandardMaterial({
+      color: 0xe0f2fe,
+      roughness: 0.15,
+      metalness: 0.1,
+      transparent: true,
+      opacity: 0.0,
+      depthWrite: false,
+    });
+    this.iolHaptic2Mesh = new THREE.Mesh(
       new THREE.TubeGeometry(curve2, 36, 0.024, 8, false),
-      new THREE.MeshStandardMaterial({ color: 0x93c5fd, roughness: 0.2, metalness: 0.4 })
+      haptic2Mat
     );
-    this.iolGroup.add(haptic2);
+    this.iolGroup.add(this.iolHaptic2Mesh);
   }
 
   private createParticleTexture(): THREE.CanvasTexture {
@@ -1293,22 +1239,31 @@ export class CataractEyeScene {
   public setProgress(progress: number) {
     this.targetProgress = THREE.MathUtils.clamp(progress, 0.0, 1.0);
     this.isIOLMode = false;
+    this.denseCataractHoldTimer = 0;
+    this.iolHoldTimer = 0;
   }
 
   public setIOLMode(enabled: boolean) {
     this.isIOLMode = enabled;
+    this.denseCataractHoldTimer = 0;
+    this.iolHoldTimer = 0;
+    if (enabled) {
+      this.targetProgress = 1.0;
+    }
   }
 
   public setStage(stageIndex: number) {
+    this.lastEmittedStage = stageIndex;
+    this.denseCataractHoldTimer = 0;
+    this.iolHoldTimer = 0;
     if (stageIndex === 4) {
       this.isIOLMode = true;
       this.targetProgress = 1.0;
-      this.iolHoldTimer = 0;
     } else {
       this.isIOLMode = false;
-      this.iolHoldTimer = 0;
-      const progressMap = [0.0, 0.35, 0.62, 0.95];
-      this.targetProgress = progressMap[stageIndex] ?? 0.0;
+      const progressMap = [0.0, 0.24, 0.5, 0.85];
+      const prog = progressMap[stageIndex] ?? 0.0;
+      this.targetProgress = prog;
     }
   }
 
@@ -1347,31 +1302,28 @@ export class CataractEyeScene {
     this.setCameraView('crossSection');
   }
 
-  private updateOpticalPhysics(p: number) {
+  private updateOpticalPhysics(p: number, dt: number = 0.016) {
     const iolTarget = this.isIOLMode ? 1.0 : 0.0;
-    this.iolTransition += (iolTarget - this.iolTransition) * 0.1;
-
-    if (this.iolTransition > 0.01) {
-      this.iolGroup.visible = true;
-      (this.iolGroup.children[0] as THREE.Mesh).scale.setScalar(this.iolTransition);
-      this.lensMesh.visible = this.iolTransition < 0.95;
-      this.lensGlowMesh.visible = this.iolTransition < 0.95;
-    } else {
-      this.iolGroup.visible = false;
-      this.lensMesh.visible = true;
-      this.lensGlowMesh.visible = true;
+    // Silky smooth interpolation (~1.1s transition)
+    const iolSpeed = this.isIOLMode ? 2.5 : 3.0;
+    this.iolTransition += (iolTarget - this.iolTransition) * (1.0 - Math.exp(-dt * iolSpeed));
+    if (Math.abs(iolTarget - this.iolTransition) < 0.002) {
+      this.iolTransition = iolTarget;
     }
 
-    const effectiveP = p * (1.0 - this.iolTransition);
-
-    // 1. Lens Material Color & Opacity Transformation
+    // 1. Natural Lens & Cataract Pathology state based directly on biological progress p
     const lensMat = this.lensMesh.material as THREE.MeshPhysicalMaterial;
     const nucleusMat = this.lensNucleusMesh.material as THREE.MeshStandardMaterial;
     const glowMat = this.lensGlowMesh.material as THREE.MeshBasicMaterial;
+    const particleMat = this.proteinParticles.material as THREE.PointsMaterial;
 
-    if (effectiveP < 0.22) {
+    const baseLensOpacity = 0.94;
+    let baseNucleusOpacity = 0.0;
+    let baseGlowOpacity = 0.0;
+
+    if (p < 0.22) {
       // Stage 1: Youthful Crystal Clarity (Cyan crystal sheen)
-      const t = effectiveP / 0.22;
+      const t = p / 0.22;
       lensMat.color.setRGB(
         THREE.MathUtils.lerp(0.65, 0.92, t),
         THREE.MathUtils.lerp(0.88, 0.94, t),
@@ -1379,11 +1331,11 @@ export class CataractEyeScene {
       );
       lensMat.transmission = THREE.MathUtils.lerp(0.76, 0.65, t);
       lensMat.roughness = THREE.MathUtils.lerp(0.05, 0.14, t);
-      nucleusMat.opacity = 0.0;
-      glowMat.opacity = 0.26 * (1.0 - t);
-    } else if (effectiveP < 0.58) {
+      baseNucleusOpacity = 0.0;
+      baseGlowOpacity = 0.26 * (1.0 - t);
+    } else if (p < 0.58) {
       // Stages 2 & 3: Nuclear Sclerosis (Golden Honey Amber Core)
-      const t = (effectiveP - 0.22) / 0.36;
+      const t = (p - 0.22) / 0.36;
       lensMat.color.setRGB(
         THREE.MathUtils.lerp(0.92, 0.98, t),
         THREE.MathUtils.lerp(0.94, 0.65, t),
@@ -1393,11 +1345,11 @@ export class CataractEyeScene {
       lensMat.roughness = THREE.MathUtils.lerp(0.14, 0.44, t);
 
       nucleusMat.color.setHex(0xd97706);
-      nucleusMat.opacity = THREE.MathUtils.lerp(0.08, 0.75, t);
-      glowMat.opacity = 0.0;
+      baseNucleusOpacity = THREE.MathUtils.lerp(0.08, 0.75, t);
+      baseGlowOpacity = 0.0;
     } else {
       // Stage 4: Advanced Brunescent Opacity (Dense Dark Mahogany)
-      const t = (effectiveP - 0.58) / 0.42;
+      const t = (p - 0.58) / 0.42;
       lensMat.color.setRGB(
         THREE.MathUtils.lerp(0.98, 0.38, t),
         THREE.MathUtils.lerp(0.65, 0.14, t),
@@ -1407,21 +1359,20 @@ export class CataractEyeScene {
       lensMat.roughness = THREE.MathUtils.lerp(0.44, 0.76, t);
 
       nucleusMat.color.setHex(0x3e1505);
-      nucleusMat.opacity = THREE.MathUtils.lerp(0.75, 0.96, t);
-      glowMat.opacity = 0.0;
+      baseNucleusOpacity = THREE.MathUtils.lerp(0.75, 0.96, t);
+      baseGlowOpacity = 0.0;
     }
 
-    // 2. Protein Particles Density
-    const particleMat = this.proteinParticles.material as THREE.PointsMaterial;
-    particleMat.opacity =
-      effectiveP > 0.04 ? THREE.MathUtils.lerp(0.08, 0.95, (effectiveP - 0.04) / 0.96) : 0.0;
+    // 2. Protein Particles Density based on p
+    const baseParticleOpacity =
+      p > 0.04 ? THREE.MathUtils.lerp(0.08, 0.95, (p - 0.04) / 0.96) : 0.0;
 
     const colorsAttr = this.proteinParticles.geometry.attributes.color as THREE.BufferAttribute;
     const count = this.proteinPositions.length / 3;
     for (let i = 0; i < count; i++) {
-      if (effectiveP < 0.3) {
+      if (p < 0.3) {
         colorsAttr.setXYZ(i, 0.96, 0.98, 1.0);
-      } else if (effectiveP < 0.65) {
+      } else if (p < 0.65) {
         colorsAttr.setXYZ(i, 0.98, 0.72, 0.24);
       } else {
         colorsAttr.setXYZ(i, 0.54, 0.22, 0.06);
@@ -1429,37 +1380,106 @@ export class CataractEyeScene {
     }
     colorsAttr.needsUpdate = true;
 
-    // 3. Optical Light Path & Scatter Physics
+    // 3. Surgical Removal / Dissolve of Cataract Lens during IOL Transition
+    // Cataract dissolves gracefully during the first 65% of the IOL transition without reverse-aging!
+    const dissolveProgress = THREE.MathUtils.clamp(1.0 - this.iolTransition * 1.55, 0.0, 1.0);
+    // Smooth cubic hermite ease for natural surgical aspiration
+    const cataractVisibility = dissolveProgress * dissolveProgress * (3 - 2 * dissolveProgress);
+
+    // Apply visibility and dissolve to natural lens group
+    lensMat.opacity = baseLensOpacity * cataractVisibility;
+    nucleusMat.opacity = baseNucleusOpacity * cataractVisibility;
+    particleMat.opacity = baseParticleOpacity * cataractVisibility;
+    glowMat.opacity = baseGlowOpacity * cataractVisibility;
+
+    const cataractScale = THREE.MathUtils.lerp(0.92, 1.0, cataractVisibility);
+    this.lensGroup.scale.set(cataractScale, cataractScale, cataractScale);
+
+    const showNaturalLens = cataractVisibility > 0.005;
+    this.lensMesh.visible = showNaturalLens;
+    this.lensNucleusMesh.visible = showNaturalLens && nucleusMat.opacity > 0.01;
+    this.lensGlowMesh.visible = showNaturalLens && glowMat.opacity > 0.01;
+    this.proteinParticles.visible = showNaturalLens && particleMat.opacity > 0.01;
+
+    // 4. IOL Unfolding & Implantation
+    // IOL unfolds from 15% to 100% of the transition
+    const iolProgress = THREE.MathUtils.clamp((this.iolTransition - 0.15) / 0.85, 0.0, 1.0);
+    // Cubic ease out for luxurious mechanical seating
+    const easeIOL = 1.0 - Math.pow(1.0 - iolProgress, 3);
+
+    if (this.iolTransition > 0.01) {
+      this.iolGroup.visible = true;
+      // Entire IOL expands into the capsular bag from folded state (72% to 100%)
+      const iolScale = THREE.MathUtils.lerp(0.72, 1.0, easeIOL);
+      this.iolGroup.scale.set(iolScale, iolScale, iolScale);
+      this.iolGroup.rotation.x = THREE.MathUtils.lerp(0.08, 0.0, easeIOL);
+
+      // Optic material fade & transmission
+      const opticMat = this.iolOpticMesh.material as THREE.MeshPhysicalMaterial;
+      opticMat.opacity = THREE.MathUtils.lerp(0.0, 0.98, easeIOL);
+      opticMat.transmission = THREE.MathUtils.lerp(0.75, 0.99, easeIOL);
+
+      // Clear diffractive optics rings fade (transparent crystalline refraction)
+      const ringMat = this.iolRingMesh.material as THREE.MeshBasicMaterial;
+      ringMat.opacity = THREE.MathUtils.lerp(0.0, 0.28, easeIOL);
+
+      // C-loop haptics fade & anchoring
+      const haptic1Mat = this.iolHaptic1Mesh.material as THREE.MeshStandardMaterial;
+      const haptic2Mat = this.iolHaptic2Mesh.material as THREE.MeshStandardMaterial;
+      haptic1Mat.opacity = THREE.MathUtils.lerp(0.0, 1.0, easeIOL);
+      haptic2Mat.opacity = THREE.MathUtils.lerp(0.0, 1.0, easeIOL);
+    } else {
+      this.iolGroup.visible = false;
+    }
+
+    // 5. Optical Light Rays & Retinal Macular Focus Physics
     const internalMat = this.internalRays.material as THREE.LineBasicMaterial;
     const scatterMat = this.scatterRays.material as THREE.LineBasicMaterial;
     const focalSpotMat = this.retinalFocalSpot.material as THREE.MeshBasicMaterial;
 
-    const throughIntensity = Math.max(0.06, 0.94 - effectiveP * 0.86);
+    // Cataract beam attenuation vs 100% IOL crystal clarity
+    const cataractThrough = Math.max(0.06, 0.94 - p * 0.86);
+    const throughIntensity = THREE.MathUtils.lerp(cataractThrough, 0.96, easeIOL);
     internalMat.opacity = throughIntensity;
 
-    const scatterIntensity =
-      effectiveP > 0.1 ? THREE.MathUtils.lerp(0.05, 0.88, (effectiveP - 0.1) / 0.9) : 0.0;
-    scatterMat.opacity = scatterIntensity;
+    // Cataract scatter rays diminish as cataract is dissolved
+    const cataractScatter = p > 0.1 ? THREE.MathUtils.lerp(0.05, 0.88, (p - 0.1) / 0.9) : 0.0;
+    scatterMat.opacity = cataractScatter * cataractVisibility;
 
-    const retinalIntensity = Math.max(0.02, 1.0 - Math.pow(effectiveP, 1.15) * 0.96);
+    // Retinal macular convergence spot
+    const cataractRetinal = Math.max(0.02, 1.0 - Math.pow(p, 1.15) * 0.96);
+    const cataractSpotScale = THREE.MathUtils.lerp(1.0, 0.2, p);
+    const retinalIntensity = THREE.MathUtils.lerp(cataractRetinal, 0.98, easeIOL);
+    const spotScale = THREE.MathUtils.lerp(cataractSpotScale, 1.0, easeIOL);
+
     focalSpotMat.opacity = retinalIntensity * 0.96;
-    this.retinalFocalSpot.scale.setScalar(THREE.MathUtils.lerp(1.0, 0.2, effectiveP));
+    this.retinalFocalSpot.scale.setScalar(spotScale);
     this.retinalFocalGlow.intensity = retinalIntensity * 3.2;
 
+    // 6. Clinical Stage Emission
     if (this.onProgressUpdate) {
       let stage = 0;
-      if (this.isIOLMode) {
+      if (this.iolTransition >= 0.45) {
         stage = 4;
-      } else if (effectiveP < 0.22) {
+      } else if (p < 0.22) {
         stage = 0;
-      } else if (effectiveP < 0.48) {
+      } else if (p < 0.48) {
         stage = 1;
-      } else if (effectiveP < 0.78) {
+      } else if (p < 0.78) {
         stage = 2;
       } else {
         stage = 3;
       }
-      this.onProgressUpdate(p, stage);
+
+      if (this.isMinimal) {
+        if (stage !== this.lastEmittedStage) {
+          this.lastEmittedStage = stage;
+          this.onProgressUpdate(p, stage);
+        }
+      } else {
+        this.lastEmittedStage = stage;
+        this.onProgressUpdate(p, stage);
+      }
     }
   }
 
@@ -1522,61 +1542,78 @@ export class CataractEyeScene {
   private renderLoop = () => {
     if (this.isDisposed) return;
 
+    const now = performance.now() * 0.001;
+    if (this.lastFrameTime === 0) {
+      this.lastFrameTime = now;
+    }
+    const dt = Math.min(now - this.lastFrameTime, 1.0);
+    this.lastFrameTime = now;
+
     if (this.isPlaying) {
-      if (this.isMinimal) {
-        if (!this.isIOLMode) {
-          this.targetProgress += this.playSpeed * 0.016;
+      if (!this.isIOLMode) {
+        // Advance cataract formation
+        if (this.targetProgress < 1.0) {
+          this.targetProgress += this.playSpeed * dt;
           if (this.targetProgress >= 1.0) {
             this.targetProgress = 1.0;
+            this.denseCataractHoldTimer = 0;
+          }
+        } else {
+          // Hold at peak Stage 4 (Mature Dense Cataract)
+          this.denseCataractHoldTimer += dt;
+          const stage4Hold = this.isMinimal ? 1.8 : 2.2;
+          if (this.denseCataractHoldTimer >= stage4Hold) {
+            this.denseCataractHoldTimer = 0;
             this.isIOLMode = true;
             this.iolHoldTimer = 0;
           }
-        } else {
-          this.iolHoldTimer += 0.016;
-          // Hold IOL mode for 2.6 seconds so viewers see the permanent clarity restoration
-          if (this.iolHoldTimer > 2.6) {
-            this.isIOLMode = false;
-            this.iolHoldTimer = 0;
-            this.targetProgress = 0.0;
-            this.currentProgress = 0.0;
-          }
         }
       } else {
-        if (!this.isIOLMode) {
-          this.targetProgress += this.playSpeed * 0.016;
-          if (this.targetProgress > 1.0) {
+        // In IOL Mode (Stage 5)
+        // Wait until IOL has fully unfolded (iolTransition >= 0.90) before ticking hold timer
+        if (this.iolTransition >= 0.9) {
+          this.iolHoldTimer += dt;
+          const iolHold = this.isMinimal ? 2.8 : 3.4;
+          if (this.iolHoldTimer >= iolHold) {
+            // Smooth loop restart back to Stage 1 (Youthful Lens)
+            // Setting isIOLMode to false triggers a smooth cross-dissolve fade out of the IOL
+            // while fading back in the youthful crystal lens (currentProgress set to 0.0)
+            this.isIOLMode = false;
+            this.iolHoldTimer = 0;
+            this.denseCataractHoldTimer = 0;
             this.targetProgress = 0.0;
+            this.currentProgress = 0.0;
           }
         }
       }
     }
 
-    this.currentProgress += (this.targetProgress - this.currentProgress) * 0.08;
-    this.updateOpticalPhysics(this.currentProgress);
+    const lerpRate = 1.0 - Math.exp(-dt * 9.0);
+    this.currentProgress += (this.targetProgress - this.currentProgress) * lerpRate;
+    this.updateOpticalPhysics(this.currentProgress, dt);
 
     // Smooth camera spherical interpolation
-    this.currentAzimuth += (this.targetAzimuth - this.currentAzimuth) * 0.08;
-    this.currentElevation += (this.targetElevation - this.currentElevation) * 0.08;
-    this.currentDistance += (this.targetDistance - this.currentDistance) * 0.08;
-    this.currentLookAt.lerp(this.targetLookAt, 0.08);
+    this.currentAzimuth += (this.targetAzimuth - this.currentAzimuth) * lerpRate;
+    this.currentElevation += (this.targetElevation - this.currentElevation) * lerpRate;
+    this.currentDistance += (this.targetDistance - this.currentDistance) * lerpRate;
+    this.currentLookAt.lerp(this.targetLookAt, lerpRate);
 
     this.updateCameraPosition();
 
     // Subtle breathing micro-motion
-    const time = performance.now() * 0.001;
-    this.eyeGroup.position.y = Math.sin(time * 0.8) * 0.025;
+    this.eyeGroup.position.y = Math.sin(now * 0.8) * 0.025;
 
     if (this.incomingRays) {
       (this.incomingRays.material as THREE.LineBasicMaterial).opacity =
-        0.8 + Math.sin(time * 2.5) * 0.15;
+        0.8 + Math.sin(now * 2.5) * 0.15;
     }
 
     this.renderer.render(this.scene, this.camera);
 
     // Periodically emit 3D projected anatomical landmark coordinates
-    const now = performance.now();
-    if (this.onLandmarksUpdate && !this.isMinimal && now - this.lastLandmarkEmit > 32) {
-      this.lastLandmarkEmit = now;
+    const nowMs = now * 1000;
+    if (this.onLandmarksUpdate && !this.isMinimal && nowMs - this.lastLandmarkEmit > 32) {
+      this.lastLandmarkEmit = nowMs;
       this.onLandmarksUpdate(this.getLandmarks());
     }
 

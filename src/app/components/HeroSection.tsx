@@ -345,7 +345,7 @@ export default function HeroSection({
                             fill
                             className="object-cover object-center scale-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
                             sizes="(max-width: 640px) 35vw, 176px"
-                            priority={true}
+                            priority={i === 0}
                           />
 
                           {/* Fine Optical Edge Highlight */}

@@ -151,7 +151,7 @@ const progressionStages: ProgressionStage[] = [
     patientVisionLabel: 'Permanent Crystal Clarity & Full Color Spectrum',
     opticalTransmission: '100% Focused Optical Transmission (Permanent)',
     doctorNote:
-      'Cataract surgery is a once-in-a-lifetime cure. The clear acrylic lens we place inside your eye will provide stable, beautiful vision for the rest of your life.',
+      'Cataract surgery provides a permanent replacement. The clear acrylic lens we place inside your eye will provide stable, beautiful vision for the rest of your life.',
   },
 ];
 
@@ -231,7 +231,7 @@ export default function CataractEducationClient() {
             A cataract is not a growth or film across the eye—it is the biological breakdown and
             clumping of crystalline proteins deep inside your natural biological lens. Explore the 5
             optical progression stages below and discover how clear medical acrylic IOLs provide a
-            lifetime cure that never fogs or degrades.
+            permanent replacement that never fogs or degrades.
           </p>
         </div>
 
@@ -372,7 +372,7 @@ export default function CataractEducationClient() {
                           isPermanentSolution ? 'text-primary' : 'text-muted-foreground/80'
                         }`}
                       >
-                        {stage.id === 5 ? 'Permanent Cure' : `Stage 0${stage.id}`}
+                        {stage.id === 5 ? 'Permanent Replacement' : `Stage 0${stage.id}`}
                       </span>
                       <span
                         className={`w-2 h-2 rounded-full ${
@@ -692,7 +692,7 @@ export default function CataractEducationClient() {
             <span className="font-semibold text-gradient-primary">Clear Acrylic IOL</span>
           </h2>
           <p className="text-muted-foreground text-sm sm:text-base mt-2 max-w-xl mx-auto">
-            Why modern premium cataract surgery is a permanent, once-in-a-lifetime cure.
+            Why modern premium cataract surgery is a permanent replacement.
           </p>
         </div>
 

@@ -9,7 +9,7 @@ import CataractEducationClient from './CataractEducationClient';
 export const metadata: Metadata = {
   title: 'How Cataracts Form & Why Lens Replacement is Permanent | Marano Eye Care NJ',
   description:
-    'Comprehensive clinical guide to cataract formation, protein denaturing, nuclear sclerosis, the 5 stages of optical loss, and why clear medical acrylic IOLs provide a permanent, once-in-a-lifetime cure.',
+    'Comprehensive clinical guide to cataract formation, protein denaturing, nuclear sclerosis, the 5 stages of optical loss, and why clear medical acrylic IOLs provide a permanent replacement.',
   alternates: {
     canonical: '/cataract-education',
   },

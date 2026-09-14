@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackAdsConversion } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 
 export default function StickyCTABar() {
   const [visible, setVisible] = useState(false);
@@ -90,7 +91,7 @@ export default function StickyCTABar() {
                 document.getElementById('booking') || document.getElementById('consultation');
               if (el) {
                 e.preventDefault();
-                el.scrollIntoView({ behavior: 'smooth' });
+                smoothScrollToElement(el.id);
                 window.history.pushState(null, '', '#booking');
               }
             }}

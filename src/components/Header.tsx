@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackAdsConversion } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -70,7 +71,7 @@ export default function Header() {
         const targetElement = document.getElementById(hash);
         if (targetElement) {
           e.preventDefault();
-          targetElement.scrollIntoView({ behavior: 'smooth' });
+          smoothScrollToElement(hash);
           window.history.pushState(null, '', `#${hash}`);
         }
       }
@@ -99,7 +100,7 @@ export default function Header() {
     const bookingEl = document.getElementById('booking') || document.getElementById('consultation');
     if (bookingEl) {
       e.preventDefault();
-      bookingEl.scrollIntoView({ behavior: 'smooth' });
+      smoothScrollToElement(bookingEl.id);
       window.history.pushState(null, '', '#booking');
     }
   };

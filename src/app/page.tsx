@@ -8,58 +8,16 @@ import CertificationLogos from '@/app/components/CertificationLogos';
 import StickyCTABar from '@/app/components/StickyCTABar';
 import CandidacySection from '@/app/components/CandidacySection';
 import InsuranceCostSection from '@/app/components/InsuranceCostSection';
-import dynamic from 'next/dynamic';
-
-// Dynamically import heavy interactive client-side components to minimize initial JS payload
-const SkeletonLoader = () => (
-  <div className="min-h-[400px] w-full bg-background/50 flex items-center justify-center p-8">
-    <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
-  </div>
-);
-
-const TrustSection = dynamic(() => import('@/app/components/TrustSection'), {
-  loading: SkeletonLoader,
-});
-
-const CataractEducationTeaserSection = dynamic(
-  () => import('@/app/components/CataractEducationTeaserSection'),
-  { loading: SkeletonLoader }
-);
-
-const LensVisionComparisonSection = dynamic(
-  () => import('@/app/components/LensVisionComparisonSection'),
-  { loading: SkeletonLoader }
-);
-
-const LensTechnologyDeepDiveSection = dynamic(
-  () => import('@/app/components/LensTechnologyDeepDiveSection'),
-  { loading: SkeletonLoader }
-);
-
-const LensarAllySection = dynamic(() => import('@/app/components/LensarAllySection'), {
-  loading: SkeletonLoader,
-});
-
-const LensQuestionnaireSection = dynamic(
-  () => import('@/app/components/LensQuestionnaireSection'),
-  { loading: SkeletonLoader }
-);
-
-const RecoveryTimelineSection = dynamic(() => import('@/app/components/RecoveryTimelineSection'), {
-  loading: SkeletonLoader,
-});
-
-const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'), {
-  loading: SkeletonLoader,
-});
-
-const FAQSection = dynamic(() => import('@/app/components/FAQSection'), {
-  loading: SkeletonLoader,
-});
-
-const BookingSection = dynamic(() => import('@/app/components/BookingSection'), {
-  loading: SkeletonLoader,
-});
+import TrustSection from '@/app/components/TrustSection';
+import CataractEducationTeaserSection from '@/app/components/CataractEducationTeaserSection';
+import LensVisionComparisonSection from '@/app/components/LensVisionComparisonSection';
+import LensTechnologyDeepDiveSection from '@/app/components/LensTechnologyDeepDiveSection';
+import LensarAllySection from '@/app/components/LensarAllySection';
+import LensQuestionnaireSection from '@/app/components/LensQuestionnaireSection';
+import RecoveryTimelineSection from '@/app/components/RecoveryTimelineSection';
+import TestimonialsSection from '@/app/components/TestimonialsSection';
+import FAQSection from '@/app/components/FAQSection';
+import BookingSection from '@/app/components/BookingSection';
 
 export const metadata: Metadata = {
   title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
@@ -94,54 +52,30 @@ export default function HomePage() {
       <HeroSection />
       <TrustBadgeBar variant="clinical" />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <CataractEducationTeaserSection />
-      </div>
+      <CataractEducationTeaserSection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <LensVisionComparisonSection />
-      </div>
+      <LensVisionComparisonSection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <LensTechnologyDeepDiveSection />
-      </div>
+      <LensTechnologyDeepDiveSection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <LensarAllySection />
-      </div>
+      <LensarAllySection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <RecoveryTimelineSection />
-      </div>
+      <RecoveryTimelineSection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <TrustSection />
-      </div>
+      <TrustSection />
       <CertificationLogos />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <CandidacySection />
-      </div>
+      <CandidacySection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <TestimonialsSection />
-      </div>
+      <TestimonialsSection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <LensQuestionnaireSection />
-      </div>
+      <LensQuestionnaireSection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <FAQSection />
-      </div>
+      <FAQSection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <InsuranceCostSection />
-      </div>
+      <InsuranceCostSection />
       <hr className="section-divider" />
-      <div className="content-auto">
-        <BookingSection />
-      </div>
+      <BookingSection />
       <StickyCTABar />
       <Footer />
     </main>

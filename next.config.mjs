@@ -9,6 +9,7 @@ const nextConfig = {
   poweredByHeader: false,
 
   images: {
+    unoptimized: true,
     remotePatterns: imageHosts,
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400,

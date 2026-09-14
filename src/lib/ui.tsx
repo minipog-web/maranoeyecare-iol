@@ -85,3 +85,17 @@ export function renderFootnoteText(
     return part;
   });
 }
+
+/**
+ * Smoothly scrolls to an element by ID, respecting CSS scroll-margin-top
+ * and ensuring smooth viewport centering.
+ */
+export function smoothScrollToElement(targetId: string) {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+  const cleanId = targetId.replace(/^#/, '');
+  const target = document.getElementById(cleanId);
+  if (!target) return;
+
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}

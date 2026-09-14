@@ -324,62 +324,78 @@ export default function TestimonialsSection() {
               />
 
               <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-10">
-                {/* Doctors Profile Photos */}
-                <div className="flex -space-x-3 sm:-space-x-4 shrink-0">
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/40 shadow-[0_0_15px_rgba(197,160,89,0.25)] z-20">
+                {/* Speaker Portrait: Founder Dr. Matthew Marano Jr., MD */}
+                <div className="relative shrink-0">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/50 shadow-[0_0_20px_rgba(197,160,89,0.25)]">
                     <AppImage
                       src="/assets/images/marano_thumbnail.png"
-                      alt="Dr. Matthew Marano Jr., MD"
+                      alt="Dr. Matthew Marano Jr., MD - Practice Founder"
                       fill
                       className="object-cover"
                       sizes="(max-width: 640px) 64px, 80px"
                     />
                   </div>
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-primary/40 shadow-[0_0_15px_rgba(197,160,89,0.25)] z-10">
-                    <AppImage
-                      src="/assets/images/Raouf.jpg"
-                      alt="Dr. Sherief Raouf, MD"
-                      fill
-                      className="object-cover object-top"
-                      sizes="(max-width: 640px) 64px, 80px"
-                    />
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 rounded-lg bg-primary text-[#040506] flex items-center justify-center shadow-md border border-background">
+                    <Icon name="ChatBubbleBottomCenterTextIcon" size={12} />
                   </div>
                 </div>
 
                 <div className="flex-1">
                   <p className="text-base sm:text-lg text-foreground/90 leading-relaxed italic mb-5 sm:mb-6">
-                    &ldquo;By far, the most meaningful and rewarding experience as eye surgeons is
-                    hearing back from patients about the life-liberating visual restoration they
-                    experience after cataract surgery. Seeing someone regain effortless clarity and
+                    &ldquo;In over thirty years and 40,000 surgeries, the most meaningful reward
+                    remains hearing back from patients about the life-liberating clarity they regain
+                    after cataract surgery. Seeing someone rediscover effortless
                     independence—whether that means driving comfortably at night or seeing their
-                    loved ones without hunting for glasses—is what makes this work so special. If we
-                    were choosing a lens for our own families, we would pair the Clareon Vivity or
+                    loved ones without hunting for glasses—is what makes this work so special. If I
+                    were choosing a lens for my own family, I would pair the Clareon Vivity or
                     PureSee with the precision 3D LENSAR ALLY laser. But no single lens fits every
-                    life. That is why we sit down with every patient to understand your daily
-                    routines, hobbies, and work first. Your eyes, and how you live, guide the
-                    decision.&rdquo;
+                    life. That is why Dr. Raouf and I sit down with every patient to understand your
+                    daily routines, hobbies, and visual demands first. Your eyes, and how you live,
+                    guide the decision.&rdquo;
                   </p>
 
-                  <div className="grid sm:grid-cols-2 gap-4 pt-2 border-t border-white/[0.08]">
+                  <div className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-white/[0.08]">
                     <div>
-                      <p className="text-sm font-bold text-foreground">
-                        Dr. Matthew Marano Jr., MD
-                      </p>
-                      <p className="text-xs text-primary mt-0.5 font-medium">
-                        Founder · Board-Certified Ophthalmologist · 40k+ Surgeries
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-bold text-foreground">
+                          Dr. Matthew Marano Jr., MD
+                        </p>
+                        <span className="text-[10px] font-semibold text-primary uppercase tracking-wider bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
+                          Founder
+                        </span>
+                      </div>
+                      <p className="text-xs text-primary mt-1 font-medium">
+                        Board-Certified Ophthalmologist · 40k+ Surgeries
                       </p>
                       <p className="text-[11px] text-muted-foreground mt-0.5">
                         15× NJ Monthly Top Doctor · Chief of Ophthalmology
                       </p>
                     </div>
-                    <div>
-                      <p className="text-sm font-bold text-foreground">Dr. Sherief Raouf, MD</p>
-                      <p className="text-xs text-primary mt-0.5 font-medium">
-                        Board-Certified Ophthalmologist · Cornea Subspecialist
-                      </p>
-                      <p className="text-[11px] text-muted-foreground mt-0.5">
-                        MEETH Fellowship Trained · 12+ Published Research Studies
-                      </p>
+
+                    <div className="flex items-start gap-3 sm:border-l sm:border-white/[0.08] sm:pl-4">
+                      <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-primary/30 shrink-0 mt-0.5">
+                        <AppImage
+                          src="/assets/images/Raouf.jpg"
+                          alt="Dr. Sherief Raouf, MD"
+                          fill
+                          className="object-cover object-top"
+                          sizes="40px"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-bold text-foreground">Dr. Sherief Raouf, MD</p>
+                          <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
+                            Surgical Partner
+                          </span>
+                        </div>
+                        <p className="text-xs text-primary mt-0.5 font-medium">
+                          Board-Certified Ophthalmologist · Cornea Subspecialist
+                        </p>
+                        <p className="text-[11px] text-muted-foreground mt-0.5">
+                          MEETH Fellowship Trained · 12+ Published Research Studies
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
