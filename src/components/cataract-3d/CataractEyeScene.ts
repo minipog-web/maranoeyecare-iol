@@ -73,8 +73,6 @@ export class CataractEyeScene {
   private eyeGroup!: THREE.Group;
   private lensGroup!: THREE.Group;
   private lensMesh!: THREE.Mesh;
-  private lensGlowMesh!: THREE.Mesh;
-  private lensNucleusMesh!: THREE.Mesh;
   private proteinParticles!: THREE.Points;
   private proteinPositions!: Float32Array;
   private proteinColors!: Float32Array;
@@ -199,6 +197,14 @@ export class CataractEyeScene {
     const fundusGlow = new THREE.PointLight(0xf97316, 1.4, 4);
     fundusGlow.position.set(0.6, 0.1, -0.4);
     this.scene.add(fundusGlow);
+
+    // Dedicated Anterior Slit-Lamp Biomicroscopy Key Light
+    // Angled obliquely (~32° off visual axis) to illuminate the crystalline lens through the pupil
+    const slitLampKey = new THREE.SpotLight(0xfffbeb, 4.6, 9, Math.PI * 0.28, 0.35);
+    slitLampKey.position.set(-3.4, 1.2, 1.5);
+    slitLampKey.target.position.set(-0.95, 0, 0);
+    this.scene.add(slitLampKey);
+    this.scene.add(slitLampKey.target);
   }
 
   private createScleraTexture(): THREE.CanvasTexture {
@@ -516,17 +522,17 @@ export class CataractEyeScene {
     const corneaGeo = new THREE.SphereGeometry(corneaR, 56, 32, 0, Math.PI * 2, 0, 1.0);
     corneaGeo.rotateZ(Math.PI * 0.5);
     const corneaMat = new THREE.MeshPhysicalMaterial({
-      color: 0xebf8ff,
-      transmission: 0.96,
-      opacity: 1.0,
+      color: 0xf0f9ff,
       transparent: true,
+      opacity: 0.2,
       roughness: 0.02,
+      metalness: 0.0,
       ior: 1.376,
-      thickness: 0.28,
-      specularIntensity: 1.6,
+      specularIntensity: 1.8,
       clearcoat: 1.0,
       clearcoatRoughness: 0.02,
       side: THREE.DoubleSide,
+      depthWrite: false,
       clippingPlanes: [this.clipPlane],
     });
     const cornea = new THREE.Mesh(corneaGeo, corneaMat);
@@ -535,13 +541,17 @@ export class CataractEyeScene {
 
     // Translucent ghosted foreground cornea dome
     const ghostCorneaMat = new THREE.MeshPhysicalMaterial({
-      color: 0xebf8ff,
-      transmission: 0.98,
-      opacity: 0.14,
+      color: 0xe0f2fe,
       transparent: true,
+      opacity: 0.09,
       roughness: 0.05,
+      metalness: 0.0,
       ior: 1.376,
-      clearcoat: 0.9,
+      specularIntensity: 1.3,
+      clearcoat: 0.85,
+      clearcoatRoughness: 0.04,
+      side: THREE.DoubleSide,
+      depthWrite: false,
     });
     const ghostCornea = new THREE.Mesh(corneaGeo.clone(), ghostCorneaMat);
     ghostCornea.position.set(-0.653, 0.0, 0.0);
@@ -681,55 +691,27 @@ export class CataractEyeScene {
     this.eyeGroup.add(this.lensGroup);
 
     // Biconvex optical profile: Equatorial R = 0.65, axial thickness = 0.46 (scaled X = 0.35)
+    // Seamless single anatomical body matching zonular insertion at R = 0.65
     const lensGeo = new THREE.SphereGeometry(0.65, 64, 48);
     lensGeo.scale(0.35, 1.0, 1.0);
 
-    // Ultra-crisp crystalline physical material with caustics and specular highlights
+    // Anatomically authentic crystalline lens material (pristine biological refractive index 1.406)
     const lensMat = new THREE.MeshPhysicalMaterial({
-      color: 0xa5f3fc,
-      transmission: 0.76,
-      opacity: 0.94,
+      color: 0xcffafe,
       transparent: true,
+      opacity: 0.82,
       depthWrite: false,
       roughness: 0.05,
-      ior: 1.41,
-      thickness: 0.82,
-      specularIntensity: 1.6,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.02,
+      metalness: 0.0,
+      ior: 1.406,
+      specularIntensity: 1.4,
+      clearcoat: 0.88,
+      clearcoatRoughness: 0.04,
+      side: THREE.DoubleSide,
     });
     this.lensMesh = new THREE.Mesh(lensGeo, lensMat);
-    this.lensMesh.renderOrder = 3;
+    this.lensMesh.renderOrder = 2;
     this.lensGroup.add(this.lensMesh);
-
-    // Luminous capsule rim glow outlining the biconvex crystalline profile
-    const glowGeo = new THREE.SphereGeometry(0.66, 48, 32);
-    glowGeo.scale(0.36, 1.0, 1.0);
-    const glowMat = new THREE.MeshBasicMaterial({
-      color: 0x38bdf8,
-      transparent: true,
-      opacity: 0.26,
-      blending: THREE.AdditiveBlending,
-      side: THREE.BackSide,
-      depthWrite: false,
-    });
-    this.lensGlowMesh = new THREE.Mesh(glowGeo, glowMat);
-    this.lensGlowMesh.renderOrder = 4;
-    this.lensGroup.add(this.lensGlowMesh);
-
-    // Lens Nucleus (Central core that develops nuclear sclerosis amber color)
-    const nucleusGeo = new THREE.SphereGeometry(0.44, 48, 32);
-    nucleusGeo.scale(0.38, 1.0, 1.0);
-    const nucleusMat = new THREE.MeshStandardMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.0,
-      roughness: 0.32,
-      depthWrite: false,
-    });
-    this.lensNucleusMesh = new THREE.Mesh(nucleusGeo, nucleusMat);
-    this.lensNucleusMesh.renderOrder = 1;
-    this.lensGroup.add(this.lensNucleusMesh);
 
     // ── 8. VOLUMETRIC PROTEIN PARTICLES (Cortical & Nuclear Opacities) ──
     const particleCount = this.isMinimal ? 700 : 1500;
@@ -737,12 +719,16 @@ export class CataractEyeScene {
     this.proteinColors = new Float32Array(particleCount * 3);
 
     for (let i = 0; i < particleCount; i++) {
+      // Biological distribution: 65% in nuclear core, 35% in cortex
+      const isNuclear = Math.random() < 0.65;
+      const maxR = isNuclear ? 0.38 : 0.6;
+      const maxThick = isNuclear ? 0.13 : 0.18;
       let rx, ry, rz;
       do {
-        rx = (Math.random() * 2 - 1) * 0.18;
-        ry = (Math.random() * 2 - 1) * 0.6;
-        rz = (Math.random() * 2 - 1) * 0.6;
-      } while ((rx / 0.18) ** 2 + (ry / 0.6) ** 2 + (rz / 0.6) ** 2 > 1.0);
+        rx = (Math.random() * 2 - 1) * maxThick;
+        ry = (Math.random() * 2 - 1) * maxR;
+        rz = (Math.random() * 2 - 1) * maxR;
+      } while ((rx / maxThick) ** 2 + (ry / maxR) ** 2 + (rz / maxR) ** 2 > 1.0);
 
       this.proteinPositions[i * 3] = rx;
       this.proteinPositions[i * 3 + 1] = ry;
@@ -767,7 +753,7 @@ export class CataractEyeScene {
       depthWrite: false,
     });
     this.proteinParticles = new THREE.Points(particleGeo, particleMat);
-    this.proteinParticles.renderOrder = 2;
+    this.proteinParticles.renderOrder = 3;
     this.lensGroup.add(this.proteinParticles);
 
     // ── 9. POSTERIOR OPTIC NERVE & RETINAL VASCULAR ARCADES ──
@@ -1291,9 +1277,9 @@ export class CataractEyeScene {
       this.targetLookAt.set(-0.95, 0.0, 0.0);
     } else if (view === 'anterior') {
       // Slit-lamp anterior pupil view looking straight into the lens
-      this.targetAzimuth = -1.35;
-      this.targetElevation = 0.06;
-      this.targetDistance = 3.2;
+      this.targetAzimuth = -1.42;
+      this.targetElevation = 0.05;
+      this.targetDistance = 2.85;
       this.targetLookAt.set(-0.95, 0.0, 0.0);
     }
   }
@@ -1312,70 +1298,63 @@ export class CataractEyeScene {
     }
 
     // 1. Natural Lens & Cataract Pathology state based directly on biological progress p
+    // Single unified anatomical crystalline lens matching zonular attachment at R = 0.65
     const lensMat = this.lensMesh.material as THREE.MeshPhysicalMaterial;
-    const nucleusMat = this.lensNucleusMesh.material as THREE.MeshStandardMaterial;
-    const glowMat = this.lensGlowMesh.material as THREE.MeshBasicMaterial;
     const particleMat = this.proteinParticles.material as THREE.PointsMaterial;
 
-    const baseLensOpacity = 0.94;
-    let baseNucleusOpacity = 0.0;
-    let baseGlowOpacity = 0.0;
+    // Ensure transmission is 0 to guarantee pristine visibility from all angles & through cornea
+    lensMat.transmission = 0.0;
+
+    let baseLensOpacity = 0.85;
 
     if (p < 0.22) {
-      // Stage 1: Youthful Crystal Clarity (Cyan crystal sheen)
+      // Stage 1: Youthful Crystal Clarity (Pristine cyan crystal sheen)
       const t = p / 0.22;
       lensMat.color.setRGB(
-        THREE.MathUtils.lerp(0.65, 0.92, t),
-        THREE.MathUtils.lerp(0.88, 0.94, t),
-        THREE.MathUtils.lerp(0.99, 0.88, t)
+        THREE.MathUtils.lerp(0.78, 0.9, t),
+        THREE.MathUtils.lerp(0.96, 0.94, t),
+        THREE.MathUtils.lerp(0.99, 0.86, t)
       );
-      lensMat.transmission = THREE.MathUtils.lerp(0.76, 0.65, t);
-      lensMat.roughness = THREE.MathUtils.lerp(0.05, 0.14, t);
-      baseNucleusOpacity = 0.0;
-      baseGlowOpacity = 0.26 * (1.0 - t);
+      baseLensOpacity = THREE.MathUtils.lerp(0.72, 0.8, t);
+      lensMat.roughness = THREE.MathUtils.lerp(0.04, 0.1, t);
+      lensMat.clearcoat = THREE.MathUtils.lerp(0.9, 0.78, t);
     } else if (p < 0.58) {
-      // Stages 2 & 3: Nuclear Sclerosis (Golden Honey Amber Core)
+      // Stages 2 & 3: Nuclear Sclerosis (Rich Golden Honey Amber)
       const t = (p - 0.22) / 0.36;
       lensMat.color.setRGB(
-        THREE.MathUtils.lerp(0.92, 0.98, t),
-        THREE.MathUtils.lerp(0.94, 0.65, t),
-        THREE.MathUtils.lerp(0.88, 0.16, t)
+        THREE.MathUtils.lerp(0.9, 0.96, t),
+        THREE.MathUtils.lerp(0.94, 0.62, t),
+        THREE.MathUtils.lerp(0.86, 0.12, t)
       );
-      lensMat.transmission = THREE.MathUtils.lerp(0.65, 0.35, t);
-      lensMat.roughness = THREE.MathUtils.lerp(0.14, 0.44, t);
-
-      nucleusMat.color.setHex(0xd97706);
-      baseNucleusOpacity = THREE.MathUtils.lerp(0.08, 0.75, t);
-      baseGlowOpacity = 0.0;
+      baseLensOpacity = THREE.MathUtils.lerp(0.8, 0.9, t);
+      lensMat.roughness = THREE.MathUtils.lerp(0.1, 0.28, t);
+      lensMat.clearcoat = THREE.MathUtils.lerp(0.78, 0.5, t);
     } else {
       // Stage 4: Advanced Brunescent Opacity (Dense Dark Mahogany)
       const t = (p - 0.58) / 0.42;
       lensMat.color.setRGB(
-        THREE.MathUtils.lerp(0.98, 0.38, t),
-        THREE.MathUtils.lerp(0.65, 0.14, t),
-        THREE.MathUtils.lerp(0.16, 0.03, t)
+        THREE.MathUtils.lerp(0.96, 0.42, t),
+        THREE.MathUtils.lerp(0.62, 0.16, t),
+        THREE.MathUtils.lerp(0.12, 0.02, t)
       );
-      lensMat.transmission = THREE.MathUtils.lerp(0.35, 0.06, t);
-      lensMat.roughness = THREE.MathUtils.lerp(0.44, 0.76, t);
-
-      nucleusMat.color.setHex(0x3e1505);
-      baseNucleusOpacity = THREE.MathUtils.lerp(0.75, 0.96, t);
-      baseGlowOpacity = 0.0;
+      baseLensOpacity = THREE.MathUtils.lerp(0.9, 0.97, t);
+      lensMat.roughness = THREE.MathUtils.lerp(0.28, 0.6, t);
+      lensMat.clearcoat = THREE.MathUtils.lerp(0.5, 0.22, t);
     }
 
-    // 2. Protein Particles Density based on p
+    // 2. Protein Particles Density & Clumping based on p
     const baseParticleOpacity =
-      p > 0.04 ? THREE.MathUtils.lerp(0.08, 0.95, (p - 0.04) / 0.96) : 0.0;
+      p > 0.08 ? THREE.MathUtils.lerp(0.06, 0.95, (p - 0.08) / 0.92) : 0.0;
 
     const colorsAttr = this.proteinParticles.geometry.attributes.color as THREE.BufferAttribute;
     const count = this.proteinPositions.length / 3;
     for (let i = 0; i < count; i++) {
-      if (p < 0.3) {
+      if (p < 0.22) {
         colorsAttr.setXYZ(i, 0.96, 0.98, 1.0);
-      } else if (p < 0.65) {
-        colorsAttr.setXYZ(i, 0.98, 0.72, 0.24);
+      } else if (p < 0.62) {
+        colorsAttr.setXYZ(i, 0.98, 0.7, 0.18);
       } else {
-        colorsAttr.setXYZ(i, 0.54, 0.22, 0.06);
+        colorsAttr.setXYZ(i, 0.52, 0.2, 0.05);
       }
     }
     colorsAttr.needsUpdate = true;
@@ -1388,17 +1367,13 @@ export class CataractEyeScene {
 
     // Apply visibility and dissolve to natural lens group
     lensMat.opacity = baseLensOpacity * cataractVisibility;
-    nucleusMat.opacity = baseNucleusOpacity * cataractVisibility;
     particleMat.opacity = baseParticleOpacity * cataractVisibility;
-    glowMat.opacity = baseGlowOpacity * cataractVisibility;
 
     const cataractScale = THREE.MathUtils.lerp(0.92, 1.0, cataractVisibility);
     this.lensGroup.scale.set(cataractScale, cataractScale, cataractScale);
 
     const showNaturalLens = cataractVisibility > 0.005;
     this.lensMesh.visible = showNaturalLens;
-    this.lensNucleusMesh.visible = showNaturalLens && nucleusMat.opacity > 0.01;
-    this.lensGlowMesh.visible = showNaturalLens && glowMat.opacity > 0.01;
     this.proteinParticles.visible = showNaturalLens && particleMat.opacity > 0.01;
 
     // 4. IOL Unfolding & Implantation
