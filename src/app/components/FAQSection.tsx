@@ -266,13 +266,13 @@ function FAQItemCard({
         </span>
       </button>
 
-      {/* Expandable Body */}
+      {/* Expandable Body with Luxury Spring Glide */}
       <div
         id={`faq-ans-${item.id}`}
         role="region"
         aria-labelledby={`faq-btn-${item.id}`}
-        className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+        className={`grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -351,18 +351,22 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-16 sm:py-24 relative overflow-hidden bg-[#090b10]">
+    <section
+      id="faq"
+      className="py-16 sm:py-24 relative overflow-hidden bg-section-faq border-t border-white/[0.04]"
+    >
       {/* FAQ Schema Markup */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* Atmospheric Background Ambience */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(197,160,89,0.035)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute inset-0 grid-lines-bg opacity-15" />
-      <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-primary/[0.025] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 left-0 w-[450px] h-[450px] bg-blue-500/[0.015] rounded-full blur-[120px] pointer-events-none" />
+      {/* Architectural archive column texture */}
+      <div className="absolute inset-0 texture-architectural-columns opacity-60 pointer-events-none" />
+
+      {/* Atmospheric anchor glows */}
+      <div className="absolute top-1/3 left-0 w-[550px] h-[650px] bg-[radial-gradient(circle,rgba(197,160,89,0.065)_0%,transparent_65%)] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(56,189,248,0.035)_0%,transparent_60%)] rounded-full blur-[130px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-10">

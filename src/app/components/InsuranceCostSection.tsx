@@ -62,8 +62,7 @@ const costPillars: CostPillar[] = [
       'Laser-only option available from ~$66/mo over 24 months (without premium lens)',
       'HSA & FSA 100% eligible — save an immediate 20%–35% using pre-tax dollars',
       'Zero pre-payment penalties or hidden maintenance fees',
-      'Soft credit check pre-qualification in 2 minutes with zero impact to credit score',
-      'Dedicated in-house surgical coordinators handle all paperwork for you',
+      'Soft credit check pre-qualification in 2 minutes with dedicated coordinator support',
     ],
     footerNote:
       'Many patients combine employer FSA/HSA accounts with 0% financing for maximum affordability.',
@@ -71,16 +70,32 @@ const costPillars: CostPillar[] = [
 ];
 
 export default function InsuranceCostSection() {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
     <section
       id="insurance-investment"
-      className="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-background via-surface-dark/40 to-background border-t border-border"
+      className="py-20 sm:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04]"
       aria-label="Insurance and Pricing Transparency"
     >
       <div id="financing" className="relative -top-28" />
-      {/* Background subtle atmospheric illumination */}
+      {/* Central upgrade light column & flanking insurance/savings glows */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/[0.04] rounded-full blur-[140px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[600px] bg-[radial-gradient(circle,rgba(197,160,89,0.08)_0%,transparent_65%)] rounded-full blur-[140px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-1/2 left-10 -translate-y-1/2 w-[450px] h-[450px] bg-[radial-gradient(circle,rgba(59,130,246,0.04)_0%,transparent_60%)] rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-1/2 right-10 -translate-y-1/2 w-[450px] h-[450px] bg-[radial-gradient(circle,rgba(16,185,129,0.045)_0%,transparent_60%)] rounded-full blur-[120px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -108,22 +123,25 @@ export default function InsuranceCostSection() {
         </div>
 
         {/* 3-Pillar Coverage Grid */}
-        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 mb-16 items-stretch">
+        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 mb-16 items-stretch pt-4 sm:pt-6">
           {costPillars.map((pillar, idx) => {
             const isFeatured = pillar.badgeType === 'featured';
             return (
               <div
                 key={idx}
-                className={`relative rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
+                onMouseMove={handleMouseMove}
+                className={`luxury-glass-card pointer-sheen-card relative overflow-visible rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
                   isFeatured
-                    ? 'luxury-rim-gold border-2 border-primary bg-primary/[0.03] shadow-[0_0_40px_rgba(197,160,89,0.18)] lg:-translate-y-2'
-                    : 'luxury-rim-card border border-white/[0.08] bg-white/[0.02] hover:border-primary/40'
+                    ? 'border-2 border-primary/85 bg-gradient-to-b from-primary/[0.08] to-transparent shadow-[0_0_45px_rgba(197,160,89,0.22)]'
+                    : 'border border-white/[0.10] hover:border-primary/40'
                 }`}
               >
+                {/* Specular top catch-light */}
+                <div className="specular-top-light" />
                 {/* Featured glowing beacon */}
                 {isFeatured && (
                   <div
-                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#d4af37] via-primary to-[#f3e5ab] text-black font-extrabold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(197,160,89,0.5)] border border-primary-light"
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#d4af37] via-primary to-[#f3e5ab] text-black font-extrabold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(197,160,89,0.5)] border border-primary-light z-20 whitespace-nowrap"
                     aria-hidden="true"
                   >
                     Recommended For Active Lifestyles
@@ -157,25 +175,25 @@ export default function InsuranceCostSection() {
                     />
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-display font-bold text-foreground mb-1">
+                  <h3 className="text-xl sm:text-2xl font-display font-bold text-foreground mb-1 min-h-[3.25rem] sm:min-h-[4rem] flex items-center">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-5 min-h-[36px]">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-5 min-h-[40px] flex items-center">
                     {pillar.subtitle}
                   </p>
 
                   {/* Price Banner */}
-                  <div className="p-4 rounded-2xl bg-black/40 border border-white/[0.06] mb-6">
-                    <div className="text-xl sm:text-2xl font-bold text-primary font-display">
+                  <div className="p-4 rounded-2xl bg-black/40 border border-white/[0.06] mb-6 min-h-[116px] flex flex-col justify-center">
+                    <div className="text-xl sm:text-2xl font-bold text-primary font-display leading-tight">
                       {pillar.priceHeadline}
                     </div>
-                    <p className="text-xs text-muted-foreground mt-0.5">{pillar.priceSub}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{pillar.priceSub}</p>
                   </div>
 
                   {/* Highlights Bullet List */}
-                  <ul className="space-y-3 text-xs sm:text-sm mb-6">
+                  <ul className="space-y-3 text-xs sm:text-sm mb-6 flex-1">
                     {pillar.highlights.map((item, hIdx) => (
-                      <li key={hIdx} className="flex items-start gap-2.5">
+                      <li key={hIdx} className="flex items-start gap-2.5 min-h-[40px]">
                         <Icon
                           name="CheckIcon"
                           size={16}
@@ -191,7 +209,7 @@ export default function InsuranceCostSection() {
 
                 {/* Footer Note */}
                 <div
-                  className={`p-3.5 rounded-xl border text-center text-xs ${
+                  className={`p-3.5 rounded-xl border text-center text-xs min-h-[64px] flex items-center justify-center ${
                     isFeatured
                       ? 'bg-primary/10 border-primary/25 text-primary font-medium'
                       : 'bg-white/[0.02] border-white/[0.06] text-muted-foreground'

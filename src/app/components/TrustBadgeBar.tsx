@@ -35,8 +35,10 @@ export default function TrustBadgeBar({ variant = 'authority' }: TrustBadgeBarPr
   const badges = variants[variant];
 
   return (
-    <div className="border-y border-border/40 bg-white/[0.015] py-3 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+    <div className="border-y border-primary/20 bg-section-badges py-3.5 sm:py-4 overflow-hidden relative shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+      {/* Subtle titanium specular wash */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/[0.04] to-transparent pointer-events-none" />
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/[0.08]">
           {badges.map((badge) => (
             <div

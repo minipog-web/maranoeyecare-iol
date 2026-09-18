@@ -21,6 +21,7 @@
         "npm:@types/node@20",
         "npm:@types/react-dom@19.0.3",
         "npm:@types/react@19.0.3",
+        "npm:@types/three@~0.185.4",
         "npm:@typescript-eslint/eslint-plugin@^8.29.0",
         "npm:@typescript-eslint/parser@^8.29.0",
         "npm:autoprefixer@10.4.2",
@@ -40,6 +41,7 @@
         "npm:recharts@^2.15.2",
         "npm:tailwindcss-animate@^1.0.7",
         "npm:tailwindcss@3.4.6",
+        "npm:three@0.186",
         "npm:typescript@5"
       ]
     }

@@ -55,12 +55,15 @@ export default function CataractEducationTeaserSection() {
     <section
       ref={sectionRef}
       id="cataract-education"
-      className="py-8 sm:py-12 relative overflow-hidden bg-[#07090e] scroll-mt-20"
+      className="py-12 sm:py-16 relative overflow-hidden bg-section-education scroll-mt-20 border-b border-white/[0.04]"
       aria-label="Cataract Education & 3D Optical Simulation"
     >
-      {/* Refined ambient depth gradients */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_50%_at_50%_40%,rgba(197,160,89,0.06)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute top-1/4 right-1/4 w-[400px] h-[200px] bg-cyan-500/[0.025] rounded-full blur-[100px] pointer-events-none" />
+      {/* Fresnel concentric contour texture in negative space */}
+      <div className="absolute inset-0 texture-fresnel-rings opacity-60 pointer-events-none" />
+
+      {/* Dual Cellular Aging / Acrylic Prism Ambient Glows */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[550px] h-[450px] bg-[radial-gradient(circle,rgba(217,119,6,0.06)_0%,transparent_65%)] rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(0,163,255,0.07)_0%,transparent_65%)] rounded-full blur-[110px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="group relative rounded-3xl border border-white/[0.10] bg-gradient-to-r from-[#0c0f18]/95 via-[#090c13]/95 to-[#0f131f]/95 p-5 sm:p-7 lg:p-9 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] hover:border-primary/35 transition-all duration-500">

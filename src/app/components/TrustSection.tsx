@@ -56,12 +56,16 @@ const raoufCredentials = [
 
 export default function TrustSection() {
   return (
-    <section id="trust" className="py-16 sm:py-24 relative overflow-hidden bg-[#0c0e14]">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(255,255,255,0.015)_0%,transparent_70%)]" />
-      <div className="absolute inset-0 grid-lines-bg opacity-20" />
-      <div className="absolute bottom-0 left-0 w-[700px] h-[500px] bg-primary/[0.02] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/[0.015] rounded-full blur-[100px] pointer-events-none" />
+    <section
+      id="trust"
+      className="py-24 sm:py-32 relative overflow-hidden bg-section-trust border-t border-white/[0.04]"
+    >
+      {/* Executive atelier subtle architectural pinstripe texture */}
+      <div className="absolute inset-0 texture-atelier-pinstripe opacity-70 pointer-events-none" />
+
+      {/* Museum portrait ambient illumination */}
+      <div className="absolute top-1/4 left-10 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(197,160,89,0.07)_0%,transparent_60%)] rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(197,160,89,0.07)_0%,transparent_60%)] rounded-full blur-[130px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Main Section Header */}
@@ -163,8 +167,9 @@ export default function TrustSection() {
                   <div
                     key={award.value}
                     onMouseMove={handleSpotlightMouseMove}
-                    className="group relative overflow-hidden luxury-rim-card border border-border/80 rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40"
+                    className="group relative overflow-hidden luxury-glass-card pointer-sheen-card border border-white/[0.08] rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40"
                   >
+                    <div className="specular-top-light" />
                     <div
                       className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
                     />
@@ -337,8 +342,9 @@ export default function TrustSection() {
                   <div
                     key={cred.label}
                     onMouseMove={handleSpotlightMouseMove}
-                    className="group relative overflow-hidden luxury-rim-card border border-border/80 rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40"
+                    className="group relative overflow-hidden luxury-glass-card pointer-sheen-card border border-white/[0.08] rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40"
                   >
+                    <div className="specular-top-light" />
                     <div
                       className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
                     />

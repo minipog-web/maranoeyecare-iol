@@ -144,22 +144,53 @@ export class CataractEyeScene {
 
   private setupEnvironment() {
     const canvas = document.createElement('canvas');
-    canvas.width = 256;
-    canvas.height = 128;
+    canvas.width = 512;
+    canvas.height = 256;
     const ctx = canvas.getContext('2d');
     if (ctx) {
-      const grad = ctx.createLinearGradient(0, 0, 0, 128);
-      grad.addColorStop(0, '#1e293b');
-      grad.addColorStop(0.35, '#0f172a');
-      grad.addColorStop(0.5, '#38bdf8');
-      grad.addColorStop(0.65, '#0f172a');
-      grad.addColorStop(1, '#020617');
+      // 1. Clinical dark studio ambient gradient (deep navy-slate to obsidian)
+      const grad = ctx.createLinearGradient(0, 0, 0, 256);
+      grad.addColorStop(0, '#111827');
+      grad.addColorStop(0.28, '#0b0f19');
+      grad.addColorStop(0.5, '#05070c');
+      grad.addColorStop(0.85, '#080c14');
+      grad.addColorStop(1, '#020305');
       ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 256, 128);
+      ctx.fillRect(0, 0, 512, 256);
 
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-      ctx.fillRect(40, 15, 70, 45);
-      ctx.fillRect(160, 20, 60, 35);
+      // 2. Primary overhead circular surgical softbox with realistic radial Gaussian falloff
+      const softboxGrad = ctx.createRadialGradient(256, 42, 4, 256, 42, 60);
+      softboxGrad.addColorStop(0, 'rgba(255, 255, 255, 0.98)');
+      softboxGrad.addColorStop(0.35, 'rgba(240, 249, 255, 0.82)');
+      softboxGrad.addColorStop(0.7, 'rgba(186, 230, 253, 0.28)');
+      softboxGrad.addColorStop(1, 'rgba(14, 165, 233, 0)');
+      ctx.fillStyle = softboxGrad;
+      ctx.beginPath();
+      ctx.arc(256, 42, 60, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 3. Secondary clinical strip light (cool daylight fill)
+      const stripGrad = ctx.createLinearGradient(90, 0, 210, 0);
+      stripGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+      stripGrad.addColorStop(0.5, 'rgba(224, 242, 254, 0.7)');
+      stripGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = stripGrad;
+      ctx.fillRect(90, 30, 120, 28);
+
+      // 4. Lateral warm surgical rim light (simulating luxury ophthalmic operating loupes)
+      const warmRim = ctx.createLinearGradient(310, 0, 430, 0);
+      warmRim.addColorStop(0, 'rgba(245, 158, 11, 0)');
+      warmRim.addColorStop(0.5, 'rgba(254, 243, 199, 0.55)');
+      warmRim.addColorStop(1, 'rgba(245, 158, 11, 0)');
+      ctx.fillStyle = warmRim;
+      ctx.fillRect(310, 34, 120, 24);
+
+      // 5. Specular pinpoint focus points
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+      ctx.beginPath();
+      ctx.arc(150, 44, 5, 0, Math.PI * 2);
+      ctx.arc(370, 46, 4, 0, Math.PI * 2);
+      ctx.fill();
     }
     const envTexture = new THREE.CanvasTexture(canvas);
     envTexture.mapping = THREE.EquirectangularReflectionMapping;
@@ -517,20 +548,22 @@ export class CataractEyeScene {
 
     this.eyeGroup.add(cutWallGroup);
 
-    // ── 4. CORNEA (Crystal Clear Anterior Dome, Seamlessly connects at limbusX) ──
+    // ── 4. CORNEA (Crystal Clear Anterior Dome with Tear-Film Specular Sheen) ──
     const corneaR = 1.15;
-    const corneaGeo = new THREE.SphereGeometry(corneaR, 56, 32, 0, Math.PI * 2, 0, 1.0);
+    const corneaGeo = new THREE.SphereGeometry(corneaR, 64, 36, 0, Math.PI * 2, 0, 1.0);
     corneaGeo.rotateZ(Math.PI * 0.5);
     const corneaMat = new THREE.MeshPhysicalMaterial({
-      color: 0xf0f9ff,
+      color: 0xf8fafc,
       transparent: true,
-      opacity: 0.2,
-      roughness: 0.02,
+      opacity: 0.18,
+      roughness: 0.015,
       metalness: 0.0,
-      ior: 1.376,
-      specularIntensity: 1.8,
+      ior: 1.376, // Anatomical human corneal refractive index
+      specularIntensity: 2.0,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.02,
+      clearcoatRoughness: 0.015,
+      transmission: 0.88,
+      thickness: 0.55,
       side: THREE.DoubleSide,
       depthWrite: false,
       clippingPlanes: [this.clipPlane],
@@ -539,17 +572,17 @@ export class CataractEyeScene {
     cornea.position.set(-0.653, 0.0, 0.0);
     this.eyeGroup.add(cornea);
 
-    // Translucent ghosted foreground cornea dome
+    // Translucent ghosted foreground cornea dome (tear-film lipid layer reflection)
     const ghostCorneaMat = new THREE.MeshPhysicalMaterial({
-      color: 0xe0f2fe,
+      color: 0xf0fdfa,
       transparent: true,
-      opacity: 0.09,
-      roughness: 0.05,
+      opacity: 0.08,
+      roughness: 0.02,
       metalness: 0.0,
       ior: 1.376,
-      specularIntensity: 1.3,
-      clearcoat: 0.85,
-      clearcoatRoughness: 0.04,
+      specularIntensity: 1.8,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.02,
       side: THREE.DoubleSide,
       depthWrite: false,
     });
@@ -1048,25 +1081,29 @@ export class CataractEyeScene {
     this.iolGroup.visible = false;
     this.eyeGroup.add(this.iolGroup);
 
-    // Central Optic (6mm foldable acrylic disc)
-    const opticGeo = new THREE.CylinderGeometry(0.55, 0.55, 0.08, 48);
+    // Central Optic (6mm foldable medical-grade hydrophobic acrylic disc)
+    const opticGeo = new THREE.CylinderGeometry(0.55, 0.55, 0.08, 64);
     opticGeo.rotateZ(Math.PI * 0.5);
     const opticMat = new THREE.MeshPhysicalMaterial({
       color: 0xffffff,
-      transmission: 0.99,
+      transmission: 0.97,
+      thickness: 0.85,
+      attenuationColor: new THREE.Color(0xf0fdfa),
+      attenuationDistance: 2.2,
       opacity: 0.0,
       transparent: true,
-      roughness: 0.01,
-      ior: 1.55,
-      specularIntensity: 1.6,
+      roughness: 0.015,
+      ior: 1.55, // Exact optical index of medical hydrophobic acrylic (AcrySof / Clareon)
+      specularIntensity: 1.8,
       clearcoat: 1.0,
+      clearcoatRoughness: 0.015,
       depthWrite: false,
     });
     this.iolOpticMesh = new THREE.Mesh(opticGeo, opticMat);
     this.iolGroup.add(this.iolOpticMesh);
 
     // Clear Diffractive Optics Rings (Presbyopia / EDOF optical micro-grooves)
-    const ringGeo = new THREE.RingGeometry(0.2, 0.44, 48);
+    const ringGeo = new THREE.RingGeometry(0.2, 0.44, 64);
     ringGeo.rotateY(Math.PI * 0.5);
     const ringMat = new THREE.MeshBasicMaterial({
       color: 0xffffff,
@@ -1079,23 +1116,28 @@ export class CataractEyeScene {
     this.iolRingMesh.position.set(0.042, 0, 0);
     this.iolGroup.add(this.iolRingMesh);
 
-    // Dual Flexible Open-Loop C-Haptics (Anchoring the clear IOL inside capsular bag)
+    // Dual Flexible Open-Loop C-Haptics (Translucent surgical PMMA / acrylic memory polymer)
     const curve1 = new THREE.CubicBezierCurve3(
       new THREE.Vector3(0.0, 0.52, 0.0),
       new THREE.Vector3(0.0, 0.82, 0.3),
       new THREE.Vector3(0.0, 0.82, 0.75),
       new THREE.Vector3(0.0, 0.4, 0.88)
     );
-    const haptic1Mat = new THREE.MeshStandardMaterial({
-      color: 0xe0f2fe,
-      roughness: 0.15,
-      metalness: 0.1,
+    const haptic1Mat = new THREE.MeshPhysicalMaterial({
+      color: 0xf0f9ff,
+      transmission: 0.78,
+      thickness: 0.35,
+      roughness: 0.04,
+      metalness: 0.0,
+      ior: 1.49,
+      clearcoat: 0.85,
+      clearcoatRoughness: 0.02,
       transparent: true,
       opacity: 0.0,
       depthWrite: false,
     });
     this.iolHaptic1Mesh = new THREE.Mesh(
-      new THREE.TubeGeometry(curve1, 36, 0.024, 8, false),
+      new THREE.TubeGeometry(curve1, 48, 0.024, 12, false),
       haptic1Mat
     );
     this.iolGroup.add(this.iolHaptic1Mesh);
@@ -1106,16 +1148,21 @@ export class CataractEyeScene {
       new THREE.Vector3(0.0, -0.82, -0.75),
       new THREE.Vector3(0.0, -0.4, -0.88)
     );
-    const haptic2Mat = new THREE.MeshStandardMaterial({
-      color: 0xe0f2fe,
-      roughness: 0.15,
-      metalness: 0.1,
+    const haptic2Mat = new THREE.MeshPhysicalMaterial({
+      color: 0xf0f9ff,
+      transmission: 0.78,
+      thickness: 0.35,
+      roughness: 0.04,
+      metalness: 0.0,
+      ior: 1.49,
+      clearcoat: 0.85,
+      clearcoatRoughness: 0.02,
       transparent: true,
       opacity: 0.0,
       depthWrite: false,
     });
     this.iolHaptic2Mesh = new THREE.Mesh(
-      new THREE.TubeGeometry(curve2, 36, 0.024, 8, false),
+      new THREE.TubeGeometry(curve2, 48, 0.024, 12, false),
       haptic2Mat
     );
     this.iolGroup.add(this.iolHaptic2Mesh);

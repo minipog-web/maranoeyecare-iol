@@ -133,30 +133,31 @@ export default function HeroSection({
   const activeData = lensRangeData[activeLens] || lensRangeData['Clareon Vivity'];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-14 sm:pt-16 lg:pt-20 safe-area-pb">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-background" />
-      <div className="absolute inset-0 grid-lines-bg opacity-100" />
+    <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 safe-area-pb bg-section-hero">
+      {/* Bespoke Optical Sunrise & Ray Texture Background */}
+      <div className="absolute inset-0 texture-hero-optical opacity-40 pointer-events-none" />
 
-      {/* Rich ambient lighting - tuned to avoid warm hue interference behind gold title text */}
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-primary/[0.02] rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/[0.02] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[500px] bg-[radial-gradient(circle,rgba(56,189,248,0.02)_0%,transparent_70%)] rounded-full blur-[120px] pointer-events-none" />
+      {/* Precision Lens Aura Bloom (illuminating the 3D lens cards on the right while keeping typography contrast pristine on the left) */}
+      <div className="absolute top-10 right-0 w-[750px] h-[750px] bg-[radial-gradient(circle,rgba(197,160,89,0.12)_0%,rgba(197,160,89,0.02)_45%,transparent_70%)] rounded-full blur-[90px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(56,189,248,0.03)_0%,transparent_65%)] rounded-full blur-[110px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full py-4 sm:py-6 lg:py-8">
+      {/* Specular hairline at the hero crown */}
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full py-8 sm:py-12 lg:py-16">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start min-w-0 w-full">
           {/* Left Content */}
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
             {/* Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both max-w-full">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.18em] text-primary text-center sm:text-left">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-kicker-wide text-primary text-center sm:text-left">
                 {badgeText || 'Premium IOL Specialists • Livingston, Denville & Newark'}
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-display text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] tracking-tight text-foreground mb-5 sm:mb-6 max-w-xl">
+            <h1 className="font-display tracking-display-tight text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] text-foreground mb-5 sm:mb-6 max-w-xl">
               <span className="block">{heroTitleLine1 || 'One Surgery. One Decision.'}</span>{' '}
               <span className="block text-gradient-primary font-semibold mt-1 pb-1 sm:pb-2">
                 {heroTitleLine2 || 'A Lifetime of Visual Freedom.'}

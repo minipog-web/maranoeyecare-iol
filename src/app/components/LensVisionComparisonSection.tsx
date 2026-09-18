@@ -635,13 +635,14 @@ export default function LensVisionComparisonSection() {
     <section
       ref={sectionRef}
       id="vision"
-      className="py-16 sm:py-24 relative overflow-hidden scroll-mt-16 bg-[#090a0d]"
+      className="py-16 sm:py-24 relative overflow-hidden scroll-mt-16 bg-section-simulator"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(139,92,246,0.04)_0%,transparent_60%)]" />
-      <div className="absolute inset-0 vision-section-bg opacity-30" />
+      {/* Cinematic darkroom perimeter vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_95%_75%_at_50%_50%,transparent_50%,rgba(0,0,0,0.7)_100%)] pointer-events-none" />
+      <div className="absolute inset-0 vision-section-bg opacity-25 pointer-events-none" />
 
       {/* Subtle Central Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-white/[0.01] rounded-full blur-[160px] pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-white/[0.015] rounded-full blur-[160px] pointer-events-none z-0" />
 
       {/* Dynamic Sliding Background Glow that follows the active lens selection or mouse hover */}
       <div ref={ambientGlowRef} className={styles.ambientGlow} />

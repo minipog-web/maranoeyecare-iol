@@ -37,17 +37,19 @@ export default function LensTechnologyDeepDiveSection() {
   return (
     <section
       id="physics"
-      className="relative w-full bg-[#06070a] py-16 sm:py-24 overflow-hidden scroll-mt-16"
+      className="relative w-full bg-section-physics py-16 sm:py-24 overflow-hidden scroll-mt-16 border-t border-white/[0.04]"
     >
-      {/* Background dot grid and ambient glows */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_40%_at_50%_100%,rgba(197,160,89,0.03)_0%,transparent_100%)] pointer-events-none" />
-      <div className="absolute inset-0 dot-grid-bg opacity-30 pointer-events-none" />
+      {/* Optical Laboratory Mathematical Ray Vectors Grid */}
+      <div className="absolute inset-0 texture-ray-grid opacity-75 pointer-events-none" />
+
+      {/* Dynamic Tab Ray Glow */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[140px] opacity-5 pointer-events-none transition-all duration-700"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full blur-[140px] opacity-10 pointer-events-none transition-all duration-700"
         style={{
           backgroundColor: tabColors[activeTab].hex,
         }}
       />
+      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}

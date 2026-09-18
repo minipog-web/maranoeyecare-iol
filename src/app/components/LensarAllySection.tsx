@@ -64,12 +64,16 @@ export default function LensarAllySection() {
   const activeBenefits = activeTab === 'patient' ? patientBenefits : surgeonBenefits;
 
   return (
-    <section id="lensar-ally" className="py-16 sm:py-24 relative overflow-hidden bg-[#0e1017]">
-      {/* Background layer */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(0,163,255,0.04)_0%,transparent_50%)] pointer-events-none" />
-      <div className={`absolute inset-0 opacity-25 pointer-events-none ${styles.gridLines}`} />
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#00a3ff]/[0.02] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[140px] pointer-events-none" />
+    <section
+      id="lensar-ally"
+      className="py-16 sm:py-24 relative overflow-hidden bg-section-lensar border-t border-white/[0.04]"
+    >
+      {/* Robotic surgical suite femtosecond laser reticle texture */}
+      <div className="absolute inset-0 texture-laser-reticle opacity-50 pointer-events-none" />
+
+      {/* Laser luminescence & AR biometry focal auras */}
+      <div className="absolute top-1/4 right-10 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(0,240,255,0.06)_0%,transparent_60%)] rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(197,160,89,0.04)_0%,transparent_60%)] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}

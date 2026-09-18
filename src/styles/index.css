@@ -101,9 +101,15 @@ html {
   scroll-behavior: smooth;
 }
 
-h1,
-h2,
-h3,
+@supports (text-wrap: balance) {
+  h1,
+  h2,
+  h3,
+  .font-display {
+    text-wrap: balance;
+  }
+}
+
 h4,
 h5,
 h6,
@@ -111,9 +117,17 @@ p {
   margin: 0;
 }
 
+.tracking-display-tight {
+  letter-spacing: -0.025em;
+}
+
+.tracking-kicker-wide {
+  letter-spacing: 0.26em;
+}
+
 ::selection {
-  background: rgba(197, 160, 89, 0.25);
-  color: #fff;
+  background: rgba(197, 160, 89, 0.28);
+  color: #ffffff;
 }
 
 .safe-area-pb {
@@ -181,6 +195,261 @@ p[id^='footnote-']:target {
     ellipse 70% 50% at 50% 50%,
     rgba(197, 160, 89, 0.03) 0%,
     transparent 70%
+  );
+}
+
+/* ─────────────────────────────────────────
+   BESPOKE THEMATIC SECTION BACKGROUNDS
+   Engineered for maximum visual distinction,
+   thematic resonance & WCAG AAA 7:1+ contrast
+───────────────────────────────────────── */
+
+/* 1. Hero: Optical Sunrise & Dawn of Clarity */
+.bg-section-hero {
+  background-color: #0c0e15;
+  background-image:
+    radial-gradient(ellipse 70% 55% at 80% 25%, rgba(197, 160, 89, 0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(56, 189, 248, 0.03) 0%, transparent 60%),
+    linear-gradient(180deg, #090b10 0%, #0c0e15 40%, #0b0d14 100%);
+}
+
+.texture-hero-optical {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* 2. Trust Badges: Brushed Titanium Ribbon */
+.bg-section-badges {
+  background: linear-gradient(180deg, #11141e 0%, #0d1017 50%, #11141e 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(197, 160, 89, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* 3. Cataract Education: Cellular Aging into Crystalline Acrylic Clarity */
+.bg-section-education {
+  background-color: #070910;
+  background-image:
+    radial-gradient(ellipse 60% 70% at 15% 45%, rgba(217, 119, 6, 0.045) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 65% at 85% 45%, rgba(0, 163, 255, 0.055) 0%, transparent 65%),
+    linear-gradient(180deg, #090c15 0%, #070910 50%, #06080e 100%);
+}
+
+.texture-fresnel-rings {
+  background-image: radial-gradient(
+    circle at 75% 50%,
+    transparent 0,
+    transparent 40px,
+    rgba(0, 163, 255, 0.02) 41px,
+    transparent 43px,
+    transparent 90px,
+    rgba(197, 160, 89, 0.02) 91px,
+    transparent 93px,
+    transparent 150px,
+    rgba(0, 163, 255, 0.015) 151px,
+    transparent 153px
+  );
+}
+
+/* 4. Vision Simulator: Cinematic High-Contrast Darkroom */
+.bg-section-simulator {
+  background-color: #06070a;
+  background-image:
+    radial-gradient(ellipse 90% 65% at 50% 0%, rgba(139, 92, 246, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 163, 255, 0.03) 0%, transparent 70%),
+    linear-gradient(180deg, #06070a 0%, #08090d 50%, #06070a 100%);
+}
+
+/* 5. Lens Science Deep Dive: Optical Physics & Laboratory Ray Grid */
+.bg-section-physics {
+  background-color: #070a14;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% 30%, rgba(56, 189, 248, 0.04) 0%, transparent 70%),
+    linear-gradient(180deg, #06070a 0%, #070a14 40%, #06080f 100%);
+}
+
+.texture-ray-grid {
+  background-image:
+    linear-gradient(30deg, rgba(56, 189, 248, 0.02) 1px, transparent 1px),
+    linear-gradient(-30deg, rgba(197, 160, 89, 0.015) 1px, transparent 1px);
+  background-size: 40px 69px;
+}
+
+/* 6. LENSAR ALLY: Robotic Surgical Suite & Femtosecond Target Reticles */
+.bg-section-lensar {
+  background-color: #080b12;
+  background-image:
+    radial-gradient(circle at 68% 35%, rgba(0, 240, 255, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 25% 75%, rgba(197, 160, 89, 0.03) 0%, transparent 60%),
+    linear-gradient(180deg, #06080f 0%, #080b12 50%, #070910 100%);
+}
+
+.texture-laser-reticle {
+  background-image:
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 0,
+      transparent 80px,
+      rgba(0, 240, 255, 0.03) 81px,
+      transparent 83px,
+      transparent 160px,
+      rgba(0, 240, 255, 0.02) 161px,
+      transparent 163px,
+      transparent 240px,
+      rgba(0, 240, 255, 0.015) 241px,
+      transparent 243px
+    ),
+    linear-gradient(to right, rgba(0, 240, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.015) 1px, transparent 1px);
+  background-size:
+    auto,
+    60px 60px,
+    60px 60px;
+}
+
+/* 7. Recovery Timeline: Progressive Restorative Light Horizon */
+.bg-section-recovery {
+  background-color: #07090f;
+  background-image:
+    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 0%, rgba(197, 160, 89, 0.055) 100%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(197, 160, 89, 0.04) 0%, transparent 70%),
+    linear-gradient(180deg, #070910 0%, #080a12 50%, #0a0d16 100%);
+}
+
+/* 8. Surgeon Trust: Executive Medical Atelier & Museum Portrait Spotlights */
+.bg-section-trust {
+  background-color: #0b0e17;
+  background-image:
+    radial-gradient(circle at 25% 40%, rgba(197, 160, 89, 0.055) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(197, 160, 89, 0.055) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0d16 0%, #0c0f19 50%, #0a0c15 100%);
+}
+
+.texture-atelier-pinstripe {
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 32px 100%;
+}
+
+/* 9. Certification Logos: Engraved Platinum Plaque */
+.bg-section-certifications {
+  background: linear-gradient(180deg, #0c0f18 0%, #101420 50%, #0c0f18 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(197, 160, 89, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* 10. Candidacy: Clinical Shield & Dual Bio-Integrity Balance */
+.bg-section-candidacy {
+  background-color: #080b11;
+  background-image:
+    radial-gradient(ellipse 50% 60% at 25% 50%, rgba(16, 185, 129, 0.045) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 75% 50%, rgba(245, 158, 11, 0.035) 0%, transparent 65%),
+    linear-gradient(180deg, #0c0f18 0%, #080b11 50%, #090c13 100%);
+}
+
+.texture-integrity-mesh {
+  background-image: radial-gradient(rgba(16, 185, 129, 0.05) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* 11. Patient Testimonials: Warm Lifestyle Hearth & Optical Bokeh Discs */
+.bg-section-testimonials {
+  background-color: #0a0c14;
+  background-image:
+    radial-gradient(ellipse 65% 50% at 50% 50%, rgba(197, 160, 89, 0.065) 0%, transparent 70%),
+    radial-gradient(circle at 20% 20%, rgba(226, 194, 138, 0.035) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(197, 160, 89, 0.035) 0%, transparent 40%),
+    linear-gradient(180deg, #090c13 0%, #0c0e17 50%, #0a0c14 100%);
+}
+
+.texture-optical-bokeh {
+  background-image:
+    radial-gradient(
+      circle at 18% 30%,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 18px,
+      transparent 20px
+    ),
+    radial-gradient(
+      circle at 82% 65%,
+      rgba(197, 160, 89, 0.025) 0,
+      rgba(197, 160, 89, 0.025) 24px,
+      transparent 26px
+    ),
+    radial-gradient(
+      circle at 65% 20%,
+      rgba(56, 189, 248, 0.015) 0,
+      rgba(56, 189, 248, 0.015) 14px,
+      transparent 16px
+    );
+}
+
+/* 12. Lens Match Quiz: Personalized Guidance Cockpit & Radar Focus */
+.bg-section-quiz {
+  background-color: #090c16;
+  background-image:
+    radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(197, 160, 89, 0.04) 0%, transparent 70%),
+    linear-gradient(180deg, #0a0c14 0%, #090c16 50%, #070a12 100%);
+}
+
+.texture-radar-concentric {
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    transparent 0,
+    transparent 100px,
+    rgba(56, 189, 248, 0.02) 101px,
+    transparent 103px,
+    transparent 220px,
+    rgba(197, 160, 89, 0.02) 221px,
+    transparent 223px,
+    transparent 360px,
+    rgba(56, 189, 248, 0.015) 361px,
+    transparent 363px
+  );
+}
+
+/* 13. FAQ: Architectural Archive of Transparency */
+.bg-section-faq {
+  background-color: #080a12;
+  background-image:
+    radial-gradient(ellipse 40% 70% at 15% 35%, rgba(197, 160, 89, 0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 75%, rgba(56, 189, 248, 0.025) 0%, transparent 60%),
+    linear-gradient(180deg, #070a12 0%, #090b14 50%, #080a11 100%);
+}
+
+.texture-architectural-columns {
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 120px 100%;
+}
+
+/* 14. Insurance & Investment: Financial Vault & Central Upgrade Column */
+.bg-section-pricing {
+  background-color: #090c15;
+  background-image:
+    radial-gradient(ellipse 40% 80% at 50% 50%, rgba(197, 160, 89, 0.065) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 50% at 15% 45%, rgba(59, 130, 246, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 50% at 85% 45%, rgba(16, 185, 129, 0.035) 0%, transparent 60%),
+    linear-gradient(180deg, #080a11 0%, #0b0e18 50%, #080a12 100%);
+}
+
+/* 15. Booking & Consultation: Gateway to Clarity & Office Beacons */
+.bg-section-booking {
+  background-color: #0a0d18;
+  background-image:
+    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(197, 160, 89, 0.08) 0%, transparent 65%),
+    radial-gradient(circle at 25% 65%, rgba(56, 189, 248, 0.04) 0%, transparent 55%),
+    linear-gradient(180deg, #080a12 0%, #0c101e 50%, #090c16 100%);
+}
+
+.texture-beacon-glows {
+  background-image: radial-gradient(
+    circle at 20% 85%,
+    rgba(197, 160, 89, 0.04) 0,
+    rgba(197, 160, 89, 0.04) 30px,
+    transparent 60px
   );
 }
 
@@ -1241,6 +1510,7 @@ h2.font-display {
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(8, 10, 15, 0.75);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   color: rgba(255, 255, 255, 0.95);
   box-shadow:
@@ -1266,7 +1536,75 @@ h2.font-display {
     radial-gradient(at 50% 80%, rgba(139, 92, 246, 0.04) 0px, transparent 55%);
 }
 
-/* 6. Performance: Content-Visibility for Below-The-Fold Sections */
+/* 6. Multi-Stage Specular Glassmorphism (3-Tier Directional Lighting) */
+.luxury-glass-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(17, 21, 30, 0.85) 0%, rgba(9, 12, 18, 0.95) 100%);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 24px 48px -12px rgba(0, 0, 0, 0.85);
+  transition:
+    transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-glass-card:hover {
+  border-color: rgba(197, 160, 89, 0.35);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.28),
+    inset 0 0 0 1px rgba(197, 160, 89, 0.16),
+    0 28px 60px -15px rgba(0, 0, 0, 0.95),
+    0 0 35px -5px rgba(197, 160, 89, 0.14);
+}
+
+/* Directional Specular Top Catch-Light */
+.specular-top-light {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Pointer-Tracking Specular Sheen Container */
+.pointer-sheen-card {
+  position: relative;
+}
+
+.pointer-sheen-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.06),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pointer-sheen-card:hover::before {
+  opacity: 1;
+}
+
+/* 7. Performance: Content-Visibility for Below-The-Fold Sections */
 #cataract-education,
 #comparison,
 #physics,

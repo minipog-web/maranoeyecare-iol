@@ -166,15 +166,16 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="py-12 sm:py-20 border-t border-border relative overflow-hidden bg-[#08090c]"
+      className="py-16 sm:py-24 border-t border-white/[0.04] relative overflow-hidden bg-section-testimonials"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(255,255,255,0.015)_0%,transparent_70%)]" />
-      <div className="absolute inset-0 grid-lines-bg opacity-15" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-500/[0.015] rounded-full blur-[100px] pointer-events-none" />
+      {/* Warm lifestyle hearth optical bokeh texture */}
+      <div className="absolute inset-0 texture-optical-bokeh opacity-60 pointer-events-none" />
+
+      {/* Warm emotional bronze & golden glow pools */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[500px] bg-[radial-gradient(circle,rgba(197,160,89,0.08)_0%,transparent_65%)] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-10 left-10 w-[450px] h-[450px] bg-[radial-gradient(circle,rgba(226,194,138,0.04)_0%,transparent_60%)] rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Testimonials */}

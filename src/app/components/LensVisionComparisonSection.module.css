@@ -188,12 +188,17 @@
   top: 4px;
   bottom: 4px;
   border-radius: 12px;
-  transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
-  background-color: rgba(var(--lens-color-rgb), 0.12);
-  border: 1px solid rgba(var(--lens-color-rgb), 0.35);
+  transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(
+    180deg,
+    rgba(var(--lens-color-rgb), 0.22) 0%,
+    rgba(var(--lens-color-rgb), 0.08) 100%
+  );
+  border: 1px solid rgba(var(--lens-color-rgb), 0.45);
   box-shadow:
-    0 2px 16px rgba(var(--lens-color-rgb), 0.18),
-    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    0 4px 20px rgba(var(--lens-color-rgb), 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .distanceHighlight[data-active='distance'] {

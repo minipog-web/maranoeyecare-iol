@@ -5,9 +5,9 @@ import Icon from '@/components/ui/AppIcon';
 
 export default function CertificationLogos() {
   return (
-    <div className="border-y border-border/30 bg-black/20 py-6 sm:py-8 overflow-hidden relative">
-      {/* Background glow lines */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/2 to-transparent pointer-events-none" />
+    <div className="border-y border-primary/20 bg-section-certifications py-6 sm:py-8 overflow-hidden relative shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+      {/* Engraved plaque directional sheen */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/[0.04] to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">

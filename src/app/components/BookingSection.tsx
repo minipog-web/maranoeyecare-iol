@@ -305,13 +305,17 @@ export default function BookingSection({
     'block text-[11px] font-semibold text-muted-foreground mb-2 uppercase tracking-[0.15em]';
 
   return (
-    <section id="booking" className="py-16 sm:py-24 relative overflow-hidden bg-[#0c0f16]">
-      {/* Background */}
-      <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(56,189,248,0.02)_0%,transparent_70%)]" />
-      <div className="absolute inset-0 grid-lines-bg opacity-10" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/[0.015] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/[0.02] rounded-full blur-[100px] pointer-events-none" />
+    <section
+      id="booking"
+      className="py-24 sm:py-32 lg:py-36 relative overflow-hidden bg-section-booking border-t border-white/[0.04]"
+    >
+      {/* Office location beacon texture */}
+      <div className="absolute inset-0 texture-beacon-glows opacity-50 pointer-events-none" />
+
+      {/* Conversion Invitation Golden Halo & Sapphire Clarity Glows */}
+      <div className="absolute top-1/3 right-0 w-[650px] h-[650px] bg-[radial-gradient(circle,rgba(197,160,89,0.09)_0%,transparent_65%)] rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[550px] h-[550px] bg-[radial-gradient(circle,rgba(56,189,248,0.05)_0%,transparent_60%)] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
