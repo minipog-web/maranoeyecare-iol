@@ -61,6 +61,77 @@
 }
 
 /* ── Spec card wrapper ── */
+.cardWrapper {
+  isolation: isolate;
+  position: relative;
+}
+
+/* ── Mild lens card ambient glow behind each card ── */
+.cardAmbientGlow {
+  position: absolute;
+  inset: -14px -10px;
+  border-radius: 44px;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(32px);
+  opacity: 0.42;
+  transition:
+    opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 0, 0);
+  will-change: opacity, transform, filter;
+}
+
+.cardAmbientGlow[data-lens='panoptix'] {
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(139, 92, 246, 0.55) 0%,
+    rgba(139, 92, 246, 0.22) 42%,
+    transparent 72%
+  );
+}
+
+.cardAmbientGlow[data-lens='vivity'] {
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(197, 160, 89, 0.58) 0%,
+    rgba(197, 160, 89, 0.24) 42%,
+    transparent 72%
+  );
+}
+
+.cardAmbientGlow[data-lens='puresee'] {
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(0, 163, 255, 0.52) 0%,
+    rgba(0, 163, 255, 0.2) 42%,
+    transparent 72%
+  );
+}
+
+.cardAmbientGlow[data-lens='monofocal'] {
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(100, 116, 139, 0.45) 0%,
+    rgba(100, 116, 139, 0.16) 42%,
+    transparent 72%
+  );
+}
+
+/* Elevate and intensify glow on card hover */
+.cardWrapper:hover .cardAmbientGlow {
+  opacity: 0.72;
+  filter: blur(36px);
+  transform: translate3d(0, -8px, 0);
+}
+
+/* Accentuate glow when card is actively selected in the simulator */
+.cardAmbientGlowActive {
+  opacity: 0.62;
+  filter: blur(34px);
+}
+
 .specCard {
   border-color: rgba(var(--lens-color-rgb), 0.2) !important;
   box-shadow:

@@ -1153,250 +1153,265 @@ export default function LensVisionComparisonSection() {
               return (
                 <div
                   key={lens.id}
-                  onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseMove={handleMouseMove}
-                  onClick={() => handleCardClick(lens.id)}
-                  data-lens={lens.id}
-                  className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col hover:-translate-y-2 cursor-pointer border overflow-hidden animate-fade-up fill-both ${delays[i]} ${
-                    isActive
-                      ? `bg-gradient-to-b from-white/12 to-white/0 border-transparent ${styles.specCard}`
-                      : 'bg-gradient-to-b from-white/8 to-white/0 border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
-                  }`}
+                  className={`relative flex flex-col h-full ${styles.cardWrapper} animate-fade-up fill-both ${delays[i]}`}
                 >
-                  {/* Dynamic Mouse Spotlight Glow */}
-                  <div data-lens={lens.id} className={styles.spotlightGlow} />
-                  <div className="relative rounded-[30px] p-5 lg:p-6 flex flex-col h-full bg-muted/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
-                    {/* Badge */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span
-                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
-                      >
-                        {lens.badge}
-                      </span>
-                    </div>
+                  {/* Mild ambient glow behind each lens card */}
+                  <div
+                    data-lens={lens.id}
+                    className={`${styles.cardAmbientGlow} ${
+                      isActive ? styles.cardAmbientGlowActive : ''
+                    }`}
+                    aria-hidden="true"
+                  />
 
-                    {/* Lens Name */}
-                    <div className="mb-4 min-h-[64px]">
-                      <p className="text-xs sm:text-sm text-primary font-bold uppercase tracking-wider mb-1">
-                        {lens.manufacturer} · {lens.type}
-                      </p>
-                      <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground">
-                        {lens.name}
-                      </h3>
-                    </div>
-
-                    {/* Specs bars */}
-                    <div className="space-y-4 mb-6">
-                      {lens.specs.map((spec) => (
-                        <div key={spec.label} className="space-y-1.5">
-                          <div className="flex justify-between items-center text-xs sm:text-sm gap-2 whitespace-nowrap">
-                            <span className="text-foreground font-semibold truncate">
-                              {spec.label}
-                            </span>
-                            <span className={`font-bold shrink-0 ${lens.twColor}`}>
-                              {spec.value}
-                            </span>
-                          </div>
-                          <div
-                            className="h-2 bg-white/10 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden"
-                            role="progressbar"
-                            aria-valuenow={spec.score}
-                            aria-valuemin={0}
-                            aria-valuemax={100}
-                            aria-label={`${spec.label} score`}
-                          >
-                            <div
-                              className={`h-full rounded-full transition-spring opacity-90 ${lens.twSpecBar}`}
-                              style={{ width: `${spec.score}%` }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Highlights */}
-                    <ul className="space-y-3 mb-6 flex-1">
-                      {lens.highlights.map((h) => (
-                        <li
-                          key={h}
-                          className="flex items-start gap-2.5 text-sm sm:text-base text-foreground font-medium leading-relaxed"
+                  <div
+                    onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseMove={handleMouseMove}
+                    onClick={() => handleCardClick(lens.id)}
+                    data-lens={lens.id}
+                    className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col h-full hover:-translate-y-2 cursor-pointer border overflow-hidden z-10 ${
+                      isActive
+                        ? `bg-gradient-to-b from-white/12 to-white/0 border-transparent ${styles.specCard}`
+                        : 'bg-gradient-to-b from-white/8 to-white/0 border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
+                    }`}
+                  >
+                    {/* Dynamic Mouse Spotlight Glow */}
+                    <div data-lens={lens.id} className={styles.spotlightGlow} />
+                    <div className="relative rounded-[30px] p-5 lg:p-6 flex flex-col h-full bg-muted/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
+                      {/* Badge */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider border ${lens.twBadgeBg} ${lens.twBadgeText} ${lens.twBadgeBorder}`}
                         >
-                          <AppIcon
-                            name="CheckCircleIcon"
-                            size={16}
-                            className={`mt-0.5 shrink-0 ${lens.twColor}`}
-                          />
-                          <span>
-                            {(() => {
-                              const parts = h.split(/(\[\d+\])/);
-                              return parts.map((part, idx) => {
-                                const match = part.match(/^\[(\d+)\]$/);
-                                if (match) {
-                                  const num = match[1];
-                                  return (
-                                    <sup
-                                      key={idx}
-                                      className="text-xs font-bold inline-flex items-center"
-                                    >
-                                      <a
-                                        href={`#footnote-${num}`}
-                                        onClick={(e) => e.stopPropagation()}
-                                        className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-block min-w-[24px] min-h-[24px] text-center"
-                                        aria-label={`View citation footnote ${num}`}
-                                      >
-                                        [{num}]
-                                      </a>
-                                    </sup>
-                                  );
-                                }
-                                return part;
-                              });
-                            })()}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Best for */}
-                    <div className="border-t border-border pt-5 mb-5">
-                      <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-primary mb-1.5">
-                        Best for
-                      </p>
-                      <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
-                        {lens.bestFor}
-                      </p>
-                    </div>
-
-                    {lens.id === 'panoptix' ? (
-                      <a
-                        href="/panoptix-pro"
-                        data-lens={lens.id}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          trackEvent({
-                            action: 'panoptix_spec_card_cta_click',
-                            category: 'Navigation',
-                            label: 'PanOptix Spec CTA to /panoptix-pro',
-                          });
-                        }}
-                        className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
-                      >
-                        <span>Explore PanOptix Pro Details</span>
-                        <svg
-                          data-lens={lens.id}
-                          className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </a>
-                    ) : lens.id === 'vivity' ? (
-                      <a
-                        href="/clareon-vivity"
-                        data-lens={lens.id}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          trackEvent({
-                            action: 'vivity_spec_card_cta_click',
-                            category: 'Navigation',
-                            label: 'Vivity Spec CTA to /clareon-vivity',
-                          });
-                        }}
-                        className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
-                      >
-                        <span>Explore Clareon Vivity Details</span>
-                        <svg
-                          data-lens={lens.id}
-                          className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </a>
-                    ) : lens.id === 'puresee' ? (
-                      <a
-                        href="/tecnis-puresee"
-                        data-lens={lens.id}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          trackEvent({
-                            action: 'puresee_spec_card_cta_click',
-                            category: 'Navigation',
-                            label: 'PureSee Spec CTA to /tecnis-puresee',
-                          });
-                        }}
-                        className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-[#00a3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
-                      >
-                        <span>Explore PureSee Details</span>
-                        <svg
-                          data-lens={lens.id}
-                          className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </a>
-                    ) : (
-                      <a
-                        href="#booking"
-                        data-lens={lens.id}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.dispatchEvent(new CustomEvent('select-lens', { detail: lens.id }));
-                          try {
-                            sessionStorage.setItem('preselect-lens', lens.id);
-                          } catch {
-                            // ignore in SSR or restricted storage
-                          }
-                        }}
-                        className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
-                      >
-                        <span>
-                          Select{' '}
-                          {lens.name
-                            .replace('Clareon ', '')
-                            .replace('Tecnis ', '')
-                            .replace('Standard ', '')
-                            .replace(' Pro', '')}
+                          {lens.badge}
                         </span>
-                        <svg
+                      </div>
+
+                      {/* Lens Name */}
+                      <div className="mb-4 min-h-[64px]">
+                        <p className="text-xs sm:text-sm text-primary font-bold uppercase tracking-wider mb-1">
+                          {lens.manufacturer} · {lens.type}
+                        </p>
+                        <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground">
+                          {lens.name}
+                        </h3>
+                      </div>
+
+                      {/* Specs bars */}
+                      <div className="space-y-4 mb-6">
+                        {lens.specs.map((spec) => (
+                          <div key={spec.label} className="space-y-1.5">
+                            <div className="flex justify-between items-center text-xs sm:text-sm gap-2 whitespace-nowrap">
+                              <span className="text-foreground font-semibold truncate">
+                                {spec.label}
+                              </span>
+                              <span className={`font-bold shrink-0 ${lens.twColor}`}>
+                                {spec.value}
+                              </span>
+                            </div>
+                            <div
+                              className="h-2 bg-white/10 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden"
+                              role="progressbar"
+                              aria-valuenow={spec.score}
+                              aria-valuemin={0}
+                              aria-valuemax={100}
+                              aria-label={`${spec.label} score`}
+                            >
+                              <div
+                                className={`h-full rounded-full transition-spring opacity-90 ${lens.twSpecBar}`}
+                                style={{ width: `${spec.score}%` }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Highlights */}
+                      <ul className="space-y-3 mb-6 flex-1">
+                        {lens.highlights.map((h) => (
+                          <li
+                            key={h}
+                            className="flex items-start gap-2.5 text-sm sm:text-base text-foreground font-medium leading-relaxed"
+                          >
+                            <AppIcon
+                              name="CheckCircleIcon"
+                              size={16}
+                              className={`mt-0.5 shrink-0 ${lens.twColor}`}
+                            />
+                            <span>
+                              {(() => {
+                                const parts = h.split(/(\[\d+\])/);
+                                return parts.map((part, idx) => {
+                                  const match = part.match(/^\[(\d+)\]$/);
+                                  if (match) {
+                                    const num = match[1];
+                                    return (
+                                      <sup
+                                        key={idx}
+                                        className="text-xs font-bold inline-flex items-center"
+                                      >
+                                        <a
+                                          href={`#footnote-${num}`}
+                                          onClick={(e) => e.stopPropagation()}
+                                          className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-block min-w-[24px] min-h-[24px] text-center"
+                                          aria-label={`View citation footnote ${num}`}
+                                        >
+                                          [{num}]
+                                        </a>
+                                      </sup>
+                                    );
+                                  }
+                                  return part;
+                                });
+                              })()}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* Best for */}
+                      <div className="border-t border-border pt-5 mb-5">
+                        <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-primary mb-1.5">
+                          Best for
+                        </p>
+                        <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
+                          {lens.bestFor}
+                        </p>
+                      </div>
+
+                      {lens.id === 'panoptix' ? (
+                        <a
+                          href="/panoptix-pro"
                           data-lens={lens.id}
-                          className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            trackEvent({
+                              action: 'panoptix_spec_card_cta_click',
+                              category: 'Navigation',
+                              label: 'PanOptix Spec CTA to /panoptix-pro',
+                            });
+                          }}
+                          className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </a>
-                    )}
+                          <span>Explore PanOptix Pro Details</span>
+                          <svg
+                            data-lens={lens.id}
+                            className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
+                        </a>
+                      ) : lens.id === 'vivity' ? (
+                        <a
+                          href="/clareon-vivity"
+                          data-lens={lens.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            trackEvent({
+                              action: 'vivity_spec_card_cta_click',
+                              category: 'Navigation',
+                              label: 'Vivity Spec CTA to /clareon-vivity',
+                            });
+                          }}
+                          className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                        >
+                          <span>Explore Clareon Vivity Details</span>
+                          <svg
+                            data-lens={lens.id}
+                            className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
+                        </a>
+                      ) : lens.id === 'puresee' ? (
+                        <a
+                          href="/tecnis-puresee"
+                          data-lens={lens.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            trackEvent({
+                              action: 'puresee_spec_card_cta_click',
+                              category: 'Navigation',
+                              label: 'PureSee Spec CTA to /tecnis-puresee',
+                            });
+                          }}
+                          className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-[#00a3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                        >
+                          <span>Explore PureSee Details</span>
+                          <svg
+                            data-lens={lens.id}
+                            className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
+                        </a>
+                      ) : (
+                        <a
+                          href="#booking"
+                          data-lens={lens.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.dispatchEvent(
+                              new CustomEvent('select-lens', { detail: lens.id })
+                            );
+                            try {
+                              sessionStorage.setItem('preselect-lens', lens.id);
+                            } catch {
+                              // ignore in SSR or restricted storage
+                            }
+                          }}
+                          className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                        >
+                          <span>
+                            Select{' '}
+                            {lens.name
+                              .replace('Clareon ', '')
+                              .replace('Tecnis ', '')
+                              .replace('Standard ', '')
+                              .replace(' Pro', '')}
+                          </span>
+                          <svg
+                            data-lens={lens.id}
+                            className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               );
