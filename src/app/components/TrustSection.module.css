@@ -44,7 +44,7 @@
   left: var(--mouse-x, 50%);
   top: var(--mouse-y, 50%);
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(95, 255, 217, 0.3) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.15) 0%, transparent 70%);
 }
 
 .cardSpotlight {
@@ -53,5 +53,5 @@
   left: var(--mouse-x, 50%);
   top: var(--mouse-y, 50%);
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.15) 0%, transparent 70%);
 }

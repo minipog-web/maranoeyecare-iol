@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 
 import { DM_Sans, Fraunces } from 'next/font/google';
+import AnalyticsTracker from '@/components/AnalyticsTracker';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
 
@@ -457,13 +458,18 @@ gtag('consent', 'default', {
 });`}
         </Script>
 
-        {/* Google tag (gtag.js) - GT-WKTZM5GN & Google Ads AW-18197167741 */}
+        {/* Google tag (gtag.js) - GA4 G-CTYWND91QV, GT-WKTZM5GN & Google Ads AW-18197167741 */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=GT-WKTZM5GN"
+          src="https://www.googletagmanager.com/gtag/js?id=G-CTYWND91QV"
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
           {`gtag('js', new Date());
+gtag('config', 'G-CTYWND91QV', {
+  send_page_view: false,
+  anonymize_ip: true,
+  cookie_flags: 'SameSite=None;Secure'
+});
 gtag('config', 'GT-WKTZM5GN');
 gtag('config', 'AW-18197167741');`}
         </Script>
@@ -504,6 +510,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           aria-hidden="true"
         />
 
+        <AnalyticsTracker />
         {children}
         {/*
           CallRail Dynamic Number Swap & Google Ads Call Tracking

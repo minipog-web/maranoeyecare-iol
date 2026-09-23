@@ -85,17 +85,13 @@ export default function InsuranceCostSection() {
       aria-label="Insurance and Pricing Transparency"
     >
       <div id="financing" className="relative -top-28" />
-      {/* Central upgrade light column & flanking insurance/savings glows */}
+      {/* Subtle ambient lighting */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[600px] bg-[radial-gradient(circle,rgba(197,160,89,0.08)_0%,transparent_65%)] rounded-full blur-[140px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.025)_0%,transparent_70%)] blur-[160px] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute top-1/2 left-10 -translate-y-1/2 w-[450px] h-[450px] bg-[radial-gradient(circle,rgba(59,130,246,0.04)_0%,transparent_60%)] rounded-full blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute top-1/2 right-10 -translate-y-1/2 w-[450px] h-[450px] bg-[radial-gradient(circle,rgba(16,185,129,0.045)_0%,transparent_60%)] rounded-full blur-[120px] pointer-events-none"
+        className="absolute top-1/2 -left-20 -translate-y-1/2 w-[600px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.015)_0%,transparent_70%)] blur-[160px] pointer-events-none"
         aria-hidden="true"
       />
 

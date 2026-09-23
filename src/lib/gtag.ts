@@ -1,14 +1,11 @@
-// Google Tag Manager & Google Analytics helper functions to track custom user events and conversions
-//
-// ARCHITECTURE: GTM (GTM-PB9D9RHS) is the single source of truth for GA4 and Google Ads tags.
-// All tracking is done by pushing events to window.dataLayer — GTM triggers pick them up.
-// Direct gtag() calls are kept as a fallback only (they fire if GTM loads window.gtag).
+// Google Tag Manager & Google Analytics (GA4) helper functions
+// Optimized for Google Analytics 4 standard events, Consent Mode v2, and Next.js App Router
 
 export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID &&
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID !== 'your-google-analytics-id-here'
     ? process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-    : 'G-1YBZ7BFJ4C';
+    : 'G-CTYWND91QV';
 
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PB9D9RHS';
 
@@ -17,9 +14,6 @@ export const TAG_GATEWAY_URL =
   process.env.NEXT_PUBLIC_TAG_GATEWAY_URL || 'https://www.googletagmanager.com';
 
 // ─── Named conversion event names (used as GTM trigger event names) ──────────
-// These string values must match the "Custom Event" trigger names in your GTM container.
-// For Google Ads conversions, configure a Google Ads Conversion tag in GTM triggered
-// by these events — do not hardcode Google Ads conversion labels in this file.
 export const CONVERSION_EVENTS = {
   PHONE_CLICK: 'phone_click',
   BOOKING_STEP_1: 'booking_step_1_complete',
@@ -28,65 +22,175 @@ export const CONVERSION_EVENTS = {
   STICKY_BAR_DISMISS: 'sticky_bar_dismiss',
   HEADER_BOOKING_CLICK: 'header_booking_click',
   HEADER_NAV_CLICK: 'header_nav_click',
+  LENS_QUIZ_START: 'lens_quiz_start',
+  LENS_QUIZ_COMPLETE: 'lens_quiz_complete',
+  SIMULATOR_INTERACTION: 'simulator_interaction',
+  CANDIDACY_CLICK: 'candidacy_click',
+  SCROLL_DEPTH: 'scroll_depth',
 } as const;
 
 // ─── Type declarations ────────────────────────────────────────────────────────
 declare global {
   interface Window {
     gtag?: (
-      command: 'event' | 'config' | 'js' | 'set',
+      command: 'event' | 'config' | 'js' | 'set' | 'consent',
       action: string,
       params?: Record<string, unknown>
     ) => void;
-    // GTM dataLayer — typed as object[] (GTM requires plain objects)
     dataLayer?: object[];
-    // CallRail swap.js auto-executes on load; no manual API call needed.
-    // For call conversion tracking, use CallRail's native Google Ads integration:
-    //   CallRail Dashboard → Integrations → Google Ads
-    // This pushes call conversions directly to Google Ads without code-level gtag calls.
     CallRail?: unknown;
   }
 }
 
-// ─── Track custom GA4 / GTM events ───────────────────────────────────────────
-// Primary: pushes to GTM dataLayer. GTM GA4 tag picks this up via Custom Event trigger.
-// Fallback: direct gtag() call if window.gtag is available (e.g. GTM loaded GA4 tag).
-export const trackEvent = ({
-  action,
-  category,
-  label,
-  value,
-}: {
-  action: string;
-  category: string;
-  label?: string;
-  value?: number;
-}) => {
-  if (typeof window !== 'undefined') {
-    // Primary: push to GTM dataLayer
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: action,
-      eventCategory: category,
-      eventLabel: label,
-      eventValue: value,
-    });
+// ─── GA4 Page View Tracking for Next.js App Router ───────────────────────────
+export const pageview = (url: string, title?: string) => {
+  if (typeof window === 'undefined') return;
 
-    // Fallback: direct gtag (only fires if GTM has loaded a GA4 tag that exposes window.gtag)
-    if (window.gtag && GA_MEASUREMENT_ID) {
-      window.gtag('event', action, {
-        event_category: category,
-        event_label: label,
-        value: value,
+  const pageTitle = title || document.title;
+  const pageLocation = window.location.href;
+
+  // 1. Push to dataLayer for GTM GA4 Configuration Tag
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'page_view',
+    page_path: url,
+    page_location: pageLocation,
+    page_title: pageTitle,
+  });
+
+  // 2. Direct gtag config update if available
+  if (typeof window.gtag === 'function') {
+    if (GA_MEASUREMENT_ID) {
+      window.gtag('config', GA_MEASUREMENT_ID, {
+        page_path: url,
+        page_location: pageLocation,
+        page_title: pageTitle,
       });
     }
   }
 };
 
+// ─── Track custom GA4 / GTM events ───────────────────────────────────────────
+export const trackEvent = ({
+  action,
+  category,
+  label,
+  value,
+  customParams = {},
+}: {
+  action: string;
+  category: string;
+  label?: string;
+  value?: number;
+  customParams?: Record<string, unknown>;
+}) => {
+  if (typeof window === 'undefined') return;
+
+  // Primary: push to GTM dataLayer
+  window.dataLayer = window.dataLayer || [];
+  const eventPayload: Record<string, unknown> = {
+    event: action,
+    eventCategory: category,
+    eventLabel: label,
+    eventValue: value,
+    ...customParams,
+  };
+  window.dataLayer.push(eventPayload);
+
+  // Fallback / Direct gtag execution
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', action, {
+      event_category: category,
+      event_label: label,
+      value: value,
+      ...customParams,
+    });
+
+    // Automatically map to GA4 Recommended Standard Events
+    if (action === CONVERSION_EVENTS.BOOKING_STEP_1) {
+      window.gtag('event', 'generate_lead', {
+        event_category: category,
+        event_label: label,
+        currency: 'USD',
+        value: value ?? 150,
+        lead_type: 'consultation_step1',
+        ...customParams,
+      });
+    } else if (action === CONVERSION_EVENTS.BOOKING_COMPLETE) {
+      window.gtag('event', 'schedule_appointment', {
+        event_category: category,
+        event_label: label,
+        currency: 'USD',
+        value: value ?? 500,
+        appointment_type: 'cataract_iol_consultation',
+        ...customParams,
+      });
+      window.gtag('event', 'generate_lead', {
+        event_category: category,
+        event_label: label,
+        currency: 'USD',
+        value: value ?? 500,
+        lead_type: 'consultation_complete',
+        ...customParams,
+      });
+    } else if (action === CONVERSION_EVENTS.PHONE_CLICK) {
+      window.gtag('event', 'contact', {
+        method: 'phone',
+        event_category: category,
+        event_label: label,
+        ...customParams,
+      });
+    } else if (action === CONVERSION_EVENTS.LENS_QUIZ_COMPLETE) {
+      window.gtag('event', 'select_content', {
+        content_type: 'lens_quiz_recommendation',
+        item_id: label,
+        ...customParams,
+      });
+    }
+  }
+};
+
+// ─── Dedicated GA4 Healthcare Interaction Trackers ───────────────────────────
+export const trackPhoneClick = (source: string) => {
+  trackEvent({
+    action: CONVERSION_EVENTS.PHONE_CLICK,
+    category: 'Conversion',
+    label: source,
+  });
+  trackAdsConversion('phone_click');
+};
+
+export const trackConsultationBooking = (location: string, lens?: string) => {
+  trackEvent({
+    action: CONVERSION_EVENTS.BOOKING_COMPLETE,
+    category: 'Conversion',
+    label: `${location}${lens ? ` - ${lens}` : ''}`,
+    value: 500,
+  });
+  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT, 500);
+};
+
+export const trackLeadStep1 = (location: string) => {
+  trackEvent({
+    action: CONVERSION_EVENTS.BOOKING_STEP_1,
+    category: 'Engagement',
+    label: location,
+    value: 150,
+  });
+  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.LEAD_FORM, 150);
+};
+
+export const trackScrollDepth = (percent: number) => {
+  trackEvent({
+    action: CONVERSION_EVENTS.SCROLL_DEPTH,
+    category: 'Engagement',
+    label: `${percent}%`,
+    value: percent,
+    customParams: { percent_scrolled: percent },
+  });
+};
+
 // ─── Google Ads Conversion Labels & Triggers ─────────────────────────────────
-// Specific Google Ads conversion triggers:
-// - Lead Form (Step 1 Complete): AW-17962563730/P12NCJ6IgdwcEJLxm_VC
-// - Book Appointment (Full Booking Complete): AW-17962563730/IsEZCL66_dscEJLxm_VC
 export const GOOGLE_ADS_CONVERSIONS = {
   LEAD_FORM: 'AW-17962563730/P12NCJ6IgdwcEJLxm_VC',
   BOOK_APPOINTMENT: 'AW-17962563730/IsEZCL66_dscEJLxm_VC',
@@ -98,29 +202,26 @@ export const trackAdsConversion = (
   value?: number,
   currency: string = 'USD'
 ) => {
-  if (typeof window !== 'undefined') {
-    // Determine the send_to target
-    const sendTo = conversionIdOrLabel.startsWith('AW-')
-      ? conversionIdOrLabel
-      : `AW-18197167741/${conversionIdOrLabel}`;
+  if (typeof window === 'undefined') return;
 
-    // 1. Primary: push conversion event to GTM dataLayer
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'ads_conversion',
-      conversionLabel: conversionIdOrLabel,
+  const sendTo = conversionIdOrLabel.startsWith('AW-')
+    ? conversionIdOrLabel
+    : `AW-18197167741/${conversionIdOrLabel}`;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'ads_conversion',
+    conversionLabel: conversionIdOrLabel,
+    send_to: sendTo,
+    value: value,
+    currency: currency,
+  });
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'conversion', {
       send_to: sendTo,
       value: value,
       currency: currency,
     });
-
-    // 2. Direct gtag execution
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'conversion', {
-        send_to: sendTo,
-        value: value,
-        currency: currency,
-      });
-    }
   }
 };

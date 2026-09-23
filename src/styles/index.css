@@ -208,8 +208,8 @@ p[id^='footnote-']:target {
 .bg-section-hero {
   background-color: #0c0e15;
   background-image:
-    radial-gradient(ellipse 70% 55% at 80% 25%, rgba(197, 160, 89, 0.09) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(56, 189, 248, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 70% at 75% 20%, rgba(197, 160, 89, 0.035) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 60% at 20% 80%, rgba(56, 189, 248, 0.018) 0%, transparent 70%),
     linear-gradient(180deg, #090b10 0%, #0c0e15 40%, #0b0d14 100%);
 }
 
@@ -232,24 +232,16 @@ p[id^='footnote-']:target {
 .bg-section-education {
   background-color: #070910;
   background-image:
-    radial-gradient(ellipse 60% 70% at 15% 45%, rgba(217, 119, 6, 0.045) 0%, transparent 60%),
-    radial-gradient(ellipse 65% 65% at 85% 45%, rgba(0, 163, 255, 0.055) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 60% at 15% 45%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 85% 45%, rgba(56, 189, 248, 0.025) 0%, transparent 70%),
     linear-gradient(180deg, #090c15 0%, #070910 50%, #06080e 100%);
 }
 
 .texture-fresnel-rings {
   background-image: radial-gradient(
-    circle at 75% 50%,
-    transparent 0,
-    transparent 40px,
-    rgba(0, 163, 255, 0.02) 41px,
-    transparent 43px,
-    transparent 90px,
-    rgba(197, 160, 89, 0.02) 91px,
-    transparent 93px,
-    transparent 150px,
-    rgba(0, 163, 255, 0.015) 151px,
-    transparent 153px
+    ellipse 80% 60% at 75% 50%,
+    rgba(56, 189, 248, 0.015) 0%,
+    transparent 70%
   );
 }
 
@@ -257,8 +249,8 @@ p[id^='footnote-']:target {
 .bg-section-simulator {
   background-color: #06070a;
   background-image:
-    radial-gradient(ellipse 90% 65% at 50% 0%, rgba(139, 92, 246, 0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 163, 255, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 65% at 50% 0%, rgba(139, 92, 246, 0.035) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 163, 255, 0.02) 0%, transparent 70%),
     linear-gradient(180deg, #06070a 0%, #08090d 50%, #06070a 100%);
 }
 
@@ -266,7 +258,7 @@ p[id^='footnote-']:target {
 .bg-section-physics {
   background-color: #070a14;
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% 30%, rgba(56, 189, 248, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 30%, rgba(56, 189, 248, 0.03) 0%, transparent 70%),
     linear-gradient(180deg, #06070a 0%, #070a14 40%, #06080f 100%);
 }
 
@@ -281,40 +273,24 @@ p[id^='footnote-']:target {
 .bg-section-lensar {
   background-color: #080b12;
   background-image:
-    radial-gradient(circle at 68% 35%, rgba(0, 240, 255, 0.05) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 50% at 25% 75%, rgba(197, 160, 89, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse 75% 60% at 68% 35%, rgba(56, 189, 248, 0.025) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 60% at 25% 75%, rgba(197, 160, 89, 0.02) 0%, transparent 70%),
     linear-gradient(180deg, #06080f 0%, #080b12 50%, #070910 100%);
 }
 
 .texture-laser-reticle {
   background-image:
-    radial-gradient(
-      circle at 50% 50%,
-      transparent 0,
-      transparent 80px,
-      rgba(0, 240, 255, 0.03) 81px,
-      transparent 83px,
-      transparent 160px,
-      rgba(0, 240, 255, 0.02) 161px,
-      transparent 163px,
-      transparent 240px,
-      rgba(0, 240, 255, 0.015) 241px,
-      transparent 243px
-    ),
-    linear-gradient(to right, rgba(0, 240, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 240, 255, 0.015) 1px, transparent 1px);
-  background-size:
-    auto,
-    60px 60px,
-    60px 60px;
+    linear-gradient(to right, rgba(56, 189, 248, 0.012) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.012) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
 /* 7. Recovery Timeline: Progressive Restorative Light Horizon */
 .bg-section-recovery {
   background-color: #07090f;
   background-image:
-    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 0%, rgba(197, 160, 89, 0.055) 100%),
-    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(197, 160, 89, 0.04) 0%, transparent 70%),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.02) 0%, rgba(197, 160, 89, 0.03) 100%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(197, 160, 89, 0.025) 0%, transparent 75%),
     linear-gradient(180deg, #070910 0%, #080a12 50%, #0a0d16 100%);
 }
 
@@ -322,8 +298,8 @@ p[id^='footnote-']:target {
 .bg-section-trust {
   background-color: #0b0e17;
   background-image:
-    radial-gradient(circle at 25% 40%, rgba(197, 160, 89, 0.055) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(197, 160, 89, 0.055) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 30% 40%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 70% 75%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
     linear-gradient(180deg, #0a0d16 0%, #0c0f19 50%, #0a0c15 100%);
 }
 
@@ -344,79 +320,47 @@ p[id^='footnote-']:target {
 .bg-section-candidacy {
   background-color: #080b11;
   background-image:
-    radial-gradient(ellipse 50% 60% at 25% 50%, rgba(16, 185, 129, 0.045) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 60% at 75% 50%, rgba(245, 158, 11, 0.035) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 60% at 25% 50%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 75% 50%, rgba(56, 189, 248, 0.02) 0%, transparent 70%),
     linear-gradient(180deg, #0c0f18 0%, #080b11 50%, #090c13 100%);
 }
 
 .texture-integrity-mesh {
-  background-image: radial-gradient(rgba(16, 185, 129, 0.05) 1.2px, transparent 1.2px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(197, 160, 89, 0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 /* 11. Patient Testimonials: Warm Lifestyle Hearth & Optical Bokeh Discs */
 .bg-section-testimonials {
   background-color: #0a0c14;
   background-image:
-    radial-gradient(ellipse 65% 50% at 50% 50%, rgba(197, 160, 89, 0.065) 0%, transparent 70%),
-    radial-gradient(circle at 20% 20%, rgba(226, 194, 138, 0.035) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(197, 160, 89, 0.035) 0%, transparent 40%),
+    radial-gradient(ellipse 85% 65% at 50% 50%, rgba(197, 160, 89, 0.035) 0%, transparent 75%),
     linear-gradient(180deg, #090c13 0%, #0c0e17 50%, #0a0c14 100%);
 }
 
 .texture-optical-bokeh {
-  background-image:
-    radial-gradient(
-      circle at 18% 30%,
-      rgba(255, 255, 255, 0.02) 0,
-      rgba(255, 255, 255, 0.02) 18px,
-      transparent 20px
-    ),
-    radial-gradient(
-      circle at 82% 65%,
-      rgba(197, 160, 89, 0.025) 0,
-      rgba(197, 160, 89, 0.025) 24px,
-      transparent 26px
-    ),
-    radial-gradient(
-      circle at 65% 20%,
-      rgba(56, 189, 248, 0.015) 0,
-      rgba(56, 189, 248, 0.015) 14px,
-      transparent 16px
-    );
+  background-image: none;
 }
 
 /* 12. Lens Match Quiz: Personalized Guidance Cockpit & Radar Focus */
 .bg-section-quiz {
   background-color: #090c16;
   background-image:
-    radial-gradient(circle at 50% 45%, rgba(56, 189, 248, 0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(197, 160, 89, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 85% 60% at 50% 45%, rgba(56, 189, 248, 0.025) 0%, transparent 75%),
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(197, 160, 89, 0.02) 0%, transparent 70%),
     linear-gradient(180deg, #0a0c14 0%, #090c16 50%, #070a12 100%);
 }
 
 .texture-radar-concentric {
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    transparent 0,
-    transparent 100px,
-    rgba(56, 189, 248, 0.02) 101px,
-    transparent 103px,
-    transparent 220px,
-    rgba(197, 160, 89, 0.02) 221px,
-    transparent 223px,
-    transparent 360px,
-    rgba(56, 189, 248, 0.015) 361px,
-    transparent 363px
-  );
+  background-image: none;
 }
 
 /* 13. FAQ: Architectural Archive of Transparency */
 .bg-section-faq {
   background-color: #080a12;
   background-image:
-    radial-gradient(ellipse 40% 70% at 15% 35%, rgba(197, 160, 89, 0.05) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 40% at 85% 75%, rgba(56, 189, 248, 0.025) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 70% at 15% 35%, rgba(197, 160, 89, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 85% 75%, rgba(56, 189, 248, 0.02) 0%, transparent 70%),
     linear-gradient(180deg, #070a12 0%, #090b14 50%, #080a11 100%);
 }
 
@@ -429,9 +373,8 @@ p[id^='footnote-']:target {
 .bg-section-pricing {
   background-color: #090c15;
   background-image:
-    radial-gradient(ellipse 40% 80% at 50% 50%, rgba(197, 160, 89, 0.065) 0%, transparent 65%),
-    radial-gradient(ellipse 35% 50% at 15% 45%, rgba(59, 130, 246, 0.03) 0%, transparent 60%),
-    radial-gradient(ellipse 35% 50% at 85% 45%, rgba(16, 185, 129, 0.035) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(197, 160, 89, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 45%, rgba(56, 189, 248, 0.02) 0%, transparent 70%),
     linear-gradient(180deg, #080a11 0%, #0b0e18 50%, #080a12 100%);
 }
 
@@ -439,18 +382,13 @@ p[id^='footnote-']:target {
 .bg-section-booking {
   background-color: #0a0d18;
   background-image:
-    radial-gradient(ellipse 60% 60% at 75% 45%, rgba(197, 160, 89, 0.08) 0%, transparent 65%),
-    radial-gradient(circle at 25% 65%, rgba(56, 189, 248, 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 65% at 70% 45%, rgba(197, 160, 89, 0.035) 0%, transparent 75%),
+    radial-gradient(ellipse 70% 60% at 25% 65%, rgba(56, 189, 248, 0.02) 0%, transparent 70%),
     linear-gradient(180deg, #080a12 0%, #0c101e 50%, #090c16 100%);
 }
 
 .texture-beacon-glows {
-  background-image: radial-gradient(
-    circle at 20% 85%,
-    rgba(197, 160, 89, 0.04) 0,
-    rgba(197, 160, 89, 0.04) 30px,
-    transparent 60px
-  );
+  background-image: none;
 }
 
 /* ── Text gradients ── */
@@ -1003,8 +941,8 @@ a.bg-primary:active {
 
 .vision-section-bg {
   background:
-    radial-gradient(circle at 25% 60%, rgba(197, 160, 89, 0.05) 0%, transparent 55%),
-    radial-gradient(circle at 75% 30%, rgba(95, 255, 217, 0.04) 0%, transparent 55%);
+    radial-gradient(ellipse 80% 60% at 25% 60%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 75% 30%, rgba(56, 189, 248, 0.02) 0%, transparent 70%);
 }
 
 .toggle-container {

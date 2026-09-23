@@ -71,9 +71,9 @@ export default function LensarAllySection() {
       {/* Robotic surgical suite femtosecond laser reticle texture */}
       <div className="absolute inset-0 texture-laser-reticle opacity-50 pointer-events-none" />
 
-      {/* Laser luminescence & AR biometry focal auras */}
-      <div className="absolute top-1/4 right-10 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(0,240,255,0.06)_0%,transparent_60%)] rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(197,160,89,0.04)_0%,transparent_60%)] rounded-full blur-[120px] pointer-events-none" />
+      {/* Laser luminescence & AR biometry subtle ambient depth */}
+      <div className="absolute top-1/4 -right-20 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-10 -left-20 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.018)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}

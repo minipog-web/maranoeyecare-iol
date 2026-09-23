@@ -137,9 +137,9 @@ export default function HeroSection({
       {/* Bespoke Optical Sunrise & Ray Texture Background */}
       <div className="absolute inset-0 texture-hero-optical opacity-40 pointer-events-none" />
 
-      {/* Precision Lens Aura Bloom (illuminating the 3D lens cards on the right while keeping typography contrast pristine on the left) */}
-      <div className="absolute top-10 right-0 w-[750px] h-[750px] bg-[radial-gradient(circle,rgba(197,160,89,0.12)_0%,rgba(197,160,89,0.02)_45%,transparent_70%)] rounded-full blur-[90px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(56,189,248,0.03)_0%,transparent_65%)] rounded-full blur-[110px] pointer-events-none" />
+      {/* Soft Ambient Lens Aura (whisper-soft atmospheric depth, no harsh circular hot-spots) */}
+      <div className="absolute -top-20 -right-20 w-[900px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.03)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-[700px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.015)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
 
       {/* Specular hairline at the hero crown */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent pointer-events-none" />

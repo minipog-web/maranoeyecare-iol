@@ -61,9 +61,9 @@ export default function CataractEducationTeaserSection() {
       {/* Fresnel concentric contour texture in negative space */}
       <div className="absolute inset-0 texture-fresnel-rings opacity-60 pointer-events-none" />
 
-      {/* Dual Cellular Aging / Acrylic Prism Ambient Glows */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[550px] h-[450px] bg-[radial-gradient(circle,rgba(217,119,6,0.06)_0%,transparent_65%)] rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(0,163,255,0.07)_0%,transparent_65%)] rounded-full blur-[110px] pointer-events-none" />
+      {/* Soft Ambient Depth (diffused atmospheric illumination, no visible circular edges) */}
+      <div className="absolute top-1/2 -left-20 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="group relative rounded-3xl border border-white/[0.10] bg-gradient-to-r from-[#0c0f18]/95 via-[#090c13]/95 to-[#0f131f]/95 p-5 sm:p-7 lg:p-9 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] hover:border-primary/35 transition-all duration-500">

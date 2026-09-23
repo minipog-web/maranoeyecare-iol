@@ -173,9 +173,8 @@ export default function TestimonialsSection() {
       {/* Warm lifestyle hearth optical bokeh texture */}
       <div className="absolute inset-0 texture-optical-bokeh opacity-60 pointer-events-none" />
 
-      {/* Warm emotional bronze & golden glow pools */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[500px] bg-[radial-gradient(circle,rgba(197,160,89,0.08)_0%,transparent_65%)] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-10 left-10 w-[450px] h-[450px] bg-[radial-gradient(circle,rgba(226,194,138,0.04)_0%,transparent_60%)] rounded-full blur-[100px] pointer-events-none" />
+      {/* Warm ambient depth */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.025)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Testimonials */}
