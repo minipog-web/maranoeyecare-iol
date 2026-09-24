@@ -56,17 +56,22 @@ export const pageview = (url: string, title?: string) => {
     page_path: url,
     page_location: pageLocation,
     page_title: pageTitle,
+    send_to: GA_MEASUREMENT_ID,
   });
 
-  // 2. Direct gtag config update if available
+  // 2. Direct gtag event & config update targeting GA4 Measurement ID G-CTYWND91QV
   if (typeof window.gtag === 'function') {
-    if (GA_MEASUREMENT_ID) {
-      window.gtag('config', GA_MEASUREMENT_ID, {
-        page_path: url,
-        page_location: pageLocation,
-        page_title: pageTitle,
-      });
-    }
+    window.gtag('event', 'page_view', {
+      page_path: url,
+      page_location: pageLocation,
+      page_title: pageTitle,
+      send_to: GA_MEASUREMENT_ID,
+    });
+    window.gtag('config', GA_MEASUREMENT_ID, {
+      page_path: url,
+      page_location: pageLocation,
+      page_title: pageTitle,
+    });
   }
 };
 
@@ -93,16 +98,18 @@ export const trackEvent = ({
     eventCategory: category,
     eventLabel: label,
     eventValue: value,
+    measurement_id: GA_MEASUREMENT_ID,
     ...customParams,
   };
   window.dataLayer.push(eventPayload);
 
-  // Fallback / Direct gtag execution
+  // Fallback / Direct gtag execution with GA4 G-CTYWND91QV
   if (typeof window.gtag === 'function') {
     window.gtag('event', action, {
       event_category: category,
       event_label: label,
       value: value,
+      send_to: GA_MEASUREMENT_ID,
       ...customParams,
     });
 
@@ -114,6 +121,8 @@ export const trackEvent = ({
         currency: 'USD',
         value: value ?? 150,
         lead_type: 'consultation_step1',
+        preferred_location: label,
+        send_to: GA_MEASUREMENT_ID,
         ...customParams,
       });
     } else if (action === CONVERSION_EVENTS.BOOKING_COMPLETE) {
@@ -123,6 +132,7 @@ export const trackEvent = ({
         currency: 'USD',
         value: value ?? 500,
         appointment_type: 'cataract_iol_consultation',
+        send_to: GA_MEASUREMENT_ID,
         ...customParams,
       });
       window.gtag('event', 'generate_lead', {
@@ -131,6 +141,7 @@ export const trackEvent = ({
         currency: 'USD',
         value: value ?? 500,
         lead_type: 'consultation_complete',
+        send_to: GA_MEASUREMENT_ID,
         ...customParams,
       });
     } else if (action === CONVERSION_EVENTS.PHONE_CLICK) {
@@ -138,12 +149,42 @@ export const trackEvent = ({
         method: 'phone',
         event_category: category,
         event_label: label,
+        phone_number: label,
+        currency: 'USD',
+        value: value ?? 200,
+        send_to: GA_MEASUREMENT_ID,
         ...customParams,
       });
-    } else if (action === CONVERSION_EVENTS.LENS_QUIZ_COMPLETE) {
+    } else if (action === CONVERSION_EVENTS.LENS_QUIZ_COMPLETE || action === 'quiz_complete') {
+      window.gtag('event', 'qualify_lead', {
+        lead_score: 95,
+        recommended_lens: label,
+        send_to: GA_MEASUREMENT_ID,
+        ...customParams,
+      });
       window.gtag('event', 'select_content', {
         content_type: 'lens_quiz_recommendation',
         item_id: label,
+        send_to: GA_MEASUREMENT_ID,
+        ...customParams,
+      });
+    } else if (action === CONVERSION_EVENTS.LENS_QUIZ_START) {
+      window.gtag('event', 'tutorial_begin', {
+        tutorial_id: 'lens_selection_quiz',
+        send_to: GA_MEASUREMENT_ID,
+        ...customParams,
+      });
+    } else if (action === CONVERSION_EVENTS.SIMULATOR_INTERACTION) {
+      window.gtag('event', 'select_content', {
+        content_type: 'vision_simulator',
+        item_id: label,
+        send_to: GA_MEASUREMENT_ID,
+        ...customParams,
+      });
+    } else if (action === CONVERSION_EVENTS.SCROLL_DEPTH) {
+      window.gtag('event', 'scroll', {
+        percent_scrolled: value,
+        send_to: GA_MEASUREMENT_ID,
         ...customParams,
       });
     }
@@ -156,6 +197,7 @@ export const trackPhoneClick = (source: string) => {
     action: CONVERSION_EVENTS.PHONE_CLICK,
     category: 'Conversion',
     label: source,
+    value: 200,
   });
   trackAdsConversion('phone_click');
 };
@@ -166,6 +208,10 @@ export const trackConsultationBooking = (location: string, lens?: string) => {
     category: 'Conversion',
     label: `${location}${lens ? ` - ${lens}` : ''}`,
     value: 500,
+    customParams: {
+      location,
+      selected_lens: lens,
+    },
   });
   trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT, 500);
 };
@@ -176,6 +222,9 @@ export const trackLeadStep1 = (location: string) => {
     category: 'Engagement',
     label: location,
     value: 150,
+    customParams: {
+      location,
+    },
   });
   trackAdsConversion(GOOGLE_ADS_CONVERSIONS.LEAD_FORM, 150);
 };
@@ -187,6 +236,48 @@ export const trackScrollDepth = (percent: number) => {
     label: `${percent}%`,
     value: percent,
     customParams: { percent_scrolled: percent },
+  });
+};
+
+export const trackQuizStart = () => {
+  trackEvent({
+    action: CONVERSION_EVENTS.LENS_QUIZ_START,
+    category: 'Engagement',
+    label: 'Lens Quiz Started',
+  });
+};
+
+export const trackQuizComplete = (lensName: string, lensKey: string) => {
+  trackEvent({
+    action: CONVERSION_EVENTS.LENS_QUIZ_COMPLETE,
+    category: 'Conversion',
+    label: lensName,
+    value: 250,
+    customParams: {
+      recommended_lens_key: lensKey,
+      recommended_lens_name: lensName,
+    },
+  });
+};
+
+export const trackSimulatorInteraction = (lensKey: string, lighting: string, distance: string) => {
+  trackEvent({
+    action: CONVERSION_EVENTS.SIMULATOR_INTERACTION,
+    category: 'Engagement',
+    label: lensKey,
+    customParams: {
+      selected_lens: lensKey,
+      lighting_condition: lighting,
+      focal_distance: distance,
+    },
+  });
+};
+
+export const trackCandidacyClick = (source: string) => {
+  trackEvent({
+    action: CONVERSION_EVENTS.CANDIDACY_CLICK,
+    category: 'Engagement',
+    label: source,
   });
 };
 

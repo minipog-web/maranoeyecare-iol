@@ -85,13 +85,17 @@ export default function InsuranceCostSection() {
       aria-label="Insurance and Pricing Transparency"
     >
       <div id="financing" className="relative -top-28" />
-      {/* Subtle ambient lighting */}
+      {/* Financial Vault Directional Lighting (Zero circular blobs) */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.025)_0%,transparent_70%)] blur-[160px] pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-b from-primary/[0.06] via-transparent to-primary/[0.04] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute top-1/2 -left-20 -translate-y-1/2 w-[600px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.015)_0%,transparent_70%)] blur-[160px] pointer-events-none"
+        className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-emerald-500/[0.03] via-transparent to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-primary/[0.05] via-transparent to-transparent pointer-events-none"
         aria-hidden="true"
       />
 

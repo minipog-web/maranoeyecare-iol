@@ -63,9 +63,10 @@ export default function TrustSection() {
       {/* Executive atelier subtle architectural pinstripe texture */}
       <div className="absolute inset-0 texture-atelier-pinstripe opacity-70 pointer-events-none" />
 
-      {/* Museum portrait ambient illumination */}
-      <div className="absolute top-1/4 -left-20 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      {/* Museum Portrait Executive Gallery Washes (Warm atelier illumination, zero circular blobs) */}
+      <div className="absolute inset-x-0 top-0 h-[300px] bg-gradient-to-b from-primary/[0.08] via-primary/[0.02] to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-primary/[0.05] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-primary/[0.05] via-transparent to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Main Section Header */}

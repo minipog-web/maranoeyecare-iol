@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { pageview, trackScrollDepth, trackEvent } from '@/lib/gtag';
+import { pageview, trackScrollDepth, trackEvent, trackPhoneClick } from '@/lib/gtag';
 
 function AnalyticsNavigationObserver() {
   const pathname = usePathname();
@@ -43,11 +43,38 @@ function AnalyticsNavigationObserver() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
 
-  // Track outbound link clicks automatically
+  // Track outbound link clicks, phone calls, and email clicks automatically
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement)?.closest('a');
       if (!target || !target.href) return;
+
+      // Automatically capture all tel: clicks across entire site
+      if (target.href.startsWith('tel:')) {
+        const phone = target.href.replace('tel:', '').trim();
+        const trackingLabel =
+          target.getAttribute('data-tracking-label') ||
+          target.getAttribute('aria-label') ||
+          target.innerText?.trim() ||
+          phone;
+        trackPhoneClick(trackingLabel);
+        return;
+      }
+
+      // Automatically capture all mailto: clicks
+      if (target.href.startsWith('mailto:')) {
+        const email = target.href.replace('mailto:', '').split('?')[0].trim();
+        trackEvent({
+          action: 'contact',
+          category: 'Conversion',
+          label: email,
+          customParams: {
+            method: 'email',
+            email_address: email,
+          },
+        });
+        return;
+      }
 
       try {
         const url = new URL(target.href);

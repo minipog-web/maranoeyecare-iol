@@ -173,8 +173,10 @@ export default function TestimonialsSection() {
       {/* Warm lifestyle hearth optical bokeh texture */}
       <div className="absolute inset-0 texture-optical-bokeh opacity-60 pointer-events-none" />
 
-      {/* Warm ambient depth */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.025)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      {/* Warm Lifestyle Hearth & Anamorphic Ambiance Washes (Zero circular blobs, zero boxes) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.05] via-transparent to-primary/[0.04] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-full h-[550px] bg-gradient-to-bl from-primary/[0.06] via-amber-500/[0.02] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-[450px] bg-gradient-to-tr from-amber-500/[0.04] via-transparent to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Testimonials */}
@@ -344,14 +346,14 @@ export default function TestimonialsSection() {
                   <p className="text-base sm:text-lg text-foreground/90 leading-relaxed italic mb-5 sm:mb-6">
                     &ldquo;In over thirty years and 40,000 surgeries, the most meaningful reward
                     remains hearing back from patients about the life-liberating clarity they regain
-                    after cataract surgery. Seeing someone rediscover effortless
-                    independence—whether that means driving comfortably at night or seeing their
-                    loved ones without hunting for glasses—is what makes this work so special. If I
-                    were choosing a lens for my own family, I would pair the Clareon Vivity or
-                    PureSee with the precision 3D LENSAR ALLY laser. But no single lens fits every
-                    life. That is why Dr. Raouf and I sit down with every patient to understand your
-                    daily routines, hobbies, and visual demands first. Your eyes, and how you live,
-                    guide the decision.&rdquo;
+                    after cataract surgery. Seeing someone rediscover effortless independence,
+                    whether that means driving comfortably at night or seeing their loved ones
+                    without hunting for glasses, is what makes this work so special. If I were
+                    choosing a lens for my own family, I would pair the Clareon Vivity or PureSee
+                    with the precision 3D LENSAR ALLY laser. But no single lens fits every life.
+                    That is why Dr. Raouf and I sit down with every patient to understand your daily
+                    routines, hobbies, and visual demands first. Your eyes, and how you live, guide
+                    the decision.&rdquo;
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-white/[0.08]">

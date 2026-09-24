@@ -64,10 +64,10 @@ export default function RecoveryTimelineSection() {
       id="recovery"
       className="py-16 sm:py-24 relative overflow-hidden bg-section-recovery border-t border-white/[0.04]"
     >
-      {/* Restorative progressive horizon lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_100%,rgba(197,160,89,0.025)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute top-1/2 -left-20 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.015)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
-      <div className="absolute top-1/2 -right-20 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      {/* Restorative Progressive Horizon Lighting (Dawn progression from Day 1 to Day 30) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-sky-500/[0.05] via-indigo-500/[0.03] to-primary/[0.08] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-[250px] bg-gradient-to-t from-primary/[0.07] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-primary/25 to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}

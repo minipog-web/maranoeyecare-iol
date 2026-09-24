@@ -12,9 +12,10 @@ export default function CandidacySection() {
       {/* Integrity micro-mesh texture */}
       <div className="absolute inset-0 texture-integrity-mesh opacity-40 pointer-events-none" />
 
-      {/* Subtle clinical ambient depth */}
-      <div className="absolute top-1/2 -left-20 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
-      <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.018)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      {/* Clinical Shield Directional Lighting (Zero circular blobs) */}
+      <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-emerald-500/[0.04] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-primary/[0.05] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}

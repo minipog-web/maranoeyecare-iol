@@ -312,10 +312,11 @@ export default function BookingSection({
       {/* Office location beacon texture */}
       <div className="absolute inset-0 texture-beacon-glows opacity-50 pointer-events-none" />
 
-      {/* Subtle conversion invitation ambient depth */}
-      <div className="absolute top-1/3 -right-20 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.025)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 -left-20 w-[700px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.015)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      {/* Radiant Golden Gateway Directional Ambiance (Zero circular blobs) */}
+      <div className="absolute top-0 inset-x-0 h-[350px] bg-gradient-to-b from-primary/[0.09] via-primary/[0.02] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-[280px] bg-gradient-to-t from-primary/[0.07] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary/[0.06] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">

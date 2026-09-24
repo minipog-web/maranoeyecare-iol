@@ -69,7 +69,7 @@ export default function LensTechnologyDeepDiveSection() {
 
         {/* Unified 3-Tab Switcher */}
         <div className="flex justify-center mb-12 sm:mb-16">
-          <div className="relative p-1 bg-black/40 border border-white/[0.08] rounded-2xl flex w-full max-w-lg shadow-lg">
+          <div className="relative p-1 bg-black/40 border border-white/[0.08] rounded-2xl flex w-full max-w-xl shadow-lg">
             {/* Active sliding background */}
             <div
               className="absolute top-1 bottom-1 rounded-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -89,33 +89,44 @@ export default function LensTechnologyDeepDiveSection() {
 
             <button
               onClick={() => setActiveTab('vivity')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
                 activeTab === 'vivity'
                   ? 'text-[#e9c481]'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              Vivity<sup>®</sup> EDOF
+              Vivity
+              <sup className="text-[0.55em] font-sans font-normal align-baseline relative -top-[0.45em] ml-0.5 mr-1.5 opacity-75 select-none">
+                ®
+              </sup>{' '}
+              EDOF
             </button>
             <button
               onClick={() => setActiveTab('panoptix')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
                 activeTab === 'panoptix'
                   ? 'text-[#a78bfa]'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              PanOptix<sup>®</sup> Trifocal
+              PanOptix
+              <sup className="text-[0.55em] font-sans font-normal align-baseline relative -top-[0.45em] ml-0.5 mr-1.5 opacity-75 select-none">
+                ®
+              </sup>{' '}
+              Trifocal
             </button>
             <button
               onClick={() => setActiveTab('puresee')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
                 activeTab === 'puresee'
                   ? 'text-[#38bdf8]'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              TECNIS PureSee™
+              TECNIS PureSee
+              <sup className="text-[0.55em] font-sans font-normal align-baseline relative -top-[0.45em] ml-0.5 opacity-75 select-none">
+                ™
+              </sup>
             </button>
           </div>
         </div>
@@ -795,23 +806,50 @@ export default function LensTechnologyDeepDiveSection() {
                 className="text-xs font-bold uppercase tracking-widest block mb-1.5"
                 style={{ color: tabColors[activeTab].text }}
               >
-                {activeTab === 'panoptix'
-                  ? 'Proprietary ENLIGHTEN® Optics'
-                  : activeTab === 'vivity'
-                    ? 'Advanced X-WAVE™ Optics'
-                    : 'Pure-Refractive EDOF Optics'}
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-serif text-foreground font-medium flex items-center">
                 {activeTab === 'panoptix' ? (
                   <>
-                    PanOptix<sup>®</sup> Trifocal
+                    Proprietary ENLIGHTEN
+                    <sup className="text-[0.65em] font-sans font-normal align-super ml-0.5 mr-1 opacity-75 select-none">
+                      ®
+                    </sup>{' '}
+                    Optics
                   </>
                 ) : activeTab === 'vivity' ? (
                   <>
-                    Vivity<sup>®</sup> EDOF
+                    Advanced X-WAVE
+                    <sup className="text-[0.65em] font-sans font-normal align-super ml-0.5 mr-1 opacity-75 select-none">
+                      ™
+                    </sup>{' '}
+                    Optics
                   </>
                 ) : (
-                  <>TECNIS PureSee™</>
+                  'Pure-Refractive EDOF Optics'
+                )}
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-serif text-foreground font-medium">
+                {activeTab === 'panoptix' ? (
+                  <>
+                    PanOptix
+                    <sup className="text-[0.42em] font-sans font-normal align-baseline relative -top-[0.5em] ml-0.5 mr-2 opacity-75 select-none">
+                      ®
+                    </sup>{' '}
+                    Trifocal
+                  </>
+                ) : activeTab === 'vivity' ? (
+                  <>
+                    Vivity
+                    <sup className="text-[0.42em] font-sans font-normal align-baseline relative -top-[0.5em] ml-0.5 mr-2 opacity-75 select-none">
+                      ®
+                    </sup>{' '}
+                    EDOF
+                  </>
+                ) : (
+                  <>
+                    TECNIS PureSee
+                    <sup className="text-[0.42em] font-sans font-normal align-baseline relative -top-[0.5em] ml-0.5 opacity-75 select-none">
+                      ™
+                    </sup>
+                  </>
                 )}
               </h3>
             </div>

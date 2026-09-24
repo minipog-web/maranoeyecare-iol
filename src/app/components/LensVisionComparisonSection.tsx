@@ -604,8 +604,8 @@ export default function LensVisionComparisonSection() {
           ? '50%'
           : '35%';
     const y = glowPosition ? glowPosition.y : '50%';
-    const opacity = glowPosition ? '0.30' : '0.15';
-    const glowBg = `radial-gradient(ellipse at center, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.035)' : currentGlowLens.id === 'vivity' ? 'rgba(197,160,89,0.035)' : currentGlowLens.id === 'puresee' ? 'rgba(0,163,255,0.03)' : 'rgba(100,116,139,0.02)'} 0%, rgba(0,0,0,0) 70%)`;
+    const opacity = glowPosition ? '0.40' : '0.22';
+    const glowBg = `radial-gradient(ellipse at center, ${currentGlowLens.id === 'panoptix' ? 'rgba(139,92,246,0.08)' : currentGlowLens.id === 'vivity' ? 'rgba(197,160,89,0.08)' : currentGlowLens.id === 'puresee' ? 'rgba(0,163,255,0.07)' : 'rgba(100,116,139,0.05)'} 0%, rgba(0,0,0,0) 70%)`;
 
     ambientGlowRef.current.style.setProperty('--glow-x', x);
     ambientGlowRef.current.style.setProperty('--glow-y', y);
@@ -641,8 +641,10 @@ export default function LensVisionComparisonSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_95%_75%_at_50%_50%,transparent_50%,rgba(0,0,0,0.7)_100%)] pointer-events-none" />
       <div className="absolute inset-0 vision-section-bg opacity-25 pointer-events-none" />
 
-      {/* Subtle Central Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-white/[0.015] rounded-full blur-[160px] pointer-events-none z-0" />
+      {/* Cinematic Stage Lighting & Lateral Aperture Horizon */}
+      <div className="absolute inset-x-0 top-1/4 h-[420px] bg-gradient-to-b from-primary/[0.04] via-sky-500/[0.03] to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-violet-500/[0.03] to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-primary/[0.04] to-transparent pointer-events-none z-0" />
 
       {/* Dynamic Sliding Background Glow that follows the active lens selection or mouse hover */}
       <div ref={ambientGlowRef} className={styles.ambientGlow} />
@@ -1178,7 +1180,7 @@ export default function LensVisionComparisonSection() {
                   >
                     {/* Dynamic Mouse Spotlight Glow */}
                     <div data-lens={lens.id} className={styles.spotlightGlow} />
-                    <div className="relative rounded-[30px] p-5 lg:p-6 flex flex-col h-full bg-muted/70 backdrop-blur-xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] z-10">
+                    <div className="relative rounded-[30px] p-5 lg:p-6 flex flex-col h-full bg-[#0c0e16] backdrop-blur-2xl transition-spring shadow-[inset_0_1px_1px_rgba(255,255,255,0.07),0_8px_24px_rgba(0,0,0,0.4)] z-10">
                       {/* Badge */}
                       <div className="flex items-center justify-between mb-4">
                         <span
@@ -1193,7 +1195,7 @@ export default function LensVisionComparisonSection() {
                         <p className="text-xs sm:text-sm text-primary font-bold uppercase tracking-wider mb-1">
                           {lens.manufacturer} · {lens.type}
                         </p>
-                        <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground">
+                        <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-white">
                           {lens.name}
                         </h3>
                       </div>
@@ -1203,7 +1205,7 @@ export default function LensVisionComparisonSection() {
                         {lens.specs.map((spec) => (
                           <div key={spec.label} className="space-y-1.5">
                             <div className="flex justify-between items-center text-xs sm:text-sm gap-2 whitespace-nowrap">
-                              <span className="text-foreground font-semibold truncate">
+                              <span className="text-slate-100 font-semibold truncate">
                                 {spec.label}
                               </span>
                               <span className={`font-bold shrink-0 ${lens.twColor}`}>
@@ -1211,7 +1213,7 @@ export default function LensVisionComparisonSection() {
                               </span>
                             </div>
                             <div
-                              className="h-2 bg-white/10 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)] rounded-full overflow-hidden"
+                              className="h-2 bg-black/50 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] rounded-full overflow-hidden"
                               role="progressbar"
                               aria-valuenow={spec.score}
                               aria-valuemin={0}
@@ -1219,7 +1221,7 @@ export default function LensVisionComparisonSection() {
                               aria-label={`${spec.label} score`}
                             >
                               <div
-                                className={`h-full rounded-full transition-spring opacity-90 ${lens.twSpecBar}`}
+                                className={`h-full rounded-full transition-spring opacity-95 ${lens.twSpecBar}`}
                                 style={{ width: `${spec.score}%` }}
                               />
                             </div>
@@ -1232,7 +1234,7 @@ export default function LensVisionComparisonSection() {
                         {lens.highlights.map((h) => (
                           <li
                             key={h}
-                            className="flex items-start gap-2.5 text-sm sm:text-base text-foreground font-medium leading-relaxed"
+                            className="flex items-start gap-2.5 text-sm sm:text-base text-slate-200 font-medium leading-relaxed"
                           >
                             <AppIcon
                               name="CheckCircleIcon"
@@ -1271,11 +1273,11 @@ export default function LensVisionComparisonSection() {
                       </ul>
 
                       {/* Best for */}
-                      <div className="border-t border-border pt-5 mb-5">
+                      <div className="border-t border-white/[0.08] pt-5 mb-5">
                         <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-primary mb-1.5">
                           Best for
                         </p>
-                        <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
+                        <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed">
                           {lens.bestFor}
                         </p>
                       </div>

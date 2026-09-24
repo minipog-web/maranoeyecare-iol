@@ -206,189 +206,211 @@ p[id^='footnote-']:target {
 
 /* 1. Hero: Optical Sunrise & Dawn of Clarity */
 .bg-section-hero {
-  background-color: #0c0e15;
+  background-color: #0b0e18;
   background-image:
-    radial-gradient(ellipse 90% 70% at 75% 20%, rgba(197, 160, 89, 0.035) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 60% at 20% 80%, rgba(56, 189, 248, 0.018) 0%, transparent 70%),
-    linear-gradient(180deg, #090b10 0%, #0c0e15 40%, #0b0d14 100%);
+    linear-gradient(135deg, rgba(197, 160, 89, 0.08) 0%, transparent 45%),
+    linear-gradient(315deg, rgba(56, 189, 248, 0.06) 0%, transparent 45%),
+    linear-gradient(180deg, #080a12 0%, #0d1120 45%, #090b14 100%);
 }
 
 .texture-hero-optical {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 40%, transparent 95%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 40%, transparent 95%);
 }
 
 /* 2. Trust Badges: Brushed Titanium Ribbon */
 .bg-section-badges {
-  background: linear-gradient(180deg, #11141e 0%, #0d1017 50%, #11141e 100%);
+  background: linear-gradient(180deg, #111522 0%, #0d101a 50%, #111522 100%);
   box-shadow:
-    inset 0 1px 0 rgba(197, 160, 89, 0.2),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    inset 0 1px 0 rgba(197, 160, 89, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* 3. Cataract Education: Cellular Aging into Crystalline Acrylic Clarity */
 .bg-section-education {
-  background-color: #070910;
+  background-color: #080b15;
   background-image:
-    radial-gradient(ellipse 80% 60% at 15% 45%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
-    radial-gradient(ellipse 80% 60% at 85% 45%, rgba(56, 189, 248, 0.025) 0%, transparent 70%),
-    linear-gradient(180deg, #090c15 0%, #070910 50%, #06080e 100%);
+    linear-gradient(115deg, rgba(197, 160, 89, 0.07) 0%, transparent 45%),
+    linear-gradient(295deg, rgba(56, 189, 248, 0.06) 0%, transparent 45%),
+    linear-gradient(180deg, #090c16 0%, #0c1122 50%, #070a14 100%);
 }
 
 .texture-fresnel-rings {
-  background-image: radial-gradient(
-    ellipse 80% 60% at 75% 50%,
-    rgba(56, 189, 248, 0.015) 0%,
-    transparent 70%
-  );
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.015) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
 
 /* 4. Vision Simulator: Cinematic High-Contrast Darkroom */
 .bg-section-simulator {
-  background-color: #06070a;
+  background-color: #050812;
   background-image:
-    radial-gradient(ellipse 90% 65% at 50% 0%, rgba(139, 92, 246, 0.035) 0%, transparent 65%),
-    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 163, 255, 0.02) 0%, transparent 70%),
-    linear-gradient(180deg, #06070a 0%, #08090d 50%, #06070a 100%);
+    linear-gradient(
+      90deg,
+      rgba(139, 92, 246, 0.06) 0%,
+      rgba(56, 189, 248, 0.07) 50%,
+      rgba(197, 160, 89, 0.06) 100%
+    ),
+    linear-gradient(180deg, #05070e 0%, #090e1e 50%, #05070f 100%);
 }
 
 /* 5. Lens Science Deep Dive: Optical Physics & Laboratory Ray Grid */
 .bg-section-physics {
-  background-color: #070a14;
+  background-color: #060914;
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% 30%, rgba(56, 189, 248, 0.03) 0%, transparent 70%),
-    linear-gradient(180deg, #06070a 0%, #070a14 40%, #06080f 100%);
+    linear-gradient(60deg, rgba(56, 189, 248, 0.07) 0%, transparent 42%),
+    linear-gradient(-60deg, rgba(197, 160, 89, 0.06) 0%, transparent 42%),
+    linear-gradient(180deg, #060810 0%, #0a0f22 50%, #070a16 100%);
 }
 
 .texture-ray-grid {
   background-image:
-    linear-gradient(30deg, rgba(56, 189, 248, 0.02) 1px, transparent 1px),
-    linear-gradient(-30deg, rgba(197, 160, 89, 0.015) 1px, transparent 1px);
-  background-size: 40px 69px;
+    linear-gradient(30deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+    linear-gradient(-30deg, rgba(197, 160, 89, 0.025) 1px, transparent 1px);
+  background-size: 44px 76px;
 }
 
 /* 6. LENSAR ALLY: Robotic Surgical Suite & Femtosecond Target Reticles */
 .bg-section-lensar {
-  background-color: #080b12;
+  background-color: #060a16;
   background-image:
-    radial-gradient(ellipse 75% 60% at 68% 35%, rgba(56, 189, 248, 0.025) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 60% at 25% 75%, rgba(197, 160, 89, 0.02) 0%, transparent 70%),
-    linear-gradient(180deg, #06080f 0%, #080b12 50%, #070910 100%);
+    linear-gradient(120deg, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+    linear-gradient(300deg, rgba(197, 160, 89, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #070a14 0%, #0b1226 50%, #070a14 100%);
 }
 
 .texture-laser-reticle {
   background-image:
-    linear-gradient(to right, rgba(56, 189, 248, 0.012) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.012) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(to right, rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 /* 7. Recovery Timeline: Progressive Restorative Light Horizon */
 .bg-section-recovery {
-  background-color: #07090f;
+  background-color: #070a14;
   background-image:
-    linear-gradient(90deg, rgba(14, 165, 233, 0.02) 0%, rgba(197, 160, 89, 0.03) 100%),
-    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(197, 160, 89, 0.025) 0%, transparent 75%),
-    linear-gradient(180deg, #070910 0%, #080a12 50%, #0a0d16 100%);
+    linear-gradient(
+      90deg,
+      rgba(14, 165, 233, 0.06) 0%,
+      rgba(99, 102, 241, 0.04) 40%,
+      rgba(197, 160, 89, 0.08) 100%
+    ),
+    linear-gradient(180deg, #070912 0%, #0a0e1e 50%, #0b0e1a 100%);
 }
 
 /* 8. Surgeon Trust: Executive Medical Atelier & Museum Portrait Spotlights */
 .bg-section-trust {
-  background-color: #0b0e17;
+  background-color: #0b0e1a;
   background-image:
-    radial-gradient(ellipse 80% 60% at 30% 40%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
-    radial-gradient(ellipse 80% 60% at 70% 75%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
-    linear-gradient(180deg, #0a0d16 0%, #0c0f19 50%, #0a0c15 100%);
+    linear-gradient(140deg, rgba(197, 160, 89, 0.08) 0%, transparent 50%),
+    linear-gradient(220deg, rgba(197, 160, 89, 0.07) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0c16 0%, #11162a 50%, #0a0c16 100%);
 }
 
 .texture-atelier-pinstripe {
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
-  background-size: 32px 100%;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 36px 100%;
 }
 
 /* 9. Certification Logos: Engraved Platinum Plaque */
 .bg-section-certifications {
-  background: linear-gradient(180deg, #0c0f18 0%, #101420 50%, #0c0f18 100%);
+  background: linear-gradient(180deg, #0c0f1b 0%, #111626 50%, #0c0f1b 100%);
   box-shadow:
-    inset 0 1px 0 rgba(197, 160, 89, 0.25),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    inset 0 1px 0 rgba(197, 160, 89, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* 10. Candidacy: Clinical Shield & Dual Bio-Integrity Balance */
 .bg-section-candidacy {
-  background-color: #080b11;
+  background-color: #080c16;
   background-image:
-    radial-gradient(ellipse 80% 60% at 25% 50%, rgba(197, 160, 89, 0.025) 0%, transparent 70%),
-    radial-gradient(ellipse 80% 60% at 75% 50%, rgba(56, 189, 248, 0.02) 0%, transparent 70%),
-    linear-gradient(180deg, #0c0f18 0%, #080b11 50%, #090c13 100%);
+    linear-gradient(105deg, rgba(16, 185, 129, 0.06) 0%, transparent 45%),
+    linear-gradient(255deg, rgba(197, 160, 89, 0.07) 0%, transparent 45%),
+    linear-gradient(180deg, #090c15 0%, #0c1122 50%, #080b14 100%);
 }
 
 .texture-integrity-mesh {
-  background-image: radial-gradient(rgba(197, 160, 89, 0.025) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image:
+    linear-gradient(to right, rgba(197, 160, 89, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 160, 89, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* 11. Patient Testimonials: Warm Lifestyle Hearth & Optical Bokeh Discs */
 .bg-section-testimonials {
-  background-color: #0a0c14;
+  background-color: #0a0d18;
   background-image:
-    radial-gradient(ellipse 85% 65% at 50% 50%, rgba(197, 160, 89, 0.035) 0%, transparent 75%),
-    linear-gradient(180deg, #090c13 0%, #0c0e17 50%, #0a0c14 100%);
+    linear-gradient(135deg, rgba(197, 160, 89, 0.09) 0%, transparent 50%),
+    linear-gradient(315deg, rgba(226, 194, 138, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #090c15 0%, #12162a 50%, #0a0c16 100%);
 }
 
 .texture-optical-bokeh {
-  background-image: none;
+  background-image: radial-gradient(rgba(197, 160, 89, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* 12. Lens Match Quiz: Personalized Guidance Cockpit & Radar Focus */
 .bg-section-quiz {
-  background-color: #090c16;
+  background-color: #080c18;
   background-image:
-    radial-gradient(ellipse 85% 60% at 50% 45%, rgba(56, 189, 248, 0.025) 0%, transparent 75%),
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(197, 160, 89, 0.02) 0%, transparent 70%),
-    linear-gradient(180deg, #0a0c14 0%, #090c16 50%, #070a12 100%);
+    linear-gradient(125deg, rgba(56, 189, 248, 0.07) 0%, transparent 50%),
+    linear-gradient(305deg, rgba(197, 160, 89, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #090c16 0%, #0e142c 50%, #070a14 100%);
 }
 
 .texture-radar-concentric {
-  background-image: none;
+  background-image:
+    linear-gradient(45deg, rgba(56, 189, 248, 0.02) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(56, 189, 248, 0.02) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 /* 13. FAQ: Architectural Archive of Transparency */
 .bg-section-faq {
-  background-color: #080a12;
+  background-color: #070a16;
   background-image:
-    radial-gradient(ellipse 60% 70% at 15% 35%, rgba(197, 160, 89, 0.03) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 85% 75%, rgba(56, 189, 248, 0.02) 0%, transparent 70%),
-    linear-gradient(180deg, #070a12 0%, #090b14 50%, #080a11 100%);
+    linear-gradient(115deg, rgba(197, 160, 89, 0.07) 0%, transparent 48%),
+    linear-gradient(245deg, rgba(56, 189, 248, 0.06) 0%, transparent 48%),
+    linear-gradient(180deg, #070a13 0%, #0c1024 50%, #070912 100%);
 }
 
 .texture-architectural-columns {
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
-  background-size: 120px 100%;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 96px 100%;
 }
 
 /* 14. Insurance & Investment: Financial Vault & Central Upgrade Column */
 .bg-section-pricing {
-  background-color: #090c15;
+  background-color: #080c16;
   background-image:
-    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(197, 160, 89, 0.03) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 20% 45%, rgba(56, 189, 248, 0.02) 0%, transparent 70%),
-    linear-gradient(180deg, #080a11 0%, #0b0e18 50%, #080a12 100%);
+    linear-gradient(135deg, rgba(197, 160, 89, 0.08) 0%, transparent 48%),
+    linear-gradient(225deg, rgba(16, 185, 129, 0.05) 0%, transparent 48%),
+    linear-gradient(180deg, #070a13 0%, #0d1326 50%, #080a14 100%);
 }
 
 /* 15. Booking & Consultation: Gateway to Clarity & Office Beacons */
 .bg-section-booking {
-  background-color: #0a0d18;
+  background-color: #0a0e1c;
   background-image:
-    radial-gradient(ellipse 80% 65% at 70% 45%, rgba(197, 160, 89, 0.035) 0%, transparent 75%),
-    radial-gradient(ellipse 70% 60% at 25% 65%, rgba(56, 189, 248, 0.02) 0%, transparent 70%),
-    linear-gradient(180deg, #080a12 0%, #0c101e 50%, #090c16 100%);
+    linear-gradient(135deg, rgba(197, 160, 89, 0.1) 0%, transparent 52%),
+    linear-gradient(315deg, rgba(56, 189, 248, 0.07) 0%, transparent 52%),
+    linear-gradient(180deg, #080a14 0%, #131832 50%, #090c18 100%);
 }
 
 .texture-beacon-glows {
-  background-image: none;
+  background-image: linear-gradient(
+    90deg,
+    transparent 10%,
+    rgba(197, 160, 89, 0.035) 50%,
+    transparent 90%
+  );
 }
 
 /* ── Text gradients ── */
@@ -822,109 +844,133 @@ p[id^='footnote-']:target {
   background: linear-gradient(
     105deg,
     transparent 40%,
-    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.22) 50%,
     transparent 60%
   );
   transform: skewX(-10deg) translateX(-150%);
+  pointer-events: none;
   transition: none;
 }
 .btn-shimmer:hover::after {
   transform: skewX(-10deg) translateX(250%);
-  transition: transform 0.55s ease;
+  transition: transform 0.6s ease;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   NEUMORPHIC BUTTON DESIGN SYSTEM (Tactile Soft-UI with AAA Legibility)
+   ───────────────────────────────────────────────────────────── */
 
 .btn-premium-primary {
-  background: linear-gradient(135deg, #fff3d6 0%, #f7d492 45%, #d1ab60 100%);
-  color: #050608 !important;
-  font-weight: 700;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(197, 160, 89, 0.7);
-  border-radius: 12px;
-  padding: 0.75rem 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
-  transition: all 0.25s var(--ease-spring);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    0 1px 2px rgba(0, 0, 0, 0.3),
-    0 4px 18px rgba(245, 208, 139, 0.35),
-    0 12px 30px rgba(0, 0, 0, 0.4);
-}
-.btn-premium-primary:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #fff3d6 45%, #f7d492 100%);
-  color: #000000 !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  border-color: rgba(197, 160, 89, 0.9);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 2px 4px rgba(0, 0, 0, 0.4),
-    0 8px 28px rgba(245, 208, 139, 0.6),
-    0 16px 40px rgba(0, 0, 0, 0.5);
-  transform: translateY(-2px);
-}
-.btn-premium-primary:active {
-  transform: translateY(0);
+  border-radius: 9999px;
 }
 
-/* Global metallic gold overrides for utility-styled CTA buttons */
+/* 1. PRIMARY NEUMORPHIC BUTTONS (Forged Luminous 24kt Gold with Dark Edge Outer Bevel) */
+.btn-premium-primary,
 button.bg-primary,
 a.bg-primary {
-  background: linear-gradient(135deg, #fff3d6 0%, #f7d492 45%, #d1ab60 100%) !important;
-  color: #050608 !important;
+  background: linear-gradient(180deg, #fae4ae 0%, #edc573 50%, #d5a549 100%) !important;
+  color: #030507 !important;
   font-weight: 700 !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-  border: 1px solid rgba(197, 160, 89, 0.7) !important;
+  letter-spacing: 0.015em !important;
+  text-shadow: none !important;
+  border: 1px solid #140f06 !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    0 1px 2px rgba(0, 0, 0, 0.3),
-    0 4px 22px rgba(245, 208, 139, 0.4) !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    0 0 0 1px #0a0703,
+    0 2.5px 0 1px #110c05,
+    0 4px 12px rgba(0, 0, 0, 0.75),
+    0 10px 24px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(237, 197, 115, 0.2),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 2px rgba(95, 62, 10, 0.45) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
+
+.btn-premium-primary:hover,
 button.bg-primary:hover,
 a.bg-primary:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #fff3d6 45%, #f7d492 100%) !important;
+  background: linear-gradient(180deg, #fff1ce 0%, #f6d488 50%, #dfb054 100%) !important;
   color: #000000 !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-  border-color: rgba(197, 160, 89, 0.9) !important;
+  text-shadow: none !important;
+  border-color: #080602 !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 2px 4px rgba(0, 0, 0, 0.4),
-    0 8px 34px rgba(245, 208, 139, 0.65),
-    0 16px 40px rgba(0, 0, 0, 0.5) !important;
+    0 0 0 1px #050401,
+    0 3.5px 0 1px #0d0903,
+    0 6px 16px rgba(0, 0, 0, 0.8),
+    0 14px 32px rgba(0, 0, 0, 0.65),
+    0 0 26px rgba(237, 197, 115, 0.35),
+    inset 0 1.5px 1px #ffffff,
+    inset 0 -2px 2px rgba(95, 62, 10, 0.5) !important;
   transform: translateY(-2px) !important;
 }
+
+.btn-premium-primary:active,
 button.bg-primary:active,
 a.bg-primary:active {
-  transform: translateY(0) !important;
-}
-.btn-premium-secondary {
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--foreground);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
-  transition: all 0.25s var(--ease-spring);
+  transform: translateY(2px) !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 4px 12px rgba(0, 0, 0, 0.25);
+    0 0 0 1px #0a0703,
+    0 1px 0 0.5px #110c05,
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    inset 0 2px 4px rgba(90, 58, 8, 0.6),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4) !important;
 }
-.btn-premium-secondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+
+/* Neumorphic icon disc inside primary CTA */
+a.bg-primary div.rounded-full,
+button.bg-primary div.rounded-full {
+  background: rgba(0, 0, 0, 0.14) !important;
+  color: #040608 !important;
+  border: 1px solid rgba(0, 0, 0, 0.28) !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 6px 18px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(255, 255, 255, 0.03);
-  transform: translateY(-2px);
+    inset 1px 1px 2px rgba(0, 0, 0, 0.45),
+    inset -1px -1px 1.5px rgba(255, 255, 255, 0.35),
+    0 1px 2px rgba(0, 0, 0, 0.15) !important;
 }
-.btn-premium-secondary:active {
-  transform: translateY(0);
+
+/* 2. SECONDARY NEUMORPHIC BUTTONS (Obsidian Slate with Dark Edge Outer Bevel) */
+.btn-premium-secondary,
+.btn-neumorphic-secondary {
+  background: linear-gradient(180deg, #1b212e 0%, #10141d 100%) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid #06080d !important;
+  box-shadow:
+    0 0 0 1px #020305,
+    0 2.5px 0 1px #05070a,
+    0 4px 12px rgba(0, 0, 0, 0.8),
+    0 10px 24px rgba(0, 0, 0, 0.65),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.22),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.85) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-premium-secondary:hover,
+.btn-neumorphic-secondary:hover {
+  background: linear-gradient(180deg, #232b3b 0%, #131924 100%) !important;
+  color: #fff3d6 !important;
+  border-color: #030406 !important;
+  box-shadow:
+    0 0 0 1px #000000,
+    0 3.5px 0 1px #030406,
+    0 6px 16px rgba(0, 0, 0, 0.85),
+    0 14px 30px rgba(0, 0, 0, 0.75),
+    0 0 18px rgba(197, 160, 89, 0.2),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.9) !important;
+  transform: translateY(-2px) !important;
+}
+
+.btn-premium-secondary:active,
+.btn-neumorphic-secondary:active {
+  transform: translateY(2px) !important;
+  box-shadow:
+    0 0 0 1px #020305,
+    0 1px 0 0.5px #05070a,
+    0 2px 4px rgba(0, 0, 0, 0.85),
+    inset 0 2px 4px rgba(0, 0, 0, 0.9),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.08) !important;
 }
 
 /* ─────────────────────────────────────────

@@ -445,11 +445,18 @@ export default function RootLayout({
       className={`dark ${dmSans.variable} ${fraunces.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         {/* Google Consent Mode v2 & Google Tag Manager */}
         <Script id="google-consent-mode" strategy="beforeInteractive">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
 gtag('consent', 'default', {
   'ad_storage': 'denied',
   'ad_user_data': 'denied',
@@ -464,7 +471,10 @@ gtag('consent', 'default', {
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
-          {`gtag('js', new Date());
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('js', new Date());
 gtag('config', 'G-CTYWND91QV', {
   send_page_view: false,
   anonymize_ip: true,

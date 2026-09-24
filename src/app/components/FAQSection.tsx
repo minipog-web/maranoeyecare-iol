@@ -364,9 +364,10 @@ export default function FAQSection() {
       {/* Architectural archive column texture */}
       <div className="absolute inset-0 texture-architectural-columns opacity-60 pointer-events-none" />
 
-      {/* Atmospheric subtle ambient depth */}
-      <div className="absolute top-1/3 -left-20 w-[700px] h-[550px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 -right-20 w-[700px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.015)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      {/* Architectural Archive Directional Lighting & Pilaster Glows (Zero circular blobs) */}
+      <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-primary/[0.05] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-sky-500/[0.04] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-10">

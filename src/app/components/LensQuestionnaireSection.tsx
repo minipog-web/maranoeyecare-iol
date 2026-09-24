@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
-import { trackEvent } from '@/lib/gtag';
+import { trackEvent, trackQuizStart, trackQuizComplete } from '@/lib/gtag';
 import styles from './LensQuestionnaireSection.module.css';
 
 interface Question {
@@ -269,6 +269,10 @@ export default function LensQuestionnaireSection() {
     setSelectedOption(idx);
     setAnimating(true);
 
+    if (currentId === 'q1' && history.length === 0) {
+      trackQuizStart();
+    }
+
     // Track user selection in GA
     trackEvent({
       action: `quiz_question_${currentId}_answer`,
@@ -285,11 +289,7 @@ export default function LensQuestionnaireSection() {
         setCalculating(true);
 
         // Track quiz completion event with the target recommendation
-        trackEvent({
-          action: 'quiz_complete',
-          category: 'Conversion',
-          label: lens.name,
-        });
+        trackQuizComplete(lens.name, lens.key);
 
         setTimeout(() => {
           setResult(lens);
@@ -381,8 +381,10 @@ export default function LensQuestionnaireSection() {
       {/* Radar concentric focus rings in negative space */}
       <div className="absolute inset-0 texture-radar-concentric opacity-65 pointer-events-none" />
 
-      {/* Centralized subtle guidance aura */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.02)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      {/* Cockpit Guidance Directional Lighting Washes (Zero circular blobs) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-sky-500/[0.05] via-transparent to-primary/[0.05] pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-1/2 h-[350px] bg-gradient-to-br from-sky-500/[0.04] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-1/2 h-[350px] bg-gradient-to-tl from-primary/[0.04] via-transparent to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -515,8 +517,8 @@ export default function LensQuestionnaireSection() {
                       className={`group w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-4 rounded-xl border transition-all duration-300 ease-out cursor-pointer touch-manipulation min-h-[64px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none
                       ${
                         selectedOption === idx
-                          ? 'border-primary bg-primary/10 shadow-[0_0_24px_rgba(197,160,89,0.15)] scale-[0.99]'
-                          : 'border-white/[0.08] bg-white/[0.02] hover:border-primary/45 hover:bg-primary/5 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(197,160,89,0.06)] active:scale-[0.99]'
+                          ? 'border-primary bg-primary/15 shadow-[inset_2px_2px_6px_rgba(0,0,0,0.7),inset_-1px_-1px_3px_rgba(197,160,89,0.25),0_0_20px_rgba(197,160,89,0.2)] scale-[0.99]'
+                          : 'border-white/10 bg-gradient-to-br from-[#161c28] to-[#0c1017] shadow-[-3px_-3px_8px_rgba(255,255,255,0.03),4px_5px_14px_rgba(0,0,0,0.6),inset_1px_1px_1.5px_rgba(255,255,255,0.08)] hover:border-primary/50 hover:shadow-[-4px_-4px_12px_rgba(255,255,255,0.05),6px_7px_18px_rgba(0,0,0,0.7)] hover:-translate-y-0.5 active:scale-[0.99]'
                       }`}
                     >
                       <span
@@ -526,11 +528,11 @@ export default function LensQuestionnaireSection() {
                         {opt.icon}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-foreground font-medium text-sm sm:text-base leading-snug">
+                        <p className="text-white font-semibold text-sm sm:text-base leading-snug group-hover:text-amber-100 transition-colors">
                           {opt.label}
                         </p>
                         {opt.sublabel && (
-                          <p className="text-muted-foreground text-xs mt-0.5">{opt.sublabel}</p>
+                          <p className="text-slate-300 text-xs mt-0.5">{opt.sublabel}</p>
                         )}
                       </div>
                       <span
@@ -675,7 +677,7 @@ export default function LensQuestionnaireSection() {
                   </a>
                   <button
                     onClick={handleRestart}
-                    className="flex items-center justify-center gap-2 px-5 py-4 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="btn-neumorphic-secondary flex items-center justify-center gap-2 px-5 py-4 rounded-xl text-sm transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >
                     <Icon name="ArrowPathIcon" size={16} />
                     Retake Quiz

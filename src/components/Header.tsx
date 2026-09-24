@@ -175,7 +175,7 @@ export default function Header() {
           <Link
             href="/#booking"
             onClick={(e) => handleBookingClick(e, 'desktop')}
-            className="btn-premium-primary btn-shimmer whitespace-nowrap text-xs xl:text-sm px-3 py-2 lg:px-3.5 lg:py-2.5 xl:px-5 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
+            className="btn-premium-primary btn-shimmer rounded-full whitespace-nowrap text-xs xl:text-sm px-3.5 py-2 lg:px-4 lg:py-2.5 xl:px-6 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
           >
             Book Consultation
           </Link>
@@ -230,7 +230,7 @@ export default function Header() {
 
             <Link
               href="/#booking"
-              className="w-full py-3.5 bg-primary text-[#040506] rounded-xl text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation flex items-center justify-center shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="w-full py-3.5 bg-primary text-[#040506] rounded-full text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation flex items-center justify-center shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               onClick={(e) => {
                 handleBookingClick(e, 'mobile');
                 setMenuOpen(false);

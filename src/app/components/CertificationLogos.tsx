@@ -31,13 +31,13 @@ export default function CertificationLogos() {
           {/* Logos Row */}
           <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 w-full lg:w-auto shrink-0 opacity-85 hover:opacity-100 transition-opacity">
             {/* NJ Top Doc */}
-            <div className="flex items-center gap-2.5 bg-primary/[0.04] border border-primary/30 rounded-xl px-3.5 py-2.5 backdrop-blur-sm shadow-sm ring-1 ring-primary/15">
+            <div className="flex items-center gap-2.5 bg-white/[0.02] border border-white/[0.06] rounded-xl px-3.5 py-2.5 backdrop-blur-sm shadow-sm">
               <Icon name="TrophyIcon" size={18} className="text-primary shrink-0" />
               <div className="text-left">
                 <p className="text-[10px] font-extrabold tracking-wider text-foreground leading-none">
                   NJ TOP DOC
                 </p>
-                <p className="text-[8px] text-primary font-semibold uppercase tracking-widest mt-0.5">
+                <p className="text-[8px] text-muted-foreground uppercase tracking-widest mt-0.5">
                   15 Years in a Row
                 </p>
               </div>

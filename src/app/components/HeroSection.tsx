@@ -137,9 +137,9 @@ export default function HeroSection({
       {/* Bespoke Optical Sunrise & Ray Texture Background */}
       <div className="absolute inset-0 texture-hero-optical opacity-40 pointer-events-none" />
 
-      {/* Soft Ambient Lens Aura (whisper-soft atmospheric depth, no harsh circular hot-spots) */}
-      <div className="absolute -top-20 -right-20 w-[900px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.03)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-[700px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.015)_0%,transparent_70%)] blur-[160px] pointer-events-none" />
+      {/* Directional Dawn & Lens Aura Horizon (Seamless optical wash, zero hard edges) */}
+      <div className="absolute top-0 right-0 w-full h-[600px] bg-gradient-to-bl from-primary/[0.08] via-primary/[0.02] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-[400px] bg-gradient-to-tr from-sky-500/[0.05] via-transparent to-transparent pointer-events-none" />
 
       {/* Specular hairline at the hero crown */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent pointer-events-none" />
@@ -149,9 +149,9 @@ export default function HeroSection({
           {/* Left Content */}
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
             {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both max-w-full">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-kicker-wide text-primary text-center sm:text-left">
+            <div className="relative z-10 inline-flex items-center gap-2 sm:gap-2.5 xl:gap-3 px-2.5 sm:px-4 xl:px-5 py-1 sm:py-2 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both whitespace-nowrap shrink-0 flex-nowrap max-w-full">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
+              <span className="text-[8.5px] xs:text-[9.5px] sm:text-xs font-bold uppercase tracking-normal sm:tracking-widest xl:tracking-kicker-wide text-primary whitespace-nowrap shrink-0">
                 {badgeText || 'Premium IOL Specialists • Livingston, Denville & Newark'}
               </span>
             </div>
@@ -197,22 +197,18 @@ export default function HeroSection({
                     label: 'Compare Lenses',
                   })
                 }
-                className="group relative focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-4 px-8 text-base tracking-wide flex items-center justify-center gap-2 rounded-xl border border-border-bright bg-muted/40 font-semibold uppercase text-foreground transition-all duration-300 hover:border-primary/50 hover:bg-muted/80 hover:text-white overflow-hidden"
+                className="group relative focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-3.5 px-8 text-base tracking-wide flex items-center justify-center gap-2 rounded-full btn-neumorphic-secondary font-semibold uppercase text-white transition-all duration-300 min-h-[56px] overflow-hidden"
               >
                 {/* Precision left indicator block */}
-                <span className="absolute left-0 top-0 bottom-0 w-[4px] bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
+                <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
-                {/* Diagnostic subtle corner ticks on hover */}
-                <span className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                <span className="relative z-10 transition-all duration-300 group-hover:translate-x-1">
+                <span className="relative z-10 transition-all duration-300 group-hover:translate-x-0.5">
                   Compare Lenses
                 </span>
                 <Icon
                   name="ChevronDownIcon"
                   size={16}
-                  className="relative z-10 transition-all duration-300 group-hover:translate-y-0.5 group-hover:translate-x-1 text-muted-foreground group-hover:text-primary"
+                  className="relative z-10 transition-all duration-300 group-hover:translate-y-0.5 text-muted-foreground group-hover:text-primary"
                 />
               </a>
             </div>
@@ -292,16 +288,16 @@ export default function HeroSection({
           </div>
 
           {/* Right: Three-Lens Visual Showcase & Vision Reach Meter */}
-          <div className="min-w-0 lg:col-span-5 xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start pt-2 lg:pt-6">
+          <div className="min-w-0 lg:col-span-5 xl:col-span-5 2xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start pt-2 lg:pt-6">
             {/* Lens Cards Row */}
             <div className="w-full flex items-end justify-center lg:justify-end gap-2.5 sm:gap-3.5 xl:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pt-2 pb-2">
               {lenses.map((lens, i) => {
                 const isActive = activeLens === lens.name;
                 const cardOrigin =
                   i === 0
-                    ? 'origin-bottom-right'
+                    ? 'origin-bottom-left'
                     : i === 2
-                      ? 'origin-bottom-left'
+                      ? 'origin-bottom-right'
                       : 'origin-bottom';
                 const delayClass =
                   i === 0
@@ -315,7 +311,7 @@ export default function HeroSection({
                     key={lens.name}
                     onMouseEnter={() => setActiveLens(lens.name)}
                     onPointerEnter={() => setActiveLens(lens.name)}
-                    className={`w-[31%] min-w-[110px] max-w-[135px] sm:w-36 sm:max-w-none lg:w-[136px] xl:w-[162px] 2xl:w-[178px] shrink-0 snap-center sm:snap-align-none ${delayClass}`}
+                    className={`w-[31%] min-w-[110px] max-w-[135px] sm:w-36 sm:max-w-none lg:w-[126px] xl:w-[148px] 2xl:w-[164px] shrink-0 snap-center sm:snap-align-none ${delayClass}`}
                   >
                     <Link
                       href={lens.href}
