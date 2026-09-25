@@ -10,8 +10,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6">
+          <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/"
               aria-label="Marano Eye Care: return to homepage"
@@ -27,14 +27,13 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             {[
               { label: 'Lens Options', href: '/#lenses' },
               { label: 'Vision Simulator', href: '/#vision' },
               { label: 'Optical Physics', href: '/#physics' },
               { label: 'Cataract Guide', href: '/cataract-education' },
               { label: 'Our Doctors', href: '/#trust' },
-              { label: 'Book Consultation', href: '/#booking' },
             ].map((link) => (
               <Link
                 key={link.href}
@@ -56,41 +55,37 @@ export default function Footer() {
                     }
                   }
                 }}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2 px-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Social + legal */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+          {/* Phone + Dedicated Book Consultation CTA */}
+          <div className="flex items-center gap-3 shrink-0">
             <a
               href="tel:9733220100"
               suppressHydrationWarning
-              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation py-2.5 px-3 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation py-2 px-3 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <Icon name="PhoneIcon" size={14} className="text-primary" />
               <span suppressHydrationWarning>(973) 322-0100</span>
             </a>
-            <span className="text-border hidden sm:inline">·</span>
-            <a
-              href="https://www.maranoeyecare.com/privacy-policy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
+            <Link
+              href="/#booking"
+              onClick={(e) => {
+                const targetEl = document.getElementById('booking');
+                if (targetEl) {
+                  e.preventDefault();
+                  smoothScrollToElement('booking');
+                  window.history.pushState(null, '', '#booking');
+                }
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-black font-semibold text-xs tracking-wider uppercase transition-all shadow-[0_0_12px_rgba(197,160,89,0.15)] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
-              Privacy
-            </a>
-            <span className="text-border hidden sm:inline">·</span>
-            <a
-              href="https://www.maranoeyecare.com/terms-of-use"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
-            >
-              Terms
-            </a>
+              Book Consultation
+            </Link>
           </div>
         </div>
 
@@ -99,9 +94,27 @@ export default function Footer() {
             © 2026 Marano Eye Care. Matthew Marano Jr., MD &amp; Sherief Raouf, MD. All rights
             reserved.
           </p>
-          <p className="flex flex-wrap items-center justify-center gap-2 md:justify-end">
+          <div className="flex flex-wrap items-center justify-center gap-2 md:justify-end">
             <span>Livingston · Denville · Newark, NJ</span>
-            <span className="hidden sm:inline">·</span>
+            <span className="hidden sm:inline text-border">·</span>
+            <a
+              href="https://www.maranoeyecare.com/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            >
+              Privacy Policy
+            </a>
+            <span className="text-border">·</span>
+            <a
+              href="https://www.maranoeyecare.com/terms-of-use"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            >
+              Terms of Use
+            </a>
+            <span className="text-border">·</span>
             <a
               href="https://www.maranoeyecare.com"
               target="_blank"
@@ -110,7 +123,7 @@ export default function Footer() {
             >
               www.maranoeyecare.com
             </a>
-            <span>·</span>
+            <span className="text-border">·</span>
             <a
               href="https://www.onjeyecare.com"
               target="_blank"
@@ -119,7 +132,7 @@ export default function Footer() {
             >
               www.onjeyecare.com
             </a>
-          </p>
+          </div>
         </div>
 
         {/* Clinical References & Footnotes */}

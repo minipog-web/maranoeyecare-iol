@@ -80,7 +80,7 @@ const allFAQs: FAQItem[] = [
     answer:
       'Yes. Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD personally perform every cataract surgery. You will meet directly with your surgeon during your consultation, and they will personally perform your procedure and oversee your post-operative care.',
     takeaway:
-      '100% direct surgeon care — your surgeon examines your eyes, maps your cornea, and performs your operation.',
+      '100% direct surgeon care: your surgeon examines your eyes, maps your cornea, and performs your operation.',
   },
   {
     id: 'surgery-location',
@@ -110,7 +110,7 @@ const allFAQs: FAQItem[] = [
     answer:
       'No. Numbing eye drops are used with no needles, no injections, and no general anesthesia. Most patients describe feeling light pressure for a few minutes, but no pain. You remain awake and comfortable throughout.',
     takeaway:
-      'Topical numbing drops only — zero needles, zero stitches, and zero general anesthesia.',
+      'Topical numbing drops only: zero needles, zero stitches, and zero general anesthesia.',
   },
   {
     id: 'hsa-fsa',
@@ -448,7 +448,7 @@ export default function FAQSection() {
 
           {/* Right: Unified Luxury FAQ List */}
           <div className="w-full lg:w-[70%]">
-            {/* Category Filter Buttons — Arrayed Horizontally */}
+            {/* Category Filter Buttons: Arrayed Horizontally */}
             <div
               className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-6"
               role="tablist"

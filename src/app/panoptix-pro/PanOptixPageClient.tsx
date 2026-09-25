@@ -391,9 +391,9 @@ export default function PanOptixPageClient() {
               While purely refractive lenses like TECNIS PureSee transmit ~100% of light by avoiding
               diffractive rings, traditional trifocal lenses historically lost up to 18–20% of light
               to scatter. Alcon’s proprietary ENLIGHTEN® optical system delivers 88% of transmitted
-              light directly to the retina—the highest efficiency of any diffractive trifocal
-              IOL—distributing sharp focus seamlessly across distance, intermediate, and dedicated
-              40 cm near vision{' '}
+              light directly to the retina, achieving the highest efficiency of any diffractive
+              trifocal IOL while distributing sharp focus seamlessly across distance, intermediate,
+              and dedicated 40 cm near vision{' '}
               <sup className="text-[10px] font-bold text-primary inline-block ml-0.5">
                 <a href="#footnote-1" className="text-primary hover:underline font-bold">
                   [1]
@@ -420,7 +420,7 @@ export default function PanOptixPageClient() {
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed font-light">
                     {renderFootnoteText(
-                      'Unlike older European trifocals tuned for 80 cm, PanOptix places intermediate focus at 60 cm (24 inches)—the exact natural arm’s-length distance for computer monitors, tablets, and car instrument panels [1].'
+                      'Unlike older European trifocals tuned for 80 cm, PanOptix places intermediate focus at 60 cm (24 inches), the exact natural arm’s-length distance for computer monitors, tablets, and car instrument panels [1].'
                     )}
                   </p>
                 </div>

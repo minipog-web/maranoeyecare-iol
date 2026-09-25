@@ -193,7 +193,7 @@ export default function CataractFormationSection() {
             </span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
-            A cataract is not a growth on top of the eye—it is the natural aging and breakdown of
+            A cataract is not a growth on top of the eye; it is the natural aging and breakdown of
             proteins inside your biological crystalline lens. Learn how it progresses from mild haze
             to brown opacity, and how modern acrylic IOLs permanently restore clear sight.
           </p>
@@ -416,7 +416,7 @@ export default function CataractFormationSection() {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
-                    Dr. Matthew Marano Jr., MD — Clinical Perspective
+                    Dr. Matthew Marano Jr., MD | Clinical Perspective
                   </p>
                   <p className="text-xs sm:text-sm text-foreground/90 italic leading-relaxed">
                     &ldquo;{activeStage.doctorNote}&rdquo;

@@ -100,7 +100,7 @@ export default function CataractEducationTeaserSection() {
                   Cataracts develop when natural crystalline proteins gradually oxidize and clump
                   over decades, scattering incoming light before it can reach the retina. Modern
                   microsurgery replaces the clouded natural lens with a clear, biocompatible acrylic
-                  IOL that permanently restores sharp focus—and can never develop cataracts again.
+                  IOL that permanently restores sharp focus and can never develop cataracts again.
                 </p>
 
                 <div className="mt-3.5 p-3 rounded-2xl bg-white/[0.02] border border-white/[0.07] backdrop-blur-sm flex items-start gap-3">

@@ -9,14 +9,14 @@ import PureSeePageClient from './PureSeePageClient';
 export const metadata: Metadata = {
   title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',
   description:
-    'Comprehensive clinical guide to the TECNIS PureSee™ IOL by Johnson & Johnson MedTech — the latest, most cutting-edge refractive EDOF lens. Discover pure refractive continuous zonal optics, 100% light utilization, zero FDA contrast warning, and comparisons with PanOptix and Vivity.',
+    'Comprehensive clinical guide to the TECNIS PureSee™ IOL by Johnson & Johnson MedTech, the latest refractive EDOF lens. Discover pure refractive continuous zonal optics, 100% light utilization, zero FDA contrast warning, and comparisons with PanOptix and Vivity.',
   alternates: {
     canonical: '/tecnis-puresee',
   },
   openGraph: {
     title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',
     description:
-      'Explore the TECNIS PureSee™ — the latest, most cutting-edge purely refractive EDOF lens with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. Zero diffractive rings, monofocal-like night vision, and continuous intermediate clarity with LENSAR ALLY laser precision.',
+      'Explore the TECNIS PureSee™, the latest purely refractive EDOF lens, with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. Zero diffractive rings, monofocal-like night vision, and continuous intermediate clarity with LENSAR ALLY laser precision.',
     url: 'https://premium-iol.maranoeye.com/tecnis-puresee',
     siteName: 'Marano Eye Care',
     images: [

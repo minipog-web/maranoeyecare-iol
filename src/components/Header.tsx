@@ -139,7 +139,7 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Desktop Nav — pill with subtle gradient border */}
+        {/* Desktop Nav: pill with subtle gradient border */}
         <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 px-1.5 xl:px-2 py-1 xl:py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
           {navLinks.map((link) => {
             const isActive = link.href === pathname;

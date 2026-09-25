@@ -756,7 +756,7 @@ export default function CataractEducation3DViewer({
           <div className="flex items-center gap-2 text-foreground/90">
             <span className="text-primary font-bold">Clinical Ray Finding:</span>
             <span className="text-muted-foreground">
-              {activeStage.status} — {transmissionNum}% of incoming light penetrates to the retina.
+              {activeStage.status}: {transmissionNum}% of incoming light reaches the retina.
             </span>
           </div>
           {isIOLActive ? (

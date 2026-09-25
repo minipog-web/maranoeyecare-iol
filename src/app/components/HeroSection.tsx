@@ -149,10 +149,20 @@ export default function HeroSection({
           {/* Left Content */}
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
             {/* Eyebrow Badge */}
-            <div className="relative z-10 inline-flex items-center gap-2 sm:gap-2.5 xl:gap-3 px-3.5 sm:px-4 xl:px-5 py-1.5 sm:py-2 rounded-full bg-[#0D0E12] border-2 border-[#C5A059] mb-5 sm:mb-8 animate-fade-up fill-both whitespace-nowrap shrink-0 flex-nowrap max-w-full shadow-[0_0_16px_rgba(197,160,89,0.28)]">
-              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#E5C178] animate-pulse shrink-0 shadow-[0_0_8px_rgba(229,193,120,0.85)]" />
-              <span className="text-[10px] xs:text-xs sm:text-sm font-black uppercase tracking-wider sm:tracking-widest text-[#F5D48B] whitespace-nowrap shrink-0">
-                {badgeText || 'Premium IOL Specialists • Livingston, Denville & Newark'}
+            <div className="relative z-10 inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/35 mb-5 sm:mb-8 animate-fade-up fill-both whitespace-nowrap shrink-0 flex-nowrap max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#FAE8C8] shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.5)]" />
+              <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] whitespace-nowrap shrink-0">
+                {badgeText ? (
+                  badgeText
+                ) : (
+                  <>
+                    <span>Premium IOL Specialists</span>
+                    <span className="mx-1.5 text-[#C5A059]/50 font-normal">•</span>
+                    <span className="text-[#E2C28A]/90 font-medium">
+                      Livingston, Denville &amp; Newark
+                    </span>
+                  </>
+                )}
               </span>
             </div>
 

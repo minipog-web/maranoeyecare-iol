@@ -159,12 +159,12 @@ const cataractFaqs = [
   {
     question: 'Can a cataract ever grow back after surgery?',
     answer:
-      'No. A cataract cannot grow back because your natural biological lens—where cataract proteins form—has been completely removed. In some patients, the clear membrane (capsular bag) that supports the new lens can develop a mild haze months or years later, called Posterior Capsule Opacification (PCO). This is easily, permanently cleared in under 60 seconds with a quick, painless in-office YAG laser procedure.',
+      'No. A cataract cannot grow back because your natural biological lens, where cataract proteins form, has been completely removed. In some patients, the clear membrane (capsular bag) that supports the new lens can develop a mild haze months or years later, called Posterior Capsule Opacification (PCO). This is easily, permanently cleared in under 60 seconds with a quick, painless in-office YAG laser procedure.',
   },
   {
     question: 'At what stage should I have cataract surgery?',
     answer:
-      'In modern ophthalmology, you no longer need to wait for a cataract to become "ripe" or brown. The ideal time for surgery is when cataract haze begins interfering with your daily quality of life—such as night driving glare, difficulty reading in low light, or washed-out colors. Removing the cataract during moderate stages ensures faster laser fragmentation and quicker recovery.',
+      'In modern ophthalmology, you no longer need to wait for a cataract to become "ripe" or brown. The ideal time for surgery is when cataract haze begins interfering with your daily quality of life, such as night driving glare, difficulty reading in low light, or washed-out colors. Removing the cataract during moderate stages ensures faster laser fragmentation and quicker recovery.',
   },
   {
     question: 'Why don’t updated eyeglasses clear my vision anymore?',
@@ -228,7 +228,7 @@ export default function CataractEducationClient() {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-3xl mx-auto font-normal">
-            A cataract is not a growth or film across the eye—it is the biological breakdown and
+            A cataract is not a growth or film across the eye; it is the biological breakdown and
             clumping of crystalline proteins deep inside your natural biological lens. Explore the 5
             optical progression stages below and discover how clear medical acrylic IOLs provide a
             permanent replacement that never fogs or degrades.
@@ -499,7 +499,7 @@ export default function CataractEducationClient() {
                 Active Clinical Breakdown:
               </span>
               <span className="text-foreground font-bold font-display text-sm text-gradient-primary">
-                Stage 0{activeStage.id} — {activeStage.stageName}
+                Stage 0{activeStage.id}: {activeStage.stageName}
               </span>
             </div>
             <div className="flex items-center gap-2 text-[11px] text-muted-foreground/80">

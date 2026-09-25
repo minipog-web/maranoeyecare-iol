@@ -40,7 +40,7 @@ const costPillars: CostPillar[] = [
     title: 'Advanced Lifestyle IOLs',
     subtitle: 'Clareon Vivity · PanOptix Pro · TECNIS PureSee',
     priceHeadline: 'The Optical Difference',
-    priceSub: 'Insurance covers the surgery — you only invest in the lens upgrade',
+    priceSub: 'Insurance covers the surgery; you only invest in the lens upgrade',
     highlights: [
       'Seamless multi-distance visual freedom (distance, intermediate & near)',
       'Toric astigmatism correction included at no additional charge',
@@ -61,7 +61,7 @@ const costPillars: CostPillar[] = [
     highlights: [
       '24-month 0% APR deferred interest financing from ~$170/mo for advanced premium IOLs',
       'Laser-only option available from ~$66/mo over 24 months (without premium lens)',
-      'HSA & FSA 100% eligible — save an immediate 20%–35% using pre-tax dollars',
+      '100% HSA and FSA eligible: save an immediate 20%–35% using pre-tax dollars',
       'Zero pre-payment penalties or hidden maintenance fees',
       'Soft credit check pre-qualification in 2 minutes with dedicated coordinator support',
     ],

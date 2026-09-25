@@ -42,8 +42,8 @@ const raoufCredentials = [
   },
   {
     value: 'Clinical Fellowship',
-    label: 'Cornea & Refractive Surgery',
-    sublabel: 'Advanced Subspecialty Surgical Training',
+    label: 'UIC Eye & Ear Infirmary',
+    sublabel: 'Cornea, External Disease & Refractive Surgery',
     icon: 'SparklesIcon',
   },
   {
@@ -312,7 +312,7 @@ export default function TrustSection() {
                   Cornea &amp; Refractive
                 </p>
                 <p className="text-xs text-foreground/90 mt-1 leading-snug font-medium">
-                  Manhattan Eye, Ear &amp; Throat Hospital
+                  UIC Eye &amp; Ear Infirmary
                 </p>
               </div>
             </div>
@@ -332,9 +332,10 @@ export default function TrustSection() {
                   fellowship-trained cornea and refractive surgeon. Born and raised in Bergen
                   County, NJ, Dr. Raouf completed his medical degree with honors at Stony Brook
                   University, followed by residency at Manhattan Eye, Ear &amp; Throat Hospital and
-                  advanced fellowship training in corneal and laser refractive surgery. He pairs
-                  deep anterior segment expertise with sub-micron femtosecond laser technology to
-                  customize every intraocular lens procedure.
+                  advanced fellowship training in corneal and laser refractive surgery at the
+                  prestigious UIC Eye and Ear Infirmary. He pairs deep anterior segment expertise
+                  with sub-micron femtosecond laser technology to customize every intraocular lens
+                  procedure.
                 </p>
               </div>
 

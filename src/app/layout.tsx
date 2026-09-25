@@ -203,6 +203,11 @@ const schemas = [
         jobTitle: 'Board-Certified Ophthalmologist & Cornea Subspecialist',
         medicalSpecialty: ['Ophthalmology', 'Corneal and External Diseases', 'Refractive Surgery'],
         almaMater: 'Renaissance School of Medicine at Stony Brook University',
+        alumniOf: [
+          'Renaissance School of Medicine at Stony Brook University',
+          'Manhattan Eye, Ear & Throat Hospital (Residency)',
+          'Illinois Eye and Ear Infirmary (UIC - Fellowship)',
+        ],
         url: 'https://www.maranoeye.com/provider/sherief-raouf-md',
         image: 'https://premium-iol.maranoeye.com/assets/images/Raouf.jpg',
         sameAs: ['https://www.maranoeye.com/provider/sherief-raouf-md'],

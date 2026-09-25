@@ -77,7 +77,7 @@ const faqs = [
   {
     question: 'How does Clareon Vivity differ from a standard monofocal lens?',
     answer:
-      'A standard monofocal lens (the type covered by standard Medicare) provides sharp vision at only one fixed focal distance—typically far distance. With a monofocal lens, you will require glasses for your computer, dashboard, cell phone, and reading. The Clareon Vivity stretches light into an extended continuous corridor, giving you clear distance vision PLUS sharp intermediate vision (screens, dashboards, cooking) and functional near vision without increasing nighttime glare.',
+      'A standard monofocal lens (the type covered by standard Medicare) provides sharp vision at only one fixed focal distance, typically far distance. With a monofocal lens, you will require glasses for your computer, dashboard, cell phone, and reading. The Clareon Vivity stretches light into an extended continuous corridor, giving you clear distance vision PLUS sharp intermediate vision (screens, dashboards, cooking) and functional near vision without increasing nighttime glare.',
   },
   {
     question: 'Why is Clareon Vivity considered the best lens for night driving?',
@@ -107,7 +107,7 @@ const faqs = [
   {
     question: 'How long does the recovery take after Clareon Vivity surgery?',
     answer:
-      'Laser cataract surgery with the Clareon Vivity takes approximately 10 minutes per eye at Ridgedale Surgery Center in Cedar Knolls. Our surgeons use 100% topical numbing eye drops—no needles, no retrobulbar injections, and no general anesthesia. Most patients return to light driving, reading, and screen use within 24 to 48 hours.',
+      'Laser cataract surgery with the Clareon Vivity takes approximately 10 minutes per eye at Ridgedale Surgery Center in Cedar Knolls. Our surgeons use 100% topical numbing eye drops with no needles, no retrobulbar injections, and no general anesthesia. Most patients return to light driving, reading, and screen use within 24 to 48 hours.',
   },
 ];
 

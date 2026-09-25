@@ -15,14 +15,14 @@
   letter-spacing: 0.12em;
 }
 
-/* PanOptix — #3A86FF */
+/* PanOptix: #3A86FF */
 .lensPanoptix .lensBadge {
   background-color: rgba(58, 134, 255, 0.1);
   color: #3a86ff;
   border: 1px solid rgba(58, 134, 255, 0.22);
 }
 
-/* Vivity — #c5a059 */
+/* Vivity: #c5a059 */
 .lensVivity .lensBadge {
   background-color: rgba(var(--primary-rgb), 0.1);
   color: #c5a059;

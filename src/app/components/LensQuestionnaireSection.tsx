@@ -214,7 +214,7 @@ const QUESTIONS: Record<string, Question> = {
         label: 'Extremely important, I drive frequently after dark and want minimal glare',
         sublabel: 'Prioritize halo-free night vision',
         icon: '💡',
-        next: 'q5',
+        next: 'result:vivity',
       },
       {
         label: 'Flexible, I can easily adapt if it gives me complete glasses-free near vision',
@@ -252,7 +252,7 @@ function getProgressPercent(history: string[]): number {
   return Math.min(Math.round((history.length / TOTAL_QUESTIONS) * 100), 90);
 }
 
-// progressWidthClass removed — width driven via CSS custom property set by ref
+// progressWidthClass removed: width driven via CSS custom property set by ref
 
 export default function LensQuestionnaireSection() {
   const [currentId, setCurrentId] = useState<string>('q1');

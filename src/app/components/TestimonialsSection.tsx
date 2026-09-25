@@ -23,7 +23,7 @@ const testimonials = [
   {
     concern: 'Feeling rushed & pressure to book surgery',
     quote:
-      "I consulted two other practices before finding Dr. Raouf. Everywhere else felt like an assembly line where surgeons pushed immediate booking. Dr. Raouf was the complete opposite—he is extraordinarily kind, sat with me for over forty minutes, and explained every scan and lens nuance in plain English. He told me, 'We do not operate until you feel 100% ready.' That zero-pressure guidance gave me complete peace of mind. The surgery was completely painless, and he personally called me that evening to check on my recovery. My vision with the Clareon Vivity is razor-sharp—truly life-changing results.",
+      "I consulted two other practices before finding Dr. Raouf. Everywhere else felt like an assembly line where surgeons pushed immediate booking. Dr. Raouf was the complete opposite. He is extraordinarily kind, sat with me for over forty minutes, and explained every scan and lens nuance in plain English. He told me, 'We do not operate until you feel 100% ready.' That zero-pressure guidance gave me complete peace of mind. The surgery was completely painless, and he personally called me that evening to check on my recovery. My vision with the Clareon Vivity is razor-sharp and the results are truly life-changing.",
     name: 'Thomas B.',
     location: 'Short Hills, NJ',
     surgeon: 'Dr. Sherief Raouf',
@@ -47,7 +47,7 @@ const testimonials = [
   {
     concern: 'Post-op recovery & after-hours questions',
     quote:
-      "As a retired nurse, I had dozens of questions about healing timelines and drops. Dr. Raouf answered every single one with genuine warmth and never made me feel rushed. When I had an urgent question late on a Thursday evening, I expected an answering service; instead, Dr. Raouf personally called me back within twenty minutes to reassure me. His surgical skill is remarkable—my vision is 20/15 today, and I haven't touched glasses in six months. His bedside manner and follow-up care are unmatched.",
+      "As a retired nurse, I had dozens of questions about healing timelines and drops. Dr. Raouf answered every single one with genuine warmth and never made me feel rushed. When I had an urgent question late on a Thursday evening, I expected an answering service; instead, Dr. Raouf personally called me back within twenty minutes to reassure me. His surgical skill is remarkable. My vision is 20/15 today, and I haven't touched glasses in six months. His bedside manner and follow-up care are unmatched.",
     name: 'Donna S.',
     location: 'Florham Park, NJ',
     surgeon: 'Dr. Sherief Raouf',
@@ -71,7 +71,7 @@ const testimonials = [
   {
     concern: 'Corneal astigmatism & fear of surgical complications',
     quote:
-      "Having had prior corneal issues, I was terrified that cataract surgery would leave me with distortion. Dr. Raouf's advanced Cornea and Refractive fellowship training at MEETH immediately put my mind at ease. He took unhurried time during my consultation, mapped my eyes with the LENSAR laser, and recommended the PureSee. The results have been completely life-changing—colors are vibrant, street signs are crisp from a block away, and night driving is effortless. He checked in on me personally after the procedure. An exceptional surgeon.",
+      "Having had prior corneal issues, I was terrified that cataract surgery would leave me with distortion. Dr. Raouf's advanced Cornea and Refractive fellowship training at UIC Eye and Ear immediately put my mind at ease. He took unhurried time during my consultation, mapped my eyes with the LENSAR laser, and recommended the PureSee. The results have been completely life-changing: colors are vibrant, street signs are crisp from a block away, and night driving is effortless. He checked in on me personally after the procedure. An exceptional surgeon.",
     name: 'Marcus L.',
     location: 'Montclair, NJ',
     surgeon: 'Dr. Sherief Raouf',
@@ -314,7 +314,7 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Surgical Team Clinical Philosophy Card — Authority & Trust */}
+          {/* Surgical Team Clinical Philosophy Card: Authority & Trust */}
           <div className="mt-8 sm:mt-12">
             <div
               onMouseMove={handleSpotlightMouseMove}
@@ -395,7 +395,7 @@ export default function TestimonialsSection() {
                           Board-Certified Ophthalmologist · Cornea Subspecialist
                         </p>
                         <p className="text-[11px] text-muted-foreground mt-0.5">
-                          MEETH Fellowship Trained · 12+ Published Research Studies
+                          UIC Eye &amp; Ear Fellowship Trained · 12+ Published Research Studies
                         </p>
                       </div>
                     </div>

@@ -9,21 +9,21 @@
   letter-spacing: 0.12em;
 }
 
-/* PanOptix — #8B5CF6 */
+/* PanOptix: #8B5CF6 */
 .lensPanoptix .lensBadge {
   background-color: rgba(139, 92, 246, 0.1);
   color: #8b5cf6;
   border: 1px solid rgba(139, 92, 246, 0.22);
 }
 
-/* Vivity — #c5a059 */
+/* Vivity: #c5a059 */
 .lensVivity .lensBadge {
   background-color: rgba(var(--primary-rgb), 0.1);
   color: #c5a059;
   border: 1px solid rgba(var(--primary-rgb), 0.22);
 }
 
-/* PureSee — #00a3ff */
+/* PureSee: #00a3ff */
 .lensPuresee .lensBadge {
   background-color: rgba(0, 163, 255, 0.1);
   color: #00a3ff;

@@ -83,7 +83,7 @@ const cataractSchemas = [
         name: 'Can a cataract ever grow back after surgery?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. A cataract cannot grow back because your natural biological lens—where cataract proteins form—has been completely removed and replaced with an artificial acrylic IOL that never degrades or turns cloudy.',
+          text: 'No. A cataract cannot grow back because your natural biological lens, where cataract proteins form, has been completely removed and replaced with an artificial acrylic IOL that never degrades or turns cloudy.',
         },
       },
       {

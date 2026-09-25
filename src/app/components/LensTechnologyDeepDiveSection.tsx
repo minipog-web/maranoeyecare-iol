@@ -895,7 +895,7 @@ export default function LensTechnologyDeepDiveSection() {
                       </a>
                     </sup>
                     . Utilizing continuous surface curvature without diffractive rings, 100% of
-                    light is harnessed without scatter—delivering natural, dysphotopsia-free night
+                    light is harnessed without scatter, delivering natural, dysphotopsia-free night
                     driving and clear intermediate vision.
                   </>
                 )}
