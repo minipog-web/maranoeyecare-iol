@@ -166,7 +166,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="py-16 sm:py-24 border-t border-white/[0.04] relative overflow-hidden bg-section-testimonials"
+      className="py-16 sm:py-24 border-t border-white/[0.04] relative overflow-hidden bg-section-testimonials scroll-mt-24 sm:scroll-mt-28"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -407,58 +407,68 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Locations */}
-        <div className={`mt-10 sm:mt-12 pt-8 sm:pt-10 ${styles.locationsWrapper}`}>
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-4 sm:mb-6 text-center">
-              Three Convenient New Jersey Locations
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-              {[
-                {
-                  city: 'Denville',
-                  phone: '(973) 358-0416',
-                  address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
-                },
-                {
-                  city: 'Livingston',
-                  phone: '(973) 322-0100',
-                  address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
-                },
-                {
-                  city: 'Newark',
-                  phone: '(973) 315-6439',
-                  address: '306 Martin L. King Blvd, Newark, NJ 07102',
-                },
-              ].map((loc) => (
-                <a
-                  key={loc.city}
-                  href={`tel:${loc.phone.replace(/[()\s-]/g, '')}`}
-                  suppressHydrationWarning
-                  onMouseMove={handleSpotlightMouseMove}
-                  className="relative overflow-hidden flex items-center gap-4 glass-card border border-border rounded-3xl p-4 sm:p-5 card-hover-glow group touch-manipulation min-h-[72px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                >
-                  {/* Dynamic Mouse Spotlight Glow */}
-                  <div
-                    className={`${styles.spotlight} ${styles.spotlightSm} ${styles.blur50} ${styles.spotlightPrimary} group-hover:opacity-10`}
-                  />
+        <div className="mt-8 sm:mt-12">
+          <div
+            onMouseMove={handleSpotlightMouseMove}
+            className="group relative overflow-hidden glass-card border border-primary/20 rounded-3xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-primary/[0.04] to-transparent"
+          >
+            {/* Dynamic Mouse Spotlight */}
+            <div
+              className={`${styles.spotlight} ${styles.spotlightLg} ${styles.blur80} ${styles.spotlightPrimary} group-hover:opacity-10`}
+            />
 
-                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors z-10">
-                    <Icon name="PhoneIcon" size={18} className="text-primary" />
-                  </div>
-                  <div className="z-10 flex flex-col gap-0.5">
-                    <p className="text-sm font-bold text-foreground leading-tight">{loc?.city}</p>
-                    <p className="text-xs text-muted-foreground line-clamp-1 leading-normal">
-                      {loc?.address}
-                    </p>
-                    <p
-                      className="text-sm font-semibold text-primary group-hover:underline leading-tight"
-                      suppressHydrationWarning
-                    >
-                      {loc?.phone}
-                    </p>
-                  </div>
-                </a>
-              ))}
+            <div className="relative z-10">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-4 sm:mb-6 text-center">
+                Three Convenient New Jersey Locations
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                {[
+                  {
+                    city: 'Denville',
+                    phone: '(973) 358-0416',
+                    address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
+                  },
+                  {
+                    city: 'Livingston',
+                    phone: '(973) 322-0100',
+                    address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
+                  },
+                  {
+                    city: 'Newark',
+                    phone: '(973) 315-6439',
+                    address: '306 Martin L. King Blvd, Newark, NJ 07102',
+                  },
+                ].map((loc) => (
+                  <a
+                    key={loc.city}
+                    href={`tel:${loc.phone.replace(/[()\s-]/g, '')}`}
+                    suppressHydrationWarning
+                    onMouseMove={handleSpotlightMouseMove}
+                    className="relative overflow-hidden flex items-center gap-4 bg-background/60 hover:bg-background/90 border border-white/10 hover:border-primary/40 rounded-2xl p-4 sm:p-5 transition-all duration-300 group/card touch-manipulation min-h-[72px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                  >
+                    {/* Dynamic Mouse Spotlight Glow */}
+                    <div
+                      className={`${styles.spotlight} ${styles.spotlightSm} ${styles.blur50} ${styles.spotlightPrimary} group-hover/card:opacity-15`}
+                    />
+
+                    <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover/card:bg-primary/20 transition-colors z-10">
+                      <Icon name="PhoneIcon" size={18} className="text-primary" />
+                    </div>
+                    <div className="z-10 flex flex-col gap-0.5">
+                      <p className="text-sm font-bold text-foreground leading-tight">{loc?.city}</p>
+                      <p className="text-xs text-muted-foreground line-clamp-1 leading-normal">
+                        {loc?.address}
+                      </p>
+                      <p
+                        className="text-sm font-semibold text-primary group-hover/card:underline leading-tight"
+                        suppressHydrationWarning
+                      >
+                        {loc?.phone}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

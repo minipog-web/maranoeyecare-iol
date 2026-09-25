@@ -2,12 +2,13 @@
 
 import React from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { smoothScrollToElement } from '@/lib/ui';
 
 export default function CandidacySection() {
   return (
     <section
       id="candidacy"
-      className="py-16 sm:py-24 relative overflow-hidden bg-section-candidacy border-t border-white/[0.04]"
+      className="py-16 sm:py-24 relative overflow-hidden bg-section-candidacy border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
     >
       {/* Integrity micro-mesh texture */}
       <div className="absolute inset-0 texture-integrity-mesh opacity-40 pointer-events-none" />
@@ -149,9 +150,14 @@ export default function CandidacySection() {
           </div>
           <a
             href="#booking"
+            onClick={(e) => {
+              e.preventDefault();
+              smoothScrollToElement('booking');
+              window.history.pushState(null, '', '#booking');
+            }}
             className="group shrink-0 inline-flex items-center justify-center pl-6 pr-2.5 py-2.5 bg-primary text-[#040506] rounded-full text-xs font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[44px] shadow-[0_4px_12px_rgba(197,160,89,0.2)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
-            <span>Check Candidacy</span>
+            <span>Schedule Candidacy Exam</span>
             <div className="ml-3 w-6 h-7 rounded-full bg-black/10 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 shrink-0">
               <Icon name="ArrowRightIcon" size={14} className="text-current" />
             </div>

@@ -87,12 +87,3 @@
 .blur50 {
   filter: blur(50px);
 }
-
-.locationsWrapper {
-  border-top: 1px solid transparent;
-  background-image:
-    linear-gradient(var(--background), var(--background)),
-    linear-gradient(90deg, transparent, rgba(var(--primary-rgb), 0.2), transparent);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-}

@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 
 export type FAQCategory =
   | 'All Questions'
@@ -353,7 +354,7 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="py-16 sm:py-24 relative overflow-hidden bg-section-faq border-t border-white/[0.04]"
+      className="py-16 sm:py-24 relative overflow-hidden bg-section-faq border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
     >
       {/* FAQ Schema Markup */}
       <script
@@ -409,13 +410,16 @@ export default function FAQSection() {
               </p>
               <a
                 href="#booking"
-                onClick={() =>
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollToElement('booking');
+                  window.history.pushState(null, '', '#booking');
                   trackEvent({
                     action: 'faq_booking_click',
                     category: 'Engagement',
                     label: 'Book a Free Consultation',
-                  })
-                }
+                  });
+                }}
                 className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 Schedule Personal Consultation

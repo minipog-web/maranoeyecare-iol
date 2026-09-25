@@ -1,7 +1,10 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
+import { smoothScrollToElement } from '@/lib/ui';
 
 export default function Footer() {
   return (
@@ -27,7 +30,8 @@ export default function Footer() {
           <nav className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
             {[
               { label: 'Lens Options', href: '/#lenses' },
-              { label: 'Vision Outcomes', href: '/#vision' },
+              { label: 'Vision Simulator', href: '/#vision' },
+              { label: 'Optical Physics', href: '/#physics' },
               { label: 'Cataract Guide', href: '/cataract-education' },
               { label: 'Our Doctors', href: '/#trust' },
               { label: 'Book Consultation', href: '/#booking' },
@@ -35,6 +39,23 @@ export default function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={(e) => {
+                  if (link.href.includes('#')) {
+                    const [, hash] = link.href.split('#');
+                    const targetEl = document.getElementById(hash);
+                    if (targetEl) {
+                      e.preventDefault();
+                      smoothScrollToElement(hash);
+                      window.history.pushState(null, '', `#${hash}`);
+                    } else {
+                      try {
+                        sessionStorage.setItem('pending-scroll-hash', hash);
+                      } catch {
+                        // ignore
+                      }
+                    }
+                  }
+                }}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2.5 px-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none inline-block"
               >
                 {link.label}

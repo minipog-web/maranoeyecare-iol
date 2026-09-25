@@ -5,7 +5,7 @@ import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
-import { renderFootnoteText } from '@/lib/ui';
+import { renderFootnoteText, smoothScrollToElement } from '@/lib/ui';
 
 const lenses = [
   {
@@ -149,9 +149,9 @@ export default function HeroSection({
           {/* Left Content */}
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
             {/* Eyebrow Badge */}
-            <div className="relative z-10 inline-flex items-center gap-2 sm:gap-2.5 xl:gap-3 px-2.5 sm:px-4 xl:px-5 py-1 sm:py-2 rounded-full border border-primary/20 bg-primary/5 mb-5 sm:mb-8 shimmer-border animate-fade-up fill-both whitespace-nowrap shrink-0 flex-nowrap max-w-full">
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
-              <span className="text-[8.5px] xs:text-[9.5px] sm:text-xs font-bold uppercase tracking-normal sm:tracking-widest xl:tracking-kicker-wide text-primary whitespace-nowrap shrink-0">
+            <div className="relative z-10 inline-flex items-center gap-2 sm:gap-2.5 xl:gap-3 px-3.5 sm:px-4 xl:px-5 py-1.5 sm:py-2 rounded-full bg-[#0D0E12] border-2 border-[#C5A059] mb-5 sm:mb-8 animate-fade-up fill-both whitespace-nowrap shrink-0 flex-nowrap max-w-full shadow-[0_0_16px_rgba(197,160,89,0.28)]">
+              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#E5C178] animate-pulse shrink-0 shadow-[0_0_8px_rgba(229,193,120,0.85)]" />
+              <span className="text-[10px] xs:text-xs sm:text-sm font-black uppercase tracking-wider sm:tracking-widest text-[#F5D48B] whitespace-nowrap shrink-0">
                 {badgeText || 'Premium IOL Specialists • Livingston, Denville & Newark'}
               </span>
             </div>
@@ -173,14 +173,17 @@ export default function HeroSection({
             {/* Action CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-2">
               <a
-                href="#booking"
-                onClick={() =>
+                href="#lens-quiz"
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollToElement('lens-quiz');
+                  window.history.pushState(null, '', '#lens-quiz');
                   trackEvent({
                     action: 'hero_primary_cta_click',
                     category: 'Engagement',
                     label: 'Check My Lens Candidacy',
-                  })
-                }
+                  });
+                }}
                 className="group inline-flex items-center justify-between sm:justify-center gap-4 pl-8 pr-3 py-3 bg-primary text-[#020304] rounded-full text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(197,160,89,0.25)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 <span>Check My Lens Candidacy</span>
@@ -190,13 +193,16 @@ export default function HeroSection({
               </a>
               <a
                 href="#lenses"
-                onClick={() =>
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollToElement('lenses');
+                  window.history.pushState(null, '', '#lenses');
                   trackEvent({
                     action: 'hero_secondary_cta_click',
                     category: 'Engagement',
                     label: 'Compare Lenses',
-                  })
-                }
+                  });
+                }}
                 className="group relative focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-3.5 px-8 text-base tracking-wide flex items-center justify-center gap-2 rounded-full btn-neumorphic-secondary font-semibold uppercase text-white transition-all duration-300 min-h-[56px] overflow-hidden"
               >
                 {/* Precision left indicator block */}
@@ -215,10 +221,29 @@ export default function HeroSection({
 
             {/* Reassurance Indicators (Positioned above horizontal border line) */}
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mb-6 sm:mb-8 mt-4 text-xs text-foreground/80 font-medium select-none">
-              <span className="flex items-center gap-1.5 text-white font-semibold">
-                <Icon name="MapPinIcon" size={15} className="text-primary shrink-0" />
-                Livingston, Denville &amp; Newark Offices
-              </span>
+              <a
+                href="#locations"
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollToElement('locations');
+                  window.history.pushState(null, '', '#locations');
+                }}
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/5 border border-primary/45 shadow-[0_0_18px_rgba(197,160,89,0.22)] text-white hover:border-primary hover:shadow-[0_0_24px_rgba(197,160,89,0.38)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer"
+                title="View our 3 New Jersey locations"
+              >
+                <span className="w-5 h-5 rounded-full bg-primary/25 border border-primary/40 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-[0_0_8px_rgba(197,160,89,0.4)]">
+                  <Icon name="MapPinIcon" size={11} className="shrink-0" />
+                </span>
+                <span className="font-semibold text-white tracking-wide">
+                  Livingston · Denville · Newark{' '}
+                  <span className="text-primary font-bold">Offices</span>
+                </span>
+                <Icon
+                  name="ChevronRightIcon"
+                  size={12}
+                  className="text-primary/70 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0"
+                />
+              </a>
               <span className="flex items-center gap-1.5 text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                 Zero-Needle Topical Drops
@@ -476,6 +501,11 @@ export default function HeroSection({
                   </span>
                   <a
                     href="#vision"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      smoothScrollToElement('vision');
+                      window.history.pushState(null, '', '#vision');
+                    }}
                     className="text-primary hover:underline font-semibold flex items-center gap-0.5 shrink-0"
                   >
                     <span>Vision Simulator</span>

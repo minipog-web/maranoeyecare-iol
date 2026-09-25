@@ -878,15 +878,22 @@ export default function CataractEducationClient() {
             >
               Compare Lens Options
             </Link>
-            <a
-              href="#consultation"
+            <Link
+              href="/#booking"
+              onClick={() => {
+                try {
+                  sessionStorage.setItem('pending-scroll-hash', 'booking');
+                } catch {
+                  // Ignore storage write issues
+                }
+              }}
               className="w-full sm:w-auto group inline-flex items-center justify-center pl-6 pr-3 py-3 bg-primary text-[#040506] rounded-full text-xs sm:text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25)]"
             >
               <span>Schedule Evaluation</span>
               <div className="ml-3 w-6 h-6 rounded-full bg-black/10 flex items-center justify-center transition-all duration-500 group-hover:translate-x-1 shrink-0">
                 <Icon name="ArrowRightIcon" size={14} className="text-current" />
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackQuizStart, trackQuizComplete } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 import styles from './LensQuestionnaireSection.module.css';
 
 interface Question {
@@ -376,7 +377,7 @@ export default function LensQuestionnaireSection() {
   return (
     <section
       id="lens-quiz"
-      className="relative py-16 sm:py-24 overflow-hidden bg-section-quiz scroll-mt-20 sm:scroll-mt-24 border-t border-white/[0.04]"
+      className="relative py-16 sm:py-24 overflow-hidden bg-section-quiz scroll-mt-24 sm:scroll-mt-28 border-t border-white/[0.04]"
     >
       {/* Radar concentric focus rings in negative space */}
       <div className="absolute inset-0 texture-radar-concentric opacity-65 pointer-events-none" />
@@ -655,7 +656,8 @@ export default function LensQuestionnaireSection() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
                     href="#booking"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
                       // Primary: fire custom event (for already-mounted BookingSection)
                       window.dispatchEvent(new CustomEvent('select-lens', { detail: result.key }));
                       // Fallback: write to sessionStorage (for cases where BookingSection mounts after)
@@ -669,6 +671,8 @@ export default function LensQuestionnaireSection() {
                         category: 'Conversion',
                         label: result.name,
                       });
+                      smoothScrollToElement('booking');
+                      window.history.pushState(null, '', '#booking');
                     }}
                     className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#040506] font-semibold text-sm hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >

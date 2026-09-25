@@ -70,7 +70,6 @@ export function renderFootnoteText(
               {i > 0 && ', '}
               <a
                 href={`#footnote-${num}`}
-                onClick={(e) => e.stopPropagation()}
                 className="text-primary hover:underline hover:text-accent font-bold"
                 aria-label={`View citation footnote ${num}`}
               >
@@ -87,15 +86,26 @@ export function renderFootnoteText(
 }
 
 /**
- * Smoothly scrolls to an element by ID, respecting CSS scroll-margin-top
- * and ensuring smooth viewport centering.
+ * Smoothly scrolls to an element by ID, calculating the fixed header height
+ * and ensuring optimal viewport visibility below the navigation bar.
  */
-export function smoothScrollToElement(targetId: string) {
+export function smoothScrollToElement(targetId: string, customOffset?: number) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
   const cleanId = targetId.replace(/^#/, '');
   const target = document.getElementById(cleanId);
   if (!target) return;
 
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Calculate dynamic header height with a comfortable margin
+  const header = document.querySelector('header');
+  const headerHeight = header ? header.getBoundingClientRect().height : 80;
+  const offset = customOffset !== undefined ? customOffset : headerHeight + 20;
+
+  const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+  const offsetPosition = Math.max(0, elementPosition - offset);
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth',
+  });
 }

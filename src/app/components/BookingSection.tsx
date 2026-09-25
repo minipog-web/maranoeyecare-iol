@@ -307,7 +307,7 @@ export default function BookingSection({
   return (
     <section
       id="booking"
-      className="py-24 sm:py-32 lg:py-36 relative overflow-hidden bg-section-booking border-t border-white/[0.04]"
+      className="py-24 sm:py-32 lg:py-36 relative overflow-hidden bg-section-booking border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
     >
       {/* Office location beacon texture */}
       <div className="absolute inset-0 texture-beacon-glows opacity-50 pointer-events-none" />
@@ -432,7 +432,10 @@ export default function BookingSection({
             </div>
 
             {/* Office Locations Segmented Card */}
-            <div className="border-t border-border pt-6">
+            <div
+              id="locations"
+              className="border-t border-border pt-6 scroll-mt-24 sm:scroll-mt-28"
+            >
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-primary flex items-center gap-2">
                   <Icon name="PhoneIcon" size={14} className="text-primary animate-pulse" />

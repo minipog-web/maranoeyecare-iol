@@ -58,7 +58,7 @@ export default function TrustSection() {
   return (
     <section
       id="trust"
-      className="py-24 sm:py-32 relative overflow-hidden bg-section-trust border-t border-white/[0.04]"
+      className="py-24 sm:py-32 relative overflow-hidden bg-section-trust border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
     >
       {/* Executive atelier subtle architectural pinstripe texture */}
       <div className="absolute inset-0 texture-atelier-pinstripe opacity-70 pointer-events-none" />

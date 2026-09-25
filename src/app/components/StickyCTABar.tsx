@@ -93,6 +93,14 @@ export default function StickyCTABar() {
                 e.preventDefault();
                 smoothScrollToElement(el.id);
                 window.history.pushState(null, '', '#booking');
+              } else {
+                e.preventDefault();
+                try {
+                  sessionStorage.setItem('pending-scroll-hash', 'booking');
+                } catch {
+                  // Ignore storage write issues
+                }
+                window.location.href = '/#booking';
               }
             }}
             className="flex-1 flex items-center justify-between pl-5 pr-2 py-2 bg-primary text-[#0d0e12] rounded-full text-sm font-semibold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"

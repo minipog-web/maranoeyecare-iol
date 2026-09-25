@@ -66,7 +66,7 @@ export default function LensarAllySection() {
   return (
     <section
       id="lensar-ally"
-      className="py-16 sm:py-24 relative overflow-hidden bg-section-lensar border-t border-white/[0.04]"
+      className="py-16 sm:py-24 relative overflow-hidden bg-section-lensar border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
     >
       {/* Robotic surgical suite femtosecond laser reticle texture */}
       <div className="absolute inset-0 texture-laser-reticle opacity-50 pointer-events-none" />

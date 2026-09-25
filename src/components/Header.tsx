@@ -44,7 +44,8 @@ export default function Header() {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Lens Simulator', href: '/#vision' },
+    { label: 'Lens Options', href: '/#lenses' },
+    { label: 'Vision Simulator', href: '/#vision' },
     { label: 'Optical Physics', href: '/#physics' },
     { label: 'Lens Quiz', href: '/#lens-quiz' },
     { label: 'Our Doctors', href: '/#trust' },
@@ -60,20 +61,23 @@ export default function Header() {
     });
 
     if (href.includes('#')) {
-      const [targetPath, hash] = href.split('#');
-      const normalizedCurrentPath = pathname?.replace(/\/$/, '') || '/';
-      const normalizedTargetPath = targetPath
-        ? targetPath.replace(/\/$/, '') || '/'
-        : normalizedCurrentPath;
+      const [, hash] = href.split('#');
 
-      // If we are on the target page, scroll smoothly to the element
-      if (normalizedTargetPath === normalizedCurrentPath) {
-        const targetElement = document.getElementById(hash);
-        if (targetElement) {
-          e.preventDefault();
-          smoothScrollToElement(hash);
-          window.history.pushState(null, '', `#${hash}`);
-        }
+      // If the target element exists on the CURRENT page, smooth-scroll to it directly
+      const targetElement = document.getElementById(hash);
+      if (targetElement) {
+        e.preventDefault();
+        smoothScrollToElement(hash);
+        window.history.pushState(null, '', `#${hash}`);
+        return;
+      }
+
+      // If target element is on another page, save hash to sessionStorage
+      // so HashScrollHandler executes smooth scroll right after navigation completes
+      try {
+        sessionStorage.setItem('pending-scroll-hash', hash);
+      } catch {
+        // ignore
       }
     } else if (href === pathname) {
       e.preventDefault();
@@ -101,7 +105,13 @@ export default function Header() {
     if (bookingEl) {
       e.preventDefault();
       smoothScrollToElement(bookingEl.id);
-      window.history.pushState(null, '', '#booking');
+      window.history.pushState(null, '', `#${bookingEl.id}`);
+    } else {
+      try {
+        sessionStorage.setItem('pending-scroll-hash', 'booking');
+      } catch {
+        // ignore
+      }
     }
   };
 

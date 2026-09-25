@@ -5,7 +5,7 @@ import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
-import { handleSpotlightMouseMove, renderFootnoteText } from '@/lib/ui';
+import { handleSpotlightMouseMove, renderFootnoteText, smoothScrollToElement } from '@/lib/ui';
 
 interface ComparisonMetric {
   title: string;
@@ -132,6 +132,17 @@ export default function PanOptixPageClient() {
     });
   };
 
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string,
+    label: string
+  ) => {
+    e.preventDefault();
+    handleNavClick(label);
+    smoothScrollToElement(targetId);
+    window.history.pushState(null, '', `#${targetId}`);
+  };
+
   const handleFaqClick = (index: number, question: string) => {
     const isOpening = activeFaq !== index;
     setActiveFaq(isOpening ? index : null);
@@ -168,27 +179,38 @@ export default function PanOptixPageClient() {
           <div className="hidden md:flex items-center gap-3 text-xs font-mono font-medium">
             <a
               href="#enlighten"
+              onClick={(e) => handleAnchorClick(e, 'enlighten', 'subnav_enlighten')}
               className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
             >
               ENLIGHTEN® Tech
             </a>
             <a
               href="#simulator"
+              onClick={(e) => handleAnchorClick(e, 'simulator', 'subnav_simulator')}
               className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
             >
               3-Distance Acuity
             </a>
             <a
               href="#comparison"
+              onClick={(e) => handleAnchorClick(e, 'comparison', 'subnav_comparison')}
               className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
             >
               3-Way Comparison
             </a>
             <a
               href="#candidates"
+              onClick={(e) => handleAnchorClick(e, 'candidates', 'subnav_candidates')}
               className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
             >
               Candidacy
+            </a>
+            <a
+              href="#faq"
+              onClick={(e) => handleAnchorClick(e, 'faq', 'subnav_faq')}
+              className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
+            >
+              FAQ
             </a>
           </div>
         </div>
@@ -292,19 +314,26 @@ export default function PanOptixPageClient() {
 
               {/* Action Buttons (Button-in-Button Island Architecture) */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-                <a
-                  href="#consultation"
-                  onClick={() => handleNavClick('hero_book_cta')}
+                <Link
+                  href="/#booking"
+                  onClick={() => {
+                    handleNavClick('hero_book_cta');
+                    try {
+                      sessionStorage.setItem('pending-scroll-hash', 'booking');
+                    } catch {
+                      // Ignore storage write issues
+                    }
+                  }}
                   className="group relative inline-flex items-center justify-between sm:justify-center rounded-full bg-gradient-to-r from-[#fff3d6] via-[#f7d492] to-[#d1ab60] px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-black shadow-[0_4px_24px_rgba(197,160,89,0.35)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(197,160,89,0.5)] hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <span>Schedule PanOptix Consultation</span>
                   <div className="ml-3.5 flex h-7 w-7 items-center justify-center rounded-full bg-black/10 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5">
                     <Icon name="ArrowRightIcon" size={12} className="text-black" />
                   </div>
-                </a>
+                </Link>
                 <a
                   href="#comparison"
-                  onClick={() => handleNavClick('hero_compare_jump')}
+                  onClick={(e) => handleAnchorClick(e, 'comparison', 'hero_compare_jump')}
                   className="group inline-flex items-center justify-between sm:justify-center rounded-full border border-white/15 bg-white/[0.03] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white/[0.08] hover:border-primary/40 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   <span>Compare with Vivity &amp; PureSee</span>
@@ -345,7 +374,7 @@ export default function PanOptixPageClient() {
       {/* ── SECTION 1: THE OPTICAL PHYSICS OF ENLIGHTEN® TECHNOLOGY ── */}
       <section
         id="enlighten"
-        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#06070a] scroll-mt-20"
+        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#06070a] scroll-mt-24 sm:scroll-mt-28"
       >
         <div className="absolute inset-0 dot-grid-bg opacity-25 pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-gradient-to-tr from-[#8b5cf6]/[0.05] to-primary/[0.06] rounded-full blur-[170px] pointer-events-none" />
@@ -460,7 +489,7 @@ export default function PanOptixPageClient() {
       {/* ── SECTION 2: 3-DISTANCE VISION SIMULATOR (Doppelrand Lab Viewport) ── */}
       <section
         id="simulator"
-        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#090b10] scroll-mt-20"
+        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#090b10] scroll-mt-24 sm:scroll-mt-28"
       >
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-20">
@@ -675,7 +704,7 @@ export default function PanOptixPageClient() {
       {/* ── SECTION 3: 3-WAY HEAD-TO-HEAD COMPARISON (PANOPTIX vs VIVITY vs PURESEE) ── */}
       <section
         id="comparison"
-        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#0c0e14] scroll-mt-20"
+        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#0c0e14] scroll-mt-24 sm:scroll-mt-28"
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(139,92,246,0.08)_0%,transparent_70%)] pointer-events-none" />
 
@@ -852,7 +881,7 @@ export default function PanOptixPageClient() {
       {/* ── SECTION 4: CANDIDATE PROFILES & LIFESTYLE SUITABILITY (Double-Bezel Dual Cards) ── */}
       <section
         id="candidates"
-        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#08090d]"
+        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#08090d] scroll-mt-24 sm:scroll-mt-28"
       >
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-3xl mx-auto text-center mb-14 sm:mb-20">
@@ -1059,7 +1088,7 @@ export default function PanOptixPageClient() {
       {/* ── SECTION 6: FREQUENTLY ASKED QUESTIONS (Double-Bezel Accordions) ── */}
       <section
         id="faq"
-        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#07080c] scroll-mt-20"
+        className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#07080c] scroll-mt-24 sm:scroll-mt-28"
       >
         <div id="faqs" className="relative -top-28" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

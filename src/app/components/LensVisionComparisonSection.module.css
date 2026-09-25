@@ -69,12 +69,12 @@
 /* ── Refined ambient halo aura behind each lens card ── */
 .cardAmbientGlow {
   position: absolute;
-  inset: -22px -16px;
-  border-radius: 48px;
+  inset: -38px -26px;
+  border-radius: 56px;
   pointer-events: none;
   z-index: 0;
-  filter: blur(38px);
-  opacity: 0.32;
+  filter: blur(48px);
+  opacity: 0.65;
   transition:
     opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -86,58 +86,62 @@
 .cardAmbientGlow[data-lens='panoptix'] {
   background: radial-gradient(
     ellipse at 50% 50%,
-    rgba(139, 92, 246, 0.48) 0%,
-    rgba(139, 92, 246, 0.24) 48%,
-    transparent 75%
+    rgba(139, 92, 246, 0.76) 0%,
+    rgba(139, 92, 246, 0.46) 45%,
+    rgba(139, 92, 246, 0.18) 72%,
+    transparent 88%
   );
 }
 
 .cardAmbientGlow[data-lens='vivity'] {
   background: radial-gradient(
     ellipse at 50% 50%,
-    rgba(197, 160, 89, 0.5) 0%,
-    rgba(197, 160, 89, 0.26) 48%,
-    transparent 75%
+    rgba(197, 160, 89, 0.78) 0%,
+    rgba(197, 160, 89, 0.48) 45%,
+    rgba(197, 160, 89, 0.18) 72%,
+    transparent 88%
   );
 }
 
 .cardAmbientGlow[data-lens='puresee'] {
   background: radial-gradient(
     ellipse at 50% 50%,
-    rgba(0, 163, 255, 0.46) 0%,
-    rgba(0, 163, 255, 0.22) 48%,
-    transparent 75%
+    rgba(0, 163, 255, 0.76) 0%,
+    rgba(0, 163, 255, 0.44) 45%,
+    rgba(0, 163, 255, 0.18) 72%,
+    transparent 88%
   );
 }
 
 .cardAmbientGlow[data-lens='monofocal'] {
   background: radial-gradient(
     ellipse at 50% 50%,
-    rgba(100, 116, 139, 0.4) 0%,
-    rgba(100, 116, 139, 0.18) 48%,
-    transparent 75%
+    rgba(148, 163, 184, 0.62) 0%,
+    rgba(100, 116, 139, 0.38) 45%,
+    rgba(100, 116, 139, 0.14) 72%,
+    transparent 88%
   );
 }
 
 /* Elevate and intensify glow on card hover */
 .cardWrapper:hover .cardAmbientGlow {
-  opacity: 0.65;
-  filter: blur(42px);
+  opacity: 0.92;
+  filter: blur(52px);
   transform: translate3d(0, -8px, 0);
 }
 
 /* Accentuate glow when card is actively selected in the simulator */
 .cardAmbientGlowActive {
-  opacity: 0.52;
-  filter: blur(40px);
+  opacity: 0.82;
+  filter: blur(50px);
 }
 
 .specCard {
-  border-color: rgba(var(--lens-color-rgb), 0.2) !important;
+  border-color: rgba(var(--lens-color-rgb), 0.28) !important;
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
     0 12px 40px rgba(0, 0, 0, 0.65),
-    0 0 16px rgba(var(--lens-color-rgb), 0.03) !important;
+    0 0 24px rgba(var(--lens-color-rgb), 0.12) !important;
 }
 
 /* ── Mouse spotlight glow ── */

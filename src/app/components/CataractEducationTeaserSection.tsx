@@ -55,7 +55,7 @@ export default function CataractEducationTeaserSection() {
     <section
       ref={sectionRef}
       id="cataract-education"
-      className="py-12 sm:py-16 relative overflow-hidden bg-section-education scroll-mt-20 border-b border-white/[0.04]"
+      className="py-12 sm:py-16 relative overflow-hidden bg-section-education scroll-mt-24 sm:scroll-mt-28 border-b border-white/[0.04]"
       aria-label="Cataract Education & 3D Optical Simulation"
     >
       {/* Fresnel concentric contour texture in negative space */}

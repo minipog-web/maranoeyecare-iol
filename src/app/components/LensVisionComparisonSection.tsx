@@ -635,7 +635,7 @@ export default function LensVisionComparisonSection() {
     <section
       ref={sectionRef}
       id="vision"
-      className="py-16 sm:py-24 relative overflow-hidden scroll-mt-16 bg-section-simulator"
+      className="py-16 sm:py-24 relative overflow-hidden scroll-mt-24 sm:scroll-mt-28 bg-section-simulator"
     >
       {/* Cinematic darkroom perimeter vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_95%_75%_at_50%_50%,transparent_50%,rgba(0,0,0,0.7)_100%)] pointer-events-none" />
@@ -666,7 +666,7 @@ export default function LensVisionComparisonSection() {
 
         <div
           id="iol-simulator"
-          className="optical-bezel rounded-3xl p-2 sm:p-3.5 lg:p-5 mb-10 sm:mb-12 relative z-10"
+          className="optical-bezel rounded-3xl p-2 sm:p-3.5 lg:p-5 mb-10 sm:mb-12 relative z-10 scroll-mt-24 sm:scroll-mt-28"
         >
           <div className="rounded-[1.6rem] p-3 sm:p-5 lg:p-8 bg-[#090b11]/90 backdrop-blur-xl">
             {/* Integrated Toggles Bar */}
@@ -1145,7 +1145,7 @@ export default function LensVisionComparisonSection() {
         </div>
 
         {/* Detailed Specs Grid (Below Simulator) */}
-        <div id="lenses" className="scroll-mt-24 pt-6 sm:pt-10">
+        <div id="lenses" className="scroll-mt-24 sm:scroll-mt-28 pt-6 sm:pt-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch relative z-10">
             {lenses.map((lens, i) => {
               const isHovered = hoveredLensId === lens.id;
@@ -1377,6 +1377,7 @@ export default function LensVisionComparisonSection() {
                           href="#booking"
                           data-lens={lens.id}
                           onClick={(e) => {
+                            e.preventDefault();
                             e.stopPropagation();
                             window.dispatchEvent(
                               new CustomEvent('select-lens', { detail: lens.id })
@@ -1386,6 +1387,8 @@ export default function LensVisionComparisonSection() {
                             } catch {
                               // ignore in SSR or restricted storage
                             }
+                            smoothScrollToElement('booking');
+                            window.history.pushState(null, '', '#booking');
                           }}
                           className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                         >

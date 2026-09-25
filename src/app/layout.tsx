@@ -4,6 +4,7 @@ import Script from 'next/script';
 
 import { DM_Sans, Fraunces } from 'next/font/google';
 import AnalyticsTracker from '@/components/AnalyticsTracker';
+import HashScrollHandler from '@/components/HashScrollHandler';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
 
@@ -521,6 +522,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
 
         <AnalyticsTracker />
+        <HashScrollHandler />
         {children}
         {/*
           CallRail Dynamic Number Swap & Google Ads Call Tracking

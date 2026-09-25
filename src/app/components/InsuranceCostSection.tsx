@@ -3,6 +3,7 @@
 import React from 'react';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 
 interface CostPillar {
   badge: string;
@@ -81,10 +82,10 @@ export default function InsuranceCostSection() {
   return (
     <section
       id="insurance-investment"
-      className="py-20 sm:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04]"
+      className="py-20 sm:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
       aria-label="Insurance and Pricing Transparency"
     >
-      <div id="financing" className="relative -top-28" />
+      <div id="financing" className="relative -top-28 scroll-mt-24 sm:scroll-mt-28" />
       {/* Financial Vault Directional Lighting (Zero circular blobs) */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-primary/[0.06] via-transparent to-primary/[0.04] pointer-events-none"
@@ -410,7 +411,10 @@ export default function InsuranceCostSection() {
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto shrink-0">
             <a
               href="#booking"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollToElement('booking');
+                window.history.pushState(null, '', '#booking');
                 trackEvent({
                   action: 'insurance_section_cta_click',
                   category: 'Conversion',
