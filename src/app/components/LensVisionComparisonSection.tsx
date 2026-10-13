@@ -474,7 +474,8 @@ export default function LensVisionComparisonSection() {
     setHoveredLensId(null);
     setGlowPosition(null);
     delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
-    delete (e.currentTarget as unknown as { _cachedSpotlight?: HTMLDivElement | null })._cachedSpotlight;
+    delete (e.currentTarget as unknown as { _cachedSpotlight?: HTMLDivElement | null })
+      ._cachedSpotlight;
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {

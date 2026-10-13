@@ -18,16 +18,12 @@ const LensTechnologyDeepDiveSection = dynamic(
   () => import('@/app/components/LensTechnologyDeepDiveSection')
 );
 const LensarAllySection = dynamic(() => import('@/app/components/LensarAllySection'));
-const RecoveryTimelineSection = dynamic(
-  () => import('@/app/components/RecoveryTimelineSection')
-);
+const RecoveryTimelineSection = dynamic(() => import('@/app/components/RecoveryTimelineSection'));
 const TrustSection = dynamic(() => import('@/app/components/TrustSection'));
 const CertificationLogos = dynamic(() => import('@/app/components/CertificationLogos'));
 const CandidacySection = dynamic(() => import('@/app/components/CandidacySection'));
 const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'));
-const LensQuestionnaireSection = dynamic(
-  () => import('@/app/components/LensQuestionnaireSection')
-);
+const LensQuestionnaireSection = dynamic(() => import('@/app/components/LensQuestionnaireSection'));
 const FAQSection = dynamic(() => import('@/app/components/FAQSection'));
 const InsuranceCostSection = dynamic(() => import('@/app/components/InsuranceCostSection'));
 const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
