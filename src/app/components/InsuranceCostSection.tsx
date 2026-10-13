@@ -3,7 +3,7 @@
 import React from 'react';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
-import { smoothScrollToElement } from '@/lib/ui';
+import { handleSpotlightMouseMove, smoothScrollToElement } from '@/lib/ui';
 
 interface CostPillar {
   badge: string;
@@ -71,18 +71,10 @@ const costPillars: CostPillar[] = [
 ];
 
 export default function InsuranceCostSection() {
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-  };
-
   return (
     <section
       id="insurance-investment"
-      className="py-20 sm:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
+      className="py-20 sm:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
       aria-label="Insurance and Pricing Transparency"
     >
       <div id="financing" className="relative -top-28 scroll-mt-24 sm:scroll-mt-28" />
@@ -113,7 +105,7 @@ export default function InsuranceCostSection() {
           <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-light text-foreground tracking-tight leading-[1.15] mb-4">
             Clear Answers on <span className="text-gradient-primary font-semibold">Insurance</span>,{' '}
             <span className="text-gradient-primary font-semibold">Medicare</span> &amp; Your
-            Investment.
+            Investment
           </h2>
 
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
@@ -130,7 +122,7 @@ export default function InsuranceCostSection() {
             return (
               <div
                 key={idx}
-                onMouseMove={handleMouseMove}
+                onMouseMove={handleSpotlightMouseMove}
                 className={`luxury-glass-card pointer-sheen-card relative overflow-visible rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
                   isFeatured
                     ? 'border-2 border-primary/85 bg-gradient-to-b from-primary/[0.08] to-transparent shadow-[0_0_45px_rgba(197,160,89,0.22)]'

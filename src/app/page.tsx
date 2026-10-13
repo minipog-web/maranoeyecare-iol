@@ -1,23 +1,36 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/app/components/HeroSection';
 import TrustBadgeBar from '@/app/components/TrustBadgeBar';
-import CertificationLogos from '@/app/components/CertificationLogos';
 import StickyCTABar from '@/app/components/StickyCTABar';
-import CandidacySection from '@/app/components/CandidacySection';
-import InsuranceCostSection from '@/app/components/InsuranceCostSection';
-import TrustSection from '@/app/components/TrustSection';
-import CataractEducationTeaserSection from '@/app/components/CataractEducationTeaserSection';
-import LensVisionComparisonSection from '@/app/components/LensVisionComparisonSection';
-import LensTechnologyDeepDiveSection from '@/app/components/LensTechnologyDeepDiveSection';
-import LensarAllySection from '@/app/components/LensarAllySection';
-import LensQuestionnaireSection from '@/app/components/LensQuestionnaireSection';
-import RecoveryTimelineSection from '@/app/components/RecoveryTimelineSection';
-import TestimonialsSection from '@/app/components/TestimonialsSection';
-import FAQSection from '@/app/components/FAQSection';
-import BookingSection from '@/app/components/BookingSection';
+
+// Below-the-fold sections code-split dynamically to minimize initial bundle size and optimize LCP/FCP
+const CataractEducationTeaserSection = dynamic(
+  () => import('@/app/components/CataractEducationTeaserSection')
+);
+const LensVisionComparisonSection = dynamic(
+  () => import('@/app/components/LensVisionComparisonSection')
+);
+const LensTechnologyDeepDiveSection = dynamic(
+  () => import('@/app/components/LensTechnologyDeepDiveSection')
+);
+const LensarAllySection = dynamic(() => import('@/app/components/LensarAllySection'));
+const RecoveryTimelineSection = dynamic(
+  () => import('@/app/components/RecoveryTimelineSection')
+);
+const TrustSection = dynamic(() => import('@/app/components/TrustSection'));
+const CertificationLogos = dynamic(() => import('@/app/components/CertificationLogos'));
+const CandidacySection = dynamic(() => import('@/app/components/CandidacySection'));
+const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'));
+const LensQuestionnaireSection = dynamic(
+  () => import('@/app/components/LensQuestionnaireSection')
+);
+const FAQSection = dynamic(() => import('@/app/components/FAQSection'));
+const InsuranceCostSection = dynamic(() => import('@/app/components/InsuranceCostSection'));
+const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
 
 export const metadata: Metadata = {
   title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',

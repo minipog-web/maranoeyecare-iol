@@ -1,10 +1,12 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTABar from '@/app/components/StickyCTABar';
-import BookingSection from '@/app/components/BookingSection';
 import PureSeePageClient from './PureSeePageClient';
+
+const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
 
 export const metadata: Metadata = {
   title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',

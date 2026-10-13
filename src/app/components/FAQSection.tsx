@@ -354,7 +354,7 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="py-16 sm:py-24 relative overflow-hidden bg-section-faq border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
+      className="py-16 sm:py-24 relative overflow-hidden bg-section-faq border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* FAQ Schema Markup */}
       <script
@@ -384,7 +384,7 @@ export default function FAQSection() {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.6rem] font-light text-foreground leading-[1.15] mb-5 sm:mb-6">
               Every Concern{' '}
               <span className="font-semibold text-gradient-primary block sm:inline">
-                Answered Honestly.
+                Answered Honestly
               </span>
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base mb-8">

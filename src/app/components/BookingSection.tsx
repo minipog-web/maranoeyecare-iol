@@ -307,7 +307,7 @@ export default function BookingSection({
   return (
     <section
       id="booking"
-      className="py-24 sm:py-32 lg:py-36 relative overflow-hidden bg-section-booking border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
+      className="py-24 sm:py-32 lg:py-36 relative overflow-hidden bg-section-booking border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* Office location beacon texture */}
       <div className="absolute inset-0 texture-beacon-glows opacity-50 pointer-events-none" />

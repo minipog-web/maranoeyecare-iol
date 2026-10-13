@@ -189,7 +189,7 @@ export default function CataractFormationSection() {
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
             How Cataracts Form & Why{' '}
             <span className="font-semibold text-gradient-primary">
-              Lens Replacement is Permanent.
+              Lens Replacement is Permanent
             </span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base md:text-lg max-w-2xl mx-auto">

@@ -237,7 +237,7 @@ export default function PureSeePageClient() {
               <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.12] mb-6 tracking-tight">
                 TECNIS PureSee™:{' '}
                 <span className="font-semibold text-gradient-primary block mt-1">
-                  Continuous Vision. Zero Contrast Compromise.
+                  Continuous Vision. Zero Contrast Compromise
                 </span>
               </h1>
 
@@ -389,7 +389,7 @@ export default function PureSeePageClient() {
               Optical Physics &amp; Bio-Engineering
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              How Pure Refraction Eliminates Diffractive Light Scatter.
+              How Pure Refraction Eliminates Diffractive Light Scatter
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               Traditional multifocal and diffractive lenses divide incoming light with microscopic
@@ -499,7 +499,7 @@ export default function PureSeePageClient() {
               Real-World Vision Simulator
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              Experience the Visual Clarity of TECNIS PureSee.
+              Experience the Visual Clarity of TECNIS PureSee
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               Toggle across distances to preview the sharp, contrast-rich visual acuity delivered by
@@ -717,7 +717,7 @@ export default function PureSeePageClient() {
               Head-to-Head Comparison
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              TECNIS PureSee™ vs. PanOptix® Pro vs. Clareon® Vivity®.
+              TECNIS PureSee™ vs. PanOptix® Pro vs. Clareon® Vivity®
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               Explore how pure continuous refraction contrasts with wavefront shaping and
@@ -1027,7 +1027,7 @@ export default function PureSeePageClient() {
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
                 TECNIS PureSee™ Toric II +{' '}
                 <span className="font-semibold text-gradient-primary">
-                  LENSAR ALLY<sup>®</sup> Laser.
+                  LENSAR ALLY<sup>®</sup> Laser
                 </span>
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed mb-8 font-light max-w-xl">
@@ -1098,7 +1098,7 @@ export default function PureSeePageClient() {
               Clinical Questions Answered
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5 tracking-tight">
-              Frequently Asked Questions About TECNIS PureSee.
+              Frequently Asked Questions About TECNIS PureSee
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto font-light">
               Clear clinical guidance from Board-Certified Surgeons Dr. Matthew Marano Jr., MD &amp;

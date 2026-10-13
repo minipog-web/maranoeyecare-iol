@@ -8,7 +8,7 @@ export default function CandidacySection() {
   return (
     <section
       id="candidacy"
-      className="py-16 sm:py-24 relative overflow-hidden bg-section-candidacy border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
+      className="py-16 sm:py-24 relative overflow-hidden bg-section-candidacy border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* Integrity micro-mesh texture */}
       <div className="absolute inset-0 texture-integrity-mesh opacity-40 pointer-events-none" />
@@ -26,7 +26,7 @@ export default function CandidacySection() {
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
             Why Our Surgeons Decline Premium Lenses for{' '}
-            <span className="font-semibold text-gradient-primary">~20% of Inquiries.</span>
+            <span className="font-semibold text-gradient-primary">~20% of Inquiries</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
             A premium lens only delivers life-changing results when the underlying cornea and retina

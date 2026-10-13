@@ -377,7 +377,7 @@ export default function LensQuestionnaireSection() {
   return (
     <section
       id="lens-quiz"
-      className="relative py-16 sm:py-24 overflow-hidden bg-section-quiz scroll-mt-24 sm:scroll-mt-28 border-t border-white/[0.04]"
+      className="relative py-16 sm:py-24 overflow-hidden bg-section-quiz scroll-mt-24 sm:scroll-mt-28 border-t border-white/[0.04] content-auto"
     >
       {/* Radar concentric focus rings in negative space */}
       <div className="absolute inset-0 texture-radar-concentric opacity-65 pointer-events-none" />

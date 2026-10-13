@@ -37,7 +37,7 @@ export default function LensTechnologyDeepDiveSection() {
   return (
     <section
       id="physics"
-      className="relative w-full bg-section-physics py-16 sm:py-24 overflow-hidden scroll-mt-24 sm:scroll-mt-28 border-t border-white/[0.04]"
+      className="relative w-full bg-section-physics py-16 sm:py-24 overflow-hidden scroll-mt-24 sm:scroll-mt-28 border-t border-white/[0.04] content-auto"
     >
       {/* Optical Laboratory Mathematical Ray Vectors Grid */}
       <div className="absolute inset-0 texture-ray-grid opacity-75 pointer-events-none" />
@@ -59,7 +59,7 @@ export default function LensTechnologyDeepDiveSection() {
           </p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-6">
             The Science of{' '}
-            <span className="font-semibold text-gradient-primary">Seamless Sight.</span>
+            <span className="font-semibold text-gradient-primary">Seamless Sight</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto">
             Not all premium lenses work the same way. Explore the advanced science and

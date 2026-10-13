@@ -80,7 +80,7 @@ export default function LifestyleMatchSection() {
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               Find Your <br />
-              <span className="font-semibold text-gradient-primary">Perfect Lens.</span>
+              <span className="font-semibold text-gradient-primary">Perfect Lens</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-7 sm:mb-8 text-sm sm:text-base max-w-lg">
               The ideal lens is not just the most expensive option. It is the one tailored directly

@@ -62,7 +62,7 @@ export default function RecoveryTimelineSection() {
   return (
     <section
       id="recovery"
-      className="py-16 sm:py-24 relative overflow-hidden bg-section-recovery border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28"
+      className="py-16 sm:py-24 relative overflow-hidden bg-section-recovery border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* Restorative Progressive Horizon Lighting (Dawn progression from Day 1 to Day 30) */}
       <div className="absolute inset-0 bg-gradient-to-r from-sky-500/[0.05] via-indigo-500/[0.03] to-primary/[0.08] pointer-events-none" />
@@ -77,7 +77,7 @@ export default function RecoveryTimelineSection() {
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
             Your Journey to{' '}
-            <span className="font-semibold text-gradient-primary">Visual Freedom.</span>
+            <span className="font-semibold text-gradient-primary">Visual Freedom</span>
           </h2>
           <p className="text-foreground font-normal leading-relaxed text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
             Fear of surgery is natural, but premium cataract correction is one of the safest, most

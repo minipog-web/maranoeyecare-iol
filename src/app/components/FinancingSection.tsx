@@ -19,7 +19,7 @@ export default function FinancingSection() {
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
             Clear Vision Made Accessible:{' '}
-            <span className="font-semibold text-gradient-primary">Flexible Payment Options.</span>
+            <span className="font-semibold text-gradient-primary">Flexible Payment Options</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
             Standard cataract surgery is covered by Medicare and most commercial insurance plans. We

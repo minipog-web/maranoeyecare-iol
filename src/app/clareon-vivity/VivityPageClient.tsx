@@ -244,7 +244,7 @@ export default function VivityPageClient() {
               <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.12] mb-6 tracking-tight">
                 Clareon<sup>®</sup> Vivity<sup>®</sup> IOL:{' '}
                 <span className="font-semibold text-gradient-primary block mt-1">
-                  Continuous Vision with Monofocal-Like Night Clarity.
+                  Continuous Vision with Monofocal-Like Night Clarity
                 </span>
               </h1>
 
@@ -395,7 +395,7 @@ export default function VivityPageClient() {
               Optical Physics &amp; Bio-Engineering
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              How X-WAVE™ Eliminates Diffractive Glare Rings.
+              How X-WAVE™ Eliminates Diffractive Glare Rings
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               Traditional multifocal lenses split incoming light into multiple distinct focal points
@@ -507,7 +507,7 @@ export default function VivityPageClient() {
               Defocus Curve &amp; Daily Vision
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              Your Everyday Range of Vision with Vivity.
+              Your Everyday Range of Vision with Vivity
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               The clinical defocus curve shows how clearly you see across various distances. Explore
@@ -708,7 +708,7 @@ export default function VivityPageClient() {
               Head-to-Head Comparison
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              Clareon Vivity vs. PanOptix Pro vs. TECNIS PureSee.
+              Clareon Vivity vs. PanOptix Pro vs. TECNIS PureSee
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               Every eye is unique. Dr. Matthew Marano Jr. and Dr. Sherief Raouf offer all three
@@ -1028,7 +1028,7 @@ export default function VivityPageClient() {
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
                 Clareon<sup>®</sup> Vivity<sup>®</sup> Toric +{' '}
                 <span className="font-semibold text-gradient-primary">
-                  LENSAR ALLY<sup>®</sup> Laser.
+                  LENSAR ALLY<sup>®</sup> Laser
                 </span>
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed mb-8 font-light max-w-xl">
@@ -1099,7 +1099,7 @@ export default function VivityPageClient() {
               Clinical Questions Answered
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5 tracking-tight">
-              Frequently Asked Questions About Clareon Vivity.
+              Frequently Asked Questions About Clareon Vivity
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto font-light">
               Clear, transparent clinical guidance from Board-Certified Surgeons Dr. Matthew Marano

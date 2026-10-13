@@ -456,6 +456,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://cdn.callrail.com" />
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         {/* Google Consent Mode v2 & Google Tag Manager */}

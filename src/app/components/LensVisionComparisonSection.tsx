@@ -474,19 +474,31 @@ export default function LensVisionComparisonSection() {
     setHoveredLensId(null);
     setGlowPosition(null);
     delete (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
+    delete (e.currentTarget as unknown as { _cachedSpotlight?: HTMLDivElement | null })._cachedSpotlight;
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    let rect = (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect;
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+    const target = e.currentTarget;
+    let rect = (target as unknown as { _cachedRect?: DOMRect })._cachedRect;
     if (!rect) {
-      rect = e.currentTarget.getBoundingClientRect();
-      (e.currentTarget as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
+      rect = target.getBoundingClientRect();
+      (target as unknown as { _cachedRect?: DOMRect })._cachedRect = rect;
     }
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const spotlight = e.currentTarget.querySelector(
-      `.${styles.spotlightGlow}`
-    ) as HTMLDivElement | null;
+    let spotlight = (target as unknown as { _cachedSpotlight?: HTMLDivElement | null })
+      ._cachedSpotlight;
+    if (spotlight === undefined) {
+      spotlight = target.querySelector(`.${styles.spotlightGlow}`) as HTMLDivElement | null;
+      (target as unknown as { _cachedSpotlight?: HTMLDivElement | null })._cachedSpotlight =
+        spotlight;
+    }
     if (spotlight) {
       spotlight.style.setProperty('--mouse-x', `${x}px`);
       spotlight.style.setProperty('--mouse-y', `${y}px`);
@@ -656,7 +668,7 @@ export default function LensVisionComparisonSection() {
             Interactive Vision Simulator
           </p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-6 leading-tight">
-            See Your <span className="font-semibold text-gradient-primary">Future Vision.</span>
+            See Your <span className="font-semibold text-gradient-primary">Future Vision</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Compare visual outcomes across distance, intermediate, and near ranges to see which lens

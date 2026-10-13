@@ -235,7 +235,7 @@ export default function PanOptixPageClient() {
               <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.12] mb-6 tracking-tight">
                 Clareon<sup>®</sup> PanOptix<sup>®</sup> Pro:{' '}
                 <span className="font-semibold text-gradient-primary block mt-1">
-                  Full-Range Trifocal Clarity.
+                  Full-Range Trifocal Clarity
                 </span>
               </h1>
 
@@ -385,7 +385,7 @@ export default function PanOptixPageClient() {
               Optical Physics &amp; Bio-Engineering
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              How ENLIGHTEN® Delivers 88% Light Energy to the Retina.
+              How ENLIGHTEN® Delivers 88% Light Energy to the Retina
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               While purely refractive lenses like TECNIS PureSee transmit ~100% of light by avoiding
@@ -497,7 +497,7 @@ export default function PanOptixPageClient() {
               Real-World Vision Simulator
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              Experience the Full Visual Range of PanOptix Pro.
+              Experience the Full Visual Range of PanOptix Pro
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               Toggle between near, intermediate, and distance focal points to preview the visual
@@ -714,7 +714,7 @@ export default function PanOptixPageClient() {
               Head-to-Head Comparison
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
-              PanOptix® Pro vs. Clareon® Vivity® vs. TECNIS PureSee™.
+              PanOptix® Pro vs. Clareon® Vivity® vs. TECNIS PureSee™
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               Explore how trifocal diffractive optics differ from non-diffractive EDOF and pure
@@ -1026,7 +1026,7 @@ export default function PanOptixPageClient() {
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
                 Clareon<sup>®</sup> PanOptix<sup>®</sup> Toric +{' '}
                 <span className="font-semibold text-gradient-primary">
-                  LENSAR ALLY<sup>®</sup> Laser.
+                  LENSAR ALLY<sup>®</sup> Laser
                 </span>
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed mb-8 font-light max-w-xl">
@@ -1097,7 +1097,7 @@ export default function PanOptixPageClient() {
               Clinical Questions Answered
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5 tracking-tight">
-              Frequently Asked Questions About PanOptix Pro.
+              Frequently Asked Questions About PanOptix Pro
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto font-light">
               Clear clinical guidance from Board-Certified Surgeons Dr. Matthew Marano Jr., MD &amp;

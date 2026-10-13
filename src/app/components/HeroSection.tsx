@@ -168,9 +168,9 @@ export default function HeroSection({
 
             {/* Headline */}
             <h1 className="font-display tracking-display-tight text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] text-foreground mb-5 sm:mb-6 max-w-xl">
-              <span className="block">{heroTitleLine1 || 'One Surgery. One Decision.'}</span>{' '}
+              <span className="block">{heroTitleLine1 || 'One Surgery. One Decision'}</span>{' '}
               <span className="block text-gradient-primary font-semibold mt-1 pb-1 sm:pb-2">
-                {heroTitleLine2 || 'A Lifetime of Visual Freedom.'}
+                {heroTitleLine2 || 'A Lifetime of Visual Freedom'}
               </span>
             </h1>
 

@@ -25,17 +25,24 @@ function AnalyticsNavigationObserver() {
     const milestones = [25, 50, 75, 90];
     const reachedMilestones = new Set<number>();
 
+    let ticking = false;
     const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (scrollHeight <= 0) return;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (scrollHeight > 0) {
+            const scrollPercent = Math.min(100, Math.round((window.scrollY / scrollHeight) * 100));
 
-      const scrollPercent = Math.min(100, Math.round((window.scrollY / scrollHeight) * 100));
-
-      for (const milestone of milestones) {
-        if (scrollPercent >= milestone && !reachedMilestones.has(milestone)) {
-          reachedMilestones.add(milestone);
-          trackScrollDepth(milestone);
-        }
+            for (const milestone of milestones) {
+              if (scrollPercent >= milestone && !reachedMilestones.has(milestone)) {
+                reachedMilestones.add(milestone);
+                trackScrollDepth(milestone);
+              }
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

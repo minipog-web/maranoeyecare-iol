@@ -26,7 +26,7 @@ export default function NotFound() {
         <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-3">Error 404</p>
         <h1 className="font-display text-4xl sm:text-5xl font-light text-foreground mb-4 leading-tight">
           This page isn&apos;t{' '}
-          <span className="font-semibold text-gradient-primary">in focus.</span>
+          <span className="font-semibold text-gradient-primary">in focus</span>
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-10 max-w-sm mx-auto">
           The page you&apos;re looking for cannot be found, but we can help you find the right
