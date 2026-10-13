@@ -688,7 +688,7 @@ export default function PureSeePageClient() {
                   </div>
                   <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                     <AppImage
-                      src="/assets/images/vivity_day_near_pro.jpg"
+                      src="/assets/images/puresee_day_near_pro.jpg"
                       alt="TECNIS PureSee daytime near reading smartphone and menu clarity"
                       fill
                       className="object-cover"

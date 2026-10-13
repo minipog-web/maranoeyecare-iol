@@ -129,7 +129,7 @@ const lenses = [
       day: {
         distance: '/assets/images/day_driving_pro.jpg',
         intermediate: '/assets/images/sharp_day_intermediate_pro.jpg',
-        near: '/assets/images/vivity_day_near_pro.jpg',
+        near: '/assets/images/puresee_day_near_pro.jpg',
       },
       night: {
         distance: '/assets/images/vivity_night_pro.jpg',
