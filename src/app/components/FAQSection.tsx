@@ -307,14 +307,25 @@ function FAQItemCard({
   );
 }
 
+const INITIAL_VISIBLE_COUNT = 4;
+
 export default function FAQSection() {
   const [activeCategory, setActiveCategory] = useState<FAQCategory>('All Questions');
   const [openFAQId, setOpenFAQId] = useState<string | null>('glare-halos');
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const filteredFAQs = useMemo(() => {
     if (activeCategory === 'All Questions') return allFAQs;
     return allFAQs.filter((faq) => faq.category === activeCategory);
   }, [activeCategory]);
+
+  const displayedFAQs = useMemo(() => {
+    if (isExpanded) return filteredFAQs;
+    return filteredFAQs.slice(0, INITIAL_VISIBLE_COUNT);
+  }, [filteredFAQs, isExpanded]);
+
+  const hasMore = filteredFAQs.length > INITIAL_VISIBLE_COUNT;
+  const remainingCount = filteredFAQs.length - INITIAL_VISIBLE_COUNT;
 
   const handleToggle = (id: string, question: string) => {
     const isOpening = openFAQId !== id;
@@ -330,6 +341,7 @@ export default function FAQSection() {
 
   const handleCategoryChange = (category: FAQCategory) => {
     setActiveCategory(category);
+    setIsExpanded(false);
     trackEvent({
       action: 'faq_category_filter',
       category: 'Engagement',
@@ -486,7 +498,7 @@ export default function FAQSection() {
 
             {/* Uniform Beautiful FAQ Items */}
             <div className="space-y-4">
-              {filteredFAQs.map((faq) => (
+              {displayedFAQs.map((faq) => (
                 <FAQItemCard
                   key={faq.id}
                   item={faq}
@@ -495,6 +507,40 @@ export default function FAQSection() {
                 />
               ))}
             </div>
+
+            {/* Expand / Collapse Button */}
+            {hasMore && (
+              <div className="mt-6 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const nextState = !isExpanded;
+                    setIsExpanded(nextState);
+                    trackEvent({
+                      action: 'faq_expand_all_toggle',
+                      category: 'Engagement',
+                      label: nextState ? 'view_all' : 'view_less',
+                    });
+                    if (!nextState) {
+                      smoothScrollToElement('faq');
+                    }
+                  }}
+                  aria-expanded={isExpanded}
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-primary/35 bg-primary/10 hover:bg-primary/20 hover:border-primary/50 text-primary text-xs sm:text-sm font-bold tracking-wide uppercase transition-all duration-300 shadow-[0_4px_16px_rgba(197,160,89,0.15)] hover:shadow-[0_6px_22px_rgba(197,160,89,0.25)] hover:scale-[1.01] active:scale-[0.98] min-h-[46px] touch-manipulation group"
+                >
+                  <span>
+                    {isExpanded
+                      ? 'Show Top Questions'
+                      : `View All ${filteredFAQs.length} Questions (${remainingCount} more)`}
+                  </span>
+                  <Icon
+                    name={isExpanded ? 'ChevronUpIcon' : 'ChevronDownIcon'}
+                    size={16}
+                    className="transition-transform duration-300 group-hover:translate-y-0.5"
+                  />
+                </button>
+              </div>
+            )}
 
             {/* Direct Assistance Micro-Card */}
             <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-primary/[0.08] via-white/[0.02] to-transparent border border-primary/25 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-[0_8px_24px_rgba(0,0,0,0.3)]">
