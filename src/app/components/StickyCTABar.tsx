@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackAdsConversion } from '@/lib/gtag';
 import { smoothScrollToElement } from '@/lib/ui';
 
 export default function StickyCTABar() {
+  const router = useRouter();
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -100,10 +102,10 @@ export default function StickyCTABar() {
                 } catch {
                   // Ignore storage write issues
                 }
-                window.location.href = '/#booking';
+                router.push('/#booking');
               }
             }}
-            className="flex-1 flex items-center justify-between pl-5 pr-2 py-2 bg-primary text-[#0d0e12] rounded-full text-sm font-semibold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="flex-1 flex items-center justify-between pl-5 pr-2 py-2 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-bold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <span>Book Free Consultation</span>
             <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1">

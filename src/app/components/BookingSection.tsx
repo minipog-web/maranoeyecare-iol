@@ -885,10 +885,10 @@ export default function BookingSection({
                               onClick={() =>
                                 setForm((prev) => ({ ...prev, preferredContact: method.value }))
                               }
-                              className={`px-3 py-3 rounded-xl border text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                              className={`px-3 py-3 rounded-xl border text-sm font-bold transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                                 isChecked
-                                  ? 'bg-primary/10 border-primary text-primary'
-                                  : 'bg-transparent border-border hover:border-muted-foreground/30 text-muted-foreground'
+                                  ? 'bg-primary/20 border-primary text-white font-bold shadow-sm'
+                                  : 'bg-transparent border-border hover:border-primary/40 text-slate-200 hover:text-white font-semibold'
                               }`}
                             >
                               {method.label}
@@ -900,7 +900,7 @@ export default function BookingSection({
 
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#000000] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     >
                       <span>Continue to Step 2</span>
                       <Icon
@@ -986,7 +986,7 @@ export default function BookingSection({
                       <button
                         type="button"
                         onClick={() => setStep(1)}
-                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 text-sm font-medium transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-border text-slate-200 hover:text-white hover:border-primary/40 text-sm font-semibold transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         <Icon name="ArrowLeftIcon" size={14} />
                         Back
@@ -994,7 +994,7 @@ export default function BookingSection({
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#000000] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         {loading ? (
                           <span className="flex items-center gap-3">

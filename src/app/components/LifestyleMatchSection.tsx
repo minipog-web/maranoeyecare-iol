@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './LifestyleMatchSection.module.css';
@@ -63,6 +64,7 @@ const profiles = [
 ];
 
 export default function LifestyleMatchSection() {
+  const router = useRouter();
   return (
     <section id="lifestyle" className="py-16 sm:py-24 relative overflow-hidden bg-[#10131b]">
       {/* Background */}
@@ -190,18 +192,18 @@ export default function LifestyleMatchSection() {
                   e.preventDefault();
                   if ((e.target as HTMLElement).closest('a')) return;
                   if (profile.id === 'tech') {
-                    window.location.href = '/panoptix-pro';
+                    router.push('/panoptix-pro');
                     return;
                   }
                   if (profile.id === 'active') {
-                    window.location.href = '/clareon-vivity';
+                    router.push('/clareon-vivity');
                     return;
                   }
                   if (profile.id === 'innovator') {
-                    window.location.href = '/tecnis-puresee';
+                    router.push('/tecnis-puresee');
                     return;
                   }
-                  window.location.hash = 'booking';
+                  router.push('/#booking');
                 }
               }}
               onClick={(e) => {
@@ -209,18 +211,18 @@ export default function LifestyleMatchSection() {
                   return;
                 }
                 if (profile.id === 'tech') {
-                  window.location.href = '/panoptix-pro';
+                  router.push('/panoptix-pro');
                   return;
                 }
                 if (profile.id === 'active') {
-                  window.location.href = '/clareon-vivity';
+                  router.push('/clareon-vivity');
                   return;
                 }
                 if (profile.id === 'innovator') {
-                  window.location.href = '/tecnis-puresee';
+                  router.push('/tecnis-puresee');
                   return;
                 }
-                window.location.hash = 'booking';
+                router.push('/#booking');
               }}
               className={`group relative doppel-shell transition-spring hover:-translate-y-2 cursor-pointer flex flex-col focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f16] focus-visible:outline-none ${styles.profileCard} ${styles[`profile${profile.id.charAt(0).toUpperCase() + profile.id.slice(1)}`]}`}
             >

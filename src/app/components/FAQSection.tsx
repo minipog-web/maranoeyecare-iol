@@ -432,7 +432,7 @@ export default function FAQSection() {
                     label: 'Book a Free Consultation',
                   });
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-primary text-[#040506] rounded-xl text-sm font-semibold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-primary text-[#000000] rounded-xl text-sm font-bold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 Schedule Personal Consultation
                 <Icon name="ArrowRightIcon" size={16} />
@@ -475,18 +475,16 @@ export default function FAQSection() {
                     role="tab"
                     aria-selected={isSelected}
                     onClick={() => handleCategoryChange(tab.label)}
-                    className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold whitespace-nowrap transition-all duration-200 touch-manipulation min-h-[36px] sm:min-h-[38px] ${
+                    className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 touch-manipulation min-h-[36px] sm:min-h-[38px] ${
                       isSelected
-                        ? 'bg-primary text-[#040506] shadow-[0_4px_14px_rgba(197,160,89,0.35)] scale-[1.02]'
-                        : 'bg-white/[0.04] text-muted-foreground border border-white/10 hover:text-foreground hover:bg-white/[0.08] hover:border-white/20'
+                        ? 'bg-primary text-[#000000] shadow-[0_4px_14px_rgba(197,160,89,0.35)] scale-[1.02]'
+                        : 'bg-white/[0.04] text-slate-200 border border-white/10 hover:text-white hover:bg-white/[0.08] hover:border-white/20'
                     }`}
                   >
                     <span>{tab.label}</span>
                     <span
                       className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold transition-colors ${
-                        isSelected
-                          ? 'bg-[#040506]/20 text-[#040506]'
-                          : 'bg-white/10 text-muted-foreground'
+                        isSelected ? 'bg-[#000000]/20 text-[#000000]' : 'bg-white/10 text-slate-300'
                       }`}
                     >
                       {tab.count}

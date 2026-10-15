@@ -133,119 +133,131 @@ const QUESTIONS: Record<string, Question> = {
   q1: {
     id: 'q1',
     text: 'What is your primary goal for life after cataract surgery?',
-    subtext: 'This helps us identify the lifestyle archetype that fits you best.',
+    subtext: 'This helps us identify which lens architecture aligns best with your daily routine.',
     options: [
       {
-        label: 'Standard clarity covered by insurance (reading glasses required)',
-        sublabel: 'Medicare / standard insurance coverage',
+        label: 'Complete freedom from reading glasses across all distances',
+        sublabel: 'Read smartphones, books, and computer screens glasses-free',
+        icon: '📖',
+        next: 'q_reading_priority',
+      },
+      {
+        label: 'Smooth, natural vision for an active lifestyle & outdoor recreation',
+        sublabel: 'Pristine distance and dashboard/computer focus with minimal glare',
+        icon: '⛳',
+        next: 'q_active_routine',
+      },
+      {
+        label: 'Pristine night driving clarity with zero halos or contrast loss',
+        sublabel: 'Maximum visual purity for dark highways and night commutes',
+        icon: '🌙',
+        next: 'q_night_priority',
+      },
+      {
+        label: 'Standard distance clarity covered fully by Medicare / insurance',
+        sublabel: 'Traditional insurance option; reading glasses used for near tasks',
         icon: '🛡️',
         next: 'result:monofocal',
       },
+    ],
+  },
+  q_reading_priority: {
+    id: 'q_reading_priority',
+    text: 'How important is reading fine print (phone, menus, books) without reading glasses?',
+    subtext: 'Consider your daily frustration if you still needed readers for close-up tasks.',
+    options: [
       {
-        label: 'Complete freedom to read, work, and drive without reaching for glasses',
-        sublabel: 'Ditch glasses for books, phones, and dashboards',
-        icon: '👓',
-        next: 'q2',
+        label: 'Essential — I want to be completely glasses-free throughout my day',
+        sublabel: 'Full trifocal range across near (40 cm), intermediate, and distance',
+        icon: '📱',
+        next: 'result:panoptix',
       },
       {
-        label: 'Pristine distance clarity for driving, sports, and outdoors',
-        sublabel: 'Prioritize far-away sharpness over close-up reading',
+        label: 'I want near independence, but I also do extensive night driving on dark roads',
+        sublabel:
+          'Evaluate whether full trifocal near focus or a refractive EDOF suits your nights best',
         icon: '🚗',
-        next: 'q3',
-      },
-      {
-        label: 'Pristine night vision with the absolute lowest risk of glare or halos',
-        sublabel: 'Maximize visual purity in low light and night driving',
-        icon: '🌙',
-        next: 'q4',
+        next: 'q_night_tradeoff',
       },
     ],
   },
-  q2: {
-    id: 'q2',
-    text: 'How frustrating is the prospect of needing reading glasses for daily tasks?',
-    subtext: 'Think of reaching for readers to view your phone, restaurant menus, or price tags.',
+  q_night_tradeoff: {
+    id: 'q_night_tradeoff',
+    text: 'When driving after dark, which priority matters most to you?',
+    subtext:
+      'Trifocal optics offer total reading independence with brief night neuroadaptation; refractive EDOF offers monofocal-level night purity.',
     options: [
       {
-        label: 'Very frustrating, I want to read phones, menus, and fine print glasses-free',
-        sublabel: 'Maximize near-vision independence',
+        label: 'I gladly trade mild night halos for 100% glasses-free reading all day',
+        sublabel: '99% of PanOptix patients would choose this lens again',
+        icon: '👓',
+        next: 'result:panoptix',
+      },
+      {
+        label: 'I cannot tolerate halos at night — I prefer pristine dark-highway clarity',
+        sublabel: 'TECNIS PureSee delivers zero contrast loss and monofocal-like night vision',
+        icon: '✨',
+        next: 'result:puresee',
+      },
+    ],
+  },
+  q_active_routine: {
+    id: 'q_active_routine',
+    text: 'Which visual environment best describes your favorite activities?',
+    subtext: 'Different extended depth technologies optimize for distinct lighting and movement.',
+    options: [
+      {
+        label: 'Outdoor sports, golf, tennis, hiking, and daily dashboard/computer screens',
+        sublabel: 'Clareon Vivity uses non-diffractive X-WAVE™ optics for the lowest halo rate',
+        icon: '🎾',
+        next: 'result:vivity',
+      },
+      {
+        label: 'Frequent night driving, dark highway commutes, and multi-monitor digital work',
+        sublabel:
+          'TECNIS PureSee provides cutting-edge refractive optics with zero contrast warning',
+        icon: '🛣️',
+        next: 'result:puresee',
+      },
+      {
+        label: 'I also do hours of fine close-up reading and want zero reading glasses',
+        sublabel: 'Upgrade from intermediate EDOF to full trifocal near vision',
+        icon: '📚',
+        next: 'result:panoptix',
+      },
+    ],
+  },
+  q_night_priority: {
+    id: 'q_night_priority',
+    text: 'What is your highest priority when choosing a night-friendly premium lens?',
+    subtext:
+      'Both Clareon Vivity and TECNIS PureSee eliminate traditional multifocal glare, through different optical designs.',
+    options: [
+      {
+        label: 'Cutting-edge purely refractive optics with zero contrast sensitivity warning',
+        sublabel:
+          'TECNIS PureSee: newest FDA-approved refractive EDOF with monofocal-level night contrast',
+        icon: '🔬',
+        next: 'result:puresee',
+      },
+      {
+        label: 'Proven non-diffractive wavefront shaping for smooth, forgiving natural vision',
+        sublabel:
+          'Clareon Vivity: proprietary X-WAVE™ technology stretching light without splitting it',
+        icon: '🌟',
+        next: 'result:vivity',
+      },
+      {
+        label: 'I want good night vision, but I prioritize reading without glasses above all else',
+        sublabel: 'PanOptix Pro: the only FDA-approved trifocal delivering complete near focus',
         icon: '📖',
         next: 'result:panoptix',
-      },
-      {
-        label: "Manageable, I don't mind keeping readers nearby for tiny print",
-        sublabel: 'Acceptable trade-off for other vision benefits',
-        icon: '📱',
-        next: 'q3',
-      },
-    ],
-  },
-  q3: {
-    id: 'q3',
-    text: 'How many hours do you spend focusing on screens (laptops, monitors, dashboards)?',
-    subtext: "Intermediate range (arm's length) is critical for modern digital life.",
-    options: [
-      {
-        label: 'Over 4 hours a day, screen clarity is essential for my work and life',
-        sublabel: 'Active computer work, Zoom calls, and laptop use',
-        icon: '💻',
-        next: 'result:vivity',
-      },
-      {
-        label: '1 to 3 hours a day, casual browsing and messaging',
-        sublabel: 'Casual tablet reading and social media',
-        icon: '🖥️',
-        next: 'q4',
-      },
-      {
-        label: 'Rarely, I prioritize distance activities like driving, golf, and watching TV',
-        sublabel: 'Minimal computer use, focusing on distance tasks',
-        icon: '📺',
-        next: 'q5',
-      },
-    ],
-  },
-  q4: {
-    id: 'q4',
-    text: 'How critical is visual purity at night (for example, night driving without glare or halos)?',
-    subtext: 'Certain multifocal designs may produce mild halos around oncoming headlights.',
-    options: [
-      {
-        label: 'Extremely important, I drive frequently after dark and want minimal glare',
-        sublabel: 'Prioritize halo-free night vision',
-        icon: '💡',
-        next: 'result:vivity',
-      },
-      {
-        label: 'Flexible, I can easily adapt if it gives me complete glasses-free near vision',
-        sublabel: 'Willing to neuroadapt for full near and intermediate focus',
-        icon: '😎',
-        next: 'result:panoptix',
-      },
-    ],
-  },
-  q5: {
-    id: 'q5',
-    text: 'To ensure compatibility, have you been diagnosed with any other eye conditions?',
-    subtext: 'Co-morbidities can influence which lens is safest and most effective for you.',
-    options: [
-      {
-        label: 'Dry eye, macular changes, or irregular cornea',
-        sublabel: 'Requires advanced refractive considerations',
-        icon: '👁️',
-        next: 'result:puresee',
-      },
-      {
-        label: 'None of the above',
-        sublabel: 'My eyes are otherwise healthy',
-        icon: '✅',
-        next: 'result:puresee',
       },
     ],
   },
 };
 
-const TOTAL_QUESTIONS = 5;
+const TOTAL_QUESTIONS = 3;
 
 function getProgressPercent(history: string[]): number {
   if (history.length === 0) return 0;
@@ -557,7 +569,7 @@ export default function LensQuestionnaireSection() {
                 {history.length > 0 && (
                   <button
                     onClick={handleBack}
-                    className="mt-5 flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm transition-colors touch-manipulation py-2 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="mt-5 flex items-center gap-1.5 text-slate-300 hover:text-white text-sm font-semibold transition-colors touch-manipulation py-2 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >
                     <Icon name="ChevronLeftIcon" size={16} />
                     Back to previous question
@@ -674,14 +686,14 @@ export default function LensQuestionnaireSection() {
                       smoothScrollToElement('booking');
                       window.history.pushState(null, '', '#booking');
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#040506] font-semibold text-sm hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#000000] font-bold text-sm sm:text-base hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >
                     {result.cta}
                     <Icon name="ArrowRightIcon" size={16} />
                   </a>
                   <button
                     onClick={handleRestart}
-                    className="btn-neumorphic-secondary flex items-center justify-center gap-2 px-5 py-4 rounded-xl text-sm transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="btn-neumorphic-secondary flex items-center justify-center gap-2 px-5 py-4 rounded-xl text-sm sm:text-base font-bold text-white transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >
                     <Icon name="ArrowPathIcon" size={16} />
                     Retake Quiz

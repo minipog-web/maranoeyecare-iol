@@ -98,7 +98,7 @@ export default function FinancingSection() {
           </p>
           <a
             href="#booking"
-            className="btn-premium-primary btn-shimmer inline-flex items-center justify-center gap-2 py-3 px-8 text-sm font-bold uppercase tracking-wider rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="btn-premium-primary inline-flex items-center justify-center gap-2 py-3.5 px-8 text-sm sm:text-base font-bold rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <span>Schedule Consultation</span>
             <Icon name="ArrowRightIcon" size={16} />

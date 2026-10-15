@@ -23,7 +23,7 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: ['@heroicons/react', 'lucide-react'],
+    optimizePackageImports: ['@heroicons/react', 'lucide-react', 'three', 'canvas-confetti'],
   },
 
   async headers() {

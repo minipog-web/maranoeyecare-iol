@@ -829,31 +829,12 @@ p[id^='footnote-']:target {
   animation: shimmer-slide 4s linear infinite;
 }
 
-/* Button shimmer on hover */
+/* Button shimmer on hover - neutralized to prevent glare washing out button text */
 .btn-shimmer {
   position: relative;
-  overflow: hidden;
 }
 .btn-shimmer::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: 0;
-  width: 50%;
-  height: 200%;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.22) 50%,
-    transparent 60%
-  );
-  transform: skewX(-10deg) translateX(-150%);
-  pointer-events: none;
-  transition: none;
-}
-.btn-shimmer:hover::after {
-  transform: skewX(-10deg) translateX(250%);
-  transition: transform 0.6s ease;
+  display: none !important;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -869,10 +850,12 @@ p[id^='footnote-']:target {
 button.bg-primary,
 a.bg-primary {
   background: linear-gradient(180deg, #fae4ae 0%, #edc573 50%, #d5a549 100%) !important;
-  color: #030507 !important;
+  color: #000000 !important;
   font-weight: 700 !important;
-  letter-spacing: 0.015em !important;
+  letter-spacing: 0.01em !important;
   text-shadow: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
   border: 1px solid #140f06 !important;
   box-shadow:
     0 0 0 1px #0a0703,
@@ -919,7 +902,7 @@ a.bg-primary:active {
 a.bg-primary div.rounded-full,
 button.bg-primary div.rounded-full {
   background: rgba(0, 0, 0, 0.14) !important;
-  color: #040608 !important;
+  color: #000000 !important;
   border: 1px solid rgba(0, 0, 0, 0.28) !important;
   box-shadow:
     inset 1px 1px 2px rgba(0, 0, 0, 0.45),
@@ -927,14 +910,16 @@ button.bg-primary div.rounded-full {
     0 1px 2px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* 2. SECONDARY NEUMORPHIC BUTTONS (Obsidian Slate with Dark Edge Outer Bevel) */
+/* 2. SECONDARY NEUMORPHIC BUTTONS (Obsidian Slate with Crisp High-Contrast White Text) */
 .btn-premium-secondary,
 .btn-neumorphic-secondary {
   background: linear-gradient(180deg, #1b212e 0%, #10141d 100%) !important;
   color: #ffffff !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.015em !important;
+  text-shadow: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
   border: 1px solid #06080d !important;
   box-shadow:
     0 0 0 1px #020305,
@@ -949,7 +934,8 @@ button.bg-primary div.rounded-full {
 .btn-premium-secondary:hover,
 .btn-neumorphic-secondary:hover {
   background: linear-gradient(180deg, #232b3b 0%, #131924 100%) !important;
-  color: #fff3d6 !important;
+  color: #ffffff !important;
+  text-shadow: none !important;
   border-color: #030406 !important;
   box-shadow:
     0 0 0 1px #000000,
@@ -998,7 +984,10 @@ button.bg-primary div.rounded-full {
 
 .toggle-btn {
   background: var(--toggle-bg, transparent);
-  color: var(--toggle-color, var(--muted-foreground));
+  color: var(--toggle-color, #cbd5e1);
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   box-shadow: var(--toggle-shadow, none);
   transition:
     background 0.2s ease,

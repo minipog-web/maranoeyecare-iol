@@ -185,7 +185,7 @@ export default function Header() {
           <Link
             href="/#booking"
             onClick={(e) => handleBookingClick(e, 'desktop')}
-            className="btn-premium-primary btn-shimmer rounded-full whitespace-nowrap text-xs xl:text-sm px-3.5 py-2 lg:px-4 lg:py-2.5 xl:px-6 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
+            className="btn-premium-primary rounded-full whitespace-nowrap text-sm font-bold px-4 py-2.5 xl:px-6 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
           >
             Book Consultation
           </Link>
@@ -212,7 +212,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   className={`text-sm font-semibold uppercase tracking-wider py-3 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
-                    isActive ? 'text-primary font-bold' : 'text-muted-foreground hover:text-primary'
+                    isActive ? 'text-primary font-bold' : 'text-slate-200 hover:text-primary'
                   }`}
                   onClick={(e) => {
                     handleNavClick(e, link.href, link.label);
@@ -230,7 +230,7 @@ export default function Header() {
               href="tel:9733220100"
               suppressHydrationWarning
               onClick={() => handlePhoneClick('mobile')}
-              className="group flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground py-3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-primary/30 transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="group flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wider text-white py-3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-primary/30 transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
                 <Icon name="PhoneIcon" size={12} className="text-primary" />
@@ -240,7 +240,7 @@ export default function Header() {
 
             <Link
               href="/#booking"
-              className="w-full py-3.5 bg-primary text-[#040506] rounded-full text-xs font-bold uppercase tracking-wider text-center hover:bg-accent transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation flex items-center justify-center shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="w-full py-3.5 bg-primary text-[#000000] rounded-full text-sm font-bold text-center hover:bg-accent transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation flex items-center justify-center shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               onClick={(e) => {
                 handleBookingClick(e, 'mobile');
                 setMenuOpen(false);

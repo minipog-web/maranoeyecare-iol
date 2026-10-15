@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import AppIcon from '@/components/ui/AppIcon';
 import Image from 'next/image';
 import styles from './LensVisionComparisonSection.module.css';
@@ -351,6 +352,7 @@ const nightVisionDescriptions: Record<string, string> = {
 };
 
 export default function LensVisionComparisonSection() {
+  const router = useRouter();
   const [activeDistance, setActiveDistance] = useState<Distance>('distance');
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('day');
   const [activePremiumLensId, setActivePremiumLensId] = useState<string>('panoptix');
@@ -408,7 +410,7 @@ export default function LensVisionComparisonSection() {
         category: 'Navigation',
         label: 'PanOptix Card Click to /panoptix-pro',
       });
-      window.location.href = '/panoptix-pro';
+      router.push('/panoptix-pro');
       return;
     }
     if (id === 'vivity') {
@@ -417,7 +419,7 @@ export default function LensVisionComparisonSection() {
         category: 'Navigation',
         label: 'Vivity Card Click to /clareon-vivity',
       });
-      window.location.href = '/clareon-vivity';
+      router.push('/clareon-vivity');
       return;
     }
     if (id === 'puresee') {
@@ -426,7 +428,7 @@ export default function LensVisionComparisonSection() {
         category: 'Navigation',
         label: 'PureSee Card Click to /tecnis-puresee',
       });
-      window.location.href = '/tecnis-puresee';
+      router.push('/tecnis-puresee');
       return;
     }
     if (id === 'monofocal') {
@@ -705,12 +707,12 @@ export default function LensVisionComparisonSection() {
                         <button
                           key={t}
                           onClick={() => handleTimeOfDayChange(t)}
-                          className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                          className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                             timeOfDay === t
                               ? t === 'night'
                                 ? 'text-[#60A5FA]'
                                 : 'text-[#F59E0B]'
-                              : 'text-muted-foreground hover:text-foreground'
+                              : 'text-slate-200 hover:text-white'
                           }`}
                         >
                           <AppIcon
@@ -722,7 +724,7 @@ export default function LensVisionComparisonSection() {
                                 ? t === 'day'
                                   ? 'text-[#F59E0B]'
                                   : 'text-[#60A5FA]'
-                                : 'text-muted-foreground'
+                                : 'text-slate-300'
                             }
                           />
                           <span>{t === 'day' ? 'Daytime' : 'Night driving'}</span>
@@ -756,21 +758,23 @@ export default function LensVisionComparisonSection() {
                               }}
                               className={`relative z-10 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border text-center transition-colors duration-300 group active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border-transparent ${
                                 isActive
-                                  ? 'text-white'
-                                  : 'bg-transparent text-muted-foreground hover:text-foreground'
+                                  ? 'text-white font-bold'
+                                  : 'bg-transparent text-slate-200 hover:text-white font-semibold'
                               }`}
                             >
                               <AppIcon
                                 name={details.icon}
                                 size={16}
                                 className={`mb-1.5 sm:mb-2 transition-transform duration-300 group-hover:scale-110 ${
-                                  isActive ? 'text-primary' : 'text-muted-foreground'
+                                  isActive
+                                    ? 'text-primary'
+                                    : 'text-slate-300 group-hover:text-white'
                                 }`}
                               />
                               <span className="block text-[10px] sm:text-xs font-bold leading-none">
                                 {details.label}
                               </span>
-                              <span className="hidden sm:block text-[8px] text-muted-foreground/80 font-light mt-1 truncate max-w-full">
+                              <span className="hidden sm:block text-[9px] text-slate-300 font-medium mt-1 truncate max-w-full">
                                 {details.desc.split('(')[0].trim()}
                               </span>
                             </button>
@@ -839,7 +843,7 @@ export default function LensVisionComparisonSection() {
                           className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none flex items-center gap-1.5 border ${
                             isActive
                               ? `scale-[1.02] ${styles.activePremiumBtn}`
-                              : 'text-muted-foreground hover:text-foreground border-transparent'
+                              : 'text-slate-200 hover:text-white border-transparent'
                           }`}
                         >
                           <span
@@ -1529,7 +1533,7 @@ export default function LensVisionComparisonSection() {
                 smoothScrollToElement('lens-quiz');
                 window.history.pushState(null, '', '#lens-quiz');
               } else {
-                window.location.href = '/#lens-quiz';
+                router.push('/#lens-quiz');
               }
               trackEvent({
                 action: 'lens_bridge_quiz_click',
@@ -1537,7 +1541,7 @@ export default function LensVisionComparisonSection() {
                 label: 'Bridge CTA - Interactive Quiz',
               });
             }}
-            className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-accent hover:text-accent-foreground transition-all duration-300 shadow-md hover:shadow-primary/20 shrink-0 min-h-[48px] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full bg-primary text-[#000000] font-bold text-sm hover:bg-accent transition-all duration-300 shadow-md hover:shadow-primary/20 shrink-0 min-h-[48px] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             <span>Start Lens Quiz</span>
             <AppIcon name="ArrowRightIcon" size={16} />

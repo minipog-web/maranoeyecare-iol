@@ -89,10 +89,8 @@ export default function LensTechnologyDeepDiveSection() {
 
             <button
               onClick={() => setActiveTab('vivity')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
-                activeTab === 'vivity'
-                  ? 'text-[#e9c481]'
-                  : 'text-muted-foreground hover:text-foreground'
+              className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+                activeTab === 'vivity' ? 'text-[#e9c481]' : 'text-slate-200 hover:text-white'
               }`}
             >
               Vivity
@@ -103,10 +101,8 @@ export default function LensTechnologyDeepDiveSection() {
             </button>
             <button
               onClick={() => setActiveTab('panoptix')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
-                activeTab === 'panoptix'
-                  ? 'text-[#a78bfa]'
-                  : 'text-muted-foreground hover:text-foreground'
+              className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+                activeTab === 'panoptix' ? 'text-[#a78bfa]' : 'text-slate-200 hover:text-white'
               }`}
             >
               PanOptix
@@ -117,10 +113,8 @@ export default function LensTechnologyDeepDiveSection() {
             </button>
             <button
               onClick={() => setActiveTab('puresee')}
-              className={`relative z-10 flex-1 py-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
-                activeTab === 'puresee'
-                  ? 'text-[#38bdf8]'
-                  : 'text-muted-foreground hover:text-foreground'
+              className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+                activeTab === 'puresee' ? 'text-[#38bdf8]' : 'text-slate-200 hover:text-white'
               }`}
             >
               TECNIS PureSee

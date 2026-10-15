@@ -324,21 +324,21 @@ export default function PanOptixPageClient() {
                       // Ignore storage write issues
                     }
                   }}
-                  className="group relative inline-flex items-center justify-between sm:justify-center rounded-full bg-gradient-to-r from-[#fff3d6] via-[#f7d492] to-[#d1ab60] px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-black shadow-[0_4px_24px_rgba(197,160,89,0.35)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(197,160,89,0.5)] hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="group relative inline-flex items-center justify-between sm:justify-center rounded-full bg-gradient-to-r from-[#fff3d6] via-[#f7d492] to-[#d1ab60] px-7 py-3.5 text-sm font-bold text-black shadow-[0_4px_24px_rgba(197,160,89,0.35)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(197,160,89,0.5)] hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <span>Schedule PanOptix Consultation</span>
                   <div className="ml-3.5 flex h-7 w-7 items-center justify-center rounded-full bg-black/10 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5">
-                    <Icon name="ArrowRightIcon" size={12} className="text-black" />
+                    <Icon name="ArrowRightIcon" size={14} className="text-black" />
                   </div>
                 </Link>
                 <a
                   href="#comparison"
                   onClick={(e) => handleAnchorClick(e, 'comparison', 'hero_compare_jump')}
-                  className="group inline-flex items-center justify-between sm:justify-center rounded-full border border-white/15 bg-white/[0.03] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white/[0.08] hover:border-primary/40 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                  className="group inline-flex items-center justify-between sm:justify-center rounded-full border border-white/20 bg-white/[0.04] px-6 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-white/[0.08] hover:border-primary/40 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   <span>Compare with Vivity &amp; PureSee</span>
                   <div className="ml-3 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-1">
-                    <Icon name="ArrowDownIcon" size={12} />
+                    <Icon name="ArrowDownIcon" size={14} />
                   </div>
                 </a>
               </div>

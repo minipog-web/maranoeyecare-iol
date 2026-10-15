@@ -155,7 +155,7 @@ export default function CandidacySection() {
               smoothScrollToElement('booking');
               window.history.pushState(null, '', '#booking');
             }}
-            className="group shrink-0 inline-flex items-center justify-center pl-6 pr-2.5 py-2.5 bg-primary text-[#040506] rounded-full text-xs font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[44px] shadow-[0_4px_12px_rgba(197,160,89,0.2)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="group shrink-0 inline-flex items-center justify-center pl-6 pr-3 py-2.5 bg-primary text-[#000000] rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[46px] shadow-[0_4px_12px_rgba(197,160,89,0.2)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <span>Schedule Candidacy Exam</span>
             <div className="ml-3 w-6 h-7 rounded-full bg-black/10 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 shrink-0">
