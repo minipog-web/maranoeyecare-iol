@@ -149,9 +149,9 @@ export default function HeroSection({
           {/* Left Content */}
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
             {/* Eyebrow Badge */}
-            <div className="relative z-10 inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/35 mb-5 sm:mb-8 animate-fade-up fill-both whitespace-nowrap shrink-0 flex-nowrap max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)]">
+            <div className="relative z-10 inline-flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/35 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)]">
               <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#FAE8C8] shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.5)]" />
-              <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] whitespace-nowrap shrink-0">
+              <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059]">
                 {badgeText ? (
                   badgeText
                 ) : (
@@ -325,7 +325,7 @@ export default function HeroSection({
           {/* Right: Three-Lens Visual Showcase & Vision Reach Meter */}
           <div className="min-w-0 lg:col-span-5 xl:col-span-5 2xl:col-span-5 relative w-full flex flex-col items-center lg:items-end justify-start pt-2 lg:pt-6">
             {/* Lens Cards Row */}
-            <div className="w-full flex items-end justify-center lg:justify-end gap-2.5 sm:gap-3.5 xl:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pt-2 pb-2">
+            <div className="w-full flex items-end justify-start sm:justify-center lg:justify-end gap-3 sm:gap-3.5 xl:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pt-2 pb-2 scrollbar-none">
               {lenses.map((lens, i) => {
                 const isActive = activeLens === lens.name;
                 const cardOrigin =
@@ -346,7 +346,7 @@ export default function HeroSection({
                     key={lens.name}
                     onMouseEnter={() => setActiveLens(lens.name)}
                     onPointerEnter={() => setActiveLens(lens.name)}
-                    className={`w-[31%] min-w-[110px] max-w-[135px] sm:w-36 sm:max-w-none lg:w-[126px] xl:w-[148px] 2xl:w-[164px] shrink-0 snap-center sm:snap-align-none ${delayClass}`}
+                    className={`w-[68vw] xs:w-[58vw] min-w-[200px] max-w-[240px] sm:w-36 sm:min-w-0 sm:max-w-none lg:w-[126px] xl:w-[148px] 2xl:w-[164px] shrink-0 snap-center sm:snap-align-none ${delayClass}`}
                   >
                     <Link
                       href={lens.href}
