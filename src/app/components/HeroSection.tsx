@@ -161,9 +161,7 @@ export default function HeroSection({
                     <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] whitespace-nowrap">
                       Laser Cataract Surgery &amp; Premium IOL Specialists
                     </span>
-                    <span className="hidden xl:inline mx-1.5 text-[#C5A059]/50 font-normal">
-                      •
-                    </span>
+                    <span className="hidden xl:inline mx-1.5 text-[#C5A059]/50 font-normal">•</span>
                     <span className="text-[#E2C28A]/90 font-medium whitespace-nowrap mt-0.5 xl:mt-0">
                       Livingston, Denville &amp; Newark NJ
                     </span>
