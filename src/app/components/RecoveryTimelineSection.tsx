@@ -20,10 +20,10 @@ export default function RecoveryTimelineSection() {
     {
       phase: '02',
       title: 'Procedure Day',
-      timeframe: '10 Minutes',
+      timeframe: '10–15 Minutes',
       icon: 'ClockIcon',
       description:
-        'A painless 10-minute outpatient procedure under gentle numbing drops and light twilight sedation. No needles, no stitches, and you head home shortly after.',
+        'A painless 10–15 minute outpatient procedure under gentle numbing drops and light twilight sedation. No needles, no stitches, and you head home shortly after.',
       color: '#8B5CF6',
       rgb: '139, 92, 246',
     },

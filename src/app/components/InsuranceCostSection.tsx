@@ -74,7 +74,7 @@ export default function InsuranceCostSection() {
   return (
     <section
       id="insurance-investment"
-      className="py-20 sm:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
+      className="py-14 sm:py-22 lg:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
       aria-label="Insurance and Pricing Transparency"
     >
       <div id="financing" className="relative -top-28 scroll-mt-24 sm:scroll-mt-28" />
@@ -413,7 +413,7 @@ export default function InsuranceCostSection() {
                   label: 'Request Surgical Consultation',
                 });
               }}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-black font-extrabold text-sm hover:bg-primary/90 hover:shadow-[0_0_25px_rgba(197,160,89,0.5)] transition-all shrink-0 active:scale-95 touch-manipulation min-h-[48px]"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-[#000000] font-bold text-sm sm:text-base hover:bg-accent transition-all hover:scale-[1.02] shrink-0 active:scale-95 touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <span>Request Surgical Consultation</span>
               <Icon name="ArrowRightIcon" size={16} className="text-black shrink-0" />

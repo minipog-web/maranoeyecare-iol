@@ -188,7 +188,7 @@ const cataractFaqs = [
   {
     question: 'Is the cataract surgery procedure painful?',
     answer:
-      'Not at all. The procedure is performed under gentle topical numbing eye drops combined with light twilight sedation. Patients do not feel needles, injections, or surgical discomfort. The entire outpatient procedure typically takes only 10 minutes, and patients return home comfortably the same morning.',
+      'Not at all. The procedure is performed under gentle topical numbing eye drops combined with light twilight sedation. Patients do not feel needles, injections, or surgical discomfort. The entire outpatient procedure typically takes only 10–15 minutes, and patients return home comfortably the same morning.',
   },
 ];
 
@@ -901,11 +901,11 @@ export default function CataractEducationClient() {
                   // Ignore storage write issues
                 }
               }}
-              className="w-full sm:w-auto group inline-flex items-center justify-center pl-6 pr-3 py-3 bg-primary text-[#040506] rounded-full text-xs sm:text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25)]"
+              className="w-full sm:w-auto group inline-flex items-center justify-center pl-6 pr-3 py-3 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <span>Schedule Evaluation</span>
               <div className="ml-3 w-6 h-6 rounded-full bg-black/10 flex items-center justify-center transition-all duration-500 group-hover:translate-x-1 shrink-0">
-                <Icon name="ArrowRightIcon" size={14} className="text-current" />
+                <Icon name="ArrowRightIcon" size={14} className="text-black" />
               </div>
             </Link>
           </div>

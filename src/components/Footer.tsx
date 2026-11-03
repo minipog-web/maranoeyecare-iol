@@ -8,7 +8,7 @@ import { smoothScrollToElement } from '@/lib/ui';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border py-10">
+    <footer className="border-t border-border pt-10 pb-28 sm:pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6">
           <div className="flex items-center gap-3 shrink-0">

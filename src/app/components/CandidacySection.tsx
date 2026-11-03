@@ -39,7 +39,7 @@ export default function CandidacySection() {
         {/* Two Columns */}
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
           {/* Column 1: Ideal Candidate */}
-          <div className="glass-card border border-emerald-500/20 bg-emerald-500/[0.01] rounded-3xl p-6 sm:p-8 flex flex-col">
+          <div className="glass-card border border-emerald-500/20 bg-emerald-500/[0.01] rounded-3xl p-4 sm:p-6 lg:p-8 flex flex-col">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
                 <Icon name="CheckCircleIcon" size={20} className="text-emerald-500" />
@@ -85,7 +85,7 @@ export default function CandidacySection() {
           </div>
 
           {/* Column 2: Considerations / Exclusions */}
-          <div className="glass-card border border-amber-500/20 bg-amber-500/[0.01] rounded-3xl p-6 sm:p-8 flex flex-col">
+          <div className="glass-card border border-amber-500/20 bg-amber-500/[0.01] rounded-3xl p-4 sm:p-6 lg:p-8 flex flex-col">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0">
                 <Icon name="ExclamationTriangleIcon" size={20} className="text-amber-500" />

@@ -392,7 +392,7 @@ const schemas = [
         name: 'How long does cataract surgery take?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The surgical procedure takes approximately 10 minutes under topical eye drop anesthesia, with no pain, no needles, and no general anesthesia required.',
+          text: 'The surgical procedure takes approximately 10–15 minutes under topical eye drop anesthesia, with no pain, no needles, and no general anesthesia required.',
         },
       },
       {
@@ -535,7 +535,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         */}
         <Script
           src="//cdn.callrail.com/companies/570973368/3348eb3c5c72e54f1c23/12/swap.js"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       </body>
     </html>

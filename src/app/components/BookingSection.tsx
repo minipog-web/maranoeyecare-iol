@@ -17,7 +17,7 @@ const offices = [
   {
     city: 'Livingston',
     badge: 'Livingston (Essex Co.)',
-    phone: '973-322-0100',
+    phone: '(973) 322-0100',
     address: '200 South Orange Ave, Suite 209, Livingston, NJ 07039',
     mapsUrl: 'https://maps.google.com/?q=200+South+Orange+Ave+Suite+209+Livingston+NJ+07039',
   },
@@ -148,6 +148,20 @@ export default function BookingSection({
     window.addEventListener('select-lens', handleSelectLens);
     return () => window.removeEventListener('select-lens', handleSelectLens);
   }, []);
+
+  React.useEffect(() => {
+    // Re-trigger CallRail dynamic number swap when switching office locations
+    if (typeof window !== 'undefined') {
+      const w = window as unknown as { CallTrk?: { swap?: () => void } };
+      if (w.CallTrk?.swap) {
+        try {
+          w.CallTrk.swap();
+        } catch {
+          // Ignore swap errors
+        }
+      }
+    }
+  }, [activeOfficeTab]);
 
   const handleRadioKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -307,7 +321,7 @@ export default function BookingSection({
   return (
     <section
       id="booking"
-      className="py-24 sm:py-32 lg:py-36 relative overflow-hidden bg-section-booking border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
+      className="py-12 sm:py-20 lg:py-32 relative overflow-hidden bg-section-booking border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* Office location beacon texture */}
       <div className="absolute inset-0 texture-beacon-glows opacity-50 pointer-events-none" />
@@ -327,9 +341,19 @@ export default function BookingSection({
             </p>
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
-                <span className="whitespace-nowrap">
-                  Reclaim <span className="font-semibold text-gradient-primary">Clear Vision</span>
+                <span className="whitespace-nowrap [filter:drop-shadow(0_4px_16px_rgba(0,0,0,0.85))_drop-shadow(0_1px_2px_rgba(0,0,0,0.9))]">
+                  <span className="[text-shadow:_0_2px_12px_rgba(0,0,0,0.9)]">Reclaim</span>{' '}
+                  <span className="font-semibold text-gradient-primary drop-shadow-[0_2px_10px_rgba(197,160,89,0.28)]">
+                    Clear Vision
+                  </span>
                 </span>
+              ) : bookingHeadline === 'Schedule Your Comprehensive Cataract Evaluation' ? (
+                <>
+                  Schedule Your{' '}
+                  <span className="font-semibold text-gradient-primary drop-shadow-[0_2px_10px_rgba(197,160,89,0.28)] block sm:inline">
+                    Comprehensive Cataract Evaluation
+                  </span>
+                </>
               ) : bookingHeadline.includes('Clareon® Vivity®') ? (
                 <>
                   Schedule Your{' '}
@@ -338,19 +362,50 @@ export default function BookingSection({
                   </span>{' '}
                   Consultation
                 </>
+              ) : bookingHeadline.includes('PanOptix® Pro') ? (
+                <>
+                  Schedule Your{' '}
+                  <span className="font-semibold text-gradient-primary block sm:inline">
+                    Clareon<sup>®</sup> PanOptix<sup>®</sup> Pro
+                  </span>{' '}
+                  Consultation
+                </>
+              ) : bookingHeadline.includes('PureSee™') ? (
+                <>
+                  Schedule Your{' '}
+                  <span className="font-semibold text-gradient-primary block sm:inline">
+                    TECNIS PureSee™
+                  </span>{' '}
+                  Consultation
+                </>
               ) : (
-                bookingHeadline
+                <span className="font-semibold text-gradient-primary drop-shadow-[0_2px_10px_rgba(197,160,89,0.28)]">
+                  {bookingHeadline}
+                </span>
               )}
             </h2>
 
             {/* Unified Reassurance & Urgency Card */}
-            <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-primary/10 via-white/[0.03] to-transparent border border-primary/20 shadow-lg">
-              <div className="flex items-start gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0 mt-1.5" />
-                <p className="text-xs sm:text-sm text-foreground/90 font-medium leading-relaxed">
-                  {bookingUrgencyTitle && bookingUrgencyText
-                    ? `${bookingUrgencyTitle} ${bookingUrgencyText}`
-                    : 'Cataracts only progress and never improve on their own. Waiting makes vision worse and recovery longer.'}
+            <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-primary/[0.22] via-[#161824] to-[#11131c] border-2 border-primary/85 shadow-[0_4px_24px_rgba(0,0,0,0.7),0_0_28px_rgba(197,160,89,0.25),inset_0_1px_2px_rgba(255,255,255,0.2)] relative overflow-hidden">
+              <div className="flex items-start gap-3 relative z-10">
+                <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0 mt-1 shadow-[0_0_10px_rgba(197,160,89,1)]" />
+                <p className="text-xs sm:text-sm text-foreground font-medium leading-relaxed">
+                  {bookingUrgencyTitle && bookingUrgencyText ? (
+                    <>
+                      <strong className="text-primary font-semibold mr-1">
+                        {bookingUrgencyTitle}:
+                      </strong>
+                      <span>{bookingUrgencyText}</span>
+                    </>
+                  ) : (
+                    <>
+                      <strong className="text-primary font-semibold">
+                        Cataracts only progress
+                      </strong>{' '}
+                      and never improve on their own. Waiting makes vision worse and recovery
+                      longer.
+                    </>
+                  )}
                 </p>
               </div>
             </div>
@@ -444,7 +499,7 @@ export default function BookingSection({
               </div>
 
               {/* Bold Location tabs */}
-              <div className="grid grid-cols-3 gap-2 p-1.5 bg-black/60 border border-primary/25 rounded-2xl mb-3.5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 p-1.5 bg-black/60 border border-primary/25 rounded-2xl mb-3.5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
                 {offices.map((loc, idx) => {
                   const isActive = activeOfficeTab === idx;
                   return (
@@ -452,18 +507,18 @@ export default function BookingSection({
                       key={loc.city}
                       type="button"
                       onClick={() => setActiveOfficeTab(idx)}
-                      className={`relative flex items-center justify-center gap-1.5 sm:gap-2 py-3 px-2 sm:px-4 text-xs sm:text-sm md:text-base font-bold rounded-xl transition-all duration-200 min-h-[48px] touch-manipulation select-none ${
+                      className={`relative flex items-center justify-center gap-1.5 sm:gap-2 py-3 px-1 sm:px-3 text-xs sm:text-sm md:text-base text-center !rounded-xl transition-all duration-200 min-h-[48px] touch-manipulation select-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                         isActive
-                          ? 'bg-gradient-to-r from-primary via-[#e6c378] to-primary text-black font-extrabold shadow-[0_4px_20px_rgba(197,160,89,0.45)] border border-primary-light scale-[1.02] z-10'
-                          : 'bg-white/[0.04] hover:bg-white/[0.08] text-white/90 hover:text-white border border-white/10 hover:border-primary/40 active:scale-[0.98]'
+                          ? 'btn-premium-primary !rounded-xl text-black font-extrabold scale-[1.02] z-10'
+                          : 'btn-neumorphic-secondary !rounded-xl font-bold hover:scale-[1.01]'
                       }`}
                     >
                       <Icon
                         name="MapPinIcon"
                         size={15}
-                        className={isActive ? 'text-black shrink-0' : 'text-primary/70 shrink-0'}
+                        className={isActive ? 'text-black shrink-0' : 'text-primary shrink-0'}
                       />
-                      <span>{loc.city}</span>
+                      <span className="truncate text-center">{loc.city}</span>
                     </button>
                   );
                 })}
@@ -485,12 +540,14 @@ export default function BookingSection({
                     <p className="text-xs text-white/70 mt-1">{offices[activeOfficeTab].address}</p>
                   </div>
                   <a
-                    href={`tel:${offices[activeOfficeTab].phone.replace(/-/g, '')}`}
+                    href={`tel:${offices[activeOfficeTab].phone.replace(/[^\d]/g, '')}`}
                     suppressHydrationWarning
-                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-primary text-black font-extrabold text-xs sm:text-sm hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(197,160,89,0.5)] transition-all shrink-0 shadow-[0_0_15px_rgba(197,160,89,0.35)] active:scale-95 touch-manipulation min-h-[44px]"
+                    className="btn-premium-primary inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-black font-extrabold text-xs sm:text-sm transition-all shrink-0 active:scale-95 touch-manipulation min-h-[44px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >
                     <Icon name="PhoneIcon" size={13} className="text-black shrink-0" />
-                    <span suppressHydrationWarning>Call {offices[activeOfficeTab].phone}</span>
+                    <span>
+                      Call <span suppressHydrationWarning>{offices[activeOfficeTab].phone}</span>
+                    </span>
                   </a>
                 </div>
                 <a
@@ -533,7 +590,7 @@ export default function BookingSection({
 
           {/* Right: 2-Step Form */}
           <div
-            className={`glass-card border border-border rounded-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${styles.formCard}`}
+            className={`glass-card border border-border rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 ${styles.formCard}`}
           >
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-12 sm:py-16">
@@ -554,7 +611,8 @@ export default function BookingSection({
                   suppressHydrationWarning
                   className="text-sm text-primary mt-6 font-semibold hover:underline touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
-                  Need immediate assistance? Call 973-322-0100
+                  Need immediate assistance? Call{' '}
+                  <span suppressHydrationWarning>(973) 322-0100</span>
                 </a>
               </div>
             ) : (

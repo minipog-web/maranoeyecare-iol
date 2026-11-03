@@ -5,6 +5,27 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: [
+      // Ad Verification & Landing Page Quality Crawlers (Google Ads, Meta Ads, Microsoft Ads, LinkedIn, X)
+      // Google requires AdsBot user-agents to be explicitly named in robots.txt
+      {
+        userAgent: [
+          'AdsBot-Google',
+          'AdsBot-Google-Mobile',
+          'AdsBot-Google-Mobile-Apps',
+          'Mediapartners-Google',
+          'Google-Adwords-Instant',
+          'Google-InspectionTool',
+          'GoogleOther',
+          'adidxbot',
+          'Facebot',
+          'facebookexternalhit',
+          'FacebookExternalHit',
+          'LinkedInBot',
+          'Twitterbot',
+        ],
+        allow: ['/', '/_next/static/'],
+        disallow: ['/api/', '/admin/'],
+      },
       // Standard search engine crawlers (Google, Bing, Apple, Yandex, Baidu, DuckDuckGo)
       {
         userAgent: [
@@ -20,8 +41,8 @@ export default function robots(): MetadataRoute.Robots {
           'YandexBot',
           'Applebot',
         ],
-        allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/'],
+        allow: ['/', '/_next/static/'],
+        disallow: ['/api/', '/admin/'],
       },
       // AI & Generative Search Engine Crawlers (LLM & GEO discovery)
       {
@@ -35,21 +56,20 @@ export default function robots(): MetadataRoute.Robots {
           'Applebot-Extended',
           'Amazonbot',
           'Cohere-ai',
-          'FacebookExternalHit',
           'Omgilibot',
           'SearchGPT',
           'Bytespider',
           'CCBot',
           'Diffbot',
         ],
-        allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/'],
+        allow: ['/', '/_next/static/'],
+        disallow: ['/api/', '/admin/'],
       },
       // Default rule for all other crawlers
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/'],
+        allow: ['/', '/_next/static/'],
+        disallow: ['/api/', '/admin/'],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

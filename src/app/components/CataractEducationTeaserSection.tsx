@@ -120,11 +120,11 @@ export default function CataractEducationTeaserSection() {
                 <Link
                   href="/cataract-education"
                   onClick={handleGuideClick}
-                  className="group/btn inline-flex items-center justify-center px-6 py-3.5 bg-primary text-[#040506] rounded-xl text-xs sm:text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_20px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap"
+                  className="group/btn inline-flex items-center justify-center px-6 py-3.5 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_20px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none whitespace-nowrap"
                 >
                   <span>Deep Dive: Cataract Education</span>
                   <div className="ml-2.5 w-5 h-5 rounded-full bg-black/10 flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
-                    <Icon name="ArrowRightIcon" size={13} className="text-current" />
+                    <Icon name="ArrowRightIcon" size={13} className="text-black" />
                   </div>
                 </Link>
               </div>

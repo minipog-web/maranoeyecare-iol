@@ -106,31 +106,33 @@ export default function LensarAllySection() {
           <div className="inline-flex p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md">
             <button
               onClick={() => handleTabChange('patient')}
-              className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 ${
+              className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 activeTab === 'patient'
-                  ? 'bg-primary text-[#020304] shadow-[0_0_20px_rgba(197,160,89,0.25)]'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'bg-primary text-[#000000] shadow-[0_0_20px_rgba(197,160,89,0.25)]'
+                  : 'text-slate-200 hover:text-white'
               }`}
             >
               <Icon
                 name="UserIcon"
                 size={16}
                 variant={activeTab === 'patient' ? 'solid' : 'outline'}
+                className={activeTab === 'patient' ? 'text-black' : 'text-primary'}
               />
               Patient Experience
             </button>
             <button
               onClick={() => handleTabChange('surgeon')}
-              className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 ${
+              className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 activeTab === 'surgeon'
-                  ? 'bg-primary text-[#020304] shadow-[0_0_20px_rgba(197,160,89,0.25)]'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'bg-primary text-[#000000] shadow-[0_0_20px_rgba(197,160,89,0.25)]'
+                  : 'text-slate-200 hover:text-white'
               }`}
             >
               <Icon
                 name="AcademicCapIcon"
                 size={16}
                 variant={activeTab === 'surgeon' ? 'solid' : 'outline'}
+                className={activeTab === 'surgeon' ? 'text-black' : 'text-primary'}
               />
               Surgical Advantages
             </button>

@@ -297,7 +297,7 @@ export const trackAdsConversion = (
 
   const sendTo = conversionIdOrLabel.startsWith('AW-')
     ? conversionIdOrLabel
-    : `AW-18197167741/${conversionIdOrLabel}`;
+    : `AW-17962563730/${conversionIdOrLabel}`;
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({

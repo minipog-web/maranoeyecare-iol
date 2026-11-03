@@ -35,10 +35,10 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-[#020304] rounded-xl text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[52px] shadow-[0_0_28px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[52px] shadow-[0_0_28px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
-            <Icon name="HomeIcon" size={16} />
-            Return Home
+            <Icon name="HomeIcon" size={16} className="text-black" />
+            <span>Return Home</span>
           </Link>
           <button
             onClick={() => router.back()}

@@ -91,10 +91,10 @@ export default function LifestyleMatchSection() {
             </p>
             <a
               href="#booking"
-              className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-[1.03] active:scale-95 touch-manipulation min-h-[52px] shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] btn-shimmer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.03] active:scale-95 touch-manipulation min-h-[52px] shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
-              Book Your Assessment
-              <Icon name="ArrowRightIcon" size={16} />
+              <span>Book Your Assessment</span>
+              <Icon name="ArrowRightIcon" size={16} className="text-black" />
             </a>
           </div>
 

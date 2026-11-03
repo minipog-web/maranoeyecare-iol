@@ -26,6 +26,15 @@ const nextConfig = {
     optimizePackageImports: ['@heroicons/react', 'lucide-react', 'three', 'canvas-confetti'],
   },
 
+  async rewrites() {
+    return [
+      {
+        source: '/netlify-prerender-function',
+        destination: '/',
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

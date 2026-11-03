@@ -133,7 +133,7 @@ export default function HeroSection({
   const activeData = lensRangeData[activeLens] || lensRangeData['Clareon Vivity'];
 
   return (
-    <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 safe-area-pb bg-section-hero">
+    <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-14 sm:pt-20 lg:pt-28 pb-10 sm:pb-16 safe-area-pb bg-section-hero">
       {/* Bespoke Optical Sunrise & Ray Texture Background */}
       <div className="absolute inset-0 texture-hero-optical opacity-40 pointer-events-none" />
 
@@ -144,7 +144,7 @@ export default function HeroSection({
       {/* Specular hairline at the hero crown */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full py-8 sm:py-12 lg:py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full pt-4 sm:pt-8 lg:pt-16 pb-8 sm:pb-12 lg:pb-16">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start min-w-0 w-full">
           {/* Left Content */}
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
@@ -260,7 +260,7 @@ export default function HeroSection({
               </span>
               <span className="flex items-center gap-1.5 text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                Quick 10-Min Procedure
+                Quick 10–15 Min Procedure
               </span>
               <span className="flex items-center gap-1.5 text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
@@ -277,15 +277,15 @@ export default function HeroSection({
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    <strong className="text-primary font-semibold">Board-Certified</strong>{' '}
-                    Ophthalmologists &amp; Cornea Specialist
+                    <strong className="text-primary font-semibold">Dr. Marano:</strong> Chief of
+                    Ophthalmology at Cooperman Barnabas &amp; St. Michael&apos;s
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    <strong className="text-primary font-semibold">Chief of Ophthalmology</strong>{' '}
-                    at Cooperman Barnabas Medical Center &amp; St. Michael&apos;s Medical Center
+                    <strong className="text-primary font-semibold">Dr. Raouf:</strong> UIC Eye &amp;
+                    Ear Fellowship-Trained Cornea Specialist
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -300,8 +300,8 @@ export default function HeroSection({
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    <strong className="text-white font-medium">Fellowship-Trained</strong> in Cornea
-                    &amp; Refractive Surgery
+                    <strong className="text-white font-medium">Board-Certified</strong> by the
+                    American Board of Ophthalmology
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">

@@ -262,13 +262,13 @@ export default function CataractLandingHook3D({
                     label: 'Explore Full 3D Simulator',
                   });
                 }}
-                className="group/cta inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-primary text-[#060810] hover:bg-accent text-[11px] font-bold tracking-wide transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/20 whitespace-nowrap"
+                className="group/cta inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-primary text-[#000000] hover:bg-accent text-[11px] font-bold tracking-wide transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/20 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               >
                 <span>Full 3D Simulator</span>
                 <Icon
                   name="ArrowRightIcon"
                   size={11}
-                  className="transition-transform duration-300 group-hover/cta:translate-x-0.5 text-current"
+                  className="transition-transform duration-300 group-hover/cta:translate-x-0.5 text-black"
                 />
               </Link>
             </div>
