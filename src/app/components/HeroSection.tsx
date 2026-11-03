@@ -149,26 +149,29 @@ export default function HeroSection({
           {/* Left Content */}
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
             {/* Headline (incorporating semantic keyword & NJ location context in h1 while preserving exact visual layout) */}
-            <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-xl">
+            <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-2xl w-full">
               {/* Eyebrow Badge */}
-              <span className="relative z-10 inline-flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/35 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
-                <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#FAE8C8] shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.5)]" />
-                <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059]">
-                  {badgeText ? (
-                    badgeText
-                  ) : (
-                    <>
-                      <span>Laser Cataract Surgery &amp; Premium IOL Specialists</span>
-                      <span className="mx-1.5 text-[#C5A059]/50 font-normal">•</span>
-                      <span className="text-[#E2C28A]/90 font-medium">
-                        Livingston, Denville &amp; Newark, NJ
-                      </span>
-                    </>
-                  )}
-                </span>
+              <span className="relative z-10 inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-2xl xl:rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/35 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
+                {badgeText ? (
+                  <span className="text-[10px] xs:text-[11px] xl:text-[11px] font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059]">
+                    {badgeText}
+                  </span>
+                ) : (
+                  <span className="flex flex-col xl:flex-row xl:items-center text-left text-[10px] xs:text-[11px] xl:text-[11px] uppercase tracking-normal xl:tracking-wider">
+                    <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] whitespace-nowrap">
+                      Laser Cataract Surgery &amp; Premium IOL Specialists
+                    </span>
+                    <span className="hidden xl:inline mx-1.5 text-[#C5A059]/50 font-normal">
+                      •
+                    </span>
+                    <span className="text-[#E2C28A]/90 font-medium whitespace-nowrap mt-0.5 xl:mt-0">
+                      Livingston, Denville &amp; Newark NJ
+                    </span>
+                  </span>
+                )}
               </span>
 
-              <span className="font-display tracking-display-tight text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] text-foreground block">
+              <span className="font-display tracking-display-tight text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] text-foreground block max-w-xl">
                 <span className="block">{heroTitleLine1 || 'One Surgery. One Decision.'}</span>{' '}
                 <span className="block text-gradient-primary font-semibold mt-1 pb-1 sm:pb-2">
                   {heroTitleLine2 || 'A Lifetime of Visual Freedom'}
@@ -362,7 +365,7 @@ export default function HeroSection({
                           label: `Hero ${lens.name} Card to ${lens.href}`,
                         });
                       }}
-                      className={`block relative doppel-shell ${lens.accent} w-full h-[260px] sm:h-[355px] xl:h-[395px] cursor-pointer ${cardOrigin} focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none transition-all duration-300 hover:-translate-y-2 hover:scale-[1.04]
+                      className={`group block relative doppel-shell ${lens.accent} w-full h-[260px] sm:h-[355px] xl:h-[395px] cursor-pointer ${cardOrigin} focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none transition-all duration-300 hover:-translate-y-2 hover:scale-[1.04]
                         ${
                           isActive
                             ? 'z-30 opacity-100 -translate-y-1 scale-[1.015]'
@@ -413,7 +416,13 @@ export default function HeroSection({
                           <div>
                             <p className="text-[9px] sm:text-xs font-bold text-primary uppercase tracking-widest mb-0.5 flex items-center justify-between">
                               <span>{lens.name}</span>
-                              <span className="text-[9px] text-primary/80 font-normal opacity-0 hover:opacity-100 sm:inline-block transition-opacity">
+                              <span
+                                className={`text-[9px] text-primary/80 font-normal transition-all duration-300 sm:inline-block ${
+                                  isActive
+                                    ? 'opacity-100 translate-x-0'
+                                    : 'opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0'
+                                }`}
+                              >
                                 &rarr;
                               </span>
                             </p>

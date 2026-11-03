@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
-import { trackEvent, trackAdsConversion, GOOGLE_ADS_CONVERSIONS } from '@/lib/gtag';
+import { trackLeadStep1, trackConsultationBooking, trackPhoneClick } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 import { validateConsultationBooking } from '@/lib/validation';
 
 const locations = [
@@ -24,14 +25,14 @@ const offices = [
   {
     city: 'Denville',
     badge: 'Denville (Morris Co.)',
-    phone: '973-358-0416',
+    phone: '(973) 358-0416',
     address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
     mapsUrl: 'https://maps.google.com/?q=16+Pocono+Rd+Suite+301+Denville+NJ+07834',
   },
   {
     city: 'Newark',
     badge: 'Newark (Essex Co.)',
-    phone: '973-315-6439',
+    phone: '(973) 315-6439',
     address: '306 Martin L. King Blvd, Newark, NJ 07102',
     mapsUrl: 'https://maps.google.com/?q=306+Martin+L.+King+Blvd+Newark+NJ+07102',
   },
@@ -231,13 +232,7 @@ export default function BookingSection({
     }
 
     setStep(2);
-    trackEvent({
-      action: 'booking_step_1_complete',
-      category: 'Engagement',
-      label: form.location,
-    });
-    // Trigger Google Ads Lead Form conversion (Step 1 complete)
-    trackAdsConversion(GOOGLE_ADS_CONVERSIONS.LEAD_FORM);
+    trackLeadStep1(form.location, form.preferredContact);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -280,13 +275,7 @@ export default function BookingSection({
 
       if (response.ok) {
         setSubmitted(true);
-        trackEvent({
-          action: 'booking_complete',
-          category: 'Conversion',
-          label: `${form.location} - ${form.lens || 'No lens selected'}`,
-        });
-        // Trigger Google Ads Book Appointment conversion
-        trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT);
+        trackConsultationBooking(form.location, form.lens || 'No lens selected', quizResult);
       } else {
         const data = await response.json().catch(() => ({}));
         if (data.errors && typeof data.errors === 'object') {
@@ -297,7 +286,7 @@ export default function BookingSection({
         }
         setErrorMessage(
           data.error ||
-            'We encountered an issue submitting your request. Please review your entries or call us directly at 973-322-0100.'
+            'We encountered an issue submitting your request. Please review your entries or call us directly at (973) 322-0100.'
         );
       }
     } catch (error: unknown) {
@@ -306,8 +295,8 @@ export default function BookingSection({
       console.error('Submission error:', error);
       setErrorMessage(
         isAbort
-          ? 'The request timed out. Please check your connection or call us directly at 973-322-0100.'
-          : 'A network connection issue occurred. Please check your connection or call us directly at 973-322-0100.'
+          ? 'The request timed out. Please check your connection or call us directly at (973) 322-0100.'
+          : 'A network connection issue occurred. Please check your connection or call us directly at (973) 322-0100.'
       );
     } finally {
       setLoading(false);
@@ -341,16 +330,14 @@ export default function BookingSection({
             </p>
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-light text-foreground leading-tight mb-5 sm:mb-6">
               {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
-                <span className="whitespace-nowrap [filter:drop-shadow(0_4px_16px_rgba(0,0,0,0.85))_drop-shadow(0_1px_2px_rgba(0,0,0,0.9))]">
-                  <span className="[text-shadow:_0_2px_12px_rgba(0,0,0,0.9)]">Reclaim</span>{' '}
-                  <span className="font-semibold text-gradient-primary drop-shadow-[0_2px_10px_rgba(197,160,89,0.28)]">
-                    Clear Vision
-                  </span>
+                <span className="sm:whitespace-nowrap">
+                  <span>Reclaim</span>{' '}
+                  <span className="font-semibold text-gradient-primary">Clear Vision</span>
                 </span>
               ) : bookingHeadline === 'Schedule Your Comprehensive Cataract Evaluation' ? (
                 <>
                   Schedule Your{' '}
-                  <span className="font-semibold text-gradient-primary drop-shadow-[0_2px_10px_rgba(197,160,89,0.28)] block sm:inline">
+                  <span className="font-semibold text-gradient-primary block sm:inline">
                     Comprehensive Cataract Evaluation
                   </span>
                 </>
@@ -542,6 +529,12 @@ export default function BookingSection({
                   <a
                     href={`tel:${offices[activeOfficeTab].phone.replace(/[^\d]/g, '')}`}
                     suppressHydrationWarning
+                    onClick={() =>
+                      trackPhoneClick(
+                        `Booking Office Card: ${offices[activeOfficeTab].city}`,
+                        offices[activeOfficeTab].phone
+                      )
+                    }
                     className="btn-premium-primary inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-black font-extrabold text-xs sm:text-sm transition-all shrink-0 active:scale-95 touch-manipulation min-h-[44px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >
                     <Icon name="PhoneIcon" size={13} className="text-black shrink-0" />
@@ -609,6 +602,7 @@ export default function BookingSection({
                 <a
                   href="tel:9733220100"
                   suppressHydrationWarning
+                  onClick={() => trackPhoneClick('Booking Confirmation Screen', '(973) 322-0100')}
                   className="text-sm text-primary mt-6 font-semibold hover:underline touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   Need immediate assistance? Call{' '}
@@ -640,7 +634,8 @@ export default function BookingSection({
                       </div>
                       <a
                         href="tel:9733220100"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-xs font-bold text-red-200 border border-red-500/30 shrink-0 whitespace-nowrap transition-colors touch-manipulation min-h-[36px]"
+                        onClick={() => trackPhoneClick('Booking Error Banner', '(973) 322-0100')}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-xs font-bold text-red-200 border border-red-500/30 shrink-0 whitespace-nowrap transition-colors touch-manipulation min-h-[44px] focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:outline-none"
                       >
                         <Icon name="PhoneIcon" size={13} />
                         <span>Call Us Directly</span>
@@ -711,7 +706,7 @@ export default function BookingSection({
                       <button
                         type="button"
                         onClick={() => setStep(2)}
-                        className="text-xs text-primary hover:text-white font-semibold underline underline-offset-4 shrink-0 p-1 touch-manipulation transition-colors"
+                        className="inline-flex items-center justify-center min-h-[36px] px-2.5 rounded-lg text-xs text-primary hover:text-white hover:bg-white/[0.06] font-semibold underline underline-offset-4 shrink-0 touch-manipulation transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                       >
                         Change
                       </button>
@@ -728,7 +723,15 @@ export default function BookingSection({
                     </div>
                     <Link
                       href="/#vision"
-                      className="text-xs text-primary font-bold hover:underline shrink-0 whitespace-nowrap self-start sm:self-center ml-6 sm:ml-0"
+                      onClick={(e) => {
+                        const targetEl = document.getElementById('vision');
+                        if (targetEl) {
+                          e.preventDefault();
+                          smoothScrollToElement('vision');
+                          window.history.pushState(null, '', '#vision');
+                        }
+                      }}
+                      className="inline-flex items-center min-h-[36px] px-2 rounded-lg text-xs text-primary font-bold hover:underline shrink-0 whitespace-nowrap self-start sm:self-center ml-4 sm:ml-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                     >
                       Try Simulator &rarr;
                     </Link>

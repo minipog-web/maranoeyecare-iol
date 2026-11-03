@@ -329,6 +329,7 @@ export default function VivityPageClient() {
                   onClick={() => {
                     handleNavClick('hero_book_cta');
                     try {
+                      sessionStorage.setItem('preselect-lens', 'vivity');
                       sessionStorage.setItem('pending-scroll-hash', 'booking');
                     } catch {
                       // Ignore storage write issues
@@ -518,8 +519,15 @@ export default function VivityPageClient() {
           {/* Interactive Distance Simulator Tabs (Doppelrand Lab Apparatus) */}
           <div className="max-w-4xl mx-auto p-2 rounded-[2.5rem] bg-white/[0.02] border border-white/[0.08] shadow-2xl">
             <div className="rounded-[calc(2.5rem-8px)] bg-[#07090d] p-6 sm:p-10 border border-white/[0.04]">
-              <div className="flex flex-wrap items-center justify-center gap-2 mb-10 p-1.5 rounded-full bg-black/60 border border-white/10 max-w-xl mx-auto">
+              <div
+                role="tablist"
+                aria-label="Visual acuity by distance"
+                className="flex flex-wrap items-center justify-center gap-2 mb-10 p-1.5 rounded-full bg-black/60 border border-white/10 max-w-xl mx-auto"
+              >
                 <button
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedDistanceTab === 'distance'}
                   onClick={() => handleSimulatorTabClick('distance')}
                   className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'distance'
@@ -527,9 +535,12 @@ export default function VivityPageClient() {
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >
-                  Distance (6m+)
+                  1. Distance (6m+)
                 </button>
                 <button
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedDistanceTab === 'intermediate'}
                   onClick={() => handleSimulatorTabClick('intermediate')}
                   className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'intermediate'
@@ -537,9 +548,12 @@ export default function VivityPageClient() {
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >
-                  Intermediate (66cm)
+                  2. Intermediate (66 cm)
                 </button>
                 <button
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedDistanceTab === 'near'}
                   onClick={() => handleSimulatorTabClick('near')}
                   className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'near'
@@ -547,7 +561,7 @@ export default function VivityPageClient() {
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >
-                  Near (40cm)
+                  3. Near (40 cm)
                 </button>
               </div>
 
@@ -1117,6 +1131,7 @@ export default function VivityPageClient() {
                 >
                   <div className="rounded-[calc(1.75rem-4px)] bg-[#090b10] overflow-hidden">
                     <button
+                      type="button"
                       onClick={() => handleFaqClick(index, faq.question)}
                       className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transition-colors"
                       aria-expanded={isOpen}

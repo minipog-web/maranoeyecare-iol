@@ -114,7 +114,7 @@ export default function PanOptixPageClient() {
   const [selectedDistanceTab, setSelectedDistanceTab] = useState<
     'near' | 'intermediate' | 'distance'
   >('near');
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [activeFaq, setActiveFaq] = useState<number | null>(0);
 
   useEffect(() => {
     trackEvent({
@@ -159,7 +159,7 @@ export default function PanOptixPageClient() {
     <div className="flex flex-col w-full pt-20 sm:pt-24 lg:pt-28 pb-20">
       {/* ── Top Breadcrumb & Back Navigation ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mb-8 sm:mb-10 w-full">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground"
@@ -210,7 +210,7 @@ export default function PanOptixPageClient() {
               onClick={(e) => handleAnchorClick(e, 'faq', 'subnav_faq')}
               className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
             >
-              FAQ
+              FAQs
             </a>
           </div>
         </div>
@@ -319,6 +319,7 @@ export default function PanOptixPageClient() {
                   onClick={() => {
                     handleNavClick('hero_book_cta');
                     try {
+                      sessionStorage.setItem('preselect-lens', 'panoptix');
                       sessionStorage.setItem('pending-scroll-hash', 'booking');
                     } catch {
                       // Ignore storage write issues
@@ -509,8 +510,15 @@ export default function PanOptixPageClient() {
           <div className="max-w-4xl mx-auto p-2 rounded-[2.5rem] bg-white/[0.02] border border-white/[0.08] shadow-2xl">
             <div className="rounded-[calc(2.5rem-8px)] bg-[#07090d] p-6 sm:p-10 border border-white/[0.04]">
               {/* Tab Navigation */}
-              <div className="flex flex-wrap items-center justify-center gap-2 mb-10 p-1.5 rounded-full bg-black/60 border border-white/10 max-w-xl mx-auto">
+              <div
+                role="tablist"
+                aria-label="Visual acuity by distance"
+                className="flex flex-wrap items-center justify-center gap-2 mb-10 p-1.5 rounded-full bg-black/60 border border-white/10 max-w-xl mx-auto"
+              >
                 <button
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedDistanceTab === 'near'}
                   onClick={() => {
                     setSelectedDistanceTab('near');
                     trackEvent({
@@ -528,6 +536,9 @@ export default function PanOptixPageClient() {
                   1. Near (40 cm)
                 </button>
                 <button
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedDistanceTab === 'intermediate'}
                   onClick={() => {
                     setSelectedDistanceTab('intermediate');
                     trackEvent({
@@ -545,6 +556,9 @@ export default function PanOptixPageClient() {
                   2. Intermediate (60 cm)
                 </button>
                 <button
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedDistanceTab === 'distance'}
                   onClick={() => {
                     setSelectedDistanceTab('distance');
                     trackEvent({
@@ -1115,6 +1129,7 @@ export default function PanOptixPageClient() {
                 >
                   <div className="rounded-[calc(1.75rem-4px)] bg-[#090b10] overflow-hidden">
                     <button
+                      type="button"
                       onClick={() => handleFaqClick(index, faq.question)}
                       className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] focus-visible:ring-2 focus-visible:ring-[#8b5cf6] focus-visible:outline-none transition-colors"
                       aria-expanded={isOpen}

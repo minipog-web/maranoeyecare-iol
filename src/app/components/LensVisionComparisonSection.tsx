@@ -91,7 +91,7 @@ const lenses = [
       { label: 'Distance Vision', value: 'Excellent', score: 95 },
       { label: 'Intermediate (Screens)', value: 'Excellent', score: 92 },
       { label: 'Near (Reading)', value: 'Functional', score: 55 },
-      { label: 'Night Vision Quality', value: 'Very Low Glare', score: 92 },
+      { label: 'Night Vision Quality', value: 'Excellent', score: 92 },
     ],
     highlights: [
       'Non-diffractive X-WAVE™ Technology [2]',
@@ -142,7 +142,7 @@ const lenses = [
       { label: 'Distance Vision', value: 'Excellent', score: 98 },
       { label: 'Intermediate (Screens)', value: 'Excellent', score: 92 },
       { label: 'Near (Reading)', value: 'Functional', score: 60 },
-      { label: 'Night Vision Quality', value: 'Monofocal-like', score: 98 },
+      { label: 'Night Vision Quality', value: 'Excellent', score: 98 },
     ],
     highlights: [
       'Purely refractive optics with zero diffractive rings',
@@ -192,7 +192,7 @@ const lenses = [
       { label: 'Distance Vision', value: 'Excellent', score: 98 },
       { label: 'Intermediate (Screens)', value: 'Functional', score: 45 },
       { label: 'Near (Reading)', value: 'Glasses Dependent', score: 20 },
-      { label: 'Night Vision Quality', value: 'Baseline', score: 98 },
+      { label: 'Night Vision Quality', value: 'Excellent', score: 98 },
     ],
     highlights: [
       'Restores basic distance vision only',

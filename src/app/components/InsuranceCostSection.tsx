@@ -103,9 +103,8 @@ export default function InsuranceCostSection() {
           </div>
 
           <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-light text-foreground tracking-tight leading-[1.15] mb-4">
-            Clear Answers on <span className="text-gradient-primary font-semibold">Insurance</span>,{' '}
-            <span className="text-gradient-primary font-semibold">Medicare</span> &amp; Your
-            Investment
+            <span className="text-gradient-primary font-semibold">Clear Answers</span> on Insurance, Medicare &amp;{' '}
+            <span className="text-gradient-primary font-semibold">Your Investment</span>
           </h2>
 
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">

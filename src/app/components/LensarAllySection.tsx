@@ -86,7 +86,7 @@ export default function LensarAllySection() {
             <span className="block font-extrabold mb-1">
               LENSAR ALLY<sup>®</sup>
             </span>
-            <span className="block font-semibold text-gradient-primary">
+            <span className="block font-semibold text-gradient-primary pb-1.5 sm:pb-2.5">
               Adaptive Laser Cataract System
             </span>
           </h2>

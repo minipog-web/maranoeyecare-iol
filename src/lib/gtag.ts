@@ -192,17 +192,22 @@ export const trackEvent = ({
 };
 
 // ─── Dedicated GA4 Healthcare Interaction Trackers ───────────────────────────
-export const trackPhoneClick = (source: string) => {
+export const trackPhoneClick = (source: string, phoneNumber?: string) => {
   trackEvent({
     action: CONVERSION_EVENTS.PHONE_CLICK,
     category: 'Conversion',
     label: source,
     value: 200,
+    customParams: phoneNumber ? { phone_number: phoneNumber } : {},
   });
   trackAdsConversion('phone_click');
 };
 
-export const trackConsultationBooking = (location: string, lens?: string) => {
+export const trackConsultationBooking = (
+  location: string,
+  lens?: string,
+  quizResult?: string | null
+) => {
   trackEvent({
     action: CONVERSION_EVENTS.BOOKING_COMPLETE,
     category: 'Conversion',
@@ -211,12 +216,13 @@ export const trackConsultationBooking = (location: string, lens?: string) => {
     customParams: {
       location,
       selected_lens: lens,
+      ...(quizResult ? { quiz_recommendation: quizResult } : {}),
     },
   });
   trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT, 500);
 };
 
-export const trackLeadStep1 = (location: string) => {
+export const trackLeadStep1 = (location: string, lens?: string) => {
   trackEvent({
     action: CONVERSION_EVENTS.BOOKING_STEP_1,
     category: 'Engagement',
@@ -224,6 +230,7 @@ export const trackLeadStep1 = (location: string) => {
     value: 150,
     customParams: {
       location,
+      ...(lens ? { selected_lens: lens } : {}),
     },
   });
   trackAdsConversion(GOOGLE_ADS_CONVERSIONS.LEAD_FORM, 150);
