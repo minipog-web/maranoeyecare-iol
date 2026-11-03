@@ -54,39 +54,181 @@ export const metadata: Metadata = {
   },
 };
 
+const homeSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    '@id': 'https://premium-iol.maranoeye.com/#webpage',
+    url: 'https://premium-iol.maranoeye.com',
+    name: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
+    description:
+      "Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmic microsurgeons, Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.",
+    medicalAudience: {
+      '@type': 'MedicalAudience',
+      audienceType: 'Cataract Patients, Presbyopia Patients, Astigmatism Patients',
+    },
+    aspect: ['Overview', 'Diagnosis', 'Treatment Options', 'Risks and Benefits'],
+    about: [
+      {
+        '@type': 'MedicalCondition',
+        name: 'Cataract',
+        possibleTreatment: {
+          '@type': 'MedicalProcedure',
+          name: 'Cataract Surgery with Premium IOL Implantation',
+        },
+      },
+      {
+        '@type': 'MedicalCondition',
+        name: 'Astigmatism',
+        possibleTreatment: {
+          '@type': 'MedicalDevice',
+          name: 'Toric Intraocular Lens',
+        },
+      },
+      {
+        '@type': 'MedicalCondition',
+        name: 'Presbyopia',
+        possibleTreatment: {
+          '@type': 'MedicalDevice',
+          name: 'Multifocal and Extended Depth of Focus (EDOF) IOLs',
+        },
+      },
+    ],
+    author: [
+      {
+        '@type': 'Physician',
+        name: 'Dr. Matthew Marano Jr., MD',
+        jobTitle: 'Founder & Chief of Ophthalmology',
+        medicalSpecialty: 'Ophthalmology',
+        almaMater: 'New Jersey Medical School',
+        hospitalAffiliation: [
+          {
+            '@type': 'Hospital',
+            name: 'Cooperman Barnabas Medical Center',
+          },
+          {
+            '@type': 'Hospital',
+            name: "St. Michael's Medical Center",
+          },
+        ],
+        url: 'https://www.maranoeyecare.com/provider/matthew-j-marano-jr-md',
+        image: 'https://premium-iol.maranoeye.com/assets/images/Marano-1777328574709.jpg',
+        sameAs: [
+          'https://www.maranoeyecare.com/provider/matthew-j-marano-jr-md',
+          'https://www.healthgrades.com/physician/dr-matthew-marano-ykk4n',
+          'https://doctor.webmd.com/doctor/matthew-marano-7f897b2f-90e6-4d05-950c-e2f6ce834ef1-overview',
+          'https://www.castleconnolly.com/clinicians/ophthalmology/matthew-j-marano-jr/48590',
+        ],
+      },
+      {
+        '@type': 'Physician',
+        name: 'Dr. Sherief Raouf, MD',
+        jobTitle: 'Board-Certified Ophthalmologist & Cornea Subspecialist',
+        medicalSpecialty: ['Ophthalmology', 'Corneal and External Diseases', 'Refractive Surgery'],
+        almaMater: 'Renaissance School of Medicine at Stony Brook University',
+        alumniOf: [
+          'Renaissance School of Medicine at Stony Brook University',
+          'Manhattan Eye, Ear & Throat Hospital (Residency)',
+          'Illinois Eye and Ear Infirmary (UIC - Fellowship)',
+        ],
+        url: 'https://www.maranoeyecare.com/provider/sherief-raouf-md',
+        image: 'https://premium-iol.maranoeye.com/assets/images/Raouf.jpg',
+        sameAs: ['https://www.maranoeyecare.com/provider/sherief-raouf-md'],
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': 'https://premium-iol.maranoeye.com/#faq',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: "I'm worried about halos and glare, especially night driving. Which lens is best?",
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Dr. Marano and Dr. Raouf frequently recommend the Clareon Vivity for night drivers. Unlike older diffractive lenses, Vivity uses non-diffractive X-WAVE™ technology that doesn't split light, giving halo rates nearly identical to a standard monofocal lens.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What if I have astigmatism? Do Toric lenses cost more?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'At Marano Eye Care, all premium lenses (Clareon Vivity, PanOptix Pro, and TECNIS PureSee) include Toric astigmatism correction at no additional charge beyond the standard premium upgrade.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does cataract surgery take?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The surgical procedure takes approximately 10–15 minutes under topical eye drop anesthesia, with no pain, no needles, and no general anesthesia required.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do Dr. Marano and Dr. Raouf perform the surgery themselves?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Board-Certified Ophthalmologists Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD perform every cataract surgery personally.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use HSA or FSA funds for premium IOLs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Both HSA and FSA funds can be fully applied toward your premium lens upgrade, and interest-free financing is available via CareCredit®.',
+        },
+      },
+    ],
+  },
+];
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background overflow-x-hidden">
-      <Header />
-      <HeroSection />
-      <TrustBadgeBar variant="clinical" />
-      <hr className="section-divider" />
-      <CataractEducationTeaserSection />
-      <hr className="section-divider" />
-      <LensVisionComparisonSection />
-      <hr className="section-divider" />
-      <LensTechnologyDeepDiveSection />
-      <hr className="section-divider" />
-      <LensarAllySection />
-      <hr className="section-divider" />
-      <RecoveryTimelineSection />
-      <hr className="section-divider" />
-      <TrustSection />
-      <CertificationLogos />
-      <hr className="section-divider" />
-      <CandidacySection />
-      <hr className="section-divider" />
-      <TestimonialsSection />
-      <hr className="section-divider" />
-      <LensQuestionnaireSection />
-      <hr className="section-divider" />
-      <FAQSection />
-      <hr className="section-divider" />
-      <InsuranceCostSection />
-      <hr className="section-divider" />
-      <BookingSection />
-      <StickyCTABar />
-      <Footer />
-    </main>
+    <>
+      {homeSchemas.map((schema, index) => (
+        <script
+          key={`home-schema-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+
+      <main className="min-h-screen bg-background overflow-x-hidden">
+        <Header />
+        <HeroSection />
+        <TrustBadgeBar variant="clinical" />
+        <hr className="section-divider" />
+        <CataractEducationTeaserSection />
+        <hr className="section-divider" />
+        <LensVisionComparisonSection />
+        <hr className="section-divider" />
+        <LensTechnologyDeepDiveSection />
+        <hr className="section-divider" />
+        <LensarAllySection />
+        <hr className="section-divider" />
+        <RecoveryTimelineSection />
+        <hr className="section-divider" />
+        <TrustSection />
+        <CertificationLogos />
+        <hr className="section-divider" />
+        <CandidacySection />
+        <hr className="section-divider" />
+        <TestimonialsSection />
+        <hr className="section-divider" />
+        <LensQuestionnaireSection />
+        <hr className="section-divider" />
+        <FAQSection />
+        <hr className="section-divider" />
+        <InsuranceCostSection />
+        <hr className="section-divider" />
+        <BookingSection />
+        <StickyCTABar />
+        <Footer />
+      </main>
+    </>
   );
 }

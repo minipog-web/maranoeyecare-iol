@@ -8,6 +8,29 @@ import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackAdsConversion } from '@/lib/gtag';
 import { smoothScrollToElement } from '@/lib/ui';
 
+const lensGuideLinks = [
+  {
+    label: 'Clareon® Vivity® IOL',
+    sublabel: 'Non-Diffractive EDOF',
+    href: '/clareon-vivity',
+  },
+  {
+    label: 'Clareon® PanOptix® Pro',
+    sublabel: 'Full-Range Trifocal',
+    href: '/panoptix-pro',
+  },
+  {
+    label: 'TECNIS PureSee™ IOL',
+    sublabel: 'Pure Refractive EDOF',
+    href: '/tecnis-puresee',
+  },
+  {
+    label: 'Cataract & IOL Guide',
+    sublabel: 'How Cataracts Form & Stages',
+    href: '/cataract-education',
+  },
+];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,12 +67,12 @@ export default function Header() {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Lens Options', href: '/#lenses' },
+    { label: 'Lens Options', href: '/#lenses', hasDropdown: true },
     { label: 'Vision Simulator', href: '/#vision' },
     { label: 'Optical Physics', href: '/#physics' },
+    { label: 'Cataract Guide', href: '/cataract-education' },
     { label: 'Lens Quiz', href: '/#lens-quiz' },
     { label: 'Our Doctors', href: '/#trust' },
-    { label: 'Patient Stories', href: '/#testimonials' },
     { label: 'FAQ', href: '/#faq' },
   ];
 
@@ -140,9 +163,64 @@ export default function Header() {
         </div>
 
         {/* Desktop Nav: pill with subtle gradient border */}
-        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 px-1.5 xl:px-2 py-1 xl:py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0">
+        <nav
+          aria-label="Primary Navigation"
+          className="hidden lg:flex items-center gap-0.5 xl:gap-1 px-1.5 xl:px-2 py-1 xl:py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0"
+        >
           {navLinks.map((link) => {
-            const isActive = link.href === pathname;
+            const isActive =
+              link.href === pathname ||
+              (link.hasDropdown &&
+                ['/clareon-vivity', '/panoptix-pro', '/tecnis-puresee'].includes(pathname));
+
+            if (link.hasDropdown) {
+              return (
+                <div key={link.href} className="relative group">
+                  <Link
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href, link.label)}
+                    className={`inline-flex items-center gap-1 px-2 xl:px-3 py-1 xl:py-1.5 text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-all duration-200 rounded-full whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                      isActive
+                        ? 'text-primary bg-white/[0.08]'
+                        : 'text-white hover:text-primary hover:bg-white/[0.08]'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <Icon
+                      name="ChevronDownIcon"
+                      size={12}
+                      className="text-primary/80 transition-transform duration-200 group-hover:rotate-180"
+                    />
+                  </Link>
+
+                  {/* Crawlable Lens Guides Submenu */}
+                  <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-200 absolute left-0 top-full pt-2 w-64 z-50">
+                    <div className="rounded-2xl border border-white/10 bg-[#0b0d13]/95 backdrop-blur-2xl p-2 shadow-[0_16px_40px_rgba(0,0,0,0.65)]">
+                      {lensGuideLinks.map((sublink) => (
+                        <Link
+                          key={sublink.href}
+                          href={sublink.href}
+                          onClick={(e) => handleNavClick(e, sublink.href, sublink.label)}
+                          className={`block px-3 py-2.5 rounded-xl transition-colors ${
+                            pathname === sublink.href
+                              ? 'bg-primary/15 text-primary'
+                              : 'text-white hover:bg-white/[0.06] hover:text-primary'
+                          }`}
+                        >
+                          <span className="block text-xs font-bold tracking-wide">
+                            {sublink.label}
+                          </span>
+                          <span className="block text-[10px] text-white/60 mt-0.5">
+                            {sublink.sublabel}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={link.href}
@@ -203,7 +281,7 @@ export default function Header() {
 
       {/* Mobile & Tablet Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-background/95 backdrop-blur-2xl border-b border-border px-4 sm:px-6 py-5 flex flex-col gap-4">
+        <div className="lg:hidden bg-background/95 backdrop-blur-2xl border-b border-border px-4 sm:px-6 py-5 flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
           <div className="flex flex-col border-b border-border/40 pb-2">
             {navLinks.map((link) => {
               const isActive = link.href === pathname;
@@ -211,7 +289,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-semibold uppercase tracking-wider py-3 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                  className={`text-sm font-semibold uppercase tracking-wider py-2.5 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                     isActive ? 'text-primary font-bold' : 'text-slate-200 hover:text-primary'
                   }`}
                   onClick={(e) => {
@@ -223,9 +301,33 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            {/* Direct Lens Guides in Mobile Menu */}
+            <div className="mt-2 pt-2 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-2">
+              {lensGuideLinks.slice(0, 3).map((lens) => (
+                <Link
+                  key={lens.href}
+                  href={lens.href}
+                  className={`px-3 py-2 rounded-xl border text-xs font-semibold transition-colors ${
+                    pathname === lens.href
+                      ? 'border-primary/50 bg-primary/15 text-primary'
+                      : 'border-white/10 bg-white/[0.03] text-white/90 hover:border-primary/30 hover:text-primary'
+                  }`}
+                  onClick={(e) => {
+                    handleNavClick(e, lens.href, lens.label);
+                    setMenuOpen(false);
+                  }}
+                >
+                  <span className="block">{lens.label}</span>
+                  <span className="block text-[10px] text-white/60 font-normal">
+                    {lens.sublabel}
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
 
-          <div className="flex flex-col gap-3 pt-2">
+          <div className="flex flex-col gap-3 pt-1">
             <a
               href="tel:9733220100"
               suppressHydrationWarning

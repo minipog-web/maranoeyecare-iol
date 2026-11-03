@@ -148,29 +148,31 @@ export default function HeroSection({
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start min-w-0 w-full">
           {/* Left Content */}
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
-            {/* Eyebrow Badge */}
-            <div className="relative z-10 inline-flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/35 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#FAE8C8] shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.5)]" />
-              <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059]">
-                {badgeText ? (
-                  badgeText
-                ) : (
-                  <>
-                    <span>Premium IOL Specialists</span>
-                    <span className="mx-1.5 text-[#C5A059]/50 font-normal">•</span>
-                    <span className="text-[#E2C28A]/90 font-medium">
-                      Livingston, Denville &amp; Newark
-                    </span>
-                  </>
-                )}
+            {/* Headline (incorporating semantic keyword & NJ location context in h1 while preserving exact visual layout) */}
+            <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-xl">
+              {/* Eyebrow Badge */}
+              <span className="relative z-10 inline-flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/35 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
+                <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#FAE8C8] shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.5)]" />
+                <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059]">
+                  {badgeText ? (
+                    badgeText
+                  ) : (
+                    <>
+                      <span>Laser Cataract Surgery &amp; Premium IOL Specialists</span>
+                      <span className="mx-1.5 text-[#C5A059]/50 font-normal">•</span>
+                      <span className="text-[#E2C28A]/90 font-medium">
+                        Livingston, Denville &amp; Newark, NJ
+                      </span>
+                    </>
+                  )}
+                </span>
               </span>
-            </div>
 
-            {/* Headline */}
-            <h1 className="font-display tracking-display-tight text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] text-foreground mb-5 sm:mb-6 max-w-xl">
-              <span className="block">{heroTitleLine1 || 'One Surgery. One Decision.'}</span>{' '}
-              <span className="block text-gradient-primary font-semibold mt-1 pb-1 sm:pb-2">
-                {heroTitleLine2 || 'A Lifetime of Visual Freedom'}
+              <span className="font-display tracking-display-tight text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] text-foreground block">
+                <span className="block">{heroTitleLine1 || 'One Surgery. One Decision.'}</span>{' '}
+                <span className="block text-gradient-primary font-semibold mt-1 pb-1 sm:pb-2">
+                  {heroTitleLine2 || 'A Lifetime of Visual Freedom'}
+                </span>
               </span>
             </h1>
 

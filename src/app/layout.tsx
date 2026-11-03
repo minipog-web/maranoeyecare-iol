@@ -66,8 +66,14 @@ export const metadata: Metadata = {
     'newark nj eye surgery',
   ],
   authors: [
-    { name: 'Dr. Matthew Marano Jr., MD', url: 'https://premium-iol.maranoeye.com' },
-    { name: 'Dr. Sherief Raouf, MD', url: 'https://premium-iol.maranoeye.com' },
+    {
+      name: 'Dr. Matthew Marano Jr., MD',
+      url: 'https://www.maranoeyecare.com/provider/matthew-j-marano-jr-md',
+    },
+    {
+      name: 'Dr. Sherief Raouf, MD',
+      url: 'https://www.maranoeyecare.com/provider/sherief-raouf-md',
+    },
   ],
   creator: 'Marano Eye Care',
   publisher: 'Marano Eye Care',
@@ -135,87 +141,6 @@ export const metadata: Metadata = {
 const schemas = [
   {
     '@context': 'https://schema.org',
-    '@type': 'MedicalWebPage',
-    '@id': 'https://premium-iol.maranoeye.com/#webpage',
-    url: 'https://premium-iol.maranoeye.com',
-    name: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
-    description:
-      "Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmic microsurgeons, Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.",
-    medicalAudience: {
-      '@type': 'MedicalAudience',
-      audienceType: 'Cataract Patients, Presbyopia Patients, Astigmatism Patients',
-    },
-    aspect: ['Overview', 'Diagnosis', 'Treatment Options', 'Risks and Benefits'],
-    about: [
-      {
-        '@type': 'MedicalCondition',
-        name: 'Cataract',
-        possibleTreatment: {
-          '@type': 'MedicalProcedure',
-          name: 'Cataract Surgery with Premium IOL Implantation',
-        },
-      },
-      {
-        '@type': 'MedicalCondition',
-        name: 'Astigmatism',
-        possibleTreatment: {
-          '@type': 'MedicalDevice',
-          name: 'Toric Intraocular Lens',
-        },
-      },
-      {
-        '@type': 'MedicalCondition',
-        name: 'Presbyopia',
-        possibleTreatment: {
-          '@type': 'MedicalDevice',
-          name: 'Multifocal and Extended Depth of Focus (EDOF) IOLs',
-        },
-      },
-    ],
-    author: [
-      {
-        '@type': 'Physician',
-        name: 'Dr. Matthew Marano Jr., MD',
-        jobTitle: 'Founder & Chief of Ophthalmology',
-        medicalSpecialty: 'Ophthalmology',
-        almaMater: 'New Jersey Medical School',
-        hospitalAffiliation: [
-          {
-            '@type': 'Hospital',
-            name: 'Cooperman Barnabas Medical Center',
-          },
-          {
-            '@type': 'Hospital',
-            name: "St. Michael's Medical Center",
-          },
-        ],
-        url: 'https://www.maranoeye.com',
-        image: 'https://premium-iol.maranoeye.com/assets/images/Marano-1777328574709.jpg',
-        sameAs: [
-          'https://www.healthgrades.com/physician/dr-matthew-marano-yj6qy',
-          'https://doctor.webmd.com/doctor/matthew-marano-7f897b2f-90e6-4d05-950c-e2f6ce834ef1-overview',
-          'https://www.castleconnolly.com/clinicians/ophthalmology/matthew-j-marano-jr/48590',
-        ],
-      },
-      {
-        '@type': 'Physician',
-        name: 'Dr. Sherief Raouf, MD',
-        jobTitle: 'Board-Certified Ophthalmologist & Cornea Subspecialist',
-        medicalSpecialty: ['Ophthalmology', 'Corneal and External Diseases', 'Refractive Surgery'],
-        almaMater: 'Renaissance School of Medicine at Stony Brook University',
-        alumniOf: [
-          'Renaissance School of Medicine at Stony Brook University',
-          'Manhattan Eye, Ear & Throat Hospital (Residency)',
-          'Illinois Eye and Ear Infirmary (UIC - Fellowship)',
-        ],
-        url: 'https://www.maranoeye.com/provider/sherief-raouf-md',
-        image: 'https://premium-iol.maranoeye.com/assets/images/Raouf.jpg',
-        sameAs: ['https://www.maranoeye.com/provider/sherief-raouf-md'],
-      },
-    ],
-  },
-  {
-    '@context': 'https://schema.org',
     '@type': ['MedicalBusiness', 'Physician'],
     '@id': 'https://premium-iol.maranoeye.com/#medical-business',
     name: 'Marano Eye Care',
@@ -232,10 +157,12 @@ const schemas = [
       {
         '@type': 'Physician',
         name: 'Dr. Matthew Marano Jr., MD',
+        url: 'https://www.maranoeyecare.com/provider/matthew-j-marano-jr-md',
       },
       {
         '@type': 'Physician',
         name: 'Dr. Sherief Raouf, MD',
+        url: 'https://www.maranoeyecare.com/provider/sherief-raouf-md',
       },
     ],
     hasOfferCatalog: {
@@ -248,6 +175,7 @@ const schemas = [
             '@type': 'MedicalDevice',
             name: 'Clareon PanOptix Pro Trifocal IOL',
             manufacturer: 'Alcon',
+            url: 'https://premium-iol.maranoeye.com/panoptix-pro',
             description:
               'Premium Trifocal IOL for near, intermediate, and distance spectacle independence.',
           },
@@ -258,6 +186,7 @@ const schemas = [
             '@type': 'MedicalDevice',
             name: 'Clareon Vivity Non-Diffractive EDOF IOL',
             manufacturer: 'Alcon',
+            url: 'https://premium-iol.maranoeye.com/clareon-vivity',
             description:
               'Extended Depth of Focus lens utilizing X-WAVE technology for glare-free night vision.',
           },
@@ -268,6 +197,7 @@ const schemas = [
             '@type': 'MedicalDevice',
             name: 'TECNIS PureSee Refractive EDOF IOL',
             manufacturer: 'Johnson & Johnson MedTech',
+            url: 'https://premium-iol.maranoeye.com/tecnis-puresee',
             description:
               'Purely refractive extended depth of focus lens providing continuous vision with zero contrast warning.',
           },
@@ -302,16 +232,18 @@ const schemas = [
       },
     ],
     sameAs: [
+      'https://www.maranoeyecare.com',
       'https://www.facebook.com/maranoeyecare/',
-      'https://www.healthgrades.com/physician/dr-matthew-marano-yj6qy',
+      'https://www.healthgrades.com/physician/dr-matthew-marano-ykk4n',
       'https://doctor.webmd.com/doctor/matthew-marano-7f897b2f-90e6-4d05-950c-e2f6ce834ef1-overview',
     ],
     department: [
       {
         '@type': 'MedicalBusiness',
         name: 'Marano Eye Care - Livingston Office',
+        url: 'https://www.maranoeyecare.com/location/nj/livingston',
         telephone: '973-322-0100',
-        hasMap: 'https://maps.app.goo.gl/9yB7D9S9Yv2D1PZc7',
+        hasMap: 'https://maps.google.com/?q=200+South+Orange+Ave+Suite+209+Livingston+NJ+07039',
         geo: {
           '@type': 'GeoCoordinates',
           latitude: '40.7845',
@@ -329,8 +261,9 @@ const schemas = [
       {
         '@type': 'MedicalBusiness',
         name: 'Marano Eye Care - Denville Office',
+        url: 'https://www.maranoeyecare.com/location/nj/denville',
         telephone: '973-627-0101',
-        hasMap: 'https://maps.app.goo.gl/P2hUa9A9Yv2D1PZd8',
+        hasMap: 'https://maps.google.com/?q=16+Pocono+Rd+Suite+301+Denville+NJ+07834',
         geo: {
           '@type': 'GeoCoordinates',
           latitude: '40.8931',
@@ -348,8 +281,9 @@ const schemas = [
       {
         '@type': 'MedicalBusiness',
         name: 'Marano Eye Care - Newark Office',
+        url: 'https://www.maranoeyecare.com/location/nj/newark',
         telephone: '973-642-4262',
-        hasMap: 'https://maps.app.goo.gl/Q3iUa9A9Yv2D1PZe9',
+        hasMap: 'https://maps.google.com/?q=306+Martin+L.+King+Blvd+Newark+NJ+07102',
         geo: {
           '@type': 'GeoCoordinates',
           latitude: '40.7306',
@@ -362,53 +296,6 @@ const schemas = [
           addressRegion: 'NJ',
           postalCode: '07102',
           addressCountry: 'US',
-        },
-      },
-    ],
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    '@id': 'https://premium-iol.maranoeye.com/#faq',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: "I'm worried about halos and glare, especially night driving. Which lens is best?",
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "Dr. Marano and Dr. Raouf frequently recommend the Clareon Vivity for night drivers. Unlike older diffractive lenses, Vivity uses non-diffractive X-WAVE™ technology that doesn't split light, giving halo rates nearly identical to a standard monofocal lens.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What if I have astigmatism? Do Toric lenses cost more?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'At Marano Eye Care, all premium lenses (Clareon Vivity, PanOptix Pro, and TECNIS PureSee) include Toric astigmatism correction at no additional charge beyond the standard premium upgrade.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How long does cataract surgery take?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The surgical procedure takes approximately 10–15 minutes under topical eye drop anesthesia, with no pain, no needles, and no general anesthesia required.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Do Dr. Marano and Dr. Raouf perform the surgery themselves?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. Board-Certified Ophthalmologists Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD perform every cataract surgery personally.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I use HSA or FSA funds for premium IOLs?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. Both HSA and FSA funds can be fully applied toward your premium lens upgrade, and interest-free financing is available via CareCredit®.',
         },
       },
     ],
@@ -431,10 +318,12 @@ const schemas = [
       {
         '@type': 'Physician',
         name: 'Dr. Matthew Marano Jr., MD',
+        url: 'https://www.maranoeyecare.com/provider/matthew-j-marano-jr-md',
       },
       {
         '@type': 'Physician',
         name: 'Dr. Sherief Raouf, MD',
+        url: 'https://www.maranoeyecare.com/provider/sherief-raouf-md',
       },
     ],
   },
@@ -468,11 +357,18 @@ gtag('consent', 'default', {
   'ad_storage': 'denied',
   'ad_user_data': 'denied',
   'ad_personalization': 'denied',
+  'analytics_storage': 'granted',
+  'region': ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'CH']
+});
+gtag('consent', 'default', {
+  'ad_storage': 'granted',
+  'ad_user_data': 'granted',
+  'ad_personalization': 'granted',
   'analytics_storage': 'granted'
 });`}
         </Script>
 
-        {/* Google tag (gtag.js) - GA4 G-CTYWND91QV, GT-WKTZM5GN & Google Ads AW-18197167741 */}
+        {/* Google tag (gtag.js) - GA4 G-CTYWND91QV, GT-WKTZM5GN & Google Ads AW-18197167741 / AW-17962563730 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CTYWND91QV"
           strategy="afterInteractive"
@@ -488,7 +384,8 @@ gtag('config', 'G-CTYWND91QV', {
   cookie_flags: 'SameSite=None;Secure'
 });
 gtag('config', 'GT-WKTZM5GN');
-gtag('config', 'AW-18197167741');`}
+gtag('config', 'AW-18197167741');
+gtag('config', 'AW-17962563730');`}
         </Script>
         {/* End Google tag (gtag.js) */}
 

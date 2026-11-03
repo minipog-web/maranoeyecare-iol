@@ -57,7 +57,26 @@ const vivitySchemas = [
   },
   {
     '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://premium-iol.maranoeye.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Clareon Vivity IOL Guide',
+        item: 'https://premium-iol.maranoeye.com/clareon-vivity',
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    '@id': 'https://premium-iol.maranoeye.com/clareon-vivity#faq',
     mainEntity: [
       {
         '@type': 'Question',

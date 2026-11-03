@@ -57,6 +57,24 @@ const pureseeSchemas = [
   },
   {
     '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://premium-iol.maranoeye.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'TECNIS PureSee IOL Guide',
+        item: 'https://premium-iol.maranoeye.com/tecnis-puresee',
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
     '@type': 'FAQPage',
     '@id': 'https://premium-iol.maranoeye.com/tecnis-puresee#faq',
     mainEntity: [

@@ -27,12 +27,17 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <nav
+            aria-label="Footer Navigation"
+            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2"
+          >
             {[
-              { label: 'Lens Options', href: '/#lenses' },
+              { label: 'Clareon Vivity', href: '/clareon-vivity' },
+              { label: 'PanOptix Pro', href: '/panoptix-pro' },
+              { label: 'TECNIS PureSee', href: '/tecnis-puresee' },
+              { label: 'Cataract Guide', href: '/cataract-education' },
               { label: 'Vision Simulator', href: '/#vision' },
               { label: 'Optical Physics', href: '/#physics' },
-              { label: 'Cataract Guide', href: '/cataract-education' },
               { label: 'Our Doctors', href: '/#trust' },
             ].map((link) => (
               <Link
@@ -98,7 +103,7 @@ export default function Footer() {
             <span>Livingston · Denville · Newark, NJ</span>
             <span className="hidden sm:inline text-border">·</span>
             <a
-              href="https://www.maranoeyecare.com/privacy-policy"
+              href="https://www.maranoeyecare.com/your-privacy"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
@@ -107,7 +112,7 @@ export default function Footer() {
             </a>
             <span className="text-border">·</span>
             <a
-              href="https://www.maranoeyecare.com/terms-of-use"
+              href="https://www.maranoeyecare.com/our-terms"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
