@@ -137,53 +137,6 @@ const homeSchemas = [
       },
     ],
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    '@id': 'https://premium-iol.maranoeye.com/#faq',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: "I'm worried about halos and glare, especially night driving. Which lens is best?",
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: "Dr. Marano and Dr. Raouf frequently recommend the Clareon Vivity for night drivers. Unlike older diffractive lenses, Vivity uses non-diffractive X-WAVE™ technology that doesn't split light, giving halo rates nearly identical to a standard monofocal lens.",
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What if I have astigmatism? Do Toric lenses cost more?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'At Marano Eye Care, all premium lenses (Clareon Vivity, PanOptix Pro, and TECNIS PureSee) include Toric astigmatism correction at no additional charge beyond the standard premium upgrade.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How long does cataract surgery take?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The surgical procedure takes approximately 10–15 minutes under topical eye drop anesthesia, with no pain, no needles, and no general anesthesia required.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Do Dr. Marano and Dr. Raouf perform the surgery themselves?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. Board-Certified Ophthalmologists Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD perform every cataract surgery personally.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I use HSA or FSA funds for premium IOLs?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. Both HSA and FSA funds can be fully applied toward your premium lens upgrade, and interest-free financing is available via CareCredit®.',
-        },
-      },
-    ],
-  },
 ];
 
 export default function HomePage() {
