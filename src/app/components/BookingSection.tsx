@@ -48,9 +48,9 @@ const lensOptions = [
 ];
 
 const contactMethods = [
-  { value: 'email', label: 'Email' },
   { value: 'phone', label: 'Call' },
   { value: 'text', label: 'Text' },
+  { value: 'email', label: 'Email' },
 ];
 
 const LENS_KEY_TO_LABEL: Record<string, string> = {
@@ -111,7 +111,7 @@ export default function BookingSection({
       lastName: '',
       email: '',
       phone: '',
-      preferredContact: 'email',
+      preferredContact: 'phone',
       location: '',
       lens: preselectedLens ? (LENS_KEY_TO_LABEL[preselectedLens] ?? '') : '',
       message: '',
@@ -193,6 +193,16 @@ export default function BookingSection({
 
   const validateStep1Fields = (): Record<string, string> => {
     const newErrors: Record<string, string> = {};
+    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location'];
+    fieldsToValidate.forEach((field) => {
+      const err = validateField(field, form[field as keyof FormState] || '');
+      if (err) newErrors[field] = err;
+    });
+    return newErrors;
+  };
+
+  const validateAllRequiredFields = (): Record<string, string> => {
+    const newErrors: Record<string, string> = {};
     const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location', 'email'];
     fieldsToValidate.forEach((field) => {
       const err = validateField(field, form[field as keyof FormState] || '');
@@ -244,10 +254,13 @@ export default function BookingSection({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
-    const newErrors = validateStep1Fields();
+    const newErrors = validateAllRequiredFields();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setStep(1);
+      const step1OnlyFields = ['firstName', 'lastName', 'phone', 'location'];
+      if (Object.keys(newErrors).some((k) => step1OnlyFields.includes(k))) {
+        setStep(1);
+      }
       return;
     }
 
@@ -875,31 +888,50 @@ export default function BookingSection({
                     </div>
 
                     <div>
-                      <label htmlFor="location" className={labelClass}>
-                        Preferred Location *
-                      </label>
-                      <select
-                        id="location"
-                        name="location"
-                        value={form.location}
-                        onChange={handleChange}
-                        required
-                        suppressHydrationWarning
-                        aria-invalid={errors.location ? 'true' : 'false'}
-                        aria-describedby={errors.location ? 'location-error' : undefined}
-                        className={`${inputClass} ${
-                          errors.location
-                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
-                            : ''
-                        }`}
+                      <span id="location-group-label" className={labelClass}>
+                        Preferred Office Location *
+                      </span>
+                      <div
+                        role="radiogroup"
+                        aria-labelledby="location-group-label"
+                        className="grid grid-cols-1 sm:grid-cols-3 gap-2.5"
                       >
-                        <option value="">Select a location</option>
-                        {locations.map((l) => (
-                          <option key={l} value={l} suppressHydrationWarning>
-                            {l}
-                          </option>
-                        ))}
-                      </select>
+                        {[
+                          { label: 'Livingston', sub: 'Essex County', value: locations[0] },
+                          { label: 'Denville', sub: 'Morris County', value: locations[1] },
+                          { label: 'Newark', sub: 'Ironbound / Downtown', value: locations[2] },
+                        ].map((loc) => {
+                          const isSelected = form.location === loc.value;
+                          return (
+                            <button
+                              key={loc.value}
+                              type="button"
+                              role="radio"
+                              aria-checked={isSelected}
+                              onClick={() => {
+                                setForm((prev) => ({ ...prev, location: loc.value }));
+                                if (errors.location) {
+                                  setErrors((prev) => ({ ...prev, location: '' }));
+                                }
+                              }}
+                              className={`px-3.5 py-3 rounded-xl border text-left transition-all touch-manipulation min-h-[54px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                                isSelected
+                                  ? 'bg-primary/20 border-primary text-white shadow-[0_0_16px_rgba(197,160,89,0.2)]'
+                                  : errors.location
+                                    ? 'bg-transparent border-red-500/50 text-slate-200 hover:border-primary/40'
+                                    : 'bg-transparent border-border hover:border-primary/40 text-slate-200 hover:text-white'
+                              }`}
+                            >
+                              <span className="block text-sm font-bold leading-tight">
+                                {loc.label}
+                              </span>
+                              <span className="block text-[11px] text-muted-foreground mt-0.5">
+                                {loc.sub}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
                       {errors.location && (
                         <p
                           id="location-error"
@@ -911,6 +943,25 @@ export default function BookingSection({
                       )}
                     </div>
 
+                    <button
+                      type="submit"
+                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#000000] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    >
+                      <span>Save My Info &amp; Choose Lens (Final Step)</span>
+                      <Icon
+                        name="ArrowRightIcon"
+                        size={18}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
+                    </button>
+
+                    <div className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] sm:text-xs font-semibold mt-3 text-center leading-snug">
+                      <Icon name="LockClosedIcon" size={14} className="shrink-0 text-emerald-400" />
+                      <span>HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required</span>
+                    </div>
+                  </form>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
                     <div>
                       <label htmlFor="email" className={labelClass}>
                         Email Address *
@@ -983,25 +1034,6 @@ export default function BookingSection({
                       </div>
                     </div>
 
-                    <button
-                      type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#000000] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                    >
-                      <span>Continue to Step 2</span>
-                      <Icon
-                        name="ArrowRightIcon"
-                        size={18}
-                        className="transition-transform group-hover:translate-x-1"
-                      />
-                    </button>
-
-                    <div className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] sm:text-xs font-semibold mt-3 text-center leading-snug">
-                      <Icon name="LockClosedIcon" size={14} className="shrink-0 text-emerald-400" />
-                      <span>HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required</span>
-                    </div>
-                  </form>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                     <div>
                       <label htmlFor="lens" className={labelClass}>
                         Lens I&apos;m Interested In{' '}

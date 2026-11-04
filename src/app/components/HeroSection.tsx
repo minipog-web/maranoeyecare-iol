@@ -232,6 +232,28 @@ export default function HeroSection({
               </a>
             </div>
 
+            {/* Direct Fast-Track Booking Link for High-Intent Searchers (CRO Option A) */}
+            <div className="mt-3.5 mb-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm">
+              <span className="text-white/75 font-medium">Already diagnosed with cataracts?</span>
+              <a
+                href="#booking"
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollToElement('booking');
+                  window.history.pushState(null, '', '#booking');
+                  trackEvent({
+                    action: 'hero_direct_booking_click',
+                    category: 'Conversion',
+                    label: 'Skip Quiz - Schedule Directly',
+                  });
+                }}
+                className="text-primary font-bold underline underline-offset-4 hover:text-accent transition-colors inline-flex items-center gap-1"
+              >
+                <span>Skip the quiz — schedule directly in Livingston or Denville</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+
             {/* Reassurance Indicators (Positioned above horizontal border line) */}
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mb-6 sm:mb-8 mt-4 text-xs text-foreground/80 font-medium select-none">
               <a
