@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
 import { trackLeadStep1, trackConsultationBooking, trackPhoneClick } from '@/lib/gtag';
+import { getTrackingParams } from '@/lib/tracking-params';
 import { smoothScrollToElement } from '@/lib/ui';
 import { validateConsultationBooking } from '@/lib/validation';
 
@@ -232,7 +233,12 @@ export default function BookingSection({
     }
 
     setStep(2);
-    trackLeadStep1(form.location, form.preferredContact);
+    trackLeadStep1(form.location, form.preferredContact, {
+      email: form.email,
+      phone: form.phone,
+      firstName: form.firstName,
+      lastName: form.lastName,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -257,6 +263,7 @@ export default function BookingSection({
       message: form.message.trim(),
     };
 
+    const tracking = getTrackingParams();
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 15000);
 
@@ -268,6 +275,16 @@ export default function BookingSection({
         body: JSON.stringify({
           ...trimmedForm,
           quizResult: quizResult,
+          gclid: tracking.gclid,
+          wbraid: tracking.wbraid,
+          gbraid: tracking.gbraid,
+          utmSource: tracking.utm_source,
+          utmMedium: tracking.utm_medium,
+          utmCampaign: tracking.utm_campaign,
+          utmTerm: tracking.utm_term,
+          utmContent: tracking.utm_content,
+          landingPage: tracking.landing_page,
+          referrer: tracking.referrer,
         }),
       });
 
@@ -275,7 +292,12 @@ export default function BookingSection({
 
       if (response.ok) {
         setSubmitted(true);
-        trackConsultationBooking(form.location, form.lens || 'No lens selected', quizResult);
+        trackConsultationBooking(form.location, form.lens || 'No lens selected', quizResult, {
+          email: trimmedForm.email,
+          phone: trimmedForm.phone,
+          firstName: trimmedForm.firstName,
+          lastName: trimmedForm.lastName,
+        });
       } else {
         const data = await response.json().catch(() => ({}));
         if (data.errors && typeof data.errors === 'object') {

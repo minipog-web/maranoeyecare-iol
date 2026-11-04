@@ -21,6 +21,11 @@ function buildConsultationEmailHtml(s: ConsultationBooking): string {
     lens: escapeHtml(s.lens),
     message: escapeHtml(s.message || ''),
     quizResult: s.quizResult ? escapeHtml(String(s.quizResult)) : undefined,
+    gclid: s.gclid ? escapeHtml(s.gclid) : undefined,
+    wbraid: s.wbraid ? escapeHtml(s.wbraid) : undefined,
+    gbraid: s.gbraid ? escapeHtml(s.gbraid) : undefined,
+    utmSource: s.utmSource ? escapeHtml(s.utmSource) : undefined,
+    utmCampaign: s.utmCampaign ? escapeHtml(s.utmCampaign) : undefined,
   };
 
   const patientRows = `
@@ -38,6 +43,12 @@ function buildConsultationEmailHtml(s: ConsultationBooking): string {
     <p style="color:#666;white-space:pre-wrap;">${safe.message || 'No additional notes provided.'}</p>
   `;
 
+  const trackingRows = `
+    <p style="margin:4px 0;"><strong>Google Click ID (GCLID):</strong> ${safe.gclid || safe.wbraid || safe.gbraid || 'Direct / Organic (None)'}</p>
+    ${safe.utmSource ? `<p style="margin:4px 0;"><strong>UTM Source:</strong> ${safe.utmSource}</p>` : ''}
+    ${safe.utmCampaign ? `<p style="margin:4px 0;"><strong>UTM Campaign:</strong> ${safe.utmCampaign}</p>` : ''}
+  `;
+
   return `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f9f9f9;padding:24px;border-radius:8px;">
       <h2 style="color:#1a1a2e;margin-top:0;">New Consultation Request</h2>
@@ -49,6 +60,10 @@ function buildConsultationEmailHtml(s: ConsultationBooking): string {
       <div style="background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:16px;margin:16px 0;">
         <h3 style="margin-top:0;color:#1a1a2e;">Inquiry Details</h3>
         ${inquiryRows}
+      </div>
+      <div style="background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:16px;margin:16px 0;">
+        <h3 style="margin-top:0;color:#1a1a2e;">Marketing & Attribution</h3>
+        ${trackingRows}
       </div>
       <p style="color:#888;font-size:12px;margin-top:24px;">This notification was sent automatically from the Marano Eye Care website.</p>
     </div>

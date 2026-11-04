@@ -8,6 +8,16 @@ export interface ConsultationBooking {
   lens: string;
   message?: string;
   quizResult?: string;
+  gclid?: string;
+  wbraid?: string;
+  gbraid?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmTerm?: string;
+  utmContent?: string;
+  landingPage?: string;
+  referrer?: string;
 }
 
 export interface QuizRecommendation {

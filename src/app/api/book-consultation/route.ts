@@ -42,6 +42,16 @@ export async function POST(req: NextRequest) {
       lens: typeof body.lens === 'string' ? body.lens.trim() : '',
       message: typeof body.message === 'string' ? body.message.trim() : undefined,
       quizResult: typeof body.quizResult === 'string' ? body.quizResult.trim() : undefined,
+      gclid: typeof body.gclid === 'string' ? body.gclid.trim() : undefined,
+      wbraid: typeof body.wbraid === 'string' ? body.wbraid.trim() : undefined,
+      gbraid: typeof body.gbraid === 'string' ? body.gbraid.trim() : undefined,
+      utmSource: typeof body.utmSource === 'string' ? body.utmSource.trim() : undefined,
+      utmMedium: typeof body.utmMedium === 'string' ? body.utmMedium.trim() : undefined,
+      utmCampaign: typeof body.utmCampaign === 'string' ? body.utmCampaign.trim() : undefined,
+      utmTerm: typeof body.utmTerm === 'string' ? body.utmTerm.trim() : undefined,
+      utmContent: typeof body.utmContent === 'string' ? body.utmContent.trim() : undefined,
+      landingPage: typeof body.landingPage === 'string' ? body.landingPage.trim() : undefined,
+      referrer: typeof body.referrer === 'string' ? body.referrer.trim() : undefined,
     };
 
     // Domain validation

@@ -192,6 +192,48 @@ export const trackEvent = ({
 };
 
 // ─── Dedicated GA4 Healthcare Interaction Trackers ───────────────────────────
+export interface UserDataForConversions {
+  email?: string;
+  phone?: string;
+  firstName?: string;
+  lastName?: string;
+}
+
+export const setEnhancedConversionsUserData = (userData: UserDataForConversions) => {
+  if (typeof window === 'undefined') return;
+
+  const normalizedData: Record<string, unknown> = {};
+
+  if (userData.email) {
+    normalizedData.email = userData.email.trim().toLowerCase();
+  }
+
+  if (userData.phone) {
+    const digits = userData.phone.replace(/\D/g, '');
+    normalizedData.phone_number = digits.length === 10 ? `+1${digits}` : `+${digits}`;
+  }
+
+  if (userData.firstName || userData.lastName) {
+    normalizedData.address = {
+      first_name: userData.firstName?.trim().toLowerCase(),
+      last_name: userData.lastName?.trim().toLowerCase(),
+      country: 'US',
+    };
+  }
+
+  // 1. Set directly on gtag for Google Ads Enhanced Conversions
+  if (typeof window.gtag === 'function') {
+    window.gtag('set', 'user_data', normalizedData);
+  }
+
+  // 2. Push to dataLayer for GTM User-Provided Data variable
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'enhanced_conversion_data',
+    user_data: normalizedData,
+  });
+};
+
 export const trackPhoneClick = (source: string, phoneNumber?: string) => {
   trackEvent({
     action: CONVERSION_EVENTS.PHONE_CLICK,
@@ -200,14 +242,19 @@ export const trackPhoneClick = (source: string, phoneNumber?: string) => {
     value: 200,
     customParams: phoneNumber ? { phone_number: phoneNumber } : {},
   });
-  trackAdsConversion('phone_click');
+  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.PHONE_CALL, 200);
 };
 
 export const trackConsultationBooking = (
   location: string,
   lens?: string,
-  quizResult?: string | null
+  quizResult?: string | null,
+  userData?: UserDataForConversions
 ) => {
+  if (userData) {
+    setEnhancedConversionsUserData(userData);
+  }
+
   trackEvent({
     action: CONVERSION_EVENTS.BOOKING_COMPLETE,
     category: 'Conversion',
@@ -217,12 +264,22 @@ export const trackConsultationBooking = (
       location,
       selected_lens: lens,
       ...(quizResult ? { quiz_recommendation: quizResult } : {}),
+      ...(userData?.email ? { has_contact_data: true } : {}),
     },
   });
   trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT, 500);
+  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT_SECONDARY, 500);
 };
 
-export const trackLeadStep1 = (location: string, lens?: string) => {
+export const trackLeadStep1 = (
+  location: string,
+  lens?: string,
+  userData?: UserDataForConversions
+) => {
+  if (userData) {
+    setEnhancedConversionsUserData(userData);
+  }
+
   trackEvent({
     action: CONVERSION_EVENTS.BOOKING_STEP_1,
     category: 'Engagement',
@@ -291,7 +348,9 @@ export const trackCandidacyClick = (source: string) => {
 // ─── Google Ads Conversion Labels & Triggers ─────────────────────────────────
 export const GOOGLE_ADS_CONVERSIONS = {
   LEAD_FORM: 'AW-17962563730/P12NCJ6IgdwcEJLxm_VC',
-  BOOK_APPOINTMENT: 'AW-17962563730/IsEZCL66_dscEJLxm_VC',
+  BOOK_APPOINTMENT: 'AW-17962563730/Fy7LCKnX_4sdEJLxm_VC',
+  BOOK_APPOINTMENT_SECONDARY: 'AW-17962563730/IsEZCL66_dscEJLxm_VC',
+  PHONE_CALL: 'AW-17962563730/VQnXCPyTnI4dEJLxm_VC',
 } as const;
 
 // ─── Track Google Ads conversion via gtag and GTM dataLayer ──────────────────

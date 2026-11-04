@@ -3,14 +3,16 @@
 import { useEffect, useRef, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { pageview, trackScrollDepth, trackEvent, trackPhoneClick } from '@/lib/gtag';
+import { captureTrackingParams } from '@/lib/tracking-params';
 
 function AnalyticsNavigationObserver() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const lastTrackedPath = useRef<string | null>(null);
 
-  // Track page views on route and query param changes
+  // Capture Google Ads Click IDs and UTM params, and track page views
   useEffect(() => {
+    captureTrackingParams();
     const searchString = searchParams?.toString();
     const url = searchString ? `${pathname}?${searchString}` : pathname;
 
