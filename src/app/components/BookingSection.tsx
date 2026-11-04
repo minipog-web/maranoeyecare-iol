@@ -268,24 +268,34 @@ export default function BookingSection({
     const timeoutId = setTimeout(() => controller.abort(), 15000);
 
     try {
-      const response = await fetch('/api/book-consultation', {
+      const formData = new URLSearchParams();
+      formData.append('form-name', 'consultation');
+      formData.append('name', `${trimmedForm.firstName} ${trimmedForm.lastName}`.trim());
+      formData.append('firstName', trimmedForm.firstName);
+      formData.append('lastName', trimmedForm.lastName);
+      formData.append('email', trimmedForm.email);
+      formData.append('phone', trimmedForm.phone);
+      formData.append('preferredContact', trimmedForm.preferredContact || 'phone');
+      formData.append('location', trimmedForm.location);
+      formData.append('lens', trimmedForm.lens || 'Not specified');
+      if (quizResult) formData.append('quizResult', String(quizResult));
+      if (trimmedForm.message) formData.append('message', trimmedForm.message);
+      if (tracking.gclid) formData.append('gclid', tracking.gclid);
+      if (tracking.wbraid) formData.append('wbraid', tracking.wbraid);
+      if (tracking.gbraid) formData.append('gbraid', tracking.gbraid);
+      if (tracking.utm_source) formData.append('utmSource', tracking.utm_source);
+      if (tracking.utm_medium) formData.append('utmMedium', tracking.utm_medium);
+      if (tracking.utm_campaign) formData.append('utmCampaign', tracking.utm_campaign);
+      if (tracking.utm_term) formData.append('utmTerm', tracking.utm_term);
+      if (tracking.utm_content) formData.append('utmContent', tracking.utm_content);
+      if (tracking.landing_page) formData.append('landingPage', tracking.landing_page);
+      if (tracking.referrer) formData.append('referrer', tracking.referrer);
+
+      const response = await fetch('/__forms.html', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         signal: controller.signal,
-        body: JSON.stringify({
-          ...trimmedForm,
-          quizResult: quizResult,
-          gclid: tracking.gclid,
-          wbraid: tracking.wbraid,
-          gbraid: tracking.gbraid,
-          utmSource: tracking.utm_source,
-          utmMedium: tracking.utm_medium,
-          utmCampaign: tracking.utm_campaign,
-          utmTerm: tracking.utm_term,
-          utmContent: tracking.utm_content,
-          landingPage: tracking.landing_page,
-          referrer: tracking.referrer,
-        }),
+        body: formData.toString(),
       });
 
       clearTimeout(timeoutId);
@@ -299,16 +309,8 @@ export default function BookingSection({
           lastName: trimmedForm.lastName,
         });
       } else {
-        const data = await response.json().catch(() => ({}));
-        if (data.errors && typeof data.errors === 'object') {
-          setErrors(data.errors);
-          const step1Fields = ['firstName', 'lastName', 'phone', 'location', 'email'];
-          const hasStep1Error = Object.keys(data.errors).some((key) => step1Fields.includes(key));
-          if (hasStep1Error) setStep(1);
-        }
         setErrorMessage(
-          data.error ||
-            'We encountered an issue submitting your request. Please review your entries or call us directly at (973) 322-0100.'
+          'We encountered an issue submitting your request. Please review your entries or call us directly at (973) 322-0100.'
         );
       }
     } catch (error: unknown) {

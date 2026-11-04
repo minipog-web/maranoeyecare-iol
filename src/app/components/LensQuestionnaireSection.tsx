@@ -334,16 +334,12 @@ export default function LensQuestionnaireSection() {
           });
         }, 1800);
 
-        // Notify staff via Brevo
-        fetch('/api/notify-staff', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            lensName: lens.name,
-            lensTagline: lens.tagline,
-            answers: updatedAnswers,
-          }),
-        }).catch((err) => console.error('Failed to notify staff:', err));
+        // Quiz result is stored in sessionStorage ('preselect-lens') and attached to the Netlify 'consultation' form submission
+        try {
+          sessionStorage.setItem('preselect-lens', lens.key);
+        } catch {
+          // Ignore storage issues
+        }
       } else if (option.next) {
         setHistory((h) => [...h, currentId]);
         setAnswerLabels((a) => [...a, option.label]);
