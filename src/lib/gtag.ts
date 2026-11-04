@@ -234,7 +234,15 @@ export const setEnhancedConversionsUserData = (userData: UserDataForConversions)
   });
 };
 
+let lastPhoneClickTime = 0;
+
 export const trackPhoneClick = (source: string, phoneNumber?: string) => {
+  const now = Date.now();
+  if (now - lastPhoneClickTime < 1500) {
+    return;
+  }
+  lastPhoneClickTime = now;
+
   trackEvent({
     action: CONVERSION_EVENTS.PHONE_CLICK,
     category: 'Conversion',
@@ -361,9 +369,12 @@ export const trackAdsConversion = (
 ) => {
   if (typeof window === 'undefined') return;
 
-  const sendTo = conversionIdOrLabel.startsWith('AW-')
-    ? conversionIdOrLabel
-    : `AW-17962563730/${conversionIdOrLabel}`;
+  const sendTo =
+    conversionIdOrLabel === 'phone_click'
+      ? GOOGLE_ADS_CONVERSIONS.PHONE_CALL
+      : conversionIdOrLabel.startsWith('AW-')
+        ? conversionIdOrLabel
+        : `AW-17962563730/${conversionIdOrLabel}`;
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({

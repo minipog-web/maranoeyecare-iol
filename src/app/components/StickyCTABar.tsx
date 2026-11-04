@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
-import { trackEvent, trackAdsConversion } from '@/lib/gtag';
+import { trackEvent, trackPhoneClick } from '@/lib/gtag';
 import { smoothScrollToElement } from '@/lib/ui';
 
 export default function StickyCTABar() {
@@ -67,12 +67,7 @@ export default function StickyCTABar() {
             href="tel:9733220100"
             suppressHydrationWarning
             onClick={() => {
-              trackEvent({
-                action: 'phone_click',
-                category: 'Conversion',
-                label: 'Sticky CTA Bar: 9733220100',
-              });
-              trackAdsConversion('phone_click');
+              trackPhoneClick('Sticky CTA Bar: 9733220100', '(973) 322-0100');
             }}
             className="flex items-center justify-center w-12 h-12 rounded-xl border border-border bg-white/[0.05] hover:border-primary/50 hover:bg-primary/10 transition-all touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             aria-label="Call us"

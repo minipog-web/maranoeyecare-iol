@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
-import { trackEvent, trackAdsConversion } from '@/lib/gtag';
+import { trackEvent, trackPhoneClick } from '@/lib/gtag';
 import { smoothScrollToElement } from '@/lib/ui';
 
 const lensGuideLinks = [
@@ -109,12 +109,7 @@ export default function Header() {
   };
 
   const handlePhoneClick = (source: string) => {
-    trackEvent({
-      action: 'phone_click',
-      category: 'Conversion',
-      label: `Header Call: ${source}`,
-    });
-    trackAdsConversion('phone_click');
+    trackPhoneClick(`Header Call: ${source}`, '(973) 322-0100');
   };
 
   const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>, source: string) => {
