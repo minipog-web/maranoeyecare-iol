@@ -5,7 +5,7 @@ export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID &&
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID !== 'your-google-analytics-id-here'
     ? process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-    : 'G-CTYWND91QV';
+    : 'G-1YBZ7BFJ4C';
 
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PB9D9RHS';
 

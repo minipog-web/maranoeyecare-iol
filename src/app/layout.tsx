@@ -368,9 +368,9 @@ gtag('consent', 'default', {
 });`}
         </Script>
 
-        {/* Google tag (gtag.js) - GA4 G-CTYWND91QV, GT-WKTZM5GN & Google Ads AW-18197167741 / AW-17962563730 */}
+        {/* Google tag (gtag.js) - GA4 G-1YBZ7BFJ4C & Google Ads AW-18197167741 / AW-17962563730 */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-CTYWND91QV"
+          src="https://www.googletagmanager.com/gtag/js?id=G-1YBZ7BFJ4C"
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
@@ -378,12 +378,13 @@ gtag('consent', 'default', {
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
 gtag('js', new Date());
-gtag('config', 'G-CTYWND91QV', {
+gtag('config', 'G-1YBZ7BFJ4C', {
   send_page_view: false,
   anonymize_ip: true,
+  cookie_domain: 'premium-iol.maranoeye.com',
+  cookie_prefix: 'mec_iol',
   cookie_flags: 'SameSite=None;Secure'
 });
-gtag('config', 'GT-WKTZM5GN');
 gtag('config', 'AW-18197167741');
 gtag('config', 'AW-17962563730');`}
         </Script>
