@@ -299,3 +299,24 @@
   pointer-events: none;
   z-index: 15;
 }
+
+/* Mobile GPU Optimization: Disable expensive 90px/48px Gaussian blurs on phones */
+@media (max-width: 767px) {
+  .ambientGlow {
+    display: none !important;
+  }
+  .cardAmbientGlow {
+    filter: none !important;
+    opacity: 0.25 !important;
+    inset: -8px -6px !important;
+    border-radius: 24px !important;
+    will-change: auto !important;
+  }
+  .cardAmbientGlowActive {
+    filter: none !important;
+    opacity: 0.38 !important;
+  }
+  .spotlightGlow {
+    display: none !important;
+  }
+}

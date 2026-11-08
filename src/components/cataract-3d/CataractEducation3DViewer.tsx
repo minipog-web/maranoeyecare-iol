@@ -108,9 +108,25 @@ export default function CataractEducation3DViewer({
     });
     resizeObserver.observe(containerRef.current);
 
+    // Pause WebGL rendering loop when scrolled out of viewport to preserve mobile 60fps GPU performance
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            scene.resume();
+          } else {
+            scene.pause();
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+    visibilityObserver.observe(containerRef.current);
+
     return () => {
       window.removeEventListener('resize', handleResize);
       resizeObserver.disconnect();
+      visibilityObserver.disconnect();
       scene.dispose();
       sceneRef.current = null;
     };

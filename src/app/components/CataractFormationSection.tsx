@@ -604,7 +604,7 @@ export default function CataractFormationSection() {
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary">
                     <Icon name="CheckBadgeIcon" size={20} />
                   </div>
-                  <span className="inline-flex items-center text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-[#d4af37] via-primary to-[#f3e5ab] px-3.5 py-1.5 rounded-full shadow-[0_0_20px_rgba(197,160,89,0.45)] border border-primary-light/40">
+                  <span className="inline-flex items-center text-xs font-black uppercase tracking-wider text-[#07080b] bg-[#ecc97e] px-3.5 py-1.5 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.35)] border border-[#fff2cc]/55">
                     Permanent &amp; Stable
                   </span>
                 </div>

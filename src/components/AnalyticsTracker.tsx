@@ -28,9 +28,14 @@ function AnalyticsNavigationObserver() {
     const reachedMilestones = new Set<number>();
 
     let ticking = false;
+    let lastCheck = 0;
     const handleScroll = () => {
+      const now = Date.now();
+      if (now - lastCheck < 300) return;
+
       if (!ticking) {
         window.requestAnimationFrame(() => {
+          lastCheck = Date.now();
           const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
           if (scrollHeight > 0) {
             const scrollPercent = Math.min(100, Math.round((window.scrollY / scrollHeight) * 100));
@@ -40,6 +45,10 @@ function AnalyticsNavigationObserver() {
                 reachedMilestones.add(milestone);
                 trackScrollDepth(milestone);
               }
+            }
+
+            if (reachedMilestones.size === milestones.length) {
+              window.removeEventListener('scroll', handleScroll);
             }
           }
           ticking = false;

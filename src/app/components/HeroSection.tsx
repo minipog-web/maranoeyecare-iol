@@ -151,18 +151,18 @@ export default function HeroSection({
             {/* Headline (incorporating semantic keyword & NJ location context in h1 while preserving exact visual layout) */}
             <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-2xl w-full">
               {/* Eyebrow Badge */}
-              <span className="relative z-10 inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-2xl xl:rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/35 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
+              <span className="relative z-10 inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-2xl xl:rounded-full bg-[#0d0e12]/80 backdrop-blur-md border border-[#C5A059]/40 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
                 {badgeText ? (
-                  <span className="text-[10px] xs:text-[11px] xl:text-[11px] font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059]">
+                  <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#F3D28C]">
                     {badgeText}
                   </span>
                 ) : (
-                  <span className="flex flex-col xl:flex-row xl:items-center text-left text-[10px] xs:text-[11px] xl:text-[11px] uppercase tracking-normal xl:tracking-wider">
-                    <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] whitespace-nowrap">
+                  <span className="flex flex-col xl:flex-row xl:items-center text-left text-[11px] sm:text-xs uppercase tracking-wide xl:tracking-wider">
+                    <span className="font-semibold text-[#F3D28C] sm:whitespace-nowrap">
                       Laser Cataract Surgery &amp; Premium IOL Specialists
                     </span>
-                    <span className="hidden xl:inline mx-1.5 text-[#C5A059]/50 font-normal">•</span>
-                    <span className="text-[#E2C28A]/90 font-medium whitespace-nowrap mt-0.5 xl:mt-0">
+                    <span className="hidden xl:inline mx-1.5 text-[#C5A059]/60 font-normal">•</span>
+                    <span className="text-[#F5E4C3] font-medium sm:whitespace-nowrap mt-0.5 xl:mt-0">
                       Livingston, Denville &amp; Newark NJ
                     </span>
                   </span>

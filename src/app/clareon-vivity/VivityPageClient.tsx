@@ -335,7 +335,7 @@ export default function VivityPageClient() {
                       // Ignore storage write issues
                     }
                   }}
-                  className="group relative inline-flex items-center justify-between sm:justify-center rounded-full bg-gradient-to-r from-[#fff3d6] via-[#f7d492] to-[#d1ab60] px-7 py-3.5 text-sm font-bold text-black shadow-[0_4px_24px_rgba(197,160,89,0.35)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(197,160,89,0.5)] hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="group relative inline-flex items-center justify-between sm:justify-center rounded-full btn-premium-primary px-7 py-3.5 text-sm font-bold text-black transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <span>Schedule Vivity Consultation</span>
                   <div className="ml-3.5 flex h-7 w-7 items-center justify-center rounded-full bg-black/10 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5">
@@ -531,7 +531,7 @@ export default function VivityPageClient() {
                   onClick={() => handleSimulatorTabClick('distance')}
                   className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'distance'
-                      ? 'bg-gradient-to-r from-[#fff3d6] via-[#f7d492] to-[#d1ab60] text-black shadow-[0_2px_14px_rgba(197,160,89,0.4)]'
+                      ? 'btn-premium-primary text-black'
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >
@@ -544,7 +544,7 @@ export default function VivityPageClient() {
                   onClick={() => handleSimulatorTabClick('intermediate')}
                   className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'intermediate'
-                      ? 'bg-gradient-to-r from-[#fff3d6] via-[#f7d492] to-[#d1ab60] text-black shadow-[0_2px_14px_rgba(197,160,89,0.4)]'
+                      ? 'btn-premium-primary text-black'
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >
@@ -557,7 +557,7 @@ export default function VivityPageClient() {
                   onClick={() => handleSimulatorTabClick('near')}
                   className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'near'
-                      ? 'bg-gradient-to-r from-[#fff3d6] via-[#f7d492] to-[#d1ab60] text-black shadow-[0_2px_14px_rgba(197,160,89,0.4)]'
+                      ? 'btn-premium-primary text-black'
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >

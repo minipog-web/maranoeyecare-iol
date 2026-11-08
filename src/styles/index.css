@@ -411,31 +411,38 @@ p[id^='footnote-']:target {
   );
 }
 
-/* ── Text gradients ── */
-.text-gradient-primary {
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #fae8c8 25%,
-    #e8c47e 55%,
-    #dfb363 80%,
-    #ffffff 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #fae8c8; /* Fallback balanced clinical gold */
+/* ── Golden Title Typography (High-Contrast Native Rendering, Zero Clip-Mask Artifacts) ── */
+.text-gradient-primary,
+.text-gradient-primary sup,
+.text-gradient-primary sub {
+  color: #f3d28c !important;
+  -webkit-text-fill-color: #f3d28c !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
   text-shadow: none !important;
   filter: none !important;
 }
 
-.text-gradient-warm {
-  background: linear-gradient(125deg, #ffffff 0%, #faecd7 40%, #e8d5c0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.text-gradient-warm,
+.text-gradient-warm sup,
+.text-gradient-warm sub {
+  color: #f5e4c3 !important;
+  -webkit-text-fill-color: #f5e4c3 !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
   text-shadow: none !important;
   filter: none !important;
+}
+
+@media (max-width: 767px) {
+  /* Boost small golden eyebrow/kicker contrast on mobile screens */
+  p.text-primary,
+  span.text-primary,
+  div.text-primary {
+    color: #ebd096 !important;
+  }
 }
 
 /* ── Glass cards (GPU optimized) ── */
@@ -810,21 +817,11 @@ p[id^='footnote-']:target {
   animation: bar-fill 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Shimmer text effect */
+/* Shimmer text effect - neutralized to high-contrast solid gold to prevent clip-mask rendering bugs */
 .animate-shimmer-text {
-  background: linear-gradient(
-    105deg,
-    #c5a059 0%,
-    #e2c28a 35%,
-    #ffffff 50%,
-    #e2c28a 65%,
-    #c5a059 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer-slide 4s linear infinite;
+  color: #f3d28c !important;
+  -webkit-text-fill-color: #f3d28c !important;
+  background: none !important;
 }
 
 /* Button shimmer on hover - neutralized to prevent glare washing out button text */
@@ -836,125 +833,109 @@ p[id^='footnote-']:target {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   NEUMORPHIC BUTTON DESIGN SYSTEM (Tactile Soft-UI with AAA Legibility)
+   LUXURY CLINICAL BUTTON DESIGN SYSTEM (Clean Satin Gold, AAA Legibility)
    ───────────────────────────────────────────────────────────── */
 
 .btn-premium-primary {
   border-radius: 9999px;
 }
 
-/* 1. PRIMARY NEUMORPHIC BUTTONS (Forged Luminous 24kt Gold with Dark Edge Outer Bevel) */
+/* 1. PRIMARY GOLD BUTTONS (Uniform Satin Champagne Gold — Zero Harsh Gradient Banding) */
 .btn-premium-primary,
 button.bg-primary,
 a.bg-primary {
-  background: linear-gradient(180deg, #fae4ae 0%, #edc573 50%, #d5a549 100%) !important;
-  color: #000000 !important;
+  background: #ecc97e !important;
+  color: #07080b !important;
   font-weight: 700 !important;
   letter-spacing: 0.01em !important;
   text-shadow: none !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  border: 1px solid #140f06 !important;
+  border: 1px solid rgba(255, 242, 204, 0.55) !important;
   box-shadow:
-    0 0 0 1px #0a0703,
-    0 2.5px 0 1px #110c05,
-    0 4px 12px rgba(0, 0, 0, 0.75),
-    0 10px 24px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(237, 197, 115, 0.2),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.9),
-    inset 0 -2px 2px rgba(95, 62, 10, 0.45) !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 4px 14px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(236, 201, 126, 0.16) !important;
+  transition:
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-premium-primary:hover,
 button.bg-primary:hover,
 a.bg-primary:hover {
-  background: linear-gradient(180deg, #fff1ce 0%, #f6d488 50%, #dfb054 100%) !important;
-  color: #000000 !important;
+  background: #f4d690 !important;
+  color: #050608 !important;
   text-shadow: none !important;
-  border-color: #080602 !important;
+  border-color: rgba(255, 248, 224, 0.75) !important;
   box-shadow:
-    0 0 0 1px #050401,
-    0 3.5px 0 1px #0d0903,
-    0 6px 16px rgba(0, 0, 0, 0.8),
-    0 14px 32px rgba(0, 0, 0, 0.65),
-    0 0 26px rgba(237, 197, 115, 0.35),
-    inset 0 1.5px 1px #ffffff,
-    inset 0 -2px 2px rgba(95, 62, 10, 0.5) !important;
-  transform: translateY(-2px) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 6px 20px rgba(0, 0, 0, 0.5),
+    0 0 26px rgba(244, 214, 144, 0.28) !important;
+  transform: translateY(-1px) !important;
 }
 
 .btn-premium-primary:active,
 button.bg-primary:active,
 a.bg-primary:active {
-  transform: translateY(2px) !important;
+  background: #e2be70 !important;
+  transform: translateY(0px) scale(0.99) !important;
   box-shadow:
-    0 0 0 1px #0a0703,
-    0 1px 0 0.5px #110c05,
-    0 2px 4px rgba(0, 0, 0, 0.8),
-    inset 0 2px 4px rgba(90, 58, 8, 0.6),
-    inset 0 -1px 2px rgba(255, 255, 255, 0.4) !important;
+    inset 0 1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.45) !important;
 }
 
-/* Neumorphic icon disc inside primary CTA */
+/* Clean icon disc inside primary CTA */
+.btn-premium-primary div.rounded-full,
+.btn-premium-primary span.rounded-full,
 a.bg-primary div.rounded-full,
-button.bg-primary div.rounded-full {
-  background: rgba(0, 0, 0, 0.14) !important;
-  color: #000000 !important;
-  border: 1px solid rgba(0, 0, 0, 0.28) !important;
-  box-shadow:
-    inset 1px 1px 2px rgba(0, 0, 0, 0.45),
-    inset -1px -1px 1.5px rgba(255, 255, 255, 0.35),
-    0 1px 2px rgba(0, 0, 0, 0.15) !important;
+a.bg-primary span.rounded-full,
+button.bg-primary div.rounded-full,
+button.bg-primary span.rounded-full {
+  background: rgba(7, 8, 11, 0.12) !important;
+  color: #07080b !important;
+  border: 1px solid rgba(7, 8, 11, 0.15) !important;
+  box-shadow: none !important;
 }
 
-/* 2. SECONDARY NEUMORPHIC BUTTONS (Obsidian Slate with Crisp High-Contrast White Text) */
+/* 2. SECONDARY BUTTONS (Refined Obsidian Slate with Crisp High-Contrast White Text) */
 .btn-premium-secondary,
 .btn-neumorphic-secondary {
-  background: linear-gradient(180deg, #1b212e 0%, #10141d 100%) !important;
+  background: #151924 !important;
   color: #ffffff !important;
   font-weight: 700 !important;
   letter-spacing: 0.015em !important;
   text-shadow: none !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  border: 1px solid #06080d !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
   box-shadow:
-    0 0 0 1px #020305,
-    0 2.5px 0 1px #05070a,
-    0 4px 12px rgba(0, 0, 0, 0.8),
-    0 10px 24px rgba(0, 0, 0, 0.65),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.22),
-    inset 0 -2px 2px rgba(0, 0, 0, 0.85) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 14px rgba(0, 0, 0, 0.45) !important;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-premium-secondary:hover,
 .btn-neumorphic-secondary:hover {
-  background: linear-gradient(180deg, #232b3b 0%, #131924 100%) !important;
+  background: #1c2230 !important;
   color: #ffffff !important;
   text-shadow: none !important;
-  border-color: #030406 !important;
+  border-color: rgba(236, 201, 126, 0.4) !important;
   box-shadow:
-    0 0 0 1px #000000,
-    0 3.5px 0 1px #030406,
-    0 6px 16px rgba(0, 0, 0, 0.85),
-    0 14px 30px rgba(0, 0, 0, 0.75),
-    0 0 18px rgba(197, 160, 89, 0.2),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 2px rgba(0, 0, 0, 0.9) !important;
-  transform: translateY(-2px) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 6px 18px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(197, 160, 89, 0.15) !important;
+  transform: translateY(-1px) !important;
 }
 
 .btn-premium-secondary:active,
 .btn-neumorphic-secondary:active {
-  transform: translateY(2px) !important;
+  transform: translateY(0px) scale(0.99) !important;
   box-shadow:
-    0 0 0 1px #020305,
-    0 1px 0 0.5px #05070a,
-    0 2px 4px rgba(0, 0, 0, 0.85),
-    inset 0 2px 4px rgba(0, 0, 0, 0.9),
-    inset 0 -1px 2px rgba(255, 255, 255, 0.08) !important;
+    inset 0 1px 2px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* ─────────────────────────────────────────
@@ -1227,14 +1208,16 @@ textarea:focus {
   min-height: 0;
 }
 
-/* Fixed Film Grain Tactile overlay */
-.film-grain {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0.02;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+/* Fixed Film Grain Tactile overlay (Desktop-only to prevent mobile compositor churn) */
+@media (min-width: 768px) {
+  .film-grain {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
 }
 
 /* ── Global IOL Lens Color custom properties ── */
@@ -1280,9 +1263,17 @@ textarea:focus {
 }
 
 .luxury-nav-blur {
-  background: rgba(10, 12, 20, 0.7);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
+  background: rgba(10, 12, 20, 0.95);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  @media (min-width: 768px) {
+    .luxury-nav-blur {
+      background: rgba(10, 12, 20, 0.7);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+  }
 }
 
 .logo-mono-hover {
@@ -1412,10 +1403,24 @@ h2.font-display {
 
 /* ── Luxury Editorial & Anti-AI Aesthetic Enhancements ── */
 
-/* 1. Subtle Tactile Film-Grain Overlay (Fixed, zero layout cost) */
-.film-grain-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
+/* 1. Subtle Tactile Film-Grain Overlay (Fixed, zero layout cost on desktop; disabled on mobile) */
+@media (min-width: 768px) {
+  .film-grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+}
+
+@media (max-width: 767px) {
+  .film-grain,
+  .film-grain-overlay {
+    display: none !important;
+  }
+  .luxury-glass-card {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: #0f131a !important;
+  }
 }
 
 /* 2. Doppelrand / Double-Bezel Architectural Enclosures */

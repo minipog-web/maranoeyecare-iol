@@ -134,7 +134,7 @@ export default function InsuranceCostSection() {
                 {/* Featured glowing beacon */}
                 {isFeatured && (
                   <div
-                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#d4af37] via-primary to-[#f3e5ab] text-black font-extrabold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(197,160,89,0.5)] border border-primary-light z-20 whitespace-nowrap"
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#ecc97e] text-[#07080b] font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_14px_rgba(0,0,0,0.4)] border border-[#fff2cc]/60 z-20 whitespace-nowrap"
                     aria-hidden="true"
                   >
                     Recommended For Active Lifestyles

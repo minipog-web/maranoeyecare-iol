@@ -35,6 +35,7 @@ export class CataractEyeScene {
   private renderer!: THREE.WebGLRenderer;
   private animFrameId: number | null = null;
   private isDisposed = false;
+  private isPaused = false;
 
   // Master Sagittal Clipping Plane: Cuts foreground Z > 0, keeping Z <= 0.
   // This leaves the crystalline lens, cornea, iris, retina, and optic nerve 100% UNBLOCKED
@@ -126,8 +127,9 @@ export class CataractEyeScene {
       alpha: true,
       powerPreference: 'high-performance',
     });
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.25;
     // Enable GPU-accelerated local clipping plane
@@ -1562,7 +1564,7 @@ export class CataractEyeScene {
   }
 
   private renderLoop = () => {
-    if (this.isDisposed) return;
+    if (this.isDisposed || this.isPaused) return;
 
     const now = performance.now() * 0.001;
     if (this.lastFrameTime === 0) {
@@ -1686,6 +1688,23 @@ export class CataractEyeScene {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
+  }
+
+  public pause() {
+    this.isPaused = true;
+    if (this.animFrameId !== null) {
+      cancelAnimationFrame(this.animFrameId);
+      this.animFrameId = null;
+    }
+  }
+
+  public resume() {
+    if (!this.isPaused || this.isDisposed) return;
+    this.isPaused = false;
+    this.lastFrameTime = performance.now() * 0.001;
+    if (this.animFrameId === null) {
+      this.animFrameId = requestAnimationFrame(this.renderLoop);
+    }
   }
 
   public dispose() {
