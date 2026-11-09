@@ -37,8 +37,8 @@ const lenses = [
   {
     name: 'TECNIS PureSee',
     tag: 'Latest EDOF',
-    subtitle: 'Pure Refractive EDOF',
-    detail: 'Zero contrast sensitivity warning [3]',
+    subtitle: 'Refractive EDOF',
+    detail: 'Zero contrast loss warning [3]',
     src: '/assets/images/puresee_hero.jpg',
     alt: 'TECNIS PureSee IOL, the latest and most cutting-edge purely refractive extended depth of focus intraocular lens',
     href: '/tecnis-puresee',
@@ -392,7 +392,7 @@ export default function HeroSection({
                           label: `Hero ${lens.name} Card to ${lens.href}`,
                         });
                       }}
-                      className={`group block relative doppel-shell ${lens.accent} w-full h-[270px] xs:h-[285px] sm:h-[355px] xl:h-[395px] cursor-pointer ${cardOrigin} focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none transition-all duration-300 hover:-translate-y-2 hover:scale-[1.04]
+                      className={`group block relative doppel-shell ${lens.accent} w-full h-[290px] xs:h-[305px] sm:h-[375px] lg:h-[405px] xl:h-[425px] cursor-pointer ${cardOrigin} focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none transition-all duration-300 hover:-translate-y-2 hover:scale-[1.04]
                         ${
                           isActive
                             ? 'z-30 opacity-100 -translate-y-1 scale-[1.015]'
@@ -402,7 +402,7 @@ export default function HeroSection({
                     >
                       <div className="w-full h-full flex flex-col bg-background/85 rounded-[calc(2rem-6px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] relative">
                         {/* Image: Explicit fixed height so all 3 lenses render at exact identical size */}
-                        <div className="relative w-full h-[135px] xs:h-[145px] sm:h-[205px] xl:h-[235px] flex-none overflow-hidden bg-[#07090e]">
+                        <div className="relative w-full h-[125px] xs:h-[135px] sm:h-[180px] lg:h-[180px] xl:h-[205px] flex-none overflow-hidden bg-[#07090e]">
                           <AppImage
                             src={lens.src}
                             alt={lens.alt}
@@ -439,12 +439,12 @@ export default function HeroSection({
                         </div>
 
                         {/* Bottom info */}
-                        <div className="flex-1 flex flex-col justify-between p-2 sm:p-2.5 xl:p-3.5 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
+                        <div className="flex-1 flex flex-col justify-between p-2 sm:p-2.5 lg:p-3 xl:p-3.5 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
                           <div>
-                            <p className="text-[8.5px] xs:text-[9px] sm:text-[11px] xl:text-xs font-bold text-primary uppercase tracking-wider sm:tracking-widest mb-0.5 flex items-center justify-between">
+                            <p className="text-[8.5px] xs:text-[9px] sm:text-[10.5px] lg:text-[11px] xl:text-xs font-bold text-primary uppercase tracking-wider sm:tracking-widest mb-0.5 sm:mb-1 flex items-center justify-between">
                               <span>{lens.name}</span>
                               <span
-                                className={`text-[9px] text-primary/80 font-normal transition-all duration-300 sm:inline-block ${
+                                className={`text-[9px] text-primary/80 font-normal transition-all duration-300 sm:inline-block shrink-0 ml-1 ${
                                   isActive
                                     ? 'opacity-100 translate-x-0'
                                     : 'opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0'
@@ -453,11 +453,11 @@ export default function HeroSection({
                                 &rarr;
                               </span>
                             </p>
-                            <p className="text-white font-medium text-[9.5px] xs:text-[10px] sm:text-xs xl:text-sm leading-tight">
+                            <p className="text-white font-medium text-[9.5px] xs:text-[10px] sm:text-[11px] lg:text-xs xl:text-sm leading-tight">
                               {lens.subtitle}
                             </p>
                           </div>
-                          <p className="text-white/75 text-[7.5px] xs:text-[8px] sm:text-[9px] xl:text-[10px] mt-0.5 sm:mt-1 leading-snug sm:leading-normal">
+                          <p className="text-white/75 text-[7.5px] xs:text-[8px] sm:text-[8.5px] lg:text-[9px] xl:text-[10px] mt-1 sm:mt-1.5 leading-snug sm:leading-normal">
                             {renderFootnoteText(lens.detail, { withoutLink: true })}
                           </p>
                         </div>
