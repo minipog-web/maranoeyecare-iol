@@ -1490,9 +1490,9 @@ export default function LensVisionComparisonSection() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[60px] pointer-events-none" />
           <div className="space-y-4 max-w-full w-full">
             <h4 className="font-display text-lg sm:text-xl lg:text-2xl font-semibold text-foreground text-center">
-              Have Astigmatism? All <span className="text-primary font-bold">Premium Lenses</span>{' '}
-              Include <span className="text-primary font-bold">Toric Upgrades</span> at{' '}
-              <span className="text-primary font-bold">No Extra Charge</span>
+              Have Astigmatism? All{' '}
+              <span className="text-primary font-bold">Premium Lenses Include Toric Upgrades</span>{' '}
+              at <span className="text-primary font-bold">No Extra Charge</span>
             </h4>
             <p className="text-base sm:text-lg text-white leading-relaxed font-normal text-left sm:text-center max-w-4xl mx-auto">
               <strong>Toric lenses</strong> are specially engineered to correct astigmatism, which
