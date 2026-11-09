@@ -76,7 +76,7 @@ export default function TrustSection() {
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-5 sm:mb-6 leading-tight">
             New Jersey&apos;s{' '}
-            <span className="font-semibold text-gradient-primary">Most Awarded Cataract</span>{' '}
+            <span className="font-semibold text-gradient-primary">Most Awarded</span> Cataract
             Surgeons
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-foreground font-normal max-w-3xl mx-auto leading-relaxed">
