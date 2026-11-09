@@ -91,8 +91,9 @@ export default function CataractEducationTeaserSection() {
 
                 <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-foreground leading-[1.15] tracking-tight">
                   Cataracts Take Decades to Form.{' '}
-                  <span className="font-semibold text-gradient-primary block sm:inline">
-                    Curing Them Takes One Surgery
+                  <span className="block sm:inline">
+                    Curing Them Takes{' '}
+                    <span className="font-semibold text-gradient-primary">One Surgery</span>
                   </span>
                 </h2>
 
