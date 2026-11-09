@@ -129,7 +129,7 @@ export default function LensTechnologyDeepDiveSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           {/* Left Column: Interactive Diagram Card */}
           <div
-            className="glass-card border border-white/[0.08] backdrop-blur-md rounded-[32px] p-6 sm:p-8 lg:p-9 bg-[#0a0c13]/85 shadow-2xl relative overflow-hidden flex flex-col justify-between h-full transition-all duration-500"
+            className="glass-card-chic border border-white/[0.08] backdrop-blur-md rounded-[32px] p-6 sm:p-8 lg:p-9 bg-[#0a0c13]/85 shadow-2xl relative overflow-hidden flex flex-col justify-between h-full transition-all duration-500"
             style={{
               boxShadow: `0 20px 50px -12px ${tabColors[activeTab].glow}`,
             }}
@@ -780,7 +780,7 @@ export default function LensTechnologyDeepDiveSection() {
 
           {/* Right Column: Card with Lens Information */}
           <div
-            className="glass-card border border-white/[0.08] backdrop-blur-md rounded-[32px] p-6 sm:p-8 lg:p-9 bg-[#0a0c13]/85 shadow-2xl relative overflow-hidden flex flex-col justify-between h-full space-y-6 transition-all duration-500"
+            className="glass-card-chic border border-white/[0.08] backdrop-blur-md rounded-[32px] p-6 sm:p-8 lg:p-9 bg-[#0a0c13]/85 shadow-2xl relative overflow-hidden flex flex-col justify-between h-full space-y-6 transition-all duration-500"
             style={{
               boxShadow: `0 20px 50px -12px ${tabColors[activeTab].glow}`,
             }}

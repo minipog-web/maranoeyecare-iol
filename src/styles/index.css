@@ -1703,3 +1703,43 @@ h2.font-display {
   content-visibility: auto;
   contain-intrinsic-size: 1px 700px;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   CHIC ENHANCEMENTS (Nov 2026) - Glassmorphism & Premium Motion
+   ───────────────────────────────────────────────────────────── */
+
+/* Refined Glassmorphism Utility */
+.glass-card-chic {
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring), background 0.4s var(--ease-spring) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+}
+
+.glass-card-chic:hover {
+  transform: translateY(-8px) scale(1.01) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Premium Button Glow & Scale Interaction */
+.btn-premium-chic {
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.btn-premium-chic:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.25), 
+              0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn-premium-chic:active {
+  transform: scale(0.98) !important;
+}
