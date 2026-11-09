@@ -840,27 +840,26 @@ p[id^='footnote-']:target {
   border-radius: 9999px;
 }
 
-/* 1. PRIMARY GOLD BUTTONS (Multidimensional Radiant Champagne Gold with Micro-Specular Beveling) */
+/* 1. PRIMARY GOLD BUTTONS (Multidimensional Radiant Champagne Gold with Dark Burnished Bevel Rim) */
 .btn-premium-primary,
 button.bg-primary,
 a.bg-primary {
   position: relative !important;
   overflow: hidden !important;
   isolation: isolate !important;
-  background: linear-gradient(180deg, #ffe29a 0%, #e2b44f 48%, #c59128 100%) !important;
+  background: linear-gradient(180deg, #ffd984 0%, #d8a63e 48%, #b8821f 100%) !important;
   color: #050608 !important;
   font-weight: 800 !important;
   letter-spacing: 0.015em !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  border: 1px solid rgba(255, 245, 215, 0.85) !important;
+  border: 1px solid #7c5311 !important;
   box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.35),
-    0 8px 24px -2px rgba(212, 169, 83, 0.45),
-    0 0 28px rgba(226, 183, 85, 0.22),
-    inset 0 1px 1px rgba(255, 255, 255, 0.85),
-    inset 0 -1.5px 2px rgba(110, 72, 10, 0.35) !important;
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 6px 18px -2px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1.5px 2px rgba(80, 52, 6, 0.45) !important;
   transition:
     background 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
@@ -901,15 +900,14 @@ a.bg-primary > * {
 .btn-premium-primary:hover,
 button.bg-primary:hover,
 a.bg-primary:hover {
-  background: linear-gradient(180deg, #fff2be 0%, #f0c564 48%, #d8a234 100%) !important;
+  background: linear-gradient(180deg, #ffe08e 0%, #e2b248 48%, #c58d24 100%) !important;
   color: #000000 !important;
-  border-color: rgba(255, 255, 255, 0.98) !important;
+  border-color: #946517 !important;
   box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.4),
-    0 12px 36px -2px rgba(226, 183, 85, 0.72),
-    0 0 36px rgba(244, 214, 144, 0.52),
-    inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 -1.5px 2px rgba(110, 72, 10, 0.4) !important;
+    0 4px 8px rgba(0, 0, 0, 0.45),
+    0 10px 24px -2px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1.5px 2px rgba(80, 52, 6, 0.5) !important;
   transform: translateY(-2px) scale(1.015) !important;
 }
 
@@ -922,12 +920,12 @@ a.bg-primary:hover::after {
 .btn-premium-primary:active,
 button.bg-primary:active,
 a.bg-primary:active {
-  background: linear-gradient(180deg, #e5b854 0%, #c9932a 100%) !important;
+  background: linear-gradient(180deg, #d8a63e 0%, #b8821f 100%) !important;
+  border-color: #6a460d !important;
   transform: translateY(0px) scale(0.985) !important;
   box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.5),
-    0 0 18px rgba(212, 169, 83, 0.35) !important;
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Tactile arrow icon disc inside primary CTA */
