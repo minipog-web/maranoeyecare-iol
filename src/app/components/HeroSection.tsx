@@ -197,10 +197,10 @@ export default function HeroSection({
                     label: 'Check My Lens Candidacy',
                   });
                 }}
-                className="group inline-flex items-center justify-between sm:justify-center gap-4 pl-8 pr-3 py-3 bg-primary text-[#000000] rounded-full text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[56px] shadow-[0_0_28px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                className="group inline-flex items-center justify-between sm:justify-center gap-3 sm:gap-4 pl-5 sm:pl-8 pr-2.5 sm:pr-3 py-3 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[52px] sm:min-h-[56px] shadow-[0_0_28px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 <span>Check My Lens Candidacy</span>
-                <div className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:scale-105">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:scale-105">
                   <Icon name="ArrowRightIcon" size={18} className="text-current" />
                 </div>
               </a>
@@ -216,7 +216,7 @@ export default function HeroSection({
                     label: 'Compare Lenses',
                   });
                 }}
-                className="group relative focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-3.5 px-8 text-base tracking-wide flex items-center justify-center gap-2 rounded-full btn-neumorphic-secondary font-bold uppercase text-white transition-all duration-300 min-h-[56px] overflow-hidden"
+                className="group relative focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none py-3 sm:py-3.5 px-6 sm:px-8 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 rounded-full btn-neumorphic-secondary font-bold uppercase text-white transition-all duration-300 min-h-[52px] sm:min-h-[56px] overflow-hidden"
               >
                 {/* Precision left indicator block */}
                 <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />

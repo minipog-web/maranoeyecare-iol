@@ -1082,29 +1082,31 @@ export default function LensVisionComparisonSection() {
                       e.preventDefault();
                       setIsPeekingBaseline(false);
                     }}
-                    className="absolute top-3 right-3 z-30 px-3 py-2 bg-black/75 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-30 px-2.5 sm:px-3 py-1.5 sm:py-2 bg-black/80 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    aria-label="Hold to compare with standard Monofocal lens"
                   >
-                    <span className="relative flex h-2 w-2">
+                    <span className="relative flex h-2 w-2 shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                     </span>
-                    <span>Hold to Compare Monofocal</span>
+                    <span className="sm:hidden">Hold Compare</span>
+                    <span className="hidden sm:inline">Hold to Compare Monofocal</span>
                   </button>
                 )}
 
                 {/* Status Overlay */}
-                <div className="absolute top-4 left-4 pointer-events-none z-20">
+                <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 pointer-events-none z-20">
                   <span
                     data-lens={isPeekingBaseline ? 'monofocal' : activeMobileLensId}
-                    className={`bg-black/75 backdrop-blur-md text-[10px] px-3 py-1.5 rounded-xl uppercase tracking-wider font-bold border flex items-center gap-2 transition-all duration-500 ${styles.mobileSceneTag}`}
+                    className={`bg-black/75 backdrop-blur-md text-[10px] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl uppercase tracking-wider font-bold border flex items-center gap-1.5 sm:gap-2 transition-all duration-500 ${styles.mobileSceneTag}`}
                   >
                     <span
                       data-lens={isPeekingBaseline ? 'monofocal' : activeMobileLensId}
-                      className={`w-2 h-2 rounded-full ${styles.mobileSceneTagDot}`}
+                      className={`w-2 h-2 rounded-full shrink-0 ${styles.mobileSceneTagDot}`}
                     />
-                    <span>
+                    <span className="truncate max-w-[110px] xs:max-w-[140px] sm:max-w-none">
                       {isPeekingBaseline
-                        ? 'Monofocal (Baseline)'
+                        ? 'Monofocal'
                         : lenses.find((l) => l.id === activeMobileLensId)?.name}
                     </span>
                   </span>

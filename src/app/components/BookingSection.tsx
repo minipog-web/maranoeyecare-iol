@@ -523,7 +523,7 @@ export default function BookingSection({
               </div>
 
               {/* Bold Location tabs */}
-              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 p-1.5 bg-black/60 border border-primary/25 rounded-2xl mb-3.5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
+              <div className="grid grid-cols-3 gap-1 sm:gap-2 p-1.5 bg-black/60 border border-primary/25 rounded-2xl mb-3.5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)]">
                 {offices.map((loc, idx) => {
                   const isActive = activeOfficeTab === idx;
                   return (
@@ -531,7 +531,7 @@ export default function BookingSection({
                       key={loc.city}
                       type="button"
                       onClick={() => setActiveOfficeTab(idx)}
-                      className={`relative flex items-center justify-center gap-1.5 sm:gap-2 py-3 px-1 sm:px-3 text-xs sm:text-sm md:text-base text-center !rounded-xl transition-all duration-200 min-h-[48px] touch-manipulation select-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                      className={`relative flex items-center justify-center gap-1 sm:gap-2 py-2.5 sm:py-3 px-1 sm:px-3 text-[11px] sm:text-sm md:text-base text-center !rounded-xl transition-all duration-200 min-h-[44px] sm:min-h-[48px] touch-manipulation select-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                         isActive
                           ? 'btn-premium-primary !rounded-xl text-black font-extrabold scale-[1.02] z-10'
                           : 'btn-neumorphic-secondary !rounded-xl font-bold hover:scale-[1.01]'
@@ -539,8 +539,12 @@ export default function BookingSection({
                     >
                       <Icon
                         name="MapPinIcon"
-                        size={15}
-                        className={isActive ? 'text-black shrink-0' : 'text-primary shrink-0'}
+                        size={13}
+                        className={
+                          isActive
+                            ? 'text-black shrink-0 sm:w-[15px] sm:h-[15px]'
+                            : 'text-primary shrink-0 sm:w-[15px] sm:h-[15px]'
+                        }
                       />
                       <span className="truncate text-center">{loc.city}</span>
                     </button>
