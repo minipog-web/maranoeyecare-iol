@@ -402,7 +402,7 @@ export default function LensQuestionnaireSection() {
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197, 160, 89,0.8)]" />
             Lens Recommendation Quiz
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-light text-foreground mb-4 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl font-normal sm:font-medium text-foreground mb-4 leading-tight">
             Build Your{' '}
             <span className="font-semibold text-gradient-primary">Perfect Vision Plan</span>
           </h2>

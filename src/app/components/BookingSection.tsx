@@ -365,7 +365,7 @@ export default function BookingSection({
             <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               {`IOL Consultation`}
             </p>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-light text-foreground leading-tight mb-5 sm:mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-5 sm:mb-6">
               {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
                 <span className="sm:whitespace-nowrap">
                   <span>Reclaim</span>{' '}

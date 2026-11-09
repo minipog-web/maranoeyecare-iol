@@ -670,7 +670,7 @@ export default function LensVisionComparisonSection() {
           <p className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-4 animate-fade-in">
             Interactive Vision Simulator
           </p>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-6 leading-tight">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal sm:font-medium text-foreground mb-6 leading-tight">
             See Your <span className="font-semibold text-gradient-primary">Future Vision</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">

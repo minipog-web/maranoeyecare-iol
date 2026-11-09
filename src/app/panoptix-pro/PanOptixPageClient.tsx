@@ -232,7 +232,7 @@ export default function PanOptixPageClient() {
                 <span>FDA-Approved Trifocal Optical Innovation</span>
               </div>
 
-              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.12] mb-6 tracking-tight">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal sm:font-medium text-foreground leading-[1.12] mb-6 tracking-tight">
                 Clareon<sup>®</sup> PanOptix<sup>®</sup> Pro:{' '}
                 <span className="font-semibold text-gradient-primary block mt-1">
                   Full-Range Trifocal Clarity
@@ -385,7 +385,7 @@ export default function PanOptixPageClient() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#a78bfa] text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] mb-4">
               Optical Physics &amp; Bio-Engineering
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-6 tracking-tight">
               How ENLIGHTEN® Delivers 88% Light Energy to the Retina
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
@@ -497,7 +497,7 @@ export default function PanOptixPageClient() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] mb-4">
               Real-World Vision Simulator
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-6 tracking-tight">
               Experience the Full Visual Range of PanOptix Pro
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
@@ -727,7 +727,7 @@ export default function PanOptixPageClient() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#a78bfa] text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] mb-4">
               Head-to-Head Comparison
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-6 tracking-tight">
               PanOptix® Pro vs. Clareon® Vivity® vs. TECNIS PureSee™
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
@@ -902,7 +902,7 @@ export default function PanOptixPageClient() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#a78bfa] text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] mb-4">
               Patient Matching
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-6 tracking-tight">
               Is Clareon PanOptix Pro the Right Choice for You?
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
@@ -1037,7 +1037,7 @@ export default function PanOptixPageClient() {
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#a78bfa] text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] mb-4">
                 Precision Astigmatism Alignment
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-6 tracking-tight">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-6 tracking-tight">
                 Clareon<sup>®</sup> PanOptix<sup>®</sup> Toric +{' '}
                 <span className="font-semibold text-gradient-primary">
                   LENSAR ALLY<sup>®</sup> Laser
@@ -1110,7 +1110,7 @@ export default function PanOptixPageClient() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#a78bfa] text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] mb-4">
               Clinical Questions Answered
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5 tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-5 tracking-tight">
               Frequently Asked Questions About PanOptix Pro
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto font-light">

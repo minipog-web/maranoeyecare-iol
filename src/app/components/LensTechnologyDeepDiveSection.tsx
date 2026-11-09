@@ -57,7 +57,7 @@ export default function LensTechnologyDeepDiveSection() {
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary mb-4">
             Optical Physics & Innovation
           </p>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-6">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal sm:font-medium text-foreground mb-6">
             The Science of{' '}
             <span className="font-semibold text-gradient-primary">Seamless Sight</span>
           </h2>

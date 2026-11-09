@@ -55,7 +55,7 @@ const costPillars: CostPillar[] = [
     badge: 'Flexible & Tax-Advantaged',
     badgeType: 'financing',
     title: '0% APR & Pre-Tax Savings',
-    subtitle: 'CareCredit · Alphaeon · HSA · FSA',
+    subtitle: 'CareCredit · HSA · FSA',
     priceHeadline: 'From ~$170 / Month',
     priceSub: '24-month 0% APR financing for premium IOLs (or ~$66/mo for laser-only)',
     highlights: [
@@ -102,7 +102,7 @@ export default function InsuranceCostSection() {
             </span>
           </div>
 
-          <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-light text-foreground tracking-tight leading-[1.15] mb-4">
+          <h2 className="font-display text-3xl xs:text-4xl sm:text-5xl font-normal sm:font-medium text-foreground tracking-tight leading-[1.15] mb-4">
             <span className="text-gradient-primary font-semibold">Clear Answers</span> on Insurance,
             Medicare &amp;{' '}
             <span className="text-gradient-primary font-semibold">Your Investment</span>

@@ -24,7 +24,7 @@ export default function CandidacySection() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
             Surgical Integrity & Safety
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-5">
             Why Our Surgeons Decline Premium Lenses for{' '}
             <span className="font-semibold text-gradient-primary">~20% of Inquiries</span>
           </h2>

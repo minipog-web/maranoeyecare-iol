@@ -89,7 +89,7 @@ export default function CataractEducationTeaserSection() {
                   </span>
                 </div>
 
-                <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-foreground leading-[1.15] tracking-tight">
+                <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal sm:font-medium text-foreground leading-[1.15] tracking-tight">
                   Cataracts Take Decades to Form.{' '}
                   <span className="block sm:inline">
                     Curing Them Takes{' '}

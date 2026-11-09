@@ -80,7 +80,7 @@ export default function LifestyleMatchSection() {
             <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
               Find Your Match
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5 sm:mb-6">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal sm:font-medium text-foreground leading-tight mb-5 sm:mb-6">
               Find Your <br />
               <span className="font-semibold text-gradient-primary">Perfect Lens</span>
             </h2>

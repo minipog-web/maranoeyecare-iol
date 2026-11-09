@@ -393,7 +393,7 @@ export default function FAQSection() {
               </p>
             </div>
 
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.6rem] font-light text-foreground leading-[1.15] mb-5 sm:mb-6">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.6rem] font-normal sm:font-medium text-foreground leading-[1.15] mb-5 sm:mb-6">
               Every Concern{' '}
               <span className="font-semibold text-gradient-primary block sm:inline">
                 Answered Honestly

@@ -82,7 +82,7 @@ export default function LensarAllySection() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
             Surgical Innovation
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-tight mb-5">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal sm:font-medium text-foreground leading-tight mb-5">
             <span className="block font-extrabold mb-1">
               LENSAR ALLY<sup>®</sup>
             </span>

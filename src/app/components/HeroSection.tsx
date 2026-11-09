@@ -176,7 +176,7 @@ export default function HeroSection({
                 )}
               </span>
 
-              <span className="font-display tracking-display-tight text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light leading-[1.12] sm:leading-[1.08] text-foreground block max-w-xl">
+              <span className="font-display tracking-display-tight text-3xl xs:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-normal sm:font-medium leading-[1.12] sm:leading-[1.08] text-foreground block max-w-xl">
                 <span className="block">{heroTitleLine1 || 'One Surgery. One Decision.'}</span>{' '}
                 <span className="block text-gradient-primary font-semibold mt-1 pb-1 sm:pb-2">
                   {heroTitleLine2 || 'A Lifetime of Visual Freedom'}

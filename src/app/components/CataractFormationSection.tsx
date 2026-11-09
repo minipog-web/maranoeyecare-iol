@@ -186,7 +186,7 @@ export default function CataractFormationSection() {
             <Icon name="EyeIcon" size={15} />
             <span>Clinical Education & Eye Anatomy</span>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-5">
             How Cataracts Form & Why{' '}
             <span className="font-semibold text-gradient-primary">
               Lens Replacement is Permanent

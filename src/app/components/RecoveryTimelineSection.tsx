@@ -75,7 +75,7 @@ export default function RecoveryTimelineSection() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
             The Path to Clarity
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground leading-tight mb-5">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-5">
             Your Journey to{' '}
             <span className="font-semibold text-gradient-primary">Visual Freedom</span>
           </h2>

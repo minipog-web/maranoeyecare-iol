@@ -145,7 +145,34 @@ p[id^='footnote-']:target {
 /* ── Typography ── */
 .font-display {
   font-family: var(--font-fraunces), serif;
-  /* Removed text-shadow to prevent muddy shadow bleedthrough on child text gradients */
+  letter-spacing: -0.018em;
+}
+
+/* Headings display weight & luminous clarity */
+h1.font-display,
+h2.font-display,
+h3.font-display,
+h1 .font-display,
+h2 .font-display,
+h3 .font-display {
+  font-weight: 450 !important;
+  letter-spacing: -0.018em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.05);
+}
+
+h1.font-display .font-semibold,
+h2.font-display .font-semibold,
+h3.font-display .font-semibold,
+h1 .font-display .font-semibold,
+h2 .font-display .font-semibold,
+h3 .font-display .font-semibold,
+h1.font-display strong,
+h2.font-display strong,
+h3.font-display strong,
+h1 .font-display strong,
+h2 .font-display strong,
+h3 .font-display strong {
+  font-weight: 650 !important;
 }
 
 /* ── Background textures ── */
@@ -411,27 +438,49 @@ p[id^='footnote-']:target {
   );
 }
 
-/* ── Golden Title Typography (High-Contrast Native Rendering, Zero Clip-Mask Artifacts) ── */
-.text-gradient-primary,
+/* ── Golden Title Typography (Ultra-Luminous High-End Metallic Gradient & Glow) ── */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #ffffff 0%, #fae5b6 22%, #e5bd70 52%, #c59740 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  text-shadow: none !important;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  filter: drop-shadow(0 2px 14px rgba(197, 160, 89, 0.38));
+}
+
 .text-gradient-primary sup,
 .text-gradient-primary sub {
-  color: #f3d28c !important;
-  -webkit-text-fill-color: #f3d28c !important;
   background: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
+  -webkit-text-fill-color: #fae5b6 !important;
+  color: #fae5b6 !important;
   text-shadow: none !important;
   filter: none !important;
 }
 
-.text-gradient-warm,
+.text-gradient-warm {
+  background: linear-gradient(135deg, #ffffff 0%, #fdf0d5 25%, #f5e4c3 60%, #d4a754 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  text-shadow: none !important;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  filter: drop-shadow(0 2px 12px rgba(226, 194, 138, 0.32));
+}
+
 .text-gradient-warm sup,
 .text-gradient-warm sub {
-  color: #f5e4c3 !important;
-  -webkit-text-fill-color: #f5e4c3 !important;
   background: none !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
+  -webkit-text-fill-color: #f5e4c3 !important;
+  color: #f5e4c3 !important;
   text-shadow: none !important;
   filter: none !important;
 }
@@ -1354,11 +1403,8 @@ textarea:focus {
   box-shadow: 0 0 20px rgba(197, 160, 89, 0.08);
 }
 
-/* ── Section Titles Clean Typography (No Muddy Shadow Bleed) ── */
-h1.font-display,
-h2.font-display {
-  text-shadow: none !important;
-}
+/* ── Section Titles Clean Typography ── */
+/* Title text shadows and font weights are defined in the typography section above */
 
 /* ── Biometric & Precision Scan Animations ── */
 @keyframes biometricScan {
@@ -1709,8 +1755,8 @@ h2.font-display {
 /* Refined Glassmorphism Utility */
 .glass-card-chic {
   background: rgba(255, 255, 255, 0.03) !important;
-  backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 24px !important;
   transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring), background 0.4s var(--ease-spring) !important;

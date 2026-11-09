@@ -234,7 +234,7 @@ export default function CataractEducationClient() {
             <span>Clinical Education · Ocular Anatomy &amp; Pathology</span>
           </div>
 
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.15] mb-6">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal sm:font-medium text-foreground leading-[1.15] mb-6">
             How Cataracts Form &amp; Why{' '}
             <span className="font-semibold text-gradient-primary block sm:inline">
               Lens Replacement is Permanent
@@ -701,7 +701,7 @@ export default function CataractEducationClient() {
       {/* ── SIDE-BY-SIDE: BIOLOGICAL LENS VS. ACRYLIC IOL ── */}
       <section className="px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-16 sm:mb-20">
         <div className="max-w-5xl mx-auto mb-8 text-center">
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-light text-foreground">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-normal sm:font-medium text-foreground">
             Natural Biological Lens vs.{' '}
             <span className="font-semibold text-gradient-primary">Clear Acrylic IOL</span>
           </h2>
@@ -813,7 +813,7 @@ export default function CataractEducationClient() {
       >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-light text-foreground">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-normal sm:font-medium text-foreground">
               Frequently Asked Questions About{' '}
               <span className="font-semibold text-gradient-primary">Cataract Biology</span>
             </h2>
