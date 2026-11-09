@@ -147,22 +147,22 @@ export default function HeroSection({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full pt-4 sm:pt-8 lg:pt-16 pb-8 sm:pb-12 lg:pb-16">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start min-w-0 w-full">
           {/* Left Content */}
-          <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl">
+          <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl xl:max-w-3xl">
             {/* Headline (incorporating semantic keyword & NJ location context in h1 while preserving exact visual layout) */}
-            <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-2xl w-full">
+            <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-2xl xl:max-w-3xl w-full">
               {/* Eyebrow Badge */}
-              <span className="relative z-10 inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-2xl xl:rounded-full bg-[#0d0e12]/80 backdrop-blur-md border border-[#C5A059]/40 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
+              <span className="relative z-10 inline-flex items-center px-4 py-1.5 sm:py-2 rounded-2xl xl:rounded-full bg-[#0d0e12]/85 backdrop-blur-md border border-[#C5A059]/40 mb-5 sm:mb-8 animate-fade-up fill-both w-fit max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
                 {badgeText ? (
                   <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#F3D28C]">
                     {badgeText}
                   </span>
                 ) : (
-                  <span className="flex flex-col xl:flex-row xl:items-center text-left text-[11px] sm:text-xs uppercase tracking-wide xl:tracking-wider">
-                    <span className="font-semibold text-[#F3D28C] sm:whitespace-nowrap">
+                  <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-left text-[11px] sm:text-xs uppercase tracking-wide">
+                    <span className="font-semibold text-[#F3D28C] shrink-0">
                       Laser Cataract Surgery &amp; Premium IOL Specialists
                     </span>
-                    <span className="hidden xl:inline mx-1.5 text-[#C5A059]/60 font-normal">•</span>
-                    <span className="text-[#F5E4C3] font-medium sm:whitespace-nowrap mt-0.5 xl:mt-0">
+                    <span className="hidden xl:inline text-[#C5A059]/60 font-normal" aria-hidden="true">•</span>
+                    <span className="text-[#F5E4C3] font-medium shrink-0">
                       Livingston, Denville &amp; Newark NJ
                     </span>
                   </span>
