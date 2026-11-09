@@ -69,6 +69,12 @@ export class CataractEyeScene {
   private iolHoldTimer = 0;
   private denseCataractHoldTimer = 0;
   private lastFrameTime = 0;
+  private lastParticleStage = -1;
+  private isMobile = false;
+  private touchStartX = 0;
+  private touchStartY = 0;
+  private isTouchIntentDecided = false;
+  private isTouchOrbit = false;
 
   // Meshes & Groups
   private eyeGroup!: THREE.Group;
@@ -122,18 +128,20 @@ export class CataractEyeScene {
     this.camera = new THREE.PerspectiveCamera(34, width / height, 0.1, 100);
     this.updateCameraPosition();
 
+    this.isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
     this.renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: !this.isMobile,
       alpha: true,
-      powerPreference: 'high-performance',
+      powerPreference: this.isMobile ? 'default' : 'high-performance',
     });
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(this.isMobile ? 1.0 : Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.25;
     // Enable GPU-accelerated local clipping plane
     this.renderer.localClippingEnabled = true;
+    this.renderer.domElement.style.touchAction = 'pan-y';
     this.container.appendChild(this.renderer.domElement);
 
     this.setupEnvironment();
@@ -1395,18 +1403,22 @@ export class CataractEyeScene {
     const baseParticleOpacity =
       p > 0.08 ? THREE.MathUtils.lerp(0.06, 0.95, (p - 0.08) / 0.92) : 0.0;
 
-    const colorsAttr = this.proteinParticles.geometry.attributes.color as THREE.BufferAttribute;
-    const count = this.proteinPositions.length / 3;
-    for (let i = 0; i < count; i++) {
-      if (p < 0.22) {
-        colorsAttr.setXYZ(i, 0.96, 0.98, 1.0);
-      } else if (p < 0.62) {
-        colorsAttr.setXYZ(i, 0.98, 0.7, 0.18);
-      } else {
-        colorsAttr.setXYZ(i, 0.52, 0.2, 0.05);
+    const particleStage = p < 0.22 ? 0 : p < 0.62 ? 1 : 2;
+    if (particleStage !== this.lastParticleStage) {
+      this.lastParticleStage = particleStage;
+      const colorsAttr = this.proteinParticles.geometry.attributes.color as THREE.BufferAttribute;
+      const count = this.proteinPositions.length / 3;
+      for (let i = 0; i < count; i++) {
+        if (particleStage === 0) {
+          colorsAttr.setXYZ(i, 0.96, 0.98, 1.0);
+        } else if (particleStage === 1) {
+          colorsAttr.setXYZ(i, 0.98, 0.7, 0.18);
+        } else {
+          colorsAttr.setXYZ(i, 0.52, 0.2, 0.05);
+        }
       }
+      colorsAttr.needsUpdate = true;
     }
-    colorsAttr.needsUpdate = true;
 
     // 3. Surgical Removal / Dissolve of Cataract Lens during IOL Transition
     // Cataract dissolves gracefully during the first 65% of the IOL transition without reverse-aging!
@@ -1512,16 +1524,43 @@ export class CataractEyeScene {
 
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
       this.isDragging = true;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+      const isTouch = 'touches' in e;
+      const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+      const clientY = isTouch ? e.touches[0].clientY : e.clientY;
       this.prevPointerX = clientX;
       this.prevPointerY = clientY;
+      if (isTouch) {
+        this.touchStartX = clientX;
+        this.touchStartY = clientY;
+        this.isTouchIntentDecided = false;
+        this.isTouchOrbit = false;
+      }
     };
 
     const onPointerMove = (e: MouseEvent | TouchEvent) => {
       if (!this.isDragging) return;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+      const isTouch = 'touches' in e;
+      const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+      const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+      if (isTouch) {
+        const totalDeltaX = clientX - this.touchStartX;
+        const totalDeltaY = clientY - this.touchStartY;
+
+        if (!this.isTouchIntentDecided) {
+          if (Math.hypot(totalDeltaX, totalDeltaY) > 8) {
+            this.isTouchIntentDecided = true;
+            this.isTouchOrbit = Math.abs(totalDeltaX) > Math.abs(totalDeltaY) * 1.2;
+          }
+        }
+
+        if (!this.isTouchOrbit) {
+          this.prevPointerX = clientX;
+          this.prevPointerY = clientY;
+          return;
+        }
+      }
+
       const deltaX = clientX - this.prevPointerX;
       const deltaY = clientY - this.prevPointerY;
       this.prevPointerX = clientX;
@@ -1538,6 +1577,8 @@ export class CataractEyeScene {
 
     const onPointerUp = () => {
       this.isDragging = false;
+      this.isTouchIntentDecided = false;
+      this.isTouchOrbit = false;
     };
 
     el.addEventListener('mousedown', onPointerDown);
@@ -1570,7 +1611,13 @@ export class CataractEyeScene {
     if (this.lastFrameTime === 0) {
       this.lastFrameTime = now;
     }
-    const dt = Math.min(now - this.lastFrameTime, 1.0);
+    const elapsedSinceLastFrame = now - this.lastFrameTime;
+    // On mobile screens, throttle to ~30 FPS (32ms) to eliminate mobile thermal throttling and stutter
+    if (this.isMobile && elapsedSinceLastFrame < 0.032) {
+      this.animFrameId = requestAnimationFrame(this.renderLoop);
+      return;
+    }
+    const dt = Math.min(elapsedSinceLastFrame, 1.0);
     this.lastFrameTime = now;
 
     if (this.isPlaying) {

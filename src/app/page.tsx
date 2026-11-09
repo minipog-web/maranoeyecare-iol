@@ -155,30 +155,56 @@ export default function HomePage() {
         <HeroSection />
         <TrustBadgeBar variant="clinical" />
         <hr className="section-divider" />
-        <CataractEducationTeaserSection />
+        <div className="optimize-offscreen">
+          <CataractEducationTeaserSection />
+        </div>
         <hr className="section-divider" />
-        <LensVisionComparisonSection />
+        <div className="optimize-offscreen">
+          <LensVisionComparisonSection />
+        </div>
         <hr className="section-divider" />
-        <LensTechnologyDeepDiveSection />
+        <div className="optimize-offscreen">
+          <LensTechnologyDeepDiveSection />
+        </div>
         <hr className="section-divider" />
-        <LensarAllySection />
+        <div className="optimize-offscreen">
+          <LensarAllySection />
+        </div>
         <hr className="section-divider" />
-        <RecoveryTimelineSection />
+        <div className="optimize-offscreen">
+          <RecoveryTimelineSection />
+        </div>
         <hr className="section-divider" />
-        <TrustSection />
-        <CertificationLogos />
+        <div className="optimize-offscreen">
+          <TrustSection />
+        </div>
+        <div className="optimize-offscreen">
+          <CertificationLogos />
+        </div>
         <hr className="section-divider" />
-        <CandidacySection />
+        <div className="optimize-offscreen">
+          <CandidacySection />
+        </div>
         <hr className="section-divider" />
-        <TestimonialsSection />
+        <div className="optimize-offscreen">
+          <TestimonialsSection />
+        </div>
         <hr className="section-divider" />
-        <LensQuestionnaireSection />
+        <div className="optimize-offscreen">
+          <LensQuestionnaireSection />
+        </div>
         <hr className="section-divider" />
-        <FAQSection />
+        <div className="optimize-offscreen">
+          <FAQSection />
+        </div>
         <hr className="section-divider" />
-        <InsuranceCostSection />
+        <div className="optimize-offscreen">
+          <InsuranceCostSection />
+        </div>
         <hr className="section-divider" />
-        <BookingSection />
+        <div className="optimize-offscreen">
+          <BookingSection />
+        </div>
         <StickyCTABar />
         <Footer />
       </main>

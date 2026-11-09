@@ -1416,10 +1416,51 @@ h2.font-display {
   .film-grain-overlay {
     display: none !important;
   }
+
+  /* 1. Disable GPU-taxing backdrop-filters on mobile displays */
+  [class*='backdrop-blur'] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .glass-card,
+  .glass-card-bright,
   .luxury-glass-card {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
-    background: #0f131a !important;
+    background: #10131b !important;
+  }
+
+  /* 2. Halt continuous infinite background animations on mobile to preserve GPU/CPU cycles */
+  .animate-float,
+  .animate-float-delayed,
+  .animate-glow-pulse,
+  .animate-pulse-glow,
+  .animate-pulse-glow-slow,
+  .animate-pulse-glow-delayed,
+  .animate-biometric-scan,
+  .animate-biometric-pulse,
+  .animate-biometric-rotate,
+  .animate-scan-line {
+    animation: none !important;
+  }
+
+  /* 3. Neutralize oversized blurred ambient glow blobs on mobile */
+  [class*='blur-[1'],
+  [class*='blur-[12'],
+  [class*='blur-[14'],
+  [class*='blur-[15'],
+  [class*='blur-[16'],
+  [class*='blur-[17'],
+  .blur-3xl,
+  .blur-2xl {
+    filter: none !important;
+    opacity: 0.12 !important;
+  }
+
+  /* 4. Ensure natural vertical page scrolling on canvases */
+  canvas {
+    touch-action: pan-y !important;
   }
 }
 
