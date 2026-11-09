@@ -151,19 +151,27 @@ export default function HeroSection({
             {/* Headline (incorporating semantic keyword & NJ location context in h1 while preserving exact visual layout) */}
             <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-2xl xl:max-w-3xl w-full">
               {/* Eyebrow Badge */}
-              <span className="relative z-10 inline-flex items-center px-4 py-1.5 sm:py-2 rounded-2xl xl:rounded-full bg-[#0d0e12]/85 backdrop-blur-md border border-[#C5A059]/40 mb-5 sm:mb-8 animate-fade-up fill-both w-fit max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
+              <span className="relative z-10 inline-flex items-center px-3.5 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/85 backdrop-blur-md border border-[#C5A059]/40 mb-5 sm:mb-8 animate-fade-up fill-both w-auto max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
                 {badgeText ? (
-                  <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#F3D28C]">
+                  <span className="text-[10.5px] sm:text-[11px] xl:text-xs font-semibold uppercase tracking-wider text-[#F3D28C] whitespace-nowrap">
                     {badgeText}
                   </span>
                 ) : (
-                  <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-left text-[11px] sm:text-xs uppercase tracking-wide">
-                    <span className="font-semibold text-[#F3D28C] shrink-0">
-                      Laser Cataract Surgery &amp; Premium IOL Specialists
+                  <span className="inline-flex items-center text-left text-[10.5px] sm:text-[11px] xl:text-xs uppercase tracking-wider whitespace-nowrap">
+                    {/* Compact single-line label for mobile */}
+                    <span className="sm:hidden font-semibold text-[#F3D28C]">
+                      Laser Cataract &amp; Premium IOL Specialists
                     </span>
-                    <span className="hidden xl:inline text-[#C5A059]/60 font-normal" aria-hidden="true">•</span>
-                    <span className="text-[#F5E4C3] font-medium shrink-0">
-                      Livingston, Denville &amp; Newark NJ
+
+                    {/* Complete single-line label for tablet & desktop */}
+                    <span className="hidden sm:inline-flex items-center gap-1.5">
+                      <span className="font-semibold text-[#F3D28C]">
+                        Laser Cataract Surgery &amp; Premium IOL Specialists
+                      </span>
+                      <span className="text-[#C5A059]/60 font-normal" aria-hidden="true">•</span>
+                      <span className="text-[#F5E4C3] font-medium">
+                        Livingston, Denville &amp; Newark NJ
+                      </span>
                     </span>
                   </span>
                 )}
