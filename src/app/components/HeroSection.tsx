@@ -150,32 +150,28 @@ export default function HeroSection({
           <div className="min-w-0 lg:col-span-7 xl:col-span-7 w-full flex flex-col items-start max-w-2xl xl:max-w-3xl">
             {/* Headline (incorporating semantic keyword & NJ location context in h1 while preserving exact visual layout) */}
             <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-2xl xl:max-w-3xl w-full">
-              {/* Eyebrow Badge Pill(s) */}
-              <span className="relative z-10 inline-flex flex-wrap items-center gap-2 mb-5 sm:mb-8 animate-fade-up fill-both max-w-full font-sans">
+              {/* Eyebrow Badge Pill */}
+              <span className="relative z-10 inline-flex flex-col lg:flex-row items-center justify-center text-center gap-1.5 lg:gap-2.5 px-4 py-2 lg:py-1.5 rounded-[22px] lg:rounded-full bg-[#0d0e12]/80 backdrop-blur-md border border-[#C5A059]/40 mb-5 sm:mb-8 animate-fade-up fill-both w-fit max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.22),0_4px_16px_rgba(0,0,0,0.4),0_0_18px_rgba(197,160,89,0.12)] font-sans">
                 {badgeText ? (
-                  <span className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/80 backdrop-blur-md border border-[#C5A059]/40 shadow-[inset_0_1px_1px_rgba(250,232,200,0.22),0_4px_16px_rgba(0,0,0,0.4),0_0_18px_rgba(197,160,89,0.12)]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#FAE8C8] shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.7)]" />
-                    <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059]">
-                      {badgeText}
-                    </span>
+                  <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059]">
+                    {badgeText}
                   </span>
                 ) : (
                   <>
-                    {/* Primary Specialty Pill */}
-                    <span className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/80 backdrop-blur-md border border-[#C5A059]/40 shadow-[inset_0_1px_1px_rgba(250,232,200,0.22),0_4px_16px_rgba(0,0,0,0.4),0_0_18px_rgba(197,160,89,0.12)] max-w-full">
+                    {/* Tier 1: Specialty Credential & Beacon Dot */}
+                    <span className="inline-flex items-center justify-center gap-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] whitespace-nowrap">
                       <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#FAE8C8] shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.7)]" />
-                      <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] whitespace-nowrap">
-                        <span className="xs:hidden">Laser Cataract &amp; Premium IOLs</span>
-                        <span className="hidden xs:inline">Laser Cataract Surgery &amp; Premium IOL Specialists</span>
-                      </span>
+                      <span className="xs:hidden">Laser Cataract &amp; Premium IOLs</span>
+                      <span className="hidden xs:inline">Laser Cataract Surgery &amp; Premium IOL Specialists</span>
                     </span>
 
-                    {/* Location Credential Pill */}
-                    <span className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#0d0e12]/70 backdrop-blur-md border border-[#C5A059]/30 shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_12px_rgba(0,0,0,0.35)]">
+                    {/* Desktop Separator Dot */}
+                    <span className="hidden lg:inline-block w-1 h-1 rounded-full bg-[#C5A059]/60 shrink-0" aria-hidden="true" />
+
+                    {/* Tier 2: Locations with MapPin */}
+                    <span className="inline-flex items-center justify-center gap-1.5 text-[9.5px] xs:text-[10px] sm:text-[11px] font-medium uppercase tracking-wide text-[#F5E4C3]/95 whitespace-nowrap">
                       <Icon name="MapPinIcon" size={11} className="text-primary shrink-0" />
-                      <span className="text-[10px] xs:text-[10.5px] sm:text-[11px] font-medium uppercase tracking-wide text-[#F5E4C3]/95 whitespace-nowrap">
-                        Livingston, Denville &amp; Newark, NJ
-                      </span>
+                      <span>Livingston, Denville &amp; Newark, NJ</span>
                     </span>
                   </>
                 )}
