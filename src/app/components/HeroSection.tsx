@@ -151,29 +151,29 @@ export default function HeroSection({
             {/* Headline (incorporating semantic keyword & NJ location context in h1 while preserving exact visual layout) */}
             <h1 className="flex flex-col items-start mb-5 sm:mb-6 max-w-2xl xl:max-w-3xl w-full">
               {/* Eyebrow Badge */}
-              <span className="relative z-10 inline-flex items-center px-3.5 sm:px-4 py-1.5 rounded-full bg-[#0d0e12]/85 backdrop-blur-md border border-[#C5A059]/40 mb-5 sm:mb-8 animate-fade-up fill-both w-auto max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
+              <span className="relative z-10 inline-flex flex-col xl:flex-row xl:items-center gap-1 xl:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 xl:py-1.5 rounded-xl sm:rounded-2xl xl:rounded-full bg-[#0d0e12]/85 backdrop-blur-md border border-[#C5A059]/40 mb-5 sm:mb-8 animate-fade-up fill-both w-fit max-w-full shadow-[inset_0_1px_1px_rgba(250,232,200,0.18),0_4px_16px_rgba(0,0,0,0.4)] font-sans">
                 {badgeText ? (
-                  <span className="text-[10.5px] sm:text-[11px] xl:text-xs font-semibold uppercase tracking-wider text-[#F3D28C] whitespace-nowrap">
+                  <span className="text-[10.5px] sm:text-[11px] xl:text-xs font-semibold uppercase tracking-wider text-[#F3D28C]">
                     {badgeText}
                   </span>
                 ) : (
-                  <span className="inline-flex items-center text-left text-[10.5px] sm:text-[11px] xl:text-xs uppercase tracking-wider whitespace-nowrap">
-                    {/* Compact single-line label for mobile */}
-                    <span className="sm:hidden font-semibold text-[#F3D28C]">
-                      Laser Cataract &amp; Premium IOL Specialists
+                  <>
+                    {/* Tier 1: Specialty Credential & Beacon Dot */}
+                    <span className="inline-flex items-center gap-2 text-[10px] xs:text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F3D28C] whitespace-nowrap">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)] shrink-0" />
+                      <span className="xs:hidden">Laser Cataract &amp; Premium IOLs</span>
+                      <span className="hidden xs:inline">Laser Cataract Surgery &amp; Premium IOL Specialists</span>
                     </span>
 
-                    {/* Complete single-line label for tablet & desktop */}
-                    <span className="hidden sm:inline-flex items-center gap-1.5">
-                      <span className="font-semibold text-[#F3D28C]">
-                        Laser Cataract Surgery &amp; Premium IOL Specialists
-                      </span>
-                      <span className="text-[#C5A059]/60 font-normal" aria-hidden="true">•</span>
-                      <span className="text-[#F5E4C3] font-medium">
-                        Livingston, Denville &amp; Newark NJ
-                      </span>
+                    {/* Desktop Separator Dot */}
+                    <span className="hidden xl:inline-block w-1 h-1 rounded-full bg-[#C5A059]/60 shrink-0" aria-hidden="true" />
+
+                    {/* Tier 2: Locations with MapPin */}
+                    <span className="inline-flex items-center gap-1.5 text-[9.5px] xs:text-[10px] sm:text-[10.5px] font-medium uppercase tracking-wide text-[#F5E4C3] whitespace-nowrap pl-3.5 xl:pl-0 border-t xl:border-t-0 border-white/[0.08] pt-1 xl:pt-0">
+                      <Icon name="MapPinIcon" size={10} className="text-primary shrink-0" />
+                      <span>Livingston, Denville &amp; Newark NJ</span>
                     </span>
-                  </span>
+                  </>
                 )}
               </span>
 
