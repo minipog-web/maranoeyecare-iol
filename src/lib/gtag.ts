@@ -39,6 +39,10 @@ declare global {
     ) => void;
     dataLayer?: object[];
     CallRail?: unknown;
+    CallTrk?: {
+      swap?: (element?: HTMLElement) => void;
+      [key: string]: unknown;
+    };
   }
 }
 

@@ -262,7 +262,7 @@ const schemas = [
         '@type': 'MedicalBusiness',
         name: 'Marano Eye Care - Denville Office',
         url: 'https://www.maranoeyecare.com/location/nj/denville',
-        telephone: '973-627-0101',
+        telephone: '973-625-7970',
         hasMap: 'https://maps.google.com/?q=16+Pocono+Rd+Suite+301+Denville+NJ+07834',
         geo: {
           '@type': 'GeoCoordinates',
@@ -282,7 +282,7 @@ const schemas = [
         '@type': 'MedicalBusiness',
         name: 'Marano Eye Care - Newark Office',
         url: 'https://www.maranoeyecare.com/location/nj/newark',
-        telephone: '973-642-4262',
+        telephone: '973-877-5534',
         hasMap: 'https://maps.google.com/?q=306+Martin+L.+King+Blvd+Newark+NJ+07102',
         geo: {
           '@type': 'GeoCoordinates',
@@ -343,6 +343,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.callrail.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://cdn.callrail.com" />
@@ -428,9 +429,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <AnalyticsTracker />
         <HashScrollHandler />
         {children}
-        {/*
-          CallRail Dynamic Number Swap is managed cleanly via Google Tag Manager (GTM-PB9D9RHS Tag ID 12)
-        */}
+        {/* CallRail Dynamic Number Swap & Attribution */}
+        <Script
+          id="callrail-swap"
+          src="https://cdn.callrail.com/companies/570973368/3348eb3c5c72e54f1c23/12/swap.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

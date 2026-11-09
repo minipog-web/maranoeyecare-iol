@@ -425,7 +425,7 @@ export default function TestimonialsSection() {
                 {[
                   {
                     city: 'Denville',
-                    phone: '(973) 358-0416',
+                    phone: '(973) 625-7970',
                     address: '16 Pocono Rd, Suite 301, Denville, NJ 07834',
                   },
                   {
@@ -435,7 +435,7 @@ export default function TestimonialsSection() {
                   },
                   {
                     city: 'Newark',
-                    phone: '(973) 315-6439',
+                    phone: '(973) 877-5534',
                     address: '306 Martin L. King Blvd, Newark, NJ 07102',
                   },
                 ].map((loc) => (

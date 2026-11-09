@@ -30,8 +30,10 @@ export default function StickyCTABar() {
           a !== phoneLinkRef.current &&
           !a.href.includes('9733220100') &&
           !a.href.includes('973-322-0100') &&
-          !a.href.includes('9733156439') && // Newark
-          !a.href.includes('9733580416') // Denville
+          !a.href.includes('9733156439') &&
+          !a.href.includes('9733580416') &&
+          !a.href.includes('9738775534') &&
+          !a.href.includes('9736257970')
       );
       if (swapped && swapped.href) {
         phoneLinkRef.current.href = swapped.href;
@@ -96,8 +98,10 @@ export default function StickyCTABar() {
           a !== e.currentTarget &&
           !a.href.includes('9733220100') &&
           !a.href.includes('973-322-0100') &&
-          !a.href.includes('9733156439') && // Newark
-          !a.href.includes('9733580416') // Denville
+          !a.href.includes('9733156439') &&
+          !a.href.includes('9733580416') &&
+          !a.href.includes('9738775534') &&
+          !a.href.includes('9736257970')
       );
       if (swapped && swapped.href) {
         currentHref = swapped.href;

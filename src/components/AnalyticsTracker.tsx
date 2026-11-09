@@ -19,6 +19,15 @@ function AnalyticsNavigationObserver() {
     if (url && url !== lastTrackedPath.current) {
       lastTrackedPath.current = url;
       pageview(url);
+
+      // Re-trigger CallRail dynamic number swap on client-side route transitions
+      if (typeof window !== 'undefined' && window.CallTrk?.swap) {
+        try {
+          window.CallTrk.swap();
+        } catch {
+          // Ignore swap errors
+        }
+      }
     }
   }, [pathname, searchParams]);
 

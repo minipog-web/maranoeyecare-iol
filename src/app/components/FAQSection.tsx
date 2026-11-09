@@ -460,9 +460,9 @@ export default function FAQSection() {
 
           {/* Right: Unified Luxury FAQ List */}
           <div className="w-full lg:w-[70%]">
-            {/* Category Filter Buttons: Arrayed Horizontally */}
+            {/* Category Filter Buttons: Strictly Arrayed Horizontally on One Single Line */}
             <div
-              className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-6"
+              className="flex items-center gap-1.5 sm:gap-2 mb-6 overflow-x-auto scrollbar-none flex-nowrap -mx-4 px-4 sm:mx-0 sm:px-0 py-1"
               role="tablist"
               aria-label="FAQ Categories"
             >
@@ -475,15 +475,15 @@ export default function FAQSection() {
                     role="tab"
                     aria-selected={isSelected}
                     onClick={() => handleCategoryChange(tab.label)}
-                    className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 touch-manipulation min-h-[36px] sm:min-h-[38px] ${
+                    className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all duration-200 touch-manipulation min-h-[36px] sm:min-h-[38px] ${
                       isSelected
                         ? 'bg-primary text-[#000000] shadow-[0_4px_14px_rgba(197,160,89,0.35)] scale-[1.02]'
                         : 'bg-white/[0.04] text-slate-200 border border-white/10 hover:text-white hover:bg-white/[0.08] hover:border-white/20'
                     }`}
                   >
-                    <span>{tab.label}</span>
+                    <span className="whitespace-nowrap">{tab.label}</span>
                     <span
-                      className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold transition-colors ${
+                      className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold whitespace-nowrap transition-colors ${
                         isSelected ? 'bg-[#000000]/20 text-[#000000]' : 'bg-white/10 text-slate-300'
                       }`}
                     >
