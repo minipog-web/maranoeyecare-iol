@@ -460,9 +460,9 @@ export default function FAQSection() {
 
           {/* Right: Unified Luxury FAQ List */}
           <div className="w-full lg:w-[70%]">
-            {/* Category Filter Buttons: Strictly Arrayed Horizontally on One Single Line */}
+            {/* Category Filter Buttons */}
             <div
-              className="flex items-center gap-1.5 sm:gap-2 mb-6 overflow-x-auto scrollbar-none flex-nowrap -mx-4 px-4 sm:mx-0 sm:px-0 py-1"
+              className="flex flex-wrap items-center gap-2 mb-6 py-1"
               role="tablist"
               aria-label="FAQ Categories"
             >

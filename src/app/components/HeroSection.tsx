@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
@@ -129,8 +129,29 @@ export default function HeroSection({
 }: HeroSectionProps) {
   // Starts with Clareon Vivity selected at onset
   const [activeLens, setActiveLens] = useState<string>('Clareon Vivity');
+  const [dynamicLocation, setDynamicLocation] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Handle Dynamic Text Replacement (DTR) for location
+    const urlParams = new URLSearchParams(window.location.search);
+    const locParam = urlParams.get('loc');
+    if (locParam) {
+      // Clean and sanitize the location string (max 20 chars, Title Case)
+      const cleanLoc = locParam
+        .replace(/[^a-zA-Z\s]/g, '')
+        .substring(0, 20)
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+      if (cleanLoc) {
+        setDynamicLocation(cleanLoc);
+      }
+    }
+  }, []);
 
   const activeData = lensRangeData[activeLens] || lensRangeData['Clareon Vivity'];
+
+  const locationText = dynamicLocation || 'Livingston, Denville & Newark, NJ';
 
   return (
     <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-14 sm:pt-20 lg:pt-28 pb-10 sm:pb-16 safe-area-pb bg-section-hero">
@@ -170,7 +191,7 @@ export default function HeroSection({
                     {/* Tier 2: Locations with MapPin */}
                     <span className="inline-flex items-center justify-center gap-1.5 text-[9.5px] xs:text-[10px] sm:text-[11px] font-medium uppercase tracking-wide text-[#F5E4C3]/95 whitespace-nowrap leading-none py-0.5">
                       <Icon name="MapPinIcon" size={11} className="text-primary shrink-0" />
-                      <span>Livingston, Denville &amp; Newark, NJ</span>
+                      <span>{locationText}</span>
                     </span>
                   </>
                 )}
@@ -256,7 +277,10 @@ export default function HeroSection({
                 }}
                 className="text-primary font-bold underline underline-offset-4 hover:text-accent transition-colors inline-flex items-center gap-1"
               >
-                <span>Skip the quiz — schedule directly in Livingston or Denville</span>
+                <span>
+                  Skip the quiz — schedule directly
+                  {dynamicLocation ? ` in ${dynamicLocation}` : ' in Livingston or Denville'}
+                </span>
                 <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
@@ -271,14 +295,14 @@ export default function HeroSection({
                   window.history.pushState(null, '', '#locations');
                 }}
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/5 border border-primary/45 shadow-[0_0_18px_rgba(197,160,89,0.22)] text-white hover:border-primary hover:shadow-[0_0_24px_rgba(197,160,89,0.38)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer"
-                title="View our 3 New Jersey locations"
+                title={`View our ${dynamicLocation ? dynamicLocation : 'New Jersey'} location details`}
               >
                 <span className="w-5 h-5 rounded-full bg-primary/25 border border-primary/40 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-[0_0_8px_rgba(197,160,89,0.4)]">
                   <Icon name="MapPinIcon" size={11} className="shrink-0" />
                 </span>
                 <span className="font-semibold text-white tracking-wide">
-                  Livingston · Denville · Newark{' '}
-                  <span className="text-primary font-bold">Offices</span>
+                  {dynamicLocation ? dynamicLocation : 'Livingston · Denville · Newark'}{' '}
+                  <span className="text-primary font-bold">Office{dynamicLocation ? '' : 's'}</span>
                 </span>
                 <Icon
                   name="ChevronRightIcon"

@@ -386,8 +386,7 @@ gtag('config', 'G-1YBZ7BFJ4C', {
   cookie_prefix: 'mec_iol',
   cookie_flags: 'SameSite=None;Secure'
 });
-gtag('config', 'AW-18197167741');
-gtag('config', 'AW-17962563730');`}
+gtag('config', 'AW-18197167741');`}
         </Script>
         {/* End Google tag (gtag.js) */}
 
