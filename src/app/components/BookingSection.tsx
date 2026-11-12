@@ -304,7 +304,7 @@ export default function BookingSection({
       if (tracking.landing_page) formData.append('landingPage', tracking.landing_page);
       if (tracking.referrer) formData.append('referrer', tracking.referrer);
 
-      const response = await fetch('/__forms.html', {
+      const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         signal: controller.signal,
