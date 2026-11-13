@@ -283,6 +283,7 @@ export default function BookingSection({
     try {
       const formData = new URLSearchParams();
       formData.append('form-name', 'consultation');
+      formData.append('bot-field', '');
       formData.append('name', `${trimmedForm.firstName} ${trimmedForm.lastName}`.trim());
       formData.append('firstName', trimmedForm.firstName);
       formData.append('lastName', trimmedForm.lastName);
@@ -304,7 +305,7 @@ export default function BookingSection({
       if (tracking.landing_page) formData.append('landingPage', tracking.landing_page);
       if (tracking.referrer) formData.append('referrer', tracking.referrer);
 
-      const response = await fetch('/', {
+      const response = await fetch('/__forms.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         signal: controller.signal,
@@ -892,18 +893,23 @@ export default function BookingSection({
                     </div>
 
                     <div>
-                      <span id="location-group-label" className={labelClass}>
-                        Preferred Office Location *
-                      </span>
+                      <div className="flex items-center justify-between mb-2">
+                        <span id="location-group-label" className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.15em]">
+                          Preferred Office Location *
+                        </span>
+                        <span className="text-[11px] text-muted-foreground/80 font-medium">
+                          Select 1 of 3 offices
+                        </span>
+                      </div>
                       <div
                         role="radiogroup"
                         aria-labelledby="location-group-label"
-                        className="grid grid-cols-1 sm:grid-cols-3 gap-2.5"
+                        className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3"
                       >
                         {[
                           { label: 'Livingston', sub: 'Essex County', value: locations[0] },
                           { label: 'Denville', sub: 'Morris County', value: locations[1] },
-                          { label: 'Newark', sub: 'Ironbound / Downtown', value: locations[2] },
+                          { label: 'Newark', sub: 'Essex County', value: locations[2] },
                         ].map((loc) => {
                           const isSelected = form.location === loc.value;
                           return (
@@ -918,18 +924,49 @@ export default function BookingSection({
                                   setErrors((prev) => ({ ...prev, location: '' }));
                                 }
                               }}
-                              className={`px-3.5 py-3 rounded-xl border text-left transition-all touch-manipulation min-h-[54px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                              className={`p-3.5 rounded-2xl border text-left transition-all duration-200 touch-manipulation min-h-[64px] flex flex-col justify-between relative group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                                 isSelected
-                                  ? 'bg-primary/20 border-primary text-white shadow-[0_0_16px_rgba(197,160,89,0.2)]'
+                                  ? 'bg-gradient-to-b from-primary/25 via-primary/15 to-primary/5 border-primary text-white shadow-[0_0_20px_rgba(197,160,89,0.3),0_4px_12px_rgba(0,0,0,0.4)] ring-1 ring-primary/50 translate-y-[-1px]'
                                   : errors.location
-                                    ? 'bg-transparent border-red-500/50 text-slate-200 hover:border-primary/40'
-                                    : 'bg-transparent border-border hover:border-primary/40 text-slate-200 hover:text-white'
+                                    ? 'bg-slate-900/90 border-red-500/60 text-slate-200 hover:border-red-400'
+                                    : 'bg-slate-900/80 hover:bg-slate-800/90 border-white/20 hover:border-primary/60 text-slate-100 hover:text-white shadow-[0_2px_8px_rgba(0,0,0,0.35)]'
                               }`}
                             >
-                              <span className="block text-sm font-bold leading-tight">
-                                {loc.label}
-                              </span>
-                              <span className="block text-[11px] text-muted-foreground mt-0.5">
+                              <div className="flex items-center justify-between gap-2 w-full">
+                                <div className="flex items-center gap-1.5 min-w-0">
+                                  <Icon
+                                    name="MapPinIcon"
+                                    size={15}
+                                    className={`shrink-0 transition-colors ${
+                                      isSelected
+                                        ? 'text-primary'
+                                        : 'text-primary/70 group-hover:text-primary'
+                                    }`}
+                                  />
+                                  <span className="text-sm font-bold leading-tight truncate text-white">
+                                    {loc.label}
+                                  </span>
+                                </div>
+                                <span
+                                  className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all ${
+                                    isSelected
+                                      ? 'border-primary bg-primary shadow-[0_0_8px_rgba(197,160,89,0.8)]'
+                                      : 'border-white/30 bg-black/20 group-hover:border-primary/50'
+                                  }`}
+                                  aria-hidden="true"
+                                >
+                                  {isSelected && (
+                                    <span className="w-1.5 h-1.5 rounded-full bg-black" />
+                                  )}
+                                </span>
+                              </div>
+                              <span
+                                className={`block text-[11px] mt-1.5 font-medium transition-colors ${
+                                  isSelected
+                                    ? 'text-primary/95 font-semibold'
+                                    : 'text-white/65 group-hover:text-white/85'
+                                }`}
+                              >
                                 {loc.sub}
                               </span>
                             </button>
@@ -965,7 +1002,21 @@ export default function BookingSection({
                     </div>
                   </form>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
+                  <form
+                    name="consultation"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    onSubmit={handleSubmit}
+                    className="space-y-4 sm:space-y-5"
+                    noValidate
+                  >
+                    <input type="hidden" name="form-name" value="consultation" />
+                    <p className="hidden" aria-hidden="true">
+                      <label>
+                        Don&apos;t fill this out if you&apos;re human:{' '}
+                        <input name="bot-field" tabIndex={-1} />
+                      </label>
+                    </p>
                     <div>
                       <label htmlFor="email" className={labelClass}>
                         Email Address *
@@ -1025,10 +1076,10 @@ export default function BookingSection({
                               onClick={() =>
                                 setForm((prev) => ({ ...prev, preferredContact: method.value }))
                               }
-                              className={`px-3 py-3 rounded-xl border text-sm font-bold transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                              className={`px-3 py-3 rounded-xl border text-sm font-bold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                                 isChecked
-                                  ? 'bg-primary/20 border-primary text-white font-bold shadow-sm'
-                                  : 'bg-transparent border-border hover:border-primary/40 text-slate-200 hover:text-white font-semibold'
+                                  ? 'bg-gradient-to-b from-primary/25 via-primary/15 to-primary/5 border-primary text-white shadow-[0_0_16px_rgba(197,160,89,0.25)] ring-1 ring-primary/50 translate-y-[-1px]'
+                                  : 'bg-slate-900/80 hover:bg-slate-800/90 border-white/20 hover:border-primary/60 text-slate-100 hover:text-white shadow-[0_2px_8px_rgba(0,0,0,0.35)]'
                               }`}
                             >
                               {method.label}
