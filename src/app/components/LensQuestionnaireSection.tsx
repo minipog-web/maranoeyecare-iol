@@ -565,7 +565,7 @@ export default function LensQuestionnaireSection() {
                 {history.length > 0 && (
                   <button
                     onClick={handleBack}
-                    className="mt-5 flex items-center gap-1.5 text-slate-300 hover:text-white text-sm font-semibold transition-colors touch-manipulation py-2 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="mt-4 inline-flex items-center gap-1.5 min-h-[44px] px-2 -ml-2 text-slate-300 hover:text-white text-sm font-semibold transition-colors touch-manipulation py-2 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                   >
                     <Icon name="ChevronLeftIcon" size={16} />
                     Back to previous question

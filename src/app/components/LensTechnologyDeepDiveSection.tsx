@@ -68,7 +68,7 @@ export default function LensTechnologyDeepDiveSection() {
         </div>
 
         {/* Unified 3-Tab Switcher */}
-        <div className="flex justify-center mb-12 sm:mb-16">
+        <div className="flex justify-center mb-10 sm:mb-12">
           <div className="relative p-1 bg-black/40 border border-white/[0.08] rounded-2xl flex w-full max-w-xl shadow-lg">
             {/* Active sliding background */}
             <div
@@ -89,7 +89,7 @@ export default function LensTechnologyDeepDiveSection() {
 
             <button
               onClick={() => setActiveTab('vivity')}
-              className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+              className={`relative z-10 flex-1 min-h-[44px] py-2.5 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
                 activeTab === 'vivity' ? 'text-[#e9c481]' : 'text-slate-200 hover:text-white'
               }`}
             >
@@ -101,7 +101,7 @@ export default function LensTechnologyDeepDiveSection() {
             </button>
             <button
               onClick={() => setActiveTab('panoptix')}
-              className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+              className={`relative z-10 flex-1 min-h-[44px] py-2.5 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
                 activeTab === 'panoptix' ? 'text-[#a78bfa]' : 'text-slate-200 hover:text-white'
               }`}
             >
@@ -113,7 +113,7 @@ export default function LensTechnologyDeepDiveSection() {
             </button>
             <button
               onClick={() => setActiveTab('puresee')}
-              className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+              className={`relative z-10 flex-1 min-h-[44px] py-2.5 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
                 activeTab === 'puresee' ? 'text-[#38bdf8]' : 'text-slate-200 hover:text-white'
               }`}
             >

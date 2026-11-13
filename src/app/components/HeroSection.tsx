@@ -208,7 +208,7 @@ export default function HeroSection({
             {/* Lead Narrative */}
             <p className="text-base sm:text-lg md:text-xl text-foreground/85 max-w-xl leading-relaxed mb-8 sm:mb-9 text-left">
               {heroDesc ||
-                'Cataract surgery is a once-in-a-lifetime opportunity to restore your vision. Rather than accepting standard lenses that require reading glasses every day, discover the freedom of advanced lenses designed to restore complete, multi-distance clarity.'}
+                'Cataract surgery is a once-in-a-lifetime chance to restore youthful vision. Discover advanced lenses engineered for clear, multi-distance sight—without daily reading glasses.'}
             </p>
 
             {/* Action CTAs */}
@@ -275,7 +275,7 @@ export default function HeroSection({
                     label: 'Skip Quiz - Schedule Directly',
                   });
                 }}
-                className="text-primary font-bold underline underline-offset-4 hover:text-accent transition-colors inline-flex items-center gap-1"
+                className="text-primary font-bold underline underline-offset-4 hover:text-accent transition-colors inline-flex items-center gap-1 py-1 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 <span>
                   Skip the quiz — schedule directly
@@ -326,52 +326,36 @@ export default function HeroSection({
 
             {/* Editorial Proof Text */}
             <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl lg:max-w-2xl">
-              <p className="text-sm sm:text-base text-white/95 font-semibold mb-4 font-display xl:whitespace-nowrap">
+              <p className="text-sm sm:text-base text-white/95 font-semibold mb-3.5 font-display xl:whitespace-nowrap">
                 Led by Board-Certified Surgeons Dr. Matthew Marano Jr. &amp; Dr. Sherief Raouf:
               </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-sm">
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
                     <strong className="text-primary font-semibold">Dr. Marano:</strong> Chief of
-                    Ophthalmology at Cooperman Barnabas &amp; St. Michael&apos;s
+                    Ophthalmology, Cooperman Barnabas &amp; St. Michael&apos;s
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    <strong className="text-primary font-semibold">Dr. Raouf:</strong> UIC Eye &amp;
-                    Ear Fellowship-Trained Cornea Specialist
+                    <strong className="text-primary font-semibold">Dr. Raouf:</strong>{' '}
+                    Fellowship-Trained Cornea Specialist (UIC)
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    Recognized as a{' '}
-                    <strong className="text-primary font-semibold">
-                      15× NJ Monthly Top Doctor
-                    </strong>
+                    <strong className="text-primary font-semibold">15× NJ Top Doctor</strong> ·
+                    40,000+ surgeries (99% satisfaction)
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
                   <span className="text-muted-foreground leading-snug">
-                    <strong className="text-white font-medium">Board-Certified</strong> by the
-                    American Board of Ophthalmology
-                  </span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                  <span className="text-muted-foreground leading-snug">
-                    Over <strong className="text-primary font-semibold">40,000+ surgeries</strong>{' '}
-                    completed with 99% satisfaction
-                  </span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                  <span className="text-muted-foreground leading-snug">
-                    Over <strong className="text-primary font-semibold">4.9★ rating</strong> on
-                    Google (&gt;650 reviews)
+                    <strong className="text-primary font-semibold">4.9★ Google Rating</strong>{' '}
+                    (&gt;650 reviews) · Board-Certified
                   </span>
                 </li>
               </ul>

@@ -28,7 +28,7 @@ const allFAQs: FAQItem[] = [
     category: 'Vision & Lenses',
     icon: 'EyeIcon',
     answer:
-      'This is the most common concern patients share with us. It is why our surgeons frequently recommend the Clareon Vivity lens for active drivers. Unlike older multifocal lenses that divide light rays, Vivity uses non-diffractive optics. In clinical trials, patients experienced night glare levels virtually identical to standard single-vision lenses. Every eye is unique, which is why Dr. Marano and Dr. Raouf review your corneal measurements carefully before making any recommendation.',
+      'For active night drivers, our surgeons often recommend Clareon Vivity or TECNIS PureSee. Unlike older diffractive multifocals that split light, both preserve monofocal-like night contrast with minimal glare and halos.',
     takeaway:
       'Clareon Vivity delivers night glare and halo rates virtually identical to standard monofocal lenses.',
   },
@@ -38,7 +38,7 @@ const allFAQs: FAQItem[] = [
     category: 'Cost & Insurance',
     icon: 'SparklesIcon',
     answer:
-      'Cataract surgery is a once-in-a-lifetime procedure. The lens you choose permanently replaces your cloudy natural lens. Standard lenses leave you dependent on reading glasses for phones, menus, computers, and hobbies. Choosing a premium lens gives you continuous, multi-distance focus every single day without searching for glasses. The upgrade also includes precision 3D mapping and the LENSAR femtosecond laser system. We offer interest-free CareCredit financing and HSA/FSA payment options to keep monthly payments easy.',
+      'The lens you choose permanently replaces your cloudy natural lens. Standard lenses still require reading glasses for phones and computers, whereas premium lenses deliver continuous multi-distance focus—bundled with 3D mapping, LENSAR laser precision, and interest-free CareCredit or HSA/FSA options.',
     takeaway:
       'A permanent, once-in-a-lifetime investment in continuous multi-distance vision without reading glasses.',
   },
@@ -48,7 +48,7 @@ const allFAQs: FAQItem[] = [
     category: 'Vision & Lenses',
     icon: 'ArrowPathIcon',
     answer:
-      'Lens exchanges are possible, but they are exceptionally rare. Across clinical studies, 99% of premium lens recipients state they would make the same choice again. Our surgeons prevent disappointment before surgery begins by performing comprehensive corneal topography and discussing your daily routine. If your eye anatomy is not an ideal fit for a premium lens, Dr. Marano and Dr. Raouf will clearly advise against it.',
+      'Lens exchanges are possible, though exceptionally rare—99% of premium lens patients say they would choose the same lens again. Dr. Marano and Dr. Raouf use 3D corneal topography beforehand and will advise against a premium upgrade if your eye anatomy is not an ideal fit.',
     takeaway:
       '99% of patients would choose a premium lens again; candidacy is verified through 3D topography beforehand.',
   },
@@ -58,7 +58,7 @@ const allFAQs: FAQItem[] = [
     category: 'Cost & Insurance',
     icon: 'ShieldCheckIcon',
     answer:
-      'Medicare and private insurance cover standard cataract removal with a monofocal lens. A monofocal lens gives you clear vision at one fixed distance, usually far away, so you still require reading glasses for your phone, computer, and close-up tasks every day. A premium lens restores a broader depth of focus so you can navigate your day without reaching for glasses. The out-of-pocket fee covers that added visual independence, while your insurance still pays for the core surgery and facility fees.',
+      'Medicare and private insurance cover the core surgery and a single-focus monofocal lens (usually set for distance, leaving you needing reading glasses). The out-of-pocket upgrade covers the advanced optics that restore near and intermediate freedom.',
     takeaway:
       'Insurance covers 100% of the medical procedure; the upgrade covers permanent daily reading freedom.',
   },
@@ -138,7 +138,7 @@ const allFAQs: FAQItem[] = [
     category: 'Vision & Lenses',
     icon: 'AcademicCapIcon',
     answer:
-      'A cataract forms inside your natural crystalline lens as specialized proteins (crystallins) break down, denature, and clump together. Initially, this causes subtle micro-clouding and glare. As protein compaction accelerates, the lens turns noticeably yellow, absorbing blue light and muting color vibrancy. In advanced stages, it turns dark brown and opaque, severely obstructing light from reaching your retina. Cataracts only progress and never reverse on their own.',
+      'A cataract occurs when natural lens proteins clump together, causing cloudiness, glare, and muted colors. Because cataracts are progressive, replacing the cloudy lens is the only definitive cure.',
     takeaway:
       'Cataracts are progressive protein clumping; surgical lens replacement is the only definitive cure.',
   },
@@ -158,7 +158,7 @@ const allFAQs: FAQItem[] = [
     category: 'Vision & Lenses',
     icon: 'AdjustmentsHorizontalIcon',
     answer:
-      'Toric lenses are specialty optics designed to correct astigmatism (an irregular curve in your cornea) during cataract surgery. If you have astigmatism and do not choose a Toric lens, you will still need glasses for distance vision. While most clinics charge extra for Toric astigmatism correction, at Marano Eye Care, all our premium lenses (Clareon Vivity, PanOptix Pro, and TECNIS PureSee) include the Toric version at no additional charge beyond the standard premium upgrade. (Note: While toric versions of premium lenses carry no additional upgrade fee, a standard monofocal toric lens does involve a higher out-of-pocket cost compared to a standard non-toric monofocal lens).',
+      'Toric optics correct corneal astigmatism during surgery. Unlike most clinics that charge extra, Marano Eye Care includes Toric correction on all premium lenses (Clareon Vivity, PanOptix Pro, TECNIS PureSee) at no additional upgrade fee. (Standard monofocal toric lenses still carry an added cost over non-toric monofocals.)',
     takeaway:
       'Toric astigmatism correction is bundled into all premium lenses at no additional upgrade fee.',
   },
@@ -524,7 +524,7 @@ export default function FAQSection() {
                     }
                   }}
                   aria-expanded={isExpanded}
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-primary/35 bg-primary/10 hover:bg-primary/20 hover:border-primary/50 text-primary text-xs sm:text-sm font-bold tracking-wide uppercase transition-all duration-300 shadow-[0_4px_16px_rgba(197,160,89,0.15)] hover:shadow-[0_6px_22px_rgba(197,160,89,0.25)] hover:scale-[1.01] active:scale-[0.98] min-h-[46px] touch-manipulation group"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-primary/35 bg-primary/10 hover:bg-primary/20 hover:border-primary/50 text-primary text-xs sm:text-sm font-bold tracking-wide uppercase transition-all duration-300 shadow-[0_4px_16px_rgba(197,160,89,0.15)] hover:shadow-[0_6px_22px_rgba(197,160,89,0.25)] hover:scale-[1.01] active:scale-[0.98] min-h-[46px] touch-manipulation group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                 >
                   <span>
                     {isExpanded

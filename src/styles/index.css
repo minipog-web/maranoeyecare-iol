@@ -455,9 +455,9 @@ h3 .font-display strong {
   background: linear-gradient(
     135deg,
     #ffffff 0%,
-    #fae5b6 22%,
-    #e5bd70 52%,
-    #c59740 100%
+    #fdf1d3 26%,
+    #f1d18a 62%,
+    #dfb45e 100%
   ) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -466,7 +466,7 @@ h3 .font-display strong {
   text-shadow: none !important;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  filter: drop-shadow(0 2px 14px rgba(197, 160, 89, 0.38));
+  filter: drop-shadow(0 1px 8px rgba(197, 160, 89, 0.25));
 }
 
 .text-gradient-primary sup,
@@ -510,11 +510,26 @@ h3 .font-display strong {
 }
 
 @media (max-width: 767px) {
-  /* Boost small golden eyebrow/kicker contrast on mobile screens */
+  /* Crisp, high-contrast champagne gold for mobile titles and eyebrows */
+  .text-gradient-primary,
+  .text-gradient-warm {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #f8e4b4 !important;
+    color: #f8e4b4 !important;
+    filter: none !important;
+  }
+
+  h1.text-primary,
+  h2.text-primary,
+  h3.text-primary,
   p.text-primary,
   span.text-primary,
-  div.text-primary {
-    color: #ebd096 !important;
+  div.text-primary,
+  a.text-primary,
+  strong.text-primary {
+    color: #f5dca0 !important;
   }
 }
 

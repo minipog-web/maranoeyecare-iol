@@ -29,10 +29,9 @@ export default function CandidacySection() {
             <span className="font-semibold text-gradient-primary">~20% of Inquiries</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-            A premium lens only delivers life-changing results when the underlying cornea and retina
-            support it. If our 3D biometry indicates that dry eye or retinal changes would
-            compromise your clarity, Dr. Marano and Dr. Raouf will explicitly advise against an
-            upgrade.
+            Premium optics require a healthy cornea and retina. If 3D biometry shows dry eye or
+            retinal changes would limit your clarity, Dr. Marano and Dr. Raouf will advise against
+            an upgrade.
           </p>
         </div>
 
@@ -56,19 +55,19 @@ export default function CandidacySection() {
               {[
                 {
                   title: 'Desire for Spectacle Independence',
-                  desc: 'Patients looking to read, drive, and use screens without relying on glasses.',
+                  desc: 'Want to read, drive, and use screens without daily glasses.',
                 },
                 {
                   title: 'Stable Eye Health',
-                  desc: 'A healthy cornea, retina, and optic nerve free from advanced ocular disease.',
+                  desc: 'Healthy cornea, retina, and optic nerve free of advanced disease.',
                 },
                 {
-                  title: 'Cataract Progression & Vision Changes',
-                  desc: 'Experiencing natural crystalline lens protein breakdown: cloudy vision, headlight glare, yellowed/muted colors, or difficulty focusing on close-up tasks.',
+                  title: 'Cataract Vision Changes',
+                  desc: 'Cloudy vision, headlight glare, muted colors, or near-focus trouble.',
                 },
                 {
                   title: 'Realistic Visual Expectations',
-                  desc: 'Understanding that premium optics provide functional freedom but require a short neurological adaptation period. While patients can expect functional spectacle independence with a multi-focal or extended depth of field lens, individual results may vary, and some patients may still rely on low-power over-the-counter readers for extremely fine print in poor lighting.',
+                  desc: 'Expect functional freedom after brief neuroadaptation; fine print in dim light may still need low-power readers.',
                 },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
@@ -102,23 +101,23 @@ export default function CandidacySection() {
               {[
                 {
                   title: 'Severe Dry Eye Disease',
-                  desc: 'Unmanaged dry eye disrupts the tear film, which can cause blurry vision or glare, especially with diffractive multifocal lenses such as PanOptix.',
+                  desc: 'Disrupts the tear film and causes glare, especially with diffractive multifocals.',
                 },
                 {
                   title: 'Macular Degeneration / Retinal Scars',
-                  desc: "Retinal conditions limit the eye's contrast sensitivity, making standard monofocals or TECNIS PureSee (the first EDOF with zero contrast sensitivity warning) a safer, crisper choice than diffractive multifocals.",
+                  desc: 'Limits contrast sensitivity; monofocal or TECNIS PureSee (zero contrast warning) is safer.',
                 },
                 {
                   title: 'Advanced or Uncontrolled Glaucoma',
-                  desc: 'Optic nerve damage compromises visual field and contrast, making diffractive premium lenses clinically unsuitable.',
+                  desc: 'Optic nerve damage reduces contrast, making diffractive lenses unsuitable.',
                 },
                 {
                   title: 'Advanced Diabetic Retinopathy',
-                  desc: 'Potential future retinal treatments require clear views of the back of the eye, which standard monofocal lenses facilitate better.',
+                  desc: 'Standard monofocal lenses give retinal specialists a clearer view for future care.',
                 },
                 {
                   title: 'Dense Brown / Hyper-Mature Cataracts',
-                  desc: 'Advanced brown cataracts with severe opacity can obscure views of the underlying retina pre-operatively and require specialized femtosecond laser pre-fragmentation to protect delicate corneal endothelial cells.',
+                  desc: 'Severe opacity may require femtosecond laser pre-fragmentation to protect the cornea.',
                 },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
