@@ -24,6 +24,7 @@ export const CONVERSION_EVENTS = {
   HEADER_NAV_CLICK: 'header_nav_click',
   LENS_QUIZ_START: 'lens_quiz_start',
   LENS_QUIZ_COMPLETE: 'lens_quiz_complete',
+  QUIZ_SCHEDULE_NOW_CLICK: 'quiz_schedule_now_click',
   SIMULATOR_INTERACTION: 'simulator_interaction',
   CANDIDACY_CLICK: 'candidacy_click',
   SCROLL_DEPTH: 'scroll_depth',

@@ -58,7 +58,7 @@ const LENSES: Record<string, LensResult> = {
     badgeColor: 'bg-[var(--lens-color)] text-background',
     src: '/assets/images/vivity_iol_real.jpg',
     alt: 'Clareon Vivity IOL, extended depth of focus intraocular lens',
-    cta: 'Book a Vivity Consultation',
+    cta: 'Schedule Now',
   },
   panoptix: {
     key: 'panoptix',
@@ -80,7 +80,7 @@ const LENSES: Record<string, LensResult> = {
     badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/panoptix_iol_real.jpg',
     alt: 'PanOptix Pro trifocal IOL, advanced multifocal intraocular lens',
-    cta: 'Book a PanOptix Consultation',
+    cta: 'Schedule Now',
   },
   puresee: {
     key: 'puresee',
@@ -103,7 +103,7 @@ const LENSES: Record<string, LensResult> = {
     badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/puresee_iol_real.jpg',
     alt: 'TECNIS PureSee IOL, the latest and most cutting-edge purely refractive extended depth of focus intraocular lens',
-    cta: 'Book a PureSee Consultation',
+    cta: 'Schedule Now',
   },
   monofocal: {
     key: 'monofocal',
@@ -125,7 +125,7 @@ const LENSES: Record<string, LensResult> = {
     badgeColor: 'bg-[var(--lens-color)] text-white',
     src: '/assets/images/monofocal_iol_dark.jpg',
     alt: 'Standard Monofocal IOL, traditional single focus lens',
-    cta: 'Book a Consultation',
+    cta: 'Schedule Now',
   },
 };
 
@@ -660,6 +660,17 @@ export default function LensQuestionnaireSection() {
                   </div>
                 </div>
 
+                {/* Hot Lead Reassurance Banner */}
+                <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-primary/10 border border-primary/25 mb-4 text-xs">
+                  <div className="flex items-center gap-2 text-primary font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                    <span>Recommended Plan: {result.name}</span>
+                  </div>
+                  <span className="text-muted-foreground text-[11px] hidden sm:inline">
+                    100% Free Consultation · No Obligation
+                  </span>
+                </div>
+
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
@@ -677,15 +688,26 @@ export default function LensQuestionnaireSection() {
                       trackEvent({
                         action: 'quiz_cta_click',
                         category: 'Conversion',
+                        label: `Schedule Now - ${result.name}`,
+                      });
+                      trackEvent({
+                        action: 'quiz_schedule_now_click',
+                        category: 'Conversion',
                         label: result.name,
                       });
                       smoothScrollToElement('booking');
                       window.history.pushState(null, '', '#booking');
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-primary text-[#000000] font-bold text-sm sm:text-base hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="group flex-1 flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-primary text-[#000000] font-bold text-sm sm:text-base hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] shadow-[0_0_24px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    aria-label={`Schedule Now: Book your ${result.name} consultation`}
                   >
-                    {result.cta}
-                    <Icon name="ArrowRightIcon" size={16} />
+                    <Icon name="CalendarDaysIcon" size={18} className="text-black shrink-0" />
+                    <span>Schedule Now</span>
+                    <Icon
+                      name="ArrowRightIcon"
+                      size={16}
+                      className="text-black shrink-0 transition-transform group-hover:translate-x-1"
+                    />
                   </a>
                   <button
                     onClick={handleRestart}
@@ -697,9 +719,10 @@ export default function LensQuestionnaireSection() {
                 </div>
 
                 <p className="mt-4 text-xs text-muted-foreground text-center">
-                  This quiz cannot replace a thorough clinical evaluation by Dr. Marano or Dr.
-                  Raouf, but it provides a clear starting point. During your consultation, your
-                  surgeon will confirm the ideal match for your individual eyes.
+                  Clicking <strong className="text-foreground">Schedule Now</strong> pre-selects
+                  your <strong className="text-primary">{result.name}</strong> recommendation in our
+                  consultation form below. Dr. Marano or Dr. Raouf will confirm your candidacy
+                  during your comprehensive evaluation.
                 </p>
               </div>
             )}
