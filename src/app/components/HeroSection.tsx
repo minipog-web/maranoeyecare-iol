@@ -392,10 +392,10 @@ export default function HeroSection({
                       : 'origin-bottom';
                 const delayClass =
                   i === 0
-                    ? 'animate-fade-up delay-600 fill-both'
+                    ? 'animate-fade-up fill-both'
                     : i === 1
-                      ? 'animate-fade-up delay-750 fill-both'
-                      : 'animate-fade-up delay-900 fill-both';
+                      ? 'animate-fade-up delay-75 fill-both'
+                      : 'animate-fade-up delay-150 fill-both';
 
                 return (
                   <div
@@ -433,7 +433,8 @@ export default function HeroSection({
                             fill
                             className="object-cover object-center scale-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
                             sizes="(max-width: 640px) 33vw, 176px"
-                            priority={i === 0}
+                            priority
+                            fetchPriority={i === 0 ? 'high' : 'auto'}
                           />
 
                           {/* Fine Optical Edge Highlight */}

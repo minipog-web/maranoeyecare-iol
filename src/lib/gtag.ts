@@ -9,6 +9,9 @@ export const GA_MEASUREMENT_ID =
 
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PB9D9RHS';
 
+export const GOOGLE_ADS_PRIMARY_ID = 'AW-17962563730';
+export const GOOGLE_ADS_SECONDARY_ID = 'AW-18197167741';
+
 // Google Tag Gateway / Server-Side Tagging first-party endpoint configuration
 export const TAG_GATEWAY_URL =
   process.env.NEXT_PUBLIC_TAG_GATEWAY_URL || 'https://www.googletagmanager.com';
@@ -64,18 +67,13 @@ export const pageview = (url: string, title?: string) => {
     send_to: GA_MEASUREMENT_ID,
   });
 
-  // 2. Direct gtag event & config update targeting GA4 Measurement ID G-CTYWND91QV
+  // 2. Direct gtag page_view event (send_page_view is false in layout config, so fire once here)
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'page_view', {
       page_path: url,
       page_location: pageLocation,
       page_title: pageTitle,
       send_to: GA_MEASUREMENT_ID,
-    });
-    window.gtag('config', GA_MEASUREMENT_ID, {
-      page_path: url,
-      page_location: pageLocation,
-      page_title: pageTitle,
     });
   }
 };
@@ -108,7 +106,7 @@ export const trackEvent = ({
   };
   window.dataLayer.push(eventPayload);
 
-  // Fallback / Direct gtag execution with GA4 G-CTYWND91QV
+  // Fallback / Direct gtag execution targeting configured GA4 Measurement ID
   if (typeof window.gtag === 'function') {
     window.gtag('event', action, {
       event_category: category,
@@ -215,15 +213,21 @@ export const setEnhancedConversionsUserData = (userData: UserDataForConversions)
 
   if (userData.phone) {
     const digits = userData.phone.replace(/\D/g, '');
-    normalizedData.phone_number = digits.length === 10 ? `+1${digits}` : `+${digits}`;
+    if (digits.length >= 7) {
+      normalizedData.phone_number =
+        digits.length === 10
+          ? `+1${digits}`
+          : digits.length === 11 && digits.startsWith('1')
+            ? `+${digits}`
+            : `+${digits}`;
+    }
   }
 
   if (userData.firstName || userData.lastName) {
-    normalizedData.address = {
-      first_name: userData.firstName?.trim().toLowerCase(),
-      last_name: userData.lastName?.trim().toLowerCase(),
-      country: 'US',
-    };
+    const address: Record<string, string> = { country: 'US' };
+    if (userData.firstName?.trim()) address.first_name = userData.firstName.trim().toLowerCase();
+    if (userData.lastName?.trim()) address.last_name = userData.lastName.trim().toLowerCase();
+    normalizedData.address = address;
   }
 
   // 1. Set directly on gtag for Google Ads Enhanced Conversions
@@ -268,6 +272,8 @@ export const trackConsultationBooking = (
     setEnhancedConversionsUserData(userData);
   }
 
+  const transactionId = `mec_book_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
   trackEvent({
     action: CONVERSION_EVENTS.BOOKING_COMPLETE,
     category: 'Conversion',
@@ -276,12 +282,13 @@ export const trackConsultationBooking = (
     customParams: {
       location,
       selected_lens: lens,
+      transaction_id: transactionId,
       ...(quizResult ? { quiz_recommendation: quizResult } : {}),
       ...(userData?.email ? { has_contact_data: true } : {}),
     },
   });
-  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT, 500);
-  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT_SECONDARY, 500);
+  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT, 500, 'USD', transactionId);
+  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT_SECONDARY, 500, 'USD', transactionId);
 };
 
 export const trackLeadStep1 = (
@@ -293,6 +300,8 @@ export const trackLeadStep1 = (
     setEnhancedConversionsUserData(userData);
   }
 
+  const transactionId = `mec_lead1_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
   trackEvent({
     action: CONVERSION_EVENTS.BOOKING_STEP_1,
     category: 'Engagement',
@@ -300,10 +309,11 @@ export const trackLeadStep1 = (
     value: 150,
     customParams: {
       location,
+      transaction_id: transactionId,
       ...(lens ? { selected_lens: lens } : {}),
     },
   });
-  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.LEAD_FORM, 150);
+  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.LEAD_FORM, 150, 'USD', transactionId);
 };
 
 export const trackScrollDepth = (percent: number) => {
@@ -370,7 +380,8 @@ export const GOOGLE_ADS_CONVERSIONS = {
 export const trackAdsConversion = (
   conversionIdOrLabel: string,
   value?: number,
-  currency: string = 'USD'
+  currency: string = 'USD',
+  transactionId?: string
 ) => {
   if (typeof window === 'undefined') return;
 
@@ -388,6 +399,7 @@ export const trackAdsConversion = (
     send_to: sendTo,
     value: value,
     currency: currency,
+    ...(transactionId ? { transaction_id: transactionId } : {}),
   });
 
   if (typeof window.gtag === 'function') {
@@ -395,6 +407,7 @@ export const trackAdsConversion = (
       send_to: sendTo,
       value: value,
       currency: currency,
+      ...(transactionId ? { transaction_id: transactionId } : {}),
     });
   }
 };

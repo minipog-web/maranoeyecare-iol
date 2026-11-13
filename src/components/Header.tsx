@@ -266,9 +266,10 @@ export default function Header() {
 
         {/* Mobile/Tablet Hamburger */}
         <button
-          className="flex lg:hidden p-2.5 text-foreground touch-manipulation -mr-1 rounded-xl hover:bg-white/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
+          className="flex lg:hidden items-center justify-center min-w-[44px] min-h-[44px] p-2.5 text-foreground touch-manipulation -mr-1 rounded-xl hover:bg-white/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           <Icon name={menuOpen ? 'XMarkIcon' : 'Bars3Icon'} size={24} />
         </button>
@@ -284,7 +285,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-semibold uppercase tracking-wider py-2.5 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                  className={`min-h-[44px] flex items-center text-sm font-semibold uppercase tracking-wider py-2.5 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                     isActive ? 'text-primary font-bold' : 'text-slate-200 hover:text-primary'
                   }`}
                   onClick={(e) => {
@@ -303,7 +304,7 @@ export default function Header() {
                 <Link
                   key={lens.href}
                   href={lens.href}
-                  className={`px-3 py-2 rounded-xl border text-xs font-semibold transition-colors ${
+                  className={`min-h-[44px] flex flex-col justify-center px-3 py-2.5 rounded-xl border text-xs font-semibold transition-colors touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                     pathname === lens.href
                       ? 'border-primary/50 bg-primary/15 text-primary'
                       : 'border-white/10 bg-white/[0.03] text-white/90 hover:border-primary/30 hover:text-primary'

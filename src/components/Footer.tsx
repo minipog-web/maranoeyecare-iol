@@ -8,7 +8,7 @@ import { smoothScrollToElement } from '@/lib/ui';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border pt-10 pb-28 sm:pb-10">
+    <footer className="border-t border-border pt-10 pb-28 md:pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6">
           <div className="flex items-center gap-3 shrink-0">
@@ -60,7 +60,7 @@ export default function Footer() {
                     }
                   }
                 }}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2 px-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                className="inline-flex items-center min-h-[44px] text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2 px-1.5 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 {link.label}
               </Link>
@@ -68,11 +68,11 @@ export default function Footer() {
           </nav>
 
           {/* Phone + Dedicated Book Consultation CTA */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
             <a
               href="tel:9733220100"
               suppressHydrationWarning
-              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation py-2 px-3 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="flex items-center gap-1.5 min-h-[44px] text-sm font-medium text-muted-foreground hover:text-primary transition-colors touch-manipulation py-2 px-3 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <Icon name="PhoneIcon" size={14} className="text-primary" />
               <span suppressHydrationWarning>(973) 322-0100</span>
@@ -87,7 +87,7 @@ export default function Footer() {
                   window.history.pushState(null, '', '#booking');
                 }
               }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-black font-semibold text-xs tracking-wider uppercase transition-all shadow-[0_0_12px_rgba(197,160,89,0.15)] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-full border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-black font-semibold text-xs tracking-wider uppercase transition-all shadow-[0_0_12px_rgba(197,160,89,0.15)] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               Book Consultation
             </Link>

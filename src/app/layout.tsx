@@ -5,6 +5,12 @@ import Script from 'next/script';
 import { DM_Sans, Fraunces } from 'next/font/google';
 import AnalyticsTracker from '@/components/AnalyticsTracker';
 import HashScrollHandler from '@/components/HashScrollHandler';
+import {
+  GA_MEASUREMENT_ID,
+  GTM_ID,
+  GOOGLE_ADS_PRIMARY_ID,
+  GOOGLE_ADS_SECONDARY_ID,
+} from '@/lib/gtag';
 import '../styles/tailwind-directives.css';
 import '../styles/index.css';
 
@@ -369,24 +375,26 @@ gtag('consent', 'default', {
 });`}
         </Script>
 
-        {/* Google tag (gtag.js) - GA4 G-1YBZ7BFJ4C & Google Ads AW-18197167741 / AW-17962563730 */}
+        {/* Google tag (gtag.js) - GA4 & Google Ads with Enhanced Conversions */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-1YBZ7BFJ4C"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = gtag;
-gtag('js', new Date());
-gtag('config', 'G-1YBZ7BFJ4C', {
+window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+window.gtag('js', new Date());
+var isProdHost = window.location.hostname === 'premium-iol.maranoeye.com';
+var isHttps = window.location.protocol === 'https:';
+window.gtag('config', '${GA_MEASUREMENT_ID}', {
   send_page_view: false,
   anonymize_ip: true,
-  cookie_domain: 'premium-iol.maranoeye.com',
+  cookie_domain: isProdHost ? 'premium-iol.maranoeye.com' : 'auto',
   cookie_prefix: 'mec_iol',
-  cookie_flags: 'SameSite=None;Secure'
+  cookie_flags: isHttps ? 'SameSite=None;Secure' : 'SameSite=Lax'
 });
-gtag('config', 'AW-18197167741');`}
+window.gtag('config', '${GOOGLE_ADS_PRIMARY_ID}', { allow_enhanced_conversions: true });
+window.gtag('config', '${GOOGLE_ADS_SECONDARY_ID}', { allow_enhanced_conversions: true });`}
         </Script>
         {/* End Google tag (gtag.js) */}
 
@@ -396,7 +404,7 @@ gtag('config', 'AW-18197167741');`}
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PB9D9RHS');`}
+})(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
         {/* End Google Tag Manager */}
 
@@ -411,7 +419,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PB9D9RHS"
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}

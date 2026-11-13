@@ -124,6 +124,7 @@ export default function BookingSection({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [quizResult, setQuizResult] = useState<string | null>(preselectedLens || null);
   const [activeOfficeTab, setActiveOfficeTab] = useState(0);
+  const step1TrackedRef = React.useRef(false);
 
   React.useEffect(() => {
     const handleSelectLens = (e: Event) => {
@@ -243,12 +244,15 @@ export default function BookingSection({
     }
 
     setStep(2);
-    trackLeadStep1(form.location, form.preferredContact, {
-      email: form.email,
-      phone: form.phone,
-      firstName: form.firstName,
-      lastName: form.lastName,
-    });
+    if (!step1TrackedRef.current) {
+      step1TrackedRef.current = true;
+      trackLeadStep1(form.location, form.lens || undefined, {
+        email: form.email,
+        phone: form.phone,
+        firstName: form.firstName,
+        lastName: form.lastName,
+      });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
