@@ -894,7 +894,10 @@ export default function BookingSection({
 
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span id="location-group-label" className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.15em]">
+                        <span
+                          id="location-group-label"
+                          className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.15em]"
+                        >
                           Preferred Office Location *
                         </span>
                         <span className="text-[11px] text-muted-foreground/80 font-medium">
