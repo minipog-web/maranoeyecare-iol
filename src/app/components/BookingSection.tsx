@@ -989,13 +989,13 @@ export default function BookingSection({
 
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#000000] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                      className="w-full flex items-center justify-center gap-2 px-5 py-2.5 sm:py-3 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.99] min-h-[48px] touch-manipulation shadow-[0_2px_14px_rgba(197,160,89,0.25)] mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     >
                       <span>Save My Info &amp; Choose Lens (Final Step)</span>
                       <Icon
                         name="ArrowRightIcon"
-                        size={18}
-                        className="transition-transform group-hover:translate-x-1"
+                        size={16}
+                        className="shrink-0 transition-transform group-hover:translate-x-1"
                       />
                     </button>
 
@@ -1161,7 +1161,7 @@ export default function BookingSection({
                       <button
                         type="button"
                         onClick={() => setStep(1)}
-                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-border text-slate-200 hover:text-white hover:border-primary/40 text-sm font-semibold transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                        className="flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-3 rounded-xl border border-border text-slate-200 hover:text-white hover:border-primary/40 text-sm font-semibold transition-all duration-200 min-h-[48px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         <Icon name="ArrowLeftIcon" size={14} />
                         Back
@@ -1169,20 +1169,20 @@ export default function BookingSection({
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-[#000000] rounded-xl text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                        className="flex-1 flex items-center justify-center gap-2 px-5 py-2.5 sm:py-3 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px] touch-manipulation shadow-[0_2px_14px_rgba(197,160,89,0.25)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                       >
                         {loading ? (
-                          <span className="flex items-center gap-3">
+                          <span className="flex items-center gap-2.5 text-sm font-bold">
                             <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
                             Submitting Request...
                           </span>
                         ) : (
                           <>
-                            <span>Request Consultation with Our Surgeons</span>
+                            <span className="truncate">Request Consultation with Our Surgeons</span>
                             <Icon
                               name="ArrowRightIcon"
-                              size={18}
-                              className="transition-transform group-hover:translate-x-1"
+                              size={16}
+                              className="shrink-0 transition-transform group-hover:translate-x-1"
                             />
                           </>
                         )}
