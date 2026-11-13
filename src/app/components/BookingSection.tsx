@@ -283,7 +283,6 @@ export default function BookingSection({
     try {
       const formData = new URLSearchParams();
       formData.append('form-name', 'consultation');
-      formData.append('bot-field', '');
       formData.append('name', `${trimmedForm.firstName} ${trimmedForm.lastName}`.trim());
       formData.append('firstName', trimmedForm.firstName);
       formData.append('lastName', trimmedForm.lastName);
