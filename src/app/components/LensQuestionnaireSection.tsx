@@ -698,7 +698,7 @@ export default function LensQuestionnaireSection() {
                       smoothScrollToElement('booking');
                       window.history.pushState(null, '', '#booking');
                     }}
-                    className="group flex-1 flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-primary text-[#000000] font-bold text-sm sm:text-base hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] shadow-[0_0_24px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="group flex-1 flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-primary text-[#000000] font-bold text-sm sm:text-base hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] md:shadow-[0_0_24px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     aria-label={`Schedule Now: Book your ${result.name} consultation`}
                   >
                     <Icon name="CalendarDaysIcon" size={18} className="text-black shrink-0" />

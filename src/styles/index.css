@@ -986,24 +986,26 @@ a.bg-primary > * {
   z-index: 2;
 }
 
-.btn-premium-primary:hover,
-button.bg-primary:hover,
-a.bg-primary:hover {
-  background: linear-gradient(180deg, #ffe08e 0%, #e2b248 48%, #c58d24 100%) !important;
-  color: #000000 !important;
-  border-color: #946517 !important;
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.45),
-    0 10px 24px -2px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    inset 0 -1.5px 2px rgba(80, 52, 6, 0.5) !important;
-  transform: translateY(-2px) scale(1.015) !important;
-}
+@media (hover: hover) {
+  .btn-premium-primary:hover,
+  button.bg-primary:hover,
+  a.bg-primary:hover {
+    background: linear-gradient(180deg, #ffe08e 0%, #e2b248 48%, #c58d24 100%) !important;
+    color: #000000 !important;
+    border-color: #946517 !important;
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.45),
+      0 10px 24px -2px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1.5px 2px rgba(80, 52, 6, 0.5) !important;
+    transform: translateY(-2px) scale(1.015) !important;
+  }
 
-.btn-premium-primary:hover::after,
-button.bg-primary:hover::after,
-a.bg-primary:hover::after {
-  left: 140%;
+  .btn-premium-primary:hover::after,
+  button.bg-primary:hover::after,
+  a.bg-primary:hover::after {
+    left: 140%;
+  }
 }
 
 .btn-premium-primary:active,
@@ -1064,18 +1066,20 @@ button.bg-primary:hover span.rounded-full {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.btn-premium-secondary:hover,
-.btn-neumorphic-secondary:hover {
-  background: linear-gradient(180deg, #242c3d 0%, #151b27 100%) !important;
-  color: #ffffff !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
-  border-color: rgba(226, 183, 85, 0.7) !important;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.65),
-    0 0 24px rgba(197, 160, 89, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.4) !important;
-  transform: translateY(-2px) scale(1.01) !important;
+@media (hover: hover) {
+  .btn-premium-secondary:hover,
+  .btn-neumorphic-secondary:hover {
+    background: linear-gradient(180deg, #242c3d 0%, #151b27 100%) !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+    border-color: rgba(226, 183, 85, 0.7) !important;
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.65),
+      0 0 24px rgba(197, 160, 89, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.4) !important;
+    transform: translateY(-2px) scale(1.01) !important;
+  }
 }
 
 .btn-premium-secondary:active,
@@ -1468,15 +1472,15 @@ textarea:focus {
 
 @keyframes biometricPulse {
   0% {
-    transform: scale(0.96) translate(-50%, -50%);
+    transform: scale(0.96);
     opacity: 0.35;
   }
   50% {
-    transform: scale(1.04) translate(-50%, -50%);
+    transform: scale(1.04);
     opacity: 0.7;
   }
   100% {
-    transform: scale(0.96) translate(-50%, -50%);
+    transform: scale(0.96);
     opacity: 0.35;
   }
 }
@@ -1594,7 +1598,9 @@ textarea:focus {
   .animate-biometric-scan,
   .animate-biometric-pulse,
   .animate-biometric-rotate,
-  .animate-scan-line {
+  .animate-scan-line,
+  .animate-ping,
+  .animate-pulse {
     animation: none !important;
   }
 
@@ -1777,15 +1783,21 @@ textarea:focus {
 /* 7. Performance: Content-Visibility for Below-The-Fold Sections */
 #cataract-education,
 #comparison,
+#cataract-education,
+#lenses,
 #physics,
 #lensar,
 #timeline,
+#trust,
 #lifestyle,
 #candidacy,
 #questionnaire,
 #testimonials,
 #faq,
-#financing {
+#insurance,
+#financing,
+#booking,
+#locations {
   content-visibility: auto;
   contain-intrinsic-size: 1px 700px;
 }
@@ -1796,9 +1808,7 @@ textarea:focus {
 
 /* Refined Glassmorphism Utility */
 .glass-card-chic {
-  background: rgba(255, 255, 255, 0.03) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  backdrop-filter: blur(12px) !important;
+  background: rgba(13, 16, 24, 0.92) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 24px !important;
   transition:
@@ -1806,6 +1816,14 @@ textarea:focus {
     box-shadow 0.4s var(--ease-spring),
     background 0.4s var(--ease-spring) !important;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+}
+
+@media (min-width: 768px) {
+  .glass-card-chic {
+    background: rgba(255, 255, 255, 0.03) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+  }
 }
 
 .glass-card-chic:hover {
@@ -1824,11 +1842,13 @@ textarea:focus {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-.btn-premium-chic:hover {
-  transform: scale(1.02) !important;
-  box-shadow:
-    0 0 25px rgba(255, 255, 255, 0.25),
-    0 10px 30px rgba(0, 0, 0, 0.4) !important;
+@media (hover: hover) {
+  .btn-premium-chic:hover {
+    transform: scale(1.02) !important;
+    box-shadow:
+      0 0 25px rgba(255, 255, 255, 0.25),
+      0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  }
 }
 
 .btn-premium-chic:active {

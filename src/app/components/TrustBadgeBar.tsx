@@ -17,12 +17,12 @@ const variants: Record<string, Badge[]> = {
   authority: [
     { icon: 'TrophyIcon', text: '15× NJ Monthly Top Doctor' },
     { icon: 'HeartIcon', text: '40,000+ Successful Surgeries' },
-    { icon: 'AcademicCapIcon', text: 'Board Certified Ophthalmologist' },
+    { icon: 'AcademicCapIcon', text: 'Board-Certified Ophthalmologists' },
   ],
   clinical: [
     { icon: 'CheckCircleIcon', text: '99% Patient Satisfaction Rate [1]' },
     { icon: 'BeakerIcon', text: 'Biometry-Guided Lens Selection' },
-    { icon: 'BoltIcon', text: 'LENSAR® FEMTO Laser on Every Premium IOL' },
+    { icon: 'BoltIcon', text: 'LENSAR® Femto Laser on Every Premium IOL' },
   ],
   safety: [
     { icon: 'LockClosedIcon', text: 'HIPAA-Protected Information' },
@@ -46,7 +46,7 @@ export default function TrustBadgeBar({ variant = 'authority' }: TrustBadgeBarPr
               className="flex items-center justify-center text-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs md:text-sm lg:text-[13px] xl:text-sm 2xl:text-base text-foreground font-semibold py-2 lg:py-1.5 px-2 sm:px-3 lg:px-2 xl:px-4"
             >
               <Icon name={badge.icon as 'TrophyIcon'} size={17} className="text-primary shrink-0" />
-              <span className="font-semibold tracking-wide sm:tracking-wider whitespace-nowrap">
+              <span className="font-semibold tracking-wide sm:tracking-wider sm:whitespace-nowrap">
                 {(() => {
                   const parts = badge.text.split(/(\[\d+\])/);
                   return parts.map((part, idx) => {

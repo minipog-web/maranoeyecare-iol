@@ -67,7 +67,7 @@ export default function CandidacySection() {
                 },
                 {
                   title: 'Realistic Visual Expectations',
-                  desc: 'Expect functional freedom after brief neuroadaptation; fine print in dim light may still need low-power readers.',
+                  desc: 'Expect functional freedom after a brief adjustment period; fine print in dim light may still need low-power readers.',
                 },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
@@ -117,7 +117,7 @@ export default function CandidacySection() {
                 },
                 {
                   title: 'Dense Brown / Hyper-Mature Cataracts',
-                  desc: 'Severe opacity may require femtosecond laser pre-fragmentation to protect the cornea.',
+                  desc: 'Severe clouding may benefit from femtosecond laser softening first to protect the cornea.',
                 },
               ]?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">

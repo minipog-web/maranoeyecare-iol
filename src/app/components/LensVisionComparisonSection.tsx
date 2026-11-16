@@ -50,7 +50,7 @@ const lenses = [
       'Designed for reading, driving, and active living',
     ],
     bestFor:
-      'Patients wanting maximum freedom from reading glasses, phone screens, and driving without reaching for specs.',
+      'Patients who want maximum freedom from glasses—for reading, phone screens, and driving.',
     blur: {
       day: { distance: 0, intermediate: 0, near: 0 },
       night: { distance: 0, intermediate: 0, near: 0 },
@@ -116,7 +116,7 @@ const lenses = [
     manufacturer: 'J&J MedTech',
     type: 'Latest Refractive EDOF',
     tagline:
-      'The latest, most cutting-edge purely refractive EDOF lens with zero contrast warning.',
+      'The latest purely refractive EDOF lens—crisp night vision with zero contrast-loss warning.',
     color: '#00A3FF',
     featured: false,
     badge: 'Latest EDOF',
@@ -147,7 +147,7 @@ const lenses = [
     highlights: [
       'Purely refractive optics with zero diffractive rings',
       'First FDA-approved EDOF with zero contrast warning [3]',
-      'Continuous vision from distance to functional near (~40cm)',
+      'Continuous vision from distance to functional near (~16 in)',
       'Monofocal-like night vision & glare safety profile',
     ],
     bestFor:
@@ -166,7 +166,7 @@ const lenses = [
     name: 'Standard Monofocal',
     manufacturer: 'Various',
     type: 'Single Vision IOL',
-    tagline: 'Traditional coverage. Single focus point (glasses required for near & intermediate).',
+    tagline: 'Traditional coverage. Single focus point—glasses required for near and intermediate.',
     color: '#64748B',
     featured: false,
     badge: 'Baseline',
@@ -201,7 +201,7 @@ const lenses = [
       'A permanent choice with fixed visual limitations',
     ],
     bestFor:
-      'Patients who are comfortable relying on reading glasses for daily tasks and want a standard, basic insurance-covered distance option.',
+      'Patients comfortable relying on reading glasses for daily tasks who prefer a standard, insurance-covered distance lens.',
     blur: {
       day: { distance: 0, intermediate: 0, near: 0 },
       night: { distance: 0, intermediate: 5.5, near: 16 },
@@ -1343,7 +1343,7 @@ export default function LensVisionComparisonSection() {
                               label: 'Vivity Spec CTA to /clareon-vivity',
                             });
                           }}
-                          className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                          className={`w-full py-3.5 px-3 rounded-xl text-[13px] xl:text-sm font-bold text-center whitespace-nowrap transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-1.5 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                         >
                           <span>Explore Clareon Vivity Details</span>
                           <svg

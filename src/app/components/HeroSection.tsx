@@ -180,7 +180,7 @@ export default function HeroSection({
                 ) : (
                   <>
                     {/* Tier 1: Specialty Credential & Beacon Dot */}
-                    <span className="inline-flex items-center justify-center gap-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] whitespace-nowrap leading-none py-0.5">
+                    <span className="inline-flex items-center justify-center gap-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#FAE8C8] via-[#E8C47E] to-[#C5A059] sm:whitespace-nowrap text-center leading-none py-0.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#C5A059] to-[#FAE8C8] shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.7)]" />
                       <span className="sm:hidden">Laser Cataract &amp; Premium IOLs</span>
                       <span className="hidden sm:inline">
@@ -189,7 +189,7 @@ export default function HeroSection({
                     </span>
 
                     {/* Tier 2: Locations with MapPin */}
-                    <span className="inline-flex items-center justify-center gap-1.5 text-[9.5px] xs:text-[10px] sm:text-[11px] font-medium uppercase tracking-wide text-[#F5E4C3]/95 whitespace-nowrap leading-none py-0.5">
+                    <span className="inline-flex items-center justify-center gap-1.5 text-[9.5px] xs:text-[10px] sm:text-[11px] font-medium uppercase tracking-wide text-[#F5E4C3]/95 sm:whitespace-nowrap text-center leading-none py-0.5">
                       <Icon name="MapPinIcon" size={11} className="text-primary shrink-0" />
                       <span>{locationText}</span>
                     </span>
@@ -286,76 +286,53 @@ export default function HeroSection({
             </div>
 
             {/* Reassurance Indicators (Positioned above horizontal border line) */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mb-6 sm:mb-8 mt-4 text-xs text-foreground/80 font-medium select-none">
-              <a
-                href="#locations"
-                onClick={(e) => {
-                  e.preventDefault();
-                  smoothScrollToElement('locations');
-                  window.history.pushState(null, '', '#locations');
-                }}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/5 border border-primary/45 shadow-[0_0_18px_rgba(197,160,89,0.22)] text-white hover:border-primary hover:shadow-[0_0_24px_rgba(197,160,89,0.38)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer"
-                title={`View our ${dynamicLocation ? dynamicLocation : 'New Jersey'} location details`}
-              >
-                <span className="w-5 h-5 rounded-full bg-primary/25 border border-primary/40 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-[0_0_8px_rgba(197,160,89,0.4)]">
-                  <Icon name="MapPinIcon" size={11} className="shrink-0" />
-                </span>
-                <span className="font-semibold text-white tracking-wide">
-                  {dynamicLocation ? dynamicLocation : 'Livingston · Denville · Newark'}{' '}
-                  <span className="text-primary font-bold">Office{dynamicLocation ? '' : 's'}</span>
-                </span>
-                <Icon
-                  name="ChevronRightIcon"
-                  size={12}
-                  className="text-primary/70 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0"
-                />
-              </a>
-              <span className="flex items-center gap-1.5 text-white">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                No Needles. No pain.
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5 mt-4 mb-5 sm:mb-7 text-xs sm:text-[13px] text-white/90 font-medium select-none">
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)] shrink-0" />
+                No Needles. No Pain.
               </span>
-              <span className="flex items-center gap-1.5 text-white">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)] shrink-0" />
                 Quick 10–15 Min Procedure
               </span>
-              <span className="flex items-center gap-1.5 text-white">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)] shrink-0" />
                 No Out-of-Pocket Consultation Cost
               </span>
             </div>
 
             {/* Editorial Proof Text */}
-            <div className="border-t border-border pt-6 sm:pt-8 w-full animate-fade-up delay-600 fill-both max-w-xl lg:max-w-2xl">
-              <p className="text-sm sm:text-base text-white/95 font-semibold mb-3.5 font-display xl:whitespace-nowrap">
-                Led by Board-Certified Surgeons Dr. Matthew Marano Jr. &amp; Dr. Sherief Raouf:
+            <div className="border-t border-border/80 pt-5 sm:pt-6 w-full animate-fade-up delay-600 fill-both max-w-xl lg:max-w-2xl">
+              <p className="text-sm sm:text-base text-white font-semibold mb-3 font-display">
+                Led by Board-Certified Surgeons Dr. Matthew Marano Jr. &amp; Dr. Sherief Raouf
               </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-sm">
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                  <span className="text-muted-foreground leading-snug">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-6 text-xs sm:text-sm">
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-white/80 leading-snug">
                     <strong className="text-primary font-semibold">Dr. Marano:</strong> Chief of
                     Ophthalmology, Cooperman Barnabas &amp; St. Michael&apos;s
                   </span>
                 </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                  <span className="text-muted-foreground leading-snug">
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-white/80 leading-snug">
                     <strong className="text-primary font-semibold">Dr. Raouf:</strong>{' '}
                     Fellowship-Trained Cornea Specialist (UIC)
                   </span>
                 </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                  <span className="text-muted-foreground leading-snug">
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-white/80 leading-snug">
                     <strong className="text-primary font-semibold">15× NJ Top Doctor</strong> ·
                     40,000+ surgeries (99% satisfaction)
                   </span>
                 </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
-                  <span className="text-muted-foreground leading-snug">
-                    <strong className="text-primary font-semibold">4.9★ Google Rating</strong>{' '}
-                    (&gt;650 reviews) · Board-Certified
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_6px_rgba(197,160,89,0.8)]" />
+                  <span className="text-white/80 leading-snug">
+                    <strong className="text-primary font-semibold">4.9★ Google Rating</strong> (650+
+                    reviews) · Board-Certified
                   </span>
                 </li>
               </ul>
@@ -417,7 +394,7 @@ export default function HeroSection({
                             fill
                             className="object-cover object-center scale-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
                             sizes="(max-width: 640px) 33vw, 176px"
-                            priority
+                            priority={i === 0}
                             fetchPriority={i === 0 ? 'high' : 'auto'}
                           />
 
@@ -436,10 +413,10 @@ export default function HeroSection({
                           {/* Floating Top Tag Badge */}
                           <div className="absolute top-2 sm:top-2.5 inset-x-0 flex justify-center z-20 pointer-events-none px-1">
                             <span
-                              className={`px-2 sm:px-2.5 py-0.5 rounded-full text-[7.5px] sm:text-[8.5px] xl:text-[9.5px] font-bold uppercase tracking-wider transition-all duration-300 backdrop-blur-md whitespace-nowrap ${
+                              className={`px-2 sm:px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-all duration-300 backdrop-blur-md whitespace-nowrap ${
                                 isActive
                                   ? 'bg-primary text-[#020304] border border-primary/80 shadow-[0_0_12px_rgba(197,160,89,0.5)]'
-                                  : 'bg-black/75 text-white/90 border border-white/20 shadow-md group-hover:bg-primary group-hover:text-[#020304] group-hover:border-primary'
+                                  : 'bg-black/75 text-white/95 border border-white/20 shadow-md group-hover:bg-primary group-hover:text-[#020304] group-hover:border-primary'
                               }`}
                             >
                               {lens.tag}
@@ -448,12 +425,12 @@ export default function HeroSection({
                         </div>
 
                         {/* Bottom info */}
-                        <div className="flex-1 flex flex-col justify-between p-2 sm:p-2.5 lg:p-3 xl:p-3.5 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
+                        <div className="flex-1 flex flex-col justify-between p-2.5 sm:p-3 lg:p-3.5 bg-gradient-to-t from-black/95 via-black/80 to-black/60 backdrop-blur-sm border-t border-white/[0.05]">
                           <div>
-                            <p className="text-[8.5px] xs:text-[9px] sm:text-[10.5px] lg:text-[11px] xl:text-xs font-bold text-primary uppercase tracking-wider sm:tracking-widest mb-0.5 sm:mb-1 flex items-center justify-between">
+                            <p className="text-[10px] sm:text-[11px] xl:text-xs font-bold text-primary uppercase tracking-wider mb-0.5 sm:mb-1 flex items-center justify-between">
                               <span>{lens.name}</span>
                               <span
-                                className={`text-[9px] text-primary/80 font-normal transition-all duration-300 sm:inline-block shrink-0 ml-1 ${
+                                className={`text-[10px] text-primary/90 font-normal transition-all duration-300 sm:inline-block shrink-0 ml-1 ${
                                   isActive
                                     ? 'opacity-100 translate-x-0'
                                     : 'opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0'
@@ -462,11 +439,11 @@ export default function HeroSection({
                                 &rarr;
                               </span>
                             </p>
-                            <p className="text-white font-medium text-[9.5px] xs:text-[10px] sm:text-[11px] lg:text-xs xl:text-sm leading-tight">
+                            <p className="text-white font-medium text-[10.5px] sm:text-xs xl:text-sm leading-tight">
                               {lens.subtitle}
                             </p>
                           </div>
-                          <p className="text-white/75 text-[7.5px] xs:text-[8px] sm:text-[8.5px] lg:text-[9px] xl:text-[10px] mt-1 sm:mt-1.5 leading-snug sm:leading-normal">
+                          <p className="text-white/80 text-[9.5px] sm:text-[10.5px] xl:text-[11px] mt-1.5 leading-snug">
                             {renderFootnoteText(lens.detail, { withoutLink: true })}
                           </p>
                         </div>
@@ -478,84 +455,133 @@ export default function HeroSection({
             </div>
 
             {/* Dynamic "Vision Reach" Optical Range Meter */}
-            <div className="w-full mt-4 sm:mt-5 max-w-[340px] sm:max-w-md xl:max-w-[480px] animate-fade-up delay-900 fill-both">
-              <div className="luxury-rim-card border border-white/[0.12] bg-[#0c0e15]/95 backdrop-blur-xl rounded-2xl p-3 sm:p-4 shadow-[0_12px_36px_rgba(0,0,0,0.5)]">
+            <div className="w-full mt-4 sm:mt-5 max-w-[380px] sm:max-w-md xl:max-w-[500px] animate-fade-up delay-900 fill-both">
+              <div className="luxury-rim-card border border-white/[0.12] bg-[#0c0e15]/95 backdrop-blur-xl rounded-2xl p-3.5 sm:p-4 shadow-[0_12px_36px_rgba(0,0,0,0.5)]">
+                {/* Interactive Lens Switcher Tabs (Touch & Keyboard Friendly) */}
+                <div
+                  role="tablist"
+                  aria-label="Compare optical reach by lens"
+                  className="grid grid-cols-3 gap-1 p-1 rounded-xl bg-white/[0.04] border border-white/[0.07] mb-3"
+                >
+                  {lenses.map((lens) => {
+                    const selected = activeLens === lens.name;
+                    return (
+                      <button
+                        key={lens.name}
+                        type="button"
+                        role="tab"
+                        aria-selected={selected}
+                        onClick={() => {
+                          setActiveLens(lens.name);
+                          trackEvent({
+                            action: 'hero_reach_tab_select',
+                            category: 'Engagement',
+                            label: lens.name,
+                          });
+                        }}
+                        className={`px-2 py-1.5 rounded-lg text-[10.5px] sm:text-[11px] font-semibold transition-all duration-200 truncate cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                          selected
+                            ? 'bg-primary text-[#020304] shadow-sm'
+                            : 'text-white/75 hover:text-white hover:bg-white/[0.05]'
+                        }`}
+                      >
+                        {lens.name.replace('Clareon ', '').replace('TECNIS ', '')}
+                      </button>
+                    );
+                  })}
+                </div>
+
                 {/* Header with Active Lens & Superpower Badge */}
-                <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-1.5 xs:gap-2 mb-2.5 pb-2 border-b border-white/[0.06]">
+                <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-1.5 xs:gap-2 mb-3 pb-2.5 border-b border-white/[0.06]">
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-ping shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(197,160,89,0.85)] shrink-0" />
                     <div className="min-w-0">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-primary block truncate">
+                      <span className="text-[10.5px] font-bold uppercase tracking-wider text-primary block truncate">
                         {activeData.name} Optical Reach
                       </span>
-                      <p className="text-[11px] sm:text-xs text-white font-medium truncate">
+                      <p className="text-xs text-white/95 font-medium truncate">
                         {activeData.tagline}
                       </p>
                     </div>
                   </div>
                   <span
-                    className={`text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border whitespace-nowrap self-start xs:self-auto shrink-0 ${activeData.badgeColor}`}
+                    className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border whitespace-nowrap self-start xs:self-auto shrink-0 ${activeData.badgeColor}`}
                   >
                     {activeData.badge}
                   </span>
                 </div>
 
-                {/* 3-Zone Visual Reach Spectrum */}
-                <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mb-2.5">
-                  {/* Distance */}
-                  <div className="p-1.5 sm:p-2 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center">
-                    <p className="text-[9px] uppercase tracking-wider font-semibold text-white/60 mb-0.5">
-                      Distance
-                    </p>
-                    <span className="inline-block text-[10px] sm:text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
-                      {activeData.distance.status}
-                    </span>
-                    <p className="text-[8px] sm:text-[9px] text-white/70 mt-1 leading-tight hidden xs:block">
-                      {activeData.distance.label}
-                    </p>
-                  </div>
+                {/* 3-Zone Visual Reach Spectrum with Clarity Bars */}
+                <div className="grid grid-cols-3 gap-2 mb-3">
+                  {[
+                    { key: 'Distance', data: activeData.distance },
+                    { key: 'Intermediate', data: activeData.intermediate },
+                    { key: 'Near (Reading)', data: activeData.near },
+                  ].map(({ key, data }) => {
+                    const barColor =
+                      data.percent >= 90
+                        ? 'bg-emerald-400'
+                        : data.percent >= 70
+                          ? 'bg-sky-400'
+                          : 'bg-amber-400';
+                    const textColor =
+                      data.percent >= 90
+                        ? 'text-emerald-400 bg-emerald-500/10'
+                        : data.percent >= 70
+                          ? 'text-sky-400 bg-sky-500/10'
+                          : 'text-amber-400 bg-amber-500/10';
 
-                  {/* Intermediate */}
-                  <div className="p-1.5 sm:p-2 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center">
-                    <p className="text-[9px] uppercase tracking-wider font-semibold text-white/60 mb-0.5">
-                      Intermediate
-                    </p>
-                    <span className="inline-block text-[10px] sm:text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
-                      {activeData.intermediate.status}
-                    </span>
-                    <p className="text-[8px] sm:text-[9px] text-white/70 mt-1 leading-tight hidden xs:block">
-                      {activeData.intermediate.label}
-                    </p>
-                  </div>
-
-                  {/* Near */}
-                  <div className="p-1.5 sm:p-2 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center">
-                    <p className="text-[9px] uppercase tracking-wider font-semibold text-white/60 mb-0.5">
-                      Near (Reading)
-                    </p>
-                    <span
-                      className={`inline-block text-[10px] sm:text-[11px] font-bold px-1.5 py-0.5 rounded ${
-                        activeData.near.percent >= 90
-                          ? 'text-emerald-400 bg-emerald-500/10'
-                          : activeData.near.percent >= 70
-                            ? 'text-sky-400 bg-sky-500/10'
-                            : 'text-amber-400 bg-amber-500/10'
-                      }`}
-                    >
-                      {activeData.near.status}
-                    </span>
-                    <p className="text-[8px] sm:text-[9px] text-white/70 mt-1 leading-tight hidden xs:block">
-                      {activeData.near.label}
-                    </p>
-                  </div>
+                    return (
+                      <div
+                        key={key}
+                        className="p-2 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center flex flex-col justify-between"
+                      >
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider font-semibold text-white/70 mb-1">
+                            {key}
+                          </p>
+                          <span
+                            className={`inline-block text-[10.5px] sm:text-[11px] font-bold px-1.5 py-0.5 rounded ${textColor}`}
+                          >
+                            {data.status}
+                          </span>
+                        </div>
+                        <div className="w-full h-1.5 rounded-full bg-white/[0.08] overflow-hidden my-2">
+                          <div
+                            className={`h-full rounded-full transition-all duration-500 ease-out ${barColor}`}
+                            style={{ width: `${data.percent}%` }}
+                          />
+                        </div>
+                        <p className="text-[10px] text-white/75 leading-tight hidden xs:block">
+                          {data.label}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
 
-                {/* Micro-Interaction Hint & Link to Simulator */}
-                <div className="flex items-center justify-between pt-1 border-t border-white/[0.05] text-[10px] text-white/60">
-                  <span className="flex items-center gap-1">
-                    <Icon name="SparklesIcon" size={11} className="text-primary shrink-0" />
-                    <span>Select card to view details &amp; optical reach</span>
-                  </span>
+                {/* Top Real-World Highlights for Active Lens */}
+                <div className="flex flex-wrap gap-1.5 mb-2.5">
+                  {activeData.highlightActivities.map((activity) => (
+                    <span
+                      key={activity}
+                      className="inline-flex items-center gap-1 text-[10.5px] text-white/85 bg-white/[0.04] border border-white/[0.07] rounded-full px-2.5 py-0.5"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
+                      {activity}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Footer Links */}
+                <div className="flex items-center justify-between pt-2 border-t border-white/[0.06] text-[11px]">
+                  <Link
+                    href={lenses.find((l) => l.name === activeData.name)?.href || '/clareon-vivity'}
+                    className="text-white/85 hover:text-primary font-semibold transition-colors flex items-center gap-1"
+                  >
+                    <span>Explore {activeData.name}</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
                   <a
                     href="#vision"
                     onClick={(e) => {
@@ -563,10 +589,13 @@ export default function HeroSection({
                       smoothScrollToElement('vision');
                       window.history.pushState(null, '', '#vision');
                     }}
-                    className="text-primary hover:underline font-semibold flex items-center gap-0.5 shrink-0"
+                    className="text-primary hover:underline font-semibold flex items-center gap-1 shrink-0"
                   >
+                    <Icon name="SparklesIcon" size={12} className="shrink-0" />
                     <span>Vision Simulator</span>
-                    <span className="font-mono text-xs">&rarr;</span>
+                    <span className="font-mono text-xs" aria-hidden="true">
+                      &rarr;
+                    </span>
                   </a>
                 </div>
               </div>

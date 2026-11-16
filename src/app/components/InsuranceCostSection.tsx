@@ -134,10 +134,10 @@ export default function InsuranceCostSection() {
                 {/* Featured glowing beacon */}
                 {isFeatured && (
                   <div
-                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#ecc97e] text-[#07080b] font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_14px_rgba(0,0,0,0.4)] border border-[#fff2cc]/60 z-20 whitespace-nowrap"
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 sm:px-4 py-1 rounded-full bg-[#ecc97e] text-[#07080b] font-extrabold text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_4px_14px_rgba(0,0,0,0.4)] border border-[#fff2cc]/60 z-20 max-w-[calc(100%-1.5rem)] text-center sm:whitespace-nowrap"
                     aria-hidden="true"
                   >
-                    Recommended For Active Lifestyles
+                    Recommended for Active Lifestyles
                   </div>
                 )}
 
@@ -241,7 +241,7 @@ export default function InsuranceCostSection() {
                   <span className="text-xs font-mono text-muted-foreground">Next 15–20 Years</span>
                 </div>
                 <h4 className="text-lg font-bold text-foreground mb-4">
-                  Standard Monofocal Lens + Lifetime Specs
+                  Standard Monofocal Lens + Lifetime Glasses
                 </h4>
 
                 <div className="space-y-3 text-xs sm:text-sm mb-6">

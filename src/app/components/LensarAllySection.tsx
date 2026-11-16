@@ -241,76 +241,78 @@ export default function LensarAllySection() {
                   </svg>
 
                   {/* Pulsing Capture Reticle */}
-                  <div className="absolute top-1/2 left-1/2 w-48 h-48 animate-biometric-pulse">
-                    <svg className="w-full h-full text-primary/60" viewBox="0 0 100 100">
-                      {/* Corner crop marks */}
-                      <path
-                        d="M 10 30 L 10 10 L 30 10"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                      />
-                      <path
-                        d="M 70 10 L 90 10 L 90 30"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                      />
-                      <path
-                        d="M 10 70 L 10 90 L 30 90"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                      />
-                      <path
-                        d="M 70 90 L 90 90 L 90 70"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                      />
-                      {/* Inner target crosshair */}
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="8"
-                        stroke="currentColor"
-                        strokeWidth="0.75"
-                        fill="none"
-                        strokeDasharray="2 2"
-                      />
-                      <line
-                        x1="50"
-                        y1="25"
-                        x2="50"
-                        y2="40"
-                        stroke="currentColor"
-                        strokeWidth="0.75"
-                      />
-                      <line
-                        x1="50"
-                        y1="60"
-                        x2="50"
-                        y2="75"
-                        stroke="currentColor"
-                        strokeWidth="0.75"
-                      />
-                      <line
-                        x1="25"
-                        y1="50"
-                        x2="40"
-                        y2="50"
-                        stroke="currentColor"
-                        strokeWidth="0.75"
-                      />
-                      <line
-                        x1="60"
-                        y1="50"
-                        x2="75"
-                        y2="50"
-                        stroke="currentColor"
-                        strokeWidth="0.75"
-                      />
-                    </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-40 h-40 sm:w-48 sm:h-48 animate-biometric-pulse">
+                      <svg className="w-full h-full text-primary/60" viewBox="0 0 100 100">
+                        {/* Corner crop marks */}
+                        <path
+                          d="M 10 30 L 10 10 L 30 10"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1"
+                        />
+                        <path
+                          d="M 70 10 L 90 10 L 90 30"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1"
+                        />
+                        <path
+                          d="M 10 70 L 10 90 L 30 90"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1"
+                        />
+                        <path
+                          d="M 70 90 L 90 90 L 90 70"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1"
+                        />
+                        {/* Inner target crosshair */}
+                        <circle
+                          cx="50"
+                          cy="50"
+                          r="8"
+                          stroke="currentColor"
+                          strokeWidth="0.75"
+                          fill="none"
+                          strokeDasharray="2 2"
+                        />
+                        <line
+                          x1="50"
+                          y1="25"
+                          x2="50"
+                          y2="40"
+                          stroke="currentColor"
+                          strokeWidth="0.75"
+                        />
+                        <line
+                          x1="50"
+                          y1="60"
+                          x2="50"
+                          y2="75"
+                          stroke="currentColor"
+                          strokeWidth="0.75"
+                        />
+                        <line
+                          x1="25"
+                          y1="50"
+                          x2="40"
+                          y2="50"
+                          stroke="currentColor"
+                          strokeWidth="0.75"
+                        />
+                        <line
+                          x1="60"
+                          y1="50"
+                          x2="75"
+                          y2="50"
+                          stroke="currentColor"
+                          strokeWidth="0.75"
+                        />
+                      </svg>
+                    </div>
                   </div>
 
                   {/* Horizontal Scan Line Sweep */}

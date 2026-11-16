@@ -110,8 +110,8 @@ export default function CataractEducationTeaserSection() {
                   </div>
                   <p className="text-xs text-muted-foreground leading-snug">
                     <strong className="text-white font-semibold">Permanent Replacement:</strong>{' '}
-                    While biological lens proteins denature with age, synthetic acrylic IOLs are
-                    inert and immune to cataracts for life.
+                    While natural lens proteins cloud with age, medical-grade acrylic IOLs stay
+                    crystal clear and can never develop cataracts.
                   </p>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default function CataractEducationTeaserSection() {
                 <Link
                   href="/cataract-education"
                   onClick={handleGuideClick}
-                  className="group/btn inline-flex items-center justify-center px-6 py-3.5 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_20px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none whitespace-nowrap"
+                  className="group/btn inline-flex items-center justify-center px-6 py-3.5 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] md:shadow-[0_4px_20px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none whitespace-nowrap"
                 >
                   <span>Deep Dive: Cataract Education</span>
                   <div className="ml-2.5 w-5 h-5 rounded-full bg-black/10 flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-1">
@@ -140,7 +140,7 @@ export default function CataractEducationTeaserSection() {
                   <div className="flex flex-col items-center gap-2">
                     <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
                     <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">
-                      Preparing 3D Optical Vitrine...
+                      Preparing 3D Optical Simulation...
                     </span>
                   </div>
                 </div>

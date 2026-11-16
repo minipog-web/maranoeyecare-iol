@@ -89,7 +89,7 @@ export default function LensTechnologyDeepDiveSection() {
 
             <button
               onClick={() => setActiveTab('vivity')}
-              className={`relative z-10 flex-1 min-h-[44px] py-2.5 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+              className={`relative z-10 flex-1 min-h-[44px] py-2.5 px-1.5 sm:px-3 text-[11px] sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none sm:whitespace-nowrap leading-tight ${
                 activeTab === 'vivity' ? 'text-[#e9c481]' : 'text-slate-200 hover:text-white'
               }`}
             >
@@ -101,7 +101,7 @@ export default function LensTechnologyDeepDiveSection() {
             </button>
             <button
               onClick={() => setActiveTab('panoptix')}
-              className={`relative z-10 flex-1 min-h-[44px] py-2.5 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+              className={`relative z-10 flex-1 min-h-[44px] py-2.5 px-1.5 sm:px-3 text-[11px] sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none sm:whitespace-nowrap leading-tight ${
                 activeTab === 'panoptix' ? 'text-[#a78bfa]' : 'text-slate-200 hover:text-white'
               }`}
             >
@@ -113,7 +113,7 @@ export default function LensTechnologyDeepDiveSection() {
             </button>
             <button
               onClick={() => setActiveTab('puresee')}
-              className={`relative z-10 flex-1 min-h-[44px] py-2.5 text-xs sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap ${
+              className={`relative z-10 flex-1 min-h-[44px] py-2.5 px-1.5 sm:px-3 text-[11px] sm:text-sm font-bold tracking-wide transition-colors duration-300 rounded-xl touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none sm:whitespace-nowrap leading-tight ${
                 activeTab === 'puresee' ? 'text-[#38bdf8]' : 'text-slate-200 hover:text-white'
               }`}
             >

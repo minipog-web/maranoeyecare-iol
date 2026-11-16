@@ -147,9 +147,9 @@ export default function TrustSection() {
             {/* Right: Awards & Experience */}
             <div className="space-y-6 sm:space-y-8">
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold tracking-wider uppercase">
-                  <Icon name="CheckBadgeIcon" size={14} className="text-primary" />
-                  40,000+ Successful Eye Surgeries
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1d180e] border border-primary/60 text-[#f2d085] text-xs font-bold tracking-wider uppercase shadow-sm">
+                  <Icon name="CheckBadgeIcon" size={14} className="text-[#f2d085] shrink-0" />
+                  <span>40,000+ Successful Eye Surgeries</span>
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-foreground">
                   Dr. Matthew Marano Jr., MD
@@ -320,9 +320,9 @@ export default function TrustSection() {
             {/* Right / Left on Desktop: Credentials & Experience */}
             <div className="space-y-6 sm:space-y-8 lg:order-1">
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold tracking-wider uppercase">
-                  <Icon name="AcademicCapIcon" size={14} className="text-primary" />
-                  Cornea, Cataract &amp; Laser Vision Specialist
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1d180e] border border-primary/60 text-[#f2d085] text-xs font-bold tracking-wider uppercase shadow-sm">
+                  <Icon name="AcademicCapIcon" size={14} className="text-[#f2d085] shrink-0" />
+                  <span>Cornea, Cataract &amp; Laser Vision Specialist</span>
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-foreground">
                   Dr. Sherief Raouf, MD
