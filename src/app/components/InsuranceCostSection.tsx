@@ -77,7 +77,7 @@ export default function InsuranceCostSection() {
       className="py-14 sm:py-22 lg:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
       aria-label="Insurance and Pricing Transparency"
     >
-      <div id="financing" className="relative -top-28 scroll-mt-24 sm:scroll-mt-28" />
+      <div id="financing" className="scroll-mt-24 sm:scroll-mt-28" />
       {/* Financial Vault Directional Lighting (Zero circular blobs) */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-primary/[0.06] via-transparent to-primary/[0.04] pointer-events-none"

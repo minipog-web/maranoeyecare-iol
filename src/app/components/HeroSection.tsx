@@ -212,26 +212,51 @@ export default function HeroSection({
             </p>
 
             {/* Action CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-2">
-              <a
-                href="#lens-quiz"
-                onClick={(e) => {
-                  e.preventDefault();
-                  smoothScrollToElement('lens-quiz');
-                  window.history.pushState(null, '', '#lens-quiz');
-                  trackEvent({
-                    action: 'hero_primary_cta_click',
-                    category: 'Engagement',
-                    label: 'Check My Lens Candidacy',
-                  });
-                }}
-                className="group btn-premium-chic inline-flex items-center justify-between sm:justify-center gap-3 sm:gap-4 pl-5 sm:pl-8 pr-2.5 sm:pr-3 py-3 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-bold transition-all touch-manipulation min-h-[52px] sm:min-h-[56px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-              >
-                <span>Check My Lens Candidacy</span>
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:scale-105">
-                  <Icon name="ArrowRightIcon" size={18} className="text-current" />
-                </div>
-              </a>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 sm:gap-4 w-full sm:w-auto mb-3">
+              <div className="flex flex-col items-stretch sm:items-start">
+                <a
+                  href="#lens-quiz"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    smoothScrollToElement('lens-quiz');
+                    window.history.pushState(null, '', '#lens-quiz');
+                    trackEvent({
+                      action: 'hero_primary_cta_click',
+                      category: 'Engagement',
+                      label: 'Check My Lens Candidacy',
+                    });
+                  }}
+                  className="group btn-premium-chic inline-flex items-center justify-between sm:justify-center gap-3 sm:gap-4 pl-5 sm:pl-8 pr-2.5 sm:pr-3 py-3 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-bold transition-all touch-manipulation min-h-[52px] sm:min-h-[56px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                >
+                  <span>Check My Lens Candidacy</span>
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:scale-105">
+                    <Icon name="ArrowRightIcon" size={18} className="text-current" />
+                  </div>
+                </a>
+                <a
+                  href="#financing"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    smoothScrollToElement('financing');
+                    window.history.pushState(null, '', '#financing');
+                    trackEvent({
+                      action: 'hero_financing_click',
+                      category: 'Engagement',
+                      label: 'Financing available as low as $170/mo',
+                    });
+                  }}
+                  className="group mt-2.5 inline-flex items-center gap-1.5 text-xs text-white/75 hover:text-primary transition-colors self-start pl-1 py-0.5 rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                >
+                  <Icon name="CreditCardIcon" size={13} className="text-primary/85 shrink-0" />
+                  <span className="underline decoration-white/25 underline-offset-4 group-hover:decoration-primary transition-colors">
+                    Financing from{' '}
+                    <span className="text-white/95 group-hover:text-primary font-medium transition-colors">
+                      $170/mo
+                    </span>{' '}
+                    · 0% APR available
+                  </span>
+                </a>
+              </div>
               <a
                 href="#lenses"
                 onClick={(e) => {
