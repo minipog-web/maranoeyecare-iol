@@ -149,12 +149,13 @@ export default function Footer() {
             <div className="space-y-3">
               <p id="footnote-1" className="scroll-mt-24">
                 <strong className="text-foreground">
-                  [1] PanOptix Pro Spectacle Independence:
+                  [1] PanOptix Spectacle Independence Meta-Analysis (Zhu et al., 2023):
                 </strong>{' '}
-                Based on a peer-reviewed clinical meta-analysis of 13 global studies evaluating 513
-                patients (Zhu et al., <em>Ophthalmol Ther</em> 2023) and Alcon FDA PMA Approval
-                registry. Demonstrates an 88% light transmission rate to the retina and a 99%
-                patient satisfaction and high spectacle independence rate.{' '}
+                A peer-reviewed meta-analysis of 13 global studies evaluating 513 patients (Zhu et
+                al., <em>Ophthalmol Ther</em> 2023) on the original AcrySof® IQ PanOptix® platform
+                found a 91.6% complete spectacle independence rate (and 89.6% for near vision).
+                Clinical registry evidence comes primarily from the original PanOptix platform while
+                PanOptix® Pro-specific studies mature.{' '}
                 <a
                   href="https://pubmed.ncbi.nlm.nih.gov/36745314/"
                   target="_blank"
@@ -213,6 +214,25 @@ export default function Footer() {
                   className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
                 >
                   [View AAO IOL Guide]
+                </a>
+              </p>
+              <p id="footnote-5" className="scroll-mt-24">
+                <strong className="text-foreground">
+                  [5] PanOptix® Pro Optics &amp; Alcon US FDA PMA Registry:
+                </strong>{' '}
+                Clareon® PanOptix® Pro (launched in the US in May 2025) utilizes Alcon ENLIGHTEN®
+                NXT optical technology delivering 94% light utilization (6% light scatter—50% less
+                scatter than the original 88% AcrySof/Clareon PanOptix). Separately, in Alcon’s
+                127-patient US FDA Premarket Approval questionnaire for the original AcrySof
+                PanOptix (PMA P040020/S087), 99.2% of patients reported they would choose the same
+                lens again.{' '}
+                <a
+                  href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040020S087"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                >
+                  [View FDA PMA Registry]
                 </a>
               </p>
               <p className="text-[10px] text-muted-foreground/60 border-t border-border/20 pt-3 select-none">

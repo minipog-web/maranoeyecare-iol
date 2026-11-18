@@ -4,19 +4,15 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Icon from '@/components/ui/AppIcon';
+import LazySimulatorGate from '@/components/ui/LazySimulatorGate';
+import { Cataract3DPreviewPlaceholder } from '@/components/ui/SimulatorPreviewPlaceholders';
 import { trackEvent } from '@/lib/gtag';
 
 const CataractEducation3DViewer = dynamic(
   () => import('@/components/cataract-3d/CataractEducation3DViewer'),
   {
     ssr: false,
-    loading: () => (
-      <div className="w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl bg-[#080b12] border border-white/10 flex flex-col items-center justify-center p-6 text-center animate-pulse">
-        <div className="w-10 h-10 rounded-full border-2 border-primary/30 border-t-primary animate-spin mb-3" />
-        <p className="text-sm font-semibold text-white">Loading 3D Anatomical Lens Simulation...</p>
-        <p className="text-xs text-muted-foreground mt-1">Initializing WebGL optical shaders</p>
-      </div>
-    ),
+    loading: () => <Cataract3DPreviewPlaceholder variant="full" isLoading />,
   }
 );
 
@@ -321,15 +317,20 @@ export default function CataractEducationClient() {
       <section className="px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-16 sm:mb-20">
         {/* 3D Anatomical Time-Lapse Viewer */}
         <div className="max-w-5xl mx-auto mb-10">
-          <CataractEducation3DViewer
-            activeStageId={activeStageId}
-            onStageChange={(newStageId) => {
-              const matchedStage = progressionStages.find((s) => s.id === newStageId);
-              if (matchedStage) {
-                handleStageSelect(matchedStage.id, matchedStage.stageName);
-              }
-            }}
-          />
+          <LazySimulatorGate
+            rootMargin="250px"
+            placeholder={<Cataract3DPreviewPlaceholder variant="full" />}
+          >
+            <CataractEducation3DViewer
+              activeStageId={activeStageId}
+              onStageChange={(newStageId) => {
+                const matchedStage = progressionStages.find((s) => s.id === newStageId);
+                if (matchedStage) {
+                  handleStageSelect(matchedStage.id, matchedStage.stageName);
+                }
+              }}
+            />
+          </LazySimulatorGate>
         </div>
 
         {/* Unified Master Interactive Simulator Card */}

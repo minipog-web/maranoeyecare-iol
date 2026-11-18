@@ -117,6 +117,7 @@ export default function BookingSection({
       message: '',
     };
   });
+  const isSingleStep = Boolean(preselectedLens);
   const [step, setStep] = useState<1 | 2>(1);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -188,7 +189,9 @@ export default function BookingSection({
 
   const validateField = (name: string, value: string): string => {
     const singleFieldBooking = { ...form, [name]: value };
-    const allErrors = validateConsultationBooking(singleFieldBooking);
+    const allErrors = validateConsultationBooking(singleFieldBooking, {
+      requireEmail: !isSingleStep,
+    });
     return allErrors[name] || '';
   };
 
@@ -261,9 +264,11 @@ export default function BookingSection({
     const newErrors = validateAllRequiredFields();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      const step1OnlyFields = ['firstName', 'lastName', 'phone', 'location'];
-      if (Object.keys(newErrors).some((k) => step1OnlyFields.includes(k))) {
-        setStep(1);
+      if (!isSingleStep) {
+        const step1OnlyFields = ['firstName', 'lastName', 'phone', 'location'];
+        if (Object.keys(newErrors).some((k) => step1OnlyFields.includes(k))) {
+          setStep(1);
+        }
       }
       return;
     }
@@ -691,31 +696,35 @@ export default function BookingSection({
                     <h3
                       className={`font-display text-xl sm:text-2xl font-medium text-foreground ${styles.formHeader}`}
                     >
-                      {step === 1
+                      {isSingleStep || step === 1
                         ? 'Reserve Your Consultation with Our Surgeons'
                         : 'Customize Your Visual Goals'}
                     </h3>
-                    <span className="text-xs font-semibold text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full whitespace-nowrap shrink-0">
-                      Step {step} of 2
-                    </span>
+                    {!isSingleStep && (
+                      <span className="text-xs font-semibold text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full whitespace-nowrap shrink-0">
+                        Step {step} of 2
+                      </span>
+                    )}
                   </div>
-                  {/* Progress bar */}
-                  <div className="h-1.5 w-full bg-white/[0.06] rounded-full overflow-hidden">
-                    <div
-                      className={`h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out ${
-                        step === 1 ? 'w-1/2' : 'w-full'
-                      }`}
-                    />
-                  </div>
+                  {/* Progress bar (2-step mode only) */}
+                  {!isSingleStep && (
+                    <div className="h-1.5 w-full bg-white/[0.06] rounded-full overflow-hidden">
+                      <div
+                        className={`h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out ${
+                          step === 1 ? 'w-1/2' : 'w-full'
+                        }`}
+                      />
+                    </div>
+                  )}
                   <div className="flex flex-wrap items-center justify-between gap-2 mt-2">
                     <p className="text-xs text-muted-foreground">
-                      {step === 1
+                      {isSingleStep || step === 1
                         ? 'Complete this 30-second form, or call any office directly on the left.'
                         : 'Optional, helps our surgeons prepare for your visit.'}
                     </p>
                     <div className="flex items-center gap-1.5 text-xs text-primary font-bold tracking-wide uppercase">
                       <Icon name="LockClosedIcon" size={14} className="shrink-0" />
-                      {step === 1
+                      {isSingleStep || step === 1
                         ? 'HIPAA Compliant · No Medical History Required · Pressure Free'
                         : 'Privacy Protected & HIPAA Secure'}
                     </div>
@@ -750,7 +759,13 @@ export default function BookingSection({
                       </div>
                       <button
                         type="button"
-                        onClick={() => setStep(2)}
+                        onClick={() => {
+                          if (isSingleStep) {
+                            document.getElementById('lens')?.focus();
+                          } else {
+                            setStep(2);
+                          }
+                        }}
                         className="inline-flex items-center justify-center min-h-[36px] px-2.5 rounded-lg text-xs text-primary hover:text-white hover:bg-white/[0.06] font-semibold underline underline-offset-4 shrink-0 touch-manipulation transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                       >
                         Change
@@ -783,8 +798,26 @@ export default function BookingSection({
                   </div>
                 )}
 
-                {step === 1 ? (
-                  <form onSubmit={handleStep1} className="space-y-4 sm:space-y-5" noValidate>
+                {isSingleStep || step === 1 ? (
+                  <form
+                    name={isSingleStep ? 'consultation' : undefined}
+                    data-netlify={isSingleStep ? 'true' : undefined}
+                    data-netlify-honeypot={isSingleStep ? 'bot-field' : undefined}
+                    onSubmit={isSingleStep ? handleSubmit : handleStep1}
+                    className="space-y-4 sm:space-y-5"
+                    noValidate
+                  >
+                    {isSingleStep && (
+                      <>
+                        <input type="hidden" name="form-name" value="consultation" />
+                        <p className="hidden" aria-hidden="true">
+                          <label>
+                            Don&apos;t fill this out if you&apos;re human:{' '}
+                            <input name="bot-field" tabIndex={-1} />
+                          </label>
+                        </p>
+                      </>
+                    )}
                     {/* Name */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -990,16 +1023,94 @@ export default function BookingSection({
                       )}
                     </div>
 
+                    {isSingleStep && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label htmlFor="email" className={labelClass}>
+                            Email Address{' '}
+                            <span className="text-muted-foreground normal-case font-normal">
+                              (optional)
+                            </span>
+                          </label>
+                          <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            autoComplete="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            onBlur={(e) =>
+                              setForm((prev) => ({ ...prev, email: e.target.value.trim() }))
+                            }
+                            placeholder="jane.smith@example.com"
+                            maxLength={100}
+                            aria-invalid={errors.email ? 'true' : 'false'}
+                            aria-describedby={errors.email ? 'email-error' : undefined}
+                            className={`${inputClass} ${
+                              errors.email
+                                ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                                : ''
+                            }`}
+                          />
+                          {errors.email && (
+                            <p
+                              id="email-error"
+                              role="alert"
+                              className="text-red-400 text-xs mt-1.5 font-medium"
+                            >
+                              {errors.email}
+                            </p>
+                          )}
+                        </div>
+                        <div>
+                          <label htmlFor="lens" className={labelClass}>
+                            Lens I&apos;m Interested In{' '}
+                            <span className="text-muted-foreground normal-case font-normal">
+                              (optional)
+                            </span>
+                          </label>
+                          <select
+                            id="lens"
+                            name="lens"
+                            value={form.lens}
+                            onChange={handleChange}
+                            className={inputClass}
+                          >
+                            <option value="">Select a lens (optional)</option>
+                            {lensOptions.map((l) => (
+                              <option key={l} value={l}>
+                                {l}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 px-5 py-2.5 sm:py-3 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.99] min-h-[48px] touch-manipulation shadow-[0_2px_14px_rgba(197,160,89,0.25)] mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                      disabled={isSingleStep && loading}
+                      className="w-full flex items-center justify-center gap-2 px-5 py-2.5 sm:py-3 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px] touch-manipulation shadow-[0_2px_14px_rgba(197,160,89,0.25)] mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     >
-                      <span>Save My Info &amp; Choose Lens (Final Step)</span>
-                      <Icon
-                        name="ArrowRightIcon"
-                        size={16}
-                        className="shrink-0 transition-transform group-hover:translate-x-1"
-                      />
+                      {isSingleStep && loading ? (
+                        <span className="flex items-center gap-2.5 text-sm font-bold">
+                          <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                          Submitting Request...
+                        </span>
+                      ) : (
+                        <>
+                          <span>
+                            {isSingleStep
+                              ? 'Request Consultation with Our Surgeons'
+                              : 'Save My Info & Choose Lens (Final Step)'}
+                          </span>
+                          <Icon
+                            name="ArrowRightIcon"
+                            size={16}
+                            className="shrink-0 transition-transform group-hover:translate-x-1"
+                          />
+                        </>
+                      )}
                     </button>
 
                     <div className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] sm:text-xs font-semibold mt-3 text-center leading-snug">

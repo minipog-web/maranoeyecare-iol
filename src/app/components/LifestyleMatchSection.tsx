@@ -38,10 +38,10 @@ const profiles = [
     ],
     recommendation: 'PanOptix Pro',
     reason:
-      'Advanced trifocal optics focus light at near (40 cm), intermediate (60 cm), and far distances, enabling 99% of patients to go through their day completely glasses-free.',
+      'Advanced trifocal optics focus light at near (40 cm), intermediate (60 cm), and far distances, enabling 91.6% of patients in meta-analysis studies to go through their day completely glasses-free.',
     image: '/assets/images/profile_conservative_candidate.jpg',
     imageAlt: 'Avid reader enjoying fine book print comfortably outdoors without glasses',
-    stat: '99% of PanOptix patients would choose the same lens again [1]',
+    stat: '99.2% of PanOptix patients would choose the same lens again [5]',
   },
   {
     id: 'innovator',

@@ -20,7 +20,7 @@ const variants: Record<string, Badge[]> = {
     { icon: 'AcademicCapIcon', text: 'Board-Certified Ophthalmologists' },
   ],
   clinical: [
-    { icon: 'CheckCircleIcon', text: '99% Patient Satisfaction Rate [1]' },
+    { icon: 'CheckCircleIcon', text: '99.2% Would Choose Again (FDA) [5]' },
     { icon: 'BeakerIcon', text: 'Biometry-Guided Lens Selection' },
     { icon: 'BoltIcon', text: 'LENSAR® Femto Laser on Every Premium IOL' },
   ],

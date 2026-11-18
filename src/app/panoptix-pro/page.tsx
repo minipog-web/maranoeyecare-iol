@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title:
     'Clareon PanOptix Pro Trifocal IOL Guide: Near, Intermediate & Distance | Marano Eye Care NJ',
   description:
-    'Comprehensive clinical guide to the Clareon® PanOptix® Pro Trifocal IOL by Alcon. Discover ENLIGHTEN® optical technology, 88% light transmission, 99% patient satisfaction, and comparisons with Vivity and PureSee.',
+    'Comprehensive clinical guide to the Clareon® PanOptix® Pro Trifocal IOL by Alcon. Discover ENLIGHTEN® NXT optical technology, 94% light utilization, 99% patient satisfaction, and comparisons with Vivity and PureSee.',
   alternates: {
     canonical: '/panoptix-pro',
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: '/assets/images/panoptix_iol_real.jpg',
         width: 1200,
         height: 630,
-        alt: 'Clareon PanOptix Pro Trifocal IOL with ENLIGHTEN Optical Technology',
+        alt: 'Clareon PanOptix Pro Trifocal IOL with ENLIGHTEN NXT Optical Technology',
       },
     ],
     locale: 'en_US',
@@ -43,7 +43,7 @@ const panoptixSchemas = [
     url: 'https://premium-iol.maranoeye.com/panoptix-pro',
     name: 'Clareon PanOptix Pro Trifocal IOL Clinical Guide & Outcomes | Marano Eye Care',
     description:
-      'Detailed clinical overview of the Alcon Clareon PanOptix Pro trifocal intraocular lens, ENLIGHTEN optical design, 88% light transmission, and 3-way comparisons.',
+      'Detailed clinical overview of the Alcon Clareon PanOptix Pro trifocal intraocular lens, ENLIGHTEN NXT optical design, 94% light utilization, and 3-way comparisons.',
     medicalAudience: {
       '@type': 'MedicalAudience',
       audienceType: 'Cataract Patients, Presbyopia Patients, Avid Readers, Active Professionals',
@@ -53,7 +53,7 @@ const panoptixSchemas = [
       name: 'Clareon PanOptix Pro Trifocal IOL',
       manufacturer: 'Alcon',
       description:
-        'Trifocal intraocular lens utilizing proprietary ENLIGHTEN optical technology delivering dedicated focal peaks at near (40 cm), intermediate (60 cm), and distance for high spectacle independence.',
+        'Trifocal intraocular lens utilizing proprietary ENLIGHTEN NXT optical technology delivering 94% light utilization and dedicated focal peaks at near (40 cm), intermediate (60 cm), and distance for high spectacle independence.',
     },
   },
   {
@@ -84,7 +84,7 @@ const panoptixSchemas = [
         name: 'What makes Clareon PanOptix Pro unique among trifocal lenses?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Clareon PanOptix Pro utilizes proprietary ENLIGHTEN® optical technology that transmits 88% of light directly to the retina while providing a dedicated intermediate focal peak at 60 cm (natural arm’s length). Older European trifocals placed intermediate focus at 80 cm, forcing patients to stretch their arms too far to read computer screens and dashboards.',
+          text: 'Launched in the US in May 2025, Clareon PanOptix Pro utilizes proprietary ENLIGHTEN® NXT optical technology that delivers 94% light utilization (6% light scatter—50% less scatter than the original 88% PanOptix platform) while providing a dedicated intermediate focal peak at 60 cm (natural arm’s length). Older European trifocals placed intermediate focus at 80 cm, forcing patients to stretch their arms too far to read computer screens and dashboards.',
         },
       },
       {
@@ -92,7 +92,7 @@ const panoptixSchemas = [
         name: 'Will I be completely free from reading glasses with PanOptix Pro?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'In clinical trials and peer-reviewed meta-analyses covering over 500 patients, Clareon PanOptix demonstrated over 85–90%+ complete spectacle freedom across all distances. Patients can read smartphones, paperback novels, and menus without reading glasses.',
+          text: 'In clinical trials and peer-reviewed meta-analyses covering over 500 patients (data primarily from the original PanOptix platform while Pro-specific studies mature), Clareon PanOptix demonstrated over 85–90%+ complete spectacle freedom across all distances. Patients can read smartphones, paperback novels, and menus without reading glasses.',
         },
       },
       {

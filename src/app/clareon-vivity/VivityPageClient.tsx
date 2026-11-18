@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import VivityPureSeeCallout from '@/components/VivityPureSeeCallout';
 import { trackEvent } from '@/lib/gtag';
 import { handleSpotlightMouseMove, renderFootnoteText, smoothScrollToElement } from '@/lib/ui';
 
@@ -18,7 +19,7 @@ const comparisonMetrics: ComparisonMetric[] = [
   {
     title: 'Optical Technology',
     vivity: 'X-WAVE™ Non-Diffractive Wavefront Shaping [2]',
-    panoptix: 'ENLIGHTEN® Diffractive Trifocal (Concentric Rings) [1]',
+    panoptix: 'ENLIGHTEN® NXT Diffractive Trifocal (Concentric Rings) [1]',
     puresee: 'Proprietary Refractive EDOF Surface Zonal Optics [3]',
   },
   {
@@ -26,7 +27,7 @@ const comparisonMetrics: ComparisonMetric[] = [
     vivity:
       '~100% transmitted light utilization (Non-diffractive wavefront shaping, zero light splitting) [2]',
     panoptix:
-      '88% light transmitted to retina (Highest efficiency among diffractive trifocals; 12% diffractive loss) [1]',
+      '94% light utilization (6% light scatter—50% less scatter than original 88% PanOptix) [1]',
     puresee: '~100% transmitted light (Pure refractive focus, zero diffractive loss) [3]',
   },
   {
@@ -461,7 +462,7 @@ export default function VivityPageClient() {
                 </div>
                 <div className="mt-8 pt-4 border-t border-white/[0.06] text-[11px] font-mono font-bold text-primary uppercase tracking-widest flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  100% Light Energy Utilized
+                  Zero Diffractive Light Splitting
                 </div>
               </div>
             </div>
@@ -795,10 +796,10 @@ export default function VivityPageClient() {
                     <span className="text-muted-foreground">Near Reading Focus:</span>
                     <span className="font-bold text-[#a78bfa] font-mono">20/20 at 40 cm</span>
                   </div>
-                  <div className="flex justify-between py-1">
-                    <span className="text-muted-foreground">Spectacle Freedom:</span>
-                    <span className="font-bold text-emerald-400 font-mono">
-                      {renderFootnoteText('99% freedom [1]')}
+                  <div className="flex justify-between gap-3 py-1">
+                    <span className="text-muted-foreground shrink-0">Spectacle Freedom:</span>
+                    <span className="font-bold text-emerald-400 font-mono text-right">
+                      {renderFootnoteText('91.6% Complete Glasses Freedom (Meta-analysis) [1, 5]')}
                     </span>
                   </div>
                 </div>
@@ -888,6 +889,8 @@ export default function VivityPageClient() {
               </tbody>
             </table>
           </div>
+
+          <VivityPureSeeCallout />
         </div>
       </section>
 

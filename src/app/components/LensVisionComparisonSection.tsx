@@ -45,7 +45,7 @@ const lenses = [
     ],
     highlights: [
       'Complete freedom from glasses and contacts',
-      '99% of patients would choose this lens again [1]',
+      '99.2% of patients would choose this lens again [5]',
       'Full visual spectrum (Near, Intermediate, Distance)',
       'Designed for reading, driving, and active living',
     ],
@@ -1553,10 +1553,12 @@ export default function LensVisionComparisonSection() {
         <p className="text-center text-xs sm:text-sm text-white/90 mt-8 sm:mt-10 max-w-4xl mx-auto px-4 uppercase tracking-[0.08em] leading-relaxed font-medium">
           Simulations are for illustrative purposes only. Specifications displayed in charts above
           represent spectacle independence rates from published clinical data (PanOptix Pro:
-          meta-analysis of 13 studies with 513 patients; Vivity: Alcon clinical data; PureSee: J&J
-          MedTech FDA registry clinical study data). Individual patient experiences and clinical
-          results may vary significantly. A comprehensive consultation with Dr. Marano or Dr. Raouf
-          is required for medical diagnosis and personalized treatment planning.
+          clinical registry data comes primarily from the original PanOptix platform—meta-analysis
+          of 13 studies with 513 patients—while Pro-specific studies mature; Vivity: Alcon clinical
+          data; PureSee: J&J MedTech FDA registry clinical study data). Individual patient
+          experiences and clinical results may vary significantly. A comprehensive consultation with
+          Dr. Marano or Dr. Raouf is required for medical diagnosis and personalized treatment
+          planning.
         </p>
       </div>
     </section>

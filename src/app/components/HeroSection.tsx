@@ -25,7 +25,7 @@ const lenses = [
     name: 'PanOptix Pro',
     tag: 'Trifocal',
     subtitle: 'Full trifocal range',
-    detail: '99% would choose this lens again [1]',
+    detail: '99.2% would choose this lens again [5]',
     src: '/assets/images/panoptix_hero.jpg',
     alt: 'Clareon PanOptix Pro trifocal IOL, trifocal intraocular lens',
     href: '/panoptix-pro',
@@ -82,8 +82,8 @@ const lensRangeData: Record<
   },
   'PanOptix Pro': {
     name: 'PanOptix Pro',
-    tagline: 'High-Definition Trifocal Optics (ENLIGHTEN®)',
-    badge: '99% Daily Glasses Independence',
+    tagline: 'High-Definition Trifocal Optics (ENLIGHTEN® NXT)',
+    badge: '91.6% Complete Glasses Freedom',
     badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
     distance: { status: '100% Crisp', percent: 100, label: 'Driving, Scenery, Golf' },
     intermediate: {
@@ -322,7 +322,8 @@ export default function HeroSection({
               </span>
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(197,160,89,0.8)] shrink-0" />
-                No Out-of-Pocket Consultation Cost
+                Complimentary 15-minute IOL lens education &amp; screening (full diagnostic medical
+                exam billed to insurance)
               </span>
             </div>
 

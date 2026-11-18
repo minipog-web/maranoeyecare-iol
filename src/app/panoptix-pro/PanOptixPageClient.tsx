@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import VivityPureSeeCallout from '@/components/VivityPureSeeCallout';
 import { trackEvent } from '@/lib/gtag';
 import { handleSpotlightMouseMove, renderFootnoteText, smoothScrollToElement } from '@/lib/ui';
 
@@ -17,14 +18,14 @@ interface ComparisonMetric {
 const comparisonMetrics: ComparisonMetric[] = [
   {
     title: 'Optical Technology',
-    panoptix: 'ENLIGHTEN® Diffractive Trifocal (Concentric Rings) [1]',
+    panoptix: 'ENLIGHTEN® NXT Diffractive Trifocal (Concentric Rings) [1]',
     vivity: 'X-WAVE™ Non-Diffractive Wavefront Shaping [2]',
     puresee: 'Proprietary Refractive EDOF Surface Zonal Optics [3]',
   },
   {
     title: 'Light Transmission Efficiency',
     panoptix:
-      '88% light transmitted to retina (Highest efficiency among diffractive trifocals) [1]',
+      '94% light utilization (6% light scatter—50% less scatter than original 88% PanOptix) [1]',
     vivity: '~100% transmitted light utilization (Non-diffractive, zero light splitting) [2]',
     puresee: '~100% transmitted light (Pure refractive focus, zero diffractive loss) [3]',
   },
@@ -66,7 +67,8 @@ const comparisonMetrics: ComparisonMetric[] = [
   },
   {
     title: 'Overall Patient Satisfaction',
-    panoptix: '99% of patients would choose PanOptix again (PubMed meta-analysis) [1]',
+    panoptix:
+      '99.2% of patients would choose PanOptix again (original PanOptix US FDA PMA questionnaire; Pro studies maturing) [5]',
     vivity: '94%+ high satisfaction in clinical registries [2]',
     puresee: 'High satisfaction in international clinical trials [3]',
   },
@@ -81,12 +83,12 @@ const faqs = [
   {
     question: 'Will I be able to read books and smartphones without glasses?',
     answer:
-      'Yes. Clareon PanOptix Pro offers the highest rate of near reading independence among FDA-approved lenses. Over 85–90% of patients achieve complete freedom from glasses for reading books, smartphones, text messages, restaurant menus, and food labels [1].',
+      'Yes. Clareon PanOptix Pro offers the highest rate of near reading independence among FDA-approved lenses. Over 85–90% of patients achieve complete freedom from glasses for reading books, smartphones, text messages, restaurant menus, and food labels (peer-reviewed clinical registry data comes primarily from the original PanOptix platform while Pro-specific studies mature) [1].',
   },
   {
     question: 'What is neuroadaptation and how long does it take?',
     answer:
-      'Because the ENLIGHTEN® optical design splits incoming light across near, intermediate, and distance focal planes simultaneously, your brain’s visual cortex must learn to select the sharp image while filtering out minor background focal rings. This natural process is called neuroadaptation. Most patients adapt within 2 to 8 weeks, during which subtle night halos around headlights become soft and imperceptible.',
+      'Because the ENLIGHTEN® NXT optical design splits incoming light across near, intermediate, and distance focal planes simultaneously, your brain’s visual cortex must learn to select the sharp image while filtering out minor background focal rings. This natural process is called neuroadaptation. Most patients adapt within 2 to 8 weeks, during which subtle night halos around headlights become soft and imperceptible.',
   },
   {
     question: 'Is there a Toric option for PanOptix Pro to correct astigmatism?',
@@ -182,7 +184,7 @@ export default function PanOptixPageClient() {
               onClick={(e) => handleAnchorClick(e, 'enlighten', 'subnav_enlighten')}
               className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
             >
-              ENLIGHTEN® Tech
+              ENLIGHTEN® NXT Tech
             </a>
             <a
               href="#simulator"
@@ -240,9 +242,10 @@ export default function PanOptixPageClient() {
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-2xl font-light">
-                Engineered for maximum spectacle independence. The Clareon PanOptix Pro uses
-                proprietary ENLIGHTEN® optical design to deliver continuous high-definition vision
-                from 40 cm reading to 60 cm intermediate computer screens and distant horizons.
+                Engineered for maximum spectacle independence. Launched in the US in May 2025, the
+                Clareon PanOptix Pro uses proprietary ENLIGHTEN® NXT optical design to deliver 94%
+                light utilization and continuous high-definition vision from 40 cm reading to 60 cm
+                intermediate computer screens and distant horizons.
               </p>
 
               {/* 4 Clinical Benefit Badges (Doppelrand Architecture) */}
@@ -254,10 +257,10 @@ export default function PanOptixPageClient() {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-white uppercase tracking-wider">
-                        88% Light to Retina
+                        94% Light Utilization
                       </p>
                       <p className="text-xs text-muted-foreground leading-tight mt-0.5">
-                        {renderFootnoteText('Highest among trifocal IOLs [1]')}
+                        {renderFootnoteText('50% less scatter than original PanOptix [5]')}
                       </p>
                     </div>
                   </div>
@@ -289,7 +292,7 @@ export default function PanOptixPageClient() {
                         99% Patient Satisfaction
                       </p>
                       <p className="text-xs text-muted-foreground leading-tight mt-0.5">
-                        {renderFootnoteText('513-patient meta-analysis [1]')}
+                        {renderFootnoteText('Original PanOptix US FDA PMA questionnaire [5]')}
                       </p>
                     </div>
                   </div>
@@ -351,7 +354,7 @@ export default function PanOptixPageClient() {
                 <div className="w-full h-full rounded-[calc(40px-10px)] bg-[#07080b] border border-white/[0.08] relative overflow-hidden flex items-center justify-center">
                   <AppImage
                     src="/assets/images/panoptix_iol_real.jpg"
-                    alt="Clareon PanOptix Pro Trifocal IOL with real ENLIGHTEN optical rings and STABLEFORCE haptics"
+                    alt="Clareon PanOptix Pro Trifocal IOL with real ENLIGHTEN NXT optical rings and STABLEFORCE haptics"
                     fill
                     priority={true}
                     sizes="(max-width: 640px) 90vw, 440px"
@@ -360,7 +363,7 @@ export default function PanOptixPageClient() {
 
                   {/* Optical Feature Floating Glass Pills */}
                   <div className="absolute top-5 left-5 z-20 px-3.5 py-1.5 rounded-full bg-black/80 border border-[#8b5cf6]/40 backdrop-blur-xl text-[10px] font-mono font-bold text-[#a78bfa] tracking-widest uppercase shadow-lg">
-                    ENLIGHTEN® Trifocal Design
+                    ENLIGHTEN® NXT Trifocal Design
                   </div>
                   <div className="absolute bottom-5 right-5 z-20 px-3.5 py-1.5 rounded-full bg-black/80 border border-white/20 backdrop-blur-xl text-[10px] font-mono font-medium text-white/90 tracking-widest uppercase shadow-lg">
                     STABLEFORCE® Haptics
@@ -372,7 +375,7 @@ export default function PanOptixPageClient() {
         </div>
       </section>
 
-      {/* ── SECTION 1: THE OPTICAL PHYSICS OF ENLIGHTEN® TECHNOLOGY ── */}
+      {/* ── SECTION 1: THE OPTICAL PHYSICS OF ENLIGHTEN® NXT TECHNOLOGY ── */}
       <section
         id="enlighten"
         className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#06070a] scroll-mt-24 sm:scroll-mt-28"
@@ -386,18 +389,18 @@ export default function PanOptixPageClient() {
               Optical Physics &amp; Bio-Engineering
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-6 tracking-tight">
-              How ENLIGHTEN® Delivers 88% Light Energy to the Retina
+              How ENLIGHTEN® NXT Delivers 94% Light Utilization
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
               While purely refractive lenses like TECNIS PureSee transmit ~100% of light by avoiding
-              diffractive rings, traditional trifocal lenses historically lost up to 18–20% of light
-              to scatter. Alcon’s proprietary ENLIGHTEN® optical system delivers 88% of transmitted
-              light directly to the retina, achieving the highest efficiency of any diffractive
-              trifocal IOL while distributing sharp focus seamlessly across distance, intermediate,
-              and dedicated 40 cm near vision{' '}
+              diffractive rings, the original AcrySof/Clareon PanOptix delivered 88% light
+              utilization (12% scatter). Launched in the US in May 2025, Alcon’s proprietary
+              ENLIGHTEN® NXT optical system delivers 94% light utilization with just 6% light
+              scatter—50% less scatter than the original PanOptix—while distributing sharp focus
+              seamlessly across distance, intermediate, and dedicated 40 cm near vision{' '}
               <sup className="text-[10px] font-bold text-primary inline-block ml-0.5">
-                <a href="#footnote-1" className="text-primary hover:underline font-bold">
-                  [1]
+                <a href="#footnote-5" className="text-primary hover:underline font-bold">
+                  [5]
                 </a>
               </sup>
               .
@@ -759,10 +762,10 @@ export default function PanOptixPageClient() {
                     <span className="text-muted-foreground">Near Reading Focus:</span>
                     <span className="font-bold text-emerald-400 font-mono">20/20 at 40 cm</span>
                   </div>
-                  <div className="flex justify-between py-1">
-                    <span className="text-muted-foreground">Spectacle Freedom:</span>
-                    <span className="font-bold text-[#a78bfa] font-mono">
-                      {renderFootnoteText('99% freedom [1]')}
+                  <div className="flex justify-between gap-3 py-1">
+                    <span className="text-muted-foreground shrink-0">Spectacle Freedom:</span>
+                    <span className="font-bold text-[#a78bfa] font-mono text-right">
+                      {renderFootnoteText('91.6% Complete Glasses Freedom (Meta-analysis) [1, 5]')}
                     </span>
                   </div>
                   <div className="flex justify-between py-1">
@@ -889,6 +892,8 @@ export default function PanOptixPageClient() {
               </tbody>
             </table>
           </div>
+
+          <VivityPureSeeCallout />
         </div>
       </section>
 

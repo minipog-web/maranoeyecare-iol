@@ -1,48 +1,22 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Icon from '@/components/ui/AppIcon';
+import LazySimulatorGate from '@/components/ui/LazySimulatorGate';
+import { Cataract3DPreviewPlaceholder } from '@/components/ui/SimulatorPreviewPlaceholders';
 import { trackEvent } from '@/lib/gtag';
 
 const CataractLandingHook3D = dynamic(
   () => import('@/components/cataract-3d/CataractLandingHook3D'),
   {
     ssr: false,
-    loading: () => (
-      <div className="relative w-full aspect-[4/3] rounded-2xl bg-black/40 border border-white/[0.08] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
-          <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">
-            Loading Optical Simulation...
-          </span>
-        </div>
-      </div>
-    ),
+    loading: () => <Cataract3DPreviewPlaceholder variant="teaser" isLoading />,
   }
 );
 
 export default function CataractEducationTeaserSection() {
-  const [isInView, setIsInView] = useState(false);
-  const sectionRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '300px' }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   const handleGuideClick = () => {
     trackEvent({
       action: 'cataract_teaser_guide_click',
@@ -53,7 +27,6 @@ export default function CataractEducationTeaserSection() {
 
   return (
     <section
-      ref={sectionRef}
       id="cataract-education"
       className="py-12 sm:py-16 relative overflow-hidden bg-section-education scroll-mt-24 sm:scroll-mt-28 border-b border-white/[0.04]"
       aria-label="Cataract Education & 3D Optical Simulation"
@@ -133,18 +106,12 @@ export default function CataractEducationTeaserSection() {
 
             {/* Right Column: Embedded 3D Minimalist Time-Lapse Vitrine */}
             <div className="lg:col-span-6 xl:col-span-6 w-full min-h-[280px] sm:min-h-[340px]">
-              {isInView ? (
+              <LazySimulatorGate
+                rootMargin="250px"
+                placeholder={<Cataract3DPreviewPlaceholder variant="teaser" />}
+              >
                 <CataractLandingHook3D />
-              ) : (
-                <div className="relative w-full aspect-[4/3] rounded-2xl bg-black/40 border border-white/[0.08] flex items-center justify-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
-                    <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">
-                      Preparing 3D Optical Simulation...
-                    </span>
-                  </div>
-                </div>
-              )}
+              </LazySimulatorGate>
             </div>
           </div>
         </div>

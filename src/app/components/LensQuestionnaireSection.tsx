@@ -661,13 +661,14 @@ export default function LensQuestionnaireSection() {
                 </div>
 
                 {/* Hot Lead Reassurance Banner */}
-                <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-primary/10 border border-primary/25 mb-4 text-xs">
+                <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 px-4 py-3 rounded-xl bg-primary/10 border border-primary/25 mb-4 text-xs">
                   <div className="flex items-center gap-2 text-primary font-semibold">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
                     <span>Recommended Plan: {result.name}</span>
                   </div>
                   <span className="text-muted-foreground text-[11px] hidden sm:inline">
-                    100% Free Consultation · No Obligation
+                    Complimentary 15-minute IOL lens education &amp; screening (full diagnostic
+                    medical exam billed to insurance)
                   </span>
                 </div>
 

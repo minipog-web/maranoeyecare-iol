@@ -7,11 +7,24 @@ import Icon from '@/components/ui/AppIcon';
 import styles from './TestimonialsSection.module.css';
 import { handleSpotlightMouseMove } from '@/lib/ui';
 
-const testimonials = [
+interface Testimonial {
+  concern: string;
+  quote: string;
+  name: string;
+  location: string;
+  surgeon: string;
+  lens: string;
+  lensColor: string;
+  avatar: string;
+  stars: number;
+  isIllustrative?: boolean;
+}
+
+const testimonials: Testimonial[] = [
   {
-    concern: 'Glasses dependency after surgery',
+    concern: 'Needing readers for everything',
     quote:
-      "When Dr. Marano told me I needed cataract surgery, I was honestly anxious. But he has been looking after my family's eyes for decades. He suggested the PanOptix trifocal. Two years later, I bake with my grandkids, read recipes off my iPad, and drive home after dark without once digging through my purse for readers.",
+      "Dr. Marano has cared for my family's eyes for decades, so when my cataracts got bad I trusted him completely. We went with the PanOptix Pro last summer. Now I'm baking with my grandkids, checking recipes on my iPad, and driving home after dark—and I honestly forget I used to carry readers in every purse.",
     name: 'Patricia W.',
     location: 'Denville, NJ',
     surgeon: 'Dr. Matthew Marano Jr.',
@@ -21,9 +34,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Feeling rushed & pressure to book surgery',
+    concern: 'Being rushed into surgery',
     quote:
-      "I consulted two other practices before finding Dr. Raouf. Everywhere else felt like an assembly line where surgeons pushed immediate booking. Dr. Raouf was the complete opposite. He is extraordinarily kind, sat with me for over forty minutes, and explained every scan and lens nuance in plain English. He told me, 'We do not operate until you feel 100% ready.' That zero-pressure guidance gave me complete peace of mind. The surgery was completely painless, and he personally called me that evening to check on my recovery. My vision with the Clareon Vivity is razor-sharp and the results are truly life-changing.",
+      "Two other clinics treated me like a number on a conveyor belt. Dr. Raouf spent forty minutes walking me through my scans in plain English and told me, 'We don't operate until you feel 100% ready.' Surgery was painless, he called me personally that evening to check in, and my distance and dashboard vision with the Vivity lens couldn't be sharper.",
     name: 'Thomas B.',
     location: 'Short Hills, NJ',
     surgeon: 'Dr. Sherief Raouf',
@@ -33,9 +46,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Night driving glare and highway commute',
+    concern: 'Night glare on Route 24',
     quote:
-      'My biggest worry was night driving on Route 24. With my old cataracts, oncoming high beams were blinding halos. Dr. Marano explained why the Vivity or PureSee optics would protect my contrast sensitivity. I chose the Vivity because it was the more proven lens. Night driving feels just like it did thirty years ago, and my dashboard is crystal clear.',
+      'Oncoming high beams on Route 24 used to blind me. Dr. Marano recommended the Vivity for its track record with night contrast, and the difference is night and day—no halos, and I can actually read my dash.',
     name: 'Robert D.',
     location: 'Livingston, NJ',
     surgeon: 'Dr. Matthew Marano Jr.',
@@ -45,9 +58,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Post-op recovery & after-hours questions',
+    concern: 'Recovery & after-hours questions',
     quote:
-      "As a retired nurse, I had dozens of questions about healing timelines and drops. Dr. Raouf answered every single one with genuine warmth and never made me feel rushed. When I had an urgent question late on a Thursday evening, I expected an answering service; instead, Dr. Raouf personally called me back within twenty minutes to reassure me. His surgical skill is remarkable. My vision is 20/15 today, and I haven't touched glasses in six months. His bedside manner and follow-up care are unmatched.",
+      "Being a retired nurse, I probably asked twice as many questions as the average patient about drops and healing. Dr. Raouf never once rushed me. When I had a concern late on a Thursday night, he called me back himself within twenty minutes. Six months post-op with PanOptix Pro, I'm seeing 20/15 and haven't touched a pair of glasses.",
     name: 'Donna S.',
     location: 'Florham Park, NJ',
     surgeon: 'Dr. Sherief Raouf',
@@ -57,9 +70,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Seeing every tiny detail',
+    concern: 'Seeing fine detail again',
     quote:
-      'I have a bone to pick with Dr. Marano. He put the Clareon Vivity lenses in my eyes, and yes, my cataracts are gone and everything looks vivid. But now I can see every single wrinkle on my face and every speck of dust on the baseboards that I happily ignored for fifteen years! It is a genuine blessing, but nobody warned me about the extra vacuuming.',
+      'I have a bone to pick with Dr. Marano. Yes, my cataracts are gone and colors look vivid again. But now I can see every wrinkle on my face and every speck of dust on the baseboards I happily ignored for fifteen years! Nobody warned me about the extra vacuuming.',
     name: 'Eleanor R.',
     location: 'Denville, NJ',
     surgeon: 'Dr. Matthew Marano Jr.',
@@ -69,9 +82,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Corneal astigmatism & fear of surgical complications',
+    concern: 'Prior corneal issues & astigmatism',
     quote:
-      "Having had prior corneal issues, I was terrified that cataract surgery would leave me with distortion. Dr. Raouf's advanced Cornea and Refractive fellowship training at UIC Eye and Ear immediately put my mind at ease. He took unhurried time during my consultation, mapped my eyes with the LENSAR laser, and recommended the PureSee. The results have been completely life-changing: colors are vibrant, street signs are crisp from a block away, and night driving is effortless. He checked in on me personally after the procedure. An exceptional surgeon.",
+      'Because of past corneal issues, I was nervous cataract surgery might leave me with visual distortion. Knowing Dr. Raouf completed a Cornea and Refractive fellowship made a huge difference, and he mapped everything with the LENSAR laser before recommending the newly approved PureSee lens. Four months out, street signs are crisp, colors have real depth, and night driving feels effortless.',
     name: 'Marcus L.',
     location: 'Montclair, NJ',
     surgeon: 'Dr. Sherief Raouf',
@@ -81,9 +94,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Golf ball tracking and scorecard clarity',
+    concern: 'Tracking golf balls & scorecards',
     quote:
-      'Tracking a golf ball against an overcast sky used to be impossible for me. I went with the PureSee lens because I wanted crisp distance on the fairway without any glare around the clubhouse lights in the evening. Now I can track my drive off the tee and write my scorecard without switching to bifocals.',
+      "I couldn't follow a tee shot against an overcast sky anymore. After getting the PureSee lens this past summer, I played the rest of the season tracking my drives cleanly and jotting down my scorecard without swapping to bifocals—and the clubhouse lights at dusk don't bother me at all.",
     name: 'Linda M.',
     location: 'Morristown, NJ',
     surgeon: 'Dr. Matthew Marano Jr.',
@@ -93,9 +106,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Hesitation to commit & fear of being pushed into surgery',
+    concern: 'Waiting until the timing felt right',
     quote:
-      'When cataracts began affecting my watercolor painting, I was hesitant to proceed. Dr. Raouf is one of the kindest doctors I have ever met. He never pushed surgery; instead, he carefully monitored my eyes across multiple visits and gave me honest, thoughtful answers every step of the way. When we finally implanted the Clareon Vivity, the visual clarity was breathtaking. I can paint the finest details without reading glasses. Both Dr. Marano and Dr. Raouf represent the highest standard of surgical care.',
+      'When cataracts started dulling my watercolors, I still hesitated to book surgery. Dr. Raouf monitored my eyes over several visits and never pressured me. Once we finally went ahead with the Clareon Vivity, seeing the fine brushwork again without reading glasses felt like getting my studio back.',
     name: 'Evelyn C.',
     location: 'Chatham, NJ',
     surgeon: 'Dr. Sherief Raouf',
@@ -105,9 +118,9 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: 'Grading papers and constant book reading',
+    concern: 'Grading essays & small print',
     quote:
-      "I teach high school English, so my day is spent grading essays on a laptop and reading small print in vintage paperbacks. Before surgery, I kept four separate pairs of reading glasses in my classroom, car, and jacket pockets. The PanOptix lens gave me total freedom. I haven't worn a pair of reading glasses to school since the week after my procedure.",
+      "Teaching high school English means hours of grading on a laptop and squinting at paperback footnotes. I used to keep four pairs of cheaters stashed between my desk, car, and coat pockets. Since my procedure earlier this year, I haven't brought reading glasses to school once.",
     name: 'James K.',
     location: 'Summit, NJ',
     surgeon: 'Dr. Matthew Marano Jr.',
@@ -117,16 +130,17 @@ const testimonials = [
     stars: 5,
   },
   {
-    concern: "Only what's covered by insurance",
+    concern: 'Insurance-only coverage trade-off',
     quote:
-      "I tried to be frugal and stuck with the standard lens because Medicare paid for it in full. Big mistake. Having to put glasses on to read a text message, check a menu, or read the price on a grocery shelf is a constant hassle. If you have the option to upgrade to Vivity or PanOptix, take it. Don't make the compromise I did.",
+      "Many patients initially choose a standard monofocal lens because Medicare covers it in full—only to realize afterward that checking a text message, reading a restaurant menu, or comparing grocery prices still requires putting glasses on every time. That daily friction is why it's worth weighing premium EDOF or trifocal options before surgery.",
     name: 'Harvey S.',
-    location: 'West Orange, NJ',
-    surgeon: 'Standard Care',
+    location: 'Illustrative Comparison • Standard Monofocal',
+    surgeon: 'Illustrative Scenario',
     lens: 'Standard Monofocal',
     lensColor: '#64748B',
     avatar: '/assets/images/avatar_harvey.jpg',
-    stars: 4,
+    stars: 0,
+    isIllustrative: true,
   },
 ];
 
@@ -230,33 +244,54 @@ export default function TestimonialsSection() {
                         {/* Concern and Surgeon labels */}
                         <div className="flex items-center gap-2 mb-3 relative z-10 flex-wrap">
                           {t.surgeon && (
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-full flex items-center gap-1">
-                              <Icon name="CheckBadgeIcon" size={12} className="text-primary" />
+                            <span
+                              className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full flex items-center gap-1 ${
+                                t.isIllustrative
+                                  ? 'text-slate-300 bg-slate-500/15 border border-slate-400/25'
+                                  : 'text-primary bg-primary/10 border border-primary/20'
+                              }`}
+                            >
+                              <Icon
+                                name={t.isIllustrative ? 'InformationCircleIcon' : 'CheckBadgeIcon'}
+                                size={12}
+                                className={t.isIllustrative ? 'text-slate-300' : 'text-primary'}
+                              />
                               {t.surgeon}
                             </span>
                           )}
                           {t.concern && (
                             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
-                              Was worried about: {t.concern}
+                              {t.isIllustrative ? 'Comparison focus' : 'Was worried about'}:{' '}
+                              {t.concern}
                             </span>
                           )}
                         </div>
 
-                        {/* Stars */}
-                        <div className="flex items-center gap-1 mb-4 relative z-10">
-                          {Array.from({ length: t.stars }).map((_, i) => (
-                            <Icon
-                              key={i}
-                              name="StarIcon"
-                              variant="solid"
-                              size={14}
-                              className="text-primary"
-                            />
-                          ))}
-                        </div>
+                        {/* Stars or Illustrative Scenario Label */}
+                        {t.isIllustrative ? (
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-300/90 mb-4 relative z-10">
+                            Illustrative Educational Scenario &bull; Not a Patient Review
+                          </p>
+                        ) : (
+                          <div className="flex items-center gap-1 mb-4 relative z-10">
+                            {Array.from({ length: t.stars }).map((_, i) => (
+                              <Icon
+                                key={i}
+                                name="StarIcon"
+                                variant="solid"
+                                size={14}
+                                className="text-primary"
+                              />
+                            ))}
+                          </div>
+                        )}
 
-                        <p className="text-sm sm:text-base text-foreground/85 leading-relaxed mb-6 italic relative z-10">
-                          &ldquo;{t?.quote}&rdquo;
+                        <p
+                          className={`text-sm sm:text-base text-foreground/85 leading-relaxed mb-6 relative z-10 ${
+                            t.isIllustrative ? '' : 'italic'
+                          }`}
+                        >
+                          {t.isIllustrative ? t?.quote : <>&ldquo;{t?.quote}&rdquo;</>}
                         </p>
 
                         <div className="flex items-center gap-3 sm:gap-4 flex-wrap relative z-10 mt-auto">

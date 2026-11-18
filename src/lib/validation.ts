@@ -26,9 +26,15 @@ export interface QuizRecommendation {
   answers?: string[];
 }
 
+export interface ValidateBookingOptions {
+  requireEmail?: boolean;
+}
+
 export function validateConsultationBooking(
-  data: Partial<ConsultationBooking>
+  data: Partial<ConsultationBooking>,
+  options: ValidateBookingOptions = {}
 ): Record<string, string> {
+  const { requireEmail = true } = options;
   const errors: Record<string, string> = {};
 
   const firstName = (data.firstName || '').trim();
@@ -51,7 +57,9 @@ export function validateConsultationBooking(
 
   const email = (data.email || '').trim();
   if (!email) {
-    errors.email = 'Please enter your email address.';
+    if (requireEmail) {
+      errors.email = 'Please enter your email address.';
+    }
   } else if (email.length > 100) {
     errors.email = 'Email address must be 100 characters or fewer.';
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {

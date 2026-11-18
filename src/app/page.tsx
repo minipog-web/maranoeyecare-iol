@@ -12,7 +12,7 @@ const CataractEducationTeaserSection = dynamic(
   () => import('@/app/components/CataractEducationTeaserSection')
 );
 const LensVisionComparisonSection = dynamic(
-  () => import('@/app/components/LensVisionComparisonSection')
+  () => import('@/app/components/LazyVisionSimulatorSection')
 );
 const LensTechnologyDeepDiveSection = dynamic(
   () => import('@/app/components/LensTechnologyDeepDiveSection')

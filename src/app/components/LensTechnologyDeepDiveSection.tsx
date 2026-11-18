@@ -806,7 +806,7 @@ export default function LensTechnologyDeepDiveSection() {
                     <sup className="text-[0.65em] font-sans font-normal align-super ml-0.5 mr-1 opacity-75 select-none">
                       ®
                     </sup>{' '}
-                    Optics
+                    NXT Optics
                   </>
                 ) : activeTab === 'vivity' ? (
                   <>
@@ -863,9 +863,10 @@ export default function LensTechnologyDeepDiveSection() {
                         [1]
                       </a>
                     </sup>
-                    . By focusing 88% of available light directly to the retina, it optimizes light
-                    utilization to provide sharp vision at reading distance (40cm), arm&apos;s
-                    length (60cm), and far away.
+                    . Utilizing ENLIGHTEN® NXT optical technology (launched in the US in May 2025),
+                    it delivers 94% light utilization with just 6% light scatter—50% less scatter
+                    than the original 88% PanOptix platform—to provide sharp vision at reading
+                    distance (40cm), arm&apos;s length (60cm), and far away.
                   </>
                 ) : activeTab === 'vivity' ? (
                   <>

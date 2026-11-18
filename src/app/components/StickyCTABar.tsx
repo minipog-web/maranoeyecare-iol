@@ -151,7 +151,7 @@ export default function StickyCTABar() {
               trackEvent({
                 action: 'sticky_booking_click',
                 category: 'Engagement',
-                label: 'Book Free Consultation',
+                label: 'Book Consultation',
               });
               const el =
                 document.getElementById('booking') || document.getElementById('consultation');
@@ -171,7 +171,7 @@ export default function StickyCTABar() {
             }}
             className="flex-1 flex items-center justify-between pl-3.5 sm:pl-5 pr-2 py-2 bg-primary text-[#000000] rounded-full text-xs xs:text-sm sm:text-base font-bold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
-            <span>Book Free Consultation</span>
+            <span>Book Consultation</span>
             <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1">
               <Icon name="ArrowRightIcon" size={14} className="text-current" />
             </span>
