@@ -42,8 +42,8 @@ export default function CertificationLogos() {
       {/* Engraved plaque directional sheen */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/[0.04] to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-6 xl:pl-8 lg:pr-16 xl:pr-20 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 relative lg:-left-6 xl:-left-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8">
           {/* Label Header */}
           <div className="text-center lg:text-left shrink-0 max-w-sm lg:max-w-xs xl:max-w-sm">
             <div className="flex items-center justify-center lg:justify-start gap-2 flex-wrap">

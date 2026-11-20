@@ -9,6 +9,7 @@ import { smoothScrollToElement } from '@/lib/ui';
 export default function StickyCTABar() {
   const router = useRouter();
   const phoneLinkRef = useRef<HTMLAnchorElement>(null);
+  const desktopPhoneLinkRef = useRef<HTMLAnchorElement>(null);
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -18,16 +19,16 @@ export default function StickyCTABar() {
 
     // Helper to sync with CallRail tracking number if another tel: link was already swapped
     const syncWithSwappedCallRail = () => {
-      if (!phoneLinkRef.current) return;
-      const current = phoneLinkRef.current.getAttribute('href') || '';
-      if (!current.includes('9733220100') && !current.includes('973-322-0100')) {
-        return; // Already swapped by CallRail
-      }
+      const targets = [phoneLinkRef.current, desktopPhoneLinkRef.current].filter(
+        Boolean
+      ) as HTMLAnchorElement[];
+      if (targets.length === 0) return;
+
       const swapped = Array.from(
         document.querySelectorAll<HTMLAnchorElement>('a[href^="tel:"]')
       ).find(
         (a) =>
-          a !== phoneLinkRef.current &&
+          !targets.includes(a) &&
           !a.href.includes('9733220100') &&
           !a.href.includes('973-322-0100') &&
           !a.href.includes('9733156439') &&
@@ -36,7 +37,12 @@ export default function StickyCTABar() {
           !a.href.includes('9736257970')
       );
       if (swapped && swapped.href) {
-        phoneLinkRef.current.href = swapped.href;
+        targets.forEach((el) => {
+          const current = el.getAttribute('href') || '';
+          if (current.includes('9733220100') || current.includes('973-322-0100')) {
+            el.href = swapped.href;
+          }
+        });
       }
     };
 
@@ -113,90 +119,157 @@ export default function StickyCTABar() {
     trackPhoneClick(`Sticky CTA Bar: ${dialedNumber}`, dialedNumber);
   };
 
+  const handleBookClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    trackEvent({
+      action: 'sticky_booking_click',
+      category: 'Conversion',
+      label: 'Book Consultation',
+    });
+    const el = document.getElementById('booking') || document.getElementById('consultation');
+    if (el) {
+      e.preventDefault();
+      smoothScrollToElement(el.id);
+      window.history.pushState(null, '', '#booking');
+    } else {
+      e.preventDefault();
+      try {
+        sessionStorage.setItem('pending-scroll-hash', 'booking');
+      } catch {
+        // Ignore storage write issues
+      }
+      router.push('/#booking');
+    }
+  };
+
   if (dismissed) return null;
 
   return (
-    <div
-      className={`fixed bottom-0 left-0 right-0 z-40 md:hidden transition-all duration-300 ease-out ${
-        visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
-      }`}
-      role="complementary"
-      aria-label="Book consultation"
-    >
-      {/* Gradient mask above the bar */}
-      <div className="h-8 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
+    <>
+      {/* Mobile Sticky Bottom Bar: Explicit Call Now + Book Consult */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-40 md:hidden transition-all duration-300 ease-out ${
+          visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+        }`}
+        role="complementary"
+        aria-label="Quick consultation actions"
+      >
+        <div className="h-6 bg-gradient-to-t from-background/85 to-transparent pointer-events-none" />
 
-      <div className="bg-background/98 md:backdrop-blur-xl border-t border-border/60 px-4 py-3 shadow-[0_-8px_32px_rgba(0,0,0,0.4)]">
-        <div className="flex items-center gap-3">
-          {/* Phone CTA */}
-          <a
-            ref={phoneLinkRef}
-            href="tel:9733220100"
-            suppressHydrationWarning
-            onClick={handlePhoneClick}
-            className="flex items-center justify-center w-12 h-12 rounded-xl border border-border bg-white/[0.05] hover:border-primary/50 hover:bg-primary/10 transition-all touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-            aria-label="Call Marano Eye Care (973) 322-0100"
-          >
-            <Icon name="PhoneIcon" size={18} className="text-primary" />
-            {/* Screen-reader target text for CallRail Dynamic Number Insertion (DNI) */}
-            <span className="sr-only" suppressHydrationWarning>
-              (973) 322-0100
-            </span>
-          </a>
+        <div className="bg-[#0d0e12]/98 border-t border-primary/30 px-3 py-2.5 shadow-[0_-8px_32px_rgba(0,0,0,0.55)]">
+          <div className="flex items-center gap-2">
+            {/* Explicit Mobile Call CTA */}
+            <a
+              ref={phoneLinkRef}
+              href="tel:9733220100"
+              suppressHydrationWarning
+              onClick={handlePhoneClick}
+              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 min-h-[48px] rounded-full border border-primary/50 bg-primary/15 text-primary hover:bg-primary/25 text-xs xs:text-sm font-bold transition-all active:scale-[0.98] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              aria-label="Call Marano Eye Care (973) 322-0100"
+            >
+              <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
+              <span>Call Now</span>
+              <span className="sr-only" suppressHydrationWarning>
+                (973) 322-0100
+              </span>
+            </a>
 
-          {/* Primary CTA */}
-          <a
-            href="#booking"
-            onClick={(e) => {
-              trackEvent({
-                action: 'sticky_booking_click',
-                category: 'Engagement',
-                label: 'Book Consultation',
-              });
-              const el =
-                document.getElementById('booking') || document.getElementById('consultation');
-              if (el) {
-                e.preventDefault();
-                smoothScrollToElement(el.id);
-                window.history.pushState(null, '', '#booking');
-              } else {
-                e.preventDefault();
-                try {
-                  sessionStorage.setItem('pending-scroll-hash', 'booking');
-                } catch {
-                  // Ignore storage write issues
-                }
-                router.push('/#booking');
-              }
-            }}
-            className="flex-1 flex items-center justify-between pl-3.5 sm:pl-5 pr-2 py-2 bg-primary text-[#000000] rounded-full text-xs xs:text-sm sm:text-base font-bold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-          >
-            <span>Book Consultation</span>
-            <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1">
-              <Icon name="ArrowRightIcon" size={14} className="text-current" />
-            </span>
-          </a>
+            {/* Primary Book CTA */}
+            <a
+              href="#booking"
+              onClick={handleBookClick}
+              className="flex-[1.35] flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-[#000000] rounded-full text-xs xs:text-sm font-bold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            >
+              <span>Book Consult</span>
+              <Icon
+                name="ArrowRightIcon"
+                size={14}
+                className="text-black shrink-0 transition-transform group-hover:translate-x-0.5"
+              />
+            </a>
 
-          {/* Dismiss */}
-          <button
-            onClick={() => {
-              setDismissed(true);
-              trackEvent({
-                action: 'sticky_bar_dismiss',
-                category: 'Engagement',
-                label: 'Dismiss Sticky Bar',
-              });
-            }}
-            className="flex items-center justify-center w-12 h-12 text-muted-foreground/80 hover:text-muted-foreground transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-            aria-label="Dismiss"
-          >
-            <Icon name="XMarkIcon" size={18} />
-          </button>
+            {/* Compact Dismiss */}
+            <button
+              onClick={() => {
+                setDismissed(true);
+                trackEvent({
+                  action: 'sticky_bar_dismiss',
+                  category: 'Engagement',
+                  label: 'Dismiss Sticky Bar (Mobile)',
+                });
+              }}
+              className="flex items-center justify-center w-10 h-11 text-muted-foreground/75 hover:text-white transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              aria-label="Dismiss quick actions bar"
+            >
+              <Icon name="XMarkIcon" size={16} />
+            </button>
+          </div>
+          <div className="safe-area-pb" />
         </div>
-
-        {/* Safe area for iPhone home indicator */}
-        <div className="safe-area-pb" />
       </div>
-    </div>
+
+      {/* Desktop & Tablet Floating Conversion Bar */}
+      <div
+        className={`hidden md:block fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2.5rem)] max-w-4xl transition-all duration-300 ease-out ${
+          visible
+            ? 'translate-y-0 opacity-100 pointer-events-auto'
+            : 'translate-y-8 opacity-0 pointer-events-none'
+        }`}
+        role="complementary"
+        aria-label="Schedule cataract consultation"
+      >
+        <div className="flex items-center justify-between gap-4 px-5 py-3 rounded-full bg-[#0e1017]/95 backdrop-blur-xl border border-primary/35 shadow-[0_14px_45px_rgba(0,0,0,0.65),0_0_25px_rgba(197,160,89,0.14)]">
+          <div className="flex items-center gap-3 min-w-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_rgba(52,211,153,0.85)]" />
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-white truncate">Ready for Clearer Vision?</p>
+              <p className="text-xs text-muted-foreground truncate">
+                4.9★ (650+ Reviews) · Livingston, Denville &amp; Newark · Medicare Accepted
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2.5 shrink-0">
+            <a
+              ref={desktopPhoneLinkRef}
+              href="tel:9733220100"
+              suppressHydrationWarning
+              onClick={handlePhoneClick}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-primary/40 bg-white/[0.04] hover:bg-primary/15 hover:border-primary text-white text-sm font-bold transition-all whitespace-nowrap min-h-[44px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            >
+              <Icon name="PhoneIcon" size={15} className="text-primary shrink-0" />
+              <span suppressHydrationWarning>(973) 322-0100</span>
+            </a>
+
+            <a
+              href="#booking"
+              onClick={handleBookClick}
+              className="btn-premium-chic inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-[#000000] rounded-full text-sm font-bold hover:bg-accent transition-all whitespace-nowrap min-h-[44px] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            >
+              <span>Book Consultation</span>
+              <Icon
+                name="ArrowRightIcon"
+                size={15}
+                className="text-black shrink-0 transition-transform group-hover:translate-x-0.5"
+              />
+            </a>
+
+            <button
+              onClick={() => {
+                setDismissed(true);
+                trackEvent({
+                  action: 'sticky_bar_dismiss',
+                  category: 'Engagement',
+                  label: 'Dismiss Sticky Bar (Desktop)',
+                });
+              }}
+              className="flex items-center justify-center w-9 h-9 rounded-full text-muted-foreground/75 hover:text-white hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              aria-label="Dismiss consultation bar"
+            >
+              <Icon name="XMarkIcon" size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

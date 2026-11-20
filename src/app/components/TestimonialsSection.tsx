@@ -148,6 +148,7 @@ export default function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
 
   const handlePrev = useCallback(() => {
     setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
@@ -156,6 +157,22 @@ export default function TestimonialsSection() {
   const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
   }, []);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setIsPaused(true);
+    touchStartXRef.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartXRef.current === null) return;
+    const endX = e.changedTouches[0]?.clientX ?? touchStartXRef.current;
+    const deltaX = endX - touchStartXRef.current;
+    touchStartXRef.current = null;
+    if (Math.abs(deltaX) > 45) {
+      if (deltaX < 0) handleNext();
+      else handlePrev();
+    }
+  };
 
   // Auto-advance every 7s, paused on hover
   useEffect(() => {
@@ -203,25 +220,29 @@ export default function TestimonialsSection() {
             <span className="font-semibold text-gradient-primary">Real Patients</span>
           </h2>
 
-          <div className="relative max-w-3xl mx-auto px-1 sm:px-12">
+          <div className="relative max-w-3xl mx-auto px-0 sm:px-12">
             {/* Desktop floating arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 sm:-translate-x-2 lg:-translate-x-4 w-11 h-11 rounded-full border border-border bg-card/60 backdrop-blur-sm flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 hover:scale-105 active:scale-95 transition-all cursor-pointer z-20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-4 w-11 h-11 rounded-full border border-border bg-card/60 backdrop-blur-sm items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 hover:scale-105 active:scale-95 transition-all cursor-pointer z-20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               aria-label="Previous testimonial"
             >
               <Icon name="ChevronLeftIcon" size={20} />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 sm:translate-x-2 lg:translate-x-4 w-11 h-11 rounded-full border border-border bg-card/60 backdrop-blur-sm flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 hover:scale-105 active:scale-95 transition-all cursor-pointer z-20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-4 w-11 h-11 rounded-full border border-border bg-card/60 backdrop-blur-sm items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 hover:scale-105 active:scale-95 transition-all cursor-pointer z-20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               aria-label="Next testimonial"
             >
               <Icon name="ChevronRightIcon" size={20} />
             </button>
 
-            {/* Carousel Viewport */}
-            <div className="overflow-hidden rounded-3xl">
+            {/* Carousel Viewport (Touch Swipe Enabled) */}
+            <div
+              className="overflow-hidden rounded-3xl"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <div ref={trackRef} className={styles.carouselTrack}>
                 {testimonials.map((t, idx) => (
                   <div key={idx} className="w-full shrink-0 px-2">
@@ -327,8 +348,33 @@ export default function TestimonialsSection() {
               </div>
             </div>
 
-            {/* Pagination Dots */}
-            <div className="flex justify-center items-center gap-0.5 mt-4">
+            {/* Mobile Prev / Counter / Next Controls (Prevents 10-dot overflow on narrow screens) */}
+            <div className="flex sm:hidden items-center justify-between gap-3 mt-4 px-2">
+              <button
+                type="button"
+                onClick={handlePrev}
+                className="min-w-[44px] min-h-[44px] px-3.5 rounded-full border border-border bg-card flex items-center justify-center gap-1.5 text-xs font-semibold text-white active:scale-95 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                aria-label="Previous testimonial"
+              >
+                <Icon name="ChevronLeftIcon" size={16} />
+                <span>Prev</span>
+              </button>
+              <span className="text-xs font-mono font-semibold text-muted-foreground">
+                {activeIndex + 1} / {testimonials.length} · Swipe
+              </span>
+              <button
+                type="button"
+                onClick={handleNext}
+                className="min-w-[44px] min-h-[44px] px-3.5 rounded-full border border-border bg-card flex items-center justify-center gap-1.5 text-xs font-semibold text-white active:scale-95 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                aria-label="Next testimonial"
+              >
+                <span>Next</span>
+                <Icon name="ChevronRightIcon" size={16} />
+              </button>
+            </div>
+
+            {/* Pagination Dots (Tablet/Desktop) */}
+            <div className="hidden sm:flex justify-center items-center gap-0.5 mt-4">
               {testimonials.map((_, idx) => (
                 <button
                   key={idx}

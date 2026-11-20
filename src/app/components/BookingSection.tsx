@@ -1,12 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import styles from './BookingSection.module.css';
-import { trackLeadStep1, trackConsultationBooking, trackPhoneClick } from '@/lib/gtag';
+import { trackConsultationBooking, trackPhoneClick } from '@/lib/gtag';
 import { getTrackingParams } from '@/lib/tracking-params';
-import { smoothScrollToElement } from '@/lib/ui';
 import { validateConsultationBooking } from '@/lib/validation';
 
 const locations = [
@@ -82,7 +80,7 @@ const whatHappensNext = [
     step: '2',
     icon: 'PhoneIcon',
     title: 'Quick 5-Min Phone Callback',
-    desc: 'Our friendly patient care coordinator calls within 1 business hour to confirm your time.',
+    desc: 'Our friendly patient care coordinator calls you back the same business day to confirm your time.',
   },
   {
     step: '3',
@@ -117,15 +115,30 @@ export default function BookingSection({
       message: '',
     };
   });
-  const isSingleStep = Boolean(preselectedLens);
-  const [step, setStep] = useState<1 | 2>(1);
+  const [showOptionalDetails, setShowOptionalDetails] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [quizResult, setQuizResult] = useState<string | null>(preselectedLens || null);
   const [activeOfficeTab, setActiveOfficeTab] = useState(0);
-  const step1TrackedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    // Auto-select office if URL has ?loc=livingston|denville|newark from Google Ads
+    if (typeof window !== 'undefined') {
+      const locParam = new URLSearchParams(window.location.search).get('loc')?.toLowerCase() || '';
+      if (locParam.includes('denville')) {
+        setForm((prev) => (prev.location ? prev : { ...prev, location: locations[1] }));
+        setActiveOfficeTab(1);
+      } else if (locParam.includes('newark')) {
+        setForm((prev) => (prev.location ? prev : { ...prev, location: locations[2] }));
+        setActiveOfficeTab(2);
+      } else if (locParam.includes('livingston')) {
+        setForm((prev) => (prev.location ? prev : { ...prev, location: locations[0] }));
+        setActiveOfficeTab(0);
+      }
+    }
+  }, []);
 
   React.useEffect(() => {
     const handleSelectLens = (e: Event) => {
@@ -190,24 +203,14 @@ export default function BookingSection({
   const validateField = (name: string, value: string): string => {
     const singleFieldBooking = { ...form, [name]: value };
     const allErrors = validateConsultationBooking(singleFieldBooking, {
-      requireEmail: !isSingleStep,
+      requireEmail: false,
     });
     return allErrors[name] || '';
   };
 
-  const validateStep1Fields = (): Record<string, string> => {
-    const newErrors: Record<string, string> = {};
-    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location'];
-    fieldsToValidate.forEach((field) => {
-      const err = validateField(field, form[field as keyof FormState] || '');
-      if (err) newErrors[field] = err;
-    });
-    return newErrors;
-  };
-
   const validateAllRequiredFields = (): Record<string, string> => {
     const newErrors: Record<string, string> = {};
-    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location', 'email'];
+    const fieldsToValidate = ['firstName', 'lastName', 'phone', 'location', 'email', 'message'];
     fieldsToValidate.forEach((field) => {
       const err = validateField(field, form[field as keyof FormState] || '');
       if (err) newErrors[field] = err;
@@ -237,38 +240,14 @@ export default function BookingSection({
     }
   };
 
-  const handleStep1 = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (loading) return;
-    const newErrors = validateStep1Fields();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    setStep(2);
-    if (!step1TrackedRef.current) {
-      step1TrackedRef.current = true;
-      trackLeadStep1(form.location, form.lens || undefined, {
-        email: form.email,
-        phone: form.phone,
-        firstName: form.firstName,
-        lastName: form.lastName,
-      });
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
     const newErrors = validateAllRequiredFields();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      if (!isSingleStep) {
-        const step1OnlyFields = ['firstName', 'lastName', 'phone', 'location'];
-        if (Object.keys(newErrors).some((k) => step1OnlyFields.includes(k))) {
-          setStep(1);
-        }
+      if (newErrors.email || newErrors.message) {
+        setShowOptionalDetails(true);
       }
       return;
     }
@@ -368,78 +347,117 @@ export default function BookingSection({
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-start">
-          {/* Left: CTA copy */}
-          <div className="lg:sticky lg:top-28">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
-              {`IOL Consultation`}
-            </p>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-5 sm:mb-6">
-              {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
-                <span className="sm:whitespace-nowrap">
-                  <span>Reclaim</span>{' '}
-                  <span className="font-semibold text-gradient-primary">Clear Vision</span>
-                </span>
-              ) : bookingHeadline === 'Schedule Your Comprehensive Cataract Evaluation' ? (
-                <>
-                  Schedule Your{' '}
-                  <span className="font-semibold text-gradient-primary block sm:inline">
-                    Comprehensive Cataract Evaluation
-                  </span>
-                </>
-              ) : bookingHeadline.includes('Clareon® Vivity®') ? (
-                <>
-                  Schedule Your{' '}
-                  <span className="font-semibold text-gradient-primary block sm:inline">
-                    Clareon<sup>®</sup> Vivity<sup>®</sup>
-                  </span>{' '}
-                  Consultation
-                </>
-              ) : bookingHeadline.includes('PanOptix® Pro') ? (
-                <>
-                  Schedule Your{' '}
-                  <span className="font-semibold text-gradient-primary block sm:inline">
-                    Clareon<sup>®</sup> PanOptix<sup>®</sup> Pro
-                  </span>{' '}
-                  Consultation
-                </>
-              ) : bookingHeadline.includes('PureSee™') ? (
-                <>
-                  Schedule Your{' '}
-                  <span className="font-semibold text-gradient-primary block sm:inline">
-                    TECNIS PureSee™
-                  </span>{' '}
-                  Consultation
-                </>
-              ) : (
-                <span className="font-semibold text-gradient-primary drop-shadow-[0_2px_10px_rgba(197,160,89,0.28)]">
-                  {bookingHeadline}
-                </span>
-              )}
-            </h2>
+        {/* Mobile-First Header (so tapping Book Consultation lands immediately on the form) */}
+        <div className="lg:hidden mb-6">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2">
+            {`IOL Consultation`}
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl font-normal sm:font-medium text-foreground leading-tight mb-4">
+            {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
+              <span>
+                Reclaim <span className="font-semibold text-gradient-primary">Clear Vision</span>
+              </span>
+            ) : (
+              <span className="font-semibold text-gradient-primary">{bookingHeadline}</span>
+            )}
+          </h2>
+          <div className="p-3.5 rounded-2xl bg-gradient-to-r from-primary/[0.22] via-[#161824] to-[#11131c] border border-primary/70 relative overflow-hidden">
+            <div className="flex items-start gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-primary shrink-0 mt-1.5" />
+              <p className="text-xs sm:text-sm text-foreground font-medium leading-relaxed">
+                {bookingUrgencyTitle && bookingUrgencyText ? (
+                  <>
+                    <strong className="text-primary font-semibold mr-1">
+                      {bookingUrgencyTitle}:
+                    </strong>
+                    <span>{bookingUrgencyText}</span>
+                  </>
+                ) : (
+                  <>
+                    <strong className="text-primary font-semibold">Cataracts only progress</strong>{' '}
+                    and never improve on their own. Complete the 30-second form below or call any of
+                    our 3 NJ offices.
+                  </>
+                )}
+              </p>
+            </div>
+          </div>
+        </div>
 
-            {/* Unified Reassurance & Urgency Card */}
-            <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-primary/[0.22] via-[#161824] to-[#11131c] border-2 border-primary/85 shadow-[0_4px_24px_rgba(0,0,0,0.7),0_0_28px_rgba(197,160,89,0.25),inset_0_1px_2px_rgba(255,255,255,0.2)] relative overflow-hidden">
-              <div className="flex items-start gap-3 relative z-10">
-                <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0 mt-1 shadow-[0_0_10px_rgba(197,160,89,1)]" />
-                <p className="text-xs sm:text-sm text-foreground font-medium leading-relaxed">
-                  {bookingUrgencyTitle && bookingUrgencyText ? (
-                    <>
-                      <strong className="text-primary font-semibold mr-1">
-                        {bookingUrgencyTitle}:
-                      </strong>
-                      <span>{bookingUrgencyText}</span>
-                    </>
-                  ) : (
-                    <>
-                      <strong className="text-primary font-semibold">
-                        Cataracts only progress
-                      </strong>{' '}
-                      and never improve on their own. Waiting makes vision worse and recovery
-                      longer.
-                    </>
-                  )}
-                </p>
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-start">
+          {/* Left: CTA copy (Second on Mobile so Form is Immediate, Sticky Left on Desktop) */}
+          <div className="order-2 lg:order-1 lg:sticky lg:top-28">
+            <div className="hidden lg:block">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3">
+                {`IOL Consultation`}
+              </p>
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal sm:font-medium text-foreground leading-tight mb-5 sm:mb-6">
+                {bookingHeadline === 'Reclaim Clear Vision' || !bookingHeadline ? (
+                  <span className="sm:whitespace-nowrap">
+                    <span>Reclaim</span>{' '}
+                    <span className="font-semibold text-gradient-primary">Clear Vision</span>
+                  </span>
+                ) : bookingHeadline === 'Schedule Your Comprehensive Cataract Evaluation' ? (
+                  <>
+                    Schedule Your{' '}
+                    <span className="font-semibold text-gradient-primary block sm:inline">
+                      Comprehensive Cataract Evaluation
+                    </span>
+                  </>
+                ) : bookingHeadline.includes('Clareon® Vivity®') ? (
+                  <>
+                    Schedule Your{' '}
+                    <span className="font-semibold text-gradient-primary block sm:inline">
+                      Clareon<sup>®</sup> Vivity<sup>®</sup>
+                    </span>{' '}
+                    Consultation
+                  </>
+                ) : bookingHeadline.includes('PanOptix® Pro') ? (
+                  <>
+                    Schedule Your{' '}
+                    <span className="font-semibold text-gradient-primary block sm:inline">
+                      Clareon<sup>®</sup> PanOptix<sup>®</sup> Pro
+                    </span>{' '}
+                    Consultation
+                  </>
+                ) : bookingHeadline.includes('PureSee™') ? (
+                  <>
+                    Schedule Your{' '}
+                    <span className="font-semibold text-gradient-primary block sm:inline">
+                      TECNIS PureSee™
+                    </span>{' '}
+                    Consultation
+                  </>
+                ) : (
+                  <span className="font-semibold text-gradient-primary drop-shadow-[0_2px_10px_rgba(197,160,89,0.28)]">
+                    {bookingHeadline}
+                  </span>
+                )}
+              </h2>
+
+              {/* Unified Reassurance & Urgency Card */}
+              <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-primary/[0.22] via-[#161824] to-[#11131c] border-2 border-primary/85 shadow-[0_4px_24px_rgba(0,0,0,0.7),0_0_28px_rgba(197,160,89,0.25),inset_0_1px_2px_rgba(255,255,255,0.2)] relative overflow-hidden">
+                <div className="flex items-start gap-3 relative z-10">
+                  <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0 mt-1 shadow-[0_0_10px_rgba(197,160,89,1)]" />
+                  <p className="text-xs sm:text-sm text-foreground font-medium leading-relaxed">
+                    {bookingUrgencyTitle && bookingUrgencyText ? (
+                      <>
+                        <strong className="text-primary font-semibold mr-1">
+                          {bookingUrgencyTitle}:
+                        </strong>
+                        <span>{bookingUrgencyText}</span>
+                      </>
+                    ) : (
+                      <>
+                        <strong className="text-primary font-semibold">
+                          Cataracts only progress
+                        </strong>{' '}
+                        and never improve on their own. Waiting makes vision worse and recovery
+                        longer.
+                      </>
+                    )}
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -631,9 +649,9 @@ export default function BookingSection({
             </div>
           </div>
 
-          {/* Right: 2-Step Form */}
+          {/* Right: 2-Step Form (First on Mobile, Right on Desktop) */}
           <div
-            className={`glass-card border border-border rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 ${styles.formCard}`}
+            className={`order-1 lg:order-2 glass-card border border-border rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 ${styles.formCard}`}
           >
             {submitted ? (
               <div className="flex flex-col items-center justify-center text-center py-12 sm:py-16">
@@ -644,7 +662,7 @@ export default function BookingSection({
                   {`You're All Set!`}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed max-w-sm">
-                  {`We have received your request. Our patient care coordinator will call you within 1 business hour to confirm your preferred office location and time, and answer any initial questions.`}
+                  {`We have received your request. Our patient care coordinator will call you back the same business day to confirm your preferred office location and time, and answer any initial questions.`}
                 </p>
                 <p className="text-sm text-primary/90 mt-3 font-medium italic max-w-sm">
                   {`Most patients say their only regret is not doing this sooner.`}
@@ -692,41 +710,24 @@ export default function BookingSection({
                       </a>
                     </div>
                   )}
-                  <div className="flex items-center justify-between gap-3 sm:gap-4 mb-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                     <h3
                       className={`font-display text-xl sm:text-2xl font-medium text-foreground ${styles.formHeader}`}
                     >
-                      {isSingleStep || step === 1
-                        ? 'Reserve Your Consultation with Our Surgeons'
-                        : 'Customize Your Visual Goals'}
+                      Request Your Consultation
                     </h3>
-                    {!isSingleStep && (
-                      <span className="text-xs font-semibold text-muted-foreground bg-white/[0.04] border border-border px-3 py-1 rounded-full whitespace-nowrap shrink-0">
-                        Step {step} of 2
-                      </span>
-                    )}
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Same-Day Callback
+                    </span>
                   </div>
-                  {/* Progress bar (2-step mode only) */}
-                  {!isSingleStep && (
-                    <div className="h-1.5 w-full bg-white/[0.06] rounded-full overflow-hidden">
-                      <div
-                        className={`h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500 ease-out ${
-                          step === 1 ? 'w-1/2' : 'w-full'
-                        }`}
-                      />
-                    </div>
-                  )}
-                  <div className="flex flex-wrap items-center justify-between gap-2 mt-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mt-1">
                     <p className="text-xs text-muted-foreground">
-                      {isSingleStep || step === 1
-                        ? 'Complete this 30-second form, or call any office directly on the left.'
-                        : 'Optional, helps our surgeons prepare for your visit.'}
+                      Takes 30 seconds · No email or medical history required.
                     </p>
                     <div className="flex items-center gap-1.5 text-xs text-primary font-bold tracking-wide uppercase">
                       <Icon name="LockClosedIcon" size={14} className="shrink-0" />
-                      {isSingleStep || step === 1
-                        ? 'HIPAA Compliant · No Medical History Required · Pressure Free'
-                        : 'Privacy Protected & HIPAA Secure'}
+                      HIPAA Protected · Zero Obligation
                     </div>
                   </div>
                 </div>
@@ -760,139 +761,110 @@ export default function BookingSection({
                       <button
                         type="button"
                         onClick={() => {
-                          if (isSingleStep) {
-                            document.getElementById('lens')?.focus();
-                          } else {
-                            setStep(2);
-                          }
+                          setShowOptionalDetails(true);
+                          setTimeout(() => document.getElementById('lens')?.focus(), 50);
                         }}
-                        className="inline-flex items-center justify-center min-h-[36px] px-2.5 rounded-lg text-xs text-primary hover:text-white hover:bg-white/[0.06] font-semibold underline underline-offset-4 shrink-0 touch-manipulation transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                        className="inline-flex items-center justify-center min-h-[44px] px-3 rounded-lg text-xs text-primary hover:text-white hover:bg-white/[0.06] font-semibold underline underline-offset-4 shrink-0 touch-manipulation transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                       >
                         Change
                       </button>
                     </div>
                   </div>
-                ) : (
-                  <div className="mb-5 p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <Icon name="SparklesIcon" size={16} className="text-primary shrink-0" />
-                      <span className="text-xs text-muted-foreground leading-snug">
-                        Unsure which lens fits your lifestyle? 3D corneal biometry is included with
-                        your visit.
-                      </span>
-                    </div>
-                    <Link
-                      href="/#vision"
-                      onClick={(e) => {
-                        const targetEl = document.getElementById('vision');
-                        if (targetEl) {
-                          e.preventDefault();
-                          smoothScrollToElement('vision');
-                          window.history.pushState(null, '', '#vision');
-                        }
-                      }}
-                      className="inline-flex items-center min-h-[36px] px-2 rounded-lg text-xs text-primary font-bold hover:underline shrink-0 whitespace-nowrap self-start sm:self-center ml-4 sm:ml-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-                    >
-                      Try Simulator &rarr;
-                    </Link>
-                  </div>
-                )}
+                ) : null}
 
-                {isSingleStep || step === 1 ? (
-                  <form
-                    name={isSingleStep ? 'consultation' : undefined}
-                    data-netlify={isSingleStep ? 'true' : undefined}
-                    data-netlify-honeypot={isSingleStep ? 'bot-field' : undefined}
-                    onSubmit={isSingleStep ? handleSubmit : handleStep1}
-                    className="space-y-4 sm:space-y-5"
-                    noValidate
-                  >
-                    {isSingleStep && (
-                      <>
-                        <input type="hidden" name="form-name" value="consultation" />
-                        <p className="hidden" aria-hidden="true">
-                          <label>
-                            Don&apos;t fill this out if you&apos;re human:{' '}
-                            <input name="bot-field" tabIndex={-1} />
-                          </label>
-                        </p>
-                      </>
-                    )}
-                    {/* Name */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="firstName" className={labelClass}>
-                          First Name *
-                        </label>
-                        <input
-                          id="firstName"
-                          name="firstName"
-                          type="text"
-                          autoComplete="given-name"
-                          value={form.firstName}
-                          onChange={handleChange}
-                          onBlur={(e) =>
-                            setForm((prev) => ({ ...prev, firstName: e.target.value.trim() }))
-                          }
-                          placeholder="Jane"
-                          maxLength={50}
-                          required
-                          aria-invalid={errors.firstName ? 'true' : 'false'}
-                          aria-describedby={errors.firstName ? 'firstName-error' : undefined}
-                          className={`${inputClass} ${
-                            errors.firstName
-                              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
-                              : ''
-                          }`}
-                        />
-                        {errors.firstName && (
-                          <p
-                            id="firstName-error"
-                            role="alert"
-                            className="text-red-400 text-xs mt-1.5 font-medium"
-                          >
-                            {errors.firstName}
-                          </p>
-                        )}
-                      </div>
-                      <div>
-                        <label htmlFor="lastName" className={labelClass}>
-                          Last Name *
-                        </label>
-                        <input
-                          id="lastName"
-                          name="lastName"
-                          type="text"
-                          autoComplete="family-name"
-                          value={form.lastName}
-                          onChange={handleChange}
-                          onBlur={(e) =>
-                            setForm((prev) => ({ ...prev, lastName: e.target.value.trim() }))
-                          }
-                          placeholder="Smith"
-                          maxLength={50}
-                          required
-                          aria-invalid={errors.lastName ? 'true' : 'false'}
-                          aria-describedby={errors.lastName ? 'lastName-error' : undefined}
-                          className={`${inputClass} ${
-                            errors.lastName
-                              ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
-                              : ''
-                          }`}
-                        />
-                        {errors.lastName && (
-                          <p
-                            id="lastName-error"
-                            role="alert"
-                            className="text-red-400 text-xs mt-1.5 font-medium"
-                          >
-                            {errors.lastName}
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                <form
+                  name="consultation"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
+                  className="space-y-4 sm:space-y-5"
+                  noValidate
+                >
+                  <input type="hidden" name="form-name" value="consultation" />
+                  <p className="hidden" aria-hidden="true">
+                    <label>
+                      Don&apos;t fill this out if you&apos;re human:{' '}
+                      <input name="bot-field" tabIndex={-1} />
+                    </label>
+                  </p>
 
+                  {/* Name */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
+                      <label htmlFor="firstName" className={labelClass}>
+                        First Name *
+                      </label>
+                      <input
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        autoComplete="given-name"
+                        value={form.firstName}
+                        onChange={handleChange}
+                        onBlur={(e) =>
+                          setForm((prev) => ({ ...prev, firstName: e.target.value.trim() }))
+                        }
+                        placeholder="Jane"
+                        maxLength={50}
+                        required
+                        aria-invalid={errors.firstName ? 'true' : 'false'}
+                        aria-describedby={errors.firstName ? 'firstName-error' : undefined}
+                        className={`${inputClass} ${
+                          errors.firstName
+                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                            : ''
+                        }`}
+                      />
+                      {errors.firstName && (
+                        <p
+                          id="firstName-error"
+                          role="alert"
+                          className="text-red-400 text-xs mt-1.5 font-medium"
+                        >
+                          {errors.firstName}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <label htmlFor="lastName" className={labelClass}>
+                        Last Name *
+                      </label>
+                      <input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        autoComplete="family-name"
+                        value={form.lastName}
+                        onChange={handleChange}
+                        onBlur={(e) =>
+                          setForm((prev) => ({ ...prev, lastName: e.target.value.trim() }))
+                        }
+                        placeholder="Smith"
+                        maxLength={50}
+                        required
+                        aria-invalid={errors.lastName ? 'true' : 'false'}
+                        aria-describedby={errors.lastName ? 'lastName-error' : undefined}
+                        className={`${inputClass} ${
+                          errors.lastName
+                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                            : ''
+                        }`}
+                      />
+                      {errors.lastName && (
+                        <p
+                          id="lastName-error"
+                          role="alert"
+                          className="text-red-400 text-xs mt-1.5 font-medium"
+                        >
+                          {errors.lastName}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Phone + Preferred Contact Method */}
+                  <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                    <div className="sm:col-span-7">
                       <label htmlFor="phone" className={labelClass}>
                         Phone Number *
                       </label>
@@ -928,256 +900,14 @@ export default function BookingSection({
                       )}
                     </div>
 
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span
-                          id="location-group-label"
-                          className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.15em]"
-                        >
-                          Preferred Office Location *
-                        </span>
-                        <span className="text-[11px] text-muted-foreground/80 font-medium">
-                          Select 1 of 3 offices
-                        </span>
-                      </div>
-                      <div
-                        role="radiogroup"
-                        aria-labelledby="location-group-label"
-                        className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3"
-                      >
-                        {[
-                          { label: 'Livingston', sub: 'Essex County', value: locations[0] },
-                          { label: 'Denville', sub: 'Morris County', value: locations[1] },
-                          { label: 'Newark', sub: 'Essex County', value: locations[2] },
-                        ].map((loc) => {
-                          const isSelected = form.location === loc.value;
-                          return (
-                            <button
-                              key={loc.value}
-                              type="button"
-                              role="radio"
-                              aria-checked={isSelected}
-                              onClick={() => {
-                                setForm((prev) => ({ ...prev, location: loc.value }));
-                                if (errors.location) {
-                                  setErrors((prev) => ({ ...prev, location: '' }));
-                                }
-                              }}
-                              className={`p-3.5 rounded-2xl border text-left transition-all duration-200 touch-manipulation min-h-[64px] flex flex-col justify-between relative group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
-                                isSelected
-                                  ? 'bg-gradient-to-b from-primary/25 via-primary/15 to-primary/5 border-primary text-white shadow-[0_0_20px_rgba(197,160,89,0.3),0_4px_12px_rgba(0,0,0,0.4)] ring-1 ring-primary/50 translate-y-[-1px]'
-                                  : errors.location
-                                    ? 'bg-slate-900/90 border-red-500/60 text-slate-200 hover:border-red-400'
-                                    : 'bg-slate-900/80 hover:bg-slate-800/90 border-white/20 hover:border-primary/60 text-slate-100 hover:text-white shadow-[0_2px_8px_rgba(0,0,0,0.35)]'
-                              }`}
-                            >
-                              <div className="flex items-center justify-between gap-2 w-full">
-                                <div className="flex items-center gap-1.5 min-w-0">
-                                  <Icon
-                                    name="MapPinIcon"
-                                    size={15}
-                                    className={`shrink-0 transition-colors ${
-                                      isSelected
-                                        ? 'text-primary'
-                                        : 'text-primary/70 group-hover:text-primary'
-                                    }`}
-                                  />
-                                  <span className="text-sm font-bold leading-tight truncate text-white">
-                                    {loc.label}
-                                  </span>
-                                </div>
-                                <span
-                                  className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all ${
-                                    isSelected
-                                      ? 'border-primary bg-primary shadow-[0_0_8px_rgba(197,160,89,0.8)]'
-                                      : 'border-white/30 bg-black/20 group-hover:border-primary/50'
-                                  }`}
-                                  aria-hidden="true"
-                                >
-                                  {isSelected && (
-                                    <span className="w-1.5 h-1.5 rounded-full bg-black" />
-                                  )}
-                                </span>
-                              </div>
-                              <span
-                                className={`block text-[11px] mt-1.5 font-medium transition-colors ${
-                                  isSelected
-                                    ? 'text-primary/95 font-semibold'
-                                    : 'text-white/65 group-hover:text-white/85'
-                                }`}
-                              >
-                                {loc.sub}
-                              </span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                      {errors.location && (
-                        <p
-                          id="location-error"
-                          role="alert"
-                          className="text-red-400 text-xs mt-1.5 font-medium"
-                        >
-                          {errors.location}
-                        </p>
-                      )}
-                    </div>
-
-                    {isSingleStep && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label htmlFor="email" className={labelClass}>
-                            Email Address{' '}
-                            <span className="text-muted-foreground normal-case font-normal">
-                              (optional)
-                            </span>
-                          </label>
-                          <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            autoComplete="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            onBlur={(e) =>
-                              setForm((prev) => ({ ...prev, email: e.target.value.trim() }))
-                            }
-                            placeholder="jane.smith@example.com"
-                            maxLength={100}
-                            aria-invalid={errors.email ? 'true' : 'false'}
-                            aria-describedby={errors.email ? 'email-error' : undefined}
-                            className={`${inputClass} ${
-                              errors.email
-                                ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
-                                : ''
-                            }`}
-                          />
-                          {errors.email && (
-                            <p
-                              id="email-error"
-                              role="alert"
-                              className="text-red-400 text-xs mt-1.5 font-medium"
-                            >
-                              {errors.email}
-                            </p>
-                          )}
-                        </div>
-                        <div>
-                          <label htmlFor="lens" className={labelClass}>
-                            Lens I&apos;m Interested In{' '}
-                            <span className="text-muted-foreground normal-case font-normal">
-                              (optional)
-                            </span>
-                          </label>
-                          <select
-                            id="lens"
-                            name="lens"
-                            value={form.lens}
-                            onChange={handleChange}
-                            className={inputClass}
-                          >
-                            <option value="">Select a lens (optional)</option>
-                            {lensOptions.map((l) => (
-                              <option key={l} value={l}>
-                                {l}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={isSingleStep && loading}
-                      className="w-full flex items-center justify-center gap-2 px-5 py-2.5 sm:py-3 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px] touch-manipulation shadow-[0_2px_14px_rgba(197,160,89,0.25)] mt-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                    >
-                      {isSingleStep && loading ? (
-                        <span className="flex items-center gap-2.5 text-sm font-bold">
-                          <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                          Submitting Request...
-                        </span>
-                      ) : (
-                        <>
-                          <span>
-                            {isSingleStep
-                              ? 'Request Consultation with Our Surgeons'
-                              : 'Save My Info & Choose Lens (Final Step)'}
-                          </span>
-                          <Icon
-                            name="ArrowRightIcon"
-                            size={16}
-                            className="shrink-0 transition-transform group-hover:translate-x-1"
-                          />
-                        </>
-                      )}
-                    </button>
-
-                    <div className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] sm:text-xs font-semibold mt-3 text-center leading-snug">
-                      <Icon name="LockClosedIcon" size={14} className="shrink-0 text-emerald-400" />
-                      <span>HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required</span>
-                    </div>
-                  </form>
-                ) : (
-                  <form
-                    name="consultation"
-                    data-netlify="true"
-                    data-netlify-honeypot="bot-field"
-                    onSubmit={handleSubmit}
-                    className="space-y-4 sm:space-y-5"
-                    noValidate
-                  >
-                    <input type="hidden" name="form-name" value="consultation" />
-                    <p className="hidden" aria-hidden="true">
-                      <label>
-                        Don&apos;t fill this out if you&apos;re human:{' '}
-                        <input name="bot-field" tabIndex={-1} />
-                      </label>
-                    </p>
-                    <div>
-                      <label htmlFor="email" className={labelClass}>
-                        Email Address *
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        onBlur={(e) =>
-                          setForm((prev) => ({ ...prev, email: e.target.value.trim() }))
-                        }
-                        placeholder="jane.smith@example.com"
-                        maxLength={100}
-                        required
-                        aria-invalid={errors.email ? 'true' : 'false'}
-                        aria-describedby={errors.email ? 'email-error' : undefined}
-                        className={`${inputClass} ${
-                          errors.email
-                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
-                            : ''
-                        }`}
-                      />
-                      {errors.email && (
-                        <p
-                          id="email-error"
-                          role="alert"
-                          className="text-red-400 text-xs mt-1.5 font-medium"
-                        >
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
+                    <div className="sm:col-span-5">
                       <span id="contact-method-label" className={labelClass}>
-                        Preferred Contact Method *
+                        Best Way to Reach You
                       </span>
                       <div
                         role="radiogroup"
                         aria-labelledby="contact-method-label"
-                        className="grid grid-cols-3 gap-3"
+                        className="grid grid-cols-3 gap-2"
                       >
                         {contactMethods.map((method, idx) => {
                           const isChecked = form.preferredContact === method.value;
@@ -1193,10 +923,10 @@ export default function BookingSection({
                               onClick={() =>
                                 setForm((prev) => ({ ...prev, preferredContact: method.value }))
                               }
-                              className={`px-3 py-3 rounded-xl border text-sm font-bold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                              className={`px-2 py-3 min-h-[52px] rounded-2xl border text-xs sm:text-sm font-bold transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                                 isChecked
-                                  ? 'bg-gradient-to-b from-primary/25 via-primary/15 to-primary/5 border-primary text-white shadow-[0_0_16px_rgba(197,160,89,0.25)] ring-1 ring-primary/50 translate-y-[-1px]'
-                                  : 'bg-slate-900/80 hover:bg-slate-800/90 border-white/20 hover:border-primary/60 text-slate-100 hover:text-white shadow-[0_2px_8px_rgba(0,0,0,0.35)]'
+                                  ? 'bg-gradient-to-b from-primary/25 via-primary/15 to-primary/5 border-primary text-white shadow-[0_0_16px_rgba(197,160,89,0.25)] ring-1 ring-primary/50'
+                                  : 'bg-slate-900/80 hover:bg-slate-800/90 border-white/20 hover:border-primary/60 text-slate-100 hover:text-white'
                               }`}
                             >
                               {method.label}
@@ -1205,110 +935,273 @@ export default function BookingSection({
                         })}
                       </div>
                     </div>
+                  </div>
 
-                    <div>
-                      <label htmlFor="lens" className={labelClass}>
-                        Lens I&apos;m Interested In{' '}
-                        <span className="text-muted-foreground normal-case font-normal">
-                          (optional)
-                        </span>
-                      </label>
-                      <select
-                        id="lens"
-                        name="lens"
-                        value={form.lens}
-                        onChange={handleChange}
-                        className={inputClass}
+                  {/* Office Location */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span
+                        id="location-group-label"
+                        className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.15em]"
                       >
-                        <option value="">Select a lens (optional)</option>
-                        {lensOptions.map((l) => (
-                          <option key={l} value={l}>
-                            {l}
-                          </option>
-                        ))}
-                      </select>
+                        Preferred Office Location *
+                      </span>
+                      <span className="text-[11px] text-muted-foreground/80 font-medium">
+                        Select 1 of 3 offices
+                      </span>
                     </div>
+                    <div
+                      role="radiogroup"
+                      aria-labelledby="location-group-label"
+                      className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3"
+                    >
+                      {[
+                        { label: 'Livingston', sub: 'Essex County', value: locations[0] },
+                        { label: 'Denville', sub: 'Morris County', value: locations[1] },
+                        { label: 'Newark', sub: 'Essex County', value: locations[2] },
+                      ].map((loc) => {
+                        const isSelected = form.location === loc.value;
+                        return (
+                          <button
+                            key={loc.value}
+                            type="button"
+                            role="radio"
+                            aria-checked={isSelected}
+                            onClick={() => {
+                              setForm((prev) => ({ ...prev, location: loc.value }));
+                              if (errors.location) {
+                                setErrors((prev) => ({ ...prev, location: '' }));
+                              }
+                            }}
+                            className={`p-3.5 rounded-2xl border text-left transition-all duration-200 touch-manipulation min-h-[64px] flex flex-col justify-between relative group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                              isSelected
+                                ? 'bg-gradient-to-b from-primary/25 via-primary/15 to-primary/5 border-primary text-white shadow-[0_0_20px_rgba(197,160,89,0.3),0_4px_12px_rgba(0,0,0,0.4)] ring-1 ring-primary/50 translate-y-[-1px]'
+                                : errors.location
+                                  ? 'bg-slate-900/90 border-red-500/60 text-slate-200 hover:border-red-400'
+                                  : 'bg-slate-900/80 hover:bg-slate-800/90 border-white/20 hover:border-primary/60 text-slate-100 hover:text-white shadow-[0_2px_8px_rgba(0,0,0,0.35)]'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2 w-full">
+                              <div className="flex items-center gap-1.5 min-w-0">
+                                <Icon
+                                  name="MapPinIcon"
+                                  size={15}
+                                  className={`shrink-0 transition-colors ${
+                                    isSelected
+                                      ? 'text-primary'
+                                      : 'text-primary/70 group-hover:text-primary'
+                                  }`}
+                                />
+                                <span className="text-sm font-bold leading-tight truncate text-white">
+                                  {loc.label}
+                                </span>
+                              </div>
+                              <span
+                                className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-all ${
+                                  isSelected
+                                    ? 'border-primary bg-primary shadow-[0_0_8px_rgba(197,160,89,0.8)]'
+                                    : 'border-white/30 bg-black/20 group-hover:border-primary/50'
+                                }`}
+                                aria-hidden="true"
+                              >
+                                {isSelected && (
+                                  <span className="w-1.5 h-1.5 rounded-full bg-black" />
+                                )}
+                              </span>
+                            </div>
+                            <span
+                              className={`block text-[11px] mt-1.5 font-medium transition-colors ${
+                                isSelected
+                                  ? 'text-primary/95 font-semibold'
+                                  : 'text-white/65 group-hover:text-white/85'
+                              }`}
+                            >
+                              {loc.sub}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {errors.location && (
+                      <p
+                        id="location-error"
+                        role="alert"
+                        className="text-red-400 text-xs mt-1.5 font-medium"
+                      >
+                        {errors.location}
+                      </p>
+                    )}
+                  </div>
 
-                    <div>
-                      <label htmlFor="message" className={labelClass}>
-                        Questions or Notes{' '}
-                        <span className="text-muted-foreground normal-case font-normal">
-                          (optional)
-                        </span>
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={form.message}
-                        onChange={handleChange}
-                        onBlur={(e) =>
-                          setForm((prev) => ({ ...prev, message: e.target.value.trim() }))
-                        }
-                        placeholder="Any specific concerns, current glasses prescription, or questions for Dr. Marano or Dr. Raouf..."
-                        rows={3}
-                        maxLength={1000}
-                        aria-invalid={errors.message ? 'true' : 'false'}
-                        aria-describedby={errors.message ? 'message-error' : undefined}
-                        className={`${inputClass} resize-none ${
-                          errors.message
-                            ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
-                            : ''
-                        }`}
+                  {/* Collapsible Optional Details (keeps form super fast while preserving full fields) */}
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => setShowOptionalDetails((prev) => !prev)}
+                      aria-expanded={showOptionalDetails}
+                      className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-accent transition-colors py-1.5 min-h-[40px] touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                    >
+                      <Icon
+                        name={showOptionalDetails ? 'ChevronUpIcon' : 'PlusCircleIcon'}
+                        size={15}
+                        className="shrink-0"
                       />
-                      {errors.message && (
-                        <p
-                          id="message-error"
-                          role="alert"
-                          className="text-red-400 text-xs mt-1.5 font-medium"
-                        >
-                          {errors.message}
-                        </p>
-                      )}
-                      <div className="flex justify-end mt-1">
-                        <span className="text-[10px] text-muted-foreground/60">
-                          {form.message.length} / 1000
-                        </span>
-                      </div>
-                    </div>
+                      <span>
+                        {showOptionalDetails
+                          ? 'Hide optional email, lens & notes'
+                          : 'Add email, lens preference, or questions (optional)'}
+                      </span>
+                    </button>
 
-                    <div className="flex gap-3">
-                      <button
-                        type="button"
-                        onClick={() => setStep(1)}
-                        className="flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-3 rounded-xl border border-border text-slate-200 hover:text-white hover:border-primary/40 text-sm font-semibold transition-all duration-200 min-h-[48px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                      >
-                        <Icon name="ArrowLeftIcon" size={14} />
-                        Back
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="flex-1 flex items-center justify-center gap-2 px-5 py-2.5 sm:py-3 bg-primary text-[#000000] rounded-xl text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px] touch-manipulation shadow-[0_2px_14px_rgba(197,160,89,0.25)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                      >
-                        {loading ? (
-                          <span className="flex items-center gap-2.5 text-sm font-bold">
-                            <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                            Submitting Request...
-                          </span>
-                        ) : (
-                          <>
-                            <span className="truncate">Request Consultation with Our Surgeons</span>
-                            <Icon
-                              name="ArrowRightIcon"
-                              size={16}
-                              className="shrink-0 transition-transform group-hover:translate-x-1"
+                    {showOptionalDetails && (
+                      <div className="mt-3 space-y-4 pt-3 border-t border-white/[0.08]">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="email" className={labelClass}>
+                              Email Address{' '}
+                              <span className="text-muted-foreground normal-case font-normal">
+                                (optional)
+                              </span>
+                            </label>
+                            <input
+                              id="email"
+                              name="email"
+                              type="email"
+                              autoComplete="email"
+                              value={form.email}
+                              onChange={handleChange}
+                              onBlur={(e) =>
+                                setForm((prev) => ({ ...prev, email: e.target.value.trim() }))
+                              }
+                              placeholder="jane.smith@example.com"
+                              maxLength={100}
+                              aria-invalid={errors.email ? 'true' : 'false'}
+                              aria-describedby={errors.email ? 'email-error' : undefined}
+                              className={`${inputClass} ${
+                                errors.email
+                                  ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                                  : ''
+                              }`}
                             />
-                          </>
-                        )}
-                      </button>
-                    </div>
+                            {errors.email && (
+                              <p
+                                id="email-error"
+                                role="alert"
+                                className="text-red-400 text-xs mt-1.5 font-medium"
+                              >
+                                {errors.email}
+                              </p>
+                            )}
+                          </div>
+                          <div>
+                            <label htmlFor="lens" className={labelClass}>
+                              Lens I&apos;m Interested In{' '}
+                              <span className="text-muted-foreground normal-case font-normal">
+                                (optional)
+                              </span>
+                            </label>
+                            <select
+                              id="lens"
+                              name="lens"
+                              value={form.lens}
+                              onChange={handleChange}
+                              className={inputClass}
+                            >
+                              <option value="">Select a lens (optional)</option>
+                              {lensOptions.map((l) => (
+                                <option key={l} value={l}>
+                                  {l}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
 
-                    <p className="text-xs text-muted-foreground text-center pt-1">
-                      🔒 100% Confidential · Zero Obligation · Our Surgeons Personally Review Every
-                      Request
-                    </p>
-                  </form>
-                )}
+                        <div>
+                          <label htmlFor="message" className={labelClass}>
+                            Questions or Notes{' '}
+                            <span className="text-muted-foreground normal-case font-normal">
+                              (optional)
+                            </span>
+                          </label>
+                          <textarea
+                            id="message"
+                            name="message"
+                            value={form.message}
+                            onChange={handleChange}
+                            onBlur={(e) =>
+                              setForm((prev) => ({ ...prev, message: e.target.value.trim() }))
+                            }
+                            placeholder="Any specific concerns, current glasses prescription, or questions for Dr. Marano or Dr. Raouf..."
+                            rows={2}
+                            maxLength={1000}
+                            aria-invalid={errors.message ? 'true' : 'false'}
+                            aria-describedby={errors.message ? 'message-error' : undefined}
+                            className={`${inputClass} resize-none ${
+                              errors.message
+                                ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                                : ''
+                            }`}
+                          />
+                          {errors.message && (
+                            <p
+                              id="message-error"
+                              role="alert"
+                              className="text-red-400 text-xs mt-1.5 font-medium"
+                            >
+                              {errors.message}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-2.5 px-6 py-4 bg-primary text-[#000000] rounded-2xl text-base font-extrabold hover:bg-accent transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed min-h-[56px] touch-manipulation shadow-[0_6px_24px_rgba(197,160,89,0.32)] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                  >
+                    {loading ? (
+                      <span className="flex items-center gap-2.5 text-sm font-bold">
+                        <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                        Submitting Request...
+                      </span>
+                    ) : (
+                      <>
+                        <span>Request My Consultation</span>
+                        <Icon
+                          name="ArrowRightIcon"
+                          size={18}
+                          className="shrink-0 transition-transform group-hover:translate-x-1"
+                        />
+                      </>
+                    )}
+                  </button>
+
+                  {/* Instant Direct Call Alternative Inside Form Card */}
+                  <div className="pt-3 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+                    <span className="text-muted-foreground font-medium">
+                      Prefer to schedule by phone right now?
+                    </span>
+                    <a
+                      href="tel:9733220100"
+                      suppressHydrationWarning
+                      onClick={() => trackPhoneClick('Booking Form Direct Call', '(973) 322-0100')}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary font-bold transition-colors min-h-[40px] whitespace-nowrap touch-manipulation"
+                    >
+                      <Icon name="PhoneIcon" size={14} className="shrink-0" />
+                      <span>
+                        Call <span suppressHydrationWarning>(973) 322-0100</span>
+                      </span>
+                    </a>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] sm:text-xs font-semibold text-center leading-snug">
+                    <Icon name="LockClosedIcon" size={14} className="shrink-0 text-emerald-400" />
+                    <span>HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required</span>
+                  </div>
+                </form>
               </>
             )}
           </div>

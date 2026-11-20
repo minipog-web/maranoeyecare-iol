@@ -3,7 +3,14 @@
 import React, { useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
-import { trackEvent, trackQuizStart, trackQuizComplete } from '@/lib/gtag';
+import {
+  trackEvent,
+  trackQuizStart,
+  trackQuizComplete,
+  trackConsultationBooking,
+  trackPhoneClick,
+} from '@/lib/gtag';
+import { getTrackingParams } from '@/lib/tracking-params';
 import { smoothScrollToElement } from '@/lib/ui';
 import styles from './LensQuestionnaireSection.module.css';
 
@@ -266,6 +273,12 @@ function getProgressPercent(history: string[]): number {
 
 // progressWidthClass removed: width driven via CSS custom property set by ref
 
+const QUIZ_OFFICES = [
+  { label: 'Livingston', value: 'Livingston Office (200 South Orange Ave)' },
+  { label: 'Denville', value: 'Denville Office (16 Pocono Rd)' },
+  { label: 'Newark', value: 'Newark Office (306 Martin Luther King Blvd)' },
+];
+
 export default function LensQuestionnaireSection() {
   const [currentId, setCurrentId] = useState<string>('q1');
   const [history, setHistory] = useState<string[]>([]);
@@ -274,6 +287,95 @@ export default function LensQuestionnaireSection() {
   const [animating, setAnimating] = useState(false);
   const [calculating, setCalculating] = useState(false);
   const [answerLabels, setAnswerLabels] = useState<string[]>([]);
+  const [quickName, setQuickName] = useState('');
+  const [quickPhone, setQuickPhone] = useState('');
+  const [quickOffice, setQuickOffice] = useState(QUIZ_OFFICES[0].value);
+  const [quickSubmitting, setQuickSubmitting] = useState(false);
+  const [quickSubmitted, setQuickSubmitted] = useState(false);
+  const [quickError, setQuickError] = useState<string | null>(null);
+
+  const formatQuickPhone = (val: string): string => {
+    const digits = val.replace(/\D/g, '');
+    if (!digits) return '';
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+  };
+
+  const handleQuickSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!result || quickSubmitting) return;
+
+    const trimmedName = quickName.trim();
+    const trimmedPhone = quickPhone.trim();
+    const digits = trimmedPhone.replace(/\D/g, '');
+
+    if (!trimmedName) {
+      setQuickError('Please enter your name so our coordinator knows who to ask for.');
+      return;
+    }
+    if (digits.length < 7) {
+      setQuickError('Please enter a valid 10-digit phone number.');
+      return;
+    }
+
+    setQuickSubmitting(true);
+    setQuickError(null);
+
+    const nameParts = trimmedName.split(/\s+/);
+    const firstName = nameParts[0] || trimmedName;
+    const lastName = nameParts.slice(1).join(' ') || '-';
+    const tracking = getTrackingParams();
+
+    try {
+      const formData = new URLSearchParams();
+      formData.append('form-name', 'consultation');
+      formData.append('name', trimmedName);
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      formData.append('email', '');
+      formData.append('phone', trimmedPhone);
+      formData.append('preferredContact', 'phone');
+      formData.append('location', quickOffice);
+      formData.append('lens', result.name);
+      formData.append('quizResult', result.key);
+      formData.append(
+        'message',
+        `Quiz inline callback request (Answers: ${answerLabels.join(' | ')})`
+      );
+      if (tracking.gclid) formData.append('gclid', tracking.gclid);
+      if (tracking.wbraid) formData.append('wbraid', tracking.wbraid);
+      if (tracking.gbraid) formData.append('gbraid', tracking.gbraid);
+      if (tracking.utm_source) formData.append('utmSource', tracking.utm_source);
+      if (tracking.utm_medium) formData.append('utmMedium', tracking.utm_medium);
+      if (tracking.utm_campaign) formData.append('utmCampaign', tracking.utm_campaign);
+      if (tracking.utm_term) formData.append('utmTerm', tracking.utm_term);
+      if (tracking.utm_content) formData.append('utmContent', tracking.utm_content);
+      if (tracking.landing_page) formData.append('landingPage', tracking.landing_page);
+      if (tracking.referrer) formData.append('referrer', tracking.referrer);
+
+      const response = await fetch('/__forms.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString(),
+      });
+
+      if (response.ok) {
+        setQuickSubmitted(true);
+        trackConsultationBooking(quickOffice, result.name, result.key, {
+          phone: trimmedPhone,
+          firstName,
+          lastName: lastName === '-' ? undefined : lastName,
+        });
+      } else {
+        setQuickError('Could not submit right now. Please call us directly at (973) 322-0100.');
+      }
+    } catch {
+      setQuickError('Connection issue. Please call us directly at (973) 322-0100.');
+    } finally {
+      setQuickSubmitting(false);
+    }
+  };
 
   const currentQuestion = QUESTIONS[currentId];
 
@@ -332,7 +434,7 @@ export default function LensQuestionnaireSection() {
               }
             })();
           });
-        }, 1800);
+        }, 850);
 
         // Quiz result is stored in sessionStorage ('preselect-lens') and attached to the Netlify 'consultation' form submission
         try {
@@ -367,6 +469,8 @@ export default function LensQuestionnaireSection() {
     setSelectedOption(null);
     setAnswerLabels([]);
     setCalculating(false);
+    setQuickSubmitted(false);
+    setQuickError(null);
   }
 
   const progress = result ? 100 : getProgressPercent(history);
@@ -385,35 +489,38 @@ export default function LensQuestionnaireSection() {
   return (
     <section
       id="lens-quiz"
-      className="relative py-16 sm:py-24 overflow-hidden bg-section-quiz scroll-mt-24 sm:scroll-mt-28 border-t border-white/[0.04] content-auto"
+      className="relative pt-7 sm:pt-9 lg:pt-10 pb-14 sm:pb-20 overflow-hidden bg-section-quiz scroll-mt-20 sm:scroll-mt-24 border-t border-primary/20"
     >
+      {/* Prominent gold specular crown hairline bridging from Hero */}
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent pointer-events-none" />
+
       {/* Radar concentric focus rings in negative space */}
       <div className="absolute inset-0 texture-radar-concentric opacity-65 pointer-events-none" />
 
       {/* Cockpit Guidance Directional Lighting Washes (Zero circular blobs) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-500/[0.05] via-transparent to-primary/[0.05] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.06] via-transparent to-sky-500/[0.04] pointer-events-none" />
       <div className="absolute top-1/4 left-0 w-1/2 h-[350px] bg-gradient-to-br from-sky-500/[0.04] via-transparent to-transparent pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-1/2 h-[350px] bg-gradient-to-tl from-primary/[0.04] via-transparent to-transparent pointer-events-none" />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197, 160, 89,0.8)]" />
-            Lens Recommendation Quiz
+        <div className="text-center mb-5 sm:mb-6">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/35 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] mb-3 shadow-[0_0_20px_rgba(197,160,89,0.18)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0 shadow-[0_0_8px_rgba(197,160,89,0.8)]" />
+            60-Second Lens Match Quiz
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-normal sm:font-medium text-foreground mb-4 leading-tight">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal sm:font-medium text-foreground mb-2 leading-tight">
             Build Your{' '}
             <span className="font-semibold text-gradient-primary">Perfect Vision Plan</span>
           </h2>
-          <p className="text-muted-foreground text-base max-w-xl mx-auto">
-            Answer a few quick questions and we&apos;ll recommend the IOL best suited to your vision
-            goals and lifestyle.
+          <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto">
+            Answer 2–3 quick questions for a personalized IOL match based on your daily routine and
+            night-driving needs.
           </p>
         </div>
 
         {/* Progress bar */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-4 sm:mb-5">
           <div className="flex justify-between items-center mb-2">
             <span className="text-xs text-muted-foreground">
               {calculating
@@ -452,7 +559,7 @@ export default function LensQuestionnaireSection() {
             animating && !calculating ? 'opacity-60 scale-[0.99]' : 'opacity-100 scale-100'
           }`}
         >
-          <div className="double-bezel-inner bg-card p-5 sm:p-8 card-glow">
+          <div className="double-bezel-inner bg-card p-5 sm:p-6 lg:p-7 card-glow">
             {calculating ? (
               <div className="flex flex-col items-center justify-center py-10 text-center min-h-[300px]">
                 {/* Spinning optical grid/reticle simulator */}
@@ -501,18 +608,22 @@ export default function LensQuestionnaireSection() {
             ) : !result ? (
               <>
                 {/* Question */}
-                <div className="mb-5 sm:mb-6">
-                  <h3 className="text-lg sm:text-2xl font-semibold text-foreground mb-2 leading-snug">
+                <div className="mb-4 sm:mb-5">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground mb-1.5 leading-snug">
                     {currentQuestion.text}
                   </h3>
                   {currentQuestion.subtext && (
-                    <p className="text-muted-foreground text-sm">{currentQuestion.subtext}</p>
+                    <p className="text-muted-foreground text-xs sm:text-sm">
+                      {currentQuestion.subtext}
+                    </p>
                   )}
                 </div>
 
                 {/* Options */}
                 <div
-                  className="flex flex-col gap-3"
+                  className={`grid grid-cols-1 gap-3 ${
+                    currentQuestion.options.length % 2 === 0 ? 'md:grid-cols-2' : ''
+                  }`}
                   role="radiogroup"
                   aria-label={currentQuestion.text}
                 >
@@ -672,25 +783,158 @@ export default function LensQuestionnaireSection() {
                   </span>
                 </div>
 
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3">
+                {/* Inline 15-Second Callback Capture + Direct Call at Peak Intent */}
+                <div className="rounded-2xl bg-[#0e1018] border border-primary/40 p-4 sm:p-6 mb-4 shadow-[0_8px_30px_rgba(0,0,0,0.45)]">
+                  {quickSubmitted ? (
+                    <div className="text-center py-4">
+                      <div className="w-12 h-12 rounded-full bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center mx-auto mb-3">
+                        <Icon name="CheckCircleIcon" size={26} className="text-emerald-400" />
+                      </div>
+                      <h4 className="font-display text-xl font-semibold text-white mb-1.5">
+                        Callback Requested for {result.name}!
+                      </h4>
+                      <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                        Our NJ patient care coordinator will call you back the same business day to
+                        confirm your consultation and answer any questions.
+                      </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleQuickSubmit} noValidate className="space-y-3.5">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                          <p className="text-sm sm:text-base font-bold text-white">
+                            Confirm Your {result.name} Candidacy
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Enter your name &amp; phone for a quick 5-minute same-day callback. Zero
+                            obligation.
+                          </p>
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded-full shrink-0">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          No Email Needed
+                        </span>
+                      </div>
+
+                      {quickError && (
+                        <p
+                          role="alert"
+                          className="text-xs text-red-300 bg-red-500/10 border border-red-500/25 rounded-xl px-3.5 py-2.5 font-medium"
+                        >
+                          {quickError}
+                        </p>
+                      )}
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input
+                          type="text"
+                          autoComplete="name"
+                          value={quickName}
+                          onChange={(e) => {
+                            setQuickName(e.target.value);
+                            if (quickError) setQuickError(null);
+                          }}
+                          placeholder="Your Full Name *"
+                          aria-label="Your Full Name"
+                          maxLength={80}
+                          className="w-full px-4 py-3.5 rounded-xl bg-black/50 border border-white/15 focus:border-primary text-white placeholder:text-white/45 text-sm min-h-[50px] focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        />
+                        <input
+                          type="tel"
+                          autoComplete="tel"
+                          value={quickPhone}
+                          onChange={(e) => {
+                            setQuickPhone(formatQuickPhone(e.target.value));
+                            if (quickError) setQuickError(null);
+                          }}
+                          placeholder="Phone Number (973) 555-0123 *"
+                          aria-label="Phone Number"
+                          maxLength={25}
+                          className="w-full px-4 py-3.5 rounded-xl bg-black/50 border border-white/15 focus:border-primary text-white placeholder:text-white/45 text-sm min-h-[50px] focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        />
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mr-1">
+                          Office:
+                        </span>
+                        {QUIZ_OFFICES.map((off) => {
+                          const active = quickOffice === off.value;
+                          return (
+                            <button
+                              key={off.label}
+                              type="button"
+                              onClick={() => setQuickOffice(off.value)}
+                              className={`px-3.5 py-2 rounded-lg text-xs font-bold border transition-all min-h-[40px] touch-manipulation ${
+                                active
+                                  ? 'bg-primary/20 border-primary text-primary'
+                                  : 'bg-white/[0.03] border-white/15 text-white/80 hover:border-primary/50'
+                              }`}
+                            >
+                              {off.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                        <button
+                          type="submit"
+                          disabled={quickSubmitting}
+                          className="group flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-[#000000] font-extrabold text-sm sm:text-base hover:bg-accent transition-all min-h-[52px] touch-manipulation shadow-[0_4px_20px_rgba(197,160,89,0.3)] disabled:opacity-60 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                        >
+                          <Icon name="CalendarDaysIcon" size={18} className="text-black shrink-0" />
+                          <span>
+                            {quickSubmitting
+                              ? 'Requesting Callback...'
+                              : `Request My ${result.name} Callback`}
+                          </span>
+                          <Icon
+                            name="ArrowRightIcon"
+                            size={16}
+                            className="text-black shrink-0 transition-transform group-hover:translate-x-1"
+                          />
+                        </button>
+
+                        <a
+                          href="tel:9733220100"
+                          suppressHydrationWarning
+                          onClick={() =>
+                            trackPhoneClick(`Quiz Result Call: ${result.name}`, '(973) 322-0100')
+                          }
+                          className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-primary/45 bg-primary/10 hover:bg-primary/20 text-white font-bold text-sm transition-all min-h-[52px] touch-manipulation whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                        >
+                          <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
+                          <span>
+                            Call <span suppressHydrationWarning>(973) 322-0100</span>
+                          </span>
+                        </a>
+                      </div>
+                    </form>
+                  )}
+                </div>
+
+                {/* Secondary Actions */}
+                <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <button
+                    type="button"
+                    onClick={handleRestart}
+                    className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-white font-semibold py-2 min-h-[40px] touch-manipulation"
+                  >
+                    <Icon name="ArrowPathIcon" size={14} />
+                    Retake Quiz
+                  </button>
+
                   <a
                     href="#booking"
                     onClick={(e) => {
                       e.preventDefault();
-                      // Primary: fire custom event (for already-mounted BookingSection)
                       window.dispatchEvent(new CustomEvent('select-lens', { detail: result.key }));
-                      // Fallback: write to sessionStorage (for cases where BookingSection mounts after)
                       try {
                         sessionStorage.setItem('preselect-lens', result.key);
-                      } catch (e) {
-                        console.warn('Session storage write failed:', e);
+                      } catch {
+                        // ignore
                       }
-                      trackEvent({
-                        action: 'quiz_cta_click',
-                        category: 'Conversion',
-                        label: `Schedule Now - ${result.name}`,
-                      });
                       trackEvent({
                         action: 'quiz_schedule_now_click',
                         category: 'Conversion',
@@ -699,32 +943,12 @@ export default function LensQuestionnaireSection() {
                       smoothScrollToElement('booking');
                       window.history.pushState(null, '', '#booking');
                     }}
-                    className="group flex-1 flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-primary text-[#000000] font-bold text-sm sm:text-base hover:bg-accent transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] min-h-[52px] md:shadow-[0_0_24px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                    aria-label={`Schedule Now: Book your ${result.name} consultation`}
+                    className="text-primary hover:underline font-semibold inline-flex items-center gap-1 py-2 min-h-[40px] touch-manipulation"
                   >
-                    <Icon name="CalendarDaysIcon" size={18} className="text-black shrink-0" />
-                    <span>Schedule Now</span>
-                    <Icon
-                      name="ArrowRightIcon"
-                      size={16}
-                      className="text-black shrink-0 transition-transform group-hover:translate-x-1"
-                    />
+                    <span>Prefer the full consultation form?</span>
+                    <span aria-hidden="true">&darr;</span>
                   </a>
-                  <button
-                    onClick={handleRestart}
-                    className="btn-neumorphic-secondary flex items-center justify-center gap-2 px-5 py-4 rounded-xl text-sm sm:text-base font-bold text-white transition-all duration-200 min-h-[52px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                  >
-                    <Icon name="ArrowPathIcon" size={16} />
-                    Retake Quiz
-                  </button>
                 </div>
-
-                <p className="mt-4 text-xs text-muted-foreground text-center">
-                  Clicking <strong className="text-foreground">Schedule Now</strong> pre-selects
-                  your <strong className="text-primary">{result.name}</strong> recommendation in our
-                  consultation form below. Dr. Marano or Dr. Raouf will confirm your candidacy
-                  during your comprehensive evaluation.
-                </p>
               </div>
             )}
           </div>

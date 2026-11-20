@@ -7,7 +7,8 @@ import HeroSection from '@/app/components/HeroSection';
 import TrustBadgeBar from '@/app/components/TrustBadgeBar';
 import StickyCTABar from '@/app/components/StickyCTABar';
 
-// Below-the-fold sections code-split dynamically to minimize initial bundle size and optimize LCP/FCP
+// Below-the-fold sections code-split dynamically to minimize initial mobile JS bundle and optimize LCP/FCP
+const LensQuestionnaireSection = dynamic(() => import('@/app/components/LensQuestionnaireSection'));
 const CataractEducationTeaserSection = dynamic(
   () => import('@/app/components/CataractEducationTeaserSection')
 );
@@ -23,9 +24,9 @@ const TrustSection = dynamic(() => import('@/app/components/TrustSection'));
 const CertificationLogos = dynamic(() => import('@/app/components/CertificationLogos'));
 const CandidacySection = dynamic(() => import('@/app/components/CandidacySection'));
 const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'));
-const LensQuestionnaireSection = dynamic(() => import('@/app/components/LensQuestionnaireSection'));
 const FAQSection = dynamic(() => import('@/app/components/FAQSection'));
 const InsuranceCostSection = dynamic(() => import('@/app/components/InsuranceCostSection'));
+const MidPageConversionStrip = dynamic(() => import('@/app/components/MidPageConversionStrip'));
 const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
 
 export const metadata: Metadata = {
@@ -153,14 +154,25 @@ export default function HomePage() {
       <main className="min-h-screen bg-background overflow-x-hidden">
         <Header />
         <HeroSection />
+        <LensQuestionnaireSection />
         <TrustBadgeBar variant="clinical" />
         <hr className="section-divider" />
         <div className="optimize-offscreen">
-          <CataractEducationTeaserSection />
+          <LensVisionComparisonSection />
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
-          <LensVisionComparisonSection />
+          <TrustSection />
+        </div>
+        <div className="optimize-offscreen">
+          <CertificationLogos />
+        </div>
+        <div className="optimize-offscreen">
+          <MidPageConversionStrip variant="surgeons" />
+        </div>
+        <hr className="section-divider" />
+        <div className="optimize-offscreen">
+          <CataractEducationTeaserSection />
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
@@ -176,13 +188,6 @@ export default function HomePage() {
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
-          <TrustSection />
-        </div>
-        <div className="optimize-offscreen">
-          <CertificationLogos />
-        </div>
-        <hr className="section-divider" />
-        <div className="optimize-offscreen">
           <CandidacySection />
         </div>
         <hr className="section-divider" />
@@ -191,15 +196,14 @@ export default function HomePage() {
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
-          <LensQuestionnaireSection />
+          <InsuranceCostSection />
+        </div>
+        <div className="optimize-offscreen">
+          <MidPageConversionStrip variant="pricing" />
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
           <FAQSection />
-        </div>
-        <hr className="section-divider" />
-        <div className="optimize-offscreen">
-          <InsuranceCostSection />
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">

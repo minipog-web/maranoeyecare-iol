@@ -1,10 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Icon from '@/components/ui/AppIcon';
 
 export default function RecoveryTimelineSection() {
   const [activeStep, setActiveStep] = useState<number>(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handleMobileStepSelect = (idx: number) => {
+    setActiveStep(idx);
+    const container = carouselRef.current;
+    if (!container) return;
+    const card = container.children[idx] as HTMLElement | undefined;
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  };
 
   const steps = [
     {
@@ -118,16 +129,48 @@ export default function RecoveryTimelineSection() {
             </div>
           </div>
 
+          {/* Mobile Step Selector & Swipe Cue */}
+          <div className="md:hidden mb-4">
+            <div className="flex items-center justify-between gap-2 mb-2.5">
+              <div className="flex items-center gap-1.5" role="tablist" aria-label="Recovery steps">
+                {steps.map((step, idx) => (
+                  <button
+                    key={step.phase}
+                    type="button"
+                    role="tab"
+                    aria-selected={idx === activeStep}
+                    onClick={() => handleMobileStepSelect(idx)}
+                    className={`min-w-[40px] min-h-[40px] rounded-xl text-xs font-bold font-mono border transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                      idx === activeStep
+                        ? 'bg-primary text-black border-primary'
+                        : 'bg-white/[0.04] text-slate-200 border-white/10'
+                    }`}
+                    aria-label={`Step ${step.phase}: ${step.title}`}
+                  >
+                    {step.phase}
+                  </button>
+                ))}
+              </div>
+              <span className="text-[11px] text-white/75 font-medium shrink-0">Swipe &rarr;</span>
+            </div>
+          </div>
+
           {/* Cards Grid */}
-          <div className="flex items-stretch md:grid md:grid-cols-5 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-6 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
+          <div
+            ref={carouselRef}
+            className="flex items-stretch md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-6 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0"
+          >
             {steps.map((step, idx) => {
               const isActive = idx === activeStep;
               return (
                 <div
                   key={idx}
                   onMouseEnter={() => setActiveStep(idx)}
+                  onClick={() => setActiveStep(idx)}
                   className={`flex-none w-[280px] sm:w-[320px] md:w-auto snap-center group relative transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] h-full flex flex-col ${
-                    isActive ? 'scale-[1.02] md:translate-y-[-4px]' : 'opacity-70 hover:opacity-100'
+                    isActive
+                      ? 'md:scale-[1.02] md:translate-y-[-4px]'
+                      : 'opacity-100 md:opacity-70 md:hover:opacity-100'
                   }`}
                 >
                   {/* Outer Bezel (Doppelrand) with dynamic color border & glow */}

@@ -66,7 +66,7 @@ export default function LensarAllySection() {
   return (
     <section
       id="lensar-ally"
-      className="py-16 sm:py-24 relative overflow-hidden bg-section-lensar border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
+      className="py-12 sm:py-20 lg:py-24 relative overflow-hidden bg-section-lensar border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* Robotic surgical suite femtosecond laser reticle texture */}
       <div className="absolute inset-0 texture-laser-reticle opacity-50 pointer-events-none" />
@@ -102,11 +102,11 @@ export default function LensarAllySection() {
         </div>
 
         {/* Dynamic perspective selector */}
-        <div className="flex justify-center mb-10 sm:mb-16">
-          <div className="inline-flex p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md">
+        <div className="flex justify-center mb-8 sm:mb-14">
+          <div className="w-full sm:w-auto grid grid-cols-2 sm:inline-flex p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md gap-1">
             <button
               onClick={() => handleTabChange('patient')}
-              className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+              className={`px-3 sm:px-6 py-3 min-h-[48px] rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 activeTab === 'patient'
                   ? 'bg-primary text-[#000000] shadow-[0_0_20px_rgba(197,160,89,0.25)]'
                   : 'text-slate-200 hover:text-white'
@@ -116,13 +116,15 @@ export default function LensarAllySection() {
                 name="UserIcon"
                 size={16}
                 variant={activeTab === 'patient' ? 'solid' : 'outline'}
-                className={activeTab === 'patient' ? 'text-black' : 'text-primary'}
+                className={
+                  activeTab === 'patient' ? 'text-black shrink-0' : 'text-primary shrink-0'
+                }
               />
-              Patient Experience
+              <span>Patient Experience</span>
             </button>
             <button
               onClick={() => handleTabChange('surgeon')}
-              className={`px-6 py-3 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+              className={`px-3 sm:px-6 py-3 min-h-[48px] rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 activeTab === 'surgeon'
                   ? 'bg-primary text-[#000000] shadow-[0_0_20px_rgba(197,160,89,0.25)]'
                   : 'text-slate-200 hover:text-white'
@@ -132,9 +134,11 @@ export default function LensarAllySection() {
                 name="AcademicCapIcon"
                 size={16}
                 variant={activeTab === 'surgeon' ? 'solid' : 'outline'}
-                className={activeTab === 'surgeon' ? 'text-black' : 'text-primary'}
+                className={
+                  activeTab === 'surgeon' ? 'text-black shrink-0' : 'text-primary shrink-0'
+                }
               />
-              Surgical Advantages
+              <span>Surgical Advantages</span>
             </button>
           </div>
         </div>

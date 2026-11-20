@@ -245,33 +245,35 @@ export default function InsuranceCostSection() {
                 </h4>
 
                 <div className="space-y-3 text-xs sm:text-sm mb-6">
-                  <div className="flex justify-between py-2 border-b border-white/[0.06]">
+                  <div className="flex justify-between items-baseline gap-3 py-2 border-b border-white/[0.06]">
                     <span className="text-muted-foreground">
                       8–10 Pairs of Progressive Lenses &amp; Frames
                     </span>
-                    <span className="font-mono text-foreground font-semibold">
+                    <span className="font-mono text-foreground font-semibold shrink-0 text-right">
                       ~$4,800 – $6,500
                     </span>
                   </div>
-                  <div className="flex justify-between py-2 border-b border-white/[0.06]">
+                  <div className="flex justify-between items-baseline gap-3 py-2 border-b border-white/[0.06]">
                     <span className="text-muted-foreground">
                       Reading Glasses &amp; Backup Pairs
                     </span>
-                    <span className="font-mono text-foreground font-semibold">~$100 – $200</span>
+                    <span className="font-mono text-foreground font-semibold shrink-0 text-right">
+                      ~$100 – $200
+                    </span>
                   </div>
-                  <div className="flex justify-between py-2 border-b border-white/[0.06]">
+                  <div className="flex justify-between items-baseline gap-3 py-2 border-b border-white/[0.06]">
                     <span className="text-muted-foreground">
                       Prescription Sunglasses &amp; Polarized Coatings
                     </span>
-                    <span className="font-mono text-foreground font-semibold">
+                    <span className="font-mono text-foreground font-semibold shrink-0 text-right">
                       ~$1,500 – $2,200
                     </span>
                   </div>
-                  <div className="flex justify-between py-2 border-b border-white/[0.06]">
+                  <div className="flex justify-between items-baseline gap-3 py-2 border-b border-white/[0.06]">
                     <span className="text-muted-foreground">
                       Biannual Refraction Exams &amp; Lens Changes
                     </span>
-                    <span className="font-mono text-foreground font-semibold">
+                    <span className="font-mono text-foreground font-semibold shrink-0 text-right">
                       ~$1,000 – $1,500
                     </span>
                   </div>

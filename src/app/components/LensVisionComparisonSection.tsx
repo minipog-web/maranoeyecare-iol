@@ -650,7 +650,7 @@ export default function LensVisionComparisonSection() {
     <section
       ref={sectionRef}
       id="vision"
-      className="py-16 sm:py-24 relative overflow-hidden scroll-mt-24 sm:scroll-mt-28 bg-section-simulator"
+      className="py-12 sm:py-20 lg:py-24 relative overflow-hidden scroll-mt-24 sm:scroll-mt-28 bg-section-simulator"
     >
       {/* Cinematic darkroom perimeter vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_95%_75%_at_50%_50%,transparent_50%,rgba(0,0,0,0.7)_100%)] pointer-events-none" />
@@ -756,7 +756,7 @@ export default function LensVisionComparisonSection() {
                                   label: d,
                                 });
                               }}
-                              className={`relative z-10 flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border text-center transition-colors duration-300 group active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border-transparent ${
+                              className={`relative z-10 flex flex-col items-center justify-center p-2.5 sm:p-3 min-h-[52px] rounded-xl border text-center transition-colors duration-300 group active:scale-[0.97] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border-transparent ${
                                 isActive
                                   ? 'text-white font-bold'
                                   : 'bg-transparent text-slate-200 hover:text-white font-semibold'
@@ -764,14 +764,14 @@ export default function LensVisionComparisonSection() {
                             >
                               <AppIcon
                                 name={details.icon}
-                                size={16}
+                                size={17}
                                 className={`mb-1.5 sm:mb-2 transition-transform duration-300 group-hover:scale-110 ${
                                   isActive
                                     ? 'text-primary'
                                     : 'text-slate-300 group-hover:text-white'
                                 }`}
                               />
-                              <span className="block text-[10px] sm:text-xs font-bold leading-none">
+                              <span className="block text-xs font-bold leading-none">
                                 {details.label}
                               </span>
                               <span className="hidden sm:block text-[9px] text-slate-300 font-medium mt-1 truncate max-w-full">
@@ -1082,7 +1082,7 @@ export default function LensVisionComparisonSection() {
                       e.preventDefault();
                       setIsPeekingBaseline(false);
                     }}
-                    className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-30 px-2.5 sm:px-3 py-1.5 sm:py-2 bg-black/80 hover:bg-black/90 active:bg-primary/95 text-[10px] font-bold text-white rounded-xl border border-white/20 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-30 min-h-[40px] px-3 py-2 bg-black/85 hover:bg-black/95 active:bg-primary/95 text-xs font-bold text-white rounded-xl border border-white/25 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     aria-label="Hold to compare with standard Monofocal lens"
                   >
                     <span className="relative flex h-2 w-2 shrink-0">

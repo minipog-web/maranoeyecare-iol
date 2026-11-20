@@ -366,7 +366,7 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="py-16 sm:py-24 relative overflow-hidden bg-section-faq border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
+      className="py-12 sm:py-20 lg:py-24 relative overflow-hidden bg-section-faq border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* FAQ Schema Markup */}
       <script
@@ -405,8 +405,8 @@ export default function FAQSection() {
               fears.
             </p>
 
-            {/* Surgeon Direct Care Advisory Card */}
-            <div className="relative p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-[#141722]/90 to-[#0e1017]/90 border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.5)] mb-6 overflow-hidden">
+            {/* Surgeon Direct Care Advisory Card (Desktop Sidebar — shown below FAQs on Mobile) */}
+            <div className="hidden lg:block relative p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-[#141722]/90 to-[#0e1017]/90 border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.5)] mb-6 overflow-hidden">
               <div className="absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-8 h-8 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
@@ -460,9 +460,9 @@ export default function FAQSection() {
 
           {/* Right: Unified Luxury FAQ List */}
           <div className="w-full lg:w-[70%]">
-            {/* Category Filter Buttons */}
+            {/* Category Filter Buttons (Single-row horizontal swipe on mobile) */}
             <div
-              className="flex flex-wrap items-center gap-2 mb-6 py-1"
+              className="flex flex-nowrap sm:flex-wrap items-center gap-2 mb-6 py-1 overflow-x-auto sm:overflow-visible scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0"
               role="tablist"
               aria-label="FAQ Categories"
             >

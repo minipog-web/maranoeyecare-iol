@@ -67,11 +67,9 @@ export default function Header() {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Lens Options', href: '/#lenses', hasDropdown: true },
-    { label: 'Vision Simulator', href: '/#vision' },
-    { label: 'Optical Physics', href: '/#physics' },
-    { label: 'Cataract Guide', href: '/cataract-education' },
+    { label: 'Lens Options', href: '/#vision', hasDropdown: true },
     { label: 'Lens Quiz', href: '/#lens-quiz' },
+    { label: 'Cataract Guide', href: '/cataract-education' },
     { label: 'Our Doctors', href: '/#trust' },
     { label: 'FAQ', href: '/#faq' },
   ];
@@ -246,33 +244,49 @@ export default function Header() {
               <Icon name="PhoneIcon" size={15} className="text-primary" />
             </div>
             <span
-              className="hidden xl:inline font-bold text-white text-sm xl:text-base tracking-wide"
+              className="inline font-bold text-white text-xs sm:text-sm xl:text-base tracking-wide"
               suppressHydrationWarning
             >
               (973) 322-0100
             </span>
           </a>
 
-          <div className="h-5 w-[1px] bg-white/[0.08] hidden xl:block" />
+          <div className="h-5 w-[1px] bg-white/[0.08] hidden lg:block" />
 
           <Link
             href="/#booking"
             onClick={(e) => handleBookingClick(e, 'desktop')}
-            className="btn-premium-primary rounded-full whitespace-nowrap text-sm font-bold px-4 py-2.5 xl:px-6 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
+            className="btn-premium-primary rounded-full whitespace-nowrap text-xs sm:text-sm font-bold px-4 py-2.5 xl:px-6 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
           >
             Book Consultation
           </Link>
         </div>
 
-        {/* Mobile/Tablet Hamburger */}
-        <button
-          className="flex lg:hidden items-center justify-center min-w-[44px] min-h-[44px] p-2.5 text-foreground touch-manipulation -mr-1 rounded-xl hover:bg-white/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-        >
-          <Icon name={menuOpen ? 'XMarkIcon' : 'Bars3Icon'} size={24} />
-        </button>
+        {/* Mobile Quick-Call + Hamburger */}
+        <div className="flex lg:hidden items-center gap-1.5 shrink-0">
+          <a
+            href="tel:9733220100"
+            suppressHydrationWarning
+            onClick={() => handlePhoneClick('mobile-header')}
+            aria-label="Call Marano Eye Care (973) 322-0100"
+            className="sm:hidden inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-full border border-primary/50 bg-primary/15 text-primary text-xs font-bold tracking-wide active:scale-95 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+          >
+            <Icon name="PhoneIcon" size={14} className="text-primary shrink-0" />
+            <span>Call Now</span>
+            <span className="sr-only" suppressHydrationWarning>
+              (973) 322-0100
+            </span>
+          </a>
+
+          <button
+            className="flex items-center justify-center min-w-[44px] min-h-[44px] p-2.5 text-foreground touch-manipulation -mr-1 rounded-xl hover:bg-white/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <Icon name={menuOpen ? 'XMarkIcon' : 'Bars3Icon'} size={24} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile & Tablet Menu */}
