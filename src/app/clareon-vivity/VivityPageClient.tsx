@@ -327,13 +327,20 @@ export default function VivityPageClient() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
                 <Link
                   href="/#booking"
-                  onClick={() => {
+                  onClick={(e) => {
                     handleNavClick('hero_book_cta');
                     try {
                       sessionStorage.setItem('preselect-lens', 'vivity');
                       sessionStorage.setItem('pending-scroll-hash', 'booking');
                     } catch {
                       // Ignore storage write issues
+                    }
+                    const bookingEl =
+                      document.getElementById('booking') || document.getElementById('consultation');
+                    if (bookingEl) {
+                      e.preventDefault();
+                      smoothScrollToElement(bookingEl.id);
+                      window.history.pushState(null, '', `#${bookingEl.id}`);
                     }
                   }}
                   className="group relative inline-flex items-center justify-between sm:justify-center rounded-full btn-premium-primary px-7 py-3.5 text-sm font-bold text-black transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

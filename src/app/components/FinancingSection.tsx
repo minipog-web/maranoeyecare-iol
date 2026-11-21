@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { smoothScrollToElement } from '@/lib/ui';
 
 export default function FinancingSection() {
   return (
@@ -98,6 +99,11 @@ export default function FinancingSection() {
           </p>
           <a
             href="#booking"
+            onClick={(e) => {
+              e.preventDefault();
+              smoothScrollToElement('booking');
+              window.history.pushState(null, '', '#booking');
+            }}
             className="btn-premium-primary inline-flex items-center justify-center gap-2 py-3.5 px-8 text-sm sm:text-base font-bold rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <span>Schedule Consultation</span>

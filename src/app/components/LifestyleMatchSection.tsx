@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import { smoothScrollToElement } from '@/lib/ui';
 import styles from './LifestyleMatchSection.module.css';
 import { handleSpotlightMouseMove } from '@/lib/ui';
 
@@ -91,6 +92,11 @@ export default function LifestyleMatchSection() {
             </p>
             <a
               href="#booking"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollToElement('booking');
+                window.history.pushState(null, '', '#booking');
+              }}
               className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.03] active:scale-95 touch-manipulation min-h-[52px] shadow-[0_4px_24px_rgba(197,160,89,0.35),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <span>Book Your Assessment</span>

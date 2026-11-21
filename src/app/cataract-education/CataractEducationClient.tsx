@@ -888,7 +888,14 @@ export default function CataractEducationClient() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
             <Link
-              href="/#lenses"
+              href="/#vision"
+              onClick={() => {
+                try {
+                  sessionStorage.setItem('pending-scroll-hash', 'vision');
+                } catch {
+                  // Ignore storage write issues
+                }
+              }}
               className="w-full sm:w-auto px-5 py-3 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-foreground text-xs sm:text-sm font-semibold transition-all text-center touch-manipulation min-h-[48px] flex items-center justify-center"
             >
               Compare Lens Options

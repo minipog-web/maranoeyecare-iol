@@ -94,8 +94,10 @@ export function smoothScrollToElement(targetId: string, customOffset?: number) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
   const cleanId = targetId.replace(/^#/, '');
-  const target = document.getElementById(cleanId);
-  if (!target) return;
+  const initialTarget =
+    document.getElementById(cleanId) ||
+    (cleanId === 'lenses' ? document.getElementById('vision') : null);
+  if (!initialTarget) return;
 
   const getOffset = () => {
     if (customOffset !== undefined) return customOffset;
@@ -104,9 +106,12 @@ export function smoothScrollToElement(targetId: string, customOffset?: number) {
     return headerHeight + 20;
   };
 
+  const getTarget = () => document.getElementById(cleanId) || initialTarget;
+
   const scrollToTarget = () => {
+    const el = getTarget();
     const offset = getOffset();
-    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+    const elementPosition = el.getBoundingClientRect().top + window.scrollY;
     const offsetPosition = Math.max(0, elementPosition - offset);
     window.scrollTo({
       top: offsetPosition,
@@ -116,7 +121,7 @@ export function smoothScrollToElement(targetId: string, customOffset?: number) {
 
   scrollToTarget();
 
-  // Re-align after intermediate `content-visibility: auto` sections expand
+  // Re-align after intermediate `content-visibility: auto` or lazy sections expand
   let cancelled = false;
   const cancel = () => {
     cancelled = true;
@@ -124,18 +129,16 @@ export function smoothScrollToElement(targetId: string, customOffset?: number) {
   window.addEventListener('wheel', cancel, { once: true, passive: true });
   window.addEventListener('touchstart', cancel, { once: true, passive: true });
 
-  const alignIfShifted = (attemptsLeft: number) => {
-    if (cancelled || attemptsLeft <= 0) return;
+  const delays = [400, 850, 1300];
+  delays.forEach((delay) => {
     setTimeout(() => {
       if (cancelled) return;
+      const el = getTarget();
       const offset = getOffset();
-      const delta = target.getBoundingClientRect().top - offset;
-      if (Math.abs(delta) > 48) {
+      const delta = el.getBoundingClientRect().top - offset;
+      if (Math.abs(delta) > 32) {
         scrollToTarget();
-        alignIfShifted(attemptsLeft - 1);
       }
-    }, 450);
-  };
-
-  alignIfShifted(3);
+    }, delay);
+  });
 }
