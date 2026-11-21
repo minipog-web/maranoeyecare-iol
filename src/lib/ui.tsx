@@ -87,7 +87,8 @@ export function renderFootnoteText(
 
 /**
  * Smoothly scrolls to an element by ID, calculating the fixed header height
- * and ensuring optimal viewport visibility below the navigation bar.
+ * and re-aligning if off-screen `content-visibility: auto` sections expand
+ * during the scroll.
  */
 export function smoothScrollToElement(targetId: string, customOffset?: number) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
@@ -96,16 +97,45 @@ export function smoothScrollToElement(targetId: string, customOffset?: number) {
   const target = document.getElementById(cleanId);
   if (!target) return;
 
-  // Calculate dynamic header height with a comfortable margin
-  const header = document.querySelector('header');
-  const headerHeight = header ? header.getBoundingClientRect().height : 80;
-  const offset = customOffset !== undefined ? customOffset : headerHeight + 20;
+  const getOffset = () => {
+    if (customOffset !== undefined) return customOffset;
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.getBoundingClientRect().height : 80;
+    return headerHeight + 20;
+  };
 
-  const elementPosition = target.getBoundingClientRect().top + window.scrollY;
-  const offsetPosition = Math.max(0, elementPosition - offset);
+  const scrollToTarget = () => {
+    const offset = getOffset();
+    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = Math.max(0, elementPosition - offset);
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    });
+  };
 
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: 'smooth',
-  });
+  scrollToTarget();
+
+  // Re-align after intermediate `content-visibility: auto` sections expand
+  let cancelled = false;
+  const cancel = () => {
+    cancelled = true;
+  };
+  window.addEventListener('wheel', cancel, { once: true, passive: true });
+  window.addEventListener('touchstart', cancel, { once: true, passive: true });
+
+  const alignIfShifted = (attemptsLeft: number) => {
+    if (cancelled || attemptsLeft <= 0) return;
+    setTimeout(() => {
+      if (cancelled) return;
+      const offset = getOffset();
+      const delta = target.getBoundingClientRect().top - offset;
+      if (Math.abs(delta) > 48) {
+        scrollToTarget();
+        alignIfShifted(attemptsLeft - 1);
+      }
+    }, 450);
+  };
+
+  alignIfShifted(3);
 }
