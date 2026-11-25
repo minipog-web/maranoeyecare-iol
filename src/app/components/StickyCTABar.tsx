@@ -14,7 +14,11 @@ export default function StickyCTABar() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    const bookingEl = document.getElementById('booking');
+    const bookingTargets = [
+      document.getElementById('booking'),
+      document.getElementById('bottom-booking'),
+    ].filter(Boolean) as HTMLElement[];
+    const intersectingIds = new Set<string>();
     let isAtBooking = false;
 
     // Helper to sync with CallRail tracking number if another tel: link was already swapped
@@ -61,15 +65,26 @@ export default function StickyCTABar() {
     }
 
     let observer: IntersectionObserver | null = null;
-    if (bookingEl && typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+    if (
+      bookingTargets.length > 0 &&
+      typeof window !== 'undefined' &&
+      'IntersectionObserver' in window
+    ) {
       observer = new IntersectionObserver(
-        ([entry]) => {
-          isAtBooking = entry.isIntersecting;
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              intersectingIds.add(entry.target.id);
+            } else {
+              intersectingIds.delete(entry.target.id);
+            }
+          });
+          isAtBooking = intersectingIds.size > 0;
           setVisible(window.scrollY > 400 && !isAtBooking);
         },
         { rootMargin: '100px 0px 0px 0px' }
       );
-      observer.observe(bookingEl);
+      bookingTargets.forEach((el) => observer?.observe(el));
     }
 
     let ticking = false;
@@ -125,19 +140,22 @@ export default function StickyCTABar() {
       category: 'Conversion',
       label: 'Book Consultation',
     });
-    const el = document.getElementById('booking') || document.getElementById('consultation');
+    const el =
+      document.getElementById('bottom-booking') ||
+      document.getElementById('booking') ||
+      document.getElementById('consultation');
     if (el) {
       e.preventDefault();
       smoothScrollToElement(el.id);
-      window.history.pushState(null, '', '#booking');
+      window.history.pushState(null, '', `#${el.id}`);
     } else {
       e.preventDefault();
       try {
-        sessionStorage.setItem('pending-scroll-hash', 'booking');
+        sessionStorage.setItem('pending-scroll-hash', 'bottom-booking');
       } catch {
         // Ignore storage write issues
       }
-      router.push('/#booking');
+      router.push('/#bottom-booking');
     }
   };
 
@@ -155,7 +173,7 @@ export default function StickyCTABar() {
       >
         <div className="h-6 bg-gradient-to-t from-background/85 to-transparent pointer-events-none" />
 
-        <div className="bg-[#0d0e12]/98 border-t border-primary/30 px-3 py-2.5 shadow-[0_-8px_32px_rgba(0,0,0,0.55)]">
+        <div className="bg-[#0d0e12] border-t border-primary/40 px-3 py-2.5 shadow-[0_-10px_34px_rgba(0,0,0,0.85)]">
           <div className="flex items-center gap-2">
             {/* Explicit Mobile Call CTA */}
             <a
@@ -163,7 +181,7 @@ export default function StickyCTABar() {
               href="tel:9733220100"
               suppressHydrationWarning
               onClick={handlePhoneClick}
-              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 min-h-[48px] rounded-full border border-primary/50 bg-primary/15 text-primary hover:bg-primary/25 text-xs xs:text-sm font-bold transition-all active:scale-[0.98] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              className="flex-1 flex items-center justify-center gap-1.5 px-2.5 xs:px-3 py-2.5 min-h-[48px] rounded-full border-2 border-primary bg-[#161a24] text-white hover:bg-[#1f2533] text-xs xs:text-sm font-bold text-center leading-tight transition-all active:scale-[0.98] touch-manipulation shadow-[0_2px_12px_rgba(0,0,0,0.45)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               aria-label="Call Marano Eye Care (973) 322-0100"
             >
               <Icon name="PhoneIcon" size={16} className="text-primary shrink-0" />
@@ -175,9 +193,9 @@ export default function StickyCTABar() {
 
             {/* Primary Book CTA */}
             <a
-              href="#booking"
+              href="#bottom-booking"
               onClick={handleBookClick}
-              className="flex-[1.35] flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-[#000000] rounded-full text-xs xs:text-sm font-bold hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              className="flex-[1.35] flex items-center justify-center gap-1.5 xs:gap-2 px-3 xs:px-4 py-2.5 bg-primary text-[#000000] rounded-full text-xs xs:text-sm font-bold text-center leading-tight hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             >
               <span>Book Consult</span>
               <Icon
@@ -221,9 +239,12 @@ export default function StickyCTABar() {
           <div className="flex items-center gap-3 min-w-0">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_rgba(52,211,153,0.85)]" />
             <div className="min-w-0">
-              <p className="text-sm font-bold text-white truncate">Ready for Clearer Vision?</p>
+              <p className="text-sm font-bold text-white truncate">
+                One-Time Cataract Lens Window ·{' '}
+                <span className="text-primary">$0 Toric Astigmatism Upgrade</span>
+              </p>
               <p className="text-xs text-muted-foreground truncate">
-                4.9★ (650+ Reviews) · Livingston, Denville &amp; Newark · Medicare Accepted
+                4.9★ (650+ NJ Reviews) · Livingston, Denville &amp; Newark · Medicare Accepted
               </p>
             </div>
           </div>
@@ -241,7 +262,7 @@ export default function StickyCTABar() {
             </a>
 
             <a
-              href="#booking"
+              href="#bottom-booking"
               onClick={handleBookClick}
               className="btn-premium-chic inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-[#000000] rounded-full text-sm font-bold hover:bg-accent transition-all whitespace-nowrap min-h-[44px] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             >

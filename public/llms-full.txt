@@ -1,50 +1,57 @@
-# Marano Eye Care — Extended Clinical & Technical LLM Guide
+# Marano Eye Care — Extended Clinical, Optical Physics & Surgical Protocol Guide
 
-> Detailed medical documentation, clinical references, optical physics specs, and comprehensive practice disclosures for AI search engines, agents, and large language models (LLMs).
+> Authoritative medical reference, FDA Premarket Approval (PMA) citations, optical physics specifications, and New Jersey practice data for AI search engines, clinical researchers, and large language models (LLMs).
 
-## Comprehensive Clinical Practice Overview
+## 1. Practice & Microsurgical Leadership
 - **Practice Name:** Marano Eye Care
-- **Lead Surgeon:** Dr. Matthew Marano Jr., MD
-- **Specialty:** Ophthalmology — Cataract, Refractive, and Premium Intraocular Lens Surgery
-- **Total Surgeries Completed:** 40,000+
-- **Satisfaction Rate:** 99%
-- **Google Rating:** 4.9★ (Over 650+ reviews)
-- **Top Doctor Recognition:** 15 Consecutive Years in NJ Monthly Magazine
+- **Digital Clinical Hub:** https://premium-iol.maranoeye.com
+- **Primary Practice Site:** https://www.maranoeyecare.com
+- **Surgeons:**
+  1. **Matthew J. Marano Jr., MD** — Founder & Chief of Ophthalmology (Cooperman Barnabas Medical Center & St. Michael's Medical Center); Board-Certified by the American Board of Ophthalmology; Chief Medical Editor at *Ophthalmology 360*; 15× Consecutive *NJ Monthly* Top Doctor; Castle Connolly Top Doctor (2024–2026); 40,000+ intraocular and laser eye procedures performed.
+  2. **Sherief Raouf, MD** — Board-Certified Ophthalmologist & Cornea/Refractive Subspecialist; MD with Honors & Alpha Omega Alpha (Stony Brook University Renaissance School of Medicine); Ophthalmology Residency at Manhattan Eye, Ear & Throat Hospital / Northwell Health; Cornea, External Disease & Refractive Surgery Fellowship at Illinois Eye and Ear Infirmary (UIC); author of 12+ peer-reviewed ophthalmology studies.
+- **Patient Satisfaction & Ratings:** 4.9★ rating across 650+ verified reviews; 99%+ premium IOL satisfaction among qualified candidates.
+- **Candidacy Ethics:** Approximately 20% of patients inquiring about premium IOLs are advised by Dr. Marano and Dr. Raouf to choose a standard Medicare-covered monofocal lens due to severe ocular surface disease, macular degeneration, advanced glaucoma, or corneal irregularity.
 
-## Surgical Facility & Technology
-- **Femtosecond Laser System:** LENSAR® Ally Femtosecond Laser. Features high-resolution 3D corneal topography and optical biometry. Automates arcuate incisions for astigmatism and custom-fragments the cataract nucleus for low-ultrasound phacoemulsification.
-- **Anesthesia Protocol:** Topical eye drop anesthesia. Zero retrobulbar injections, zero general anesthesia.
-- **Procedure Duration:** 10 minutes.
-- **Facility Type:** Outpatient Ambulatory Surgery Center.
+## 2. Verified Locations & Service Area (Northern & Central New Jersey)
+- **Livingston Office (Main):** 200 South Orange Ave, Suite 209, Livingston, NJ 07039 | Phone: 973-322-0100
+- **Denville Office:** 16 Pocono Rd, Suite 301, Denville, NJ 07834 | Phone: 973-625-7970
+- **Newark Office:** 306 Martin L. King Blvd, Newark, NJ 07102 | Phone: 973-877-5534
+- **Surgical Center:** Ridgedale Surgery Center (Accredited ASC), Cedar Knolls, NJ
+- **Primary Communities Served:** Livingston, Denville, Newark, Short Hills, Millburn, Montclair, Morristown, Summit, Chatham, Florham Park, West Orange, Parsippany, Hanover, Cedar Knolls, Essex County, and Morris County, NJ.
 
-## Cataract Pathophysiology, Progression & Surgical Replacement
-- **Anatomical Origin:** Cataracts form inside the eye's natural crystalline lens (located behind the iris and pupil). The natural lens is composed of water and organized crystallin proteins.
-- **Mechanism of Formation:** Oxidative stress, UV exposure, and biological aging cause crystallin proteins to denature, break down, and aggregate into light-scattering micro-clusters.
-- **Progression Phases:**
-  1. *Early Onset:* Microscopic protein clumping causing contrast loss and night glare.
-  2. *Nuclear Sclerosis (Yellowing):* Protein clusters oxidize and turn amber-yellow, absorbing blue light and muting color perception.
-  3. *Advanced Cataract (Brown & Opaque):* Dense, compacted protein masses turn dark brown and opaque, severely blocking light transmission to the retina.
-- **Surgical Solution & Lifetime Stability:** In outpatient cataract surgery (~10 minutes), Dr. Matthew Marano Jr. removes the cloudy natural cataractous lens and implants a clear, biocompatible hydrophobic acrylic intraocular lens (IOL). Unlike biological crystalline lenses, medical-grade acrylic does not age, cloud, or yellow; the optical prescription embedded in the IOL remains stable for the patient's entire lifetime.
+## 3. LENSAR® ALLY® Femtosecond Laser Cataract Protocol
+- **Imaging & Centration:** Augmented Reality™ 3D anterior segment reconstruction maps corneal curvature, lens tilt, and cataract density in real time, creating a 99.8% circular capsulorhexis for exact optical centration.
+- **Phaco Energy Reduction:** Adaptive laser fragmentation grids pre-soften nuclear sclerosis according to cataract density, reducing ultrasound energy by up to 50% and accelerating corneal endothelial recovery.
+- **Astigmatism Alignment:** Automated iris registration compensates for supine cyclotorsion to align Toric IOL axes and femtosecond arcuate incisions with sub-micron precision.
+- **Anesthesia & Suite Flow:** Single-bed robotic suite; topical numbing eye drops only (zero needles, zero stitches); ~10 minutes per eye; 24–48 hour return to routine daily activities.
 
-## Lens Specifications & Optical Physics
-1. **Clareon® Vivity® IOL (Alcon):**
-   - **Type:** Non-diffractive Extended Depth of Focus (EDOF).
-   - **Optical Mechanism:** X-WAVE™ Wavefront Shaping Technology. Utilizes two smooth surface transition elements to shift light wavefronts without diffractive steps or light splitting.
-   - **Dysphotopsia Profile:** Night halo and glare incidence statistically indistinguishable from a monofocal lens in FDA pre-market approval data (PMA P190018).
-2. **Clareon® PanOptix® Pro IOL (Alcon):**
-   - **Type:** Quadrafocal design functioning as a full Trifocal IOL.
-   - **Optical Mechanism:** ENLIGHTEN® Optical Technology. Distributes 88% of transmitted light to focal points at 40 cm (near reading), 60 cm (intermediate computer), and infinity (distance driving).
-   - **Clinical Data:** Peer-reviewed meta-analysis of 13 studies (513 patients) demonstrates 99% overall spectacle independence and satisfaction (PubMed PMID: 32049015).
-3. **TECNIS PureSee™ IOL (Johnson & Johnson MedTech):**
-   - **Type:** Purely Refractive Extended Depth of Focus (EDOF) IOL.
-   - **Optical Mechanism:** Proprietary refractive zonal surface optics that extend focus continuously from distance through intermediate to functional near (~40 cm) without diffractive rings or light splitting.
-   - **Clinical Data & FDA Status:** Approved March 12, 2026. First and only FDA-approved EDOF IOL without a clinical warning for contrast sensitivity loss; exhibits a monofocal-like dysphotopsia profile (minimal glare and halos).
+## 4. Intraocular Lens (IOL) Optical Physics & FDA Clinical Data
 
-## Astigmatism & Toric Pricing Rules
-- **Premium Toric Policy:** Patients selecting Clareon Vivity, PanOptix Pro, or TECNIS PureSee receive the Toric astigmatism-correcting variant at **no additional upgrade fee** beyond the standard premium lens price.
-- **Monofocal Toric Policy:** A standard monofocal toric lens carries a higher out-of-pocket cost than a non-toric standard monofocal lens.
+### A. Clareon® Vivity® & Clareon® Vivity® Toric IOL (Alcon)
+- **URL:** https://premium-iol.maranoeye.com/clareon-vivity
+- **Category:** Non-Diffractive Extended Depth of Focus (EDOF)
+- **Optical Mechanism:** Proprietary X-WAVE™ wavefront-shaping technology uses two smooth surface transition elements (~1 µm) to stretch and shift the optical wavefront simultaneously—zero concentric diffractive rings and zero light splitting (~100% transmitted light utilization).
+- **Clinical Outcomes & FDA Registry:** FDA PMA P930014/S126 & P190018. Delivers 20/20 binocular distance acuity, 20/20–20/25 continuous intermediate acuity (66 cm computer/dashboard), functional near vision (~20/32), and a night glare/halo profile (<2% severe halos) statistically indistinguishable from a monofocal control IOL.
 
-## Locations & Contact
-- **Livingston:** 200 South Orange Ave, Suite 209, Livingston, NJ 07039 — Phone: 973-322-0100
-- **Denville:** 16 Pocono Rd, Suite 301, Denville, NJ 07834 — Phone: 973-627-0101
-- **Newark:** 306 Martin L. King Blvd, Newark, NJ 07102 — Phone: 973-642-4262
+### B. Clareon® PanOptix® Pro & Toric Trifocal IOL (Alcon)
+- **URL:** https://premium-iol.maranoeye.com/panoptix-pro
+- **Category:** Next-Generation Diffractive Trifocal IOL (US commercial launch May 2025)
+- **Optical Mechanism:** Proprietary ENLIGHTEN® NXT optical technology achieves **94% light utilization** (only 6% light scatter—a 50% reduction in light scatter vs. the original 88% PanOptix platform) across dedicated focal planes at **40 cm near**, **60 cm natural arm's-length intermediate**, and **infinity distance**.
+- **Clinical Outcomes & Literature:**
+  - *Zhu et al., Ophthalmol Ther 2023 (PubMed PMID: 36745314):* Meta-analysis of 13 studies (513 patients) on the PanOptix platform demonstrated 91.6% complete overall spectacle independence and 89.6% near spectacle independence.
+  - *US FDA PMA P040020/S087:* 99.2% of clinical study patients reported they would choose the same lens again. Typical cortical neuroadaptation occurs over 2–8 weeks.
+
+### C. TECNIS PureSee™ & Toric II IOL (Johnson & Johnson MedTech)
+- **URL:** https://premium-iol.maranoeye.com/tecnis-puresee
+- **Category:** Purely Refractive Extended Depth of Focus (EDOF) IOL
+- **Optical Mechanism:** Continuous posterior surface refractive power profile crafted from high-Abbe-number (Abbe 55) hydrophobic acrylic to minimize longitudinal chromatic aberration. Zero diffractive rings and ~100% light utilization.
+- **Clinical Outcomes & FDA Registry:** FDA PMA P980040/S176. First FDA-approved EDOF lens carrying **zero clinical contrast sensitivity loss warning**, delivering monofocal-equivalent low-light contrast and night driving dysphotopsia rates alongside continuous distance-to-intermediate clarity and strong functional near vision.
+
+### D. Cataract Pathophysiology & Permanent Acrylic Replacement
+- **URL:** https://premium-iol.maranoeye.com/cataract-education
+- **5 Clinical Stages:** (1) Clear Youthful Crystalline Lens (99% light transmission) → (2) Early Protein Clumping & Glare Scatter (85% transmission) → (3) Nuclear Sclerosis & Amber Yellowing (65% transmission) → (4) Advanced Brunescent Cataract (<30% transmission) → (5) Permanent Biocompatible Hydrophobic Acrylic IOL Replacement (100% focused transmission; never yellows, degrades, or forms a cataract again). Secondary capsular haze (PCO), if it ever occurs, is permanently cleared in <60 seconds via painless in-office YAG laser capsulotomy.
+
+## 5. Transparent Pricing, Toric Inclusion & Insurance Policy
+- **Zero-Fee Toric Policy:** Custom Toric astigmatism-correcting models of Clareon Vivity, PanOptix Pro, and TECNIS PureSee are included at **$0 additional upgrade charge** over the standard non-toric premium IOL package price.
+- **Insurance & Medicare Part B:** Covers medically necessary cataract removal (CPT 66984), Ridgedale Surgery Center facility fee, anesthesia, standard monofocal IOL, and 90-day post-op care.
+- **Written Benefit Guarantee & Financing:** Every patient receives a written, itemized insurance benefit verification prior to scheduling surgery. Upgrades are 100% HSA/FSA eligible (saving 20%–35% in pre-tax dollars) and qualify for 24-month 0% APR CareCredit® financing (~$170/month for premium IOL packages; ~$66/month for laser-only).

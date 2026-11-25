@@ -21,7 +21,9 @@ export function Cataract3DPreviewPlaceholder({
   return (
     <div
       className={`relative w-full ${
-        isFull ? 'aspect-[16/10] sm:aspect-[16/9] rounded-3xl' : 'aspect-[4/3] rounded-2xl'
+        isFull
+          ? 'aspect-[16/10] sm:aspect-[16/9] rounded-3xl'
+          : 'h-[320px] sm:h-[350px] lg:h-[375px] rounded-2xl sm:rounded-3xl'
       } bg-gradient-to-br from-[#070a12] via-[#0a0e18] to-[#05070c] border border-white/[0.1] overflow-hidden flex flex-col items-center justify-center p-6 text-center group`}
     >
       {/* Lightweight inline SVG anatomical lens schematic */}

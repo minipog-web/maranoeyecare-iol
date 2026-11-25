@@ -4,21 +4,31 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTABar from '@/app/components/StickyCTABar';
+import RelatedClinicalGuides from '@/components/seo/RelatedClinicalGuides';
 import VivityPageClient from './VivityPageClient';
 
 const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
 
 export const metadata: Metadata = {
-  title: 'Clareon Vivity IOL Guide: Extended Depth of Focus & Outcomes | Marano Eye Care NJ',
+  title: 'Clareon Vivity IOL NJ: Night Vision & Outcomes | Marano Eye Care',
   description:
-    'Comprehensive clinical guide to the Clareon® Vivity® IOL by Alcon. Discover X-WAVE™ non-diffractive wavefront shaping technology, visual acuity outcomes, night driving safety, and side-by-side comparisons with PanOptix and PureSee.',
+    'Clinical guide to Alcon Clareon® Vivity® EDOF IOL in Livingston, Denville & Newark, NJ. Monofocal-like night driving, computer clarity & $0 Toric upgrade.',
+  keywords: [
+    'clareon vivity nj',
+    'vivity lens cataract surgery nj',
+    'clareon vivity night driving halos',
+    'vivity vs panoptix vs puresee',
+    'clareon vivity toric cost nj',
+    'non diffractive edof iol nj',
+    'marano eye care vivity',
+  ],
   alternates: {
     canonical: '/clareon-vivity',
   },
   openGraph: {
-    title: 'Clareon Vivity IOL Guide: Extended Depth of Focus & Outcomes | Marano Eye Care NJ',
+    title: 'Clareon Vivity IOL NJ: Night Vision & Outcomes | Marano Eye Care',
     description:
-      'Explore the Clareon® Vivity® non-diffractive EDOF lens. Monofocal-like night vision, crisp intermediate & distance clarity, and zero-needle laser cataract surgery with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.',
+      'Explore the Clareon® Vivity® non-diffractive EDOF lens. Monofocal-like night vision, crisp intermediate & distance clarity, and $0 Toric upgrade with Dr. Marano & Dr. Raouf.',
     url: 'https://premium-iol.maranoeye.com/clareon-vivity',
     siteName: 'Marano Eye Care',
     images: [
@@ -32,6 +42,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'article',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Clareon Vivity IOL NJ: Night Vision & Outcomes | Marano Eye Care',
+    description:
+      'X-WAVE™ non-diffractive EDOF clarity for night driving, dashboards & computers. $0 Toric astigmatism upgrade at Marano Eye Care NJ.',
+    images: ['/assets/images/vivity_iol_real.jpg'],
+  },
 };
 
 const vivitySchemas = [
@@ -40,9 +57,16 @@ const vivitySchemas = [
     '@type': 'MedicalWebPage',
     '@id': 'https://premium-iol.maranoeye.com/clareon-vivity#webpage',
     url: 'https://premium-iol.maranoeye.com/clareon-vivity',
-    name: 'Clareon Vivity IOL Clinical Guide & Outcomes | Marano Eye Care',
+    name: 'Clareon Vivity IOL Clinical Guide & Outcomes | Marano Eye Care NJ',
     description:
       'Detailed clinical overview of the Alcon Clareon Vivity extended depth of focus intraocular lens, optical physics, defocus curves, and 3-way comparisons.',
+    isPartOf: { '@id': 'https://premium-iol.maranoeye.com/#website' },
+    lastReviewed: '2026-11-25',
+    dateModified: '2026-11-25',
+    reviewedBy: [
+      { '@id': 'https://premium-iol.maranoeye.com/#dr-marano' },
+      { '@id': 'https://premium-iol.maranoeye.com/#dr-raouf' },
+    ],
     medicalAudience: {
       '@type': 'MedicalAudience',
       audienceType: 'Cataract Patients, Presbyopia Patients, Active Drivers',
@@ -80,34 +104,58 @@ const vivitySchemas = [
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'How does Clareon Vivity avoid night halos and glare?',
+        name: 'How does Clareon Vivity differ from a standard monofocal lens?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Unlike traditional multifocal lenses that use concentric diffractive rings to split light into separate focal points, Clareon Vivity uses proprietary X-WAVE™ non-diffractive wavefront shaping technology. Two smooth surface transition elements stretch and shift the light wavefront, resulting in a visual disturbance profile statistically indistinguishable from a standard monofocal lens in FDA clinical trials.',
+          text: 'A standard monofocal lens (covered by standard Medicare) provides sharp vision at only one fixed focal distance, typically far distance, requiring glasses for your computer, dashboard, cell phone, and reading. Clareon Vivity stretches light into an extended continuous corridor, delivering clear distance vision plus sharp intermediate vision (screens, dashboards, cooking) and functional near vision without increasing nighttime glare.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Will I still need reading glasses with Clareon Vivity?',
+        name: 'Why is Clareon Vivity considered the best lens for night driving?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Clareon Vivity provides high spectacle independence for distance (driving, watching TV, golf) and intermediate tasks (computer screens, car dashboards, tablet use, cooking). Most patients can read large phone text and price tags comfortably without glasses. For sustained reading of fine print (such as prescription medicine bottles or paperback books in dim light), occasional lightweight reading glasses may still be helpful.',
+          text: 'Older multifocal and trifocal lenses use concentric rings (diffractive optics) to split light, which can cause halos around headlights. Clareon Vivity utilizes non-diffractive X-WAVE™ technology that does not split light. In FDA clinical trials, bothersome glare and halo rates were statistically identical to a standard monofocal lens.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Is there a Toric version of Clareon Vivity for astigmatism?',
+        name: 'Will I need reading glasses after getting the Clareon Vivity IOL?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. The Clareon Vivity Toric IOL corrects pre-existing corneal astigmatism simultaneously during cataract surgery. At Marano Eye Care, Dr. Matthew Marano Jr. and Dr. Sherief Raouf provide custom Toric upgrades on all premium IOLs at no additional fee beyond the standard premium lens price.',
+          text: 'Most Clareon Vivity patients achieve independence from glasses for driving, outdoor activities, computer work, cooking, and everyday tasks. Fine near vision (such as small pill bottle labels or paperback print in dim light) may occasionally use lightweight +1.25 to +1.50D readers.',
         },
       },
       {
         '@type': 'Question',
-        name: 'How does Clareon Vivity compare to PanOptix Pro and TECNIS PureSee?',
+        name: 'How does Vivity compare to the PanOptix Pro trifocal lens?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'PanOptix Pro is a diffractive trifocal lens that maximizes near reading independence but has a higher incidence of night halos. TECNIS PureSee is a purely refractive EDOF lens with high contrast. Clareon Vivity is a non-diffractive EDOF lens that delivers exceptional intermediate computer clarity, excellent distance vision, and monofocal-like night driving safety without diffractive glare rings.',
+          text: 'PanOptix Pro is a diffractive trifocal lens offering maximum complete spectacle freedom for close reading, with mild temporary nighttime halos during neuroadaptation. Vivity uses non-diffractive wavefront shaping for seamless distance and intermediate vision with monofocal-like night driving clarity.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can Vivity correct my astigmatism?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. The Clareon Vivity Toric II IOL corrects corneal astigmatism with exact rotational stability, aligned via 3D LENSAR ALLY laser mapping. At Marano Eye Care, custom Toric astigmatism correction is included on all premium lenses at no extra upgrade fee.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is Clareon Vivity covered by Medicare or private medical insurance?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Medicare and commercial insurance plans cover the core cataract surgery, surgeon fees, and anesthesia costs. The advanced optical design of Clareon Vivity and custom laser imaging involve an out-of-pocket upgrade fee eligible for HSA/FSA funds and 24-month 0% APR financing.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does the recovery take after Clareon Vivity surgery?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Laser cataract surgery with Clareon Vivity takes approximately 10–15 minutes per eye at Ridgedale Surgery Center in Cedar Knolls using 100% topical numbing eye drops (zero needles or stitches). Most patients return to light driving, reading, and screen use within 24 to 48 hours.',
         },
       },
     ],
@@ -133,6 +181,9 @@ export default function ClareonVivityPage() {
 
         {/* Client Interactive Body Content */}
         <VivityPageClient />
+
+        {/* Hub-and-Spoke Internal Link Mesh */}
+        <RelatedClinicalGuides currentSlug="clareon-vivity" />
 
         {/* Dedicated Booking Section with Vivity Pre-Selected */}
         <div id="consultation" className="scroll-mt-20">

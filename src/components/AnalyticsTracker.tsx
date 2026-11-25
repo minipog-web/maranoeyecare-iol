@@ -31,6 +31,49 @@ function AnalyticsNavigationObserver() {
     }
   }, [pathname, searchParams]);
 
+  // Re-trigger CallRail swap when dynamically imported sections mount new tel: links
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof MutationObserver === 'undefined') return;
+
+    const rawOfficeDigits = ['9733220100', '9736257970', '9738775534'];
+    let swapTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const hasUnswappedOfficeLink = (node: Node): boolean => {
+      if (!(node instanceof Element)) return false;
+      const links = node.matches('a[href^="tel:"]')
+        ? [node]
+        : Array.from(node.querySelectorAll('a[href^="tel:"]'));
+      return links.some((el) => {
+        const digits = (el.getAttribute('href') || '').replace(/\D/g, '');
+        return rawOfficeDigits.some((raw) => digits.endsWith(raw));
+      });
+    };
+
+    const observer = new MutationObserver((mutations) => {
+      const addedOfficeLink = mutations.some((m) =>
+        Array.from(m.addedNodes).some(hasUnswappedOfficeLink)
+      );
+      if (!addedOfficeLink) return;
+
+      if (swapTimer) clearTimeout(swapTimer);
+      swapTimer = setTimeout(() => {
+        if (window.CallTrk?.swap) {
+          try {
+            window.CallTrk.swap();
+          } catch {
+            // Ignore swap errors
+          }
+        }
+      }, 250);
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      observer.disconnect();
+      if (swapTimer) clearTimeout(swapTimer);
+    };
+  }, []);
+
   // Track engagement milestones: scroll depth (25%, 50%, 75%, 90%)
   useEffect(() => {
     const milestones = [25, 50, 75, 90];
@@ -84,7 +127,7 @@ function AnalyticsNavigationObserver() {
           target.getAttribute('aria-label') ||
           target.innerText?.trim() ||
           phone;
-        trackPhoneClick(trackingLabel);
+        trackPhoneClick(trackingLabel, phone);
         return;
       }
 

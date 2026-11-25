@@ -4,22 +4,31 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTABar from '@/app/components/StickyCTABar';
+import RelatedClinicalGuides from '@/components/seo/RelatedClinicalGuides';
 import PanOptixPageClient from './PanOptixPageClient';
 
 const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
 
 export const metadata: Metadata = {
-  title:
-    'Clareon PanOptix Pro Trifocal IOL Guide: Near, Intermediate & Distance | Marano Eye Care NJ',
+  title: 'Clareon PanOptix Pro Trifocal IOL NJ | Marano Eye Care',
   description:
-    'Comprehensive clinical guide to the Clareon® PanOptix® Pro Trifocal IOL by Alcon. Discover ENLIGHTEN® NXT optical technology, 94% light utilization, 99% patient satisfaction, and comparisons with Vivity and PureSee.',
+    'Clinical guide to Alcon Clareon® PanOptix® Pro Trifocal IOL in NJ. ENLIGHTEN® NXT 94% light utilization, glasses-free reading & $0 Toric astigmatism upgrade.',
+  keywords: [
+    'clareon panoptix pro nj',
+    'panoptix pro trifocal iol',
+    'panoptix pro vs vivity',
+    'panoptix pro 94 light utilization',
+    'trifocal cataract lens nj',
+    'glasses free cataract surgery nj',
+    'marano eye care panoptix',
+  ],
   alternates: {
     canonical: '/panoptix-pro',
   },
   openGraph: {
-    title: 'Clareon PanOptix Pro Trifocal IOL Guide: Full-Range Clarity | Marano Eye Care NJ',
+    title: 'Clareon PanOptix Pro Trifocal IOL NJ | Marano Eye Care',
     description:
-      'Explore the Clareon® PanOptix® Pro trifocal lens with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. High spectacle independence at 40cm near, 60cm intermediate, and distance with LENSAR ALLY laser precision.',
+      'Explore the Clareon® PanOptix® Pro trifocal lens with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. 94% light utilization across 40cm near, 60cm intermediate & distance.',
     url: 'https://premium-iol.maranoeye.com/panoptix-pro',
     siteName: 'Marano Eye Care',
     images: [
@@ -33,6 +42,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'article',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Clareon PanOptix Pro Trifocal IOL NJ | Marano Eye Care',
+    description:
+      'ENLIGHTEN® NXT 94% light utilization for glasses-free reading, screens & driving. $0 Toric upgrade at Marano Eye Care NJ.',
+    images: ['/assets/images/panoptix_iol_real.jpg'],
+  },
 };
 
 const panoptixSchemas = [
@@ -41,9 +57,16 @@ const panoptixSchemas = [
     '@type': 'MedicalWebPage',
     '@id': 'https://premium-iol.maranoeye.com/panoptix-pro#webpage',
     url: 'https://premium-iol.maranoeye.com/panoptix-pro',
-    name: 'Clareon PanOptix Pro Trifocal IOL Clinical Guide & Outcomes | Marano Eye Care',
+    name: 'Clareon PanOptix Pro Trifocal IOL Clinical Guide & Outcomes | Marano Eye Care NJ',
     description:
       'Detailed clinical overview of the Alcon Clareon PanOptix Pro trifocal intraocular lens, ENLIGHTEN NXT optical design, 94% light utilization, and 3-way comparisons.',
+    isPartOf: { '@id': 'https://premium-iol.maranoeye.com/#website' },
+    lastReviewed: '2026-11-25',
+    dateModified: '2026-11-25',
+    reviewedBy: [
+      { '@id': 'https://premium-iol.maranoeye.com/#dr-marano' },
+      { '@id': 'https://premium-iol.maranoeye.com/#dr-raouf' },
+    ],
     medicalAudience: {
       '@type': 'MedicalAudience',
       audienceType: 'Cataract Patients, Presbyopia Patients, Avid Readers, Active Professionals',
@@ -84,39 +107,55 @@ const panoptixSchemas = [
         name: 'What makes Clareon PanOptix Pro unique among trifocal lenses?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Launched in the US in May 2025, Clareon PanOptix Pro utilizes proprietary ENLIGHTEN® NXT optical technology that delivers 94% light utilization (6% light scatter—50% less scatter than the original 88% PanOptix platform) while providing a dedicated intermediate focal peak at 60 cm (natural arm’s length). Older European trifocals placed intermediate focus at 80 cm, forcing patients to stretch their arms too far to read computer screens and dashboards.',
+          text: 'Unlike older European trifocals positioned at 80 cm, Clareon PanOptix Pro uses ENLIGHTEN® NXT optics (94% light utilization—50% less scatter than original 88% PanOptix) with a dedicated 60 cm intermediate focal point matching natural arm’s-length computer and dashboard distance, alongside 40 cm near reading and 20/20 distance acuity.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Will I be completely free from reading glasses with PanOptix Pro?',
+        name: 'Will I be able to read books and smartphones without glasses?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'In clinical trials and peer-reviewed meta-analyses covering over 500 patients (data primarily from the original PanOptix platform while Pro-specific studies mature), Clareon PanOptix demonstrated over 85–90%+ complete spectacle freedom across all distances. Patients can read smartphones, paperback novels, and menus without reading glasses.',
+          text: 'Yes. Clareon PanOptix Pro offers the highest rate of near reading independence among FDA-approved lenses, with over 85–90%+ complete spectacle freedom across reading books, smartphones, text messages, restaurant menus, and labels.',
         },
       },
       {
         '@type': 'Question',
-        name: 'What is the neuroadaptation period for PanOptix Pro?',
+        name: 'What is neuroadaptation and how long does it take?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Because diffractive trifocals split light into three simultaneous focal planes, the brain’s visual cortex requires a brief adaptation period (typically 2 to 8 weeks). During this time, night halos and glare around oncoming headlights gradually soften and become imperceptible as neuroadaptation completes.',
+          text: 'Because ENLIGHTEN® NXT splits incoming light across near, intermediate, and distance focal planes simultaneously, your visual cortex adapts over 2 to 8 weeks to select the sharp image while filtering out subtle night headlight rings.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Is astigmatism correction available with PanOptix Pro?',
+        name: 'Is there a Toric option for PanOptix Pro to correct astigmatism?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. The Clareon PanOptix Toric IOL is designed for patients with corneal astigmatism. Dr. Matthew Marano Jr. and Dr. Sherief Raouf align the lens using the LENSAR ALLY femtosecond laser system. At Marano Eye Care, Toric astigmatism correction is included on all premium lenses at no extra upgrade charge.',
+          text: 'Yes. The Clareon PanOptix Toric IOL corrects corneal astigmatism during cataract removal using 3D LENSAR ALLY femtosecond laser alignment. At Marano Eye Care, Toric astigmatism correction is included on all premium lenses at no extra upgrade charge.',
         },
       },
       {
         '@type': 'Question',
-        name: 'How does PanOptix Pro compare to Clareon Vivity and TECNIS PureSee?',
+        name: 'How does Clareon PanOptix Pro compare to Clareon Vivity?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'PanOptix Pro provides the highest near reading independence (20/20 at 40cm) with a trifocal diffractive profile. Clareon Vivity is a non-diffractive EDOF lens offering seamless distance-to-intermediate vision with monofocal-like night glare safety. TECNIS PureSee is a purely refractive EDOF lens with high contrast sensitivity.',
+          text: 'PanOptix Pro is a diffractive trifocal lens delivering maximum near reading freedom (20/20 at 40 cm) with a brief neuroadaptation period. Clareon Vivity is a non-diffractive EDOF lens delivering seamless distance-to-computer clarity and monofocal-like night driving safety, using occasional low-power readers for tiny print.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does cataract surgery work with PanOptix Pro, and is the result permanent?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Our board-certified surgeons remove the clouded natural crystalline lens and replace it with the Clareon PanOptix Pro hydrophobic acrylic IOL. Because medical-grade acrylic never yellows or clouds, the prescription remains permanently stable for life.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How fast is the recovery after PanOptix Pro cataract surgery?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Dr. Matthew Marano Jr. and Dr. Sherief Raouf perform outpatient laser cataract surgery at Ridgedale Surgery Center in ~10–15 minutes using zero-needle numbing eye drops. Most patients notice vivid brightness within 24 to 48 hours and resume light daily activities the next day.',
         },
       },
     ],
@@ -142,6 +181,9 @@ export default function ClareonPanOptixPage() {
 
         {/* Client Interactive Body Content */}
         <PanOptixPageClient />
+
+        {/* Hub-and-Spoke Internal Link Mesh */}
+        <RelatedClinicalGuides currentSlug="panoptix-pro" />
 
         {/* Dedicated Booking Section with PanOptix Pre-Selected */}
         <div id="consultation" className="scroll-mt-20">

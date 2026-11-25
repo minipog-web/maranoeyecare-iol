@@ -5,6 +5,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Icon from '@/components/ui/AppIcon';
 import LazySimulatorGate from '@/components/ui/LazySimulatorGate';
+import MedicalReviewBadge from '@/components/seo/MedicalReviewBadge';
 import { Cataract3DPreviewPlaceholder } from '@/components/ui/SimulatorPreviewPlaceholders';
 import { trackEvent } from '@/lib/gtag';
 
@@ -230,6 +231,10 @@ export default function CataractEducationClient() {
             <span>Clinical Education · Ocular Anatomy &amp; Pathology</span>
           </div>
 
+          <div className="flex justify-center mb-5">
+            <MedicalReviewBadge compact />
+          </div>
+
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal sm:font-medium text-foreground leading-[1.15] mb-6">
             How Cataracts Form &amp; Why{' '}
             <span className="font-semibold text-gradient-primary block sm:inline">
@@ -318,19 +323,20 @@ export default function CataractEducationClient() {
         {/* 3D Anatomical Time-Lapse Viewer */}
         <div className="max-w-5xl mx-auto mb-10">
           <LazySimulatorGate
-            rootMargin="250px"
+            rootMargin="120px"
             placeholder={<Cataract3DPreviewPlaceholder variant="full" />}
-          >
-            <CataractEducation3DViewer
-              activeStageId={activeStageId}
-              onStageChange={(newStageId) => {
-                const matchedStage = progressionStages.find((s) => s.id === newStageId);
-                if (matchedStage) {
-                  handleStageSelect(matchedStage.id, matchedStage.stageName);
-                }
-              }}
-            />
-          </LazySimulatorGate>
+            render={() => (
+              <CataractEducation3DViewer
+                activeStageId={activeStageId}
+                onStageChange={(newStageId) => {
+                  const matchedStage = progressionStages.find((s) => s.id === newStageId);
+                  if (matchedStage) {
+                    handleStageSelect(matchedStage.id, matchedStage.stageName);
+                  }
+                }}
+              />
+            )}
+          />
         </div>
 
         {/* Unified Master Interactive Simulator Card */}
@@ -852,16 +858,20 @@ export default function CataractEducationClient() {
                     </div>
                   </button>
 
-                  {isOpen && (
-                    <div
-                      id={`cataract-faq-answer-${index}`}
-                      role="region"
-                      aria-labelledby={`cataract-faq-button-${index}`}
-                      className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-muted-foreground leading-relaxed border-t border-white/[0.04]"
-                    >
-                      {faq.answer}
+                  <div
+                    id={`cataract-faq-answer-${index}`}
+                    role="region"
+                    aria-labelledby={`cataract-faq-button-${index}`}
+                    className={`grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-5 sm:px-6 pb-6 pt-3 text-sm sm:text-base text-muted-foreground leading-relaxed border-t border-white/[0.04]">
+                        {faq.answer}
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               );
             })}

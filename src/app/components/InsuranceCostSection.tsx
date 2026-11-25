@@ -3,7 +3,11 @@
 import React from 'react';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent } from '@/lib/gtag';
-import { handleSpotlightMouseMove, smoothScrollToElement } from '@/lib/ui';
+import {
+  getBottomBookingTargetId,
+  handleSpotlightMouseMove,
+  smoothScrollToElement,
+} from '@/lib/ui';
 
 interface CostPillar {
   badge: string;
@@ -42,7 +46,7 @@ const costPillars: CostPillar[] = [
     priceHeadline: 'The Optical Difference',
     priceSub: 'Insurance covers the surgery; you only invest in the lens upgrade',
     highlights: [
-      'Seamless multi-distance visual freedom (distance, intermediate & near)',
+      'Continuous multi-distance clarity (distance, intermediate & near)',
       'Toric astigmatism correction included at no additional charge',
       'LENSAR ALLY 3D femtosecond laser biometry & arcuate incisions',
       'Medical-grade acrylic polymer that never clouds, ages, or requires replacement',
@@ -57,7 +61,7 @@ const costPillars: CostPillar[] = [
     title: '0% APR & Pre-Tax Savings',
     subtitle: 'CareCredit · HSA · FSA',
     priceHeadline: 'From ~$170 / Month',
-    priceSub: '24-month 0% APR financing for premium IOLs (or ~$66/mo for laser-only)',
+    priceSub: '~$5.60/day over 24 months at 0% APR (or ~$66/mo for laser-only)',
     highlights: [
       '24-month 0% APR deferred interest financing from ~$170/mo for advanced premium IOLs',
       'Laser-only option available from ~$66/mo over 24 months (without premium lens)',
@@ -109,9 +113,9 @@ export default function InsuranceCostSection() {
           </h2>
 
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Cataract surgery is a medically necessary procedure covered by Medicare and virtually
-            all major commercial health plans. Understanding how your coverage works with advanced
-            lifestyle lenses gives you complete confidence before your consultation.
+            Medicare and major commercial plans cover your cataract surgery, surgical center, and a
+            basic single-focus lens. You only invest if you choose to upgrade to a permanent
+            multi-distance lens.
           </p>
         </div>
 
@@ -123,9 +127,9 @@ export default function InsuranceCostSection() {
               <div
                 key={idx}
                 onMouseMove={handleSpotlightMouseMove}
-                className={`luxury-glass-card pointer-sheen-card relative overflow-visible rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
+                className={`luxury-glass-card pointer-sheen-card relative overflow-visible rounded-3xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
                   isFeatured
-                    ? 'border-2 border-primary/85 bg-gradient-to-b from-primary/[0.08] to-transparent shadow-[0_0_45px_rgba(197,160,89,0.22)]'
+                    ? 'pt-8 sm:pt-8 border-2 border-primary/85 bg-gradient-to-b from-primary/[0.08] to-transparent shadow-[0_0_45px_rgba(197,160,89,0.22)]'
                     : 'border border-white/[0.10] hover:border-primary/40'
                 }`}
               >
@@ -134,7 +138,7 @@ export default function InsuranceCostSection() {
                 {/* Featured glowing beacon */}
                 {isFeatured && (
                   <div
-                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 sm:px-4 py-1 rounded-full bg-[#ecc97e] text-[#07080b] font-extrabold text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_4px_14px_rgba(0,0,0,0.4)] border border-[#fff2cc]/60 z-20 max-w-[calc(100%-1.5rem)] text-center sm:whitespace-nowrap"
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-1 rounded-full bg-[#ecc97e] text-[#07080b] font-extrabold text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-wider shadow-[0_4px_14px_rgba(0,0,0,0.4)] border border-[#fff2cc]/60 z-20 max-w-[calc(100%-1.5rem)] text-center whitespace-nowrap"
                     aria-hidden="true"
                   >
                     Recommended for Active Lifestyles
@@ -150,7 +154,7 @@ export default function InsuranceCostSection() {
                           ? 'bg-primary/20 text-primary border border-primary/40'
                           : pillar.badgeType === 'covered'
                             ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                            : 'bg-blue-500/15 text-blue-400 border border-blue-500/30'
+                            : 'bg-teal-500/15 text-teal-300 border border-teal-500/30'
                       }`}
                     >
                       {pillar.badge}
@@ -216,9 +220,9 @@ export default function InsuranceCostSection() {
         </div>
 
         {/* Lifetime Value Ledger: One-Time IOL vs 20 Years of Glasses */}
-        <div className="luxury-rim-card border border-primary/25 rounded-3xl p-6 sm:p-10 mb-14 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+        <div className="luxury-rim-card border border-primary/25 rounded-3xl p-4 sm:p-10 mb-14 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1 rounded-full border border-primary/20">
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1 rounded-full border border-primary/20">
               The Economics of Visual Freedom
             </span>
             <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mt-3 mb-2 md:whitespace-nowrap">
@@ -230,11 +234,11 @@ export default function InsuranceCostSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+          <div className="grid md:grid-cols-2 gap-5 sm:gap-8 items-stretch">
             {/* Standard Route Cost Accumulation */}
-            <div className="rounded-2xl p-5 sm:p-7 bg-white/[0.02] border border-red-500/20 flex flex-col justify-between">
+            <div className="rounded-2xl p-4 sm:p-7 bg-white/[0.02] border border-red-500/20 flex flex-col justify-between min-w-0">
               <div>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <span className="text-xs font-bold uppercase tracking-wider text-red-400">
                     The Recurring Glasses Route
                   </span>
@@ -277,11 +281,19 @@ export default function InsuranceCostSection() {
                       ~$1,000 – $1,500
                     </span>
                   </div>
+                  <div className="flex justify-between items-baseline gap-3 py-2 border-b border-white/[0.06]">
+                    <span className="text-muted-foreground">
+                      Daily Reader Friction (~50×/day reaching for glasses)
+                    </span>
+                    <span className="font-mono text-red-300 font-semibold shrink-0 text-right">
+                      18,000+ / year
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/25 flex items-center justify-between gap-4">
-                <div>
+              <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+                <div className="min-w-0">
                   <div className="text-[11px] uppercase tracking-wider text-red-400 font-bold">
                     Estimated 20-Year Cost
                   </div>
@@ -289,16 +301,16 @@ export default function InsuranceCostSection() {
                     Recurring cycle of frames &amp; lenses
                   </div>
                 </div>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-red-300 text-right shrink-0">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-red-300 text-left sm:text-right shrink-0">
                   $7,400 – $10,400+
                 </div>
               </div>
             </div>
 
             {/* Advanced IOL Route */}
-            <div className="rounded-2xl p-5 sm:p-7 bg-primary/[0.04] border-2 border-primary/40 flex flex-col justify-between shadow-[0_0_25px_rgba(197,160,89,0.12)]">
+            <div className="rounded-2xl p-4 sm:p-7 bg-primary/[0.04] border-2 border-primary/40 flex flex-col justify-between shadow-[0_0_25px_rgba(197,160,89,0.12)] min-w-0">
               <div>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <span className="text-xs font-extrabold uppercase tracking-wider text-primary">
                     The Permanent Solution
                   </span>
@@ -358,8 +370,8 @@ export default function InsuranceCostSection() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-between gap-4">
-                <div>
+              <div className="p-4 rounded-xl bg-primary/15 border border-primary/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+                <div className="min-w-0">
                   <div className="text-[11px] uppercase tracking-wider text-primary font-bold">
                     Future Glasses Expense
                   </div>
@@ -367,7 +379,7 @@ export default function InsuranceCostSection() {
                     Permanent daily visual freedom
                   </div>
                 </div>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-primary text-right shrink-0">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-primary text-left sm:text-right shrink-0">
                   $0 Recurring
                 </div>
               </div>
@@ -376,17 +388,17 @@ export default function InsuranceCostSection() {
         </div>
 
         {/* Written Guarantee & Insurance Verification Card */}
-        <div className="rounded-3xl bg-[#0c0e15]/90 backdrop-blur-xl border border-white/[0.08] p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
-          <div className="flex items-start gap-4 sm:gap-5 flex-1 min-w-0">
-            <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.1] flex items-center justify-center shrink-0 text-primary mt-1">
+        <div className="rounded-3xl bg-[#0c0e15]/90 backdrop-blur-xl border border-white/[0.08] p-5 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+          <div className="flex items-start gap-3.5 sm:gap-5 flex-1 min-w-0 w-full">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white/[0.04] border border-white/[0.1] flex items-center justify-center shrink-0 text-primary mt-0.5 sm:mt-1">
               <Icon name="DocumentCheckIcon" size={24} />
             </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-1.5">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2 mb-1.5">
                 <span className="text-xs font-bold uppercase tracking-wider text-primary">
                   The Marano Eye Care Guarantee
                 </span>
-                <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-white/[0.04] text-white/80 border border-white/[0.08] font-medium">
+                <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-white/[0.04] text-white/80 border border-white/[0.08] font-medium whitespace-nowrap">
                   Zero Surprise Billing
                 </span>
               </div>
@@ -404,11 +416,12 @@ export default function InsuranceCostSection() {
 
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto shrink-0">
             <a
-              href="#booking"
+              href="#bottom-booking"
               onClick={(e) => {
                 e.preventDefault();
-                smoothScrollToElement('booking');
-                window.history.pushState(null, '', '#booking');
+                const targetId = getBottomBookingTargetId();
+                smoothScrollToElement(targetId);
+                window.history.pushState(null, '', `#${targetId}`);
                 trackEvent({
                   action: 'insurance_section_cta_click',
                   category: 'Conversion',
@@ -424,9 +437,10 @@ export default function InsuranceCostSection() {
               Or call Livingston:{' '}
               <a
                 href="tel:9733220100"
+                suppressHydrationWarning
                 className="text-primary hover:underline font-semibold font-mono"
               >
-                (973) 322-0100
+                <span suppressHydrationWarning>(973) 322-0100</span>
               </a>
             </p>
           </div>

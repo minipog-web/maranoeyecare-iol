@@ -3,26 +3,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 interface LazySimulatorGateProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  render?: () => React.ReactNode;
   placeholder: React.ReactNode;
   rootMargin?: string;
   loadOnScroll?: boolean;
   loadOnClick?: boolean;
+  forceActivate?: boolean;
   className?: string;
   onActivate?: (trigger: 'scroll' | 'click') => void;
 }
 
 /**
- * Defers mounting (and therefore dynamic chunk loading + WebGL/image initialization)
- * of heavy interactive simulators until the container approaches the viewport
- * (via IntersectionObserver) or the user clicks the static preview placeholder.
+ * Strictly defers mounting (and dynamic WebGL / Three.js / high-res asset chunk fetching)
+ * until after initial layout stabilizes AND the container approaches the viewport
+ * via IntersectionObserver, or when the user clicks to activate immediately.
  */
 export default function LazySimulatorGate({
   children,
+  render,
   placeholder,
-  rootMargin = '250px',
+  rootMargin = '120px',
   loadOnScroll = true,
   loadOnClick = true,
+  forceActivate = false,
   className = '',
   onActivate,
 }: LazySimulatorGateProps) {
@@ -35,29 +39,46 @@ export default function LazySimulatorGate({
   }, [onActivate]);
 
   useEffect(() => {
-    if (isActivated || !loadOnScroll) return;
-    const el = containerRef.current;
-    if (!el) return;
-
-    if (typeof IntersectionObserver === 'undefined') {
+    if (forceActivate && !isActivated) {
       setIsActivated(true);
-      onActivateRef.current?.('scroll');
-      return;
+      onActivateRef.current?.('click');
     }
+  }, [forceActivate, isActivated]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setIsActivated(true);
-          onActivateRef.current?.('scroll');
-          observer.disconnect();
-        }
-      },
-      { rootMargin, threshold: 0.01 }
-    );
+  useEffect(() => {
+    if (isActivated || !loadOnScroll) return;
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    let observer: IntersectionObserver | null = null;
+    // Allow above-the-fold & preceding dynamic sections to settle before observing
+    // so below-the-fold WebGL chunks never false-trigger on initial page paint.
+    const timerId = window.setTimeout(() => {
+      const el = containerRef.current;
+      if (!el) return;
+
+      if (typeof IntersectionObserver === 'undefined') {
+        setIsActivated(true);
+        onActivateRef.current?.('scroll');
+        return;
+      }
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            setIsActivated(true);
+            onActivateRef.current?.('scroll');
+            observer?.disconnect();
+          }
+        },
+        { rootMargin, threshold: 0.05 }
+      );
+
+      observer.observe(el);
+    }, 180);
+
+    return () => {
+      window.clearTimeout(timerId);
+      observer?.disconnect();
+    };
   }, [isActivated, loadOnScroll, rootMargin]);
 
   const handleClickActivate = () => {
@@ -69,7 +90,11 @@ export default function LazySimulatorGate({
   return (
     <div ref={containerRef} className={className}>
       {isActivated ? (
-        children
+        render ? (
+          render()
+        ) : (
+          children
+        )
       ) : (
         <div
           onClick={loadOnClick ? handleClickActivate : undefined}

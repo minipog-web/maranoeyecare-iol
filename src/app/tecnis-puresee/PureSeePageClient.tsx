@@ -5,6 +5,7 @@ import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import VivityPureSeeCallout from '@/components/VivityPureSeeCallout';
+import MedicalReviewBadge from '@/components/seo/MedicalReviewBadge';
 import { trackEvent } from '@/lib/gtag';
 import { handleSpotlightMouseMove, renderFootnoteText, smoothScrollToElement } from '@/lib/ui';
 
@@ -233,6 +234,10 @@ export default function PureSeePageClient() {
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#00a3ff]/10 border border-[#00a3ff]/30 text-[#38bdf8] text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-[0.25em] mb-6 shadow-[0_0_20px_rgba(0,163,255,0.2)]">
                 <span className="w-2 h-2 rounded-full bg-[#00a3ff] animate-pulse" />
                 <span>Latest &amp; Most Cutting-Edge EDOF Technology</span>
+              </div>
+
+              <div className="mb-5">
+                <MedicalReviewBadge compact />
               </div>
 
               <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal sm:font-medium text-foreground leading-[1.12] mb-6 tracking-tight">
@@ -1159,11 +1164,17 @@ export default function PureSeePageClient() {
                       </div>
                     </button>
 
-                    {isOpen && (
-                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-muted-foreground leading-relaxed border-t border-white/[0.05] pt-4 font-light animate-fade-in">
-                        {faq.answer}
+                    <div
+                      className={`grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                        isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-muted-foreground leading-relaxed border-t border-white/[0.05] pt-4 font-light">
+                          {faq.answer}
+                        </div>
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
               );

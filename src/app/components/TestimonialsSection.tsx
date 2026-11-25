@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './TestimonialsSection.module.css';
-import { handleSpotlightMouseMove } from '@/lib/ui';
+import { handleSpotlightMouseMove, renderFootnoteText } from '@/lib/ui';
+import { trackEvent } from '@/lib/gtag';
 
 interface Testimonial {
   concern: string;
@@ -144,19 +145,44 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+type LensFilter = 'All' | 'Clareon Vivity' | 'PanOptix Pro' | 'TECNIS PureSee';
+
+const LENS_FILTERS: { label: string; value: LensFilter }[] = [
+  { label: 'All NJ Stories', value: 'All' },
+  { label: 'Clareon® Vivity®', value: 'Clareon Vivity' },
+  { label: 'PanOptix® Pro', value: 'PanOptix Pro' },
+  { label: 'TECNIS PureSee™', value: 'TECNIS PureSee' },
+];
+
 export default function TestimonialsSection() {
+  const [lensFilter, setLensFilter] = useState<LensFilter>('All');
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStartXRef = useRef<number | null>(null);
 
+  const visibleTestimonials = useMemo(() => {
+    if (lensFilter === 'All') return testimonials;
+    return testimonials.filter((t) => t.lens === lensFilter);
+  }, [lensFilter]);
+
+  const handleFilterChange = (nextFilter: LensFilter) => {
+    setLensFilter(nextFilter);
+    setActiveIndex(0);
+    trackEvent({
+      action: 'testimonial_lens_filter',
+      category: 'Engagement',
+      label: nextFilter,
+    });
+  };
+
   const handlePrev = useCallback(() => {
-    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  }, []);
+    setActiveIndex((prev) => (prev === 0 ? visibleTestimonials.length - 1 : prev - 1));
+  }, [visibleTestimonials.length]);
 
   const handleNext = useCallback(() => {
-    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  }, []);
+    setActiveIndex((prev) => (prev === visibleTestimonials.length - 1 ? 0 : prev + 1));
+  }, [visibleTestimonials.length]);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setIsPaused(true);
@@ -176,17 +202,17 @@ export default function TestimonialsSection() {
 
   // Auto-advance every 7s, paused on hover
   useEffect(() => {
-    if (isPaused) {
+    if (isPaused || visibleTestimonials.length <= 1) {
       if (intervalRef.current) clearInterval(intervalRef.current);
       return;
     }
     intervalRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+      setActiveIndex((prev) => (prev === visibleTestimonials.length - 1 ? 0 : prev + 1));
     }, 7000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isPaused]);
+  }, [isPaused, visibleTestimonials.length]);
 
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -215,10 +241,52 @@ export default function TestimonialsSection() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-3 text-center">
             Patient Voices
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground text-center mb-10 sm:mb-14 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal sm:font-medium text-foreground text-center mb-4 leading-tight">
             Real Outcomes from{' '}
-            <span className="font-semibold text-gradient-primary">Real Patients</span>
+            <span className="font-semibold text-gradient-primary">New Jersey Neighbors</span>
           </h2>
+
+          {/* Aggregate Clinical Social Proof Ribbon */}
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs sm:text-sm text-slate-200 mb-6">
+            <span className="inline-flex items-center gap-1.5 font-semibold">
+              <Icon name="StarIcon" variant="solid" size={14} className="text-primary" />
+              <strong className="text-white">4.9★</strong> Across 650+ Verified NJ Reviews
+            </span>
+            <span className="hidden sm:inline text-white/20" aria-hidden="true">
+              ·
+            </span>
+            <span className="inline-flex items-center gap-1.5 font-medium">
+              <Icon name="CheckBadgeIcon" size={15} className="text-emerald-400" />
+              <span>{renderFootnoteText('99.2% Would Choose Their Lens Again [5]')}</span>
+            </span>
+          </div>
+
+          {/* Peer-Similarity Lens Filter Pills (Single-row horizontal swipe on mobile) */}
+          <div
+            role="tablist"
+            aria-label="Filter patient stories by intraocular lens"
+            className="flex flex-nowrap sm:flex-wrap items-center justify-start sm:justify-center gap-2 mb-8 sm:mb-10 overflow-x-auto sm:overflow-visible scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 py-1"
+          >
+            {LENS_FILTERS.map((f) => {
+              const isSelected = lensFilter === f.value;
+              return (
+                <button
+                  key={f.value}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() => handleFilterChange(f.value)}
+                  className={`min-h-[44px] px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                    isSelected
+                      ? 'bg-primary text-[#050608] shadow-[0_4px_16px_rgba(197,160,89,0.35)]'
+                      : 'bg-white/[0.04] border border-white/10 text-slate-200 hover:border-primary/40 hover:text-white'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              );
+            })}
+          </div>
 
           <div className="relative max-w-3xl mx-auto px-0 sm:px-12">
             {/* Desktop floating arrows */}
@@ -244,7 +312,7 @@ export default function TestimonialsSection() {
               onTouchEnd={handleTouchEnd}
             >
               <div ref={trackRef} className={styles.carouselTrack}>
-                {testimonials.map((t, idx) => (
+                {visibleTestimonials.map((t, idx) => (
                   <div key={idx} className="w-full shrink-0 px-2">
                     <div
                       onMouseMove={handleSpotlightMouseMove}
@@ -360,7 +428,7 @@ export default function TestimonialsSection() {
                 <span>Prev</span>
               </button>
               <span className="text-xs font-mono font-semibold text-muted-foreground">
-                {activeIndex + 1} / {testimonials.length} · Swipe
+                {activeIndex + 1} / {visibleTestimonials.length} · Swipe
               </span>
               <button
                 type="button"
@@ -375,7 +443,7 @@ export default function TestimonialsSection() {
 
             {/* Pagination Dots (Tablet/Desktop) */}
             <div className="hidden sm:flex justify-center items-center gap-0.5 mt-4">
-              {testimonials.map((_, idx) => (
+              {visibleTestimonials.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveIndex(idx)}
@@ -438,12 +506,12 @@ export default function TestimonialsSection() {
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-white/[0.08]">
-                    <div>
-                      <div className="flex items-center gap-2">
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
                         <p className="text-sm font-bold text-foreground">
                           Dr. Matthew Marano Jr., MD
                         </p>
-                        <span className="text-[10px] font-semibold text-primary uppercase tracking-wider bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
+                        <span className="text-[10px] font-semibold text-primary uppercase tracking-wider bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20 shrink-0">
                           Founder
                         </span>
                       </div>
@@ -455,7 +523,7 @@ export default function TestimonialsSection() {
                       </p>
                     </div>
 
-                    <div className="flex items-start gap-3 sm:border-l sm:border-white/[0.08] sm:pl-4">
+                    <div className="flex items-start gap-3 sm:border-l sm:border-white/[0.08] sm:pl-4 min-w-0">
                       <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-primary/30 shrink-0 mt-0.5">
                         <AppImage
                           src="/assets/images/Raouf.jpg"
@@ -465,10 +533,10 @@ export default function TestimonialsSection() {
                           sizes="40px"
                         />
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2">
                           <p className="text-sm font-bold text-foreground">Dr. Sherief Raouf, MD</p>
-                          <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
+                          <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider bg-white/5 px-2 py-0.5 rounded-full border border-white/10 shrink-0">
                             Surgical Partner
                           </span>
                         </div>
@@ -535,9 +603,9 @@ export default function TestimonialsSection() {
                     <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover/card:bg-primary/20 transition-colors z-10">
                       <Icon name="PhoneIcon" size={18} className="text-primary" />
                     </div>
-                    <div className="z-10 flex flex-col gap-0.5">
+                    <div className="z-10 flex flex-col gap-0.5 min-w-0 flex-1">
                       <p className="text-sm font-bold text-foreground leading-tight">{loc?.city}</p>
-                      <p className="text-xs text-muted-foreground line-clamp-1 leading-normal">
+                      <p className="text-xs text-muted-foreground break-words leading-normal">
                         {loc?.address}
                       </p>
                       <p

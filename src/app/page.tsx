@@ -4,42 +4,36 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/app/components/HeroSection';
-import TrustBadgeBar from '@/app/components/TrustBadgeBar';
 import StickyCTABar from '@/app/components/StickyCTABar';
 
 // Below-the-fold sections code-split dynamically to minimize initial mobile JS bundle and optimize LCP/FCP
-const LensQuestionnaireSection = dynamic(() => import('@/app/components/LensQuestionnaireSection'));
+const TrustSection = dynamic(() => import('@/app/components/TrustSection'));
+const CertificationLogos = dynamic(() => import('@/app/components/CertificationLogos'));
+const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'));
 const CataractEducationTeaserSection = dynamic(
   () => import('@/app/components/CataractEducationTeaserSection')
 );
-const LensVisionComparisonSection = dynamic(
-  () => import('@/app/components/LazyVisionSimulatorSection')
-);
-const LensTechnologyDeepDiveSection = dynamic(
-  () => import('@/app/components/LensTechnologyDeepDiveSection')
+const InteractiveMediaHubSection = dynamic(
+  () => import('@/app/components/InteractiveMediaHubSection')
 );
 const LensarAllySection = dynamic(() => import('@/app/components/LensarAllySection'));
 const RecoveryTimelineSection = dynamic(() => import('@/app/components/RecoveryTimelineSection'));
-const TrustSection = dynamic(() => import('@/app/components/TrustSection'));
-const CertificationLogos = dynamic(() => import('@/app/components/CertificationLogos'));
 const CandidacySection = dynamic(() => import('@/app/components/CandidacySection'));
-const TestimonialsSection = dynamic(() => import('@/app/components/TestimonialsSection'));
-const FAQSection = dynamic(() => import('@/app/components/FAQSection'));
 const InsuranceCostSection = dynamic(() => import('@/app/components/InsuranceCostSection'));
-const MidPageConversionStrip = dynamic(() => import('@/app/components/MidPageConversionStrip'));
+const FAQSection = dynamic(() => import('@/app/components/FAQSection'));
 const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
 
 export const metadata: Metadata = {
-  title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
+  title: 'Laser Cataract Surgery & Premium IOLs NJ | Marano Eye Care',
   description:
-    "Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmic microsurgeons, Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.",
+    'Compare Clareon Vivity, PanOptix Pro & TECNIS PureSee lenses in Livingston, Denville & Newark, NJ. 40,000+ surgeries, 4.9★ (650+ reviews) & $0 Toric upgrade.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
+    title: 'Laser Cataract Surgery & Premium IOLs NJ | Marano Eye Care',
     description:
-      'Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Discover customized multi-distance vision freedom with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.',
+      'Compare Clareon Vivity, PanOptix Pro & TECNIS PureSee IOLs at Marano Eye Care. Bladeless LENSAR laser precision, $0 Toric upgrade & 40,000+ NJ procedures.',
     url: 'https://premium-iol.maranoeye.com',
     siteName: 'Marano Eye Care',
     images: [
@@ -47,11 +41,18 @@ export const metadata: Metadata = {
         url: '/assets/images/vivity_hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Premium Cataract Lens Options at Marano Eye Care',
+        alt: 'Premium Cataract Lens Options at Marano Eye Care NJ',
       },
     ],
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Laser Cataract Surgery & Premium IOLs NJ | Marano Eye Care',
+    description:
+      'Compare Clareon Vivity, PanOptix Pro & TECNIS PureSee IOLs in Livingston, Denville & Newark, NJ. 40,000+ surgeries & $0 Toric upgrade.',
+    images: ['/assets/images/vivity_hero.jpg'],
   },
 };
 
@@ -61,9 +62,18 @@ const homeSchemas = [
     '@type': 'MedicalWebPage',
     '@id': 'https://premium-iol.maranoeye.com/#webpage',
     url: 'https://premium-iol.maranoeye.com',
-    name: 'Premium Cataract Lens Options & IOLs | Marano Eye Care NJ',
+    name: 'Laser Cataract Surgery & Premium IOLs NJ | Marano Eye Care',
     description:
-      "Compare Clareon Vivity, PanOptix Pro, and TECNIS PureSee IOLs at Marano Eye Care. Book a consultation with NJ's top-rated ophthalmic microsurgeons, Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.",
+      'Compare Clareon Vivity, PanOptix Pro & TECNIS PureSee lenses in Livingston, Denville & Newark, NJ with board-certified surgeons Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD.',
+    isPartOf: {
+      '@id': 'https://premium-iol.maranoeye.com/#website',
+    },
+    lastReviewed: '2026-11-25',
+    dateModified: '2026-11-25',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '#faq h2', '#faq h3'],
+    },
     medicalAudience: {
       '@type': 'MedicalAudience',
       audienceType: 'Cataract Patients, Presbyopia Patients, Astigmatism Patients',
@@ -75,7 +85,7 @@ const homeSchemas = [
         name: 'Cataract',
         possibleTreatment: {
           '@type': 'MedicalProcedure',
-          name: 'Cataract Surgery with Premium IOL Implantation',
+          name: 'LENSAR ALLY Laser Cataract Surgery with Premium IOL Implantation',
         },
       },
       {
@@ -83,7 +93,7 @@ const homeSchemas = [
         name: 'Astigmatism',
         possibleTreatment: {
           '@type': 'MedicalDevice',
-          name: 'Toric Intraocular Lens',
+          name: 'Toric Intraocular Lens ($0 Upgrade Fee on Premium Lenses)',
         },
       },
       {
@@ -91,13 +101,18 @@ const homeSchemas = [
         name: 'Presbyopia',
         possibleTreatment: {
           '@type': 'MedicalDevice',
-          name: 'Multifocal and Extended Depth of Focus (EDOF) IOLs',
+          name: 'Trifocal and Extended Depth of Focus (EDOF) Intraocular Lenses',
         },
       },
+    ],
+    reviewedBy: [
+      { '@id': 'https://premium-iol.maranoeye.com/#dr-marano' },
+      { '@id': 'https://premium-iol.maranoeye.com/#dr-raouf' },
     ],
     author: [
       {
         '@type': 'Physician',
+        '@id': 'https://premium-iol.maranoeye.com/#dr-marano',
         name: 'Dr. Matthew Marano Jr., MD',
         jobTitle: 'Founder & Chief of Ophthalmology',
         medicalSpecialty: 'Ophthalmology',
@@ -123,6 +138,7 @@ const homeSchemas = [
       },
       {
         '@type': 'Physician',
+        '@id': 'https://premium-iol.maranoeye.com/#dr-raouf',
         name: 'Dr. Sherief Raouf, MD',
         jobTitle: 'Board-Certified Ophthalmologist & Cornea Subspecialist',
         medicalSpecialty: ['Ophthalmology', 'Corneal and External Diseases', 'Refractive Surgery'],
@@ -135,6 +151,40 @@ const homeSchemas = [
         url: 'https://www.maranoeyecare.com/provider/sherief-raouf-md',
         image: 'https://premium-iol.maranoeye.com/assets/images/Raouf.jpg',
         sameAs: ['https://www.maranoeyecare.com/provider/sherief-raouf-md'],
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': 'https://premium-iol.maranoeye.com/#iol-comparison-list',
+    name: 'FDA-Approved Premium Intraocular Lens (IOL) Guides at Marano Eye Care',
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    numberOfItems: 4,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Clareon Vivity Non-Diffractive EDOF IOL Guide',
+        url: 'https://premium-iol.maranoeye.com/clareon-vivity',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Clareon PanOptix Pro Trifocal IOL Guide',
+        url: 'https://premium-iol.maranoeye.com/panoptix-pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'TECNIS PureSee Pure Refractive EDOF IOL Guide',
+        url: 'https://premium-iol.maranoeye.com/tecnis-puresee',
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'How Cataracts Form & Why Acrylic IOL Replacement Is Permanent',
+        url: 'https://premium-iol.maranoeye.com/cataract-education',
       },
     ],
   },
@@ -154,12 +204,6 @@ export default function HomePage() {
       <main className="min-h-screen bg-background overflow-x-hidden">
         <Header />
         <HeroSection />
-        <LensQuestionnaireSection />
-        <TrustBadgeBar variant="clinical" />
-        <hr className="section-divider" />
-        <div className="optimize-offscreen">
-          <LensVisionComparisonSection />
-        </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
           <TrustSection />
@@ -168,7 +212,7 @@ export default function HomePage() {
           <CertificationLogos />
         </div>
         <div className="optimize-offscreen">
-          <MidPageConversionStrip variant="surgeons" />
+          <TestimonialsSection />
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
@@ -176,7 +220,7 @@ export default function HomePage() {
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
-          <LensTechnologyDeepDiveSection />
+          <InteractiveMediaHubSection />
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
@@ -192,14 +236,7 @@ export default function HomePage() {
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
-          <TestimonialsSection />
-        </div>
-        <hr className="section-divider" />
-        <div className="optimize-offscreen">
           <InsuranceCostSection />
-        </div>
-        <div className="optimize-offscreen">
-          <MidPageConversionStrip variant="pricing" />
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
@@ -207,7 +244,7 @@ export default function HomePage() {
         </div>
         <hr className="section-divider" />
         <div className="optimize-offscreen">
-          <BookingSection />
+          <BookingSection sectionId="bottom-booking" />
         </div>
         <StickyCTABar />
         <Footer />

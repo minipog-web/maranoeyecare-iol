@@ -2,8 +2,9 @@
 
 import { useState, useMemo } from 'react';
 import Icon from '@/components/ui/AppIcon';
-import { trackEvent } from '@/lib/gtag';
-import { smoothScrollToElement } from '@/lib/ui';
+import MedicalReviewBadge from '@/components/seo/MedicalReviewBadge';
+import { trackEvent, trackPhoneClick } from '@/lib/gtag';
+import { getBottomBookingTargetId, smoothScrollToElement } from '@/lib/ui';
 
 export type FAQCategory =
   | 'All Questions'
@@ -319,13 +320,11 @@ export default function FAQSection() {
     return allFAQs.filter((faq) => faq.category === activeCategory);
   }, [activeCategory]);
 
-  const displayedFAQs = useMemo(() => {
-    if (isExpanded) return filteredFAQs;
-    return filteredFAQs.slice(0, INITIAL_VISIBLE_COUNT);
-  }, [filteredFAQs, isExpanded]);
+  const initialFAQs = useMemo(() => filteredFAQs.slice(0, INITIAL_VISIBLE_COUNT), [filteredFAQs]);
+  const extraFAQs = useMemo(() => filteredFAQs.slice(INITIAL_VISIBLE_COUNT), [filteredFAQs]);
 
-  const hasMore = filteredFAQs.length > INITIAL_VISIBLE_COUNT;
-  const remainingCount = filteredFAQs.length - INITIAL_VISIBLE_COUNT;
+  const hasMore = extraFAQs.length > 0;
+  const remainingCount = extraFAQs.length;
 
   const handleToggle = (id: string, question: string) => {
     const isOpening = openFAQId !== id;
@@ -386,9 +385,9 @@ export default function FAQSection() {
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-10">
           {/* Left Sticky Sidebar */}
           <div className="w-full lg:w-[30%] lg:sticky lg:top-28">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/25 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/25 mb-4 max-w-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] sm:tracking-[0.25em] text-primary">
                 Uncompromising Transparency
               </p>
             </div>
@@ -399,11 +398,14 @@ export default function FAQSection() {
                 Answered Honestly
               </span>
             </h2>
-            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base mb-8">
+            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base mb-5">
               These are the candid questions our surgeons hear every week. We believe you should
               arrive at your consultation empowered with clarity, not burdened with unanswered
               fears.
             </p>
+            <div className="mb-7">
+              <MedicalReviewBadge compact />
+            </div>
 
             {/* Surgeon Direct Care Advisory Card (Desktop Sidebar — shown below FAQs on Mobile) */}
             <div className="hidden lg:block relative p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-[#141722]/90 to-[#0e1017]/90 border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.5)] mb-6 overflow-hidden">
@@ -421,11 +423,12 @@ export default function FAQSection() {
                 directly by Dr. Marano or Dr. Raouf with zero high-pressure sales.
               </p>
               <a
-                href="#booking"
+                href="#bottom-booking"
                 onClick={(e) => {
                   e.preventDefault();
-                  smoothScrollToElement('booking');
-                  window.history.pushState(null, '', '#booking');
+                  const targetId = getBottomBookingTargetId();
+                  smoothScrollToElement(targetId);
+                  window.history.pushState(null, '', `#${targetId}`);
                   trackEvent({
                     action: 'faq_booking_click',
                     category: 'Engagement',
@@ -494,9 +497,9 @@ export default function FAQSection() {
               })}
             </div>
 
-            {/* Uniform Beautiful FAQ Items */}
+            {/* Uniform Beautiful FAQ Items (All 14 SSR-rendered for Rich Results & GEO crawlability) */}
             <div className="space-y-4">
-              {displayedFAQs.map((faq) => (
+              {initialFAQs.map((faq) => (
                 <FAQItemCard
                   key={faq.id}
                   item={faq}
@@ -505,6 +508,19 @@ export default function FAQSection() {
                 />
               ))}
             </div>
+
+            {extraFAQs.length > 0 && (
+              <div className={isExpanded ? 'space-y-4 mt-4' : 'hidden'} aria-hidden={!isExpanded}>
+                {extraFAQs.map((faq) => (
+                  <FAQItemCard
+                    key={faq.id}
+                    item={faq}
+                    isOpen={openFAQId === faq.id}
+                    onToggle={() => handleToggle(faq.id, faq.question)}
+                  />
+                ))}
+              </div>
+            )}
 
             {/* Expand / Collapse Button */}
             {hasMore && (
@@ -540,31 +556,50 @@ export default function FAQSection() {
               </div>
             )}
 
-            {/* Direct Assistance Micro-Card */}
-            <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-primary/[0.08] via-white/[0.02] to-transparent border border-primary/25 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-[0_8px_24px_rgba(0,0,0,0.3)]">
+            {/* Final Consultation CTA Banner */}
+            <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-primary/[0.12] via-[#10131e] to-primary/[0.06] border border-primary/35 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-[0_12px_32px_rgba(0,0,0,0.4)]">
               <div>
-                <p className="text-sm font-bold text-foreground">
-                  Have a specific question about your prescription or insurance?
+                <p className="text-base font-bold text-foreground">
+                  Ready to see which premium lens fits your eyes?
                 </p>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  Our surgical coordinators in Livingston, Denville, and Newark answer calls
-                  directly.
+                <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
+                  Schedule your evaluation in Livingston, Denville, or Newark—same-day callback.
                 </p>
               </div>
-              <a
-                href="tel:9733220100"
-                onClick={() =>
-                  trackEvent({
-                    action: 'faq_phone_click',
-                    category: 'Engagement',
-                    label: '(973) 322-0100',
-                  })
-                }
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-primary/40 bg-primary/15 text-primary text-xs font-bold hover:bg-primary/25 transition-all whitespace-nowrap min-h-[44px] shadow-sm hover:scale-[1.02]"
-              >
-                <Icon name="PhoneIcon" size={14} />
-                (973) 322-0100
-              </a>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0">
+                <a
+                  href="#bottom-booking"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const targetId = getBottomBookingTargetId();
+                    smoothScrollToElement(targetId);
+                    window.history.pushState(null, '', `#${targetId}`);
+                    trackEvent({
+                      action: 'faq_final_cta_click',
+                      category: 'Conversion',
+                      label: 'Request My Free Evaluation',
+                    });
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-[#000000] text-xs sm:text-sm font-extrabold hover:bg-accent transition-all sm:whitespace-nowrap text-center min-h-[46px] shadow-[0_4px_16px_rgba(197,160,89,0.3)]"
+                >
+                  <span>Request My Evaluation</span>
+                  <Icon name="ArrowRightIcon" size={14} className="text-black shrink-0" />
+                </a>
+                <a
+                  href="tel:9733220100"
+                  suppressHydrationWarning
+                  onClick={(e) => {
+                    const dialed =
+                      e.currentTarget.getAttribute('href')?.replace('tel:', '').trim() ||
+                      '(973) 322-0100';
+                    trackPhoneClick('FAQ Call CTA', dialed);
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-primary/40 bg-primary/15 text-primary text-xs sm:text-sm font-bold text-center leading-snug hover:bg-primary/25 transition-all sm:whitespace-nowrap min-h-[46px]"
+                >
+                  <Icon name="PhoneIcon" size={14} className="shrink-0" />
+                  <span suppressHydrationWarning>(973) 322-0100</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

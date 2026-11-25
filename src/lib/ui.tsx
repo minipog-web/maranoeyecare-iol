@@ -86,6 +86,17 @@ export function renderFootnoteText(
 }
 
 /**
+ * Returns the ID of the bottom-of-page booking section (`bottom-booking` on the
+ * homepage, falling back to `booking` on subpages where BookingSection owns `#booking`).
+ */
+export function getBottomBookingTargetId(): string {
+  if (typeof document !== 'undefined' && document.getElementById('bottom-booking')) {
+    return 'bottom-booking';
+  }
+  return 'booking';
+}
+
+/**
  * Smoothly scrolls to an element by ID, calculating the fixed header height
  * and re-aligning if off-screen `content-visibility: auto` sections expand
  * during the scroll.
@@ -94,8 +105,17 @@ export function smoothScrollToElement(targetId: string, customOffset?: number) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
   const cleanId = targetId.replace(/^#/, '');
+  if (cleanId === 'booking') {
+    window.dispatchEvent(new CustomEvent('hero-switch-tab', { detail: 'booking' }));
+  } else if (cleanId === 'hero-quiz' || cleanId === 'lens-quiz') {
+    window.dispatchEvent(new CustomEvent('hero-switch-tab', { detail: 'quiz' }));
+  }
   const initialTarget =
     document.getElementById(cleanId) ||
+    (cleanId === 'bottom-booking' ? document.getElementById('booking') : null) ||
+    (cleanId === 'hero-quiz' || cleanId === 'lens-quiz'
+      ? document.getElementById('booking')
+      : null) ||
     (cleanId === 'lenses' ? document.getElementById('vision') : null);
   if (!initialTarget) return;
 

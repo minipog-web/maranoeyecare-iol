@@ -31,10 +31,10 @@ export default function RecoveryTimelineSection() {
     {
       phase: '02',
       title: 'Procedure Day',
-      timeframe: '10–15 Minutes',
+      timeframe: '~10 Minutes',
       icon: 'ClockIcon',
       description:
-        'A painless 10–15 minute outpatient procedure under gentle numbing drops and light twilight sedation. No needles, no stitches, and you head home shortly after.',
+        'A gentle, ~10-minute outpatient procedure under numbing eye drops and light twilight sedation. No needles, no stitches, and you head home shortly after.',
       color: '#8B5CF6',
       rgb: '139, 92, 246',
     },
@@ -64,7 +64,7 @@ export default function RecoveryTimelineSection() {
       timeframe: '4–6 Weeks',
       icon: 'BrainIcon',
       description:
-        'Your brain seamlessly adapts to the advanced optics. Near and intermediate focus sync with distance clarity for effortless visual independence.',
+        'Your brain naturally adapts to the new optics. Near and intermediate focus sync with distance clarity for lasting visual independence.',
       color: '#C5A059',
       rgb: '197, 160, 89',
     },

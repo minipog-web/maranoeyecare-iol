@@ -21,6 +21,7 @@ export const CONVERSION_EVENTS = {
   PHONE_CLICK: 'phone_click',
   BOOKING_STEP_1: 'booking_step_1_complete',
   BOOKING_COMPLETE: 'booking_complete',
+  CONSULTATION_FORM_SUBMIT: 'consultation_form_submit',
   STICKY_BOOKING_CLICK: 'sticky_booking_click',
   STICKY_BAR_DISMISS: 'sticky_bar_dismiss',
   HEADER_BOOKING_CLICK: 'header_booking_click',
@@ -230,6 +231,8 @@ export const setEnhancedConversionsUserData = (userData: UserDataForConversions)
     normalizedData.address = address;
   }
 
+  if (Object.keys(normalizedData).length === 0) return;
+
   // 1. Set directly on gtag for Google Ads Enhanced Conversions
   if (typeof window.gtag === 'function') {
     window.gtag('set', 'user_data', normalizedData);
@@ -252,14 +255,34 @@ export const trackPhoneClick = (source: string, phoneNumber?: string) => {
   }
   lastPhoneClickTime = now;
 
+  const transactionId = `mec_phone_${now}_${Math.random().toString(36).slice(2, 8)}`;
+
   trackEvent({
     action: CONVERSION_EVENTS.PHONE_CLICK,
     category: 'Conversion',
     label: source,
     value: 200,
-    customParams: phoneNumber ? { phone_number: phoneNumber } : {},
+    customParams: {
+      transaction_id: transactionId,
+      ...(phoneNumber ? { phone_number: phoneNumber } : {}),
+    },
   });
-  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.PHONE_CALL, 200);
+
+  // Fire primary Google Ads Phone Call conversion action (AW-17962563730/VQnXCPyTnI4dEJLxm_VC)
+  trackAdsConversion(GOOGLE_ADS_CONVERSIONS.PHONE_CALL, 200, 'USD', transactionId);
+
+  // Also send phone_click event to primary Google Ads tag (AW-17962563730) for event-based rules
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', CONVERSION_EVENTS.PHONE_CLICK, {
+      send_to: GOOGLE_ADS_PRIMARY_ID,
+      event_category: 'Conversion',
+      event_label: source,
+      value: 200,
+      currency: 'USD',
+      transaction_id: transactionId,
+      ...(phoneNumber ? { phone_number: phoneNumber } : {}),
+    });
+  }
 };
 
 export const trackConsultationBooking = (
@@ -274,6 +297,21 @@ export const trackConsultationBooking = (
 
   const transactionId = `mec_book_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
+  // Clean GTM dataLayer event for consultation_form_submit triggers & Google Ads tags
+  if (typeof window !== 'undefined') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: CONVERSION_EVENTS.CONSULTATION_FORM_SUBMIT,
+      form_name: 'consultation',
+      preferred_location: location,
+      selected_lens: lens || 'Not specified',
+      transaction_id: transactionId,
+      value: 500,
+      currency: 'USD',
+      ...(quizResult ? { quiz_recommendation: quizResult } : {}),
+    });
+  }
+
   trackEvent({
     action: CONVERSION_EVENTS.BOOKING_COMPLETE,
     category: 'Conversion',
@@ -284,7 +322,7 @@ export const trackConsultationBooking = (
       selected_lens: lens,
       transaction_id: transactionId,
       ...(quizResult ? { quiz_recommendation: quizResult } : {}),
-      ...(userData?.email ? { has_contact_data: true } : {}),
+      ...(userData?.email || userData?.phone ? { has_contact_data: true } : {}),
     },
   });
   trackAdsConversion(GOOGLE_ADS_CONVERSIONS.BOOK_APPOINTMENT, 500, 'USD', transactionId);

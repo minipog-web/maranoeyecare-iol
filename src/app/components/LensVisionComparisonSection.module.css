@@ -66,6 +66,26 @@
   position: relative;
 }
 
+.ctaButton[data-lens='panoptix'] {
+  --lens-color: #8b5cf6;
+  --lens-color-rgb: 139, 92, 246;
+}
+
+.ctaButton[data-lens='vivity'] {
+  --lens-color: #c5a059;
+  --lens-color-rgb: 197, 160, 89;
+}
+
+.ctaButton[data-lens='puresee'] {
+  --lens-color: #00a3ff;
+  --lens-color-rgb: 0, 163, 255;
+}
+
+.ctaButton[data-lens='monofocal'] {
+  --lens-color: #94a3b8;
+  --lens-color-rgb: 148, 163, 184;
+}
+
 /* ── Refined ambient halo aura behind each lens card ── */
 .cardAmbientGlow {
   position: absolute;

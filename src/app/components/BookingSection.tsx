@@ -74,7 +74,7 @@ const whatHappensNext = [
     step: '1',
     icon: 'ClipboardDocumentCheckIcon',
     title: 'Submit Your Request',
-    desc: 'Takes 30 seconds · 100% free · No medical history or credit card needed.',
+    desc: 'Takes 30 seconds · Zero obligation · No email or credit card needed.',
   },
   {
     step: '2',
@@ -95,6 +95,7 @@ interface BookingSectionProps {
   bookingUrgencyTitle?: string;
   bookingUrgencyText?: string;
   preselectedLens?: 'vivity' | 'panoptix' | 'puresee' | 'monofocal';
+  sectionId?: string;
 }
 
 export default function BookingSection({
@@ -102,6 +103,7 @@ export default function BookingSection({
   bookingUrgencyTitle,
   bookingUrgencyText,
   preselectedLens,
+  sectionId = 'booking',
 }: BookingSectionProps) {
   const [form, setForm] = useState<FormState>(() => {
     return {
@@ -110,7 +112,7 @@ export default function BookingSection({
       email: '',
       phone: '',
       preferredContact: 'phone',
-      location: '',
+      location: locations[0],
       lens: preselectedLens ? (LENS_KEY_TO_LABEL[preselectedLens] ?? '') : '',
       message: '',
     };
@@ -128,13 +130,13 @@ export default function BookingSection({
     if (typeof window !== 'undefined') {
       const locParam = new URLSearchParams(window.location.search).get('loc')?.toLowerCase() || '';
       if (locParam.includes('denville')) {
-        setForm((prev) => (prev.location ? prev : { ...prev, location: locations[1] }));
+        setForm((prev) => ({ ...prev, location: locations[1] }));
         setActiveOfficeTab(1);
       } else if (locParam.includes('newark')) {
-        setForm((prev) => (prev.location ? prev : { ...prev, location: locations[2] }));
+        setForm((prev) => ({ ...prev, location: locations[2] }));
         setActiveOfficeTab(2);
       } else if (locParam.includes('livingston')) {
-        setForm((prev) => (prev.location ? prev : { ...prev, location: locations[0] }));
+        setForm((prev) => ({ ...prev, location: locations[0] }));
         setActiveOfficeTab(0);
       }
     }
@@ -271,6 +273,7 @@ export default function BookingSection({
     try {
       const formData = new URLSearchParams();
       formData.append('form-name', 'consultation');
+      formData.append('bot-field', '');
       formData.append('name', `${trimmedForm.firstName} ${trimmedForm.lastName}`.trim());
       formData.append('firstName', trimmedForm.firstName);
       formData.append('lastName', trimmedForm.lastName);
@@ -334,7 +337,7 @@ export default function BookingSection({
 
   return (
     <section
-      id="booking"
+      id={sectionId}
       className="py-12 sm:py-20 lg:py-32 relative overflow-hidden bg-section-booking border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* Office location beacon texture */}
@@ -714,7 +717,7 @@ export default function BookingSection({
                     <h3
                       className={`font-display text-xl sm:text-2xl font-medium text-foreground ${styles.formHeader}`}
                     >
-                      Request Your Consultation
+                      Request Your Cataract Evaluation
                     </h3>
                     <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -1039,7 +1042,7 @@ export default function BookingSection({
                       type="button"
                       onClick={() => setShowOptionalDetails((prev) => !prev)}
                       aria-expanded={showOptionalDetails}
-                      className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-accent transition-colors py-1.5 min-h-[40px] touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                      className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:text-accent transition-colors py-2 min-h-[44px] touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                     >
                       <Icon
                         name={showOptionalDetails ? 'ChevronUpIcon' : 'PlusCircleIcon'}
@@ -1169,7 +1172,7 @@ export default function BookingSection({
                       </span>
                     ) : (
                       <>
-                        <span>Request My Consultation</span>
+                        <span>Request My 1-on-1 Surgeon Evaluation</span>
                         <Icon
                           name="ArrowRightIcon"
                           size={18}
@@ -1188,7 +1191,7 @@ export default function BookingSection({
                       href="tel:9733220100"
                       suppressHydrationWarning
                       onClick={() => trackPhoneClick('Booking Form Direct Call', '(973) 322-0100')}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary font-bold transition-colors min-h-[40px] whitespace-nowrap touch-manipulation"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary font-bold transition-colors min-h-[44px] whitespace-nowrap touch-manipulation"
                     >
                       <Icon name="PhoneIcon" size={14} className="shrink-0" />
                       <span>
@@ -1199,7 +1202,9 @@ export default function BookingSection({
 
                   <div className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] sm:text-xs font-semibold text-center leading-snug">
                     <Icon name="LockClosedIcon" size={14} className="shrink-0 text-emerald-400" />
-                    <span>HIPAA-Compliant &amp; 256-Bit Encrypted · No Commitment Required</span>
+                    <span>
+                      Written Medicare Check Included · Zero Sales Pressure · HIPAA Protected
+                    </span>
                   </div>
                 </form>
               </>

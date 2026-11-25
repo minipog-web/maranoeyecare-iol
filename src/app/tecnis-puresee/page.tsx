@@ -4,21 +4,31 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTABar from '@/app/components/StickyCTABar';
+import RelatedClinicalGuides from '@/components/seo/RelatedClinicalGuides';
 import PureSeePageClient from './PureSeePageClient';
 
 const BookingSection = dynamic(() => import('@/app/components/BookingSection'));
 
 export const metadata: Metadata = {
-  title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',
+  title: 'TECNIS PureSee Refractive EDOF IOL NJ | Marano Eye Care',
   description:
-    'Comprehensive clinical guide to the TECNIS PureSee™ IOL by Johnson & Johnson MedTech, the latest refractive EDOF lens. Discover pure refractive continuous zonal optics, 100% light utilization, zero FDA contrast warning, and comparisons with PanOptix and Vivity.',
+    'Clinical guide to J&J TECNIS PureSee™ purely refractive EDOF IOL in NJ. Zero diffractive rings, zero FDA contrast warning, night clarity & $0 Toric upgrade.',
+  keywords: [
+    'tecnis puresee nj',
+    'puresee iol cataract surgery nj',
+    'tecnis puresee vs vivity',
+    'purely refractive edof iol',
+    'tecnis puresee night driving',
+    'zero contrast warning iol',
+    'marano eye care puresee',
+  ],
   alternates: {
     canonical: '/tecnis-puresee',
   },
   openGraph: {
-    title: 'TECNIS PureSee IOL Guide: Latest Cutting-Edge Refractive EDOF | Marano Eye Care NJ',
+    title: 'TECNIS PureSee Refractive EDOF IOL NJ | Marano Eye Care',
     description:
-      'Explore the TECNIS PureSee™, the latest purely refractive EDOF lens, with Dr. Matthew Marano Jr., MD & Dr. Sherief Raouf, MD. Zero diffractive rings, monofocal-like night vision, and continuous intermediate clarity with LENSAR ALLY laser precision.',
+      'Explore TECNIS PureSee™, the purely refractive EDOF lens with zero diffractive rings and zero FDA contrast warning, with Dr. Marano & Dr. Raouf in NJ.',
     url: 'https://premium-iol.maranoeye.com/tecnis-puresee',
     siteName: 'Marano Eye Care',
     images: [
@@ -32,6 +42,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'article',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TECNIS PureSee Refractive EDOF IOL NJ | Marano Eye Care',
+    description:
+      'Purely refractive EDOF optics with Abbe 55 clarity, zero diffractive rings & $0 Toric upgrade at Marano Eye Care NJ.',
+    images: ['/assets/images/puresee_iol_real.jpg'],
+  },
 };
 
 const pureseeSchemas = [
@@ -40,9 +57,16 @@ const pureseeSchemas = [
     '@type': 'MedicalWebPage',
     '@id': 'https://premium-iol.maranoeye.com/tecnis-puresee#webpage',
     url: 'https://premium-iol.maranoeye.com/tecnis-puresee',
-    name: 'TECNIS PureSee IOL Clinical Guide & Outcomes | Marano Eye Care',
+    name: 'TECNIS PureSee IOL Clinical Guide & Outcomes | Marano Eye Care NJ',
     description:
       'Detailed clinical overview of the Johnson & Johnson TECNIS PureSee refractive extended depth of focus intraocular lens, optical physics, contrast sensitivity, and 3-way comparisons.',
+    isPartOf: { '@id': 'https://premium-iol.maranoeye.com/#website' },
+    lastReviewed: '2026-11-25',
+    dateModified: '2026-11-25',
+    reviewedBy: [
+      { '@id': 'https://premium-iol.maranoeye.com/#dr-marano' },
+      { '@id': 'https://premium-iol.maranoeye.com/#dr-raouf' },
+    ],
     medicalAudience: {
       '@type': 'MedicalAudience',
       audienceType: 'Cataract Patients, Presbyopia Patients, Night Drivers, Computer Professionals',
@@ -83,7 +107,7 @@ const pureseeSchemas = [
         name: 'What makes TECNIS PureSee different from other EDOF lenses?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Unlike older EDOF lenses that relied on diffractive rings or light splitting, TECNIS PureSee is purely refractive. It utilizes proprietary continuous surface refraction to harness 100% of incoming light without diffractive scatter. It is the first FDA-approved EDOF lens with zero clinical contrast sensitivity loss warning.',
+          text: 'Unlike older EDOF lenses that relied on diffractive rings or light splitting, TECNIS PureSee is purely refractive. It utilizes continuous surface refraction to harness 100% of incoming light without diffractive scatter and is the first FDA-approved EDOF lens with zero clinical contrast sensitivity loss warning.',
         },
       },
       {
@@ -91,7 +115,7 @@ const pureseeSchemas = [
         name: 'How does night driving compare with TECNIS PureSee?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Because PureSee has zero diffractive rings, its dysphotopsia profile (night glare and halos) is statistically comparable to a standard monofocal lens. Patients can drive at night on highways and in rainy conditions with excellent confidence and comfort.',
+          text: 'Because PureSee has zero diffractive rings, its dysphotopsia profile (night glare and halos) is statistically comparable to a standard monofocal lens, enabling confident highway and rainy-night driving.',
         },
       },
       {
@@ -99,7 +123,7 @@ const pureseeSchemas = [
         name: 'Will I need reading glasses with TECNIS PureSee?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'TECNIS PureSee delivers sharp 20/20 distance vision and continuous 20/20 to 20/25 intermediate vision for computer monitors, car dashboards, laptops, and tablets. It also provides functional near vision for smartphones and restaurant menus. For sustained reading of small paperback books or fine medicine print in dim lighting, lightweight readers may occasionally be used.',
+          text: 'TECNIS PureSee delivers sharp 20/20 distance vision, continuous 20/20–20/25 intermediate vision for computers and dashboards, and functional near vision for phones and menus. Lightweight readers may occasionally be used for sustained small print in dim lighting.',
         },
       },
       {
@@ -107,15 +131,31 @@ const pureseeSchemas = [
         name: 'Is there a Toric option for astigmatism with TECNIS PureSee?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. The TECNIS PureSee Toric II lens corrects corneal astigmatism with squared-edge haptics for rotational stability. At Marano Eye Care, Dr. Matthew Marano Jr. and Dr. Sherief Raouf provide custom Toric upgrades on all premium lenses with zero extra upgrade fees.',
+          text: 'Yes. The TECNIS PureSee Toric II lens corrects corneal astigmatism with squared-edge haptics for rotational stability. At Marano Eye Care, Dr. Matthew Marano Jr. and Dr. Sherief Raouf include custom Toric upgrades on all premium lenses at zero extra upgrade fee.',
         },
       },
       {
         '@type': 'Question',
-        name: 'How does TECNIS PureSee compare to PanOptix Pro and Clareon Vivity?',
+        name: 'What is the Abbe number and why does Abbe 55 matter?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'PureSee is a purely refractive EDOF lens prioritizing 100% contrast sensitivity and zero diffractive rings. Clareon Vivity is a non-diffractive wavefront-shaping EDOF lens. PanOptix Pro is a trifocal diffractive lens designed for maximum near reading freedom with dedicated 40cm focus.',
+          text: 'The Abbe number measures optical dispersion. PureSee is engineered from a proprietary hydrophobic acrylic biomaterial with an Abbe number of 55, minimizing chromatic aberration for sharper edge contrast and color fidelity in daylight and dim evening conditions.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What causes cataracts, and will the TECNIS PureSee lens ever need replacement?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Cataracts form when natural crystalline lens proteins clump and yellow with age. Replacing the natural lens with the clear acrylic TECNIS PureSee IOL provides lifetime optical clarity with a permanent prescription that never clouds or degrades.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How fast is recovery after TECNIS PureSee cataract surgery?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Outpatient laser cataract surgery at Ridgedale Surgery Center takes ~10–15 minutes under zero-needle numbing eye drops. Most patients notice clear vision within 24 to 48 hours and resume light driving and screen work the next day.',
         },
       },
     ],
@@ -141,6 +181,9 @@ export default function TecnisPureSeePage() {
 
         {/* Client Interactive Body Content */}
         <PureSeePageClient />
+
+        {/* Hub-and-Spoke Internal Link Mesh */}
+        <RelatedClinicalGuides currentSlug="tecnis-puresee" />
 
         {/* Dedicated Booking Section with PureSee Pre-Selected */}
         <div id="consultation" className="scroll-mt-20">

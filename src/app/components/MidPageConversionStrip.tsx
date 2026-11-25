@@ -67,7 +67,7 @@ export default function MidPageConversionStrip({ variant }: MidPageConversionStr
             <a
               href="#booking"
               onClick={handleBookClick}
-              className="group btn-premium-chic inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-primary text-[#000000] rounded-full text-sm font-bold transition-all min-h-[48px] touch-manipulation whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="group btn-premium-chic inline-flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3.5 bg-primary text-[#000000] rounded-full text-sm font-bold text-center leading-snug transition-all min-h-[48px] touch-manipulation sm:whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <span>{copy.primaryLabel}</span>
               <Icon
@@ -80,7 +80,7 @@ export default function MidPageConversionStrip({ variant }: MidPageConversionStr
               href="tel:9733220100"
               suppressHydrationWarning
               onClick={() => trackPhoneClick(copy.trackingSource, '(973) 322-0100')}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-primary/40 bg-white/[0.04] hover:bg-primary/15 hover:border-primary text-white text-sm font-bold transition-all min-h-[48px] touch-manipulation whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-primary/40 bg-white/[0.04] hover:bg-primary/15 hover:border-primary text-white text-sm font-bold text-center leading-snug transition-all min-h-[48px] touch-manipulation sm:whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               <Icon name="PhoneIcon" size={15} className="text-primary shrink-0" />
               <span>

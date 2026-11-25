@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Icon from '@/components/ui/AppIcon';
-import { smoothScrollToElement } from '@/lib/ui';
+import { trackCandidacyClick } from '@/lib/gtag';
+import { getBottomBookingTargetId, smoothScrollToElement } from '@/lib/ui';
 
 export default function CandidacySection() {
   return (
@@ -148,11 +149,13 @@ export default function CandidacySection() {
             </p>
           </div>
           <a
-            href="#booking"
+            href="#bottom-booking"
             onClick={(e) => {
               e.preventDefault();
-              smoothScrollToElement('booking');
-              window.history.pushState(null, '', '#booking');
+              trackCandidacyClick('Candidacy Section CTA');
+              const targetId = getBottomBookingTargetId();
+              smoothScrollToElement(targetId);
+              window.history.pushState(null, '', `#${targetId}`);
             }}
             className="group shrink-0 inline-flex items-center justify-center pl-6 pr-3 py-2.5 bg-primary text-[#000000] rounded-full text-sm font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[46px] shadow-[0_4px_12px_rgba(197,160,89,0.2)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >

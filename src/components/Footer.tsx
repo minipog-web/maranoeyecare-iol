@@ -4,12 +4,24 @@ import React from 'react';
 import Link from 'next/link';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
-import { smoothScrollToElement } from '@/lib/ui';
+import { getBottomBookingTargetId, smoothScrollToElement } from '@/lib/ui';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border pt-10 pb-28 md:pb-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#080b13] to-[#04060a] border-t border-primary/25 pt-12 pb-28 md:pb-12">
+      {/* Subtle Top Champagne-Gold Specular Hairline & Ambient Crown */}
+      <div
+        className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/65 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[640px] h-[140px] opacity-20 blur-3xl pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: 'radial-gradient(ellipse at top, rgba(197,160,89,0.45), transparent 70%)',
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6">
           <div className="flex items-center gap-3 shrink-0">
             <Link
@@ -37,7 +49,7 @@ export default function Footer() {
               { label: 'TECNIS PureSee', href: '/tecnis-puresee' },
               { label: 'Cataract Guide', href: '/cataract-education' },
               { label: 'Vision Simulator', href: '/#vision' },
-              { label: 'Optical Physics', href: '/#physics' },
+              { label: '3D Cataract Model', href: '/#cataract-education' },
               { label: 'Our Doctors', href: '/#trust' },
             ].map((link) => (
               <Link
@@ -78,13 +90,14 @@ export default function Footer() {
               <span suppressHydrationWarning>(973) 322-0100</span>
             </a>
             <Link
-              href="/#booking"
+              href="/#bottom-booking"
               onClick={(e) => {
-                const targetEl = document.getElementById('booking');
+                const targetId = getBottomBookingTargetId();
+                const targetEl = document.getElementById(targetId);
                 if (targetEl) {
                   e.preventDefault();
-                  smoothScrollToElement('booking');
-                  window.history.pushState(null, '', '#booking');
+                  smoothScrollToElement(targetId);
+                  window.history.pushState(null, '', `#${targetId}`);
                 }
               }}
               className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-full border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-black font-semibold text-xs tracking-wider uppercase transition-all md:shadow-[0_0_12px_rgba(197,160,89,0.15)] md:hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"

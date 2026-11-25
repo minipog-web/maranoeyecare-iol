@@ -194,19 +194,19 @@ export default function CataractLandingHook3D({
         {/* TOP FLOATING HUD */}
         <div className="absolute top-3 inset-x-3 sm:top-4 sm:inset-x-4 flex items-center justify-between z-20 pointer-events-none gap-2">
           {/* Left Clinical Identification Capsule */}
-          <div className="pointer-events-auto backdrop-blur-xl bg-[#060810]/85 border border-white/10 px-3 sm:px-3.5 py-1.5 rounded-full shadow-xl flex items-center gap-2 sm:gap-2.5 transition-all">
+          <div className="pointer-events-auto min-w-0 backdrop-blur-xl bg-[#060810]/85 border border-white/10 px-3 sm:px-3.5 py-1.5 rounded-full shadow-xl flex items-center gap-2 sm:gap-2.5 transition-all">
             <span className="relative flex h-2 w-2 shrink-0">
               <span
                 className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${current.dotColor}`}
               />
               <span className={`relative inline-flex rounded-full h-2 w-2 ${current.dotColor}`} />
             </span>
-            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.16em] text-white/50 shrink-0">
+            <span className="hidden sm:inline text-[10px] font-mono uppercase tracking-[0.16em] text-white/50 shrink-0">
               {current.ageRange}
             </span>
-            <span className="text-white/20 text-xs">•</span>
+            <span className="hidden sm:inline text-white/20 text-xs">•</span>
             <span
-              className={`text-[10px] sm:text-[11px] font-semibold tracking-wide truncate max-w-[140px] sm:max-w-[200px] ${
+              className={`min-w-0 text-[10px] sm:text-[11px] font-semibold tracking-wide truncate ${
                 current.isCure ? 'text-primary font-bold' : 'text-white'
               }`}
             >
@@ -215,10 +215,10 @@ export default function CataractLandingHook3D({
           </div>
 
           {/* Right Playback & Camera Toolbar */}
-          <div className="pointer-events-auto backdrop-blur-xl bg-[#060810]/85 border border-white/10 p-1 rounded-full shadow-xl flex items-center gap-1 shrink-0">
+          <div className="pointer-events-auto md:backdrop-blur-xl bg-[#060810]/92 border border-white/10 p-1 rounded-full shadow-xl flex items-center gap-1 shrink-0">
             <button
               onClick={handleSpeedCycle}
-              className="h-7 px-2 rounded-full flex items-center justify-center text-[10px] font-mono font-bold text-white/80 hover:text-primary hover:bg-white/10 transition-colors"
+              className="min-h-[36px] sm:h-7 px-2.5 sm:px-2 rounded-full flex items-center justify-center text-[10px] font-mono font-bold text-white/80 hover:text-primary hover:bg-white/10 transition-colors touch-manipulation"
               title={`Playback Speed: ${playbackSpeed}x (Click to cycle)`}
               aria-label={`Playback Speed ${playbackSpeed}x`}
             >
@@ -226,7 +226,7 @@ export default function CataractLandingHook3D({
             </button>
             <button
               onClick={resetAngle}
-              className="w-7 h-7 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+              className="w-9 h-9 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors touch-manipulation"
               title="Reset Cross-Section View Angle"
               aria-label="Reset Cross-Section View Angle"
             >
@@ -234,7 +234,7 @@ export default function CataractLandingHook3D({
             </button>
             <button
               onClick={togglePlay}
-              className="w-7 h-7 rounded-full flex items-center justify-center text-white/80 hover:text-primary hover:bg-white/10 transition-colors"
+              className="w-9 h-9 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-white/80 hover:text-primary hover:bg-white/10 transition-colors touch-manipulation"
               title={isPlaying ? 'Pause Time-Lapse' : 'Play Time-Lapse'}
               aria-label={isPlaying ? 'Pause Time-Lapse' : 'Play Time-Lapse'}
             >
@@ -255,11 +255,11 @@ export default function CataractLandingHook3D({
                   {current.metric}
                 </span>
                 <span className="text-white/20 text-xs hidden sm:inline">•</span>
-                <span className="text-[10px] sm:text-[11px] font-semibold text-white/90 truncate">
+                <span className="text-[10px] sm:text-[11px] font-semibold text-white/90 leading-snug sm:truncate">
                   {current.stageLabel}: {current.name} ({current.ageRange})
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] text-muted-foreground truncate leading-tight">
+              <p className="text-[10px] sm:text-[11px] text-muted-foreground leading-snug sm:truncate">
                 {current.finding}
               </p>
             </div>
@@ -278,7 +278,7 @@ export default function CataractLandingHook3D({
                     label: 'Explore Full 3D Simulator',
                   });
                 }}
-                className="group/cta inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-primary text-[#000000] hover:bg-accent text-[11px] font-bold tracking-wide transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/20 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                className="group/cta inline-flex items-center justify-center gap-1.5 min-h-[38px] sm:min-h-[32px] px-3.5 py-2 sm:py-1.5 rounded-xl bg-primary text-[#000000] hover:bg-accent text-[11px] font-bold tracking-wide transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/20 whitespace-nowrap touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               >
                 <span>Full 3D Simulator</span>
                 <Icon

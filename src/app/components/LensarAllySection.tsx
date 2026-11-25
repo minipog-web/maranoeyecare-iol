@@ -34,8 +34,8 @@ export default function LensarAllySection() {
     },
     {
       icon: 'BuildingOfficeIcon',
-      title: 'Seamless Single-Bed Comfort',
-      desc: 'No transferring between rooms or repositioning surgical beds mid-procedure. The entire laser and micro-implantation process is completed in one relaxed, state-of-the-art suite.',
+      title: 'Single-Bed Suite Comfort',
+      desc: 'No transferring between rooms or repositioning surgical beds mid-procedure. The entire laser and micro-implantation process takes place in one quiet, accredited suite.',
       metric: '100% single-suite flow',
     },
   ];
@@ -91,12 +91,11 @@ export default function LensarAllySection() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            We are proud to offer New Jersey patients the next generation of cataract surgery
-            technology. ALLY combines advanced 3D imaging, Augmented Reality, and robotic laser
-            precision into a seamless procedure.{' '}
+            Traditional cataract surgery relies on handheld blades. LENSAR ALLY® replaces manual
+            incisions with 3D Augmented Reality imaging and sub-micron femtosecond laser precision.{' '}
             <strong>
-              Dr. Marano and Dr. Raouf utilize the LENSAR® FEMTO laser system on every patient
-              receiving a premium IOL to ensure maximum precision and outcome reliability.
+              Dr. Marano and Dr. Raouf use the LENSAR® laser on every premium lens procedure to lock
+              your optic into exact focal center.
             </strong>
           </p>
         </div>

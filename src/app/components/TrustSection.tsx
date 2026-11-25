@@ -3,7 +3,8 @@
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import styles from './TrustSection.module.css';
-import { handleSpotlightMouseMove } from '@/lib/ui';
+import { handleSpotlightMouseMove, smoothScrollToElement } from '@/lib/ui';
+import { trackEvent } from '@/lib/gtag';
 
 const maranoAwards = [
   { value: '15×', label: 'NJ Monthly Top Doctor', sublabel: 'Consecutive years', icon: 'StarIcon' },
@@ -80,11 +81,10 @@ export default function TrustSection() {
             Surgeons
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-foreground font-normal max-w-3xl mx-auto leading-relaxed">
-            At Marano Eye Care, your surgery is personally performed by renowned board-certified
-            ophthalmologists Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD. Combining over
-            four decades of cumulative surgical excellence, subspecialty corneal fellowship
-            training, and cutting-edge laser biometry, our surgical team delivers life-changing
-            visual clarity.
+            Dr. Matthew Marano Jr., MD and Dr. Sherief Raouf, MD personally perform every
+            evaluation, 3D corneal scan, and surgery—never delegating to optometrists or fellows.
+            Four decades of New Jersey microsurgical experience, backed by corneal fellowship
+            training and LENSAR® laser precision.
           </p>
         </div>
 
@@ -92,7 +92,7 @@ export default function TrustSection() {
         <div className="mb-20 sm:mb-28">
           <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-center">
             {/* Left: Photo */}
-            <div className="relative pb-10 sm:pb-0">
+            <div className="relative">
               <div
                 onMouseMove={handleSpotlightMouseMove}
                 className={`relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group ${styles.photoWrapper}`}
@@ -114,10 +114,10 @@ export default function TrustSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
 
                 {/* Consistent thin glass border overlay */}
-                <div className="absolute inset-0 border border-white/[0.08] rounded-t-[6rem] rounded-b-[2.5rem] pointer-events-none z-35" />
+                <div className="absolute inset-0 border border-primary/40 ring-1 ring-inset ring-white/10 rounded-t-[6rem] rounded-b-[2.5rem] pointer-events-none z-35 shadow-[inset_0_1px_0_rgba(255,240,200,0.22)]" />
 
                 {/* Name plate */}
-                <div className="absolute bottom-0 left-0 max-w-[190px] sm:max-w-[220px] p-5 sm:p-6 bg-gradient-to-tr from-background via-background/90 to-transparent z-30">
+                <div className="absolute bottom-0 inset-x-0 sm:inset-x-auto sm:left-0 sm:max-w-[220px] p-5 sm:p-6 bg-gradient-to-tr from-background via-background/90 to-transparent z-30">
                   <p className="font-display text-xl font-medium text-foreground">
                     Matthew Marano Jr., MD
                   </p>
@@ -128,7 +128,7 @@ export default function TrustSection() {
               </div>
 
               {/* Floating credential card */}
-              <div className="absolute bottom-0 right-4 sm:-bottom-6 sm:-right-4 md:-right-10 w-48 sm:w-52 glass-card-bright rounded-3xl p-4 sm:p-5 shadow-2xl animate-float z-40 hidden xs:block">
+              <div className="absolute -bottom-6 -right-4 md:-right-10 w-52 glass-card-bright rounded-3xl p-5 shadow-2xl animate-float z-40 hidden sm:block">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
                     <Icon name="StarIcon" size={12} className="text-primary" />
@@ -147,9 +147,9 @@ export default function TrustSection() {
             {/* Right: Awards & Experience */}
             <div className="space-y-6 sm:space-y-8">
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1d180e] border border-primary/60 text-[#f2d085] text-xs font-bold tracking-wider uppercase shadow-sm">
+                <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-2xl sm:rounded-full bg-[#1d180e] border border-primary/60 text-[#f2d085] text-xs font-bold tracking-wider uppercase shadow-sm max-w-full">
                   <Icon name="CheckBadgeIcon" size={14} className="text-[#f2d085] shrink-0" />
-                  <span>40,000+ Successful Eye Surgeries</span>
+                  <span className="min-w-0 break-words">40,000+ Successful Eye Surgeries</span>
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-foreground">
                   Dr. Matthew Marano Jr., MD
@@ -163,18 +163,18 @@ export default function TrustSection() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4 sm:gap-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-x-8 sm:gap-y-6">
                 {maranoAwards.map((award) => (
                   <div
                     key={award.value}
                     onMouseMove={handleSpotlightMouseMove}
-                    className="group relative overflow-hidden luxury-glass-card pointer-sheen-card border border-white/[0.08] rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40"
+                    className="group relative overflow-hidden luxury-glass-card pointer-sheen-card border border-white/[0.08] rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40 min-w-0"
                   >
                     <div className="specular-top-light" />
                     <div
                       className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
                     />
-                    <div className="relative z-10">
+                    <div className="relative z-10 min-w-0 break-words">
                       <div className="w-8 h-8 rounded-2xl bg-primary/10 flex items-center justify-center mb-2.5 group-hover:bg-primary/20 transition-colors">
                         <Icon name={award.icon as 'StarIcon'} size={16} className="text-primary" />
                       </div>
@@ -253,7 +253,7 @@ export default function TrustSection() {
             <div className="w-full border-t border-border/60" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-[#0c0e14] px-6 text-xs font-bold uppercase tracking-[0.25em] text-primary/80 border border-primary/20 rounded-full py-1.5 backdrop-blur-md">
+            <span className="bg-[#0c0e14] px-4 sm:px-6 text-[11px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.25em] text-primary/80 border border-primary/20 rounded-full py-1.5 backdrop-blur-md text-center max-w-full">
               Cornea &amp; Refractive Subspecialist
             </span>
           </div>
@@ -263,7 +263,7 @@ export default function TrustSection() {
         <div>
           <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-center">
             {/* Left: Photo */}
-            <div className="relative pb-10 sm:pb-0 lg:order-2">
+            <div className="relative lg:order-2">
               <div
                 onMouseMove={handleSpotlightMouseMove}
                 className={`relative rounded-t-[6rem] rounded-b-[2.5rem] overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto group ${styles.photoWrapper}`}
@@ -285,10 +285,10 @@ export default function TrustSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
 
                 {/* Consistent thin glass border overlay */}
-                <div className="absolute inset-0 border border-white/[0.08] rounded-t-[6rem] rounded-b-[2.5rem] pointer-events-none z-35" />
+                <div className="absolute inset-0 border border-primary/40 ring-1 ring-inset ring-white/10 rounded-t-[6rem] rounded-b-[2.5rem] pointer-events-none z-35 shadow-[inset_0_1px_0_rgba(255,240,200,0.22)]" />
 
                 {/* Name plate */}
-                <div className="absolute bottom-0 left-0 max-w-[190px] sm:max-w-[220px] p-5 sm:p-6 bg-gradient-to-tr from-background via-background/90 to-transparent z-30">
+                <div className="absolute bottom-0 inset-x-0 sm:inset-x-auto sm:left-0 sm:max-w-[220px] p-5 sm:p-6 bg-gradient-to-tr from-background via-background/90 to-transparent z-30">
                   <p className="font-display text-xl font-medium text-foreground">
                     Sherief Raouf, MD
                   </p>
@@ -299,7 +299,7 @@ export default function TrustSection() {
               </div>
 
               {/* Floating credential card */}
-              <div className="absolute bottom-0 right-4 sm:-bottom-6 sm:-right-4 md:-right-10 w-48 sm:w-52 glass-card-bright rounded-3xl p-4 sm:p-5 shadow-2xl animate-float-delayed z-40 hidden xs:block">
+              <div className="absolute -bottom-6 -right-4 md:-right-10 w-52 glass-card-bright rounded-3xl p-5 shadow-2xl animate-float-delayed z-40 hidden sm:block">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
                     <Icon name="SparklesIcon" size={12} className="text-primary" />
@@ -320,9 +320,11 @@ export default function TrustSection() {
             {/* Right / Left on Desktop: Credentials & Experience */}
             <div className="space-y-6 sm:space-y-8 lg:order-1">
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1d180e] border border-primary/60 text-[#f2d085] text-xs font-bold tracking-wider uppercase shadow-sm">
+                <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-2xl sm:rounded-full bg-[#1d180e] border border-primary/60 text-[#f2d085] text-xs font-bold tracking-wider uppercase shadow-sm max-w-full">
                   <Icon name="AcademicCapIcon" size={14} className="text-[#f2d085] shrink-0" />
-                  <span>Cornea, Cataract &amp; Laser Vision Specialist</span>
+                  <span className="min-w-0 break-words">
+                    Cornea, Cataract &amp; Laser Vision Specialist
+                  </span>
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-foreground">
                   Dr. Sherief Raouf, MD
@@ -339,18 +341,18 @@ export default function TrustSection() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-4 sm:gap-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-x-8 sm:gap-y-6">
                 {raoufCredentials.map((cred) => (
                   <div
                     key={cred.label}
                     onMouseMove={handleSpotlightMouseMove}
-                    className="group relative overflow-hidden luxury-glass-card pointer-sheen-card border border-white/[0.08] rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40"
+                    className="group relative overflow-hidden luxury-glass-card pointer-sheen-card border border-white/[0.08] rounded-3xl p-4 sm:p-5 transition-all duration-300 hover:border-primary/40 min-w-0"
                   >
                     <div className="specular-top-light" />
                     <div
                       className={`absolute pointer-events-none rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-[60px] z-0 will-change-transform ${styles.cardSpotlight}`}
                     />
-                    <div className="relative z-10">
+                    <div className="relative z-10 min-w-0 break-words">
                       <div className="w-8 h-8 rounded-2xl bg-primary/10 flex items-center justify-center mb-2.5 group-hover:bg-primary/20 transition-colors">
                         <Icon
                           name={cred.icon as 'AcademicCapIcon'}
@@ -409,6 +411,31 @@ export default function TrustSection() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Clean Surgeon Conversion CTA */}
+        <div className="mt-12 sm:mt-16 flex justify-center">
+          <a
+            href="#booking"
+            onClick={(e) => {
+              e.preventDefault();
+              smoothScrollToElement('booking');
+              window.history.pushState(null, '', '#booking');
+              trackEvent({
+                action: 'trust_section_cta_click',
+                category: 'Conversion',
+                label: 'Book With Dr. Marano or Dr. Raouf',
+              });
+            }}
+            className="group inline-flex items-center justify-center gap-3 px-7 py-4 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-extrabold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[54px] touch-manipulation shadow-[0_8px_28px_rgba(197,160,89,0.32)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+          >
+            <span>Book With Dr. Marano or Dr. Raouf</span>
+            <Icon
+              name="ArrowRightIcon"
+              size={17}
+              className="text-black shrink-0 transition-transform group-hover:translate-x-1"
+            />
+          </a>
         </div>
       </div>
     </section>

@@ -135,8 +135,8 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'luxury-nav-blur border-b border-white/[0.05] shadow-[0_1px_0_rgba(197,160,89,0.08)]'
-          : 'bg-transparent'
+          ? 'luxury-nav-blur border-b border-primary/25 shadow-[0_12px_36px_rgba(0,0,0,0.65),0_1px_0_rgba(197,160,89,0.2)]'
+          : 'bg-gradient-to-b from-[#05070d]/85 via-[#05070d]/40 to-transparent'
       }`}
     >
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-2 lg:gap-3 xl:gap-6">
@@ -150,12 +150,12 @@ export default function Header() {
               src="/assets/images/marano_logo.png"
               width={200}
               height={50}
-              className="w-[130px] sm:w-[150px] lg:w-[160px] xl:w-[195px] 2xl:w-[220px] h-auto shrink-0"
+              className="w-[112px] xs:w-[130px] sm:w-[150px] lg:w-[160px] xl:w-[195px] 2xl:w-[220px] h-auto shrink-0"
             />
           </Link>
         </div>
 
-        {/* Desktop Nav: pill with subtle gradient border */}
+        {/* Desktop Nav: subtle compact pill preserving right-side conversion focus */}
         <nav
           aria-label="Primary Navigation"
           className="hidden lg:flex items-center gap-0.5 xl:gap-1 px-1.5 xl:px-2 py-1 xl:py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03] backdrop-blur-md shrink-0"
@@ -231,13 +231,13 @@ export default function Header() {
           })}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden sm:flex items-center gap-2 lg:gap-2.5 xl:gap-4 shrink-0">
+        {/* CTA: Always visible CallRail phone + Book Evaluation pill */}
+        <div className="hidden sm:flex items-center gap-2.5 lg:gap-3 xl:gap-4 shrink-0">
           <a
             href="tel:9733220100"
             suppressHydrationWarning
             onClick={() => handlePhoneClick('desktop')}
-            aria-label="Call Marano Eye Care"
+            aria-label="Call Marano Eye Care at (973) 322-0100"
             className="group flex items-center gap-2 text-sm xl:text-base font-bold text-foreground hover:text-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] touch-manipulation whitespace-nowrap rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center shrink-0 border border-primary/30 group-hover:bg-primary/25 group-hover:border-primary/50 transition-all duration-300">
@@ -251,14 +251,14 @@ export default function Header() {
             </span>
           </a>
 
-          <div className="h-5 w-[1px] bg-white/[0.08] hidden lg:block" />
+          <div className="h-5 w-[1px] bg-white/[0.08] hidden sm:block" />
 
           <Link
             href="/#booking"
             onClick={(e) => handleBookingClick(e, 'desktop')}
             className="btn-premium-primary rounded-full whitespace-nowrap text-xs sm:text-sm font-bold px-4 py-2.5 xl:px-6 xl:py-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
           >
-            Book Consultation
+            Book Evaluation
           </Link>
         </div>
 
@@ -269,13 +269,10 @@ export default function Header() {
             suppressHydrationWarning
             onClick={() => handlePhoneClick('mobile-header')}
             aria-label="Call Marano Eye Care (973) 322-0100"
-            className="sm:hidden inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-full border border-primary/50 bg-primary/15 text-primary text-xs font-bold tracking-wide active:scale-95 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+            className="sm:hidden inline-flex items-center gap-1.5 min-h-[44px] px-2.5 xs:px-3 rounded-full border border-primary/50 bg-primary/15 text-primary text-[11px] xs:text-xs font-bold tracking-wide whitespace-nowrap active:scale-95 transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <Icon name="PhoneIcon" size={14} className="text-primary shrink-0" />
-            <span>Call Now</span>
-            <span className="sr-only" suppressHydrationWarning>
-              (973) 322-0100
-            </span>
+            <span suppressHydrationWarning>(973) 322-0100</span>
           </a>
 
           <button

@@ -667,7 +667,7 @@ export default function LensVisionComparisonSection() {
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <p className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-4 animate-fade-in">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.4em] text-primary mb-4 animate-fade-in">
             Interactive Vision Simulator
           </p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal sm:font-medium text-foreground mb-6 leading-tight">
@@ -1020,13 +1020,13 @@ export default function LensVisionComparisonSection() {
                         key={lens.id}
                         onClick={() => selectMobileLens(lens.id)}
                         data-lens={lens.id}
-                        className={`flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
+                        className={`flex-1 min-w-0 flex flex-col items-center justify-center px-1 py-2.5 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
                           isActive
                             ? `scale-[1.02] ${styles.mobileLensBtn}`
                             : 'text-muted-foreground hover:text-foreground border-transparent'
                         }`}
                       >
-                        <span className="text-[11px] font-bold leading-none flex items-center gap-1">
+                        <span className="text-[11px] font-bold leading-none flex items-center justify-center gap-1 max-w-full">
                           <span
                             data-lens={lens.id}
                             className={`w-1.5 h-1.5 rounded-full inline-block shrink-0 ${isActive ? styles.mobileLensDot : styles.lensDot}`}
@@ -1039,7 +1039,7 @@ export default function LensVisionComparisonSection() {
                                 ? 'Vivity'
                                 : 'PureSee'}
                         </span>
-                        <span className="block text-[8px] opacity-60 font-medium mt-1 uppercase tracking-wider">
+                        <span className="block text-[8px] opacity-60 font-medium mt-1 uppercase tracking-normal xs:tracking-wider">
                           {lens.id === 'monofocal'
                             ? 'Baseline'
                             : lens.id === 'panoptix'
@@ -1223,11 +1223,11 @@ export default function LensVisionComparisonSection() {
                       <div className="space-y-4 mb-6">
                         {lens.specs.map((spec) => (
                           <div key={spec.label} className="space-y-1.5">
-                            <div className="flex justify-between items-center text-xs sm:text-sm gap-2 whitespace-nowrap">
-                              <span className="text-slate-100 font-semibold truncate">
+                            <div className="flex justify-between items-baseline text-xs sm:text-sm gap-2">
+                              <span className="text-slate-100 font-semibold min-w-0">
                                 {spec.label}
                               </span>
-                              <span className={`font-bold shrink-0 ${lens.twColor}`}>
+                              <span className={`font-bold shrink-0 text-right ${lens.twColor}`}>
                                 {spec.value}
                               </span>
                             </div>
@@ -1292,11 +1292,11 @@ export default function LensVisionComparisonSection() {
                       </ul>
 
                       {/* Best for */}
-                      <div className="border-t border-white/[0.08] pt-5 mb-5">
+                      <div className="border-t border-white/[0.08] pt-5 mb-5 lg:min-h-[136px] flex flex-col justify-start">
                         <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-primary mb-1.5">
                           Best for
                         </p>
-                        <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed">
+                        <p className="text-sm text-slate-200 font-normal leading-relaxed">
                           {lens.bestFor}
                         </p>
                       </div>
@@ -1313,9 +1313,9 @@ export default function LensVisionComparisonSection() {
                               label: 'PanOptix Spec CTA to /panoptix-pro',
                             });
                           }}
-                          className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                          className={`mt-auto w-full h-[48px] px-4 rounded-xl text-[13px] xl:text-sm font-bold text-center whitespace-nowrap transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                         >
-                          <span>Explore PanOptix Pro Details</span>
+                          <span>PanOptix Pro Guide</span>
                           <svg
                             data-lens={lens.id}
                             className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
@@ -1343,9 +1343,9 @@ export default function LensVisionComparisonSection() {
                               label: 'Vivity Spec CTA to /clareon-vivity',
                             });
                           }}
-                          className={`w-full py-3.5 px-3 rounded-xl text-[13px] xl:text-sm font-bold text-center whitespace-nowrap transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-1.5 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                          className={`mt-auto w-full h-[48px] px-4 rounded-xl text-[13px] xl:text-sm font-bold text-center whitespace-nowrap transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                         >
-                          <span>Explore Clareon Vivity Details</span>
+                          <span>Clareon Vivity Guide</span>
                           <svg
                             data-lens={lens.id}
                             className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
@@ -1373,9 +1373,9 @@ export default function LensVisionComparisonSection() {
                               label: 'PureSee Spec CTA to /tecnis-puresee',
                             });
                           }}
-                          className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-[#00a3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                          className={`mt-auto w-full h-[48px] px-4 rounded-xl text-[13px] xl:text-sm font-bold text-center whitespace-nowrap transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-[#00a3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                         >
-                          <span>Explore PureSee Details</span>
+                          <span>TECNIS PureSee Guide</span>
                           <svg
                             data-lens={lens.id}
                             className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
@@ -1409,16 +1409,9 @@ export default function LensVisionComparisonSection() {
                             smoothScrollToElement('booking');
                             window.history.pushState(null, '', '#booking');
                           }}
-                          className={`w-full py-3.5 rounded-xl text-sm sm:text-base font-bold text-center transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation min-h-[48px] relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
+                          className={`mt-auto w-full h-[48px] px-4 rounded-xl text-[13px] xl:text-sm font-bold text-center whitespace-nowrap transition-all duration-300 active:scale-[0.97] flex items-center justify-center gap-2 border touch-manipulation relative overflow-hidden group/cta focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${styles.ctaButton}`}
                         >
-                          <span>
-                            Select{' '}
-                            {lens.name
-                              .replace('Clareon ', '')
-                              .replace('Tecnis ', '')
-                              .replace('Standard ', '')
-                              .replace(' Pro', '')}
-                          </span>
+                          <span>Evaluate Monofocal</span>
                           <svg
                             data-lens={lens.id}
                             className={`w-3.5 h-3.5 transform transition-transform duration-300 shrink-0 ${styles.ctaArrow}`}
