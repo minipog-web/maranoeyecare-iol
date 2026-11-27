@@ -2,13 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
-import { getBottomBookingTargetId, smoothScrollToElement } from '@/lib/ui';
+import { getBottomBookingTargetId, resolveScrollTarget, smoothScrollToElement } from '@/lib/ui';
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-[#080b13] to-[#04060a] border-t border-primary/25 pt-12 pb-28 md:pb-12">
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#080b13] to-[#04060a] border-t border-primary/25 pt-12 pb-28 md:pb-16">
       {/* Subtle Top Champagne-Gold Specular Hairline & Ambient Crown */}
       <div
         className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/65 to-transparent pointer-events-none"
@@ -26,6 +29,13 @@ export default function Footer() {
           <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/"
+              onClick={(e) => {
+                if (pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.history.pushState(null, '', '/');
+                }
+              }}
               aria-label="Marano Eye Care: return to homepage"
               className="hover:opacity-80 transition-opacity block rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
@@ -58,7 +68,10 @@ export default function Footer() {
                 onClick={(e) => {
                   if (link.href.includes('#')) {
                     const [, hash] = link.href.split('#');
-                    const targetEl = document.getElementById(hash);
+                    const canResolveHere = link.href.startsWith('/#')
+                      ? pathname === '/' || Boolean(document.getElementById(hash))
+                      : Boolean(document.getElementById(hash));
+                    const targetEl = canResolveHere ? resolveScrollTarget(hash) : null;
                     if (targetEl) {
                       e.preventDefault();
                       smoothScrollToElement(hash);
@@ -70,6 +83,10 @@ export default function Footer() {
                         // ignore
                       }
                     }
+                  } else if (link.href === pathname) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.history.pushState(null, '', pathname);
                   }
                 }}
                 className="inline-flex items-center min-h-[44px] text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-manipulation py-2 px-1.5 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
@@ -93,11 +110,17 @@ export default function Footer() {
               href="/#bottom-booking"
               onClick={(e) => {
                 const targetId = getBottomBookingTargetId();
-                const targetEl = document.getElementById(targetId);
+                const targetEl = resolveScrollTarget(targetId);
                 if (targetEl) {
                   e.preventDefault();
                   smoothScrollToElement(targetId);
                   window.history.pushState(null, '', `#${targetId}`);
+                } else {
+                  try {
+                    sessionStorage.setItem('pending-scroll-hash', 'bottom-booking');
+                  } catch {
+                    // ignore
+                  }
                 }
               }}
               className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-full border border-primary/40 bg-primary/10 text-primary hover:bg-primary hover:text-black font-semibold text-xs tracking-wider uppercase transition-all md:shadow-[0_0_12px_rgba(197,160,89,0.15)] md:hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
@@ -112,14 +135,14 @@ export default function Footer() {
             © 2026 Marano Eye Care. Matthew Marano Jr., MD &amp; Sherief Raouf, MD. All rights
             reserved.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-2 md:justify-end">
-            <span>Livingston · Denville · Newark, NJ</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 md:justify-end">
+            <span className="py-2">Livingston · Denville · Newark, NJ</span>
             <span className="hidden sm:inline text-border">·</span>
             <a
               href="https://www.maranoeyecare.com/your-privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="inline-flex items-center min-h-[44px] px-1.5 hover:text-primary transition-colors touch-manipulation rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               Privacy Policy
             </a>
@@ -128,7 +151,7 @@ export default function Footer() {
               href="https://www.maranoeyecare.com/our-terms"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              className="inline-flex items-center min-h-[44px] px-1.5 hover:text-primary transition-colors touch-manipulation rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               Terms of Use
             </a>
@@ -137,7 +160,7 @@ export default function Footer() {
               href="https://www.maranoeyecare.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none font-medium"
+              className="inline-flex items-center min-h-[44px] px-1.5 hover:text-primary transition-colors touch-manipulation rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none font-medium"
             >
               www.maranoeyecare.com
             </a>
@@ -146,7 +169,7 @@ export default function Footer() {
               href="https://www.onjeyecare.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none font-medium"
+              className="inline-flex items-center min-h-[44px] px-1.5 hover:text-primary transition-colors touch-manipulation rounded focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none font-medium"
             >
               www.onjeyecare.com
             </a>
@@ -173,7 +196,7 @@ export default function Footer() {
                   href="https://pubmed.ncbi.nlm.nih.gov/36745314/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                  className="inline-flex items-center min-h-[44px] sm:min-h-0 py-1 sm:py-0 text-primary hover:underline font-semibold touch-manipulation"
                 >
                   [View PubMed Meta-Analysis]
                 </a>
@@ -188,7 +211,7 @@ export default function Footer() {
                   href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P930014S126"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                  className="inline-flex items-center min-h-[44px] sm:min-h-0 py-1 sm:py-0 text-primary hover:underline font-semibold touch-manipulation"
                 >
                   [View FDA PMA Registry]
                 </a>
@@ -208,7 +231,7 @@ export default function Footer() {
                   href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P980040S176"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                  className="inline-flex items-center min-h-[44px] sm:min-h-0 py-1 sm:py-0 text-primary hover:underline font-semibold touch-manipulation"
                 >
                   [View FDA PMA Approval]
                 </a>
@@ -224,7 +247,7 @@ export default function Footer() {
                   href="https://www.aao.org/eye-health/diseases/cataracts-iol-implants"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                  className="inline-flex items-center min-h-[44px] sm:min-h-0 py-1 sm:py-0 text-primary hover:underline font-semibold touch-manipulation"
                 >
                   [View AAO IOL Guide]
                 </a>
@@ -243,12 +266,12 @@ export default function Footer() {
                   href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040020S087"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium block sm:inline mt-1 sm:mt-0"
+                  className="inline-flex items-center min-h-[44px] sm:min-h-0 py-1 sm:py-0 text-primary hover:underline font-semibold touch-manipulation"
                 >
                   [View FDA PMA Registry]
                 </a>
               </p>
-              <p className="text-[10px] text-muted-foreground/60 border-t border-border/20 pt-3 select-none">
+              <p className="text-xs text-slate-300/90 border-t border-border/30 pt-3 leading-relaxed">
                 Simulations are for illustrative/educational purposes only. Individual patient
                 visual outcomes, recovery speeds, and clinical experiences may vary. A comprehensive
                 biometric consultation with Dr. Marano or Dr. Raouf is required for medical

@@ -77,11 +77,11 @@ const costPillars: CostPillar[] = [
 export default function InsuranceCostSection() {
   return (
     <section
-      id="insurance-investment"
-      className="py-14 sm:py-22 lg:py-28 relative overflow-hidden bg-section-pricing border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
+      id="financing"
+      className="py-14 sm:py-20 lg:py-24 relative overflow-hidden bg-section-pricing border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
       aria-label="Insurance and Pricing Transparency"
     >
-      <div id="financing" className="scroll-mt-24 sm:scroll-mt-28" />
+      <span id="insurance-investment" className="sr-only top-0 left-0" aria-hidden="true" />
       {/* Financial Vault Directional Lighting (Zero circular blobs) */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-primary/[0.06] via-transparent to-primary/[0.04] pointer-events-none"

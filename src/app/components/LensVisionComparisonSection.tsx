@@ -19,10 +19,10 @@ const lenses = [
     color: '#8B5CF6',
     featured: true,
     badge: 'Full Trifocal',
-    twColor: 'text-[#8B5CF6]',
-    twBadgeBg: 'bg-[#8B5CF615]',
-    twBadgeBorder: 'border-[#8B5CF630]',
-    twBadgeText: 'text-[#8B5CF6]',
+    twColor: 'text-[#ddd6fe]',
+    twBadgeBg: 'bg-[#8B5CF6]/20',
+    twBadgeBorder: 'border-[#a78bfa]/40',
+    twBadgeText: 'text-[#ddd6fe]',
     twCtaBorder: 'border-[#8B5CF640]',
     twSpecBar: 'bg-[#8B5CF6]',
     images: {
@@ -69,10 +69,10 @@ const lenses = [
     color: '#c5a059',
     featured: false,
     badge: 'Most Popular',
-    twColor: 'text-[#c5a059]',
-    twBadgeBg: 'bg-[#c5a05915]',
-    twBadgeBorder: 'border-[#c5a05930]',
-    twBadgeText: 'text-[#c5a059]',
+    twColor: 'text-[#f8e4b4]',
+    twBadgeBg: 'bg-[#c5a059]/20',
+    twBadgeBorder: 'border-[#c5a059]/45',
+    twBadgeText: 'text-[#f8e4b4]',
     twCtaBorder: 'border-[#c5a05940]',
     twSpecBar: 'bg-[#c5a059]',
     images: {
@@ -120,10 +120,10 @@ const lenses = [
     color: '#00A3FF',
     featured: false,
     badge: 'Latest EDOF',
-    twColor: 'text-[#00A3FF]',
-    twBadgeBg: 'bg-[#00A3FF15]',
-    twBadgeBorder: 'border-[#00A3FF30]',
-    twBadgeText: 'text-[#00A3FF]',
+    twColor: 'text-[#bae6fd]',
+    twBadgeBg: 'bg-[#00A3FF]/20',
+    twBadgeBorder: 'border-[#38bdf8]/40',
+    twBadgeText: 'text-[#bae6fd]',
     twCtaBorder: 'border-[#00A3FF40]',
     twSpecBar: 'bg-[#00A3FF]',
     images: {
@@ -170,10 +170,10 @@ const lenses = [
     color: '#64748B',
     featured: false,
     badge: 'Baseline',
-    twColor: 'text-[#64748B]',
-    twBadgeBg: 'bg-[#64748B15]',
-    twBadgeBorder: 'border-[#64748B30]',
-    twBadgeText: 'text-[#64748B]',
+    twColor: 'text-slate-200',
+    twBadgeBg: 'bg-slate-500/20',
+    twBadgeBorder: 'border-slate-400/35',
+    twBadgeText: 'text-slate-200',
     twCtaBorder: 'border-[#64748B40]',
     twSpecBar: 'bg-[#64748B]',
     images: {
@@ -442,9 +442,7 @@ export default function LensVisionComparisonSection() {
       label: id,
     });
     // Scroll to the simulator viewport container
-    document
-      .getElementById('simulator-viewport')
-      ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    smoothScrollToElement('iol-simulator');
   };
 
   const handleTimeOfDayChange = (t: TimeOfDay) => {
@@ -649,7 +647,7 @@ export default function LensVisionComparisonSection() {
   return (
     <section
       ref={sectionRef}
-      id="vision"
+      id="vision-simulator"
       className="py-12 sm:py-20 lg:py-24 relative overflow-hidden scroll-mt-24 sm:scroll-mt-28 bg-section-simulator"
     >
       {/* Cinematic darkroom perimeter vignette */}
@@ -706,12 +704,13 @@ export default function LensVisionComparisonSection() {
                       {(['day', 'night'] as TimeOfDay[]).map((t) => (
                         <button
                           key={t}
+                          type="button"
                           onClick={() => handleTimeOfDayChange(t)}
-                          className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                          className={`relative z-10 flex-1 flex items-center justify-center gap-2 min-h-[48px] py-3 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-300 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
                             timeOfDay === t
                               ? t === 'night'
-                                ? 'text-[#60A5FA]'
-                                : 'text-[#F59E0B]'
+                                ? 'text-[#93C5FD]'
+                                : 'text-[#FCD34D]'
                               : 'text-slate-200 hover:text-white'
                           }`}
                         >
@@ -1018,28 +1017,31 @@ export default function LensVisionComparisonSection() {
                     return (
                       <button
                         key={lens.id}
+                        type="button"
                         onClick={() => selectMobileLens(lens.id)}
                         data-lens={lens.id}
-                        className={`flex-1 min-w-0 flex flex-col items-center justify-center px-1 py-2.5 rounded-xl text-center transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
+                        className={`flex-1 min-w-0 flex flex-col items-center justify-center px-1.5 py-2.5 min-h-[58px] rounded-xl text-center transition-all duration-300 active:scale-[0.97] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none border ${
                           isActive
                             ? `scale-[1.02] ${styles.mobileLensBtn}`
-                            : 'text-muted-foreground hover:text-foreground border-transparent'
+                            : 'text-slate-200 hover:text-white border-transparent'
                         }`}
                       >
-                        <span className="text-[11px] font-bold leading-none flex items-center justify-center gap-1 max-w-full">
+                        <span className="text-xs font-bold leading-none flex items-center justify-center gap-1 max-w-full">
                           <span
                             data-lens={lens.id}
                             className={`w-1.5 h-1.5 rounded-full inline-block shrink-0 ${isActive ? styles.mobileLensDot : styles.lensDot}`}
                           />
-                          {lens.id === 'monofocal'
-                            ? 'Mono'
-                            : lens.id === 'panoptix'
-                              ? 'PanOptix'
-                              : lens.id === 'vivity'
-                                ? 'Vivity'
-                                : 'PureSee'}
+                          <span className="truncate">
+                            {lens.id === 'monofocal'
+                              ? 'Mono'
+                              : lens.id === 'panoptix'
+                                ? 'PanOptix'
+                                : lens.id === 'vivity'
+                                  ? 'Vivity'
+                                  : 'PureSee'}
+                          </span>
                         </span>
-                        <span className="block text-[8px] opacity-60 font-medium mt-1 uppercase tracking-normal xs:tracking-wider">
+                        <span className="block text-[9.5px] text-slate-300 font-semibold mt-1 uppercase tracking-normal xs:tracking-wider">
                           {lens.id === 'monofocal'
                             ? 'Baseline'
                             : lens.id === 'panoptix'
@@ -1071,19 +1073,14 @@ export default function LensVisionComparisonSection() {
                 {/* Hold to Compare Floating Button (only when premium lens is selected) */}
                 {activeMobileLensId !== 'monofocal' && (
                   <button
-                    onMouseDown={() => setIsPeekingBaseline(true)}
-                    onMouseUp={() => setIsPeekingBaseline(false)}
-                    onMouseLeave={() => setIsPeekingBaseline(false)}
-                    onTouchStart={(e) => {
-                      e.preventDefault();
-                      setIsPeekingBaseline(true);
-                    }}
-                    onTouchEnd={(e) => {
-                      e.preventDefault();
-                      setIsPeekingBaseline(false);
-                    }}
-                    className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-30 min-h-[40px] px-3 py-2 bg-black/85 hover:bg-black/95 active:bg-primary/95 text-xs font-bold text-white rounded-xl border border-white/25 backdrop-blur-sm transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                    aria-label="Hold to compare with standard Monofocal lens"
+                    type="button"
+                    onPointerDown={() => setIsPeekingBaseline(true)}
+                    onPointerUp={() => setIsPeekingBaseline(false)}
+                    onPointerCancel={() => setIsPeekingBaseline(false)}
+                    onPointerLeave={() => setIsPeekingBaseline(false)}
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-30 min-h-[44px] px-3.5 py-2 bg-black/85 hover:bg-black/95 active:bg-primary active:text-black text-xs font-bold text-white rounded-xl border border-white/25 transition-all shadow-lg active:scale-95 touch-none select-none flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    aria-label="Press and hold to compare with standard Monofocal lens"
                   >
                     <span className="relative flex h-2 w-2 shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -1189,9 +1186,16 @@ export default function LensVisionComparisonSection() {
                     onMouseEnter={(e) => handleMouseEnter(e, lens.id)}
                     onMouseLeave={handleMouseLeave}
                     onMouseMove={handleMouseMove}
-                    onClick={() => handleCardClick(lens.id)}
+                    onClick={() => {
+                      if (
+                        typeof window !== 'undefined' &&
+                        window.matchMedia('(hover: hover) and (pointer: fine)').matches
+                      ) {
+                        handleCardClick(lens.id);
+                      }
+                    }}
                     data-lens={lens.id}
-                    className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col h-full hover:-translate-y-2 cursor-pointer border overflow-hidden z-10 ${
+                    className={`group relative rounded-[32px] p-[2px] transition-spring flex flex-col h-full lg:hover:-translate-y-2 lg:cursor-pointer border overflow-hidden z-10 ${
                       isActive
                         ? `bg-gradient-to-b from-white/12 to-white/0 border-transparent ${styles.specCard}`
                         : 'bg-gradient-to-b from-white/8 to-white/0 border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.5)]'
@@ -1274,7 +1278,12 @@ export default function LensVisionComparisonSection() {
                                       >
                                         <a
                                           href={`#footnote-${num}`}
-                                          onClick={(e) => e.stopPropagation()}
+                                          onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            smoothScrollToElement(`footnote-${num}`);
+                                            window.history.pushState(null, '', `#footnote-${num}`);
+                                          }}
                                           className="text-primary hover:underline px-1 py-0.5 touch-manipulation inline-block min-w-[24px] min-h-[24px] text-center"
                                           aria-label={`View citation footnote ${num}`}
                                         >
@@ -1302,7 +1311,7 @@ export default function LensVisionComparisonSection() {
                       </div>
 
                       {lens.id === 'panoptix' ? (
-                        <a
+                        <Link
                           href="/panoptix-pro"
                           data-lens={lens.id}
                           onClick={(e) => {
@@ -1330,9 +1339,9 @@ export default function LensVisionComparisonSection() {
                               d="M14 5l7 7m0 0l-7 7m7-7H3"
                             />
                           </svg>
-                        </a>
+                        </Link>
                       ) : lens.id === 'vivity' ? (
-                        <a
+                        <Link
                           href="/clareon-vivity"
                           data-lens={lens.id}
                           onClick={(e) => {
@@ -1360,9 +1369,9 @@ export default function LensVisionComparisonSection() {
                               d="M14 5l7 7m0 0l-7 7m7-7H3"
                             />
                           </svg>
-                        </a>
+                        </Link>
                       ) : lens.id === 'puresee' ? (
-                        <a
+                        <Link
                           href="/tecnis-puresee"
                           data-lens={lens.id}
                           onClick={(e) => {
@@ -1390,7 +1399,7 @@ export default function LensVisionComparisonSection() {
                               d="M14 5l7 7m0 0l-7 7m7-7H3"
                             />
                           </svg>
-                        </a>
+                        </Link>
                       ) : (
                         <a
                           href="#booking"
@@ -1515,7 +1524,7 @@ export default function LensVisionComparisonSection() {
               <span className="font-semibold text-gradient-primary">60-Second Lens Match Quiz</span>
             </h4>
             <p className="text-sm text-muted-foreground mt-1 max-w-xl leading-relaxed">
-              Answer 5 quick lifestyle questions to discover whether PanOptix Pro, Clareon Vivity,
+              Answer 3 quick lifestyle questions to discover whether PanOptix Pro, Clareon Vivity,
               or TECNIS PureSee is engineered for your daily routine.
             </p>
           </div>

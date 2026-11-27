@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
@@ -80,6 +80,25 @@ const LENS_CARDS = [
 ];
 
 export default function InteractiveMediaHubSection() {
+  const [forceSimulatorActivate, setForceSimulatorActivate] = useState(false);
+
+  useEffect(() => {
+    const targetHashes = new Set(['#lenses', '#iol-simulator', '#vision-simulator']);
+    if (targetHashes.has(window.location.hash)) {
+      setForceSimulatorActivate(true);
+    }
+
+    const onActivateLazyTarget = (e: Event) => {
+      const detail = (e as CustomEvent).detail as string | undefined;
+      if (detail === 'lenses' || detail === 'iol-simulator' || detail === 'vision-simulator') {
+        setForceSimulatorActivate(true);
+      }
+    };
+
+    window.addEventListener('activate-lazy-target', onActivateLazyTarget);
+    return () => window.removeEventListener('activate-lazy-target', onActivateLazyTarget);
+  }, []);
+
   const handleBookWithLens = (lensKey?: string, label = 'Hub CTA') => {
     if (lensKey) {
       window.dispatchEvent(new CustomEvent('select-lens', { detail: lensKey }));
@@ -226,7 +245,7 @@ export default function InteractiveMediaHubSection() {
                       label: lens.name,
                     })
                   }
-                  className="w-full h-[40px] inline-flex items-center justify-center gap-1.5 px-3 text-xs font-semibold text-slate-300 hover:text-primary whitespace-nowrap transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                  className="w-full min-h-[44px] inline-flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-semibold text-slate-200 hover:text-primary whitespace-nowrap transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   <span>{lens.shortName} Clinical Guide &amp; Specs</span>
                   <span aria-hidden="true">&rarr;</span>
@@ -243,6 +262,7 @@ export default function InteractiveMediaHubSection() {
         <div className="rounded-3xl overflow-hidden border border-white/[0.1] bg-[#0a0c13]">
           <LazySimulatorGate
             rootMargin="120px"
+            forceActivate={forceSimulatorActivate}
             placeholder={<VisionSimulatorPreviewPlaceholder />}
             render={() => <LensVisionComparisonSection />}
           />

@@ -96,7 +96,6 @@ body {
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: clip;
 }
 
@@ -143,7 +142,8 @@ p {
 }
 
 /* Footnote target highlight when jumping from in-line citations */
-p[id^='footnote-']:target {
+p[id^='footnote-']:target,
+p[id^='footnote-'][data-footnote-active='true'] {
   outline: 2px solid var(--primary);
   outline-offset: 4px;
   background-color: rgba(197, 160, 89, 0.08);
@@ -602,6 +602,7 @@ h3 .font-display strong {
 .content-auto {
   content-visibility: auto;
   contain-intrinsic-size: 1px 800px;
+  contain-intrinsic-size: auto 800px;
 }
 
 /* ── Card glows ── */
@@ -1287,7 +1288,6 @@ button.bg-primary:hover span.rounded-full {
 ───────────────────────────────────────── */
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 6.5rem;
 }
 @media (max-width: 640px) {
@@ -1574,6 +1574,7 @@ textarea:focus {
 .optimize-offscreen {
   content-visibility: auto;
   contain-intrinsic-size: 1px 700px;
+  contain-intrinsic-size: auto 700px;
 }
 
 /* ── Luxury Editorial & Anti-AI Aesthetic Enhancements ── */
@@ -1625,13 +1626,16 @@ textarea:focus {
     animation: none !important;
   }
 
-  /* 3. Neutralize oversized blurred ambient glow blobs on mobile */
-  [class*='blur-[1'],
-  [class*='blur-[12'],
-  [class*='blur-[14'],
-  [class*='blur-[15'],
-  [class*='blur-[16'],
-  [class*='blur-[17'],
+  /* 3. Neutralize oversized 100px+ blurred ambient glow blobs on mobile (preserve 1px-16px optical vision simulator blurs) */
+  [class*='blur-[100px]'],
+  [class*='blur-[110px]'],
+  [class*='blur-[120px]'],
+  [class*='blur-[130px]'],
+  [class*='blur-[140px]'],
+  [class*='blur-[150px]'],
+  [class*='blur-[160px]'],
+  [class*='blur-[170px]'],
+  [class*='blur-[180px]'],
   .blur-3xl,
   .blur-2xl {
     filter: none !important;
@@ -1810,23 +1814,26 @@ textarea:focus {
 /* 7. Performance: Content-Visibility for Below-The-Fold Sections */
 #cataract-education,
 #comparison,
-#cataract-education,
 #lenses,
-#physics,
-#lensar,
-#timeline,
+#lensar-ally,
+#recovery,
 #trust,
-#lifestyle,
 #candidacy,
-#questionnaire,
 #testimonials,
 #faq,
-#insurance,
 #financing,
 #bottom-booking,
 #locations {
   content-visibility: auto;
   contain-intrinsic-size: 1px 700px;
+  contain-intrinsic-size: auto 700px;
+}
+
+html.force-scroll-layout .optimize-offscreen,
+html.force-scroll-layout .content-auto,
+html.force-scroll-layout section,
+html.force-scroll-layout [id] {
+  content-visibility: visible !important;
 }
 
 /* ─────────────────────────────────────────────────────────────

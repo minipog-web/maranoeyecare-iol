@@ -604,12 +604,19 @@ export default function TestimonialsSection() {
                       <Icon name="PhoneIcon" size={18} className="text-primary" />
                     </div>
                     <div className="z-10 flex flex-col gap-0.5 min-w-0 flex-1">
-                      <p className="text-sm font-bold text-foreground leading-tight">{loc?.city}</p>
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-sm font-bold text-foreground leading-tight">
+                          {loc?.city}
+                        </p>
+                        <span className="sm:hidden text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/15 border border-primary/30 px-2 py-0.5 rounded-full shrink-0">
+                          Tap to Call
+                        </span>
+                      </div>
                       <p className="text-xs text-muted-foreground break-words leading-normal">
                         {loc?.address}
                       </p>
                       <p
-                        className="text-sm font-semibold text-primary group-hover/card:underline leading-tight"
+                        className="text-sm font-semibold text-primary group-hover/card:underline leading-tight mt-0.5"
                         suppressHydrationWarning
                       >
                         {loc?.phone}

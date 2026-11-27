@@ -261,22 +261,24 @@ export default function CataractEducation3DViewer({
         </div>
 
         {/* Live Telemetry Gauges */}
-        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+        <div className="grid grid-cols-2 md:flex items-stretch md:items-center gap-2.5 sm:gap-4 w-full md:w-auto shrink-0">
           {/* Light Transmission Meter */}
-          <div className="px-3.5 py-2 rounded-xl bg-black/60 border border-white/10 flex items-center gap-3 shadow-inner">
-            <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-            <div>
-              <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+          <div className="px-3 sm:px-3.5 py-2 rounded-xl bg-black/60 border border-white/10 flex items-center gap-2.5 sm:gap-3 shadow-inner min-w-0">
+            <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+            <div className="min-w-0">
+              <p className="text-[9.5px] sm:text-[10px] uppercase tracking-wider text-muted-foreground font-semibold truncate">
                 Light Transmission
               </p>
-              <p className="text-sm font-bold text-foreground font-mono">{transmissionNum}%</p>
+              <p className="text-xs sm:text-sm font-bold text-foreground font-mono">
+                {transmissionNum}%
+              </p>
             </div>
           </div>
 
           {/* Protein Clumping Index */}
-          <div className="px-3.5 py-2 rounded-xl bg-black/60 border border-white/10 flex items-center gap-3 shadow-inner">
+          <div className="px-3 sm:px-3.5 py-2 rounded-xl bg-black/60 border border-white/10 flex items-center gap-2.5 sm:gap-3 shadow-inner min-w-0">
             <div
-              className={`w-2.5 h-2.5 rounded-full ${
+              className={`w-2.5 h-2.5 rounded-full shrink-0 ${
                 proteinIndex > 60
                   ? 'bg-amber-600'
                   : proteinIndex > 25
@@ -284,11 +286,11 @@ export default function CataractEducation3DViewer({
                     : 'bg-emerald-400'
               }`}
             />
-            <div>
-              <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+            <div className="min-w-0">
+              <p className="text-[9.5px] sm:text-[10px] uppercase tracking-wider text-muted-foreground font-semibold truncate">
                 Protein Opacity
               </p>
-              <p className="text-sm font-bold text-foreground font-mono">
+              <p className="text-xs sm:text-sm font-bold text-foreground font-mono truncate">
                 {proteinIndex}% Clumping
               </p>
             </div>
@@ -604,104 +606,125 @@ export default function CataractEducation3DViewer({
         )}
 
         {/* In-Canvas Floating Interactive Controls (Reset angle, toggle labels, camera viewpoints) */}
-        <div className="absolute top-4 right-4 flex items-center gap-2 z-20 flex-wrap justify-end">
+        <div className="absolute top-3 inset-x-3 sm:inset-x-auto sm:top-4 sm:right-4 flex items-center justify-between sm:justify-end gap-1.5 sm:gap-2 z-20">
           {/* Camera Viewpoint Selector */}
-          <div className="flex items-center gap-1 bg-black/70 p-1 rounded-xl border border-white/10 backdrop-blur-md shadow-lg">
+          <div className="flex items-center gap-1 bg-black/80 p-1 rounded-xl border border-white/10 md:backdrop-blur-md shadow-lg min-w-0">
             <button
+              type="button"
               onClick={() => handleViewChange('crossSection')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
+              className={`min-h-[44px] sm:min-h-[36px] px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1.5 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 cameraView === 'crossSection'
                   ? 'bg-primary/25 border border-primary/50 text-primary shadow-[0_0_10px_rgba(197,160,89,0.25)]'
-                  : 'text-muted-foreground hover:text-white'
+                  : 'text-slate-200 hover:text-white'
               }`}
               title="Anatomical Cutaway Overview"
             >
               {cameraView === 'crossSection' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0" />
               )}
               <span>Overview</span>
             </button>
             <button
+              type="button"
               onClick={() => handleViewChange('lensFocus')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+              className={`min-h-[44px] sm:min-h-[36px] px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1.5 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 cameraView === 'lensFocus'
                   ? 'bg-primary/30 border border-primary/60 text-primary shadow-[0_0_12px_rgba(197,160,89,0.35)]'
-                  : 'text-muted-foreground hover:text-white'
+                  : 'text-slate-200 hover:text-white'
               }`}
               title="Zoom in directly onto Crystalline Lens"
             >
               {cameraView === 'lensFocus' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
               )}
               <span>Lens Macro</span>
             </button>
             <button
+              type="button"
               onClick={() => handleViewChange('anterior')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
+              className={`min-h-[44px] sm:min-h-[36px] px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1.5 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                 cameraView === 'anterior'
                   ? 'bg-primary/25 border border-primary/50 text-primary shadow-[0_0_10px_rgba(197,160,89,0.25)]'
-                  : 'text-muted-foreground hover:text-white'
+                  : 'text-slate-200 hover:text-white'
               }`}
               title="Slit-Lamp Anterior Pupil View"
             >
               {cameraView === 'anterior' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
               )}
               <span>Slit-Lamp</span>
             </button>
           </div>
 
-          <button
-            onClick={() => setShowLabels(!showLabels)}
-            title="Toggle Anatomical Labels"
-            aria-label="Toggle Anatomical Labels"
-            className={`p-2 rounded-xl border transition-all text-xs font-semibold backdrop-blur-md ${
-              showLabels
-                ? 'bg-primary/20 border-primary/50 text-primary'
-                : 'bg-black/50 border-white/10 text-muted-foreground hover:text-white'
-            }`}
-          >
-            <span className="hidden sm:inline mr-1.5">Labels</span>
-            <Icon name="TagIcon" size={14} className="inline" />
-          </button>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              onClick={() => setShowLabels(!showLabels)}
+              title="Toggle Anatomical Labels"
+              aria-label="Toggle Anatomical Labels"
+              className={`hidden md:inline-flex items-center min-h-[38px] px-3 py-2 rounded-xl border transition-all text-xs font-semibold backdrop-blur-md touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                showLabels
+                  ? 'bg-primary/20 border-primary/50 text-primary'
+                  : 'bg-black/50 border-white/10 text-muted-foreground hover:text-white'
+              }`}
+            >
+              <span className="mr-1.5">Labels</span>
+              <Icon name="TagIcon" size={14} className="inline" />
+            </button>
 
-          <button
-            onClick={handleResetAngle}
-            title="Reset 3D Angle"
-            aria-label="Reset 3D Angle"
-            className="p-2 rounded-xl bg-black/50 border border-white/10 hover:border-white/30 text-muted-foreground hover:text-white transition-all backdrop-blur-md"
-          >
-            <Icon name="ArrowPathIcon" size={14} />
-          </button>
+            <button
+              type="button"
+              onClick={handleResetAngle}
+              title="Reset 3D Angle"
+              aria-label="Reset 3D Angle"
+              className="min-w-[44px] min-h-[44px] sm:min-w-[38px] sm:min-h-[38px] p-2.5 rounded-xl bg-black/80 border border-white/15 hover:border-white/30 text-slate-200 hover:text-white transition-all md:backdrop-blur-md flex items-center justify-center touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            >
+              <Icon name="ArrowPathIcon" size={15} />
+            </button>
+          </div>
         </div>
 
         {/* Drag Hint Watermark */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-white/40 bg-black/40 px-3 py-1 rounded-full border border-white/5 backdrop-blur-sm">
+        <div className="absolute bottom-3.5 left-1/2 -translate-x-1/2 pointer-events-none flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-slate-300/80 bg-black/65 px-3 py-1 rounded-full border border-white/10 whitespace-nowrap">
           <Icon name="HandRaisedIcon" size={12} />
-          <span>Click &amp; drag to orbit eye angle</span>
+          <span className="sm:hidden">Swipe horizontally to orbit</span>
+          <span className="hidden sm:inline">Click &amp; drag to orbit eye angle</span>
         </div>
       </div>
 
       {/* Interactive Bottom Control Deck: Scrubber, Playback & Stage Pills */}
       <div className="p-4 sm:p-6 bg-[#080a10] border-t border-white/[0.08] space-y-4">
         {/* Scrubber & Playback Controls Row */}
-        <div className="flex flex-col sm:flex-row items-center gap-4">
-          {/* Play/Pause Button */}
-          <button
-            onClick={togglePlay}
-            className="w-10 h-10 rounded-xl bg-primary text-black flex items-center justify-center font-bold hover:bg-accent transition-all shrink-0 shadow-[0_0_15px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-            title={isPlaying ? 'Pause Time-Lapse' : 'Play Time-Lapse'}
-            aria-label={isPlaying ? 'Pause Time-Lapse' : 'Play Time-Lapse'}
-          >
-            <Icon name={isPlaying ? 'PauseIcon' : 'PlayIcon'} size={18} />
-          </button>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            {/* Play/Pause Button */}
+            <button
+              type="button"
+              onClick={togglePlay}
+              className="min-w-[44px] min-h-[44px] w-11 h-11 rounded-xl bg-primary text-black flex items-center justify-center font-bold hover:bg-accent transition-all shrink-0 shadow-[0_0_15px_rgba(197,160,89,0.3)] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              title={isPlaying ? 'Pause Time-Lapse' : 'Play Time-Lapse'}
+              aria-label={isPlaying ? 'Pause Time-Lapse' : 'Play Time-Lapse'}
+            >
+              <Icon name={isPlaying ? 'PauseIcon' : 'PlayIcon'} size={18} />
+            </button>
+
+            {/* Mobile Speed Toggle right next to Play/Pause for compact thumb reach */}
+            <button
+              type="button"
+              onClick={handleSpeedCycle}
+              className="sm:hidden min-h-[44px] px-3.5 py-2 rounded-xl bg-white/[0.05] border border-white/12 text-xs font-mono font-semibold text-slate-200 active:bg-white/10 transition-all shrink-0 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              aria-label={`Playback Speed ${playbackSpeed}x`}
+            >
+              {playbackSpeed}x Speed
+            </button>
+          </div>
 
           {/* Continuous Timeline Slider */}
-          <div className="flex-1 w-full flex items-center gap-3">
+          <div className="flex-1 w-full flex items-center gap-2.5 sm:gap-3 min-h-[44px]">
             <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider shrink-0">
               Youth (20s)
             </span>
-            <div className="relative flex-1 flex items-center">
+            <div className="relative flex-1 flex items-center py-2">
               <input
                 type="range"
                 min="0.0"
@@ -710,7 +733,7 @@ export default function CataractEducation3DViewer({
                 value={isIOLActive ? 1.0 : currentProgress}
                 onChange={handleSliderChange}
                 aria-label="Cataract Progression Timeline Scrubber"
-                className="w-full h-2 rounded-lg bg-white/10 appearance-none cursor-pointer accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="w-full h-2.5 rounded-lg bg-white/15 appearance-none cursor-pointer accent-primary touch-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
             </div>
             <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider shrink-0">
@@ -718,10 +741,11 @@ export default function CataractEducation3DViewer({
             </span>
           </div>
 
-          {/* Speed Toggle */}
+          {/* Desktop Speed Toggle */}
           <button
+            type="button"
             onClick={handleSpeedCycle}
-            className="px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono font-semibold text-muted-foreground hover:text-white transition-all shrink-0"
+            className="hidden sm:inline-flex items-center justify-center min-h-[40px] px-3.5 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs font-mono font-semibold text-muted-foreground hover:text-white transition-all shrink-0 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             title="Playback Speed"
             aria-label={`Playback Speed ${playbackSpeed}x`}
           >
@@ -737,8 +761,9 @@ export default function CataractEducation3DViewer({
             return (
               <button
                 key={stage.id}
+                type="button"
                 onClick={() => handleStageClick(stage)}
-                className={`flex flex-col items-start p-2.5 rounded-xl border text-left transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                className={`flex flex-col items-start p-3 rounded-xl border text-left transition-all min-h-[64px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                   stage.isIOL ? 'col-span-2 sm:col-span-1' : ''
                 } ${
                   isSelected
@@ -749,17 +774,17 @@ export default function CataractEducation3DViewer({
                 }`}
               >
                 <div className="flex items-center justify-between w-full mb-1">
-                  <span className="text-[9px] font-bold uppercase tracking-wider opacity-75">
+                  <span className="text-[9.5px] font-bold uppercase tracking-wider opacity-85">
                     {stage.isIOL ? 'Stage 05' : `Stage 0${stage.id}`}
                   </span>
-                  <span className={`text-[10px] font-bold ${stage.color}`}>
+                  <span className={`text-[10.5px] font-bold ${stage.color}`}>
                     {stage.transmission}
                   </span>
                 </div>
                 <span className="text-xs font-semibold text-foreground leading-tight">
                   {stage.name}
                 </span>
-                <span className="text-[10px] text-muted-foreground truncate w-full mt-0.5">
+                <span className="text-[10.5px] text-muted-foreground truncate w-full mt-0.5">
                   {stage.status}
                 </span>
               </button>
@@ -768,15 +793,15 @@ export default function CataractEducation3DViewer({
         </div>
 
         {/* Active Stage Clinical Explanation Callout */}
-        <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2 text-foreground/90">
+        <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 text-xs">
+          <div className="flex flex-wrap items-center gap-1.5 text-foreground/90 leading-relaxed">
             <span className="text-primary font-bold">Clinical Ray Finding:</span>
             <span className="text-muted-foreground">
               {activeStage.status}: {transmissionNum}% of incoming light reaches the retina.
             </span>
           </div>
           {isIOLActive ? (
-            <span className="text-primary font-bold text-[11px] shrink-0 bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20">
+            <span className="w-fit text-primary font-bold text-[11px] shrink-0 bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20">
               ✓ Acrylic Permanent Replacement Active
             </span>
           ) : (

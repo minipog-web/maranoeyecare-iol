@@ -6,6 +6,29 @@ import Icon from '@/components/ui/AppIcon';
 export default function RecoveryTimelineSection() {
   const [activeStep, setActiveStep] = useState<number>(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const scrollRafRef = useRef<number | null>(null);
+
+  const handleCarouselScroll = () => {
+    if (scrollRafRef.current !== null) return;
+    scrollRafRef.current = window.requestAnimationFrame(() => {
+      scrollRafRef.current = null;
+      const container = carouselRef.current;
+      if (!container || window.innerWidth >= 768) return;
+      const center = container.scrollLeft + container.clientWidth / 2;
+      let closestIdx = 0;
+      let minDistance = Number.POSITIVE_INFINITY;
+      Array.from(container.children).forEach((child, idx) => {
+        const el = child as HTMLElement;
+        const cardCenter = el.offsetLeft + el.clientWidth / 2;
+        const dist = Math.abs(cardCenter - center);
+        if (dist < minDistance) {
+          minDistance = dist;
+          closestIdx = idx;
+        }
+      });
+      setActiveStep((prev) => (prev !== closestIdx ? closestIdx : prev));
+    });
+  };
 
   const handleMobileStepSelect = (idx: number) => {
     setActiveStep(idx);
@@ -13,7 +36,10 @@ export default function RecoveryTimelineSection() {
     if (!container) return;
     const card = container.children[idx] as HTMLElement | undefined;
     if (card) {
-      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      container.scrollTo({
+        left: card.offsetLeft - (container.clientWidth - card.clientWidth) / 2,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -140,7 +166,7 @@ export default function RecoveryTimelineSection() {
                     role="tab"
                     aria-selected={idx === activeStep}
                     onClick={() => handleMobileStepSelect(idx)}
-                    className={`min-w-[40px] min-h-[40px] rounded-xl text-xs font-bold font-mono border transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                    className={`min-w-[44px] min-h-[44px] rounded-xl text-xs font-bold font-mono border transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                       idx === activeStep
                         ? 'bg-primary text-black border-primary'
                         : 'bg-white/[0.04] text-slate-200 border-white/10'
@@ -158,6 +184,7 @@ export default function RecoveryTimelineSection() {
           {/* Cards Grid */}
           <div
             ref={carouselRef}
+            onScroll={handleCarouselScroll}
             className="flex items-stretch md:grid md:grid-cols-5 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-6 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0"
           >
             {steps.map((step, idx) => {

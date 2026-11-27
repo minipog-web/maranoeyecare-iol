@@ -6,6 +6,7 @@ import styles from './BookingSection.module.css';
 import { trackConsultationBooking, trackPhoneClick } from '@/lib/gtag';
 import { getTrackingParams } from '@/lib/tracking-params';
 import { validateConsultationBooking } from '@/lib/validation';
+import { smoothScrollToElement } from '@/lib/ui';
 
 const OFFICES = [
   { label: 'Livingston', value: 'Livingston Office (200 South Orange Ave)' },
@@ -129,6 +130,18 @@ export default function HeroConsultationForm({
     );
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      const firstErrorField = ['firstName', 'lastName', 'phone', 'location'].find(
+        (key) => validationErrors[key]
+      );
+      if (firstErrorField) {
+        const targetId =
+          firstErrorField === 'location' ? 'hero-office-label' : `hero-${firstErrorField}`;
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          (el as HTMLElement).focus?.({ preventScroll: true });
+        }
+      }
       return;
     }
 
@@ -181,6 +194,16 @@ export default function HeroConsultationForm({
 
       if (response.ok) {
         setSubmitted(true);
+        requestAnimationFrame(() => {
+          const bookingCard = document.getElementById('booking');
+          const header =
+            document.querySelector<HTMLElement>('[data-header-bar]') ||
+            document.querySelector<HTMLElement>('header');
+          const headerHeight = header ? header.getBoundingClientRect().height : 80;
+          if (bookingCard && bookingCard.getBoundingClientRect().top < headerHeight + 8) {
+            smoothScrollToElement('booking');
+          }
+        });
         trackConsultationBooking(form.location, form.lens || 'No lens selected', quizResult, {
           phone: trimmed.phone,
           firstName: trimmed.firstName,
@@ -252,9 +275,13 @@ export default function HeroConsultationForm({
           {form.lens && (
             <div className="mb-3 px-3.5 py-2.5 rounded-xl bg-primary/15 border border-primary/35 text-xs space-y-1">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-primary font-semibold truncate flex items-center gap-1.5">
-                  <Icon name="SparklesIcon" size={14} className="text-primary shrink-0" />
-                  <span>
+                <span className="text-primary font-semibold min-w-0 break-words flex items-start sm:items-center gap-1.5">
+                  <Icon
+                    name="SparklesIcon"
+                    size={14}
+                    className="text-primary shrink-0 mt-0.5 sm:mt-0"
+                  />
+                  <span className="min-w-0">
                     Saved Lens Profile: <strong className="text-white">{form.lens}</strong>
                   </span>
                 </span>
@@ -310,6 +337,8 @@ export default function HeroConsultationForm({
                   name="firstName"
                   type="text"
                   autoComplete="given-name"
+                  autoCapitalize="words"
+                  enterKeyHint="next"
                   value={form.firstName}
                   onChange={handleChange}
                   placeholder="Jane"
@@ -333,6 +362,8 @@ export default function HeroConsultationForm({
                   name="lastName"
                   type="text"
                   autoComplete="family-name"
+                  autoCapitalize="words"
+                  enterKeyHint="next"
                   value={form.lastName}
                   onChange={handleChange}
                   placeholder="Smith"
@@ -359,7 +390,9 @@ export default function HeroConsultationForm({
                   id="hero-phone"
                   name="phone"
                   type="tel"
+                  inputMode="tel"
                   autoComplete="tel"
+                  enterKeyHint="done"
                   value={form.phone}
                   onChange={handleChange}
                   placeholder="(973) 555-0123"

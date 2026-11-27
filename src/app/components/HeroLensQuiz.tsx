@@ -232,20 +232,20 @@ export default function HeroLensQuiz({ onLockInLens }: HeroLensQuizProps) {
               <Icon name="ArrowLeftIcon" size={14} />
             </button>
           )}
-          <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#F5E4C3]">
-            Step {stepNumber} of 3 · 60-Sec Lens Match
+          <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#F5E4C3]">
+            Step {stepNumber} of 3 · Lens Assessment
           </span>
         </div>
-        <span className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded-full">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+        <span className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold text-[#F5E4C3]/95 bg-primary/[0.10] border border-primary/25 px-2.5 py-0.5 rounded-full">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           Instant Match
         </span>
       </div>
 
-      {/* Luminous Gold Progress Bar */}
-      <div className="w-full h-1.5 rounded-full bg-white/[0.08] overflow-hidden mb-4">
+      {/* Refined Champagne Progress Bar */}
+      <div className="w-full h-1.5 rounded-full bg-[#090c14] border border-white/[0.06] overflow-hidden mb-4">
         <div
-          className="h-full bg-gradient-to-r from-[#C9A052] via-[#E5C585] to-[#F6E2B3] rounded-full transition-all duration-300 shadow-[0_0_12px_rgba(197,160,89,0.75)]"
+          className="h-full bg-gradient-to-r from-[#C9A052] via-[#E5C585] to-[#F6E2B3] rounded-full transition-all duration-300"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
@@ -265,21 +265,21 @@ export default function HeroLensQuiz({ onLockInLens }: HeroLensQuizProps) {
             key={option.shortLabel}
             type="button"
             onClick={() => handleSelect(option)}
-            className="relative w-full text-left px-3.5 py-3 rounded-2xl bg-gradient-to-r from-white/[0.05] to-white/[0.02] hover:from-primary/[0.16] hover:to-primary/[0.05] border border-white/[0.12] hover:border-primary/70 transition-all duration-200 group flex items-center gap-3.5 min-h-[58px] touch-manipulation hover:-translate-y-[1px] shadow-[0_4px_16px_rgba(0,0,0,0.3)] hover:shadow-[0_10px_28px_rgba(197,160,89,0.18)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none overflow-hidden"
+            className="relative w-full text-left px-3.5 py-3 rounded-2xl bg-gradient-to-b from-[#1d2436] to-[#171d2c] hover:from-[#232b40] hover:to-[#1b2234] border border-white/[0.13] hover:border-primary/65 transition-all duration-200 group flex items-center gap-3.5 min-h-[58px] touch-manipulation hover:-translate-y-[1px] shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_6px_16px_rgba(0,0,0,0.32)] hover:shadow-[inset_0_1px_0_rgba(255,240,205,0.16),0_10px_24px_rgba(0,0,0,0.45)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none overflow-hidden"
           >
             {/* Left gold accent bar on hover */}
             <span
-              className="absolute left-0 inset-y-2 w-[3px] rounded-r-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute left-0 inset-y-2.5 w-[3px] rounded-r-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"
               aria-hidden="true"
             />
             <span
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 group-hover:border-primary/70 flex items-center justify-center shrink-0 group-hover:scale-105 transition-all shadow-[inset_0_1px_0_rgba(255,240,200,0.2)]"
+              className="w-10 h-10 rounded-xl bg-[#101420] border border-primary/30 group-hover:border-primary/65 flex items-center justify-center shrink-0 transition-colors shadow-[inset_0_1px_0_rgba(255,240,200,0.12)]"
               aria-hidden="true"
             >
               <Icon
                 name={option.icon}
                 size={18}
-                className="text-[#F5E4C3] group-hover:text-primary"
+                className="text-[#F5E4C3] group-hover:text-primary transition-colors"
               />
             </span>
             <span className="min-w-0 flex-1">
@@ -287,16 +287,21 @@ export default function HeroLensQuiz({ onLockInLens }: HeroLensQuizProps) {
                 {option.shortLabel}
               </span>
               {option.sublabel && (
-                <span className="block text-[11px] text-slate-300/90 leading-snug mt-0.5">
+                <span className="block text-[11px] text-slate-300 leading-snug mt-0.5">
                   {option.sublabel}
                 </span>
               )}
             </span>
-            <Icon
-              name="ChevronRightIcon"
-              size={16}
-              className="text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0"
-            />
+            <span
+              className="w-7 h-7 rounded-full bg-white/[0.04] group-hover:bg-primary/15 border border-white/[0.08] group-hover:border-primary/45 flex items-center justify-center shrink-0 transition-all"
+              aria-hidden="true"
+            >
+              <Icon
+                name="ChevronRightIcon"
+                size={14}
+                className="text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"
+              />
+            </span>
           </button>
         ))}
       </div>

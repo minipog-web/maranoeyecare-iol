@@ -6,6 +6,7 @@ import styles from './BookingSection.module.css';
 import { trackConsultationBooking, trackPhoneClick } from '@/lib/gtag';
 import { getTrackingParams } from '@/lib/tracking-params';
 import { validateConsultationBooking } from '@/lib/validation';
+import { smoothScrollToElement } from '@/lib/ui';
 
 const locations = [
   'Livingston Office (200 South Orange Ave)',
@@ -251,6 +252,25 @@ export default function BookingSection({
       if (newErrors.email || newErrors.message) {
         setShowOptionalDetails(true);
       }
+      const firstErrorField = [
+        'firstName',
+        'lastName',
+        'phone',
+        'location',
+        'email',
+        'message',
+      ].find((key) => newErrors[key]);
+      if (firstErrorField) {
+        requestAnimationFrame(() => {
+          const targetId =
+            firstErrorField === 'location' ? 'location-group-label' : firstErrorField;
+          const el = document.getElementById(targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            (el as HTMLElement).focus?.({ preventScroll: true });
+          }
+        });
+      }
       return;
     }
 
@@ -306,6 +326,16 @@ export default function BookingSection({
 
       if (response.ok) {
         setSubmitted(true);
+        requestAnimationFrame(() => {
+          const sectionEl = document.getElementById(sectionId);
+          const header =
+            document.querySelector<HTMLElement>('[data-header-bar]') ||
+            document.querySelector<HTMLElement>('header');
+          const headerHeight = header ? header.getBoundingClientRect().height : 80;
+          if (sectionEl && sectionEl.getBoundingClientRect().top < headerHeight + 8) {
+            smoothScrollToElement(sectionId);
+          }
+        });
         trackConsultationBooking(form.location, form.lens || 'No lens selected', quizResult, {
           email: trimmedForm.email,
           phone: trimmedForm.phone,
@@ -338,7 +368,7 @@ export default function BookingSection({
   return (
     <section
       id={sectionId}
-      className="py-12 sm:py-20 lg:py-32 relative overflow-hidden bg-section-booking border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
+      className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-section-booking border-t border-white/[0.04] scroll-mt-24 sm:scroll-mt-28 content-auto"
     >
       {/* Office location beacon texture */}
       <div className="absolute inset-0 texture-beacon-glows opacity-50 pointer-events-none" />
@@ -618,7 +648,7 @@ export default function BookingSection({
                   href={offices[activeOfficeTab].mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-primary/90 hover:text-primary transition-colors flex items-center justify-between group pt-2 border-t border-white/[0.08]"
+                  className="min-h-[44px] py-2.5 text-xs text-primary/90 hover:text-primary transition-colors flex items-center justify-between group border-t border-white/[0.08] touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                 >
                   <span className="leading-snug text-xs text-muted-foreground group-hover:text-foreground transition-colors">
                     View on Google Maps
@@ -752,7 +782,7 @@ export default function BookingSection({
                               Pre-Configured for Your Visit
                             </span>
                           </div>
-                          <h4 className="text-base sm:text-lg font-bold text-foreground truncate">
+                          <h4 className="text-base sm:text-lg font-bold text-foreground break-words">
                             {form.lens}
                           </h4>
                           <p className="text-xs text-muted-foreground mt-0.5">
@@ -765,7 +795,13 @@ export default function BookingSection({
                         type="button"
                         onClick={() => {
                           setShowOptionalDetails(true);
-                          setTimeout(() => document.getElementById('lens')?.focus(), 50);
+                          setTimeout(() => {
+                            const lensEl = document.getElementById('lens');
+                            if (lensEl) {
+                              lensEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                              lensEl.focus({ preventScroll: true });
+                            }
+                          }, 60);
                         }}
                         className="inline-flex items-center justify-center min-h-[44px] px-3 rounded-lg text-xs text-primary hover:text-white hover:bg-white/[0.06] font-semibold underline underline-offset-4 shrink-0 touch-manipulation transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
                       >
@@ -802,6 +838,8 @@ export default function BookingSection({
                         name="firstName"
                         type="text"
                         autoComplete="given-name"
+                        autoCapitalize="words"
+                        enterKeyHint="next"
                         value={form.firstName}
                         onChange={handleChange}
                         onBlur={(e) =>
@@ -837,6 +875,8 @@ export default function BookingSection({
                         name="lastName"
                         type="text"
                         autoComplete="family-name"
+                        autoCapitalize="words"
+                        enterKeyHint="next"
                         value={form.lastName}
                         onChange={handleChange}
                         onBlur={(e) =>
@@ -875,7 +915,9 @@ export default function BookingSection({
                         id="phone"
                         name="phone"
                         type="tel"
+                        inputMode="tel"
                         autoComplete="tel"
+                        enterKeyHint="done"
                         value={form.phone}
                         onChange={handleChange}
                         onBlur={(e) =>
@@ -1070,6 +1112,8 @@ export default function BookingSection({
                               id="email"
                               name="email"
                               type="email"
+                              inputMode="email"
+                              autoCapitalize="none"
                               autoComplete="email"
                               value={form.email}
                               onChange={handleChange}

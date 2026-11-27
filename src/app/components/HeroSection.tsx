@@ -45,63 +45,23 @@ export default function HeroSection({
   const locationText = dynamicLocation || 'Livingston, Denville & Newark, NJ';
 
   return (
-    <section className="relative overflow-hidden pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 lg:pb-20 bg-[#05070d]">
-      {/* Cinematic Luxury Optical Backdrop */}
+    <section className="relative overflow-hidden pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 lg:pb-20 bg-[#070910]">
+      {/* Quiet, High-Contrast Architectural Backdrop */}
       <div className="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
-        <AppImage
-          src="/assets/images/vivity_hero.jpg"
-          alt=""
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          className="object-cover object-center opacity-[0.34] scale-[1.03]"
-        />
-        {/* Sculpted directional obsidian vignette preserving crisp left-column readability while illuminating optical depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#05070d] via-[#05070d]/85 to-[#05070d]/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#05070d]/80 via-transparent to-[#05070d]" />
+        {/* Smooth vertical obsidian-slate depth gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#06080f] via-[#0a0d17] to-[#080a12]" />
 
-        {/* Subtle champagne-gold & sapphire atmospheric light beams (desktop/tablet to protect mobile GPU) */}
+        {/* Subtle focal backlight behind the right-column interactive quiz */}
         <div
-          className="hidden sm:block absolute -top-24 right-[-10%] w-[780px] h-[560px] rounded-full opacity-30 blur-[120px]"
+          className="hidden lg:block absolute top-1/2 right-[4%] -translate-y-1/2 w-[560px] h-[560px] rounded-full opacity-[0.14] blur-[110px]"
           style={{
             background:
-              'radial-gradient(circle, rgba(212,175,105,0.42) 0%, rgba(197,160,89,0.14) 45%, transparent 72%)',
-          }}
-        />
-        <div
-          className="hidden sm:block absolute bottom-[-18%] left-[-8%] w-[620px] h-[440px] rounded-full opacity-25 blur-[120px]"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(56,189,248,0.22) 0%, rgba(14,32,68,0.18) 55%, transparent 75%)',
+              'radial-gradient(circle, rgba(212,175,105,0.5) 0%, rgba(148,163,184,0.16) 48%, transparent 72%)',
           }}
         />
 
-        {/* Bespoke Precision Optical Reticle Rings (Subtle Swiss-optic geometry) */}
-        <svg
-          className="absolute top-1/2 left-[48%] -translate-x-1/2 -translate-y-1/2 w-[920px] h-[920px] opacity-[0.11] hidden lg:block"
-          viewBox="0 0 800 800"
-          fill="none"
-        >
-          <circle cx="400" cy="400" r="220" stroke="#E5C88B" strokeWidth="0.75" />
-          <circle
-            cx="400"
-            cy="400"
-            r="310"
-            stroke="#C5A059"
-            strokeWidth="0.6"
-            strokeDasharray="4 8"
-          />
-          <circle cx="400" cy="400" r="390" stroke="#E5C88B" strokeWidth="0.5" opacity="0.55" />
-          <line x1="400" y1="20" x2="400" y2="120" stroke="#C5A059" strokeWidth="0.7" />
-          <line x1="400" y1="680" x2="400" y2="780" stroke="#C5A059" strokeWidth="0.7" />
-          <line x1="20" y1="400" x2="120" y2="400" stroke="#C5A059" strokeWidth="0.7" />
-          <line x1="680" y1="400" x2="780" y2="400" stroke="#C5A059" strokeWidth="0.7" />
-        </svg>
-
-        <div className="absolute inset-0 texture-hero-optical opacity-35" />
-        {/* Luminous golden hairline crown */}
-        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+        {/* Subtle golden hairline crown */}
+        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
@@ -167,7 +127,7 @@ export default function HeroSection({
                       {item.value}
                     </span>
                   </div>
-                  <span className="block text-[10.5px] font-semibold uppercase tracking-[0.08em] text-slate-300/90 leading-tight truncate">
+                  <span className="block text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-[0.06em] sm:tracking-[0.08em] text-slate-200 leading-snug break-words">
                     {item.label}
                   </span>
                 </div>
@@ -230,6 +190,7 @@ export default function HeroSection({
                 onClick={(e) => {
                   e.preventDefault();
                   smoothScrollToElement('hero-quiz');
+                  window.history.pushState(null, '', '#hero-quiz');
                   trackEvent({
                     action: 'hero_mobile_cta_click',
                     category: 'Conversion',
@@ -279,7 +240,7 @@ export default function HeroSection({
                 href="tel:9733220100"
                 suppressHydrationWarning
                 onClick={() => trackPhoneClick('Hero Secondary Call', '(973) 322-0100')}
-                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] hover:bg-primary/15 border border-primary/35 hover:border-primary/70 text-slate-100 hover:text-white font-semibold text-sm transition-all active:scale-[0.98] min-h-[44px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                className="w-full sm:w-auto inline-flex items-center justify-center sm:justify-start gap-2.5 px-4 py-2.5 rounded-full bg-white/[0.05] hover:bg-primary/15 border border-primary/40 hover:border-primary/70 text-slate-100 hover:text-white font-semibold text-sm transition-all active:scale-[0.98] min-h-[46px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
               >
                 <span className="w-7 h-7 rounded-full bg-primary/20 border border-primary/45 flex items-center justify-center shrink-0">
                   <Icon name="PhoneIcon" size={13} className="text-primary" />

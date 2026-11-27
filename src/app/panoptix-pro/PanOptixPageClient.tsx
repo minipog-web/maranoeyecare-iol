@@ -161,66 +161,51 @@ export default function PanOptixPageClient() {
   return (
     <div className="flex flex-col w-full pt-20 sm:pt-24 lg:pt-28 pb-20">
       {/* ── Top Breadcrumb & Back Navigation ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mb-8 sm:mb-10 w-full">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 mb-6 sm:mb-10 w-full">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 pb-4 border-b border-white/[0.06]">
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground"
+            className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-muted-foreground"
           >
             <Link
               href="/"
-              className="hover:text-primary transition-colors flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-primary rounded-full px-3 py-1 bg-white/[0.03] border border-white/10"
+              className="hover:text-primary transition-colors inline-flex items-center gap-1.5 min-h-[44px] focus-visible:ring-2 focus-visible:ring-primary rounded-full px-3.5 py-2 bg-white/[0.04] border border-white/10 touch-manipulation"
             >
-              <Icon name="ArrowLeftIcon" size={13} />
+              <Icon name="ArrowLeftIcon" size={13} className="shrink-0" />
               <span>All Premium Lens Options</span>
             </Link>
             <span className="text-white/20">/</span>
-            <span className="text-[#a78bfa] font-medium tracking-wide">
+            <span className="text-[#ddd6fe] font-medium tracking-wide">
               Clareon® PanOptix® Pro Clinical Guide
             </span>
           </nav>
-          <div className="hidden md:flex items-center gap-3 text-xs font-mono font-medium">
-            <a
-              href="#enlighten"
-              onClick={(e) => handleAnchorClick(e, 'enlighten', 'subnav_enlighten')}
-              className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
-            >
-              ENLIGHTEN® NXT Tech
-            </a>
-            <a
-              href="#simulator"
-              onClick={(e) => handleAnchorClick(e, 'simulator', 'subnav_simulator')}
-              className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
-            >
-              3-Distance Acuity
-            </a>
-            <a
-              href="#comparison"
-              onClick={(e) => handleAnchorClick(e, 'comparison', 'subnav_comparison')}
-              className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
-            >
-              3-Way Comparison
-            </a>
-            <a
-              href="#candidates"
-              onClick={(e) => handleAnchorClick(e, 'candidates', 'subnav_candidates')}
-              className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
-            >
-              Candidacy
-            </a>
-            <a
-              href="#faq"
-              onClick={(e) => handleAnchorClick(e, 'faq', 'subnav_faq')}
-              className="text-white/60 hover:text-primary transition-colors px-2.5 py-1 rounded-lg hover:bg-white/[0.03]"
-            >
-              FAQs
-            </a>
+          <div
+            role="navigation"
+            aria-label="Section jump links"
+            className="flex items-center gap-2 md:gap-2.5 text-xs font-mono font-semibold md:font-medium overflow-x-auto md:overflow-visible scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 py-0.5"
+          >
+            {[
+              { id: 'enlighten', key: 'subnav_enlighten', label: 'ENLIGHTEN® Tech' },
+              { id: 'simulator', key: 'subnav_simulator', label: '3-Distance Vision' },
+              { id: 'comparison', key: 'subnav_comparison', label: '3-Way Compare' },
+              { id: 'candidates', key: 'subnav_candidates', label: 'Candidacy' },
+              { id: 'faq', key: 'subnav_faq', label: 'FAQs' },
+            ].map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => handleAnchorClick(e, item.id, item.key)}
+                className="inline-flex items-center min-h-[44px] md:min-h-[36px] whitespace-nowrap shrink-0 text-slate-200 md:text-white/70 hover:text-primary transition-colors px-3.5 py-2 md:px-2.5 md:py-1.5 rounded-full md:rounded-lg bg-white/[0.04] md:bg-transparent border border-white/10 md:border-transparent hover:bg-white/[0.06] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
 
       {/* ── HERO SECTION: Clinical Authority & Doppelrand Physical Showcase ── */}
-      <section className="relative overflow-hidden py-16 sm:py-24 lg:py-28 bg-[#08090e]">
+      <section className="relative overflow-hidden py-12 sm:py-24 lg:py-28 bg-[#08090e]">
         {/* Signature PanOptix Amber & Violet Ray Pattern */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-gradient-to-tr from-[#8b5cf6]/[0.08] via-primary/[0.08] to-transparent rounded-full blur-[160px] pointer-events-none" />
         <div className="absolute inset-0 grid-lines-bg opacity-15 pointer-events-none" />
@@ -228,11 +213,13 @@ export default function PanOptixPageClient() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid lg:grid-cols-12 gap-12 sm:gap-14 lg:gap-16 items-center">
             {/* Left Column: Clinical Positioning Copy */}
-            <div className="lg:col-span-7 flex flex-col items-start text-left">
+            <div className="lg:col-span-7 flex flex-col items-start text-left min-w-0">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/30 text-[#a78bfa] text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-[0.25em] mb-6 shadow-[0_0_20px_rgba(139,92,246,0.2)]">
-                <span className="w-2 h-2 rounded-full bg-[#8b5cf6] animate-pulse" />
-                <span>FDA-Approved Trifocal Optical Innovation</span>
+              <div className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-2xl sm:rounded-full bg-[#8b5cf6]/15 border border-[#a78bfa]/35 text-[#ddd6fe] text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-[0.12em] sm:tracking-[0.22em] mb-6 shadow-[0_0_20px_rgba(139,92,246,0.2)] max-w-full">
+                <span className="w-2 h-2 rounded-full bg-[#a78bfa] animate-pulse shrink-0" />
+                <span className="min-w-0 break-words">
+                  FDA-Approved Trifocal Optical Innovation
+                </span>
               </div>
 
               <div className="mb-5">
@@ -326,9 +313,9 @@ export default function PanOptixPageClient() {
                   href="/#booking"
                   onClick={(e) => {
                     handleNavClick('hero_book_cta');
+                    window.dispatchEvent(new CustomEvent('select-lens', { detail: 'panoptix' }));
                     try {
                       sessionStorage.setItem('preselect-lens', 'panoptix');
-                      sessionStorage.setItem('pending-scroll-hash', 'booking');
                     } catch {
                       // Ignore storage write issues
                     }
@@ -338,6 +325,12 @@ export default function PanOptixPageClient() {
                       e.preventDefault();
                       smoothScrollToElement(bookingEl.id);
                       window.history.pushState(null, '', `#${bookingEl.id}`);
+                    } else {
+                      try {
+                        sessionStorage.setItem('pending-scroll-hash', 'booking');
+                      } catch {
+                        // Ignore storage write issues
+                      }
                     }
                   }}
                   className="group relative inline-flex items-center justify-between sm:justify-center rounded-full btn-premium-primary px-7 py-3.5 text-sm font-bold text-black transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
@@ -404,18 +397,9 @@ export default function PanOptixPageClient() {
               How ENLIGHTEN® NXT Delivers 94% Light Utilization
             </h2>
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl mx-auto font-light">
-              While purely refractive lenses like TECNIS PureSee transmit ~100% of light by avoiding
-              diffractive rings, the original AcrySof/Clareon PanOptix delivered 88% light
-              utilization (12% scatter). Launched in the US in May 2025, Alcon’s proprietary
-              ENLIGHTEN® NXT optical system delivers 94% light utilization with just 6% light
-              scatter—50% less scatter than the original PanOptix—while distributing sharp focus
-              seamlessly across distance, intermediate, and dedicated 40 cm near vision{' '}
-              <sup className="text-[10px] font-bold text-primary inline-block ml-0.5">
-                <a href="#footnote-5" className="text-primary hover:underline font-bold">
-                  [5]
-                </a>
-              </sup>
-              .
+              {renderFootnoteText(
+                'While purely refractive lenses like TECNIS PureSee transmit ~100% of light by avoiding diffractive rings, the original AcrySof/Clareon PanOptix delivered 88% light utilization (12% scatter). Launched in the US in May 2025, Alcon’s proprietary ENLIGHTEN® NXT optical system delivers 94% light utilization with just 6% light scatter—50% less scatter than the original PanOptix—while distributing sharp focus seamlessly across distance, intermediate, and dedicated 40 cm near vision [5].'
+              )}
             </p>
           </div>
 
@@ -528,7 +512,7 @@ export default function PanOptixPageClient() {
               <div
                 role="tablist"
                 aria-label="Visual acuity by distance"
-                className="flex flex-wrap items-center justify-center gap-2 mb-10 p-1.5 rounded-full bg-black/60 border border-white/10 max-w-xl mx-auto"
+                className="grid grid-cols-3 sm:flex items-stretch sm:items-center justify-center gap-1 sm:gap-2 mb-8 sm:mb-10 p-1.5 rounded-2xl sm:rounded-full bg-black/60 border border-white/10 max-w-xl mx-auto"
               >
                 <button
                   type="button"
@@ -542,13 +526,14 @@ export default function PanOptixPageClient() {
                       label: 'near',
                     });
                   }}
-                  className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                  className={`sm:flex-1 min-h-[48px] py-2.5 sm:py-3 px-2 sm:px-5 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wide sm:tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'near'
                       ? 'btn-premium-primary text-black'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
+                      : 'text-slate-200 hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >
-                  1. Near (40 cm)
+                  <span className="sm:hidden">Near</span>
+                  <span className="hidden sm:inline">1. Near (40 cm)</span>
                 </button>
                 <button
                   type="button"
@@ -562,13 +547,14 @@ export default function PanOptixPageClient() {
                       label: 'intermediate',
                     });
                   }}
-                  className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                  className={`sm:flex-1 min-h-[48px] py-2.5 sm:py-3 px-2 sm:px-5 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wide sm:tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'intermediate'
                       ? 'btn-premium-primary text-black'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
+                      : 'text-slate-200 hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >
-                  2. Intermediate (60 cm)
+                  <span className="sm:hidden">Screens</span>
+                  <span className="hidden sm:inline">2. Intermediate (60 cm)</span>
                 </button>
                 <button
                   type="button"
@@ -582,13 +568,14 @@ export default function PanOptixPageClient() {
                       label: 'distance',
                     });
                   }}
-                  className={`flex-1 min-w-[120px] py-3 px-5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                  className={`sm:flex-1 min-h-[48px] py-2.5 sm:py-3 px-2 sm:px-5 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wide sm:tracking-wider transition-all duration-300 touch-manipulation active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
                     selectedDistanceTab === 'distance'
                       ? 'btn-premium-primary text-black'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.04]'
+                      : 'text-slate-200 hover:text-foreground hover:bg-white/[0.04]'
                   }`}
                 >
-                  3. Distance (6m+)
+                  <span className="sm:hidden">Distance</span>
+                  <span className="hidden sm:inline">3. Distance (6m+)</span>
                 </button>
               </div>
 
@@ -859,14 +846,48 @@ export default function PanOptixPageClient() {
             </div>
           </div>
 
-          {/* Mobile Swipe Hint */}
-          <div className="flex md:hidden items-center justify-end gap-1.5 text-[11px] text-muted-foreground mb-3 px-1 font-mono">
-            <Icon name="ArrowsRightLeftIcon" size={13} className="text-[#a78bfa] animate-pulse" />
-            <span>Swipe horizontally to compare all lenses &rarr;</span>
+          {/* Mobile Zero-Overflow Parameter Comparison Cards */}
+          <div className="md:hidden space-y-3.5">
+            {comparisonMetrics.map((row, idx) => (
+              <div
+                key={`m-comp-${idx}`}
+                className="rounded-2xl border border-white/10 bg-[#07090d] p-4 space-y-2.5 shadow-lg"
+              >
+                <h4 className="text-xs font-bold uppercase tracking-wider text-white border-b border-white/[0.08] pb-2">
+                  {renderFootnoteText(row.title)}
+                </h4>
+                <div className="space-y-2 text-xs">
+                  <div className="rounded-xl bg-[#8b5cf6]/[0.12] border border-[#a78bfa]/40 p-2.5">
+                    <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-[#ddd6fe] mb-0.5">
+                      Clareon® PanOptix® Pro
+                    </span>
+                    <span className="text-white font-medium leading-snug block">
+                      {renderFootnoteText(row.panoptix)}
+                    </span>
+                  </div>
+                  <div className="rounded-xl bg-white/[0.025] border border-white/[0.07] p-2.5">
+                    <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-primary mb-0.5">
+                      Clareon® Vivity®
+                    </span>
+                    <span className="text-slate-200 leading-snug block">
+                      {renderFootnoteText(row.vivity)}
+                    </span>
+                  </div>
+                  <div className="rounded-xl bg-white/[0.025] border border-white/[0.07] p-2.5">
+                    <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-[#bae6fd] mb-0.5">
+                      TECNIS PureSee™
+                    </span>
+                    <span className="text-slate-200 leading-snug block">
+                      {renderFootnoteText(row.puresee)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Full Side-by-Side Specifications Matrix Table (Luxury Glass Container) */}
-          <div className="w-full overflow-x-auto rounded-[2rem] border border-white/10 bg-[#07090d] backdrop-blur-xl shadow-2xl p-1">
+          {/* Desktop Full Side-by-Side Specifications Matrix Table (Luxury Glass Container) */}
+          <div className="hidden md:block w-full overflow-x-auto rounded-[2rem] border border-white/10 bg-[#07090d] backdrop-blur-xl shadow-2xl p-1">
             <table className="w-full text-left border-collapse min-w-[720px]">
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.03]">
@@ -1121,7 +1142,7 @@ export default function PanOptixPageClient() {
         id="faq"
         className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#07080c] scroll-mt-24 sm:scroll-mt-28"
       >
-        <div id="faqs" className="relative -top-28" />
+        <span id="faqs" className="sr-only top-0 left-0" aria-hidden="true" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 sm:mb-18">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#a78bfa] text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.25em] mb-4">

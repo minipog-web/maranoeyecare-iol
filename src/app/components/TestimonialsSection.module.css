@@ -9,25 +9,25 @@
   letter-spacing: 0.12em;
 }
 
-/* PanOptix: #8B5CF6 */
+/* PanOptix: WCAG AAA high-contrast lavender on dark card */
 .lensPanoptix .lensBadge {
-  background-color: rgba(139, 92, 246, 0.1);
-  color: #8b5cf6;
-  border: 1px solid rgba(139, 92, 246, 0.22);
+  background-color: rgba(139, 92, 246, 0.16);
+  color: #ddd6fe;
+  border: 1px solid rgba(167, 139, 250, 0.38);
 }
 
-/* Vivity: #c5a059 */
+/* Vivity: WCAG AAA high-contrast champagne gold on dark card */
 .lensVivity .lensBadge {
-  background-color: rgba(var(--primary-rgb), 0.1);
-  color: #c5a059;
-  border: 1px solid rgba(var(--primary-rgb), 0.22);
+  background-color: rgba(var(--primary-rgb), 0.16);
+  color: #f8e4b4;
+  border: 1px solid rgba(var(--primary-rgb), 0.38);
 }
 
-/* PureSee: #00a3ff */
+/* PureSee: WCAG AAA high-contrast sky cyan on dark card */
 .lensPuresee .lensBadge {
-  background-color: rgba(0, 163, 255, 0.1);
-  color: #00a3ff;
-  border: 1px solid rgba(0, 163, 255, 0.22);
+  background-color: rgba(0, 163, 255, 0.16);
+  color: #bae6fd;
+  border: 1px solid rgba(56, 189, 248, 0.38);
 }
 
 .carouselTrack {

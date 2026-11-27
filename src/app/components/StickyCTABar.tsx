@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackPhoneClick } from '@/lib/gtag';
-import { smoothScrollToElement } from '@/lib/ui';
+import { resolveScrollTarget, smoothScrollToElement } from '@/lib/ui';
 
 export default function StickyCTABar() {
   const router = useRouter();
@@ -14,12 +14,9 @@ export default function StickyCTABar() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    const bookingTargets = [
-      document.getElementById('booking'),
-      document.getElementById('bottom-booking'),
-    ].filter(Boolean) as HTMLElement[];
-    const intersectingIds = new Set<string>();
-    let isAtBooking = false;
+    const observedElements = new Set<Element>();
+    const intersectingElements = new Set<Element>();
+    let isAtBookingOrFooter = false;
 
     // Helper to sync with CallRail tracking number if another tel: link was already swapped
     const syncWithSwappedCallRail = () => {
@@ -65,33 +62,65 @@ export default function StickyCTABar() {
     }
 
     let observer: IntersectionObserver | null = null;
-    if (
-      bookingTargets.length > 0 &&
-      typeof window !== 'undefined' &&
-      'IntersectionObserver' in window
-    ) {
+    let mutationObserver: MutationObserver | null = null;
+
+    const observeTargets = () => {
+      if (!observer) return;
+      const candidates = [
+        document.getElementById('booking'),
+        document.getElementById('bottom-booking'),
+        document.getElementById('consultation'),
+        document.querySelector('footer'),
+      ].filter(Boolean) as Element[];
+
+      candidates.forEach((el) => {
+        if (!observedElements.has(el)) {
+          observedElements.add(el);
+          observer?.observe(el);
+        }
+      });
+
+      if (document.getElementById('bottom-booking') || document.getElementById('booking')) {
+        mutationObserver?.disconnect();
+        mutationObserver = null;
+      }
+    };
+
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
       observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              intersectingIds.add(entry.target.id);
+              intersectingElements.add(entry.target);
             } else {
-              intersectingIds.delete(entry.target.id);
+              intersectingElements.delete(entry.target);
             }
           });
-          isAtBooking = intersectingIds.size > 0;
-          setVisible(window.scrollY > 400 && !isAtBooking);
+          isAtBookingOrFooter = intersectingElements.size > 0;
+          setVisible(window.scrollY > 400 && !isAtBookingOrFooter);
         },
         { rootMargin: '100px 0px 0px 0px' }
       );
-      bookingTargets.forEach((el) => observer?.observe(el));
+
+      observeTargets();
+
+      if (
+        !document.getElementById('bottom-booking') &&
+        !document.getElementById('booking') &&
+        typeof MutationObserver !== 'undefined'
+      ) {
+        mutationObserver = new MutationObserver(() => {
+          observeTargets();
+        });
+        mutationObserver.observe(document.body, { childList: true, subtree: true });
+      }
     }
 
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setVisible(window.scrollY > 400 && !isAtBooking);
+          setVisible(window.scrollY > 400 && !isAtBookingOrFooter);
           ticking = false;
         });
         ticking = true;
@@ -104,6 +133,7 @@ export default function StickyCTABar() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (observer) observer.disconnect();
+      if (mutationObserver) mutationObserver.disconnect();
     };
   }, [dismissed]);
 
@@ -141,8 +171,8 @@ export default function StickyCTABar() {
       label: 'Book Consultation',
     });
     const el =
-      document.getElementById('bottom-booking') ||
-      document.getElementById('booking') ||
+      resolveScrollTarget('bottom-booking') ||
+      resolveScrollTarget('booking') ||
       document.getElementById('consultation');
     if (el) {
       e.preventDefault();
@@ -166,10 +196,13 @@ export default function StickyCTABar() {
       {/* Mobile Sticky Bottom Bar: Explicit Call Now + Book Consult */}
       <div
         className={`fixed bottom-0 left-0 right-0 z-40 md:hidden transition-all duration-300 ease-out ${
-          visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+          visible
+            ? 'translate-y-0 opacity-100 pointer-events-auto visible'
+            : 'translate-y-full opacity-0 pointer-events-none invisible'
         }`}
         role="complementary"
         aria-label="Quick consultation actions"
+        aria-hidden={!visible}
       >
         <div className="h-6 bg-gradient-to-t from-background/85 to-transparent pointer-events-none" />
 
@@ -180,6 +213,7 @@ export default function StickyCTABar() {
               ref={phoneLinkRef}
               href="tel:9733220100"
               suppressHydrationWarning
+              tabIndex={visible ? 0 : -1}
               onClick={handlePhoneClick}
               className="flex-1 flex items-center justify-center gap-1.5 px-2.5 xs:px-3 py-2.5 min-h-[48px] rounded-full border-2 border-primary bg-[#161a24] text-white hover:bg-[#1f2533] text-xs xs:text-sm font-bold text-center leading-tight transition-all active:scale-[0.98] touch-manipulation shadow-[0_2px_12px_rgba(0,0,0,0.45)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               aria-label="Call Marano Eye Care (973) 322-0100"
@@ -194,6 +228,7 @@ export default function StickyCTABar() {
             {/* Primary Book CTA */}
             <a
               href="#bottom-booking"
+              tabIndex={visible ? 0 : -1}
               onClick={handleBookClick}
               className="flex-[1.35] flex items-center justify-center gap-1.5 xs:gap-2 px-3 xs:px-4 py-2.5 bg-primary text-[#000000] rounded-full text-xs xs:text-sm font-bold text-center leading-tight hover:bg-accent transition-all active:scale-[0.98] touch-manipulation min-h-[48px] group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             >
@@ -205,8 +240,10 @@ export default function StickyCTABar() {
               />
             </a>
 
-            {/* Compact Dismiss */}
+            {/* Compact Dismiss (44x44px minimum target) */}
             <button
+              type="button"
+              tabIndex={visible ? 0 : -1}
               onClick={() => {
                 setDismissed(true);
                 trackEvent({
@@ -215,10 +252,10 @@ export default function StickyCTABar() {
                   label: 'Dismiss Sticky Bar (Mobile)',
                 });
               }}
-              className="flex items-center justify-center w-10 h-11 text-muted-foreground/75 hover:text-white transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              className="flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-full text-slate-300 hover:text-white active:bg-white/10 transition-colors touch-manipulation shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
               aria-label="Dismiss quick actions bar"
             >
-              <Icon name="XMarkIcon" size={16} />
+              <Icon name="XMarkIcon" size={18} />
             </button>
           </div>
           <div className="safe-area-pb" />
@@ -229,11 +266,12 @@ export default function StickyCTABar() {
       <div
         className={`hidden md:block fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2.5rem)] max-w-4xl transition-all duration-300 ease-out ${
           visible
-            ? 'translate-y-0 opacity-100 pointer-events-auto'
-            : 'translate-y-8 opacity-0 pointer-events-none'
+            ? 'translate-y-0 opacity-100 pointer-events-auto visible'
+            : 'translate-y-8 opacity-0 pointer-events-none invisible'
         }`}
         role="complementary"
         aria-label="Schedule cataract consultation"
+        aria-hidden={!visible}
       >
         <div className="flex items-center justify-between gap-4 px-5 py-3 rounded-full bg-[#0e1017]/95 backdrop-blur-xl border border-primary/35 shadow-[0_14px_45px_rgba(0,0,0,0.65),0_0_25px_rgba(197,160,89,0.14)]">
           <div className="flex items-center gap-3 min-w-0">

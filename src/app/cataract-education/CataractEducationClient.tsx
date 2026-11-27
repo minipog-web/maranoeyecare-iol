@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Icon from '@/components/ui/AppIcon';
@@ -8,6 +8,7 @@ import LazySimulatorGate from '@/components/ui/LazySimulatorGate';
 import MedicalReviewBadge from '@/components/seo/MedicalReviewBadge';
 import { Cataract3DPreviewPlaceholder } from '@/components/ui/SimulatorPreviewPlaceholders';
 import { trackEvent } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 
 const CataractEducation3DViewer = dynamic(
   () => import('@/components/cataract-3d/CataractEducation3DViewer'),
@@ -192,16 +193,40 @@ const cataractFaqs = [
 export default function CataractEducationClient() {
   const [activeStageId, setActiveStageId] = useState<number>(1);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [force3DActivate, setForce3DActivate] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (window.location.hash === '#cataract-3d-simulator') {
+      setForce3DActivate(true);
+    }
+
+    const onActivateLazyTarget = (e: Event) => {
+      if ((e as CustomEvent).detail === 'cataract-3d-simulator') {
+        setForce3DActivate(true);
+      }
+    };
+
+    window.addEventListener('activate-lazy-target', onActivateLazyTarget);
+    return () => window.removeEventListener('activate-lazy-target', onActivateLazyTarget);
+  }, []);
 
   const activeStage = progressionStages.find((s) => s.id === activeStageId) || progressionStages[0];
 
-  const handleStageSelect = (stageId: number, stageName: string) => {
+  const handleStageSelect = (stageId: number, stageName: string, fromUserClick = true) => {
     setActiveStageId(stageId);
     trackEvent({
       action: 'cataract_progression_stage_click',
       category: 'Education',
       label: `Stage ${stageId}: ${stageName}`,
     });
+    if (fromUserClick && typeof window !== 'undefined' && window.innerWidth < 640) {
+      requestAnimationFrame(() => {
+        const breakdownEl = document.getElementById('cataract-stage-breakdown');
+        if (breakdownEl && breakdownEl.getBoundingClientRect().top > window.innerHeight - 140) {
+          smoothScrollToElement('cataract-stage-breakdown');
+        }
+      });
+    }
   };
 
   return (
@@ -213,9 +238,12 @@ export default function CataractEducationClient() {
         {/* Breadcrumbs */}
         <nav
           aria-label="Breadcrumbs"
-          className="mb-8 flex items-center justify-center gap-2 text-xs text-muted-foreground max-w-5xl mx-auto"
+          className="mb-6 sm:mb-8 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground max-w-5xl mx-auto"
         >
-          <Link href="/" className="hover:text-primary transition-colors flex items-center gap-1">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1 min-h-[44px] px-2.5 rounded-full bg-white/[0.03] border border-white/10 hover:text-primary transition-colors touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+          >
             <Icon name="HomeIcon" size={13} />
             <span>Home</span>
           </Link>
@@ -226,9 +254,11 @@ export default function CataractEducationClient() {
         </nav>
 
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-[0.2em] mb-5">
-            <Icon name="EyeIcon" size={14} />
-            <span>Clinical Education · Ocular Anatomy &amp; Pathology</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-2xl sm:rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.2em] mb-5 max-w-full">
+            <Icon name="EyeIcon" size={14} className="shrink-0" />
+            <span className="min-w-0 break-words">
+              Clinical Education · Ocular Anatomy &amp; Pathology
+            </span>
           </div>
 
           <div className="flex justify-center mb-5">
@@ -319,11 +349,15 @@ export default function CataractEducationClient() {
       </section>
 
       {/* ── 5-STAGE PROGRESSION SIMULATOR & 3D TIME-LAPSE ── */}
-      <section className="px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-16 sm:mb-20">
+      <section
+        id="cataract-3d-simulator"
+        className="px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto mb-16 sm:mb-20 scroll-mt-24 sm:scroll-mt-28"
+      >
         {/* 3D Anatomical Time-Lapse Viewer */}
         <div className="max-w-5xl mx-auto mb-10">
           <LazySimulatorGate
             rootMargin="120px"
+            forceActivate={force3DActivate}
             placeholder={<Cataract3DPreviewPlaceholder variant="full" />}
             render={() => (
               <CataractEducation3DViewer
@@ -331,7 +365,7 @@ export default function CataractEducationClient() {
                 onStageChange={(newStageId) => {
                   const matchedStage = progressionStages.find((s) => s.id === newStageId);
                   if (matchedStage) {
-                    handleStageSelect(matchedStage.id, matchedStage.stageName);
+                    handleStageSelect(matchedStage.id, matchedStage.stageName, false);
                   }
                 }}
               />
@@ -350,8 +384,8 @@ export default function CataractEducationClient() {
                   <span>Lens Clarity Simulation · Interactive Optical Explorer</span>
                 </p>
                 <div className="flex items-center gap-2 text-xs text-primary font-semibold bg-primary/10 border border-primary/25 px-3.5 py-1.5 rounded-full shrink-0 self-start sm:self-auto shadow-[0_0_15px_rgba(197,160,89,0.12)]">
-                  <Icon name="CursorArrowRaysIcon" size={14} />
-                  <span>Click any lens stage to load clinical data below ↓</span>
+                  <Icon name="CursorArrowRaysIcon" size={14} className="shrink-0" />
+                  <span>Tap any stage to load clinical data below ↓</span>
                 </div>
               </div>
               <h2 className="font-display text-lg sm:text-xl lg:text-2xl font-medium text-foreground tracking-tight">
@@ -486,7 +520,7 @@ export default function CataractEducationClient() {
                         </span>
                       ) : (
                         <span className="inline-flex items-center justify-center gap-1 text-[10px] font-semibold text-muted-foreground/80 group-hover:text-foreground bg-white/[0.04] group-hover:bg-white/10 px-2 py-0.5 rounded-full w-full transition-colors">
-                          <span>Click to Inspect</span>
+                          <span>Tap to Inspect</span>
                           <span className="text-xs group-hover:translate-y-0.5 transition-transform">
                             ↓
                           </span>
@@ -510,7 +544,10 @@ export default function CataractEducationClient() {
           </div>
 
           {/* Interactive Stage Bridge Bar */}
-          <div className="bg-[#08090e] px-5 sm:px-8 py-3.5 border-t border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-2 relative z-20">
+          <div
+            id="cataract-stage-breakdown"
+            className="bg-[#08090e] px-5 sm:px-8 py-3.5 border-t border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-2 relative z-20"
+          >
             <div className="flex items-center gap-2.5 text-xs">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -912,11 +949,19 @@ export default function CataractEducationClient() {
             </Link>
             <Link
               href="/#booking"
-              onClick={() => {
-                try {
-                  sessionStorage.setItem('pending-scroll-hash', 'booking');
-                } catch {
-                  // Ignore storage write issues
+              onClick={(e) => {
+                const bookingEl =
+                  document.getElementById('booking') || document.getElementById('consultation');
+                if (bookingEl) {
+                  e.preventDefault();
+                  smoothScrollToElement(bookingEl.id);
+                  window.history.pushState(null, '', `#${bookingEl.id}`);
+                } else {
+                  try {
+                    sessionStorage.setItem('pending-scroll-hash', 'booking');
+                  } catch {
+                    // Ignore storage write issues
+                  }
                 }
               }}
               className="w-full sm:w-auto group inline-flex items-center justify-center pl-6 pr-3 py-3 bg-primary text-[#000000] rounded-full text-sm sm:text-base font-bold hover:bg-accent transition-all hover:scale-[1.02] active:scale-[0.98] touch-manipulation min-h-[48px] shadow-[0_4px_16px_rgba(197,160,89,0.25)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"

@@ -6,6 +6,7 @@ import HeroLensQuiz from '@/app/components/HeroLensQuiz';
 import HeroConsultationForm from '@/app/components/HeroConsultationForm';
 import type { LensResult } from '@/lib/lens-quiz-data';
 import { trackEvent } from '@/lib/gtag';
+import { smoothScrollToElement } from '@/lib/ui';
 
 type HeroTab = 'quiz' | 'booking';
 
@@ -67,109 +68,122 @@ export default function HeroInteractiveCard() {
     setMatchedAnswers(answers);
     setQuizSummaryNote(`Hero Quiz Match: ${lens.name} (${answers.join(' → ')})`);
     setActiveTab('booking');
+    requestAnimationFrame(() => {
+      const bookingCard = document.getElementById('booking');
+      const header =
+        document.querySelector<HTMLElement>('[data-header-bar]') ||
+        document.querySelector<HTMLElement>('header');
+      const headerHeight = header ? header.getBoundingClientRect().height : 80;
+      if (bookingCard && bookingCard.getBoundingClientRect().top < headerHeight + 8) {
+        smoothScrollToElement('booking');
+      }
+    });
   };
 
   return (
     <div id="hero-quiz" className="relative scroll-mt-20">
-      {/* Ambient Champagne-Gold Optical Aura Behind Card */}
+      {/* Restrained Perimeter Studio Backlight for Clean Figure-Ground Separation */}
       <div
-        className="absolute -inset-2 rounded-[2rem] opacity-40 blur-2xl pointer-events-none"
+        className="absolute -inset-3 rounded-[2.25rem] opacity-60 blur-2xl pointer-events-none"
         aria-hidden="true"
         style={{
           background:
-            'radial-gradient(circle at 50% 0%, rgba(212,175,105,0.34) 0%, rgba(197,160,89,0.08) 55%, transparent 80%)',
+            'radial-gradient(ellipse at 50% 45%, rgba(197,160,89,0.16) 0%, rgba(148,163,184,0.06) 55%, transparent 78%)',
         }}
       />
 
-      <div
-        id="booking"
-        className="relative rounded-[28px] p-4 sm:p-6 scroll-mt-20 sm:scroll-mt-24 bg-gradient-to-b from-[#131724]/98 via-[#0c0f18]/98 to-[#080a10] md:backdrop-blur-2xl border border-primary/45 ring-1 ring-white/[0.07] shadow-[0_30px_90px_rgba(0,0,0,0.85),0_0_50px_rgba(197,160,89,0.16)]"
-      >
-        <span id="lens-quiz" className="sr-only" aria-hidden="true" />
-
-        {/* Luminous Specular Crown */}
+      {/* Precision Double-Bezel (Doppelrand) Architectural Frame */}
+      <div className="relative rounded-[30px] p-[5px] bg-gradient-to-b from-white/[0.11] via-primary/[0.14] to-white/[0.04] border border-white/[0.12] shadow-[0_28px_70px_-12px_rgba(0,0,0,0.85),0_0_0_1px_rgba(0,0,0,0.5)]">
         <div
-          className="absolute top-0 inset-x-10 h-[1.5px] bg-gradient-to-r from-transparent via-[#F6E2B3] to-transparent pointer-events-none"
-          aria-hidden="true"
-        />
-
-        {/* Dual-Tab Segmented Switcher */}
-        <div
-          role="tablist"
-          aria-label="Choose between 60-second lens quiz or direct consultation request"
-          className="grid grid-cols-2 gap-1.5 p-1.5 rounded-2xl bg-[#06080e]/95 border border-white/[0.09] shadow-inner mb-5"
+          id="booking"
+          className="relative rounded-[25px] p-4 sm:p-6 scroll-mt-20 sm:scroll-mt-24 bg-gradient-to-b from-[#171d2c] via-[#121724] to-[#0e121d] border border-primary/30 shadow-[inset_0_1px_0_rgba(255,244,218,0.18)]"
         >
-          <button
-            type="button"
-            role="tab"
-            id="tab-hero-quiz"
-            aria-selected={activeTab === 'quiz'}
-            aria-controls="panel-hero-quiz"
-            onClick={() => switchTab('quiz', 'tab_click')}
-            className={`flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2.5 rounded-xl text-xs sm:text-[13px] font-extrabold text-center leading-tight whitespace-normal transition-all duration-200 min-h-[46px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
-              activeTab === 'quiz'
-                ? 'bg-gradient-to-r from-[#E5C585] via-primary to-[#C9A052] text-[#050608] shadow-[0_6px_20px_rgba(197,160,89,0.38),inset_0_1px_0_rgba(255,255,255,0.45)]'
-                : 'text-slate-200 hover:text-white hover:bg-white/[0.05]'
-            }`}
-          >
-            <Icon
-              name="SparklesIcon"
-              size={15}
-              className={`shrink-0 ${activeTab === 'quiz' ? 'text-black' : 'text-primary'}`}
-            />
-            <span>Find My Lens (60s)</span>
-          </button>
+          <span id="lens-quiz" className="sr-only top-0 left-0" aria-hidden="true" />
 
-          <button
-            type="button"
-            role="tab"
-            id="tab-hero-booking"
-            aria-selected={activeTab === 'booking'}
-            aria-controls="panel-hero-booking"
-            onClick={() => switchTab('booking', 'tab_click')}
-            className={`flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2.5 rounded-xl text-xs sm:text-[13px] font-extrabold text-center leading-tight whitespace-normal transition-all duration-200 min-h-[46px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
-              activeTab === 'booking'
-                ? 'bg-gradient-to-r from-[#E5C585] via-primary to-[#C9A052] text-[#050608] shadow-[0_6px_20px_rgba(197,160,89,0.38),inset_0_1px_0_rgba(255,255,255,0.45)]'
-                : 'text-slate-200 hover:text-white hover:bg-white/[0.05]'
-            }`}
-          >
-            <Icon
-              name="CalendarDaysIcon"
-              size={15}
-              className={`shrink-0 ${activeTab === 'booking' ? 'text-black' : 'text-primary'}`}
-            />
-            <span>Book Evaluation</span>
-            {matchedLensKey && activeTab !== 'booking' && (
-              <span
-                className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)] shrink-0"
-                aria-hidden="true"
-              />
-            )}
-          </button>
-        </div>
-
-        {/* Tab Panels */}
-        <div
-          id="panel-hero-quiz"
-          role="tabpanel"
-          aria-labelledby="tab-hero-quiz"
-          className={activeTab === 'quiz' ? 'block' : 'hidden'}
-        >
-          <HeroLensQuiz onLockInLens={handleLockInLens} />
-        </div>
-
-        <div
-          id="panel-hero-booking"
-          role="tabpanel"
-          aria-labelledby="tab-hero-booking"
-          className={activeTab === 'booking' ? 'block' : 'hidden'}
-        >
-          <HeroConsultationForm
-            embedded
-            externalLensKey={matchedLensKey}
-            externalQuizNote={quizSummaryNote}
-            matchedAnswers={matchedAnswers}
+          {/* Subtle Specular Top Catchlight */}
+          <div
+            className="absolute top-0 inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#F5E4C3]/75 to-transparent pointer-events-none"
+            aria-hidden="true"
           />
+
+          {/* Dual-Tab Precision Instrument Switcher */}
+          <div
+            role="tablist"
+            aria-label="Choose between 60-second lens quiz or direct consultation request"
+            className="grid grid-cols-2 gap-1.5 p-1 rounded-2xl bg-[#090c14] border border-white/[0.08] shadow-inner mb-5"
+          >
+            <button
+              type="button"
+              role="tab"
+              id="tab-hero-quiz"
+              aria-selected={activeTab === 'quiz'}
+              aria-controls="panel-hero-quiz"
+              onClick={() => switchTab('quiz', 'tab_click')}
+              className={`flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2.5 rounded-xl text-xs sm:text-[13px] font-bold text-center leading-tight whitespace-normal transition-all duration-200 min-h-[44px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                activeTab === 'quiz'
+                  ? 'bg-gradient-to-b from-[#232b40] to-[#181e2e] text-white border border-primary/50 shadow-[0_4px_14px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,240,205,0.2)]'
+                  : 'text-slate-300 hover:text-white hover:bg-white/[0.04] border border-transparent'
+              }`}
+            >
+              <Icon
+                name="SparklesIcon"
+                size={15}
+                className={`shrink-0 ${activeTab === 'quiz' ? 'text-primary' : 'text-slate-400'}`}
+              />
+              <span>Find My Lens (60s)</span>
+            </button>
+
+            <button
+              type="button"
+              role="tab"
+              id="tab-hero-booking"
+              aria-selected={activeTab === 'booking'}
+              aria-controls="panel-hero-booking"
+              onClick={() => switchTab('booking', 'tab_click')}
+              className={`flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-2.5 rounded-xl text-xs sm:text-[13px] font-bold text-center leading-tight whitespace-normal transition-all duration-200 min-h-[44px] touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+                activeTab === 'booking'
+                  ? 'bg-gradient-to-b from-[#232b40] to-[#181e2e] text-white border border-primary/50 shadow-[0_4px_14px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,240,205,0.2)]'
+                  : 'text-slate-300 hover:text-white hover:bg-white/[0.04] border border-transparent'
+              }`}
+            >
+              <Icon
+                name="CalendarDaysIcon"
+                size={15}
+                className={`shrink-0 ${activeTab === 'booking' ? 'text-primary' : 'text-slate-400'}`}
+              />
+              <span>Book Evaluation</span>
+              {matchedLensKey && activeTab !== 'booking' && (
+                <span
+                  className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)] shrink-0"
+                  aria-hidden="true"
+                />
+              )}
+            </button>
+          </div>
+
+          {/* Tab Panels */}
+          <div
+            id="panel-hero-quiz"
+            role="tabpanel"
+            aria-labelledby="tab-hero-quiz"
+            className={activeTab === 'quiz' ? 'block' : 'hidden'}
+          >
+            <HeroLensQuiz onLockInLens={handleLockInLens} />
+          </div>
+
+          <div
+            id="panel-hero-booking"
+            role="tabpanel"
+            aria-labelledby="tab-hero-booking"
+            className={activeTab === 'booking' ? 'block' : 'hidden'}
+          >
+            <HeroConsultationForm
+              embedded
+              externalLensKey={matchedLensKey}
+              externalQuizNote={quizSummaryNote}
+              matchedAnswers={matchedAnswers}
+            />
+          </div>
         </div>
       </div>
     </div>

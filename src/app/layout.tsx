@@ -105,6 +105,13 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
   other: {
     'chatgpt-user': 'index, follow',
     gptbot: 'index, follow',
@@ -175,6 +182,19 @@ const schemas = [
     url: 'https://premium-iol.maranoeye.com',
     telephone: '+1-973-322-0100',
     priceRange: '$$$',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '200 South Orange Ave, Suite 209',
+      addressLocality: 'Livingston',
+      addressRegion: 'NJ',
+      postalCode: '07039',
+      addressCountry: 'US',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 40.7845,
+      longitude: -74.3168,
+    },
     medicalSpecialty: ['Ophthalmology', 'Optometric', 'Surgical'],
     isAcceptingNewPatients: true,
     currenciesAccepted: 'USD',
@@ -436,6 +456,10 @@ gtag('consent', 'default', {
           {`window.dataLayer = window.dataLayer || [];
 window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
 window.gtag('js', new Date());
+window.gtag('set', 'linker', {
+  domains: ['maranoeye.com', 'premium-iol.maranoeye.com', 'maranoeyecare.com', 'www.maranoeyecare.com'],
+  accept_incoming: true
+});
 var isProdHost = window.location.hostname === 'premium-iol.maranoeye.com';
 var isHttps = window.location.protocol === 'https:';
 window.gtag('config', '${GA_MEASUREMENT_ID}', {

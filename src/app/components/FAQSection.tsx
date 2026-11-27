@@ -536,7 +536,7 @@ export default function FAQSection() {
                       label: nextState ? 'view_all' : 'view_less',
                     });
                     if (!nextState) {
-                      smoothScrollToElement('faq');
+                      requestAnimationFrame(() => smoothScrollToElement('faq'));
                     }
                   }}
                   aria-expanded={isExpanded}

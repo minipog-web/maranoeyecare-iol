@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import AppLogo from '@/components/ui/AppLogo';
 import Icon from '@/components/ui/AppIcon';
 import { trackEvent, trackPhoneClick } from '@/lib/gtag';
-import { smoothScrollToElement } from '@/lib/ui';
+import { resolveScrollTarget, smoothScrollToElement } from '@/lib/ui';
 
 const lensGuideLinks = [
   {
@@ -52,18 +52,28 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (menuOpen) {
-      const handleScroll = () => setMenuOpen(false);
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') setMenuOpen(false);
-      };
-      window.addEventListener('scroll', handleScroll, { passive: true, once: true });
-      window.addEventListener('keydown', handleKeyDown);
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('keydown', handleKeyDown);
-      };
-    }
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
+    };
   }, [menuOpen]);
 
   const navLinks = [
@@ -75,6 +85,7 @@ export default function Header() {
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, label: string) => {
+    e.currentTarget.blur();
     trackEvent({
       action: 'header_nav_click',
       category: 'Engagement',
@@ -83,11 +94,15 @@ export default function Header() {
 
     if (href.includes('#')) {
       const [, hash] = href.split('#');
+      const canResolveHere = href.startsWith('/#')
+        ? pathname === '/' || Boolean(document.getElementById(hash))
+        : Boolean(document.getElementById(hash));
+      const targetElement = canResolveHere ? resolveScrollTarget(hash) : null;
 
       // If the target element exists on the CURRENT page, smooth-scroll to it directly
-      const targetElement = document.getElementById(hash);
       if (targetElement) {
         e.preventDefault();
+        setMenuOpen(false);
         smoothScrollToElement(hash);
         window.history.pushState(null, '', `#${hash}`);
         return;
@@ -102,7 +117,9 @@ export default function Header() {
       }
     } else if (href === pathname) {
       e.preventDefault();
+      setMenuOpen(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.pushState(null, '', pathname);
     }
   };
 
@@ -111,13 +128,15 @@ export default function Header() {
   };
 
   const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>, source: string) => {
+    e.currentTarget.blur();
+    setMenuOpen(false);
     trackEvent({
       action: 'header_booking_click',
       category: 'Engagement',
       label: `Header Booking: ${source}`,
     });
 
-    const bookingEl = document.getElementById('booking') || document.getElementById('consultation');
+    const bookingEl = resolveScrollTarget('booking');
     if (bookingEl) {
       e.preventDefault();
       smoothScrollToElement(bookingEl.id);
@@ -139,10 +158,21 @@ export default function Header() {
           : 'bg-gradient-to-b from-[#05070d]/85 via-[#05070d]/40 to-transparent'
       }`}
     >
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-2 lg:gap-3 xl:gap-6">
+      <div
+        data-header-bar
+        className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 2xl:px-12 h-16 sm:h-20 flex items-center justify-between gap-2 lg:gap-3 xl:gap-6"
+      >
         <div className="flex items-center gap-3 shrink-0">
           <Link
             href="/"
+            onClick={(e) => {
+              setMenuOpen(false);
+              if (pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.history.pushState(null, '', '/');
+              }
+            }}
             aria-label="Marano Eye Care: return to homepage"
             className="hover:opacity-80 transition-opacity block shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
@@ -276,89 +306,120 @@ export default function Header() {
           </a>
 
           <button
+            type="button"
             className="flex items-center justify-center min-w-[44px] min-h-[44px] p-2.5 text-foreground touch-manipulation -mr-1 rounded-xl hover:bg-white/5 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none shrink-0"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={menuOpen}
+            aria-controls="mobile-navigation-drawer"
           >
             <Icon name={menuOpen ? 'XMarkIcon' : 'Bars3Icon'} size={24} />
           </button>
         </div>
       </div>
 
-      {/* Mobile & Tablet Menu */}
+      {/* Mobile & Tablet Menu Backdrop + Drawer */}
       {menuOpen && (
-        <div className="lg:hidden bg-background/95 backdrop-blur-2xl border-b border-border px-4 sm:px-6 py-5 flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
-          <div className="flex flex-col border-b border-border/40 pb-2">
-            {navLinks.map((link) => {
-              const isActive = link.href === pathname;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`min-h-[44px] flex items-center text-sm font-semibold uppercase tracking-wider py-2.5 transition-colors touch-manipulation rounded-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
-                    isActive ? 'text-primary font-bold' : 'text-slate-200 hover:text-primary'
-                  }`}
-                  onClick={(e) => {
-                    handleNavClick(e, link.href, link.label);
-                    setMenuOpen(false);
-                  }}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+        <>
+          <div
+            className="lg:hidden fixed inset-0 top-16 sm:top-20 bg-black/70 z-40"
+            aria-hidden="true"
+            onClick={() => setMenuOpen(false)}
+          />
+          <nav
+            id="mobile-navigation-drawer"
+            aria-label="Mobile Navigation"
+            className="relative z-50 lg:hidden bg-[#0b0d14] border-b border-primary/30 px-4 sm:px-6 py-5 flex flex-col gap-4 max-h-[calc(100dvh-4rem)] sm:max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
+          >
+            <div className="flex flex-col border-b border-border/40 pb-3">
+              {navLinks.map((link) => {
+                const isActive = link.href === pathname;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`min-h-[48px] flex items-center justify-between px-2 text-sm font-semibold uppercase tracking-wider py-2.5 transition-colors touch-manipulation rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                      isActive
+                        ? 'text-primary font-bold bg-primary/10'
+                        : 'text-slate-100 hover:text-primary active:bg-white/[0.05]'
+                    }`}
+                    onClick={(e) => {
+                      handleNavClick(e, link.href, link.label);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    <span>{link.label}</span>
+                    <Icon name="ChevronRightIcon" size={15} className="text-primary/70 shrink-0" />
+                  </Link>
+                );
+              })}
 
-            {/* Direct Lens Guides in Mobile Menu */}
-            <div className="mt-2 pt-2 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-2">
-              {lensGuideLinks.slice(0, 3).map((lens) => (
-                <Link
-                  key={lens.href}
-                  href={lens.href}
-                  className={`min-h-[44px] flex flex-col justify-center px-3 py-2.5 rounded-xl border text-xs font-semibold transition-colors touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
-                    pathname === lens.href
-                      ? 'border-primary/50 bg-primary/15 text-primary'
-                      : 'border-white/10 bg-white/[0.03] text-white/90 hover:border-primary/30 hover:text-primary'
-                  }`}
-                  onClick={(e) => {
-                    handleNavClick(e, lens.href, lens.label);
-                    setMenuOpen(false);
-                  }}
-                >
-                  <span className="block">{lens.label}</span>
-                  <span className="block text-[10px] text-white/60 font-normal">
-                    {lens.sublabel}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-3 pt-1">
-            <a
-              href="tel:9733220100"
-              suppressHydrationWarning
-              onClick={() => handlePhoneClick('mobile')}
-              className="group flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wider text-white py-3 border border-white/10 rounded-xl hover:bg-white/5 hover:border-primary/30 transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-            >
-              <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
-                <Icon name="PhoneIcon" size={12} className="text-primary" />
+              {/* Direct Lens Guides in Mobile Menu */}
+              <div className="mt-2.5 pt-3 border-t border-white/10">
+                <p className="px-2 mb-2 text-[10.5px] font-bold uppercase tracking-[0.16em] text-primary">
+                  FDA-Approved Lens Clinical Guides
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  {lensGuideLinks.slice(0, 3).map((lens) => (
+                    <Link
+                      key={lens.href}
+                      href={lens.href}
+                      className={`min-h-[48px] flex items-center justify-between sm:flex-col sm:items-start sm:justify-center px-3.5 py-2.5 rounded-xl border text-xs font-semibold transition-colors touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none ${
+                        pathname === lens.href
+                          ? 'border-primary/60 bg-primary/15 text-primary'
+                          : 'border-white/12 bg-white/[0.04] text-white hover:border-primary/40 hover:text-primary'
+                      }`}
+                      onClick={(e) => {
+                        handleNavClick(e, lens.href, lens.label);
+                        setMenuOpen(false);
+                      }}
+                    >
+                      <span>
+                        <span className="block font-bold">{lens.label}</span>
+                        <span className="block text-[11px] text-slate-300 font-normal mt-0.5">
+                          {lens.sublabel}
+                        </span>
+                      </span>
+                      <Icon
+                        name="ArrowRightIcon"
+                        size={14}
+                        className="text-primary shrink-0 sm:hidden"
+                      />
+                    </Link>
+                  ))}
+                </div>
               </div>
-              <span suppressHydrationWarning>(973) 322-0100</span>
-            </a>
+            </div>
 
-            <Link
-              href="/#booking"
-              className="w-full py-3.5 bg-primary text-[#000000] rounded-full text-sm font-bold text-center hover:bg-accent transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-manipulation flex items-center justify-center shadow-[0_4px_16px_rgba(197,160,89,0.25),0_2px_4px_rgba(0,0,0,0.15)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-              onClick={(e) => {
-                handleBookingClick(e, 'mobile');
-                setMenuOpen(false);
-              }}
-            >
-              Book Consultation
-            </Link>
-          </div>
-        </div>
+            <div className="flex flex-col gap-2.5 pt-0.5 safe-area-pb">
+              <a
+                href="tel:9733220100"
+                suppressHydrationWarning
+                onClick={() => handlePhoneClick('mobile')}
+                className="group flex items-center justify-center gap-2.5 min-h-[48px] text-sm font-bold tracking-wide text-white py-3 border border-primary/40 bg-white/[0.04] rounded-full hover:bg-white/10 transition-all duration-200 touch-manipulation focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              >
+                <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center border border-primary/35">
+                  <Icon name="PhoneIcon" size={13} className="text-primary" />
+                </div>
+                <span>
+                  Call Desk: <span suppressHydrationWarning>(973) 322-0100</span>
+                </span>
+              </a>
+
+              <Link
+                href="/#booking"
+                className="w-full min-h-[50px] py-3.5 bg-primary text-[#000000] rounded-full text-sm font-extrabold text-center hover:bg-accent transition-all duration-300 active:scale-[0.98] touch-manipulation flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(197,160,89,0.28)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                onClick={(e) => {
+                  handleBookingClick(e, 'mobile');
+                  setMenuOpen(false);
+                }}
+              >
+                <span>Book 1-on-1 Consultation</span>
+                <Icon name="ArrowRightIcon" size={15} className="text-black shrink-0" />
+              </Link>
+            </div>
+          </nav>
+        </>
       )}
     </header>
   );
